@@ -5,6 +5,14 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWMGEGCSS", "SWMGEGCSS\SWMGEGCSS.csproj", "{461E2A7B-D836-44A9-9CB1-97687DE33955}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Model", "1.Model", "{ADFF7253-26A0-4B56-8C83-D57AE27DB327}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWMGEGCSS_EN", "SWMGEGCSS_EN\SWMGEGCSS_EN.csproj", "{976C4B2F-5140-4C7B-8800-3EEF115BDB51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Data Access", "2.Data Access", "{A12A2403-1982-4823-B7D8-3B25F661B7B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWMGEGCSS_DA", "SWMGEGCSS_DA\SWMGEGCSS_DA.csproj", "{F870BC15-B7C9-4279-9260-6306BDE0683F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +23,24 @@ Global
 		{461E2A7B-D836-44A9-9CB1-97687DE33955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{461E2A7B-D836-44A9-9CB1-97687DE33955}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{461E2A7B-D836-44A9-9CB1-97687DE33955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976C4B2F-5140-4C7B-8800-3EEF115BDB51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976C4B2F-5140-4C7B-8800-3EEF115BDB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976C4B2F-5140-4C7B-8800-3EEF115BDB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976C4B2F-5140-4C7B-8800-3EEF115BDB51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F870BC15-B7C9-4279-9260-6306BDE0683F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F870BC15-B7C9-4279-9260-6306BDE0683F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F870BC15-B7C9-4279-9260-6306BDE0683F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F870BC15-B7C9-4279-9260-6306BDE0683F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{976C4B2F-5140-4C7B-8800-3EEF115BDB51} = {ADFF7253-26A0-4B56-8C83-D57AE27DB327}
+		{F870BC15-B7C9-4279-9260-6306BDE0683F} = {A12A2403-1982-4823-B7D8-3B25F661B7B6}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
 		SolutionGuid = {E1E97976-B34C-427B-BE33-288FBBE6B3E4}
 	EndGlobalSection
 EndGlobal
