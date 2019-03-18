@@ -26,5 +26,9 @@ namespace SWMGEGCSS.Controllers
 
             return View();
         }
+        public ActionResult Ejemplo()
+        {
+            return View();
+        }
     }
 }

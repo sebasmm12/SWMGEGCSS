@@ -191,6 +191,9 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
+    <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
+    <Content Include="Scripts\Layout_Empresa\popper.min.js" />
     <Content Include="webfonts\feather.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fontawesome\all.js" />

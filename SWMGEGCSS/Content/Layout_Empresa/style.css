@@ -2989,7 +2989,7 @@ table tbody .border-bottom-info td, table tbody .border-bottom-info th, table th
 
 .header-navbar {
     min-height: 70px;
-    padding: 0
+    padding: 0 !important;
 }
 
     .header-navbar .navbar-wrapper .navbar-logo {
@@ -3007,24 +3007,24 @@ table tbody .border-bottom-info td, table tbody .border-bottom-info th, table th
         width: 250px;
         padding: 20px 10px;
         -webkit-box-shadow: 0 4px 4px -4px rgba(0,0,0,.1);
-        box-shadow: 0 4px 4px -4px rgba(0,0,0,.1)
+        box-shadow: 0 4px 4px -4px rgba(0,0,0,.1);
     }
 
         .header-navbar .navbar-wrapper .navbar-logo a {
             margin: 0 auto;
-            color: #fff
+            color: #fff;
         }
 
 @media only screen and (max-width:992px) {
     .header-navbar .navbar-wrapper .navbar-logo {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
-        justify-content: center
+        justify-content: center;
     }
 }
 
 .header-navbar .navbar-wrapper .navbar-logo h5 {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .header-navbar .navbar-wrapper .navbar-logo .mobile-menu {
@@ -3033,7 +3033,7 @@ table tbody .border-bottom-info td, table tbody .border-bottom-info th, table th
     top: 0;
     font-size: 16px;
     line-height: 4.4;
-    width: 40px
+    width: 40px;
 }
 
 .header-navbar .navbar-wrapper .navbar-logo .mobile-options, .header-navbar .navbar-wrapper .navbar-logo .mobile-search {
