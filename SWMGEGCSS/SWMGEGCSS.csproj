@@ -159,6 +159,7 @@
     <Content Include="Content\solid.css" />
     <Content Include="Content\solid.min.css" />
     <Content Include="Content\style-autocomplete\jquery-ui.min.css" />
+    <Content Include="Content\StyleSesión\Style.css" />
     <Content Include="Content\svg-with-js.css" />
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />
@@ -169,6 +170,7 @@
     <Content Include="images\avatar-2.jpg" />
     <Content Include="images\avatar-3.jpg" />
     <Content Include="images\avatar-4.jpg" />
+    <Content Include="images\empresa.png" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
