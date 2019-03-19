@@ -143,12 +143,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\feather.css" />
     <Content Include="Content\fontawesome-all.css" />
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\Layout_Empresa\chartist.css" />
-    <Content Include="Content\Layout_Empresa\feather.css" />
     <Content Include="Content\Layout_Empresa\style.css" />
     <Content Include="Content\Layout_Empresa\waves.min.css" />
     <Content Include="Content\Layout_Empresa\widget.css" />

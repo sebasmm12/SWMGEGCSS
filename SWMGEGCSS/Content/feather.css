@@ -1,6 +1,6 @@
 ﻿@font-face {
     font-family: feather;
-    src: url(~/webfonts/feather.woff) format('woff');
+    src: url(../webfonts/feather.woff) format('woff');
 }
 
 .feather {
