@@ -1,5 +1,8 @@
 ﻿.position {
-    margin-top: 15vh;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 }
 .bordersesion {
     border: 5px solid;
@@ -35,4 +38,19 @@ img {
     padding-right: 30px !important;
     padding-top:30px !important;
     padding-bottom: 30px !important;
+}
+.session{
+    background-image:url("../../images/index.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center center;
+    position:relative;
+    width:100vw;
+    height:100vh;
+}
+.font-negro {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
 }

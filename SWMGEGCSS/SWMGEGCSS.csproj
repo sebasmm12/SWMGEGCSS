@@ -128,10 +128,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TrabajadorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +173,7 @@
     <Content Include="images\avatar-3.jpg" />
     <Content Include="images\avatar-4.jpg" />
     <Content Include="images\empresa.png" />
+    <Content Include="images\index.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -285,6 +288,7 @@
     <Content Include="Views\Shared\_LayoutEmpresa.cshtml" />
     <Content Include="Views\Home\Ejemplo.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Trabajador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

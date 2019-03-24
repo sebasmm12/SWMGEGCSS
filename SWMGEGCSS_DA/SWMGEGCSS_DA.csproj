@@ -51,8 +51,11 @@
   <ItemGroup>
     <Compile Include="Base\BaseConexion.cs" />
     <Compile Include="Base\DataUtil.cs" />
+    <Compile Include="PermisoDataAccess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolDataAccess.cs" />
+    <Compile Include="UsuarioDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
