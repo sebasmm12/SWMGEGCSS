@@ -28,7 +28,12 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Ejemplo()
         {
-            return View();
+            if (Session["login"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "Account");
+
         }
     }
 }

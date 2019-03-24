@@ -1,15 +1,16 @@
 ﻿.position {
-    margin-top: 35vh;
+    margin-top: 15vh;
 }
-.bordersesion{
-    border:5px solid;
-    border-color:red;
-    border-radius:50px;
+.bordersesion {
+    border: 5px solid;
+    border-color: #fff7f7;
+    border-radius: 50px;
+    box-shadow: 10px 10px 10px #d0c2c2;
 }
 .buttonsesion{
     width:100% !important;
 }
-.relative {
+/*.relative {
     position:relative;
     top:35vh;
     width:20%;
@@ -28,4 +29,10 @@ img {
 .bordersesionrelative {
     border: 0.1px solid;
     border-radius: 50px;
+}*/
+.paddignlr {
+    padding-left:30px !important;
+    padding-right: 30px !important;
+    padding-top:30px !important;
+    padding-bottom: 30px !important;
 }

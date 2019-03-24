@@ -17,5 +17,18 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Login(string username, string password)
+        {
+            Session["login"] = "xd";
+            return RedirectToAction("Ejemplo", "Home");
+        }
+        public ActionResult Exit()
+        {
+            Session.Abandon();
+            Session.Clear();
+            Session.RemoveAll();
+            return RedirectToAction("Login", "Account");
+        }
     }
 }
