@@ -1,4 +1,11 @@
-﻿
+﻿@using SWMGEGCSS_EN;
+@{
+    var p = new List<T_permiso>();
+    if (Session["l_permiso_usuario"] != null)
+    {
+      p = (List<T_permiso>)Session["l_permiso_usuario"];
+    }
+}
 <!DOCTYPE html>
 
 <html>
@@ -72,7 +79,7 @@
                                     <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                         <li>
                                             <h6>Notifications</h6>
-                                            <label class="label label-danger">New</label>
+                                            <label class="label label-danger"></label>
                                         </li>
                                         <li>
                                             <div class="media">
@@ -144,7 +151,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="@Url.Action("Exit","Account")">
+                                            <a href="@Url.Action("Exit", "Account")">
                                                 <i class="feather icon-log-out"></i> Logout
                                             </a>
                                         </li>
@@ -282,9 +289,25 @@
                     <nav class="pcoded-navbar">
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
-                                <div class="pcoded-navigation-label">Navigation</div>
+                                <div class="pcoded-navigation-label">Navegación</div>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @foreach (var item in p)
+                                    {
+                                        <li class="pcoded-hasmenu">
+                                           <a href="javascript:void(0)" class="waves-effect waves-dark" style="padding-bottom:20px!important;">
+                                               <span class="pcoded-micon"><i class="@item.per_img"></i></span>
+                                               <span class="pcoded-mtext">@item.per_nombre</span>
+                                           </a>
+                                            <ul class="pcoded-submenu">
+                                                <li>
+                                                    <a href="@Url.Action(item.per_url,"Account")" class="waves-effect waves-dark">
+                                                        <span class="pcoded-mtext">@item.per_nombre</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                                             <span class="pcoded-mtext">Dashboard</span>

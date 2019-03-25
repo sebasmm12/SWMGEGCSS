@@ -133,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\PermisoViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -289,6 +290,8 @@
     <Content Include="Views\Home\Ejemplo.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Trabajador\Index.cshtml" />
+    <Content Include="Views\Trabajador\G_Formulario.cshtml" />
+    <Content Include="Views\Trabajador\V_Tareas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
