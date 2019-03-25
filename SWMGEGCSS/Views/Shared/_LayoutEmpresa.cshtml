@@ -24,6 +24,8 @@
     <link rel="stylesheet" type="text/css" href="~/Content/Layout_Empresa/style.css">
     <link rel="stylesheet" type="text/css" href="~/Content/Layout_Empresa/widget.css">
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
+    <link rel="stylesheet" href="~/Content/animate/animate.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -294,10 +296,10 @@
                                     @foreach (var item in p)
                                     {
                                         <li class="pcoded-hasmenu">
-                                           <a href="javascript:void(0)" class="waves-effect waves-dark" style="padding-bottom:20px!important;">
-                                               <span class="pcoded-micon"><i class="@item.per_img"></i></span>
-                                               <span class="pcoded-mtext">@item.per_nombre</span>
-                                           </a>
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark" style="padding-bottom:20px!important;">
+                                                <span class="pcoded-micon"><i class="@item.per_img"></i></span>
+                                                <span class="pcoded-mtext">@item.per_nombre</span>
+                                            </a>
                                             <ul class="pcoded-submenu">
                                                 <li>
                                                     <a href="@Url.Action(item.per_url,"Account")" class="waves-effect waves-dark">
@@ -1258,6 +1260,12 @@
                     </nav>
 
                     <div class="pcoded-content">
+                        <div class="alerta_servicio">
+                            <span class="text-danger" style="font-weight:900;">
+                                <strong>Todavia no se ha completado el servicio</strong>
+                                <i class="fa fa-times-circle pl-2" id="cerrar_alerta" style="cursor:pointer;"></i>
+                            </span>
+                        </div>
                         <!--Aqui es el RenderBody-->
                         @RenderBody()
                     </div>
@@ -1269,8 +1277,8 @@
             </div>
         </div>
     </div>
-     @Scripts.Render("~/bundles/jquery")
-     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
     <script src="~/Scripts/scrollmagic/scrollmagic.js"></script>
@@ -1282,6 +1290,7 @@
     <script src="~/Scripts/Layout_Empresa/pcoded.min.js"></script>
     <script src="~/Scripts/Layout_Empresa/vertical-layout.js"></script>
     <script src="~/Scripts/Layout_Empresa/script.min.js"></script>
+    <script src="~/Scripts/Scripts_TP/scriptsLayout.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script type="c326a13879583a964fd0aec1-text/javascript">
         window.dataLayer = window.dataLayer || [];
