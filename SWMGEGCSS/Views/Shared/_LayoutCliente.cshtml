@@ -11,10 +11,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>_LayoutCliente</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="~/Content/fontawesome-all.min.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
@@ -44,12 +42,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
-                        <i class="fa fa-servicestack"></i>
+                        <i class="fa fa-paper-plane"></i>
                         Servicios que Brindamos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
-                        <i class="fa fa-creative-commons-by"></i>
+                        <i class="fa fa-user-tie"></i>
                         Clientes</a>
                     </li>
                     <li class="nav-item">
@@ -80,10 +78,12 @@
         </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/fontawesome/fontawesome.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
     <script src="~/Scripts/scrollmagic/scrollmagic.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+    <script src="~/Scripts/Scripts_TP/scriptsCliente.js"></script>
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="c326a13879583a964fd0aec1-|49" defer=""></script>
     @RenderSection("scripts", required: false)
 </body>
