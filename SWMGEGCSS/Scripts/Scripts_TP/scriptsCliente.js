@@ -22,7 +22,12 @@
             return this;
         }
     });
-    $(".nav-item").mouseenter(function () {
-        $(".nav-item").animateCss('pulse');
+    $(".nav-item").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
     });
+    /*$(".nav-item").mouseenter(function () {
+        $(".nav-item").animateCss('pulse');
+    });*/
 };

@@ -20,62 +20,89 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-        <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-expand-md navbar-light">
-            <a class="navbar-brand" href="#">
-                <img src="~/images/GEO-LOGO-FINAL-IDCG.png" class="img-fluid rounded" width="120" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmpresa" aria-controls="navbarEmpresa" aria-expanded="false" aria-label="Navegacion de la Empresa">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-expand-md navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/GEO-LOGO-FINAL-IDCG.png" class="img-fluid rounded" width="120" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmpresa" aria-controls="navbarEmpresa" aria-expanded="false" aria-label="Navegacion de la Empresa">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarEmpresa">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+        <div class="collapse navbar-collapse" id="navbarEmpresa">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
                         <i class="fa fa-play"></i>
-                        Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
                         <i class="fa fa-users"></i>
-                        Quienes Somos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        Quienes Somos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
                         <i class="fa fa-paper-plane"></i>
-                        Servicios que Brindamos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        Servicios que Brindamos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
                         <i class="fa fa-user-tie"></i>
-                        Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        Clientes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
                         <i class="fa fa-link"></i>
-                        Enlaces de Interes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        Enlaces de Interes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
                         <i class="fa fa-gavel"></i>
-                        Normatividad</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        Normatividad
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
                         <i class="fa fa-directions"></i>
-                        Contactenos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        Contactenos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")" data-toggle="modal" data-target="#modalinicio">
                         <i class="fa fa-sign-in-alt"></i>
-                        Iniciar Sesión</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div>
-            @RenderBody()
+                        Iniciar Sesión
+                    </a>
+                </li>
+            </ul>
         </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+    <div class="modal fade" id="modalinicio" tabindex="-1" role="dialog" aria-labelledby="titulomodal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulomodal">Iniciar Sesion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Woohoo, you're reading this text in a modal!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/fontawesome/fontawesome.min.js"></script>
