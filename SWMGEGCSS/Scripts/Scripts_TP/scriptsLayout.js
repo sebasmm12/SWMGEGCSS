@@ -22,9 +22,25 @@
             return this;
         }
     });
-    $("#cerrar_alerta").click(function () {
-        $(".alerta_servicio").animateCss('bounceOutRight', function () {
-            $(".alerta_servicio").addClass("cerrar_alerta");
-        });
+    $("#close").click(function () {
+        localStorage.removeItem("key");
+        localStorage.setItem("key", 0);
+        return true;
     });
+    var condicion = localStorage.getItem("key");
+    if (condicion !== '1') {
+        $(".alerta_servicio").animateCss('bounceInLeft', function () {
+
+        });
+        $("#cerrar_alerta").click(function () {
+            $(".alerta_servicio").animateCss('bounceOutRight', function () {
+                $(".alerta_servicio").addClass("cerrar_alerta");
+            });
+            var x = 1;
+            localStorage.setItem("key", x);
+        });
+    } else {
+        $(".alerta_servicio").addClass("cerrar_alerta");
+    }
+   
 };

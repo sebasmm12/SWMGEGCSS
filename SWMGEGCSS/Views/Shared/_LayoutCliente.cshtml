@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>_LayoutCliente</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="~/Content/animate/animate.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
+    <link rel="stylesheet" href="~/Content/animate/animate.css" />
+    <link rel="stylesheet" href="~/Content/StyleTP/styleClient.css" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-expand-md navbar-light">
+            <a class="navbar-brand" href="#">
+                <img src="~/images/GEO-LOGO-FINAL-IDCG.png" class="img-fluid rounded" width="120" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmpresa" aria-controls="navbarEmpresa" aria-expanded="false" aria-label="Navegacion de la Empresa">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarEmpresa">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-play"></i>
+                        Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-users"></i>
+                        Quienes Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-servicestack"></i>
+                        Servicios que Brindamos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-creative-commons-by"></i>
+                        Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-link"></i>
+                        Enlaces de Interes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-gavel"></i>
+                        Normatividad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-directions"></i>
+                        Contactenos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")">
+                        <i class="fa fa-sign-in-alt"></i>
+                        Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+            @RenderBody()
+        </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <script src="~/Scripts/scrollmagic/scrollmagic.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="c326a13879583a964fd0aec1-|49" defer=""></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

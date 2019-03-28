@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TrabajadorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -164,6 +165,7 @@
     <Content Include="Content\solid.min.css" />
     <Content Include="Content\style-autocomplete\jquery-ui.min.css" />
     <Content Include="Content\StyleSesión\Style.css" />
+    <Content Include="Content\StyleTP\styleClient.css" />
     <Content Include="Content\svg-with-js.css" />
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />
@@ -175,6 +177,7 @@
     <Content Include="images\avatar-3.jpg" />
     <Content Include="images\avatar-4.jpg" />
     <Content Include="images\empresa.png" />
+    <Content Include="images\GEO-LOGO-FINAL-IDCG.png" />
     <Content Include="images\index.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -199,13 +202,6 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
-    <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
-    <Content Include="Scripts\Layout_Empresa\popper.min.js" />
-    <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
-    <Content Include="Scripts\Scripts_TP\scriptsS.js" />
-    <Content Include="webfonts\feather.woff" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fontawesome\all.js" />
     <Content Include="Scripts\fontawesome\all.min.js" />
     <Content Include="Scripts\fontawesome\brands.js" />
@@ -218,6 +214,16 @@
     <Content Include="Scripts\fontawesome\solid.min.js" />
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
+    <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
+    <Content Include="Scripts\Layout_Empresa\popper.min.js" />
+    <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
+    <Content Include="Scripts\Scripts_TP\scriptsS.js" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="webfonts\feather.woff" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -273,9 +279,14 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="webfonts\fa-brands-400.svg" />
-    <Content Include="webfonts\fa-regular-400.svg" />
-    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="Views\Shared\_LayoutEmpresa.cshtml" />
+    <Content Include="Views\Home\Ejemplo.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Trabajador\Index.cshtml" />
+    <Content Include="Views\Trabajador\G_Formulario.cshtml" />
+    <Content Include="Views\Trabajador\V_Tareas.cshtml" />
+    <Content Include="Views\Shared\_LayoutCliente.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
     <Content Include="webfonts\fa-solid-900.woff2" />
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.ttf" />
@@ -288,12 +299,6 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
-    <Content Include="Views\Shared\_LayoutEmpresa.cshtml" />
-    <Content Include="Views\Home\Ejemplo.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Trabajador\Index.cshtml" />
-    <Content Include="Views\Trabajador\G_Formulario.cshtml" />
-    <Content Include="Views\Trabajador\V_Tareas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

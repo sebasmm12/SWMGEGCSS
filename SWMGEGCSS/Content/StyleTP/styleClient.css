@@ -1,0 +1,10 @@
+﻿.link-inicio{
+    font-weight:bolder;
+    font-size:15px;
+    margin-right: 8px !important;
+    text-align:center;
+}
+.link-inicio:hover{
+    background-color:#17c3be;
+    border-radius:10px;
+}
