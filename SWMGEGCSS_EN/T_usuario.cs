@@ -12,5 +12,6 @@ namespace SWMGEGCSS_EN
         public string usu_usuario { get; set; }
         public string usu_contraseña { get; set; }
         public bool estado { get; set; }
+        public bool usu_trabajador { get; set; }
     }
 }

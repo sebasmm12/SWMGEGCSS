@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
-    <link rel="stylesheet" href="~/Content/StyleTP/styleClient.css" />
+    <link rel="stylesheet" href="~/Content/StyleTP/styleClient.css"/>
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-inicio" href="@Url.Action("Inicio","Cliente")" data-toggle="modal" data-target="#modalinicio">
+                    <a class="nav-link link-inicio" href="@Url.Action("Login","Account")">
                         <i class="fa fa-sign-in-alt"></i>
                         Iniciar Sesión
                     </a>
@@ -85,66 +85,66 @@
     <div>
         @RenderBody()
     </div>
-    <div class="modal fade" id="modalinicio" tabindex="-1" role="dialog" aria-labelledby="titulomodal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="padding-bottom:30px;">
-                <div class="modal-header">
-                    <h5 class="modal-title titulo-login" id="titulomodal">
-                    Geo Consult Service S.A.C
-                    </h5>
-                </div>
-                <div class="modal-body text-center">
-                    <div class="row mt-3">
-                        <div class="col-sm-12 col-md-12 col-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="user">
-                                        <i class="fa fa-user"></i>
-                                    </span>
+    @*<div class="modal fade" id="modalinicio" tabindex="-1" role="dialog" aria-labelledby="titulomodal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="padding-bottom:30px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title titulo-login" id="titulomodal">
+                        Geo Consult Service S.A.C
+                        </h5>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="row mt-3">
+                            <div class="col-sm-12 col-md-12 col-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="user">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Ingrese nombre de usuario" name="username" id="username" aria-describedby="user" />
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese nombre de usuario" name="username" id="username" aria-describedby="user" />
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-12 col-md-12 col-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="pass">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Ingrese Contraseña" name="password" id="password" aria-describedby="pass" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-sm-12 col-md-12 col-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="pass">
-                                        <i class="fa fa-lock"></i>
-                                    </span>
-                                </div>
-                                <input type="password" class="form-control" placeholder="Ingrese Contraseña" name="password" id="password" aria-describedby="pass" />
+                    <div class="text-center pl-3">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4 col-12">
+                                <a href="@Url.Action("Login","Account")" class="btn btn-inicio">
+                                    <i class="fa fa-check">
+                                    </i>
+                                    Iniciar Sesion
+                                </a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center pl-3">
-                    <div class="row">
-                        <div class="col-sm-4 col-md-4 col-12">
-                            <a href="@Url.Action("Registrarse")" class="btn btn-inicio">
-                                <i class="fa fa-check">
-                                </i>
-                                Iniciar Sesion
-                            </a>
-                        </div>
-                        <div class="col-sm-4 col-md-4 col-12">
-                            <a href="@Url.Action("Registrarse")" class="btn btn-success">
-                                <i class="fa fa-user-alt">
-                                </i>
-                                Registrarse
-                            </a>
-                        </div>
-                        <div class="col-sm-4 col-md-4 col-12">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">
-                            <i class="fa fa-times"></i>
-                            Salir</button>
+                            <div class="col-sm-4 col-md-4 col-12">
+                                <a href="@Url.Action("Registrarse")" class="btn btn-success">
+                                    <i class="fa fa-user-alt">
+                                    </i>
+                                    Registrarse
+                                </a>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-12">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                <i class="fa fa-times"></i>
+                                Salir</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/fontawesome/fontawesome.min.js"></script>

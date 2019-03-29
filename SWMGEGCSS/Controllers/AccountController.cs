@@ -28,16 +28,30 @@ namespace SWMGEGCSS.Controllers
             model.Usuario.usu_usuario = username;
             model.Usuario.usu_contraseña = password;
             var contador = new UsuarioDataAccess().sp_Encontrar_Usuario(model.Usuario);
+            var contador_empresa = new UsuarioDataAccess().sp_Consultar_Sesion_Empresa(model.Usuario);
             var rol_name = new RolDataAccess().sp_Obtener_Rol_Nombre_Usuario(model.Usuario.usu_codigo);
             var l_permiso_usuario = new PermisoDataAccess().sp_Listar_Permisos_Usuario(rol_name);
-            if (contador == 1)
+            if (contador_empresa != 1)
+            {
+                if (contador == 1)
+                {
+                    HttpContext.Session["login"] = model.Usuario.usu_codigo;
+                    HttpContext.Session["rol_name"] = rol_name;
+                    HttpContext.Session["l_permiso_usuario"] = l_permiso_usuario;
+                    return RedirectToAction("Index", "Trabajador");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
             {
                 HttpContext.Session["login"] = model.Usuario.usu_codigo;
                 HttpContext.Session["rol_name"] = rol_name;
                 HttpContext.Session["l_permiso_usuario"] = l_permiso_usuario;
                 return RedirectToAction("Index", "Trabajador");
-            }
-            return View();
+            }      
         }
         public ActionResult Exit()
         {

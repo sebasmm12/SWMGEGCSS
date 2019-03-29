@@ -37,5 +37,31 @@ namespace SWMGEGCSS_DA
             }
             return count;
         }
+        public int sp_Consultar_Sesion_Empresa(T_usuario usuario)
+        {
+            int count = 0;
+            try
+            {
+                using (DbCommand command=Database.GetStoredProcCommand("sp_Consultar_Sesion_Empresa"))
+                {
+                    Database.AddInParameter(command, "@usu_usuario", DbType.String, usuario.usu_usuario);
+                    Database.AddInParameter(command, "@usu_contraseña", DbType.String, usuario.usu_contraseña);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            count = DataUtil.DbValueToDefault<int>(reader["COUNT"]);
+                            usuario.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return count;
+            }
+            return count;
+        }
     }
 }
