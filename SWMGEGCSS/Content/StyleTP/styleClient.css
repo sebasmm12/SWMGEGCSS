@@ -27,3 +27,7 @@
     border: 10px solid;
     border-radius:50px;
 }
+.inicio_cliente {
+    font-size: 25px;
+    color: #ccc4c4 !important;
+}
