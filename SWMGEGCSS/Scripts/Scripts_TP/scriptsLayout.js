@@ -22,13 +22,15 @@
             return this;
         }
     });
-    localStorage.setItem("key", 0);
     $("#close").click(function () {
         localStorage.removeItem("key");
         localStorage.setItem("key", 0);
         return true;
     });
     var condicion = localStorage.getItem("key");
+    if (condicion === null) {
+        condicion = '0';
+    }
     if (condicion !== '1') {
         $(".alerta_servicio").animateCss('bounceInLeft', function () {
 

@@ -166,6 +166,7 @@
     <Content Include="Content\style-autocomplete\jquery-ui.min.css" />
     <Content Include="Content\StyleSesión\Style.css" />
     <Content Include="Content\StyleTP\styleClient.css" />
+    <Content Include="Content\StyleTP\styleSub.css" />
     <Content Include="Content\svg-with-js.css" />
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />

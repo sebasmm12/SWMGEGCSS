@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
     <link rel="stylesheet" href="~/Content/StyleTP/styleClient.css" />
+    <link rel="stylesheet" href="~/Content/StyleTP/styleSub.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -108,8 +109,14 @@
         </a>
     </div>
     <div class="text-center mt-3 container">
-        <div class="border-circulo">
-            <i class="fa fa-star" style="font-size:30px;"></i>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 col-12">
+                <div class="border-circulo margin-icon">
+                    <i class="fa fa-star pt-3 mt-3 icon_color" style="font-size:30px;"></i>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
         </div>
         <div class="mt-1 inicio_cliente">
             <label class="font-weight-bolder">GEO CONSULT SERVICE SAC</label><br />
@@ -118,6 +125,9 @@
             </div>
            
         </div>
+    </div>
+    <div>
+
     </div>
     <div>
         @RenderBody()
