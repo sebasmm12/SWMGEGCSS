@@ -22,6 +22,7 @@
             return this;
         }
     });
+    localStorage.setItem("key", 0);
     $("#close").click(function () {
         localStorage.removeItem("key");
         localStorage.setItem("key", 0);

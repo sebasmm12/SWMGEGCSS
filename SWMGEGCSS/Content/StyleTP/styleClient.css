@@ -23,3 +23,7 @@
 .btn-inicio:hover {
    background-color: #12d7d7;
 }
+.border-circulo{
+    border: 10px solid;
+    border-radius:50px;
+}

@@ -176,6 +176,9 @@
     <Content Include="images\avatar-2.jpg" />
     <Content Include="images\avatar-3.jpg" />
     <Content Include="images\avatar-4.jpg" />
+    <Content Include="images\carousel_1.png" />
+    <Content Include="images\carousel_2.jpg" />
+    <Content Include="images\carousel_3.jpg" />
     <Content Include="images\empresa.png" />
     <Content Include="images\GEO-LOGO-FINAL-IDCG.png" />
     <Content Include="images\index.jpg" />
