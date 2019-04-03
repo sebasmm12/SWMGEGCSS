@@ -67,3 +67,31 @@
     .icon_color:hover {
         color: #19961f;
     }
+.cycle-slideshow{
+    width:2000px;
+    margin:50px auto;
+    position:relative;
+    overflow:hidden;
+    height:400px;
+}
+.cycle-pager{
+    cursor:pointer;
+    width:80px;
+    margin:auto;
+    position:relative;
+    bottom:70px;
+}
+.cycle-pager span {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:50px;
+    width:15px;
+    height:15px;
+    display:inline-block;
+    color:#ddd;
+}
+.cycle-pager-active {
+    color: #19961f !important;
+}
+span > .cycle-pager-active {
+    color: #19961f !important;
+}

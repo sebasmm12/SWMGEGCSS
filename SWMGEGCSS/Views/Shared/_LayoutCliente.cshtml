@@ -16,8 +16,7 @@
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
-    <link rel="stylesheet" href="~/Content/StyleTP/styleClient.css" />
-    <link rel="stylesheet" href="~/Content/StyleTP/styleSub.css" />
+    <link rel="stylesheet" href="~/Content/StyleTP/ClientStyle.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -121,19 +120,47 @@
         <div class="mt-1 inicio_cliente">
             <label class="font-weight-bolder">GEO CONSULT SERVICE SAC</label><br />
             <div class="mt-1">
- Somos una empresa consultora ambiental Peruana, creada en octubre del 2009, con el objeto de asesorar, capacitar y elaborar instrumentos de gestión ambiental, como EIA, PAMA, DIA y DAP, así como el desarrollo de instrumentos en el Manejo de Gestión Integral de Residuos Sólidos en el sector público y privado y en la elaboración de proyectos de EC-RS, EPS-RS y de Empresas Operadoras de Residuos Sólidos (EO-RS), y de proyectos especializados de ingeniería básica y de detalle, para lo cual cuenta con un extraordinario equipo profesional formado por un staff de ingenieros de diversas profesiones, técnicos, licenciados y administrativos todos los cuales tienen entre 5 a 20 años de experiencia en el perfil de su competencia.
+                Somos una empresa consultora ambiental Peruana, creada en octubre del 2009, con el objeto de asesorar, capacitar y elaborar instrumentos de gestión ambiental, como EIA, PAMA, DIA y DAP, así como el desarrollo de instrumentos en el Manejo de Gestión Integral de Residuos Sólidos en el sector público y privado y en la elaboración de proyectos de EC-RS, EPS-RS y de Empresas Operadoras de Residuos Sólidos (EO-RS), y de proyectos especializados de ingeniería básica y de detalle, para lo cual cuenta con un extraordinario equipo profesional formado por un staff de ingenieros de diversas profesiones, técnicos, licenciados y administrativos todos los cuales tienen entre 5 a 20 años de experiencia en el perfil de su competencia.
             </div>
-           
+
+        </div>
+    </div>
+    <div class="container">
+
+    </div>
+    <div class="cycle-slideshow" data-cycle-fx="carousel" data-cycle-timeout="1000" data-cycle-pause-on-hover="true"
+         data-cycle-carousel-visible="2" data-cycle-prev="#previus"
+         data-cycle-next="#siguiente" data-cycle-pager="#pager">
+        <img src="~/images/avatar-2.jpg" class="img-fluid" width="300" height="300" />
+        <img src="~/images/avatar-3.jpg" class="img-fluid" width="300" height="300" />
+        <img src="~/images/avatar-4.jpg" class="img-fluid" width="300" height="300" />
+        <img src="~/images/index.jpg" class="img-fluid" width="300" height="300" />
+        <img src="~/images/logo.png" class="img-fluid" width="300" height="300" />
+        @*<div class="center">
+            <a href="#" id="previus">Anterior</a>
+            <a href="#" id="siguiente">Siguiente</a>
+        </div>*@
+        <div class="cycle-pager" id="pager">
+
         </div>
     </div>
     <div>
-
+        xd
     </div>
     <div>
         @RenderBody()
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <! - incluye jQuery ->
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>*@
+    <script src="~/Scripts/Carousel_Imagenes/cycle2.js"></script>
+    <script src="~/Scripts/Carousel_Imagenes/carousel_cycle2.js"></script>
+    <script src="~/Scripts/Carousel_Imagenes/cycle2.flip.js"></script>
+    <script src="~/Scripts/Carousel_Imagenes/cycle2.scrollvert.js"></script>
+    <script src="~/Scripts/Carousel_Imagenes/cycle2.shuffle.js"></script>
+    <script src="~/Scripts/Carousel_Imagenes/cycle2.tile.js"></script>
+    <script src="~/Scripts/Carousel_Imagenes/easing.1.3.js"></script>
     <script src="~/Scripts/fontawesome/fontawesome.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
