@@ -81,75 +81,128 @@
             </ul>
         </div>
     </nav>
-    <div class="carousel slide carousel-fade" id="carousel" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="10000">
-                <img src="~/images/index.jpg" class="d-block w-100" alt="Imagen 1" />
-            </div>
-            <div class="carousel-item" data-interval="2000">
-                <img src="~/images/carousel_2.jpg" class="d-block w-100" alt="Imagen 2" />
-            </div>
-            <div class="carousel-item" data-interval="2000">
-                <img src="~/images/carousel_3.jpg" class="d-block w-100" alt="Imagen 3" />
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <div class="text-center mt-3 container">
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4 col-12">
-                <div class="border-circulo margin-icon">
-                    <i class="fa fa-star pt-3 mt-3 icon_color" style="font-size:30px;"></i>
-                </div>
-            </div>
-            <div class="col-sm-4"></div>
-        </div>
-        <div class="mt-1 inicio_cliente">
-            <label class="font-weight-bolder">GEO CONSULT SERVICE SAC</label><br />
-            <div class="mt-1">
-                Somos una empresa consultora ambiental Peruana, creada en octubre del 2009, con el objeto de asesorar, capacitar y elaborar instrumentos de gestión ambiental, como EIA, PAMA, DIA y DAP, así como el desarrollo de instrumentos en el Manejo de Gestión Integral de Residuos Sólidos en el sector público y privado y en la elaboración de proyectos de EC-RS, EPS-RS y de Empresas Operadoras de Residuos Sólidos (EO-RS), y de proyectos especializados de ingeniería básica y de detalle, para lo cual cuenta con un extraordinario equipo profesional formado por un staff de ingenieros de diversas profesiones, técnicos, licenciados y administrativos todos los cuales tienen entre 5 a 20 años de experiencia en el perfil de su competencia.
-            </div>
-
-        </div>
-    </div>
-    <div class="container">
-
-    </div>
-    <div class="cycle-slideshow" data-cycle-fx="carousel" data-cycle-timeout="1000" data-cycle-pause-on-hover="true"
-         data-cycle-carousel-visible="2" data-cycle-prev="#previus"
-         data-cycle-next="#siguiente" data-cycle-pager="#pager">
-        <img src="~/images/avatar-2.jpg" class="img-fluid" width="300" height="300" />
-        <img src="~/images/avatar-3.jpg" class="img-fluid" width="300" height="300" />
-        <img src="~/images/avatar-4.jpg" class="img-fluid" width="300" height="300" />
-        <img src="~/images/index.jpg" class="img-fluid" width="300" height="300" />
-        <img src="~/images/logo.png" class="img-fluid" width="300" height="300" />
-        @*<div class="center">
-            <a href="#" id="previus">Anterior</a>
-            <a href="#" id="siguiente">Siguiente</a>
-        </div>*@
-        <div class="cycle-pager" id="pager">
-
-        </div>
-    </div>
-    <div>
-        xd
-    </div>
     <div>
         @RenderBody()
     </div>
+    <footer class="footer_color">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div class="mt-2">
+                        <label class="font-weight-bolder inicio_cliente_2">
+                            UBÍCANOS
+                        </label>
+                    </div>
+                    <div>
+                        <div class="float_left_footer">
+                            <i class="fa fa-map-marked-alt icon_footer_color" style="font-size:20px !important"></i>
+                        </div>
+                        <div class="float_left_footer_text">
+                            <label class="inicio_cliente_1_footer"> Calle Los Jazmines, Mz. C Lote. 4 – San Juan de Miraflores (Código postal 15056) – Alt. Km. 11.5 Panamericana Sur</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="float_left_footer">
+                            <i class="fa fa-envelope icon_footer_color"></i>
+                        </div>
+                        <div class="float_left_footer_text">
+                            <label class="inicio_cliente_1_footer">administracion@geoconsultsac.com</label>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="float_left_footer">
+                            <i class="fa fa-envelope icon_footer_color"></i>
+                        </div>
+                        <div class="float_left_footer_text">
+                            <label class="inicio_cliente_1_footer">gerencia@geoconsultsac.com</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="float_left_footer">
+                            <i class="fa fa-phone icon_footer_color"></i>
+                        </div>
+                        <div class="float_left_footer_text">
+                            <label class="inicio_cliente_1_footer">274-5911</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="float_left_footer">
+                            <i class="fa fa-phone icon_footer_color"></i>
+                        </div>
+                        <div class="float_left_footer_text">
+                            <label class="inicio_cliente_1_footer">992753152</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="float_left_footer">
+                            <i class="fa fa-phone icon_footer_color"></i>
+                        </div>
+                        <div class="float_left_footer_text">
+                            <label class="inicio_cliente_1_footer">997457740</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="float_left_footer">
+                            <i class="fa fa-phone icon_footer_color"></i>
+                        </div>
+                        <div class="float_left_footer_text">
+                            <label class="inicio_cliente_1_footer">993866461</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div class="mt-2">
+                        <label class="font-weight-bolder inicio_cliente_2">
+                            MAPA DEL SITIO
+                        </label>
+                        <div>
+                            <a class="nav-link link_footer" href="@Url.Action("Inicio","Cliente")">Inicio</a>
+                            <a class="nav-link link_footer" href="@Url.Action("Inicio","Cliente")">Quienes Somos</a>
+                            <a class="nav-link link_footer" href="@Url.Action("Inicio","Cliente")">Servicio que Brindamos</a>
+                            <a class="nav-link link_footer" href="@Url.Action("Inicio","Cliente")">Clientes</a>
+                            <a class="nav-link link_footer" href="@Url.Action("Inicio","Cliente")">Enlace de Interes</a>
+                            <a class="nav-link link_footer" href="@Url.Action("Inicio","Cliente")">Normatividad</a>
+                            <a class="nav-link link_footer" href="@Url.Action("Inicio","Cliente")">Contactenos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div class="mt-2">
+                        <label class="font-weight-bolder inicio_cliente_2">
+                            SÍGUENOS
+                        </label>
+                        <div class="row mt-2">
+                            <div class="col-12 col-sm-3 col-md-3 text-center">
+                                <div class="border_footer_link">
+                                    <i class="fab fa-facebook-square mt-2" style="font-size:30px!important;color:#f7f2f2">
+                                    </i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-3 col-md-3 text-center">
+                                <div class="border_footer_link">
+                                    <i class="fab fa-youtube mt-2" style="font-size:30px!important;color:red;"></i>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-sm-3 col-md-3 text-center">
+                                <div class="border_footer_link">
+                                    <i class="fab fa-instagram mt-2" style="font-size:30px!important;color:#5c4a1e">
+                                    </i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-3 col-md-3 text-center">
+                                <div class="border_footer_link">
+                                    <i class="fab fa-twitter mt-2" style="font-size:30px!important;color:#19e4d7">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <! - incluye jQuery ->

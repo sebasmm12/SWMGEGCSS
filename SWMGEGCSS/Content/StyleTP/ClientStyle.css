@@ -43,7 +43,7 @@
     border-radius: 50px;
     width: 100px;
     height: 100px;
-    background-color: #109ee6;
+    background-color: #1554a1;
     border-color: #82eff2;
 }
 
@@ -55,7 +55,6 @@
     font-size: 20px;
     color: #808080 !important;
 }
-
 .margin-icon {
     margin-left: 33%;
 }
@@ -67,19 +66,21 @@
     .icon_color:hover {
         color: #19961f;
     }
-.cycle-slideshow{
-    width:2000px;
-    margin:50px auto;
+.cycle-slideshow {
+    margin: 10px auto;
     position:relative;
     overflow:hidden;
-    height:400px;
+    overflow-x:hidden !important;
 }
-.cycle-pager{
-    cursor:pointer;
-    width:80px;
-    margin:auto;
-    position:relative;
-    bottom:70px;
+.cycle-pager {
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    overflow: hidden !important;
+    bottom: 30px;
+    /*left:40%;*/
 }
 .cycle-pager span {
     font-family:Arial, Helvetica, sans-serif;
@@ -94,4 +95,64 @@
 }
 span > .cycle-pager-active {
     color: #19961f !important;
+}
+div.responsive img{
+    width: auto;
+    height: auto;
+    padding:20px;
+}
+.titulo_cliente {
+    font-size: 30px;
+    color: #808080 !important;
+}
+.float_left{
+    float:left;
+    width:19%;
+}
+.float_left_text {
+    float: left;
+    width: 81%;
+    padding-left:15px;
+}
+.inicio_cliente_1 {
+    font-size: initial;
+    color: #808080 !important;
+}
+.footer_color {
+    background-color: #1554a1;
+}
+.float_left_footer {
+    float: left;
+    width: 7%;
+}
+.float_left_footer_text {
+    float: left;
+    width: 93%;
+    padding-left: 15px;
+}
+.icon_footer_color{
+    color:#19961f;
+}
+.link_footer {
+    font-weight: bolder;
+    font-size: 15px;
+    color: white !important;
+}
+.link_footer:hover {
+   color: white !important;
+}
+.border_footer_link{
+    width:60px;
+    height:60px;
+    border:3px solid;
+    border-radius:50px;
+    border-color:#19961f;
+}
+.inicio_cliente_2 {
+    font-size: 20px;
+    color: white !important;
+}
+.inicio_cliente_1_footer {
+    font-size: initial;
+    color: white !important;
 }

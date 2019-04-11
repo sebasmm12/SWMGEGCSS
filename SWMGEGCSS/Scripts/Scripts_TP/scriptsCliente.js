@@ -27,6 +27,21 @@
             $(this).animateCss('pulse');
         });
     });
+    $(".float_left").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+    $(".link_footer").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $(".fab").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('heartBeat');
+        });
+    });
     /*$(".nav-item").mouseenter(function () {
         $(".nav-item").animateCss('pulse');
     });*/
