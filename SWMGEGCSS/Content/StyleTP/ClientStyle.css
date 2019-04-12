@@ -119,7 +119,7 @@ div.responsive img{
     color: #808080 !important;
 }
 .footer_color {
-    background-color: #1554a1;
+    background-color: #97ed8d;
 }
 .float_left_footer {
     float: left;
@@ -130,8 +130,8 @@ div.responsive img{
     width: 93%;
     padding-left: 15px;
 }
-.icon_footer_color{
-    color:#19961f;
+.icon_footer_color {
+    color: #2abaad;
 }
 .link_footer {
     font-weight: bolder;
@@ -146,7 +146,7 @@ div.responsive img{
     height:60px;
     border:3px solid;
     border-radius:50px;
-    border-color:#19961f;
+    border-color:#2abaad;
 }
 .inicio_cliente_2 {
     font-size: 20px;
@@ -155,4 +155,32 @@ div.responsive img{
 .inicio_cliente_1_footer {
     font-size: initial;
     color: white !important;
+}
+.img-100{
+    width:100% !important;
+}
+.section-center{
+    margin-top:16%;
+}
+.section-center-img{
+    margin-top:10%;
+}
+.section-title {
+    font-size: 30px;
+    color: #808080 !important;
+}
+.section-content {
+    font-size: 18px;
+    color: #808080 !important;
+}
+.div-section{
+    background-color:#ffffff;
+}
+.nav-link.active {
+    background-color: #17c3be !important;
+    color: white !important;
+}
+.link-font{
+    font-size:19px !important;
+    color:#138e9b !important;
 }

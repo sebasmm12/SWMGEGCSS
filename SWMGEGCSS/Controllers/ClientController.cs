@@ -13,7 +13,7 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Inicio()
+        public ActionResult Quienes_Somos()
         {
             return View();
         }

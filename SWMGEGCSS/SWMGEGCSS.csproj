@@ -180,8 +180,11 @@
     <Content Include="images\carousel_1.png" />
     <Content Include="images\carousel_2.jpg" />
     <Content Include="images\carousel_3.jpg" />
+    <Content Include="images\empresa.jpg" />
     <Content Include="images\empresa.png" />
     <Content Include="images\GEO-LOGO-FINAL-IDCG.png" />
+    <Content Include="images\Gerente_General.jpg" />
+    <Content Include="images\Gerente_Proyectos.jpeg" />
     <Content Include="images\imagen_empresa\802298-ackor-peru-logo.png" />
     <Content Include="images\imagen_empresa\acuapesca-197x165.jpg" />
     <Content Include="images\imagen_empresa\alcolores.png" />
@@ -206,6 +209,7 @@
     <Content Include="images\imagen_empresa\viamerica-sac-220x25.jpg" />
     <Content Include="images\index.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\mision-y-vision-definen-a-las-empresas-desarrollo-organizacional-1236x865.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -333,9 +337,16 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\Client\Quienes_Somos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\StyleTP\ANGELLO\" />
+    <Folder Include="Content\StyleTP\COLOMBO\" />
+    <Folder Include="Content\StyleTP\EGG\" />
+    <Folder Include="Content\StyleTP\LAO LAM\" />
+    <Folder Include="Content\StyleTP\MAURICIO\" />
+    <Folder Include="Content\StyleTP\PIERO\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
