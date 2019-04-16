@@ -184,3 +184,18 @@ div.responsive img{
     font-size:19px !important;
     color:#138e9b !important;
 }
+.nombre_imagen > div .cycle-overlay {
+    color: white;
+    background: black;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+}
+.img_cliente{
+    width:300px !important;
+    height:250px !important;
+}
