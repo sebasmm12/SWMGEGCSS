@@ -22,6 +22,13 @@
             return this;
         }
     });
+    $(".nombre_imagen").animateCss('zoomInLeft');
+    $(".nombre_imagen").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+
     $(".nav-item").each(function () {
         $(this).mouseenter(function () {
             $(this).animateCss('pulse');

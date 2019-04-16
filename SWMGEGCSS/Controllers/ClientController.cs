@@ -21,5 +21,13 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        public ActionResult Servicios()
+        {
+            return View();
+        }
+        public ActionResult Contactenos()
+        {
+            return View();
+        }
     }
 }

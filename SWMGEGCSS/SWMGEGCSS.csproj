@@ -224,6 +224,7 @@
     <Content Include="images\Responsable_2.jpg" />
     <Content Include="images\Responsable_Marketing_Publicidad.jpg" />
     <Content Include="images\Responsable_Tecnico_de_asuntos_ambientales.jpeg" />
+    <Content Include="images\ViaAmerica.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -358,6 +359,8 @@
     <Content Include="Views\Client\_Administrativos.cshtml" />
     <Content Include="Views\Client\_AsesoresTecnicos.cshtml" />
     <Content Include="Views\Client\Clientes.cshtml" />
+    <Content Include="Views\Client\Servicios.cshtml" />
+    <Content Include="Views\Client\Contactenos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -367,6 +370,13 @@
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
     <Folder Include="Content\StyleTP\PIERO\" />
+    <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
+    <Folder Include="Scripts\Scripts_TP\COLOMBO\" />
+    <Folder Include="Scripts\Scripts_TP\EGG\" />
+    <Folder Include="Scripts\Scripts_TP\LAO LAM\" />
+    <Folder Include="Scripts\Scripts_TP\MAURICIO\" />
+    <Folder Include="Scripts\Scripts_TP\MIRANDA\" />
+    <Folder Include="Scripts\Scripts_TP\PIERO\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
