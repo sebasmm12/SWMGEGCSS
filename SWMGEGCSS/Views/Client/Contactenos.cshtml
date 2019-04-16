@@ -3,19 +3,75 @@
     ViewBag.Title = "Contactenos";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
-
+<script src="https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCofVlKoUkQKw8ksqEh9F5LownHv6BjpRc"></script>
 <div class="container">
-    <div class="row mt-4">
-        <div class="col-12 col-sm-6 col-md-6">
-
+    @using (Html.BeginForm("Solicitud","Client"))
+    {
+        <div class="row mt-4">
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        Ponte en contacto con nosotros para atender
+                        cualquier consulta sobre nuestros servicios
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-3 col-md-3 text-center">
+                        <i class="fab fa-facebook-square mt-2" style="font-size:30px!important;color:#f7f2f2">
+                        </i>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-3 text-center">
+                        <i class="fab fa-youtube mt-2" style="font-size:30px!important;color:red;"></i>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-3 text-center">
+                        <i class="fab fa-instagram mt-2" style="font-size:30px!important;color:#5c4a1e">
+                        </i>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-3 text-center">
+                        <i class="fab fa-twitter mt-2" style="font-size:30px!important;color:#19e4d7">
+                        </i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <div class="mt-2">
+                    <label for="names">
+                        Nombres y Apellidos:
+                    </label>
+                    <input type="text" class="text-center form-control" id="names" />
+                </div>
+                <div class="mt-2">
+                    <label for="correoE">
+                        Correo Electrónico:
+                    </label>
+                    <input type="text" class="text-center form-control" id="correoE" />
+                </div>
+                <div class="mt-2">
+                    <label for="asunto">
+                        Asunto:
+                    </label>
+                    <input type="text" class="text-center form-control" id="asunto" />
+                </div>
+                <div class="mt-2">
+                    <label for="mensaje">
+                        Deja tu mensaje:
+                    </label>
+                    <textarea class="text-center form-control" id="mensaje"></textarea>
+                </div>
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary" id="solicitud">
+                        <i class="fa fa-paper-plane"></i>
+                        Enviar Solicitud
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-6">
-
-        </div>
-    </div>  
+    }
 </div>
-<div class="mt-2">
+<div class="mt-2" id="map">
 
 </div>
+<div class="mt-2" id="driving-directions">
 
+</div>
 

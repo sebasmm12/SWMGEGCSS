@@ -222,3 +222,12 @@ div.responsive img{
         width: 100% !important;
     }
 }
+#map{
+    width:100% !important;
+    height:600px;
+}
+#driving-directions {
+    width: 700px;
+    height: 600px;
+    margin: 20px;
+}
