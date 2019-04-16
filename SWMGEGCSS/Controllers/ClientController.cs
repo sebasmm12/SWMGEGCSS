@@ -17,5 +17,9 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        public ActionResult Clientes()
+        {
+            return View();
+        }
     }
 }
