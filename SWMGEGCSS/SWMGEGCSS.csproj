@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Models\EjemploViewModel.cs" />
     <Compile Include="Models\PermisoViewModel.cs" />
+    <Compile Include="Models\SolicitudViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

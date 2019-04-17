@@ -1,11 +1,11 @@
-﻿
+﻿@model SWMGEGCSS.Models.SolicitudViewModel
 @{
     ViewBag.Title = "Contactenos";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
 <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCofVlKoUkQKw8ksqEh9F5LownHv6BjpRc"></script>
 <div class="container">
-    @using (Html.BeginForm("Solicitud","Client"))
+    @using (Html.BeginForm("Contactenos","Client"))
     {
         <div class="row mt-4">
             <div class="col-12 col-sm-6 col-md-6">
@@ -38,25 +38,26 @@
                     <label for="names">
                         Nombres y Apellidos:
                     </label>
-                    <input type="text" class="text-center form-control" id="names" />
+                    @Html.EditorFor(model => model.Solicitud.names,new { htmlAttributes= new {@class="text-center form-control" } })         
                 </div>
                 <div class="mt-2">
                     <label for="correoE">
                         Correo Electrónico:
                     </label>
-                    <input type="text" class="text-center form-control" id="correoE" />
+                    @Html.EditorFor(model => model.Solicitud.correoE, new { htmlAttributes = new { @class = "text-center form-control" } })
                 </div>
                 <div class="mt-2">
                     <label for="asunto">
                         Asunto:
                     </label>
-                    <input type="text" class="text-center form-control" id="asunto" />
+                    @Html.EditorFor(model => model.Solicitud.asunto, new { htmlAttributes = new { @class = "text-center form-control" } })
                 </div>
                 <div class="mt-2">
                     <label for="mensaje">
                         Deja tu mensaje:
                     </label>
-                    <textarea class="text-center form-control" id="mensaje"></textarea>
+                    @Html.TextArea("Solicitud.mensaje", htmlAttributes: new { @class = "text-center form-control" })
+              
                 </div>
                 <div class="mt-2">
                     <button type="submit" class="btn btn-primary" id="solicitud">
