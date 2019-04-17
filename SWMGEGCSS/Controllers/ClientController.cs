@@ -8,8 +8,6 @@ namespace SWMGEGCSS.Controllers
 {
     public class ClientController : Controller
     {
-        // GET: Client
-        int X = 4;
         public ActionResult Index()
         {
             return View();
@@ -28,14 +26,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Contactenos()
         {
-            
             return View();
         }
-        public void xd()
-        {
-            int Y = X + 2;
-        }
-        //piero estuvo aqui  se la come entera
-        //se la come entera
     }
 }
