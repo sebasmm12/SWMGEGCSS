@@ -227,7 +227,15 @@ div.responsive img{
     height:600px;
 }
 #driving-directions {
-    width: 700px;
-    height: 600px;
+    width: auto;
+    height: auto;
     margin: 20px;
+}
+.contactenos_content{
+     font-size:40px !important;
+     color:#b9b3b3;
+ }
+.contactenos-label {
+    font-size: 18px !important;
+    color: #808080 !important;
 }

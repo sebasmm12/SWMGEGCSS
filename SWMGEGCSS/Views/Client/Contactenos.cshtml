@@ -10,60 +10,69 @@
         <div class="row mt-4">
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
-                    <label class="font-weight-bolder">
+                    <label class="font-weight-bolder contactenos_content">
                         Ponte en contacto con nosotros para atender
                         cualquier consulta sobre nuestros servicios
                     </label>
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-3 col-md-3 text-center">
-                        <i class="fab fa-facebook-square mt-2" style="font-size:30px!important;color:#f7f2f2">
+                        <i class="fab fa-facebook-square mt-2" style="font-size:50px!important;color:#134194">
                         </i>
                     </div>
                     <div class="col-12 col-sm-3 col-md-3 text-center">
-                        <i class="fab fa-youtube mt-2" style="font-size:30px!important;color:red;"></i>
+                        <i class="fab fa-youtube mt-2" style="font-size:50px!important;color:red;"></i>
                     </div>
                     <div class="col-12 col-sm-3 col-md-3 text-center">
-                        <i class="fab fa-instagram mt-2" style="font-size:30px!important;color:#5c4a1e">
+                        <i class="fab fa-instagram mt-2" style="font-size:50px!important;color:#5c4a1e">
                         </i>
                     </div>
                     <div class="col-12 col-sm-3 col-md-3 text-center">
-                        <i class="fab fa-twitter mt-2" style="font-size:30px!important;color:#19e4d7">
+                        <i class="fab fa-twitter mt-2" style="font-size:50px!important;color:#19e4d7">
                         </i>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="mt-2">
-                    <label for="names">
+                    <label for="names" class="contactenos-label">
                         Nombres y Apellidos:
                     </label>
                     @Html.EditorFor(model => model.Solicitud.names,new { htmlAttributes= new {@class="text-center form-control" } })         
                 </div>
                 <div class="mt-2">
-                    <label for="correoE">
+                    <label for="correoE"  class="contactenos-label">
                         Correo Electrónico:
                     </label>
                     @Html.EditorFor(model => model.Solicitud.correoE, new { htmlAttributes = new { @class = "text-center form-control" } })
                 </div>
                 <div class="mt-2">
-                    <label for="asunto">
+                    <label for="asunto"  class="contactenos-label">
                         Asunto:
                     </label>
                     @Html.EditorFor(model => model.Solicitud.asunto, new { htmlAttributes = new { @class = "text-center form-control" } })
                 </div>
                 <div class="mt-2">
-                    <label for="mensaje">
+                    <label for="mensaje" class="contactenos-label">
                         Deja tu mensaje:
                     </label>
                     @Html.TextArea("Solicitud.mensaje", htmlAttributes: new { @class = "text-center form-control" })
               
                 </div>
-                <div class="mt-2">
-                    <button type="submit" class="btn btn-primary" id="solicitud">
-                        <i class="fa fa-paper-plane"></i>
-                        Enviar Solicitud
-                    </button>
+                <div class="mt-4 row">
+                    <div class="col-sm-6 col-12 col-md-6">
+                        <button type="submit" class="btn btn-success" id="solicitud">
+                            <i class="fa fa-paper-plane"></i>
+                            Enviar Solicitud
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDireccion">
+                            <i class="fa fa-map"></i>
+                             Ver Rutas
+                        </button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -72,7 +81,22 @@
 <div class="mt-2" id="map">
 
 </div>
-<div class="mt-2" id="driving-directions">
+<div class="modal fade" id="modalDireccion" tabindex="-1" role="dialog" aria-labelledby="modalDireccion" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="mt-2" id="driving-directions">
 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fa fa-times"></i>
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
+
 
