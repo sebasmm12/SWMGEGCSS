@@ -37,5 +37,9 @@ namespace SWMGEGCSS.Controllers
             string m = Solicitud.mensaje;
             return View();
         }
+        public ActionResult Enlace_Interes()
+        {
+            return View();
+        }
     }
 }

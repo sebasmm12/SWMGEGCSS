@@ -239,3 +239,43 @@ div.responsive img{
     font-size: 18px !important;
     color: #808080 !important;
 }
+.enlaces-label {
+    font-size: 20px !important;
+    color: #808080 !important;
+}
+
+.cycle-pager-enlaces {
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    overflow: hidden !important;
+    bottom: 30px;
+    top:5px;
+}
+
+    .cycle-pager-enlaces span {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 50px;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        color: #ddd;
+    }
+
+.cycle-pager-enlaces-active {
+    color: #19961f !important;
+}
+
+span > .cycle-pager-enlaces-active {
+    color: #19961f !important;
+}
+.enlaces-pl {
+    padding-left:200px !important;
+}
+@media only screen and (max-width: 571px)  {
+    .enlaces-pl {
+        padding-left: 15px !important;
+    }
+}
