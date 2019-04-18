@@ -41,5 +41,9 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        public ActionResult Normatividad()
+        {
+            return View();
+        }
     }
 }

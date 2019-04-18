@@ -371,6 +371,7 @@
     <Content Include="Views\Client\Servicios.cshtml" />
     <Content Include="Views\Client\Contactenos.cshtml" />
     <Content Include="Views\Client\Enlace_Interes.cshtml" />
+    <Content Include="Views\Client\Normatividad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

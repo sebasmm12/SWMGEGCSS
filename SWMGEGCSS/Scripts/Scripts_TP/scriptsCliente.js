@@ -22,6 +22,8 @@
             return this;
         }
     });
+    $(".li-l").animateCss('fadeInLeft');
+    $(".li-r").animateCss('fadeInRight');
     $(".nombre_imagen").animateCss('zoomInLeft');
     $(".nombre_imagen").each(function () {
         $(this).mouseenter(function () {
@@ -47,6 +49,11 @@
     $(".fab").each(function () {
         $(this).mouseenter(function () {
             $(this).animateCss('heartBeat');
+        });
+    });
+    $(".normatividad-label").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
         });
     });
     if (navigator.geolocation) {
