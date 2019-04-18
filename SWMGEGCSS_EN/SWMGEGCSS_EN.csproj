@@ -48,15 +48,34 @@
     <Compile Include="OperationResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="T-plan.cs" />
+    <Compile Include="T_actividades.cs" />
+    <Compile Include="T_actividades_desarrollar.cs" />
+    <Compile Include="T_actividades_planeadas.cs" />
+    <Compile Include="T_auditar_expedientes.cs" />
+    <Compile Include="T_auditoria_actividades_desarrollo.cs" />
+    <Compile Include="T_Citas.cs" />
+    <Compile Include="T_detalle_usuario.cs" />
     <Compile Include="T_empresa.cs" />
+    <Compile Include="T_estado_actividad.cs" />
+    <Compile Include="T_estado_cita.cs" />
+    <Compile Include="T_estado_expediente.cs" />
     <Compile Include="T_estado_servicio.cs" />
+    <Compile Include="T_expedientes.cs" />
+    <Compile Include="T_ingresos_egresos.cs" />
+    <Compile Include="T_notificaciones.cs" />
     <Compile Include="T_permiso.cs" />
+    <Compile Include="T_reporte_rendimiento.cs" />
     <Compile Include="T_Roles.cs" />
     <Compile Include="T_rol_permiso.cs" />
     <Compile Include="T_rol_usuario.cs" />
     <Compile Include="T_servicio.cs" />
     <Compile Include="T_servicio_empresa.cs" />
     <Compile Include="T_Solicitud.cs" />
+    <Compile Include="T_tipo_detalle_usuario.cs" />
+    <Compile Include="T_tipo_documento.cs" />
+    <Compile Include="T_tipo_servicio.cs" />
+    <Compile Include="T_tipo_servicio_actividades.cs" />
     <Compile Include="T_usuario.cs" />
   </ItemGroup>
   <ItemGroup>
