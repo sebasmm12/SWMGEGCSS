@@ -124,8 +124,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SecretarioController.cs" />
     <Compile Include="Controllers\TrabajadorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -372,6 +375,29 @@
     <Content Include="Views\Client\Contactenos.cshtml" />
     <Content Include="Views\Client\Enlace_Interes.cshtml" />
     <Content Include="Views\Client\Normatividad.cshtml" />
+    <Content Include="Views\Secretario\Index.cshtml" />
+    <Content Include="Views\Gerente\Index.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\Secretario\Gestionar_Citas.cshtml" />
+    <Content Include="Views\Secretario\Registrar_Ingresos_Egresos.cshtml" />
+    <Content Include="Views\Gerente\Consultar_Capital.cshtml" />
+    <Content Include="Views\Administrador\Gestionar_Historial.cshtml" />
+    <Content Include="Views\Secretario\Visualizar_I_E.cshtml" />
+    <Content Include="Views\Secretario\Visualizar_Cuenta.cshtml" />
+    <Content Include="Views\Secretario\Registrar_Cuenta.cshtml" />
+    <Content Include="Views\Gerente\Generar_Reportes.cshtml" />
+    <Content Include="Views\Administrador\Generar_Reportes_Desempeño.cshtml" />
+    <Content Include="Views\Administrador\Visualizar_Trabajadores.cshtml" />
+    <Content Include="Views\Administrador\Modificar_I_E.cshtml" />
+    <Content Include="Views\Administrador\Modificar_Cuenta.cshtml" />
+    <Content Include="Views\Administrador\Asignacion_Tareas.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Formularios.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Servicios.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Cuenta.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Proyectos.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_I_E.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Empresas.cshtml" />
+    <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
