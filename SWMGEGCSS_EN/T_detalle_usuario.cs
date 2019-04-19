@@ -16,9 +16,13 @@ namespace SWMGEGCSS_EN
         public string det_usu_sexo { get; set; }
         public int det_usu_tip_doc { get; set; }
         public string det_usu_tip_doc_numero { get; set; }
-        public string det_usu_imagem { get; set; }
+        public byte[] det_usu_imagem { get; set; }
         public int tipo_det_usu_tipo { get; set; }
         public string det_usu_codigoColegio { get; set; }
         public string det_usu_especialidad { get; set; }
+    }
+    public class Imagen
+    {
+        public byte[] Imagenes { get; set; }
     }
 }

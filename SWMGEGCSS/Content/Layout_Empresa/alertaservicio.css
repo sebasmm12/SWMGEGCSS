@@ -12,3 +12,10 @@
 .cerrar_alerta{
     display:none !important;
 }
+.account-title {
+    font-family: 'Adobe Gothic Std';
+    font-size: 25px !important;
+    color: #b7c0cd !important;
+    text-decoration: none;
+    text-shadow: 2px 1px 1px #b7c0cd;
+}

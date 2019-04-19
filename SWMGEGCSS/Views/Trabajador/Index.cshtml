@@ -3,5 +3,28 @@
     ViewBag.Title = "Index";
 }
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<h2>Index</h2>
+<div class="mt-2 ml-4">
+    @using (Html.BeginForm("Index","Trabajador",FormMethod.Post,new { enctype="multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-4 offset-4">
+                Imagen agregada
+                <br />
+                <img />
+                <br />
+                <br />
+                <input type="file" class="form-control-file" id="imagen" name="imagen" />
+                <br />
+                Titulo de Imagen:
+                <input type="text" class="form-control" name="p" id="p" />
+                <br />
+                <button type="submit" class="btn btn-success" id="btnSubir">
+                    Subir Imagen
+                </button>
+            </div>
+
+        </div>
+    }
+
+</div>
 

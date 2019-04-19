@@ -68,5 +68,10 @@ namespace SWMGEGCSS.Controllers
         {
             return RedirectToAction("V_Tareas", "Trabajador");
         }
+        public ActionResult convertirImagen(int codigo)
+        {
+            var imagenMunicipio = new TrabajadorDataAccess().sp_Consultar_Imagen_Usuario(codigo);
+            return File(imagenMunicipio, "image/jpeg");
+        }
     }
 }
