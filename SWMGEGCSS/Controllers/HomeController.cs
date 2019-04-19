@@ -35,7 +35,5 @@ namespace SWMGEGCSS.Controllers
             return RedirectToAction("Login", "Account");
 
         }
-        //MAURIIO ESTUVO AQUÍ
-        //LAU LOO ESTUVO AQUÏ
     }
 }
