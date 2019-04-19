@@ -49,5 +49,9 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        public ActionResult Gestionar_Plan_Proyecto()
+        {
+            return View();
+        }
     }
 }

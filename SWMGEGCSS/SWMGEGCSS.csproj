@@ -398,6 +398,7 @@
     <Content Include="Views\Gerente\Gestionar_I_E.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Empresas.cshtml" />
     <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
