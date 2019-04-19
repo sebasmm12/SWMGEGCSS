@@ -24,10 +24,11 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Login(string username, string password)
         {
             var model = new UsuarioViewModel();
+            T_detalle_usuario t_d_usuario = new T_detalle_usuario();
             model.Usuario = new T_usuario();
             model.Usuario.usu_usuario = username;
             model.Usuario.usu_contraseña = password;
-            var contador = new UsuarioDataAccess().sp_Encontrar_Usuario(model.Usuario);
+            var contador = new UsuarioDataAccess().sp_Encontrar_Usuario(model.Usuario,t_d_usuario);
             var contador_empresa = new UsuarioDataAccess().sp_Consultar_Sesion_Empresa(model.Usuario);
             var rol_name = new RolDataAccess().sp_Obtener_Rol_Nombre_Usuario(model.Usuario.usu_codigo);
             var l_permiso_usuario = new PermisoDataAccess().sp_Listar_Permisos_Usuario(rol_name);
@@ -36,6 +37,7 @@ namespace SWMGEGCSS.Controllers
                 if (contador == 1)
                 {
                     HttpContext.Session["login"] = model.Usuario.usu_codigo;
+                    HttpContext.Session["name"] = t_d_usuario.det_usu_nombre;
                     HttpContext.Session["rol_name"] = rol_name;
                     HttpContext.Session["l_permiso_usuario"] = l_permiso_usuario;
                     return RedirectToAction("Index", "Trabajador");
@@ -48,6 +50,7 @@ namespace SWMGEGCSS.Controllers
             else
             {
                 HttpContext.Session["login"] = model.Usuario.usu_codigo;
+                HttpContext.Session["name"] = t_d_usuario.det_usu_nombre;
                 HttpContext.Session["rol_name"] = rol_name;
                 HttpContext.Session["l_permiso_usuario"] = l_permiso_usuario;
                 return RedirectToAction("Index", "Trabajador");

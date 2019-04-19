@@ -11,7 +11,7 @@ namespace SWMGEGCSS_DA
 {
     public class UsuarioDataAccess:BaseConexion
     {
-        public int sp_Encontrar_Usuario(T_usuario usuario)
+        public int sp_Encontrar_Usuario(T_usuario usuario,T_detalle_usuario t_d_usuario)
         {
             int count = 0;
             try
@@ -26,6 +26,7 @@ namespace SWMGEGCSS_DA
                         {
                             count = DataUtil.DbValueToDefault<int>(reader["CONTADOR"]);
                             usuario.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            t_d_usuario.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
                         }
                     }
                 }
