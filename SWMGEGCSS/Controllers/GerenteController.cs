@@ -56,8 +56,9 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Plan_Proyecto()
         {
+            /*temporalmente solo agregar_proyecto*/
+
             return View();
         }
-
     }
 }
