@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\ExpedienteViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\PermisoViewModel.cs" />
     <Compile Include="Models\SolicitudViewModel.cs" />

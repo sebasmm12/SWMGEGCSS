@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using SWMGEGCSS.Models;
+using SWMGEGCSS_DA;
+using SWMGEGCSS_EN;
+using System.Globalization;
 namespace SWMGEGCSS.Controllers
 {
     public class GerenteController : Controller
@@ -35,7 +38,9 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Proyectos()
         {
-            return View();
+            ExpedienteViewModel model = new ExpedienteViewModel();
+            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos();
+            return View(model);
         }
         public ActionResult Gestionar_I_E()
         {

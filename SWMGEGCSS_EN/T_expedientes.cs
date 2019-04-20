@@ -15,6 +15,17 @@ namespace SWMGEGCSS_EN
         public DateTime exp_inicio { get; set; }
         public DateTime exp_fin { get; set; }
         public int tipo_servicio_id { get; set; }
-        public double exp_ganacia { get; set; }
+        public double exp_ganancia { get; set; }
+    }
+    public class T_expediente_aux
+    {
+        public int exp_id { get; set; }
+        public string est_exp_nombre { get; set; }
+        public string plan_nombre { get; set; }
+        public int usu_creador { get; set; }
+        public DateTime exp_inicio { get; set; }
+        public DateTime exp_fin { get; set; }
+        public string tipo_servicio_nombre { get; set; }
+        public double exp_ganancia { get; set; }
     }
 }
