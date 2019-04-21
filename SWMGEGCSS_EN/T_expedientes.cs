@@ -16,6 +16,7 @@ namespace SWMGEGCSS_EN
         public DateTime exp_fin { get; set; }
         public int tipo_servicio_id { get; set; }
         public double exp_ganancia { get; set; }
+        public string exp_nombre { get; set; }
     }
     public class T_expediente_aux
     {

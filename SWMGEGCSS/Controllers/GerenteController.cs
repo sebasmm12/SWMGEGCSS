@@ -7,6 +7,7 @@ using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
 using System.Globalization;
+using PagedList;
 namespace SWMGEGCSS.Controllers
 {
     public class GerenteController : Controller
@@ -36,10 +37,10 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Proyectos()
+        public ActionResult Gestionar_Proyectos(int page=1)
         {
             ExpedienteViewModel model = new ExpedienteViewModel();
-            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos();
+            model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page,2);
             return View(model);
         }
         public ActionResult Gestionar_I_E()

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Gestionar_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-    var list_expedientes = Model.List_Expediente;
+    var list_expedientes = Model.PList_Expedientes;
     var count = 0;
 }
 
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="col-12 col-sm-4 col-md-4">
-                <a href="@Url.Action("Insertar_Proyecto","Gerente")" class="btn btn-success rounded-pill">
+                <a href="@Url.Action("Registrar_Proyecto","Expediente")" class="btn btn-success rounded-pill">
                     <i class="fa fa-plus-circle"></i>
                     Registrar Nuevo Proyecto
                 </a>
@@ -80,9 +80,15 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-12">
+                @Html.PagedListPager(list_expedientes, page => Url.Action("Gestionar_Proyectos", "Gerente",new{ page}),PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
+        </div>
     </div>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
