@@ -60,5 +60,16 @@ namespace SWMGEGCSS.Controllers
 
             return View();
         }
+        public ActionResult AutoComplete(string term)
+        {
+            var model = new ExpedienteViewModel();
+            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(term);
+            var nameExpedientes = model.List_Expediente.Select(r => new
+            {
+                label = r.exp_nombre
+            });
+            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

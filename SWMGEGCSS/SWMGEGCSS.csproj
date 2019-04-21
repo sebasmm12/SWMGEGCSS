@@ -283,6 +283,7 @@
     <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
     <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
     <Content Include="Scripts\Scripts_TP\scriptsS.js" />
@@ -415,7 +416,6 @@
     <Folder Include="Scripts\Scripts_TP\EGG\" />
     <Folder Include="Scripts\Scripts_TP\LAO LAM\" />
     <Folder Include="Scripts\Scripts_TP\MAURICIO\" />
-    <Folder Include="Scripts\Scripts_TP\MIRANDA\" />
     <Folder Include="Scripts\Scripts_TP\PIERO\" />
   </ItemGroup>
   <ItemGroup>

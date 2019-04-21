@@ -13,7 +13,7 @@
                 <div>
                     <label class="font-weight-bolder">Nombre del Proyecto: </label>
                 </div>
-                <input type="text" class="form-control" id="buscar_proyecto" name="buscar_proyecto" />
+                <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("Autocomplete")" />
             </div>
         </div>
         <div class="row mt-4">
@@ -39,6 +39,7 @@
                         <thead class="bg-success">
                             <tr class="text-center">
                                 <th scope="col">#</th>
+                                <th scope="col">Nombre del Proyecto</th>
                                 <th scope="col">Nombre del Plan</th>
                                 <th scope="col">Fecha de Inicio</th>
                                 <th scope="col">Fecha de Fin</th>
@@ -49,30 +50,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                              @foreach (var item in list_expedientes)
-                              {
-                                  count = count + 1;
-                            <tr class="text-center">
-                                <th scope="row">@count</th>
-                                <td>@item.plan_nombre</td>
-                                <td>@item.exp_inicio.ToShortDateString()</td>
-                                <td>@item.exp_fin.ToShortDateString()</td>
-                                <td>@item.tipo_servicio_nombre</td>
-                                <td>@item.est_exp_nombre</td>
-                                <td>@item.exp_ganancia</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <i class="fa fa-edit" style="color:white !important"></i>
-                                        <span style="color:white">Modificar</span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa fa-times"></i>
-                                        Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                                 
-                              }
+                            @foreach (var item in list_expedientes)
+                            {
+                                count = count + 1;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    <td>@item.exp_nombre</td>
+                                    <td>@item.plan_nombre</td>
+                                    <td>@item.exp_inicio.ToShortDateString()</td>
+                                    <td>@item.exp_fin.ToShortDateString()</td>
+                                    <td>@item.tipo_servicio_nombre</td>
+                                    <td>@item.est_exp_nombre</td>
+                                    <td>@item.exp_ganancia</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa fa-edit" style="color:white !important"></i>
+                                            <span style="color:white">Modificar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa fa-times"></i>
+                                            Eliminar
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -80,5 +82,10 @@
         </div>
     </div>
 </div>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}
 
 
