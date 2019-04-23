@@ -404,6 +404,7 @@
     <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
     <Content Include="Views\Expediente\Registrar_Proyecto.cshtml" />
+    <Content Include="Views\Gerente\Agregar_Plan_de_Proyectos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

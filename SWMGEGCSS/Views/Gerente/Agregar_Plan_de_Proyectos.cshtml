@@ -1,0 +1,99 @@
+﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
+@{
+    ViewBag.Title = "Agregar_Plan_de_Proyectos";
+}
+
+<h2>Agregar_Plan_de_Proyectos</h2>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div>
+            <h4 class="h4">AGREGAR PLAN DE PROYECTO</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.plan_nombre, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.plan_nombre, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.plan_nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.plan_fecha, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.TextBoxFor(model => model.plans.plan_fecha, new { id = "date-picker" })
+                @Html.ValidationMessageFor(model => model.plans.plan_fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.usu_codigo, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.usu_codigo, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.usu_codigo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.emp_id, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.emp_id, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.emp_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.plan_estado, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.plan_estado, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.plan_estado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.plan_costo, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.plan_costo, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.plan_costo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.plan_tipo, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.plan_tipo, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.plan_tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.tipo_servicio_id, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.tipo_servicio_id, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.tipo_servicio_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.plans.plan_tiempo, htmlAttributes: new { @class = "col-12 col-sm-2" })
+            <div class="col-12 col-sm-10">
+                @Html.EditorFor(model => model.plans.plan_tiempo, new { htmlAttributes = new { @class = "text-center form-control" } })
+                @Html.ValidationMessageFor(model => model.plans.plan_tiempo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 col-12">
+                <button class="btn btn-success">
+                    <i class="fa fa-check-circle"></i>
+                    Nuevo Plan de Proyecto
+                </button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        debugger
+        $(document).ready(function () {
+            debugger
+            $('#date-picker').datepicker();
+        });
+    </script>
+}
+

@@ -12,7 +12,7 @@ namespace SWMGEGCSS.Models
         public T_plan plans { get; set; }
         public List<T_plan> listplans { get; set; }
 
-        /*public IPagedList<T_plan> listPplans
-        { get; set; }*/
+        public IPagedList<T_plan> listPplans
+        { get; set; }
     }
 }
