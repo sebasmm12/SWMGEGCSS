@@ -409,6 +409,7 @@
     <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
     <Content Include="Views\Expediente\Registrar_Proyecto.cshtml" />
     <Content Include="Views\Plan\Agregar_Plan_de_Proyectos.cshtml" />
+    <Content Include="Views\Plan\Actualizar_Plan_de_Proyectos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

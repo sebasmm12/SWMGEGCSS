@@ -160,9 +160,8 @@ namespace SWMGEGCSS_DA
             }
             catch (Exception)
             {
-
                 return new OperationResult();
             }
-        }      
+        }
     }
 }

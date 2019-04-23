@@ -25,5 +25,15 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        public ActionResult Actualizar_Plan_de_Proyectos()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Actualizar_Plan_de_Proyectos(T_plan plan)
+        {
+            return View();
+        }
     }
 }
