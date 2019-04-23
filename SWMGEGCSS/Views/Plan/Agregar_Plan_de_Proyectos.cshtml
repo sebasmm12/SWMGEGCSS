@@ -1,0 +1,157 @@
+﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
+@{
+    ViewBag.Title = "Agregar_Plan_de_Proyectos";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<h2>Agregar_Plan_de_Proyectos</h2>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Nombre del Plan del Proyecto
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.plan_nombre, new
+                {
+                    htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Fecha del Plan del Proyecto
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.plan_fecha, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control", @type = "date" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Codigo de usuario
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.usu_codigo, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Codigo de empresa
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.emp_id, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Estado del plan
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.plan_estado, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Costo del plan
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.plan_costo, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Tipo de plan
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.plan_tipo, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Tipo de servicio del plan
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.tipo_servicio_id, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Tiempo del plan (en años)
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.plans.plan_tiempo, new
+                {
+                   htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-check-circle"></i>
+                    Registrar Plan
+                </button>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente")" class="btn btn-secondary">
+                    <i class="fa fa-backward">
+
+                    </i>
+                    Regresar
+                </a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            debugger
+            $(document).ready(function () {
+                debugger
+                $('#date-picker').datepicker();
+            });
+        </script>
+    }
+</div>
+
+
