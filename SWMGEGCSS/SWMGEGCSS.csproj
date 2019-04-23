@@ -126,6 +126,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SecretarioController.cs" />
@@ -134,6 +135,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\ExpedienteViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\PermisoViewModel.cs" />
     <Compile Include="Models\SolicitudViewModel.cs" />
@@ -401,6 +403,7 @@
     <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
     <Content Include="Views\Gerente\Registrar_Plan_Proyecto.cshtml" />
+    <Content Include="Views\Expediente\Registrar_Proyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
