@@ -55,6 +55,10 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -284,7 +288,6 @@
     <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
     <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
-    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
     <Content Include="Scripts\Scripts_TP\scriptsS.js" />
@@ -403,6 +406,7 @@
     <Content Include="Views\Gerente\Gestionar_Empresas.cshtml" />
     <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
+    <Content Include="Views\Gerente\Registrar_Plan_Proyecto.cshtml" />
     <Content Include="Views\Expediente\Registrar_Proyecto.cshtml" />
     <Content Include="Views\Gerente\Agregar_Plan_de_Proyectos.cshtml" />
   </ItemGroup>
@@ -419,6 +423,7 @@
     <Folder Include="Scripts\Scripts_TP\EGG\" />
     <Folder Include="Scripts\Scripts_TP\LAO LAM\" />
     <Folder Include="Scripts\Scripts_TP\MAURICIO\" />
+    <Folder Include="Scripts\Scripts_TP\MIRANDA\" />
     <Folder Include="Scripts\Scripts_TP\PIERO\" />
   </ItemGroup>
   <ItemGroup>
