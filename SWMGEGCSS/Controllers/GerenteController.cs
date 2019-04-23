@@ -57,9 +57,9 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Plan_Proyecto(int page = 1)
         {
-            ExpedienteViewModel model = new ExpedienteViewModel();
-            model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 2);
-            return View(model);
+            /*ExpedienteViewModel model = new ExpedienteViewModel();
+            model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 2);*/
+            return View(/*model*/);
         }
         public ActionResult AutoComplete(string term)
         {
