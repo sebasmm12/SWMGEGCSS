@@ -41,10 +41,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre del Plan</th>
                                 <th scope="col">Fecha del Plan</th>
-                                <th scope="col">Empresa</th>
                                 <th scope="col">Estado del Plan</th>
                                 <th scope="col">Costo del Plan</th>
-                                <th scope="col">Nombre del servicio</th>
                                 <th scope="col">Tiempo del plan</th>
                             </tr>
                         </thead>
@@ -56,10 +54,8 @@
                                     <th scope="row">@count</th>
                                     <td>@item.plan_nombre</td>
                                     <td>@item.plan_fecha.ToShortDateString()</td>
-                                    <td>@item.emp_id</td>
                                     <td>@item.plan_estado</td>
                                     <td>@item.plan_costo</td>
-                                    <td>@item.tipo_servicio_id</td>
                                     <td>@item.plan_tiempo</td>
                                     <td>
                                         <button type="button" class="btn btn-warning">
