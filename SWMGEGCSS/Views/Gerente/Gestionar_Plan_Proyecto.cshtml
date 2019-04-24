@@ -44,6 +44,7 @@
                                 <th scope="col">Estado del Plan</th>
                                 <th scope="col">Costo del Plan</th>
                                 <th scope="col">Tiempo del plan</th>
+                                <th scope="col">Funcionalidades de Plan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,10 +59,12 @@
                                     <td>@item.plan_costo</td>
                                     <td>@item.plan_tiempo</td>
                                     <td>
-                                        <button type="button" class="btn btn-warning">
-                                            <i class="fa fa-edit" style="color:white !important"></i>
-                                            <span style="color:white">Modificar</span>
-                                        </button>
+                                        
+                                        <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan")" class="btn btn-success rounded-pill">
+                                            <i class="fa fa-plus-circle"></i>
+                                            Registrar Nuevo Plan de Proyectos
+                                        </a>
+                                       
                                         <button type="button" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
                                             Eliminar
