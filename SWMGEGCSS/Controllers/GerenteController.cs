@@ -71,5 +71,15 @@ namespace SWMGEGCSS.Controllers
             });
             return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult CompletarNombrePlanes(string term)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
+            var nameExpedientes = model.listplans.Select(r => new
+            {
+                label = r.plan_nombre
+            });
+            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
+        }
     }
 }
