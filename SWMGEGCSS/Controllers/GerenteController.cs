@@ -70,7 +70,6 @@ namespace SWMGEGCSS.Controllers
                 label = r.exp_nombre
             });
             return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
-
         }
         public ActionResult CompletarNombrePlanes(string term)
         {
