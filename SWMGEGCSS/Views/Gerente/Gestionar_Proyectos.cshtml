@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Gestionar_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-    var list_expedientes=Model.PList_Expedientes;
+    var list_expedientes = Model.PList_Expedientes;
     var count = 0;
 }
 
@@ -63,7 +63,7 @@
                                     <td>@item.est_exp_nombre</td>
                                     <td>@item.exp_ganancia</td>
                                     <td>
-                                        <button type="button" class="btn btn-warning">
+                                        <button type="button" class="btn btn-warning" id="btnModal">
                                             <i class="fa fa-edit" style="color:white !important"></i>
                                             <span style="color:white">Modificar</span>
                                         </button>
@@ -82,11 +82,12 @@
         </div>
         <div class="row">
             <div class="col-sm-4 col-md-4 col-12">
-                @Html.PagedListPager(list_expedientes, page => Url.Action("Gestionar_Proyectos", "Gerente",new{ page}),PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                @Html.PagedListPager(list_expedientes, page => Url.Action("Gestionar_Proyectos", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
             </div>
         </div>
     </div>
 </div>
+@Html.Partial("_ModalProyecto")
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{

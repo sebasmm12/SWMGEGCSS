@@ -8,6 +8,10 @@
 
     };
 
-
+    $("#btnModal").click(function () {
+        $("#ModalProyecto").modal('show');
+    });
     $("input[data-exp-autocomplete]").each(autcompletado);
+
+    
 });
