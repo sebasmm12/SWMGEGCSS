@@ -1,4 +1,5 @@
-﻿using SWMGEGCSS_DA.Base;
+﻿using Microsoft.Practices.EnterpriseLibrary.Data;
+using SWMGEGCSS_DA.Base;
 using SWMGEGCSS_EN;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,35 @@ namespace SWMGEGCSS_DA
             }
             return lista_planes;
         }
+        public List<T_plan> sp_Consultar_Lista_Tipo_Nombre_Planes(string plan_nombre)
+        {
+            List<T_plan> T_Plan = new List<T_plan>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Tipo_Nombre_Planes"))
+                {
+                    Database.AddInParameter(command, "@plan_nombre", DbType.String, plan_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_plan t_plan = new T_plan();
+                            t_plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            t_plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
+                            t_plan.plan_estado = DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
+                            t_plan.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
+                            t_plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
+                            T_Plan.Add(t_plan);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_plan>();
+            }
+            return T_Plan;
+        }
         public OperationResult sp_Actualizar_Plan(T_plan Plan)
         {
             try
@@ -67,7 +97,7 @@ namespace SWMGEGCSS_DA
         public List<T_tipo_servicio> sp_Obtener_Lista_Servicios(T_servicio servicio)
         {
             List<T_tipo_servicio> T_Tipo_Servicios = new List<T_tipo_servicio>();
-                
+
             try
             {
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Listar_Tipo_Servicio"))
@@ -84,7 +114,7 @@ namespace SWMGEGCSS_DA
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return new List<T_tipo_servicio>();
             }
