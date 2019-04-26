@@ -22,19 +22,23 @@ namespace SWMGEGCSS.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Agregar_Plan_de_Proyectos(T_plan plan)
+        public ActionResult Agregar_Plan_de_Proyectos(T_plan plans)
         {
-            var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();
+            /*var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();*/
             var model = new GestionarPlanProyectoViewModel();
-            model.plans = plan;
-            var planes = planesmodel.Find(modelo => (modelo.plan_nombre == model.plans.plan_nombre));
+            model.plans = plans;
+            /*var planes = planesmodel.Find(modelo => (modelo.plan_nombre == model.plans.plan_nombre));*/
             var modelPlan = new T_plan();
-            modelPlan.plan_id = planes.plan_id;
             modelPlan.usu_codigo = (int)Session["login"];
             modelPlan.plan_nombre = model.plans.plan_nombre;
-           /* modelPlan.
-            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan); */
-            return View();
+            modelPlan.plan_fecha = model.plans.plan_fecha;
+            modelPlan.emp_id = model.plans.emp_id;
+            modelPlan.plan_estado = model.plans.plan_estado;
+            modelPlan.plan_costo = model.plans.plan_costo;
+            modelPlan.tipo_servicio_id = model.plans.tipo_servicio_id;
+            modelPlan.plan_tiempo = model.plans.plan_tiempo;
+            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+            return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
         }
         public ActionResult Actualizar_Plan_de_Proyectos()
         {
@@ -42,9 +46,28 @@ namespace SWMGEGCSS.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Actualizar_Plan_de_Proyectos(T_plan plan)
+        public ActionResult Actualizar_Plan_de_Proyectos(T_plan plans)
         {
+            var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();
+            var model = new GestionarPlanProyectoViewModel();
+            model.plans = plans;
+            var planes = planesmodel.Find(modelo => (modelo.plan_nombre == model.plans.plan_nombre));
+            var modelPlan = new T_plan();
+            modelPlan.plan_id = planes.plan_id;
+            modelPlan.plan_nombre = model.plans.plan_nombre;
+            modelPlan.plan_fecha = model.plans.plan_fecha;
+            modelPlan.emp_id = model.plans.emp_id;
+            modelPlan.plan_estado = model.plans.plan_estado;
+            modelPlan.plan_costo = model.plans.plan_costo;
+            modelPlan.tipo_servicio_id = model.plans.tipo_servicio_id;
+            modelPlan.plan_tiempo = model.plans.plan_tiempo;
+            var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
+
             return View();
         }
+        /*public ActionResult Consultar_Plan_Proyecto()
+        {
+            var planesmodel = new PlanDataAccess().
+        }*/
     }
 }

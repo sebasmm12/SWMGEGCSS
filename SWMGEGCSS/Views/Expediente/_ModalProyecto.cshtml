@@ -1,4 +1,18 @@
 ﻿@model SWMGEGCSS.Models.ExpedienteViewModel
+   @{ 
+       Layout = null;
+       var exp_inicio = "";
+       var exp_fin = "";
+       if (Model.Expediente != null)
+       {
+           exp_inicio = Model.Expediente.exp_inicio.ToString("yyyy-MM-dd");
+       }
+       if (Model.Expediente!= null)
+       {
+           exp_fin = Model.Expediente.exp_fin.ToString("yyyy-MM-dd");;
+       }
+
+   }
 <div class="modal fade" id="ModalProyecto" tabindex="-1" role="dialog" aria-labelledby="#ModalProyecto" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -44,10 +58,7 @@
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Expediente.exp_inicio, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control", @type = "date" }
-                            })
+                            <input type="date" name="Expediente.exp_inicio" value="@exp_inicio" class="text-center form-control" />
                         </div>
                     </div>
                 </div>
@@ -59,10 +70,7 @@
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Expediente.exp_fin, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control",@type="date" }
-                            })
+                            <input type="date" name="Expediente.exp_fin" value="@exp_fin" class="text-center form-control" />
                         </div>
                     </div>
                 </div>
@@ -111,24 +119,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt-4 mb-4">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-warning rounded-pill" style="color:white !important">
+                                <i class="fa fa-check-circle" style="color:white !important"></i>
+                                Actualizar Proyecto
+                            </button>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">
+                                <i class="fa fa-times-circle"></i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
 
-            </div>
-            <div class="mt-4">
-                <div class="row">
-                    <div class="col-sm-5 col-md-5 col-5">
-                        <button type="button" class="btn btn-warning">
-                            <i class="fa fa-check"></i>
-                            Actualizar Proyecto
-                        </button>
-                    </div>
-                    <div class="col-sm-5 col-md-5 col-5">
-                        <button type="button" class="btn btn-danger">
-                            <i class="fa fa-times-circle"></i>
-                            Cancelar
-                        </button>
-                    </div>
                 </div>
- 
             </div>
         </div>
     </div>

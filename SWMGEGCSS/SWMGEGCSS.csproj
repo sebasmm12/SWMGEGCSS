@@ -126,7 +126,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
-    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -138,7 +137,6 @@
     </Compile>
     <Compile Include="Models\EjemploViewModel.cs" />
     <Compile Include="Models\ExpedienteViewModel.cs" />
-    <Compile Include="Models\GestionarEmpresaViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\PermisoViewModel.cs" />
     <Compile Include="Models\SolicitudViewModel.cs" />
@@ -405,14 +403,14 @@
     <Content Include="Views\Gerente\Gestionar_Cuenta.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Proyectos.cshtml" />
     <Content Include="Views\Gerente\Gestionar_I_E.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Empresas.cshtml" />
     <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
     <Content Include="Views\Expediente\Registrar_Proyecto.cshtml" />
     <Content Include="Views\Plan\Agregar_Plan_de_Proyectos.cshtml" />
     <Content Include="Views\Plan\Actualizar_Plan_de_Proyectos.cshtml" />
-    <Content Include="Views\Gerente\_ModalProyecto.cshtml" />
-    <Content Include="Views\Empresa\Index.cshtml" />
-    <Content Include="Views\Gerente\Gestionar_Empresas.cshtml" />
+    <Content Include="Views\Expediente\_ModalProyecto.cshtml" />
+    <Content Include="Views\Expediente\_EliminarProyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -428,7 +426,6 @@
     <Folder Include="Scripts\Scripts_TP\LAO LAM\" />
     <Folder Include="Scripts\Scripts_TP\MAURICIO\" />
     <Folder Include="Scripts\Scripts_TP\PIERO\" />
-    <Folder Include="Views\GestionarEmpresaViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -23,6 +23,7 @@ namespace SWMGEGCSS_DA
                         while (reader.Read())
                         {
                             T_expediente_aux t_aux = new T_expediente_aux();
+                            t_aux.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
                             t_aux.est_exp_nombre = DataUtil.DbValueToDefault<string>(reader["est_exp_nombre"]);
                             t_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
                             t_aux.exp_inicio= DataUtil.DbValueToDefault<DateTime>(reader["exp_inicio"]);

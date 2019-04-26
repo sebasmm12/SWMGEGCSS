@@ -39,5 +39,31 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new ExpedienteDataAccess().sp_Insertar_Proyecto(modelExpediente);
             return View();
         }
+        [HttpGet]
+        public ActionResult _ModalProyecto()
+        {
+            var model = new ExpedienteViewModel();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalProyecto(int id)
+        {
+            var model = new ExpedienteViewModel();
+            model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => (r.exp_id == id));
+            return PartialView(model);
+        }
+        [HttpGet]
+        public ActionResult _EliminarProyecto()
+        {
+            var model = new ExpedienteViewModel();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _EliminarProyecto(int id)
+        {
+            var model = new ExpedienteViewModel();
+            model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => (r.exp_id == id));
+            return PartialView(model);
+        }
     }
 }
