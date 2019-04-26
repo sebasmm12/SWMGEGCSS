@@ -1,8 +1,59 @@
-﻿
+﻿@model SWMGEGCSS.Models.GestionarEmpresaViewModel
 @{
     ViewBag.Title = "Gestionar_Empresas";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var list_empresas = Model.listEmpresas;
 }
 
+
+
 <h2>Gestionar_Empresas</h2>
+
+<div class="container form mt-5">
+    <div class="table-responsive mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Razón Social</th>
+                    <th scope="col">Ruc</th>
+                    <th scope="col">Representante legal</th>
+                    <th scope="col">N° Contacto</th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in list_empresas)
+                {
+                    <tr>
+                        <th scope="row">item</th>
+                        <td>@item.emp_id</td>
+                        <td>@item.emp_razon_social</td>
+                        <td>@item.emp_ruc</td>
+                        <td>@item.emp_representante</td>
+                        <td>@item.emp_telefono</td>
+                        <td></td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-12">
+                @Html.PagedListPager(list_empresas, page => Url.Action("Gestionar_Empresas", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
+        </div>
+        <div class="agregar ">
+
+
+        </div>
+    </div>
+
+
+</div>
+
 
