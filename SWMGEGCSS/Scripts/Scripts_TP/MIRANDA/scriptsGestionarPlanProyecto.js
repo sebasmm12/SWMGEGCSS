@@ -17,9 +17,10 @@
                 data: { id: $(this).attr("data-id-proyecto")}
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
+                var modal = $button.attr("data-id-target");
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
-                $("#ModalProyecto").modal('show');
+                $(modal).modal('show');
 
             });
 

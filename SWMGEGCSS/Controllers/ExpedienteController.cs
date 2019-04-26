@@ -52,12 +52,18 @@ namespace SWMGEGCSS.Controllers
             model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => (r.exp_id == id));
             return PartialView(model);
         }
+        [HttpGet]
+        public ActionResult _EliminarProyecto()
+        {
+            var model = new ExpedienteViewModel();
+            return PartialView(model);
+        }
         [HttpPost]
-        public ActionResult Ejemplo(int id)
+        public ActionResult _EliminarProyecto(int id)
         {
             var model = new ExpedienteViewModel();
             model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => (r.exp_id == id));
-            return PartialView("_ModalProyecto",model);
+            return PartialView(model);
         }
     }
 }

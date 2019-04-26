@@ -38,7 +38,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_costo = model.plans.plan_costo;
             modelPlan.tipo_servicio_id = model.plans.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans.plan_tiempo;
-            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+           // var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             return View();
         }
         public ActionResult Actualizar_Plan_de_Proyectos()
