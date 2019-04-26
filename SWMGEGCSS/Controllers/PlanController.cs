@@ -46,11 +46,11 @@ namespace SWMGEGCSS.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Actualizar_Plan_de_Proyectos(T_plan plan)
+        public ActionResult Actualizar_Plan_de_Proyectos(T_plan plans)
         {
             var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();
             var model = new GestionarPlanProyectoViewModel();
-            model.plans = plan;
+            model.plans = plans;
             var planes = planesmodel.Find(modelo => (modelo.plan_nombre == model.plans.plan_nombre));
             var modelPlan = new T_plan();
             modelPlan.plan_id = planes.plan_id;
@@ -63,7 +63,10 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_tiempo = model.plans.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
             return View();
-            
         }
+        /*public ActionResult Consultar_Plan_Proyecto()
+        {
+            var planesmodel = new PlanDataAccess().
+        }*/
     }
 }
