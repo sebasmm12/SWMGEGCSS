@@ -85,7 +85,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@plan_tipo", DbType.Int32, Plan.plan_tipo);
                     Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);
                     Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
-                    operation.NewId = 1;
+                    Database.ExecuteScalar(command);
                 }
                 return operation;
             }
@@ -171,6 +171,24 @@ namespace SWMGEGCSS_DA
                 return new List<T_empresa>();
             }
             return T_Empresa;
+        }
+        public OperationResult sp_Cancelar_Plan(int plan_id)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Cancelar_Plan"))
+                {
+                    Database.AddInParameter(command, "@plan_id", DbType.String, plan_id);
+                    Database.ExecuteScalar(command);
+                    //execute scalar permite ejecutar el comando
+                }
+                    return operation;
+            }
+            catch (Exception)
+            {
+                   return new OperationResult();
+            }
         }
     }
 }
