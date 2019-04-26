@@ -47,9 +47,11 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Empresas()
+        public ActionResult Gestionar_Empresas(int page=1)
         {
-            return View();
+            GestionarEmpresaViewModel model = new GestionarEmpresaViewModel();
+            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().ToPagedList(page,2);
+            return View(model);
         }
         public ActionResult Visualizar_Personal_Proyecto()
         {

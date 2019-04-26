@@ -13,6 +13,7 @@ namespace SWMGEGCSS_EN
         public DateTime aud_exp_inicio { get; set; }
         public DateTime aud_exp_fin { get; set; }
         public int tipo_servicio_id { get; set; }
-        public double aud_exp_ganacia { get; set; }
+        public double aud_exp_ganancia { get; set; }
+        public string aud_exp_comentario { get; set; }
     }
 }

@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseConexion.cs" />
     <Compile Include="Base\DataUtil.cs" />
+    <Compile Include="EmpresaDataAccess.cs" />
     <Compile Include="ExpedienteDataAccess.cs" />
     <Compile Include="PermisoDataAccess.cs" />
     <Compile Include="PlanDataAccess.cs" />

@@ -18,7 +18,7 @@ namespace SWMGEGCSS_DA
             {
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Proyectos"))
                 {
-                    using (IDataReader reader=Database.ExecuteReader(command))
+                    using (IDataReader reader = Database.ExecuteReader(command))
                     {
                         while (reader.Read())
                         {
@@ -26,10 +26,10 @@ namespace SWMGEGCSS_DA
                             t_aux.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
                             t_aux.est_exp_nombre = DataUtil.DbValueToDefault<string>(reader["est_exp_nombre"]);
                             t_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
-                            t_aux.exp_inicio= DataUtil.DbValueToDefault<DateTime>(reader["exp_inicio"]);
+                            t_aux.exp_inicio = DataUtil.DbValueToDefault<DateTime>(reader["exp_inicio"]);
                             t_aux.exp_fin = DataUtil.DbValueToDefault<DateTime>(reader["exp_fin"]);
                             t_aux.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
-                            t_aux.exp_ganancia= DataUtil.DbValueToDefault<double>(reader["exp_ganancia"]);
+                            t_aux.exp_ganancia = DataUtil.DbValueToDefault<double>(reader["exp_ganancia"]);
                             t_aux.exp_nombre = DataUtil.DbValueToDefault<string>(reader["exp_nombre"]);
                             T_expediente.Add(t_aux);
                         }
@@ -164,5 +164,70 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+        public OperationResult sp_Eliminar_Proyecto(int exp_id)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command=Database.GetStoredProcCommand("sp_Eliminar_Proyecto"))
+                {
+                    Database.AddInParameter(command, "@exp_id", DbType.Int32, exp_id);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
+        public OperationResult sp_Insertar_Auditoria_Expediente(T_auditar_expedientes t_auditoria_exp)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command=Database.GetStoredProcCommand("sp_Insertar_Auditoria_Expediente"))
+                {
+                    Database.AddInParameter(command, "@exp_id", DbType.Int32, t_auditoria_exp.exp_id);
+                    Database.AddInParameter(command, "@aud_exp_inicio", DbType.Date, t_auditoria_exp.aud_exp_inicio);
+                    Database.AddInParameter(command, "@aud_exp_fin", DbType.Date, t_auditoria_exp.aud_exp_fin);
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, t_auditoria_exp.tipo_servicio_id);
+                    Database.AddInParameter(command, "@aud_exp_ganancia", DbType.Double, t_auditoria_exp.aud_exp_ganancia);
+                    Database.AddInParameter(command, "@aud_exp_comentario", DbType.String, t_auditoria_exp.aud_exp_comentario);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
+        public OperationResult sp_Actualizar_Datos_Expediente(T_expedientes t_exp)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Datos_Expediente"))
+                {
+                    Database.AddInParameter(command, "@exp_fin", DbType.Date, t_exp.exp_fin);
+                    Database.AddInParameter(command, "@exp_inicio", DbType.Date, t_exp.exp_inicio);
+                    Database.AddInParameter(command, "@exp_ganancia", DbType.Double, t_exp.exp_ganancia);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
+
     }
 }
