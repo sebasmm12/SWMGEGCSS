@@ -13,6 +13,31 @@ namespace SWMGEGCSS_DA
 {
     public class PlanDataAccess : BaseConexion
     {
+
+        public OperationResult sp_Agregar_Plan(T_plan Plan)/*sp_Agregar_Plan*/
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Agregar_Plan"))
+                {
+                    Database.AddInParameter(command, "@plan_nombre", DbType.String, Plan.plan_nombre);
+                    Database.AddInParameter(command, "@plan_fecha", DbType.Date, Plan.plan_fecha);
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, Plan.usu_codigo);
+                    Database.AddInParameter(command, "@emp_id", DbType.Int32, Plan.emp_id);
+                    Database.AddInParameter(command, "@plan_estado", DbType.Int32, Plan.plan_estado);
+                    Database.AddInParameter(command, "@plan_costo", DbType.Decimal, Plan.plan_costo);
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);/*plan_tiempo*/
+                    Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
+                    Database.ExecuteScalar(command);
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+                return new OperationResult();
+            }
+        }
         public List<T_plan> sp_Consultar_Lista_Plan()
         {
             List<T_plan> lista_planes = new List<T_plan>();
@@ -189,6 +214,34 @@ namespace SWMGEGCSS_DA
             {
                    return new OperationResult();
             }
+        }
+        public T_plan sp_Consultar_Nombre_Planes(string plan_nombre)
+        {
+             T_plan T_Plan = new T_plan();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Nombre_Planes"))
+                {
+                    Database.AddInParameter(command, "@plan_nombre", DbType.String, plan_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        T_Plan.emp_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                        T_Plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                        T_Plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
+                        T_Plan.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                        T_Plan.plan_estado= DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
+                        T_Plan.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
+                        T_Plan.plan_tipo = DataUtil.DbValueToDefault<int>(reader["plan_tipo"]);
+                        T_Plan.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
+                        T_Plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new T_plan();
+            }
+            return T_Plan;
         }
     }
 }
