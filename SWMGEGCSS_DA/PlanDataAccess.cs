@@ -21,7 +21,7 @@ namespace SWMGEGCSS_DA
                 var operation = new OperationResult();
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Agregar_Plan"))
                 {
-                    Database.AddInParameter(command, "@plan_nombre", DbType.Int32, Plan.plan_nombre);
+                    Database.AddInParameter(command, "@plan_nombre", DbType.String, Plan.plan_nombre);
                     Database.AddInParameter(command, "@plan_fecha", DbType.Date, Plan.plan_fecha);
                     Database.AddInParameter(command, "@usu_codigo", DbType.Int32, Plan.usu_codigo);
                     Database.AddInParameter(command, "@emp_id", DbType.Int32, Plan.emp_id);
