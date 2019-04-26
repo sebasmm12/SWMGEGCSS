@@ -25,7 +25,7 @@ namespace SWMGEGCSS.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }   
         public ActionResult Ejemplo()
         {
             if (Session["login"] != null)
@@ -34,7 +34,7 @@ namespace SWMGEGCSS.Controllers
             }
             return RedirectToAction("Login", "Account");
 
-        }
+        }   
         //MAURIIO ESTUVO AQUÍ
         //LAU LOO ESTUVO AQUÏ
     }
