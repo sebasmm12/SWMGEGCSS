@@ -58,7 +58,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Gestionar_Plan_Proyecto(int page = 1)
         {
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
-            model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 2);
+            model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3);
             return View(model);
         }
         public ActionResult AutoComplete(string term)
