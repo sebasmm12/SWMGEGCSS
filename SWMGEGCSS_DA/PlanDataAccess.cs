@@ -215,23 +215,22 @@ namespace SWMGEGCSS_DA
                    return new OperationResult();
             }
         }
-        public T_plan sp_Consultar_Nombre_Planes(string plan_nombre)
+        public T_plan sp_Consultar_Plan_Por_Nombre(string plan_nombre)
         {
              T_plan T_Plan = new T_plan();
             try
             {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Nombre_Planes"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Obtener_Plan"))
                 {
                     Database.AddInParameter(command, "@plan_nombre", DbType.String, plan_nombre);
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
-                        T_Plan.emp_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                        T_Plan.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
                         T_Plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
                         T_Plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
                         T_Plan.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
                         T_Plan.plan_estado= DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
                         T_Plan.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
-                        T_Plan.plan_tipo = DataUtil.DbValueToDefault<int>(reader["plan_tipo"]);
                         T_Plan.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
                         T_Plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
                     }
