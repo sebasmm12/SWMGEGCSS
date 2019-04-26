@@ -132,11 +132,17 @@
             </div>
         </div>
         <script type="text/javascript">
-            debugger
-            $(document).ready(function () {
-                debugger
-                $('#date-picker').datepicker();
-            });
+            function validaDatos() {
+                if ($("#OrderCode").val() == "") {
+                    swal("Please enter OrderCode !");
+                    return false;
+                } else if ($("#OrderPrice").val() == "") {
+                    swal("Please enter OrderPrice !");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         </script>
     }
 </div>

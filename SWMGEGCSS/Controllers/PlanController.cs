@@ -38,7 +38,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.tipo_servicio_id = model.plans.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
-            return View();
+            return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
         }
         public ActionResult Actualizar_Plan_de_Proyectos()
         {
@@ -62,8 +62,8 @@ namespace SWMGEGCSS.Controllers
             modelPlan.tipo_servicio_id = model.plans.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
+
             return View();
-            
         }
     }
 }
