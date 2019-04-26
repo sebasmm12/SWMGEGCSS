@@ -13,6 +13,31 @@ namespace SWMGEGCSS_DA
 {
     public class PlanDataAccess : BaseConexion
     {
+
+        public OperationResult sp_Agregar_Plan(T_plan Plan)/*sp_Agregar_Plan*/
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Agregar_Plan"))
+                {
+                    Database.AddInParameter(command, "@plan_nombre", DbType.Int32, Plan.plan_nombre);
+                    Database.AddInParameter(command, "@plan_fecha", DbType.Date, Plan.plan_fecha);
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, Plan.usu_codigo);
+                    Database.AddInParameter(command, "@emp_id", DbType.Int32, Plan.emp_id);
+                    Database.AddInParameter(command, "@plan_estado", DbType.Int32, Plan.plan_estado);
+                    Database.AddInParameter(command, "@plan_costo", DbType.Decimal, Plan.plan_costo);
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);/*plan_tiempo*/
+                    Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
+                    Database.ExecuteScalar(command);
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+                return new OperationResult();
+            }
+        }
         public List<T_plan> sp_Consultar_Lista_Plan()
         {
             List<T_plan> lista_planes = new List<T_plan>();
