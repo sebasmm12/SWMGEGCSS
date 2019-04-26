@@ -120,5 +120,57 @@ namespace SWMGEGCSS_DA
             }
             return T_Tipo_Servicios;
         }
+        public List<T_tipo_servicio> sp_Consultar_Lista_Nombre_Tipo_Servicio(string tipo_servicio_nombre)
+        {
+            List<T_tipo_servicio> T_Tipo_Servicio = new List<T_tipo_servicio>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Tipo_Servicio"))
+                {
+                    Database.AddInParameter(command, "@tipo_servicio_nombre", DbType.String, tipo_servicio_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_tipo_servicio t_servicio = new T_tipo_servicio();
+                            t_servicio.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
+                            t_servicio.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);                     
+                            T_Tipo_Servicio.Add(t_servicio);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_tipo_servicio>();
+            }
+            return T_Tipo_Servicio;
+        }
+        public List<T_empresa> sp_Consultar_Lista_Nombre_Empresa(string emp_razon_social)
+        {
+            List<T_empresa> T_Empresa = new List<T_empresa>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Nombre_Empresa"))
+                {
+                    Database.AddInParameter(command, "@emp_razon_social", DbType.String, emp_razon_social);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_empresa t_empresa = new T_empresa();
+                            t_empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            t_empresa.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+                            T_Empresa.Add(t_empresa);
+                        }
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                return new List<T_empresa>();
+            }
+            return T_Empresa;
+        }
     }
 }
