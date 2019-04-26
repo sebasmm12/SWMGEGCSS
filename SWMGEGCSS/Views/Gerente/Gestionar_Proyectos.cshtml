@@ -67,7 +67,7 @@
                                             <i class="fa fa-edit" style="color:white !important"></i>
                                             <span style="color:white">Modificar</span>
                                         </button>
-                                        <button type="button" class="btn btn-danger" data-id-proyecto="@item.exp_id">
+                                        <button type="button" class="btn btn-danger btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_EliminarProyecto","Expediente")" data-id-target="#ModalEliminarProyecto">
                                             <i class="fa fa-times"></i>
                                             Eliminar
                                         </button>
@@ -88,6 +88,7 @@
     </div>
 </div>
 @Html.Action("_ModalProyecto","Expediente")
+@Html.Action("_EliminarProyecto","Expediente")
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{

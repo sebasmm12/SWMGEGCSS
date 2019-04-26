@@ -410,7 +410,7 @@
     <Content Include="Views\Plan\Agregar_Plan_de_Proyectos.cshtml" />
     <Content Include="Views\Plan\Actualizar_Plan_de_Proyectos.cshtml" />
     <Content Include="Views\Expediente\_ModalProyecto.cshtml" />
-    <Content Include="Views\Expediente\Ejemplo.cshtml" />
+    <Content Include="Views\Expediente\_EliminarProyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
