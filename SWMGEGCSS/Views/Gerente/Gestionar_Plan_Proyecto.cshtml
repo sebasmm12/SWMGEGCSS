@@ -1,8 +1,8 @@
-﻿@model SWMGEGCSS.Models.ExpedienteViewModel
+﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
 @{
     ViewBag.Title = "Gestionar_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-    var list_expedientes = Model.PList_Expedientes;
+    var list_planes = Model.listPplans;
     var count = 0;
 }
 
@@ -11,22 +11,22 @@
         <div class="row mt-2">
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
-                    <label class="font-weight-bolder">Nombre del Proyecto: </label>
+                    <label class="font-weight-bolder">Nombre del Plan: </label>
                 </div>
-                <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("Autocomplete")" />
+                <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("CompletarNombrePlanes")" />
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-12 col-sm-4 col-md-4">
-                <a href="@Url.Action("Insertar_Proyecto","Gerente")" class="btn btn-primary rounded-pill">
+                <a href="@Url.Action("Insertar_Plan","Gerente")" class="btn btn-primary rounded-pill">
                     <i class="fa fa-search"></i>
-                    Buscar Proyecto
+                    Buscar Plan
                 </a>
             </div>
             <div class="col-12 col-sm-4 col-md-4">
-                <a href="@Url.Action("Registrar_Proyecto","Expediente")" class="btn btn-success rounded-pill">
+                <a href="@Url.Action("Agregar_Plan_de_Proyectos","Plan")" class="btn btn-success rounded-pill">
                     <i class="fa fa-plus-circle"></i>
-                    Registrar Nuevo Proyecto
+                    Registrar Nuevo Plan de Proyectos
                 </a>
             </div>
             <div class="col-12 col-sm-4 col-md-4">
@@ -39,41 +39,38 @@
                         <thead class="bg-success">
                             <tr class="text-center">
                                 <th scope="col">#</th>
-                                <th scope="col">Nombre del Proyecto</th>
                                 <th scope="col">Nombre del Plan</th>
-                                <th scope="col">Fecha de Inicio</th>
-                                <th scope="col">Fecha de Fin</th>
-                                <th scope="col">Tipo de Servicio</th>
-                                <th scope="col">Estado del Proyecto</th>
-                                <th scope="col">Costo del Proyecto</th>
-                                <th scope="col">Acciones del Proyecto</th>
+                                <th scope="col">Fecha del Plan</th>
+                                <th scope="col">Estado del Plan</th>
+                                <th scope="col">Costo del Plan</th>
+                                <th scope="col">Tiempo del plan</th>
+                                <th scope="col">Funcionalidades de Plan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in list_expedientes)
+                            @foreach (var item in list_planes)
                             {
                                 count = count + 1;
                                 <tr class="text-center">
                                     <th scope="row">@count</th>
-                                    <td>@item.exp_nombre</td>
                                     <td>@item.plan_nombre</td>
-                                    <td>@item.exp_inicio.ToShortDateString()</td>
-                                    <td>@item.exp_fin.ToShortDateString()</td>
-                                    <td>@item.tipo_servicio_nombre</td>
-                                    <td>@item.est_exp_nombre</td>
-                                    <td>@item.exp_ganancia</td>
+                                    <td>@item.plan_fecha.ToShortDateString()</td>
+                                    <td>@item.plan_estado</td>
+                                    <td>@item.plan_costo</td>
+                                    <td>@item.plan_tiempo</td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" id="btnModal">
-                                            <i class="fa fa-edit" style="color:white !important"></i>
-                                            <span style="color:white">Modificar</span>
-                                        </button>
+                                        
+                                        <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan")" class="btn btn-success rounded-pill">
+                                            <i class="fa fa-plus-circle"></i>
+                                            Axtualizar Nuevo Plan de Proyectos
+                                        </a>
+                                       
                                         <button type="button" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
                                             Eliminar
                                         </button>
                                     </td>
                                 </tr>
-
                             }
                         </tbody>
                     </table>
@@ -82,17 +79,14 @@
         </div>
         <div class="row">
             <div class="col-sm-4 col-md-4 col-12">
-                @Html.PagedListPager(list_expedientes, page => Url.Action("Gestionar_Proyectos", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                @Html.PagedListPager(list_planes, page => Url.Action("Gestionar_Plan_Proyecto", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
             </div>
         </div>
     </div>
 </div>
-@Html.Partial("_ModalProyecto")
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
-
-

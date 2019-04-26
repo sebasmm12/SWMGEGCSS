@@ -1,0 +1,93 @@
+﻿@model SWMGEGCSS.Models.ExpedienteViewModel
+@{
+    ViewBag.Title = "Registrar_Proyecto";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Nombre del Proyecto
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.Expediente.exp_nombre, new
+                {
+                    htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Nombre del Plan del Proyecto
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.Expediente.plan_nombre, new
+                {
+                    htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Fecha Inicio
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.Expediente.exp_inicio, new
+                {
+                    htmlAttributes = new { @class = "text-center form-control", @type="date" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Fecha Fin
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.Expediente.exp_fin, new
+                {
+                    htmlAttributes = new { @class = "text-center form-control",@type="date" }
+                })
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">
+                        Ganancia del Proyecto
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.Expediente.exp_ganancia, new
+                {
+                    htmlAttributes = new { @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+        <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-check-circle"></i>
+                    Registrar Proyecto
+                </button>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <a href="@Url.Action("Gestionar_Proyectos","Gerente")" class="btn btn-secondary">
+                        <i class="fa fa-backward">
+
+                        </i>
+                        Regresar
+                </a>
+            </div>
+        </div>
+    }
+
+</div>

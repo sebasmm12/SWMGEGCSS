@@ -126,14 +126,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlanController.cs" />
     <Compile Include="Controllers\SecretarioController.cs" />
     <Compile Include="Controllers\TrabajadorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\ExpedienteViewModel.cs" />
+    <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\PermisoViewModel.cs" />
     <Compile Include="Models\SolicitudViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
@@ -281,6 +285,7 @@
     <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
     <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
     <Content Include="Scripts\Scripts_TP\scriptsS.js" />
@@ -319,7 +324,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -398,6 +405,11 @@
     <Content Include="Views\Gerente\Gestionar_I_E.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Empresas.cshtml" />
     <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
+    <Content Include="Views\Expediente\Registrar_Proyecto.cshtml" />
+    <Content Include="Views\Plan\Agregar_Plan_de_Proyectos.cshtml" />
+    <Content Include="Views\Plan\Actualizar_Plan_de_Proyectos.cshtml" />
+    <Content Include="Views\Gerente\_ModalProyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -412,7 +424,6 @@
     <Folder Include="Scripts\Scripts_TP\EGG\" />
     <Folder Include="Scripts\Scripts_TP\LAO LAM\" />
     <Folder Include="Scripts\Scripts_TP\MAURICIO\" />
-    <Folder Include="Scripts\Scripts_TP\MIRANDA\" />
     <Folder Include="Scripts\Scripts_TP\PIERO\" />
   </ItemGroup>
   <ItemGroup>

@@ -163,6 +163,10 @@ namespace SWMGEGCSS.Controllers
         {
             return RedirectToAction("Visualizar_Personal_Proyecto", "Gerente");
         }
+        public ActionResult GESTIONAR_PLAN_PROYECTO()
+        {
+            return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
+        }
         public ActionResult convertirImagen(int codigo)
         {
             var imagenMunicipio = new TrabajadorDataAccess().sp_Consultar_Imagen_Usuario(codigo);
