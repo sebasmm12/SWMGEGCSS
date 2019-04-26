@@ -33,7 +33,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.usu_codigo = (int)Session["login"];
             modelPlan.plan_nombre = model.plans.plan_nombre;
             modelPlan.
-            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan); 
             return View();
         }
         public ActionResult Actualizar_Plan_de_Proyectos()
