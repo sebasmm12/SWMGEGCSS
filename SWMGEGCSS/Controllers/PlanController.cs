@@ -24,19 +24,16 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult Agregar_Plan_de_Proyectos(T_plan plan)
         {
-            /*var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();
+            var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();
             var model = new GestionarPlanProyectoViewModel();
             model.plans = plan;
-            var plan_expediente = planesmodel.Find(modelo => (modelo.plan_nombre == model.Expediente.plan_nombre));
-            var modelExpediente = new T_expedientes();
-            modelExpediente.plan_id = plan_expediente.plan_id;
-            modelExpediente.usu_creador = (int)Session["login"];
-            modelExpediente.exp_inicio = model.Expediente.exp_inicio;
-            modelExpediente.exp_fin = model.Expediente.exp_fin;
-            modelExpediente.tipo_servicio_id = plan_expediente.tipo_servicio_id;
-            modelExpediente.exp_ganancia = model.Expediente.exp_ganancia;
-            modelExpediente.exp_nombre = model.Expediente.exp_nombre;
-            var operationResult = new PlanDataAccess().sp_Insertar_Proyecto(modelExpediente);*/
+            var planes = planesmodel.Find(modelo => (modelo.plan_nombre == model.plans.plan_nombre));
+            var modelPlan = new T_plan();
+            modelPlan.plan_id = planes.plan_id;
+            modelPlan.usu_codigo = (int)Session["login"];
+            modelPlan.plan_nombre = model.plans.plan_nombre;
+            modelPlan.
+            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan); 
             return View();
         }
         public ActionResult Actualizar_Plan_de_Proyectos()
