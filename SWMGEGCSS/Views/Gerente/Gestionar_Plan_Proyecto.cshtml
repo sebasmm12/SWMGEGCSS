@@ -60,7 +60,7 @@
                                     <td>@item.plan_tiempo</td>
                                     <td>
                                         
-                                        <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan")" class="btn btn-success rounded-pill">
+                                         <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan",new { id = item.plan_nombre })" class="btn btn-danger" >
                                             <i class="fa fa-times"></i>
                                             Actualizar Nuevo Plan de Proyectos
                                         </a>
