@@ -31,12 +31,12 @@
                                 title: 'Input email address',
                                 input: 'email',
                                 inputPlaceholder: 'Enter your email address'
-                            })
+                            });
 
                             if (email) {
-                                Swal.fire('Entered email: ' + email)
+                                Swal.fire('Entered email: ' + email);
                             }
-                        })()
+                        })();
                         
                     });
                });

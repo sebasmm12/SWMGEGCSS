@@ -4,24 +4,21 @@
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
 
-<h2>Agregar_Plan_de_Proyectos</h2>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
-                    <label class="font-weight-bolder" id="plan-nombre">
+                    <label class="font-weight-bolder">
                         Nombre del Plan del Proyecto
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans.plan_nombre, new
-                {
-                    htmlAttributes = new { @class = "text-center form-control" }
-                })
+           {
+               htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
+           })
+                <div id="errordiv-plan-nombre"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -131,20 +128,10 @@
                 </a>
             </div>
         </div>
-        <script type="text/javascript">
-            function validaDatos() {
-                if ($("#OrderCode").val() == "") {
-                    swal("Please enter OrderCode !");
-                    return false;
-                } else if ($("#OrderPrice").val() == "") {
-                    swal("Please enter OrderPrice !");
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        </script>
     }
 </div>
-
+<link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
+@section Scripts{
+<script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+}
 

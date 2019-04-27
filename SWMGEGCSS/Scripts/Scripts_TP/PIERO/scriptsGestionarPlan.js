@@ -3,6 +3,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         //Campos Agregar Plan 
         var planNombre = document.getElementById('plan-nombre');
+        var errorDivPN = document.getElementById('errordiv-plan-nombre');
         /*var planFecha = document.getElementById('apellido');
         var usuCodigo = document.getElementById('email');
         var empID = document.getElementById('email');*/
@@ -12,12 +13,12 @@
 
         function validarCampos() {
             if (this.value === '') {
-                errorDiv.style.display = 'block';
-                errorDiv.innerHTML = "Este campo es obligatorio";
+                errorDivPN.style.display = 'block';
+                errorDivPN.innerHTML = "Este campo es obligatorio";
                 this.style.border = '1px solid red';
-                errorDiv.style.border = '2px solid red';
+                errorDivPN.style.border = '2px solid red';
             } else {
-                errorDiv.style.display = 'none';
+                errorDivPN.style.display = 'none';
                 this.style.border = '1px solid #cccccc';
             }
         }

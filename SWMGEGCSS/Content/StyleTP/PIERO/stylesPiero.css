@@ -1,0 +1,10 @@
+﻿/*body {
+    font-family: 'Open Sans', sans-serif;
+}*/
+#errordiv-plan-nombre {
+    clear: both;
+    padding: 20px;
+    text-align: center;
+    display: none;
+    color: red;
+}

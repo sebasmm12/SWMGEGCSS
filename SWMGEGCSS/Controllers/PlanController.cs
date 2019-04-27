@@ -71,10 +71,10 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarPlanProyectoViewModel();
             return View(model);
         }
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Obtener_Plan_De_Proyecto()
         {
 
-        }
+        }*/
     }
 }
