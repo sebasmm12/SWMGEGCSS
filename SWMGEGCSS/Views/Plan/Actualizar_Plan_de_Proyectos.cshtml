@@ -4,6 +4,7 @@
     ViewBag.Title = "Actualizar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 
+    var fecha_plan = Model.plans.plan_fecha.ToString("yyyy/MM/dd");
 }
 
 <h2>Actualizar_Plan_de_Proyectos</h2>
@@ -38,10 +39,7 @@
                         Fecha del Plan del Proyecto
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_fecha, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control", @type = "date" }
-                })
+                <input type="date" name="plans.plan_fecha" value="@Model.plans.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />
             </div>
         </div>
         <div class="row mt-2 pl-2">
