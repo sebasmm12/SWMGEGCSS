@@ -13,6 +13,10 @@
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.plans.plan_id)
+        </div>
         //@Html.HiddenFor(model => model.plans.plan_id)
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-4 col-md-4">
@@ -37,19 +41,6 @@
                 @Html.EditorFor(model => model.plans.plan_fecha, new
                 {
                    htmlAttributes = new { @class = "text-center form-control", @type = "date" }
-                })
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Codigo de usuario
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.plans.usu_codigo, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" }
                 })
             </div>
         </div>
@@ -96,19 +87,6 @@
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
-                        Tipo de plan
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.plans.plan_tipo, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" }
-                })
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
                         Tipo de servicio del plan
                     </label>
                 </div>
@@ -135,11 +113,11 @@
             <div class="col-12 col-sm-3 col-md-3">
                 <button type="submit" class="btn btn-success">
                     <i class="fa fa-check-circle"></i>
-                    Registrar Plan
+                    Actualizar
                 </button>
             </div>
             <div class="col-12 col-sm-3 col-md-3">
-                <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente")" class="btn btn-secondary">
+                <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente",null)" class="btn btn-secondary">
                     <i class="fa fa-backward">
 
                     </i>

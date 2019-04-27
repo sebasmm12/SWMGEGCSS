@@ -50,10 +50,14 @@ namespace SWMGEGCSS_DA
                         while (reader.Read())
                         {
                             T_plan t_plan = new T_plan();
+                            t_plan.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
                             t_plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
                             t_plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
+                            t_plan.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            t_plan.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
                             t_plan.plan_estado = DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
                             t_plan.plan_costo = DataUtil.DbValueToDefault<float>(reader["plan_costo"]);
+                            t_plan.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
                             t_plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
                             lista_planes.Add(t_plan);
                         }
@@ -102,15 +106,17 @@ namespace SWMGEGCSS_DA
                 var operation = new OperationResult();
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Plan"))
                 {
-                    Database.AddInParameter(command, "@plan_id", DbType.Int32, Plan.plan_id);
-                    Database.AddInParameter(command, "@plan_nombre", DbType.String, Plan.plan_nombre);
-                    Database.AddInParameter(command, "@plan_fecha", DbType.Date, Plan.plan_fecha);
-                    Database.AddInParameter(command, "@plan_estado", DbType.Int32, Plan.plan_estado);
-                    Database.AddInParameter(command, "@plan_costo", DbType.Double, Plan.plan_costo);
-                    Database.AddInParameter(command, "@plan_tipo", DbType.Int32, Plan.plan_tipo);
-                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);
-                    Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
-                    Database.ExecuteScalar(command);
+                        Database.AddInParameter(command, "@plan_id", DbType.Int32, Plan.plan_id);
+                        Database.AddInParameter(command, "@plan_nombre", DbType.String, Plan.plan_nombre);
+                        Database.AddInParameter(command, "@plan_fecha", DbType.Date, Plan.plan_fecha);
+                        Database.AddInParameter(command, "@emp_id", DbType.Int32, Plan.emp_id);
+                        Database.AddInParameter(command, "@plan_estado", DbType.Int32, Plan.plan_estado);
+                        Database.AddInParameter(command, "@plan_costo", DbType.Double, Plan.plan_costo);
+                        Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);
+                        Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
+                        Database.ExecuteScalar(command);
+                        operation.NewId = 1;
+
                 }
                 return operation;
             }
