@@ -60,12 +60,12 @@
                                     <td>@item.plan_costo</td>
                                     <td>@item.plan_tiempo</td>
                                     <td>
-                                        
-                                         <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan",new { plan_id = item.plan_nombre })" class="btn btn-danger" >
+                                       
+                                        <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan",new { plan_id = item })" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
                                             Actualizar Plan
                                         </a>
-                                       
+
                                         <button type="button" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
                                             Eliminar Plan
