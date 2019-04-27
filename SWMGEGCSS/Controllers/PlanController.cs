@@ -40,13 +40,14 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
         }
-        public ActionResult Actualizar_Plan_de_Proyectos(string NombrePlan)
+        
+        public ActionResult Actualizar_Plan_de_Proyectos(T_plan plans)
         {
             /*var model = new GestionarPlanProyectoViewModel();*/
-            var planesmodel = new PlanDataAccess().sp_Consultar_Plan_Por_Nombre(NombrePlan);
+            var planesmodel = new PlanDataAccess().sp_Consultar_Plan_Por_Nombre(plans.plan_nombre);
             return View(planesmodel);
         }
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Actualizar_Plan_de_Proyectos(T_plan plans)
         {
             var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();
@@ -65,16 +66,6 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
 
             return View();
-        }
-        public ActionResult Obtener_Plan_De_Proyecto()
-        {
-            var model = new GestionarPlanProyectoViewModel();
-            return View(model);
-        }
-        /*[HttpPost]
-        public ActionResult Obtener_Plan_De_Proyecto()
-        {
-
         }*/
     }
 }

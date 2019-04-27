@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Actualizar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+
 }
 
 <h2>Actualizar_Plan_de_Proyectos</h2>
@@ -12,6 +13,7 @@
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
+        //@Html.HiddenFor(model => model.plans.plan_id)
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-4 col-md-4">
                 <div>

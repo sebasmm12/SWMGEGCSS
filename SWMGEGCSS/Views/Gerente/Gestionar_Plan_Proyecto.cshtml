@@ -3,6 +3,7 @@
     ViewBag.Title = "Gestionar_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_planes = Model.listPplans;
+    var selected_plan = Model.plans;
     var count = 0;
 }
 
@@ -59,15 +60,15 @@
                                     <td>@item.plan_costo</td>
                                     <td>@item.plan_tiempo</td>
                                     <td>
-                                        
-                                         <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan",new { id = item.plan_nombre })" class="btn btn-danger" >
-                                            <i class="fa fa-times"></i>
-                                            Actualizar Nuevo Plan de Proyectos
-                                        </a>
                                        
+                                        <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan",new { plan_id = item })" class="btn btn-danger">
+                                            <i class="fa fa-times"></i>
+                                            Actualizar Plan
+                                        </a>
+
                                         <button type="button" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
-                                            Eliminar
+                                            Eliminar Plan
                                         </button>
                                     </td>
                                 </tr>
