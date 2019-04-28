@@ -12,5 +12,6 @@ namespace SWMGEGCSS.Models
         public List<T_expediente_aux> List_Expediente { get; set; }
 
         public IPagedList<T_expediente_aux> PList_Expedientes { get; set; }
+        public T_expedientes Expedientes { get; set; }
     }
 }

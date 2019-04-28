@@ -136,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EjemploViewModel.cs" />
     <Compile Include="Models\ExpedienteViewModel.cs" />
     <Compile Include="Models\GestionarEmpresaViewModel.cs" />
@@ -416,6 +417,7 @@
     <Content Include="Views\Expediente\_ModalProyecto.cshtml" />
     <Content Include="Views\Expediente\_EliminarProyecto.cshtml" />
     <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
