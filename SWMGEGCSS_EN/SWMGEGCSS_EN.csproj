@@ -65,6 +65,7 @@
     <Compile Include="T_ingresos_egresos.cs" />
     <Compile Include="T_notificaciones.cs" />
     <Compile Include="T_permiso.cs" />
+    <Compile Include="T_plan_estado.cs" />
     <Compile Include="T_reporte_rendimiento.cs" />
     <Compile Include="T_Roles.cs" />
     <Compile Include="T_rol_permiso.cs" />

@@ -248,5 +248,31 @@ namespace SWMGEGCSS_DA
             }
             return T_Plan;
         }
+        public List<T_plan_estado> Sp_Consultar_Lista_Estado_Plan(string plan_estado_nombre)
+        {
+            List<T_plan_estado> T_Plan_Estado = new List<T_plan_estado>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Plan_Estado"))
+                {
+                    Database.AddInParameter(command, "@plan_estado_nombre", DbType.String, plan_estado_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_plan_estado t_plan_estado = new T_plan_estado();
+                            t_plan_estado.plan_estado_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            t_empresa.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+                            T_Empresa.Add(t_empresa);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_empresa>();
+            }
+            return T_Empresa;
+        }
     }
 }
