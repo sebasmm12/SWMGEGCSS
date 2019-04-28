@@ -60,12 +60,11 @@
                                     <td>@item.plan_costo</td>
                                     <td>@item.plan_tiempo</td>
                                     <td>
-                                       
-                                        <a href="@Url.Action("Actualizar_Plan_de_Proyectos","Plan",new { plan_id = item })" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
-                                            Actualizar Plan
-                                        </a>
-
+                                            @Html.ActionLink("Actualizar Plan", "Actualizar_Plan_de_Proyectos", "Plan", new { id = item.plan_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                        </button>
+                                        
                                         <button type="button" class="btn btn-danger">
                                             <i class="fa fa-times"></i>
                                             Eliminar Plan
