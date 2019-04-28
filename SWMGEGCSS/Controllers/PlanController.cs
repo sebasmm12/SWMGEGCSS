@@ -40,12 +40,15 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
         }
-        
+
         public ActionResult Actualizar_Plan_de_Proyectos(int id)
         {
             /*var model = new GestionarPlanProyectoViewModel();*/
             var model = new GestionarPlanProyectoViewModel();
             model.plans = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(r => (r.plan_id == id));
+            var estado_plan = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado().Find(r => (r.plan_estado_id == model.plans.plan_estado));
+            var nombre_empresa = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(s => (s.emp_id == model.plans.emp_id));
+            var nombre_tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find( t => (t.tipo_servicio_id == model.plans.tipo_servicio_id));
             return View(model);
         }
         [HttpPost]
