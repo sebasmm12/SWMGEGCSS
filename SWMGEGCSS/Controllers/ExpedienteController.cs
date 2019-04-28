@@ -80,7 +80,6 @@ namespace SWMGEGCSS.Controllers
             AuditoriaExpediente.auditoria_expediente.tipo_servicio_id = Expedientes.Expedientes.tipo_servicio_id;
             var operationResultAuditorio = new ExpedienteDataAccess().sp_Insertar_Auditoria_Expediente(AuditoriaExpediente.auditoria_expediente);
             var operationResult = new ExpedienteDataAccess().sp_Eliminar_Proyecto(id,comentario);
-
             return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
     }

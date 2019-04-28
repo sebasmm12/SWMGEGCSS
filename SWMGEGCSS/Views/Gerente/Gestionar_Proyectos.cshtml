@@ -3,7 +3,7 @@
     ViewBag.Title = "Gestionar_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_expedientes = Model.PList_Expedientes;
-    var count = 0;
+    var list_estado_expediente = Model.List_Estado_Expediente;
 }
 
 <div class="mt-2 ml-4">
@@ -15,13 +15,25 @@
                 </div>
                 <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("Autocomplete")" />
             </div>
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">Seleccione una opción</label>
+                </div>
+                <select class="custom-select" id="estado" name="estado">
+                    <option value="Todos">Todos</option>
+                    @foreach (var item in list_estado_expediente)
+                    {
+                        <option value="@item.est_exp_nombre">@item.est_exp_nombre</option>
+                    }
+                </select>
+            </div>
         </div>
         <div class="row mt-4">
             <div class="col-12 col-sm-4 col-md-4">
-                <a href="@Url.Action("Insertar_Proyecto","Gerente")" class="btn btn-primary rounded-pill">
+                <button class="btn btn-primary rounded-pill" id="Buscar">
                     <i class="fa fa-search"></i>
                     Buscar Proyecto
-                </a>
+                </button>
             </div>
             <div class="col-12 col-sm-4 col-md-4">
                 <a href="@Url.Action("Registrar_Proyecto","Expediente")" class="btn btn-success rounded-pill">

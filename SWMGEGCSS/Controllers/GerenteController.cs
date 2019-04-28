@@ -37,17 +37,44 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Proyectos(string searchTerm, int page = 1)
+        public ActionResult Gestionar_Proyectos(string searchTerm,string estado, int page = 1)
         {
+           
             ExpedienteViewModel model = new ExpedienteViewModel();
-            if (searchTerm == null)
+            if (searchTerm == null&&estado==null)
                 model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page, 2);
+            if (estado != null)
+            {
+                if (searchTerm != null)
+                {
+                    if (estado.Equals("Todos"))
+                    {
+                        model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).ToPagedList(page, 2);
+                    }
+                    else
+                    {
+                        model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).FindAll(r => (r.est_exp_nombre == estado)).ToPagedList(page, 2);
+                    }
+                   
+                }
+            }
+            if (estado != null)
+            {
+                model.tipo_estado = estado;
+                Session["est_nombre"] = model.tipo_estado;
+            }
+
             else
-                model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).ToPagedList(page, 2);
+            {
+                model.tipo_estado = "Todos";
+                Session["est_nombre"] = model.tipo_estado;
+            }
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaProyecto", model);
             }
+            model.List_Estado_Expediente = new EstadoExpedienteDataAccess().sp_Consultar_Lista_Estado_Expediente();           
             return View(model);
         }
         public ActionResult Gestionar_I_E()
@@ -74,7 +101,16 @@ namespace SWMGEGCSS.Controllers
         public ActionResult AutoComplete(string term)
         {
             var model = new ExpedienteViewModel();
-            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(term);
+            string estado = (string)Session["est_nombre"];
+            if (estado.Equals("Todos"))
+            {
+                model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(term);
+            }
+            else
+            {
+                model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(term).FindAll(r => (r.est_exp_nombre == estado));
+            }
+
             var nameExpedientes = model.List_Expediente.Select(r => new
             {
                 label = r.exp_nombre
