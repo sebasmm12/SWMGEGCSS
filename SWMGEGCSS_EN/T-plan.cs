@@ -18,7 +18,5 @@ namespace SWMGEGCSS_EN
         public int plan_tiempo { get; set; }
         public int plan_tipo { get; set; }
         public int tipo_servicio_id { get; set; }
-
-
     }
 }

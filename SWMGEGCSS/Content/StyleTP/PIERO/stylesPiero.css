@@ -1,10 +1,14 @@
 ﻿/*body {
     font-family: 'Open Sans', sans-serif;
 }*/
+.enlinea{
+    display: inline-block;
+}
 #errordiv-plan-nombre {
     clear: both;
     padding: 20px;
     text-align: center;
+    text-decoration-color: red;
     display: none;
     color: red;
 }

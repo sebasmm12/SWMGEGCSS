@@ -8,17 +8,15 @@
     @using (Html.BeginForm())
     {
         <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Nombre del Plan del Proyecto
-                    </label>
-                </div>
+            <div class="col-12 col-sm-4 col-md-4 tam">
+                <label class="font-weight-bolder">
+                    Nombre del Plan del Proyecto
+                </label>
                 @Html.EditorFor(model => model.plans.plan_nombre, new
-           {
-               htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
-           })
-                <div id="errordiv-plan-nombre"></div>
+                    {
+                               htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
+                    })
+                <!--<div id="errordiv-plan-nombre"></div>-->
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -114,7 +112,7 @@
         </div>
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success" id="boton-Registrar">
                     <i class="fa fa-check-circle"></i>
                     Registrar Plan
                 </button>
@@ -130,8 +128,7 @@
         </div>
     }
 </div>
-<link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
+<!--<link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
 @section Scripts{
-<script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
-}
-
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+}-->
