@@ -4,7 +4,7 @@
     ViewBag.Title = "Actualizar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 
-    var fecha_plan = Model.plans.plan_fecha.ToString("yyyy/MM/dd");
+    //var fecha_plan = Model.plans.plan_fecha.ToString("yyyy/MM/dd");
 }
 
 <h2>Actualizar_Plan_de_Proyectos</h2>
@@ -16,7 +16,7 @@
     {
         <div>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.plans.plan_id)
+            @Html.HiddenFor(model => model.plans_aux.plan_id)
         </div>
         //@Html.HiddenFor(model => model.plans.plan_id)
         <div class="row mt-2 pl-2">
@@ -26,7 +26,7 @@
                         Nombre del Plan del Proyecto
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_nombre, new
+                @Html.EditorFor(model => model.plans_aux.plan_nombre, new
                 {
                     htmlAttributes = new { @class = "text-center form-control" }
                 })
@@ -39,17 +39,17 @@
                         Fecha del Plan del Proyecto
                     </label>
                 </div>
-                <input type="date" name="plans.plan_fecha" value="@Model.plans.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />
+                <input type="date" name="plans.plan_fecha" value="@Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />
             </div>
         </div>
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
-                        Codigo de empresa
+                        Nombre de la empresa
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.emp_id, new
+                @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
                 {
                    htmlAttributes = new { @class = "text-center form-control" }
                 })
@@ -62,7 +62,7 @@
                         Estado del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_estado, new
+                @Html.EditorFor(model => model.plans_aux.plan_estado_nobre, new
                 {
                    htmlAttributes = new { @class = "text-center form-control" }
                 })
@@ -75,7 +75,7 @@
                         Costo del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_costo, new
+                @Html.EditorFor(model => model.plans_aux.plan_costo, new
                 {
                    htmlAttributes = new { @class = "text-center form-control" }
                 })
@@ -88,7 +88,7 @@
                         Tipo de servicio del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.tipo_servicio_id, new
+                @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
                 {
                    htmlAttributes = new { @class = "text-center form-control" }
                 })
@@ -101,7 +101,7 @@
                         Tiempo del plan (en años)
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_tiempo, new
+                @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
                 {
                    htmlAttributes = new { @class = "text-center form-control" }
                 })

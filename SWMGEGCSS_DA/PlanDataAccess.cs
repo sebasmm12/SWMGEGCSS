@@ -37,41 +37,41 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
-        public List<T_plan> sp_Consultar_Lista_Plan()
+        public List<T_plan_aux> sp_Consultar_Lista_Plan()
         {
-            List<T_plan> lista_planes = new List<T_plan>();
+            List<T_plan_aux> lista_planes_aux = new List<T_plan_aux>();
             try
             {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Plan"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_plan"))
                 {
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
                         while (reader.Read())
                         {
-                            T_plan t_plan = new T_plan();
-                            t_plan.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
-                            t_plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
-                            t_plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
-                            t_plan.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
-                            t_plan.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
-                            t_plan.plan_estado = DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
-                            t_plan.plan_costo = DataUtil.DbValueToDefault<float>(reader["plan_costo"]);
-                            t_plan.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
-                            t_plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
-                            lista_planes.Add(t_plan);
+                            T_plan_aux t_plan_aux = new T_plan_aux();
+                            t_plan_aux.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                            t_plan_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            t_plan_aux.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
+                            t_plan_aux.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            t_plan_aux.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+                            t_plan_aux.plan_estado_nobre = DataUtil.DbValueToDefault<string>(reader["plan_estado_nobre"]);
+                            t_plan_aux.plan_costo = DataUtil.DbValueToDefault<float>(reader["plan_costo"]);
+                            t_plan_aux.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
+                            t_plan_aux.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
+                            lista_planes_aux.Add(t_plan_aux);
                         }
                     }
                 }
             }
             catch (Exception)
             {
-                return new List<T_plan>();
+                return new List<T_plan_aux>();
             }
-            return lista_planes;
+            return lista_planes_aux;
         }
-        public List<T_plan> sp_Consultar_Lista_Tipo_Nombre_Planes(string plan_nombre)
+        public List<T_plan_aux> sp_Consultar_Lista_Tipo_Nombre_Planes(string plan_nombre)
         {
-            List<T_plan> T_Plan = new List<T_plan>();
+            List<T_plan_aux> T_Plan = new List<T_plan_aux>();
             try
             {
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Tipo_Nombre_Planes"))
@@ -81,20 +81,20 @@ namespace SWMGEGCSS_DA
                     {
                         while (reader.Read())
                         {
-                            T_plan t_plan = new T_plan();
-                            t_plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
-                            t_plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
-                            t_plan.plan_estado = DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
-                            t_plan.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
-                            t_plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
-                            T_Plan.Add(t_plan);
+                            T_plan_aux t_plan_aux = new T_plan_aux();
+                            t_plan_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            t_plan_aux.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
+                            t_plan_aux.plan_estado_nobre = DataUtil.DbValueToDefault<string>(reader["plan_estado"]);
+                            t_plan_aux.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
+                            t_plan_aux.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
+                            T_Plan.Add(t_plan_aux);
                         }
                     }
                 }
             }
             catch (Exception)
             {
-                return new List<T_plan>();
+                return new List<T_plan_aux>();
             }
             return T_Plan;
         }
@@ -114,7 +114,7 @@ namespace SWMGEGCSS_DA
                         Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);
                         Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
                         Database.ExecuteScalar(command);
-                        operation.NewId = 1;
+                        //operation.NewId = 1;
 
                 }
                 return operation;
@@ -359,6 +359,38 @@ namespace SWMGEGCSS_DA
                 return new List<T_plan_estado>();
             }
             return lista_plan_estado;
+        }
+        public List<T_plan_aux> sp_Consultar_Lista_Plan_Aux()
+        {
+            List<T_plan_aux> lista_planes_aux = new List<T_plan_aux>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_plan_aux"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_plan_aux t_plan_aux = new T_plan_aux();
+                            t_plan_aux.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                            t_plan_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            t_plan_aux.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
+                            //t_plan_aux.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            t_plan_aux.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+                            t_plan_aux.plan_estado_nobre = DataUtil.DbValueToDefault<string>(reader["plan_estado_nobre"]);
+                            t_plan_aux.plan_costo = DataUtil.DbValueToDefault<float>(reader["plan_costo"]);
+                            t_plan_aux.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
+                            t_plan_aux.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
+                            lista_planes_aux.Add(t_plan_aux);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_plan_aux>();
+            }
+            return lista_planes_aux;
         }
     }
 }

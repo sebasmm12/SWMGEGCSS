@@ -3,7 +3,7 @@
     ViewBag.Title = "Gestionar_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_planes = Model.listPplans;
-    var selected_plan = Model.plans;
+    var selected_plan = Model.plans_aux;
     var count = 0;
 }
 
@@ -56,7 +56,7 @@
                                     <th scope="row">@count</th>
                                     <td>@item.plan_nombre</td>
                                     <td>@item.plan_fecha.ToShortDateString()</td>
-                                    <td>@item.plan_estado</td>
+                                    <td>@item.plan_estado_nobre</td>
                                     <td>@item.plan_costo</td>
                                     <td>@item.plan_tiempo</td>
                                     <td>
