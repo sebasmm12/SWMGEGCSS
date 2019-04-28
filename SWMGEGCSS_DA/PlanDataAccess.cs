@@ -13,7 +13,35 @@ namespace SWMGEGCSS_DA
 {
     public class PlanDataAccess : BaseConexion
     {
-
+        public List<T_plan> sp_Consultar_Lista_Nombre_Empresa(string nom)
+        {
+            List<T_plan> T_Plan_Empresas = new List<T_plan>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Nombre_Empresa"))
+                {
+                    Database.AddInParameter(command, "@emp_razon_social", DbType.String, nom);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            /*T_plan t_plan = new T_plan();
+                            t_plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            t_plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
+                            t_plan.plan_estado = DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
+                            t_plan.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
+                            t_plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
+                            T_Plan.Add(t_plan);*/
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_empresa>();
+            }
+            return T_Empresa;
+        }
         public OperationResult sp_Agregar_Plan(T_plan Plan)/*sp_Agregar_Plan*/
         {
             try

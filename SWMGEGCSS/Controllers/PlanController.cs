@@ -24,7 +24,7 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult Agregar_Plan_de_Proyectos(T_plan plans)
         {
-            /*var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();*/
+            var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();
             var model = new GestionarPlanProyectoViewModel();
             model.plans = plans;
             /*var planes = planesmodel.Find(modelo => (modelo.plan_nombre == model.plans.plan_nombre));*/
