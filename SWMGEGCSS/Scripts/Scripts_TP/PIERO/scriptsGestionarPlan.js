@@ -1,4 +1,4 @@
-﻿(function () {
+﻿/*(function () {
     "use strict";
     document.addEventListener("DOMContentLoaded", function () {
         //Campos Agregar Plan 
@@ -28,14 +28,36 @@
             else {
                 $("#boton-Registrar").removeEventListener("click", verificarValidaciones);
                 $("#boton-Registrar").click();
-                /*$.ajax({
+                $.ajax({
                     url: 'Agregar_Plan_de_Proyectos',
                     method: "POST",
                     success: function (r) {
                         $("#boton-Registrar").load("Agregar_Plan_de_Proyectos");
                     }
-                });*/
+                });
             }
         }
     });//DOMContentLoaded
-})();
+})();*/
+
+$(function () {
+    function validarCampos() {
+        var planNombre = document.getElementById("plan-nombre");
+        var planFecha = document.getElementById("plan-fecha");
+
+        if (planNombre.value === '' || planFecha.value === '') {
+
+            return false;
+        }
+        $("#password").keyup(equal);
+        $("#confirmpassword").keyup(equal);
+        $password.addClass("inputerror");
+        confirmepassword.classList.add("inputerror");
+        $("#valiatepassword").addClass("text-danger");
+        $("#valiatepassword").html("<i class='fa fa-times'></i><label>No coinciden las contraseñas</label>");
+        $("#valiateconfirmpassword").addClass("text-danger");
+        $("#valiateconfirmpassword").html("<i class='fa fa-times'></i><label>No coinciden las contraseñas</label>");
+        return true;
+    }
+    $("#boton-Registrar").click(validarCampos);
+});
