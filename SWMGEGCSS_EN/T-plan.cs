@@ -26,7 +26,7 @@ namespace SWMGEGCSS_EN
         public DateTime plan_fecha { get; set; }
         public int usu_codigo { get; set; }
         public string emp_razon_social { get; set; }
-        public int plan_estado { get; set; }
+        public string plan_estado_nobre { get; set; }
         public double plan_costo { get; set; }
         public int plan_tiempo { get; set; }
         public int plan_tipo { get; set; }
