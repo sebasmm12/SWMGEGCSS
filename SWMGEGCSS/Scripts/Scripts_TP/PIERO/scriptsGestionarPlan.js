@@ -23,10 +23,19 @@
             event.preventDefault();
 
             if (planNombre.value === '') {
-                planNombre.focus(); //para resaltar el icono
-            } 
-
-
+                $("#plan-nombre").focus(); //para resaltar el campo
+            }
+            else {
+                $("#boton-Registrar").removeEventListener("click", verificarValidaciones);
+                $("#boton-Registrar").click();
+                /*$.ajax({
+                    url: 'Agregar_Plan_de_Proyectos',
+                    method: "POST",
+                    success: function (r) {
+                        $("#boton-Registrar").load("Agregar_Plan_de_Proyectos");
+                    }
+                });*/
+            }
         }
     });//DOMContentLoaded
 })();
