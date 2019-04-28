@@ -37,20 +37,28 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Proyectos(int page=1)
+        public ActionResult Gestionar_Proyectos(string searchTerm, int page = 1)
         {
             ExpedienteViewModel model = new ExpedienteViewModel();
-            model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page,2);
+            if (searchTerm == null)
+                model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page, 2);
+            else
+                model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).ToPagedList(page, 2);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaProyecto", model);
+            }
             return View(model);
         }
         public ActionResult Gestionar_I_E()
         {
             return View();
         }
-        public ActionResult Gestionar_Empresas(int page=1)
+        public ActionResult Gestionar_Empresas(int page = 1)
         {
             GestionarEmpresaViewModel model = new GestionarEmpresaViewModel();
-            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().ToPagedList(page,2);
+           
+            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().ToPagedList(page, 2);
             return View(model);
         }
         public ActionResult Visualizar_Personal_Proyecto()
@@ -58,7 +66,7 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
         public ActionResult Gestionar_Plan_Proyecto(int page = 1)
-        {
+        { 
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3);
             return View(model);

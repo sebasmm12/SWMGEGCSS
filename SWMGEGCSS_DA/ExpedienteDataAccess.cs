@@ -94,6 +94,7 @@ namespace SWMGEGCSS_DA
                             t_aux.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
                             t_aux.exp_ganancia = DataUtil.DbValueToDefault<double>(reader["exp_ganancia"]);
                             t_aux.exp_nombre = DataUtil.DbValueToDefault<string>(reader["exp_nombre"]);
+                            t_aux.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
                             T_expediente.Add(t_aux);
                         }
                     }
@@ -164,7 +165,7 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
-        public OperationResult sp_Eliminar_Proyecto(int exp_id)
+        public OperationResult sp_Eliminar_Proyecto(int exp_id,string exp_comentario)
         {
             try
             {
@@ -172,6 +173,7 @@ namespace SWMGEGCSS_DA
                 using (DbCommand command=Database.GetStoredProcCommand("sp_Eliminar_Proyecto"))
                 {
                     Database.AddInParameter(command, "@exp_id", DbType.Int32, exp_id);
+                    Database.AddInParameter(command, "@exp_comentario", DbType.String, exp_comentario);
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
@@ -227,6 +229,41 @@ namespace SWMGEGCSS_DA
 
                 return new OperationResult();
             }
+        }
+        public List<T_expedientes> sp_Consultar_Lista_Expedientes()
+        {
+            List<T_expedientes> list_expediente = new List<T_expedientes>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Expedientes"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_expedientes expediente = new T_expedientes();
+                            expediente.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
+                            expediente.est_exp_id = DataUtil.DbValueToDefault<int>(reader["est_exp_id"]);
+                            expediente.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                            expediente.usu_creador = DataUtil.DbValueToDefault<int>(reader["usu_creador"]);
+                            expediente.exp_inicio = DataUtil.DbValueToDefault<DateTime>(reader["exp_inicio"]);
+                            expediente.exp_fin = DataUtil.DbValueToDefault<DateTime>(reader["exp_fin"]);
+                            expediente.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
+                            expediente.exp_ganancia = DataUtil.DbValueToDefault<double>(reader["exp_ganancia"]);
+                            expediente.exp_nombre = DataUtil.DbValueToDefault<string>(reader["exp_nombre"]);
+                            list_expediente.Add(expediente);
+                        }
+                    }
+                }
+                return list_expediente;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_expedientes>();
+            }
+           
+            
         }
 
     }

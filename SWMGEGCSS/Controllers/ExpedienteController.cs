@@ -65,5 +65,23 @@ namespace SWMGEGCSS.Controllers
             model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => (r.exp_id == id));
             return PartialView(model);
         }
+        [HttpGet]
+        public ActionResult EliminarExpediente(int id,string comentario)
+        {
+            var Expedientes = new ExpedienteViewModel();
+            Expedientes.Expedientes= new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(modelo=>modelo.exp_id==id);
+            var AuditoriaExpediente = new AuditoriaViewModel();
+            AuditoriaExpediente.auditoria_expediente = new T_auditar_expedientes();
+            AuditoriaExpediente.auditoria_expediente.exp_id = Expedientes.Expedientes.exp_id;
+            AuditoriaExpediente.auditoria_expediente.aud_exp_inicio = Expedientes.Expedientes.exp_inicio;
+            AuditoriaExpediente.auditoria_expediente.aud_exp_fin = Expedientes.Expedientes.exp_fin;
+            AuditoriaExpediente.auditoria_expediente.aud_exp_ganancia = Expedientes.Expedientes.exp_ganancia;
+            AuditoriaExpediente.auditoria_expediente.aud_exp_comentario = comentario;
+            AuditoriaExpediente.auditoria_expediente.tipo_servicio_id = Expedientes.Expedientes.tipo_servicio_id;
+            var operationResultAuditorio = new ExpedienteDataAccess().sp_Insertar_Auditoria_Expediente(AuditoriaExpediente.auditoria_expediente);
+            var operationResult = new ExpedienteDataAccess().sp_Eliminar_Proyecto(id,comentario);
+
+            return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
