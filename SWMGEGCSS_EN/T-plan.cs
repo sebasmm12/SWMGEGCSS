@@ -18,7 +18,18 @@ namespace SWMGEGCSS_EN
         public int plan_tiempo { get; set; }
         public int plan_tipo { get; set; }
         public int tipo_servicio_id { get; set; }
-
-
+    }
+    public class T_plan_aux
+    {
+        public int plan_id { get; set; }
+        public string plan_nombre { get; set; }
+        public DateTime plan_fecha { get; set; }
+        public int usu_codigo { get; set; }
+        public string emp_razon_social { get; set; }
+        public int plan_estado { get; set; }
+        public double plan_costo { get; set; }
+        public int plan_tiempo { get; set; }
+        public int plan_tipo { get; set; }
+        public string tipo_servicio_nombre { get; set; }
     }
 }

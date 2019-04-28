@@ -13,7 +13,6 @@ namespace SWMGEGCSS_DA
 {
     public class PlanDataAccess : BaseConexion
     {
-
         public OperationResult sp_Agregar_Plan(T_plan Plan)/*sp_Agregar_Plan*/
         {
             try
@@ -25,9 +24,9 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@plan_fecha", DbType.Date, Plan.plan_fecha);
                     Database.AddInParameter(command, "@usu_codigo", DbType.Int32, Plan.usu_codigo);
                     Database.AddInParameter(command, "@emp_id", DbType.Int32, Plan.emp_id);
-                    Database.AddInParameter(command, "@plan_estado", DbType.Int32, Plan.plan_estado);
+                    /*Database.AddInParameter(command, "@plan_estado", DbType.Int32, Plan.plan_estado);*/
                     Database.AddInParameter(command, "@plan_costo", DbType.Decimal, Plan.plan_costo);
-                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);/*plan_tiempo*/
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);
                     Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
                     Database.ExecuteScalar(command);
                 }
@@ -247,6 +246,119 @@ namespace SWMGEGCSS_DA
                 return new T_plan();
             }
             return T_Plan;
+        }
+        public List<T_plan_estado> Sp_Consultar_Lista_Estado_Plan(string plan_estado_nombre)
+        {
+            List<T_plan_estado> T_Plan_Estado = new List<T_plan_estado>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Plan_Estado"))
+                {
+                    Database.AddInParameter(command, "@plan_estado_nombre", DbType.String, plan_estado_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_plan_estado t_plan_estado = new T_plan_estado();
+                            t_plan_estado.plan_estado_id = DataUtil.DbValueToDefault<int>(reader["plan_estado_id"]);
+                            t_plan_estado.plan_estado_nombre = DataUtil.DbValueToDefault<string>(reader["plan_estado_nobre"]);
+                            T_Plan_Estado.Add(t_plan_estado);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_plan_estado>();
+            }
+            return T_Plan_Estado;
+        }
+        //
+
+
+        public List<T_tipo_servicio> sp_Consultar_Lista_Tipo_Servicio()
+        {
+            List<T_tipo_servicio> lista_tipo_servicio = new List<T_tipo_servicio>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_tipo_servicio"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_tipo_servicio t_servicio = new T_tipo_servicio();
+                            t_servicio.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
+                            t_servicio.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
+                            lista_tipo_servicio.Add(t_servicio);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_tipo_servicio>();
+            }
+            return lista_tipo_servicio;
+        }
+
+        public List<T_empresa> sp_Consultar_Lista_Empresa()
+        {
+            List<T_empresa> lista_empresa = new List<T_empresa>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_empresa"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_empresa t_empresa = new T_empresa();
+                            t_empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            t_empresa.emp_ruc = DataUtil.DbValueToDefault<string>(reader["emp_ruc"]);
+                            t_empresa.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+                            t_empresa.emp_sigla = DataUtil.DbValueToDefault<string>(reader["emp_sigla"]);
+                            t_empresa.emp_representante = DataUtil.DbValueToDefault<string>(reader["emp_representante"]);
+                            t_empresa.emp_direccion = DataUtil.DbValueToDefault<string>(reader["emp_direccion"]);
+                            t_empresa.emp_telefono = DataUtil.DbValueToDefault<string>(reader["emp_telefono"]);
+                            t_empresa.emp_fax= DataUtil.DbValueToDefault<string>(reader["emp_fax"]);
+                            t_empresa.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            lista_empresa.Add(t_empresa);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_empresa>();
+            }
+            return lista_empresa;
+        }
+        public List<T_plan_estado> sp_Consultar_Lista_Plan_Estado()
+        {
+            List<T_plan_estado> lista_plan_estado = new List<T_plan_estado>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_plan_estado"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_plan_estado t_plan_estado = new T_plan_estado();
+                            t_plan_estado.plan_estado_id = DataUtil.DbValueToDefault<int>(reader["plan_estado_id"]);
+                            t_plan_estado.plan_estado_nombre = DataUtil.DbValueToDefault<string>(reader["plan_estado_nobre"]);
+                            t_plan_estado.plan_estado_descripcion = DataUtil.DbValueToDefault<string>(reader["plan_estado_descripcion"]);
+                            lista_plan_estado.Add(t_plan_estado);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_plan_estado>();
+            }
+            return lista_plan_estado;
         }
     }
 }
