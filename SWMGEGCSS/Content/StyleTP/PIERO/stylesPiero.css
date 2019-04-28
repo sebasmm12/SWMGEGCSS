@@ -4,7 +4,7 @@
 .enlinea{
     display: inline-block;
 }
-#errordiv-plan-nombre {
+.errordiv {
     clear: both;
     padding: 20px;
     text-align: center;
