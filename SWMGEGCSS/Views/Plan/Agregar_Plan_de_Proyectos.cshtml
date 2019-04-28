@@ -28,20 +28,7 @@
                 </div>
                 @Html.EditorFor(model => model.plans.plan_fecha, new
                 {
-                   htmlAttributes = new { @class = "text-center form-control", @type = "date" }
-                })
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Codigo de usuario
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.plans.usu_codigo, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" }
+                   htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "date" }
                 })
             </div>
         </div>
@@ -53,19 +40,6 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans.emp_id, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" }
-                })
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Estado del plan
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.plans.plan_estado, new
                 {
                    htmlAttributes = new { @class = "text-center form-control" }
                 })
