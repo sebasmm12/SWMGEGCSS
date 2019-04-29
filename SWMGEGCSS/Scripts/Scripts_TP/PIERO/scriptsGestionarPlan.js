@@ -124,6 +124,13 @@ $(function () {
             $("#plan-tiempo").focus();
             return false;
         }
+        Swal.fire({
+            position: 'center',
+            type: 'success',
+            title: 'Plan registrado correctamente',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return true;
     }
     $("#boton-Registrar").click(validarCampos);
