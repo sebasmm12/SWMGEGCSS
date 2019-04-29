@@ -3,12 +3,16 @@
     ViewBag.Title = "Registrar_Proyecto";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
-
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
-    @using (Html.BeginForm())
-    {
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
+    <div class="border-registrar">
+        @using (Html.BeginForm())
+        {
+        <div class="row mt-4 pl-2">
+            <div class="col-sm-1 col-md-1">
+
+            </div>
+            <div class="col-12 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Nombre del Proyecto
@@ -19,9 +23,7 @@
                     htmlAttributes = new { @class = "text-center form-control" }
                 })
             </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
+            <div class="col-12 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Nombre del Plan del Proyecto
@@ -32,62 +34,88 @@
                     htmlAttributes = new { @class = "text-center form-control" }
                 })
             </div>
+            <div class="col-sm-1 col-md-1">
+
+            </div>
         </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Fecha Inicio
-                    </label>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
                 </div>
-                @Html.EditorFor(model => model.Expediente.exp_inicio, new
-                {
-                    htmlAttributes = new { @class = "text-center form-control", @type="date" }
-                })
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Fecha Fin
-                    </label>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Fecha Inicio
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.Expediente.exp_inicio, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control", @type = "date" }
+                    })
                 </div>
-                @Html.EditorFor(model => model.Expediente.exp_fin, new
-                {
-                    htmlAttributes = new { @class = "text-center form-control",@type="date" }
-                })
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Ganancia del Proyecto
-                    </label>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Fecha Fin
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.Expediente.exp_fin, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control", @type = "date" }
+                    })
                 </div>
-                @Html.EditorFor(model => model.Expediente.exp_ganancia, new
-                {
-                    htmlAttributes = new { @class = "text-center form-control" }
-                })
+                <div class="col-sm-1 col-md-1">
+
+                </div>
             </div>
-        </div>
-        <div class="row mt-4 pl-2">
-            <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" class="btn btn-success">
-                    <i class="fa fa-check-circle"></i>
-                    Registrar Proyecto
-                </button>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Fecha Inicio
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.Expediente.exp_inicio, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control", @type = "date" }
+                    })
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Ganancia del Proyecto
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.Expediente.exp_ganancia, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control" }
+                    })
+                </div>
             </div>
-            <div class="col-12 col-sm-3 col-md-3">
-                <a href="@Url.Action("Gestionar_Proyectos","Gerente")" class="btn btn-secondary">
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-check-circle"></i>
+                        Registrar Proyecto
+                    </button>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("Gestionar_Proyectos","Gerente")" class="btn btn-secondary">
                         <i class="fa fa-backward">
 
                         </i>
                         Regresar
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
-    }
+        }
 
+    </div>
+   
 </div>
