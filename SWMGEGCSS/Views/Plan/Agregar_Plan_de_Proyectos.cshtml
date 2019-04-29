@@ -3,10 +3,9 @@
     ViewBag.Title = "Agregar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
-
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
-    @using (Html.BeginForm())
-    {
+    <form id="form">
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-4 col-md-4 tam">
                 <label class="font-weight-bolder">
@@ -106,9 +105,8 @@
                 </a>
             </div>
         </div>
-    }
+    </form>
 </div>
-<link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
 }
