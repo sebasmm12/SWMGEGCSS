@@ -73,17 +73,6 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
             return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
         }
-        /*GERENTE */
-        public ActionResult CompletarNombrePlanes(string term)
-        {
-            var model = new GestionarPlanProyectoViewModel();
-            model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
-            var nameExpedientes = model.listplans.Select(r => new
-            {
-                label = r.plan_nombre
-            });
-            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
-        }
         //*Metodos para el autocompletado*//
         public ActionResult CompletarNombreEmpresas(string term)
         {
@@ -95,8 +84,6 @@ namespace SWMGEGCSS.Controllers
             });
             return Json(nameEmpresas, JsonRequestBehavior.AllowGet);
         }
-
-
         public ActionResult CompletarNombreEstadoPlan(string term)
         {
             var model = new List<T_plan_estado>();
@@ -116,6 +103,12 @@ namespace SWMGEGCSS.Controllers
                 label = r.tipo_servicio_nombre
             });
             return Json(nameTipoServicio, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Eliminar_Plan_de_Proyecto(int id)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.plans_aux = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(r => (r.plan_id == id));
+            return View(model);
         }
     }
 }

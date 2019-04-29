@@ -24,6 +24,7 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult Registrar_Proyecto(T_expediente_aux Expediente)
         {
+          
             var planesmodel = new ExpedienteDataAccess().sp_Obtener_Planes();
             var model = new ExpedienteViewModel();
             model.Expediente = Expediente;
@@ -37,7 +38,7 @@ namespace SWMGEGCSS.Controllers
             modelExpediente.exp_ganancia = model.Expediente.exp_ganancia;
             modelExpediente.exp_nombre = model.Expediente.exp_nombre;
             var operationResult = new ExpedienteDataAccess().sp_Insertar_Proyecto(modelExpediente);
-            return View();
+            return Json(new { data=operationResult.NewId},JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult _ModalProyecto()

@@ -56,11 +56,12 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
-                    {
-                    htmlAttributes = new {
-                       @class = "text-center form-control"
-                    },
-                   
+           {
+               htmlAttributes = new {
+                   @class = "text-center form-control",
+
+               },
+
            })
 
             </div>
@@ -140,11 +141,6 @@
 <link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
-}
-
-<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
-<link href="~/Content/PagedList.css" rel="stylesheet" />
-@section Scripts{
     <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
