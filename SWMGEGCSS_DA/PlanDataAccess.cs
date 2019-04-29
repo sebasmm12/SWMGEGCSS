@@ -100,8 +100,8 @@ namespace SWMGEGCSS_DA
         }
         public OperationResult sp_Actualizar_Plan(T_plan Plan)
         {
-            try
-            {
+            /*try
+            {*/
                 var operation = new OperationResult();
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Plan"))
                 {
@@ -115,14 +115,13 @@ namespace SWMGEGCSS_DA
                         Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
                         Database.ExecuteScalar(command);
                         //operation.NewId = 1;
-
                 }
                 return operation;
-            }
+            /*}
             catch (Exception)
             {
                 return new OperationResult();
-            }
+            }*/
         }
         public List<T_tipo_servicio> sp_Obtener_Lista_Servicios(T_servicio servicio)
         {

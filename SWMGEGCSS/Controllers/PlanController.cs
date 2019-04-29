@@ -53,9 +53,11 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarPlanProyectoViewModel();
             model.plans_aux = plans_aux;
+
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             var empresaModel = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(y => (y.emp_razon_social == model.plans_aux.emp_razon_social));
-            var planEstadoModel = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado().Find(z => (z.plan_estado_nombre == model.plans_aux.plan_estado_nobre));                             
+            var planEstadoModel = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado().Find(z => (z.plan_estado_nombre == model.plans_aux.plan_estado_nobre));         
+            
             var modelPlan = new T_plan();
             modelPlan.plan_id = model.plans_aux.plan_id;
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
@@ -63,6 +65,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.emp_id = empresaModel.emp_id;
             modelPlan.plan_estado = planEstadoModel.plan_estado_id;
             modelPlan.plan_costo = model.plans_aux.plan_costo;
+
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
