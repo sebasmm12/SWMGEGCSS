@@ -12,7 +12,7 @@
                 <label class="font-weight-bolder">
                     Nombre del Plan del Proyecto
                 </label>
-                @Html.EditorFor(model => model.plans.plan_nombre, new
+                @Html.EditorFor(model => model.plans_aux.plan_nombre, new
                     {
                         htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
                     })
@@ -26,7 +26,7 @@
                         Fecha del Plan del Proyecto
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_fecha, new
+                @Html.EditorFor(model => model.plans_aux.plan_fecha, new
                 {
                    htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "date" }
                 })
@@ -37,13 +37,14 @@
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
-                        Codigo de empresa
+                        Nombre de la empresa
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.emp_id, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" }
-                })
+                @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
+               {
+                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+               })
+                <div id="error-plan-emp" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -53,7 +54,7 @@
                         Costo del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_costo, new
+                @Html.EditorFor(model => model.plans_aux.plan_costo, new
                {
                    htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
                })
@@ -67,10 +68,11 @@
                         Tipo de servicio del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.tipo_servicio_id, new
+                @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
                 {
-                   htmlAttributes = new { @class = "text-center form-control" }
+                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
                 })
+                <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -80,7 +82,7 @@
                         Tiempo del plan (en años)
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans.plan_tiempo, new
+                @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
                {
                    htmlAttributes = new { @id = "plan-tiempo", @class = "text-center form-control" }
                })

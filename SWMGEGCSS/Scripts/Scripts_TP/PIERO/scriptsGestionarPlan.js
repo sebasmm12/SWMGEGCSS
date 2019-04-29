@@ -30,12 +30,30 @@ $(function () {
     function validarCampos() {
         var planNombre = document.getElementById("plan-nombre");
         var planFecha = document.getElementById("plan-fecha");
+        var planEmp = document.getElementById("plan-emp");
         var planCosto = document.getElementById("plan-costo");
+        var planTipoServicio = document.getElementById("plan-tipo-servicio");
         var planTiempo = document.getElementById("plan-tiempo");
+
         var erplanNombre = document.getElementById("error-plan-nombre");
         var erplanFecha = document.getElementById("error-plan-fecha");
         var erplanCosto = document.getElementById("error-plan-costo");
         var erplanTiempo = document.getElementById("error-plan-tiempo");
+        var erplanEmp = document.getElementById("error-plan-emp");
+        var erplanTipoServicio = document.getElementById("error-plan-tipo-servicio");
+
+        function esNumero(txt, erdiv) {
+            if (isNaN(txt.value)) {
+                erdiv.style.display = 'inline-block';
+                erdiv.innerHTML = "Este campo debe ser numérico";
+                txt.style.border = '2px solid red';
+                return 0;
+            } else {
+                erdiv.style.display = 'none';
+                txt.style.border = '1px solid #cccccc';
+                return 1;
+            }
+        } 
 
         function validarVacio(txt, erdiv) {
             if (txt.value === '') {
@@ -57,7 +75,7 @@ $(function () {
             }
             return false;
         }
-
+        
         function validarDatos(txt, erdiv) {
             if (txt.value === '') {
                 erdiv.style.display = 'inline-block';
@@ -65,9 +83,9 @@ $(function () {
                 txt.style.border = '2px solid red';
                 return 0;
             }
-            else if (tieneCaracteresEspeciales(txt)) {
+            if (tieneCaracteresEspeciales(txt)) {
                 erdiv.style.display = 'inline-block';
-                erdiv.innerHTML = "El campo no puede contener caracteres especiales";
+                erdiv.innerHTML = "Este campo no puede contener caracteres especiales";
                 txt.style.border = '2px solid red';
                 return 0;
             }
@@ -86,14 +104,33 @@ $(function () {
             $("#plan-fecha").focus();
             return false;
         }
+        if (validarDatos(planEmp, erplanEmp) === 0) {
+            $("#plan-emp").focus();
+            return false;
+        }
         if (validarDatos(planCosto, erplanCosto) === 0) {
             $("#plan-costo").focus();
+            return false;
+        }
+        if (esNumero(planCosto, erplanCosto) === 0) {
+            $("#plan-costo").focus();
+            return false;
+        }
+        if (validarDatos(planTipoServicio, erplanTipoServicio) === 0) {
+            $("#plan-tipo-servicio").focus();
             return false;
         }
         if (validarDatos(planTiempo, erplanTiempo) === 0) {
             $("#plan-tiempo").focus();
             return false;
         }
+        Swal.fire({
+            position: 'center',
+            type: 'success',
+            title: 'Plan registrado correctamente',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return true;
     }
     $("#boton-Registrar").click(validarCampos);

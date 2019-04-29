@@ -11,9 +11,9 @@ namespace SWMGEGCSS.Models
     {
         public T_plan_aux plans_aux { get; set; }
         public T_plan plans { get; set; }
-        public List<T_plan> listplans { get; set; }
+        public List<T_plan_aux> listplans { get; set; }
 
-        public IPagedList<T_plan> listPplans
+        public IPagedList<T_plan_aux> listPplans
         { get; set; }
     }
 }

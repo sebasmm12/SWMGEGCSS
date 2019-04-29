@@ -47,6 +47,32 @@ namespace SWMGEGCSS_DA
             }
             return l_empresa;
         }
+        public List<T_empresa> sp_Consultar_Lista_Nombre_Empresa(string emp_razon_social)
+        {
+            List<T_empresa> T_Empresa = new List<T_empresa>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Nombre_Empresa"))
+                {
+                    Database.AddInParameter(command, "@emp_razon_social", DbType.String, emp_razon_social);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_empresa t_empresa = new T_empresa();
+                            t_empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            t_empresa.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+                            T_Empresa.Add(t_empresa);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_empresa>();
+            }
+            return T_Empresa;
+        }
     }
 
 
