@@ -55,8 +55,8 @@
     };
     var tieneCaracEsp = function empiezaConCaracteresEspeciales(X) {
         var iChars = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
-        var iNum = "/^[0-9]+$/";
-        if (iChars.indexOf(X.charAt(0)) !== -1 || !X.match("/^[0-9]+$/")) {
+        var iNum = "0123456789";
+        if (iChars.indexOf(X.charAt(0)) !== -1 || iNum.indexOf(X.charAt(0)) !== -1) {//1er numero es un CE o un numero
             return true;
         }
         else { return false; }
@@ -222,9 +222,9 @@
             $("#plan-tiempo").keyup(keyT);
             return false;
         }
-        else if (id < 0) {
+        else if (id < 0 || id.match("/^\d+[.]*\d*$/")) {
             adderror("plan-tiempo");
-            negativeattributes("error-plan-tiempo", 'El número debe ser positivo');
+            negativeattributes("error-plan-tiempo", 'El número debe ser positivo y entero');
             $("#plan-tiempo").focus();
             $("#plan-tiempo").keyup(keyT);
             return false;
@@ -237,8 +237,8 @@
             negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
             adderror("plan-tiempo");
         }
-        else if ($valor.val() < 0) {
-            negativeattributes("error-plan-tiempo", 'El número debe ser positivo');
+        else if ($valor.val() < 0 || id.match("/^\d+[.]*\d*$/")) {
+            negativeattributes("error-plan-tiempo", 'El número debe ser positivo y entero');
             adderror("plan-tiempo");
         }
         else {
