@@ -9,13 +9,13 @@
         var $planTipoServicio = $("#plan-tipo-servicio");
 
         var vnombre = validar_nombre_plan($planNombre.val());
-        /*var vfecha = validar_fecha_plan($planFecha.val());
+        var vfecha = validar_fecha_plan($planFecha.val());
         var vcosto = validar_costo_plan($planCosto.val());
         var vtiempo = validar_tiempo_plan($planTiempo.val());
-        var vemp = validar_emp_plan($planEmp.val());
+        /*var vemp = validar_emp_plan($planEmp.val());
         var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());*/
 
-        if (vnombre === false/* || vfecha === false || vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false*/) {
+        if (vnombre === false || vfecha === false || vcosto === false || vtiempo === false /*|| vemp === false || vtiposervicio === false*/) {
             return false;
         }
         else {
@@ -38,22 +38,62 @@
             });
         }
     };
+    //Validacion Nombre PLan
+    var esNum = function esNumero(txt) {
+        if (isNaN(txt)) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+    var maximoNumeroCaracteres50 = function maxCharacters(X) {
+        if (X.length > 50) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    var tieneCaracEsp = function empiezaConCaracteresEspeciales(X) {
+        var iChars = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
+        var iNum = "/^[0-9]+$/";
+        if (iChars.indexOf(X.charAt(0)) !== -1 || !X.match("/^[0-9]+$/")) {
+            return true;
+        }
+        else { return false; }
+    };
     function validar_nombre_plan(id) {
         if (id === "") {
             adderror("plan-nombre");
             negativeattributes("error-plan-nombre", 'Debe ingresar un nombre');
+            $("#plan-nombre").focus();
             $("#plan-nombre").keyup(key);
             return false;
         }
         else if (id === " ") {
             adderror("plan-nombre");
             negativeattributes("error-plan-nombre", 'El nombre no debe empezar con un espacio en blanco');
+            $("#plan-nombre").focus();
             $("#plan-nombre").keyup(key);
             return false;
         }
-        else if (esNumero(id)) {
+        else if (esNum(id) === true) {
             adderror("plan-nombre");
             negativeattributes("error-plan-nombre", 'El nombre no puede ser un número');
+            $("#plan-nombre").focus();
+            $("#plan-nombre").keyup(key);
+            return false;
+        }
+        else if (tieneCaracEsp(id) === true) {
+            adderror("plan-nombre");
+            negativeattributes("error-plan-nombre", 'El nombre debe empezar con una letra');
+            $("#plan-nombre").focus();
+            $("#plan-nombre").keyup(key);
+            return false;
+        }
+        else if (maximoNumeroCaracteres50(id) === true) {
+            adderror("plan-nombre");
+            negativeattributes("error-plan-nombre", 'El nombre debe ser de menos de 50 caracteres');
+            $("#plan-nombre").focus();
             $("#plan-nombre").keyup(key);
             return false;
         }
@@ -69,8 +109,16 @@
             negativeattributes("error-plan-nombre", 'El nombre no debe empezar con un espacio en blanco');
             adderror("plan-nombre");
         }
-        else if (esNumero($valor.val())) {
+        else if (esNum($valor.val()) === true) {
             negativeattributes("error-plan-nombre", 'El nombre no puede ser un número');
+            adderror("plan-nombre");
+        }
+        else if (tieneCaracEsp($valor.val()) === true) {
+            negativeattributes("error-plan-nombre", 'El nombre debe empezar con una letra');
+            adderror("plan-nombre");
+        }
+        else if (maximoNumeroCaracteres50($valor.val()) === true) {
+            negativeattributes("error-plan-nombre", 'El nombre debe ser de menos de 50 caracteres');
             adderror("plan-nombre");
         }
         else {
@@ -79,6 +127,127 @@
         }
 
     };
+    //Validacion Fecha Plan
+    function validar_fecha_plan(id) {
+        var fechaIngresada = new Date($("#plan-fecha").val());
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        var dateActual = new Date();
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
+        if (id === "") {
+            adderror("plan-fecha");
+            negativeattributes("error-plan-fecha", 'Debe ingresar una fecha');
+            $("#plan-fecha").focus();
+            $("#plan-fecha").change(keyfechaI);
+            return false;
+        }
+        else {
+            if (fechaIngresada >= dateActual) {
+                attributes("error-plan-fecha");
+                addgood("plan-fecha");
+            } else {
+                negativeattributes("error-plan-fecha", 'Debe ingresar una fecha válida');
+                adderror("plan-fecha");
+                return false;
+            }
+        }
+        return true;
+    }
+    var keyfechaI = function () {
+        var fechaIngresada = new Date($("#plan-fecha").val());
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        var dateActual = new Date();
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
+        var $fecha_inicio = $("#plan-fecha");
+        if ($fecha_inicio.val() === "") {
+            negativeattributes("error-plan-fecha", 'Debe ingresar una fecha');
+            adderror("plan-fecha");
+        } else {
+            if (fechaIngresada >= dateActual) {
+                attributes("error-plan-fecha");
+                addgood("plan-fecha");
+            } else {
+                negativeattributes("error-plan-fecha", 'Debe ingresar una fecha válida');
+                adderror("plan-fecha");
+            }
+        }
+    };
+    //Validacion Costo
+    function validar_costo_plan(id) {
+        var RegularExpression = /^\d+[.]*\d*$/;
+        var $valor = $("#plan-costo");
+        if (id === "") {
+            adderror("plan-costo");
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+            $("#plan-costo").keyup(keyC);
+            return false;
+        }
+        else {
+            if ($valor.val().match(RegularExpression)) {
+                attributes("error-plan-costo");
+                addgood("plan-costo");
+            } else {
+                negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
+                adderror("plan-costo");
+                return false;
+            }
+
+        }
+        return true;
+    }
+    function keyC() {
+        var RegularExpression = /^\d+[.]*\d*$/;
+        var $valor = $("#plan-costo");
+        if ($valor.val() === "") {
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+            adderror("plan-costo");
+        } else {
+            if ($valor.val().match(RegularExpression)) {
+                attributes("error-plan-costo");
+                addgood("plan-costo");
+            } else {
+                negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
+                adderror("plan-costo");
+            }
+
+        }
+    }
+    //Validacion Tiempo
+    function validar_tiempo_plan(id) {
+        if (id === "") {
+            adderror("plan-tiempo");
+            negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
+            $("#plan-tiempo").focus();
+            $("#plan-tiempo").keyup(keyT);
+            return false;
+        }
+        else if (id < 0) {
+            adderror("plan-tiempo");
+            negativeattributes("error-plan-tiempo", 'El número debe ser positivo');
+            $("#plan-tiempo").focus();
+            $("#plan-tiempo").keyup(keyT);
+            return false;
+        }
+        else { return true; }
+    }
+    function keyT() {
+        var $valor = $("#plan-tiempo");
+        if ($valor.val() === "") {
+            negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
+            adderror("plan-tiempo");
+        }
+        else if ($valor.val() < 0) {
+            negativeattributes("error-plan-tiempo", 'El número debe ser positivo');
+            adderror("plan-tiempo");
+        }
+        else {
+            attributes("error-plan-tiempo");
+            addgood("plan-tiempo");
+        }
+    }
+    //Validacion Empresa
+    //Validacion Tipo Servicio
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
         $("#" + id).addClass("textsuccess");
@@ -100,13 +269,7 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
-    function esNumero(txt) {
-        if (isNaN(txt)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    
         /*var planNombre = document.getElementById("plan-nombre");
         var planFecha = document.getElementById("plan-fecha");
         var planEmp = document.getElementById("plan-emp");
