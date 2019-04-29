@@ -131,7 +131,7 @@ $(function () {
             showConfirmButton: false,
             timer: 3000
         });
-        return true;
+        setTimeout( function() { return true; }, 8000);
     }
     $("#boton-Registrar").click(validarCampos);
 });

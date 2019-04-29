@@ -1,0 +1,58 @@
+﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
+@{
+    var list_planes = Model.listPplans;
+    var selected_plan = Model.plans_aux;
+    var count = 0;
+    Layout = null;
+}
+<div id="tableExp">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre del Plan</th>
+                            <th scope="col">Fecha del Plan</th>
+                            <th scope="col">Estado del Plan</th>
+                            <th scope="col">Costo del Plan</th>
+                            <th scope="col">Tiempo del plan</th>
+                            <th scope="col">Funcionalidades de Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in list_planes)
+                        {
+                            count = count + 1;
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+                                <td>@item.plan_nombre</td>
+                                <td>@item.plan_fecha.ToShortDateString()</td>
+                                <td>@item.plan_estado_nobre</td>
+                                <td>@item.plan_costo</td>
+                                <td>@item.plan_tiempo</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-times"></i>
+                                        @Html.ActionLink("Actualizar Plan", "Actualizar_Plan_de_Proyectos", "Plan", new { id = item.plan_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-times"></i>
+                                        Eliminar Plan
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12">
+            @Html.PagedListPager(list_planes, page => Url.Action("Gestionar_Plan_Proyecto", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>
