@@ -30,7 +30,7 @@ namespace SWMGEGCSS.Controllers
 
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             var empresaModel = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(y => (y.emp_razon_social == model.plans_aux.emp_razon_social));
-            
+
             var modelPlan = new T_plan();
             modelPlan.usu_codigo = (int)Session["login"];
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
@@ -58,8 +58,8 @@ namespace SWMGEGCSS.Controllers
 
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             var empresaModel = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(y => (y.emp_razon_social == model.plans_aux.emp_razon_social));
-            var planEstadoModel = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado().Find(z => (z.plan_estado_nombre == model.plans_aux.plan_estado_nobre));         
-            
+            var planEstadoModel = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado().Find(z => (z.plan_estado_nombre == model.plans_aux.plan_estado_nobre));
+
             var modelPlan = new T_plan();
             modelPlan.plan_id = model.plans_aux.plan_id;
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
@@ -114,11 +114,27 @@ namespace SWMGEGCSS.Controllers
             });
             return Json(nameTipoServicio, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Eliminar_Plan_de_Proyecto(int id)
+        [HttpGet]
+        public ActionResult _Eliminar_Plan_De_Proyecto()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _Eliminar_Plan_De_Proyecto(int id)
         {
             var model = new GestionarPlanProyectoViewModel();
             model.plans_aux = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(r => (r.plan_id == id));
-            return View(model);
+            return PartialView(model);
+        }
+        [HttpGet]
+        public ActionResult EliminarPlanDeProyecto(int id, string comentario)
+        {
+            /*var planEliminar = new T_plan();
+            planEliminar.plan_id = id;
+            planEliminar.plan_comentario = comentario;*/
+            var operationResult = new PlanDataAccess().sp_Cancelar_Plan(id, comentario);
+            return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
     }
 }

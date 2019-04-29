@@ -289,6 +289,7 @@
     <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
     <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
@@ -420,7 +421,6 @@
     <Content Include="Views\Expediente\_EliminarProyecto.cshtml" />
     <Content Include="Views\Empresa\Index.cshtml" />
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
-    <Content Include="Views\Plan\Eliminar_Plan_de_Proyecto.cshtml" />
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -431,7 +431,6 @@
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
-    <Folder Include="Scripts\Scripts_TP\COLOMBO\" />
     <Folder Include="Scripts\Scripts_TP\EGG\" />
     <Folder Include="Scripts\Scripts_TP\LAO LAM\" />
     <Folder Include="Scripts\Scripts_TP\MAURICIO\" />

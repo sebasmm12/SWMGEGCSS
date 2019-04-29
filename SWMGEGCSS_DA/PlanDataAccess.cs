@@ -203,7 +203,7 @@ namespace SWMGEGCSS_DA
             }
             return T_Empresa;
         }
-        public OperationResult sp_Cancelar_Plan(int plan_id)
+        public OperationResult sp_Cancelar_Plan(int plan_id, string plan_comentario)
         {
             try
             {
@@ -211,6 +211,7 @@ namespace SWMGEGCSS_DA
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Cancelar_Plan"))
                 {
                     Database.AddInParameter(command, "@plan_id", DbType.String, plan_id);
+                    Database.AddInParameter(command, "@plan_comentario", DbType.String, plan_comentario);
                     Database.ExecuteScalar(command);
                     //execute scalar permite ejecutar el comando
                 }
