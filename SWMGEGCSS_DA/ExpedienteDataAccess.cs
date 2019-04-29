@@ -126,7 +126,6 @@ namespace SWMGEGCSS_DA
                             plan.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
                             plan.plan_estado = DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
                             plan.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
-                            plan.plan_tipo = DataUtil.DbValueToDefault<int>(reader["plan_tipo"]);
                             plan.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
                             plan.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
                             T_plan.Add(plan);

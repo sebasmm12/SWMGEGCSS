@@ -5,46 +5,57 @@
 }
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
-    <div class="border-registrar">
-        @using (Html.BeginForm())
-        {
-        <div class="row mt-4 pl-2">
-            <div class="col-sm-1 col-md-1">
+    <form id="form">
+        <div class="border-registrar">
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
 
-            </div>
-            <div class="col-12 col-sm-5 col-md-5">
-                <div>
-                    <label class="font-weight-bolder">
-                        Nombre del Proyecto
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <label class="font-weight-bolder titulo-registrar">
+                        Registrar Nuevo Proyecto
                     </label>
                 </div>
-                @Html.EditorFor(model => model.Expediente.exp_nombre, new
-                {
-                    htmlAttributes = new { @class = "text-center form-control" }
-                })
             </div>
-            <div class="col-12 col-sm-5 col-md-5">
-                <div>
-                    <label class="font-weight-bolder">
-                        Nombre del Plan del Proyecto
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.Expediente.plan_nombre, new
-                {
-                    htmlAttributes = new { @class = "text-center form-control" }
-                })
-            </div>
-            <div class="col-sm-1 col-md-1">
+            <div class="row mt-2 pl-2">
+                <div class="col-sm-1 col-md-1">
 
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder label-registrar">
+                            Nombre del Proyecto
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.Expediente.exp_nombre, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control" }
+                    })
+                    <span id="validatenameProyecto"></span>
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder label-registrar">
+                            Nombre del Plan del Proyecto
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.Expediente.plan_nombre, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control" }
+                    })
+                    <span id="validatePlanProyecto"></span>
+                </div>
+                <div class="col-sm-1 col-md-1">
+
+                </div>
             </div>
-        </div>
             <div class="row mt-4 pl-2">
                 <div class="col-sm-1 col-md-1">
 
                 </div>
                 <div class="col-12 col-sm-5 col-md-5">
                     <div>
-                        <label class="font-weight-bolder">
+                        <label class="font-weight-bolder label-registrar">
                             Fecha Inicio
                         </label>
                     </div>
@@ -52,10 +63,11 @@
                     {
                         htmlAttributes = new { @class = "text-center form-control", @type = "date" }
                     })
+                    <span id="validateFechaInicio"></span>
                 </div>
                 <div class="col-12 col-sm-5 col-md-5">
                     <div>
-                        <label class="font-weight-bolder">
+                        <label class="font-weight-bolder label-registrar">
                             Fecha Fin
                         </label>
                     </div>
@@ -63,6 +75,7 @@
                     {
                         htmlAttributes = new { @class = "text-center form-control", @type = "date" }
                     })
+                    <span id="validateFechaFin"></span>
                 </div>
                 <div class="col-sm-1 col-md-1">
 
@@ -74,18 +87,7 @@
                 </div>
                 <div class="col-12 col-sm-5 col-md-5">
                     <div>
-                        <label class="font-weight-bolder">
-                            Fecha Inicio
-                        </label>
-                    </div>
-                    @Html.EditorFor(model => model.Expediente.exp_inicio, new
-                    {
-                        htmlAttributes = new { @class = "text-center form-control", @type = "date" }
-                    })
-                </div>
-                <div class="col-12 col-sm-5 col-md-5">
-                    <div>
-                        <label class="font-weight-bolder">
+                        <label class="font-weight-bolder label-registrar">
                             Ganancia del Proyecto
                         </label>
                     </div>
@@ -93,6 +95,7 @@
                     {
                         htmlAttributes = new { @class = "text-center form-control" }
                     })
+                    <span id="validateGanancia"></span>
                 </div>
             </div>
             <div class="row mt-4 pl-2">
@@ -100,7 +103,7 @@
 
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">
-                    <button type="submit" class="btn btn-success">
+                    <button type="button" class="btn btn-success" id="btnRegistrar">
                         <i class="fa fa-check-circle"></i>
                         Registrar Proyecto
                     </button>
@@ -114,8 +117,11 @@
                     </a>
                 </div>
             </div>
-        }
-
-    </div>
-   
+        </div>
+    </form>
+      
 </div>
+@section Scripts{
+     <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsRegistrarProyecto.js"></script>
+
+    }
