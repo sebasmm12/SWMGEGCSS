@@ -419,6 +419,8 @@
     <Content Include="Views\Expediente\_EliminarProyecto.cshtml" />
     <Content Include="Views\Empresa\Index.cshtml" />
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
+    <Content Include="Views\Plan\Eliminar_Plan_de_Proyecto.cshtml" />
+    <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,6 +18,7 @@ namespace SWMGEGCSS_EN
         public int plan_tiempo { get; set; }
         public int plan_tipo { get; set; }
         public int tipo_servicio_id { get; set; }
+        public string comentario { get; set; }
     }
     public class T_plan_aux
     {
@@ -31,5 +32,6 @@ namespace SWMGEGCSS_EN
         public int plan_tiempo { get; set; }
         public int plan_tipo { get; set; }
         public string tipo_servicio_nombre { get; set; }
+        public string comentario { get; set; }
     }
 }
