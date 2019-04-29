@@ -149,6 +149,7 @@ namespace SWMGEGCSS_DA
             }
             return T_Tipo_Servicios;
         }
+        /*para autocompletado*/
         public List<T_tipo_servicio> sp_Consultar_Lista_Nombre_Tipo_Servicio(string tipo_servicio_nombre)
         {
             List<T_tipo_servicio> T_Tipo_Servicio = new List<T_tipo_servicio>();
@@ -175,6 +176,7 @@ namespace SWMGEGCSS_DA
             }
             return T_Tipo_Servicio;
         }
+        /*para autocompletado*/
         public List<T_empresa> sp_Consultar_Lista_Nombre_Empresa(string emp_razon_social)
         {
             List<T_empresa> T_Empresa = new List<T_empresa>();
@@ -246,6 +248,7 @@ namespace SWMGEGCSS_DA
             }
             return T_Plan;
         }
+        /*para autocompletado*/
         public List<T_plan_estado> Sp_Consultar_Lista_Estado_Plan(string plan_estado_nombre)
         {
             List<T_plan_estado> T_Plan_Estado = new List<T_plan_estado>();

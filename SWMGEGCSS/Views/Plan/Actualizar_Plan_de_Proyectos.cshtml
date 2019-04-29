@@ -28,8 +28,9 @@
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_nombre, new
                 {
-                    htmlAttributes = new { @class = "text-center form-control" }
+                    htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
                 })
+                <div id="error-plan-nombre" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -39,7 +40,12 @@
                         Fecha del Plan del Proyecto
                     </label>
                 </div>
-                <input type="date" name="plans.plan_fecha" value="@Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />
+                <!--<input type="date" name="plans.plan_fecha" value="Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />-->
+                @Html.EditorFor(model => model.plans_aux.plan_fecha, new
+           {
+               htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control",@value = @Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")}
+           })
+                <div id="error-plan-fecha" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -50,9 +56,13 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" }
-                })
+                    {
+                    htmlAttributes = new {
+                       @class = "text-center form-control"
+                    },
+                   
+           })
+
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -77,8 +87,9 @@
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_costo, new
                 {
-                   htmlAttributes = new { @class = "text-center form-control" }
+                   htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
                 })
+                <div id="error-plan-costo" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -103,13 +114,14 @@
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
                 {
-                   htmlAttributes = new { @class = "text-center form-control" }
+                   htmlAttributes = new { @id = "plan-tiempo", @class = "text-center form-control" }
                 })
+                <div id="error-plan-tiempo" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" id="boton-Registrar" class="btn btn-success">
                     <i class="fa fa-check-circle"></i>
                     Actualizar
                 </button>
@@ -125,5 +137,14 @@
         </div>
     }
 </div>
+<link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+}
 
-
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}

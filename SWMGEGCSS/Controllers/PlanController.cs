@@ -70,23 +70,50 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
             return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
+        }
+        /*GERENTE */
+        public ActionResult CompletarNombrePlanes(string term)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
+            var nameExpedientes = model.listplans.Select(r => new
+            {
+                label = r.plan_nombre
+            });
+            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
+        }
+        //*Metodos para el autocompletado*//
+        public ActionResult CompletarNombreEmpresas(string term)
+        {
+            var model = new GestionarEmpresaViewModel();
+            model.listempresas = new PlanDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
+            var nameEmpresas = model.listempresas.Select(r => new
+            {
+                label = r.emp_razon_social
+            });
+            return Json(nameEmpresas, JsonRequestBehavior.AllowGet);
+        }
 
-            /*
-             var planesmodel = new ExpedienteDataAccess().sp_Obtener_Planes();
-            var model = new ExpedienteViewModel();
-            model.Expediente = Expediente;
-            var plan_expediente = planesmodel.Find(modelo => (modelo.plan_nombre == model.Expediente.plan_nombre));
-            var modelExpediente = new T_expedientes();
-            modelExpediente.plan_id = plan_expediente.plan_id;
-            modelExpediente.usu_creador = (int)Session["login"];
-            modelExpediente.exp_inicio = model.Expediente.exp_inicio;
-            modelExpediente.exp_fin = model.Expediente.exp_fin;
-            modelExpediente.tipo_servicio_id = plan_expediente.tipo_servicio_id;
-            modelExpediente.exp_ganancia = model.Expediente.exp_ganancia;
-            modelExpediente.exp_nombre = model.Expediente.exp_nombre;
-            var operationResult = new ExpedienteDataAccess().sp_Insertar_Proyecto(modelExpediente);
-            return View();
-             */
+
+        public ActionResult CompletarNombreEstadoPlan(string term)
+        {
+            var model = new List<T_plan_estado>();
+            model = new PlanDataAccess().Sp_Consultar_Lista_Estado_Plan(term);
+            var namePlanEstado = model.Select(r => new
+            {
+                label = r.plan_estado_nombre
+            });
+            return Json(namePlanEstado, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult CompletarNombreTipoServicio(string term)
+        {
+            var model = new List<T_tipo_servicio>();
+            model = new PlanDataAccess().sp_Consultar_Lista_Nombre_Tipo_Servicio(term);
+            var nameTipoServicio = model.Select(r => new
+            {
+                label = r.tipo_servicio_nombre
+            });
+            return Json(nameTipoServicio, JsonRequestBehavior.AllowGet);
         }
     }
 }
