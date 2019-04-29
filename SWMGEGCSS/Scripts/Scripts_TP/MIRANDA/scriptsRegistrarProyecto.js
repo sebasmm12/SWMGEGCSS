@@ -180,13 +180,36 @@
     }
 
     function validar_nombre(id) {
+        var vnombre = 0;
         if (id === "") {
             adderror("Expediente_exp_nombre");
             negativeattributes("validatenameProyecto", 'Debe ingresar un nombre');
             $("#Expediente_exp_nombre").keyup(key);
             return false;
+        } else {
+            $.ajax({
+                url: "/Expediente/Evaluar_Nombre_Proyecto",
+                method: "GET",
+                async: false,
+                data: {
+                    exp_nombre: $("#Expediente_exp_nombre").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    vnombre = 1;
+                    adderror("Expediente_exp_nombre");
+                    negativeattributes("validatenameProyecto", 'Este nombre ya existe');
+                }
+            });
         }
-        
+        if (vnombre === 1) {
+            adderror("Expediente_exp_nombre");
+            negativeattributes("validatenameProyecto", 'Este nombre ya existe');
+            $("#Expediente_exp_nombre").keyup(key);
+            return false;
+        }
+
         return true;
     }
     var key = function () {
@@ -195,8 +218,22 @@
             negativeattributes("validatenameProyecto",'Debe ingresar un nombre');
             adderror("Expediente_exp_nombre");
         } else {
-            attributes("validatenameProyecto");
-            addgood("Expediente_exp_nombre");
+            $.ajax({
+                url: "/Expediente/Evaluar_Nombre_Proyecto",
+                method: "GET",
+                data: {
+                    exp_nombre: $("#Expediente_exp_nombre").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    adderror("Expediente_exp_nombre");
+                    negativeattributes("validatenameProyecto", 'Este nombre ya existe');
+                } else {
+                    attributes("validatenameProyecto");
+                    addgood("Expediente_exp_nombre");
+                }
+            });
         }
 
     };

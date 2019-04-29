@@ -83,5 +83,16 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new ExpedienteDataAccess().sp_Eliminar_Proyecto(id,comentario);
             return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Evaluar_Nombre_Proyecto(string exp_nombre)
+        {
+            var model = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos();
+            var modelEvaluado = model.Find(r => r.exp_nombre == exp_nombre);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont,JsonRequestBehavior.AllowGet);
+        }
     }
 }

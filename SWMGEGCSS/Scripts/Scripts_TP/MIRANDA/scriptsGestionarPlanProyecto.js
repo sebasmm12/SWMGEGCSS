@@ -64,9 +64,7 @@
             contentType: "application/json; charset=utf-8",
             dataType:"json"
         }).done(function (data) {
-            if (data === "1") {
                 window.location.href = "/Gerente/Gestionar_Proyectos";
-            }
               
             });
         return false;
