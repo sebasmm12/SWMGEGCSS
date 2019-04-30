@@ -1,6 +1,6 @@
 ﻿$(function () {
     var id_plan = 0;
-    /*var getPage = function () {
+    var getPage = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
         var $a = $(this);
@@ -29,7 +29,7 @@
         };
         $input.autocomplete(options);
 
-    };*/
+    };
     var Alerta = function () {
         $(this).click(function () {
 
@@ -75,7 +75,7 @@
         $(this).click(function () {
             var $button = $(this);
             var modal = $button.attr("data-id-target");
-            id_plan = $(this).attr("data-id-plan");
+            var id_plan = $(this).attr("data-id-plan");
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "POST",
@@ -93,7 +93,7 @@
             return false;
         });
     };
-    /*var BuscarProyecto = function () {
+    var BuscarProyecto = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
         $.ajax({
@@ -107,7 +107,7 @@
         });
 
         return true;
-    };*/
+    };
     $(".btnModal").each(envioajaxModal);
     $("input[data-exp-autocomplete]").each(autcompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);

@@ -46,7 +46,7 @@
                 </div>
                 <!--<input type="date" name="plans.plan_fecha" value="Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />-->
 
-                <input type="date" name="plans_aux.plan_fecha" value="@plan_fecha" class="text-center form-control" onkeydown="return false" />
+                <input id="plan-fecha" type="date" name="plans_aux.plan_fecha" value="@plan_fecha" class="text-center form-control" onkeydown="return false" />
                 <div id="error-plan-fecha" class="errordiv"></div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                 @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
            {
                htmlAttributes = new {
-                   @class = "text-center form-control",
+                   @class = "text-center form-control", @id = "plan-emp"
 
                },
 
@@ -77,7 +77,7 @@
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_estado_nobre, new
                 {
-                   htmlAttributes = new { @class = "text-center form-control" }
+                   htmlAttributes = new { @class = "text-center form-control" , }
                 })
             </div>
         </div>
