@@ -266,6 +266,7 @@
                 $.ajax({
                     url: "/Expediente/Evaluar_Nombre_Proyecto",
                     method: "GET",
+                    async: false,
                     data: {
                         exp_nombre: $("#Expediente_exp_nombre").val()
                     },
