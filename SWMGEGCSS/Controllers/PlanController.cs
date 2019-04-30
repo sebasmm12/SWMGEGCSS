@@ -136,5 +136,38 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new PlanDataAccess().sp_Cancelar_Plan(id, comentario);
             return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Evaluar_Nombre_Plan(string plan_nombre)
+        {
+            var model = new PlanDataAccess().sp_Consultar_Lista_Plan();
+            var modelEvaluado = model.Find(r => r.plan_nombre == plan_nombre);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Evaluar_Nombre_Empresa_Plan(string plan_emp)
+        {
+            var model = new EmpresaDataAccess().sp_Consultar_Lista_Empresa();
+            var modelEvaluado = model.Find(r => r.emp_razon_social == plan_emp);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Evaluar_Tipo_Servicio_Plan(string plan_tipo_servicio)
+        {
+            var model = new TipoServicioDataAccess().sp_Consultar_Lista_Tipo_Servicio();
+            var modelEvaluado = model.Find(r => r.tipo_servicio_nombre == plan_tipo_servicio);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
     }
 }
