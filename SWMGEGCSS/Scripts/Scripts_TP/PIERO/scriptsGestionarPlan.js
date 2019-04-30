@@ -13,9 +13,9 @@
         var vcosto = validar_costo_plan($planCosto.val());
         var vtiempo = validar_tiempo_plan($planTiempo.val());
         var vemp = validar_emp_plan($planEmp.val());
-        /*var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());*/
+        var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());
 
-        if (vnombre === false || vfecha === false || vcosto === false || vtiempo === false || vemp === false /*|| vtiposervicio === false*/) {
+        if (vnombre === false || vfecha === false || vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false) {
             return false;
         }
         else {
@@ -28,11 +28,10 @@
                 Swal.fire({
                     type: 'success',
                     title: 'Se registro el plan exitosamente',
-                    showConfirmButton: false,
-                    timer: 3000
-                }).then(function (dismiss) {
-                    if (dismiss === 'timer') {
-                        window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/Gerente/Gestionar_Proyectos";
                     }
                 });
             });
@@ -398,6 +397,111 @@
 
     };
     //Validacion Tipo Servicio
+    function validar_tipo_servicio_plan(id) {
+        var vtiposervicio = 0;
+        if (id === "") {
+            adderror("plan-tipo-servicio");
+            negativeattributes("error-plan-tipo-servicio", 'Debe ingresar un nombre');
+            $("#plan-tipo-servicio").focus();
+            $("#plan-tipo-servicio").keyup(keyTS);
+            return false;
+        }
+        if (id === " ") {
+            adderror("plan-tipo-servicio");
+            negativeattributes("error-plan-tipo-servicio", 'El nombre del tipo servicio no debe empezar con un espacio en blanco');
+            $("#plan-tipo-servicio").focus();
+            $("#plan-tipo-servicio").keyup(keyTS);
+            return false;
+        }
+        if (esNum(id) === true) {
+            adderror("plan-tipo-servicio");
+            negativeattributes("error-plan-tipo-servicio", 'El nombre no puede ser un número');
+            $("#plan-tipo-servicio").focus();
+            $("#plan-tipo-servicio").keyup(keyTS);
+            return false;
+        }
+        if (tieneCaracEsp(id) === true) {
+            adderror("plan-tipo-servicio");
+            negativeattributes("error-plan-tipo-servicio", 'El nombre del tipo servicio debe empezar con una letra y no debe ser caracter especial');
+            $("#plan-tipo-servicio").focus();
+            $("#plan-tipo-servicio").keyup(keyTS);
+            return false;
+        }
+        if (maximoNumeroCaracteres50(id) === true) {
+            adderror("plan-tipo-servicio");
+            negativeattributes("error-plan-tipo-servicio", 'El nombre debe ser de menos de 50 caracteres');
+            $("#plan-tipo-servicio").focus();
+            $("#plan-tipo-servicio").keyup(keyTS);
+            return false;
+        }
+        else {
+            $.ajax({
+                url: "/Plan/Evaluar_Tipo_Servicio_Plan",
+                method: "GET",
+                async: false,
+                data: {
+                    plan_tipo_servicio: $("#plan-tipo-servicio").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    vtiposervicio = 1;
+                }
+            });
+        }
+        if (vtiposervicio === 0) {
+            adderror("plan-tipo-servicio");
+            negativeattributes("error-plan-tipo-servicio", 'El nombre de este servicio no existe');
+            $("#plan-tipo-servicio").keyup(keyTS);
+            return false;
+        }
+        else { return true; }
+    }
+    var keyTS = function () {
+        var $valor = $("#plan-tipo-servicio");
+        if ($valor.val() === "") {
+            negativeattributes("error-plan-tipo-servicio", 'Debe ingresar un nombre');
+            adderror("plan-tipo-servicio");
+        }
+        else if ($valor.val() === " ") {
+            negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa no debe empezar con un espacio en blanco');
+            adderror("plan-tipo-servicio");
+        }
+        else if (esNum($valor.val()) === true) {
+            negativeattributes("error-plan-tipo-servicio", 'El nombre no puede ser un número');
+            adderror("plan-tipo-servicio");
+        }
+        else if (tieneCaracEsp($valor.val()) === true) {
+            negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
+            adderror("plan-tipo-servicio");
+        }
+        else if (maximoNumeroCaracteres50($valor.val()) === true) {
+            negativeattributes("error-plan-tipo-servicio", 'El nombre debe ser de menos de 50 caracteres');
+            adderror("plan-tipo-servicio");
+        }
+        else {
+            $.ajax({
+                url: "/Plan/Evaluar_Tipo_Servicio_Plan",
+                method: "GET",
+                async: false,
+                data: {
+                    plan_tipo_servicio: $("#plan-tipo-servicio").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    attributes("error-plan-tipo-servicio");
+                    addgood("plan-tipo-servicio");
+                }
+                else {
+                    adderror("plan-tipo-servicio");
+                    negativeattributes("error-plan-tipo-servicio", 'El nombre de este servicio no existe');
+                }
+            });
+        }
+
+    };
+    //
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
         $("#" + id).addClass("textsuccess");

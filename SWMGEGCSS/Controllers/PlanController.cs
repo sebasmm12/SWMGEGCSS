@@ -158,5 +158,16 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Evaluar_Tipo_Servicio_Plan(string plan_tipo_servicio)
+        {
+            var model = new TipoServicioDataAccess().sp_Consultar_Lista_Tipo_Servicio();
+            var modelEvaluado = model.Find(r => r.tipo_servicio_nombre == plan_tipo_servicio);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
     }
 }
