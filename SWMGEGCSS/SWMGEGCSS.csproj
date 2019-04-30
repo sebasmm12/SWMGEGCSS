@@ -290,6 +290,7 @@
     <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\ValidacionesActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />

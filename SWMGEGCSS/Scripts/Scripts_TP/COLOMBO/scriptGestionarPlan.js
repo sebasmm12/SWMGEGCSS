@@ -41,7 +41,7 @@
                     showCancelButton: true,
                     inputValidator: (value) => {
                         if (!value) {
-                            return 'Debe escribir algo!'
+                            return 'Debe escribir algo!';
                         }
                     }
                 });
