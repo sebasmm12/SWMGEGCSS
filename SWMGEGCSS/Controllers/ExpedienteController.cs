@@ -94,5 +94,26 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont,JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Evaluar_Nombre_Plan(string exp_plan)
+        {
+            var model = new ExpedienteDataAccess().sp_Obtener_Planes();
+            var modelEvaluado = model.Find(r => r.plan_nombre == exp_plan);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Autocomplete([Bind(Prefix ="term")]string term)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
+            var namePlanes = model.listplans.Select(r => new
+            {
+                label = r.plan_nombre
+            });
+            return Json(namePlanes, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -41,7 +41,7 @@
                     </div>
                     @Html.EditorFor(model => model.Expediente.plan_nombre, new
                     {
-                        htmlAttributes = new { @class = "text-center form-control" }
+                        htmlAttributes = new { @class = "text-center form-control", @dataid = Url.Action("Autocomplete", "Expediente") }
                     })
                     <span id="validatePlanProyecto"></span>
                 </div>
@@ -119,9 +119,11 @@
             </div>
         </div>
     </form>
-      
-</div>
-@section Scripts{
-     <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsRegistrarProyecto.js"></script>
 
-    }
+</div>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsRegistrarProyecto.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+
+}
