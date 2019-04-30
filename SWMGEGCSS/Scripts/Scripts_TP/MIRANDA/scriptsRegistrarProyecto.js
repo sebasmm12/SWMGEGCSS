@@ -1,7 +1,13 @@
 ﻿$(function () {
+    var autocompletado = function () {
+        var $input = $(this);
+        var options = {
+            source: $input.attr("dataid")
+        };
+        $input.autocomplete(options);
 
-
-
+    };
+    $("input[dataid]").each(autocompletado);
     var validacion = function () {
         var $nombre_proyecto = $("#Expediente_exp_nombre");
         var $plan = $("#Expediente_plan_nombre");
@@ -169,10 +175,33 @@
 
 
     function validar_plan(id) {
+         var vplan = 0;
         if (id === "") {
             adderror("Expediente_plan_nombre");
             negativeattributes("validatePlanProyecto", 'Debe ingresar un plan');
             $("#Expediente_plan_nombre").keyup(keyp);
+            return false;
+        } else {
+            $.ajax({
+                url: "/Expediente/Evaluar_Nombre_Plan",
+                method: "GET",
+                async: false,
+                data: {
+                    exp_plan: $("#Expediente_plan_nombre").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data === 0) {
+                    vplan = 0;
+                } else {
+                    vplan = 1;
+                }
+            });
+        }
+        if (vplan === 0) {
+            adderror("Expediente_plan_nombre");
+            negativeattributes("validatePlanProyecto", 'El plan no existe');
+            $("#Expediente_plan_nombre").keyup(key);
             return false;
         }
 
@@ -180,6 +209,7 @@
     }
 
     function validar_nombre(id) {
+        var RegularExpression = /^[^\W\d]*[A-Za-z ]*[^ \d\W]{1}$/;
         var vnombre = 0;
         if (id === "") {
             adderror("Expediente_exp_nombre");
@@ -187,21 +217,32 @@
             $("#Expediente_exp_nombre").keyup(key);
             return false;
         } else {
-            $.ajax({
-                url: "/Expediente/Evaluar_Nombre_Proyecto",
-                method: "GET",
-                async: false,
-                data: {
-                    exp_nombre: $("#Expediente_exp_nombre").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    vnombre = 1;
-                    adderror("Expediente_exp_nombre");
-                    negativeattributes("validatenameProyecto", 'Este nombre ya existe');
-                }
-            });
+            if ($("#Expediente_exp_nombre").val().match(RegularExpression)) {
+                attributes("validatenameProyecto");
+                addgood("Expediente_exp_nombre");
+                $.ajax({
+                    url: "/Expediente/Evaluar_Nombre_Proyecto",
+                    method: "GET",
+                    async: false,
+                    data: {
+                        exp_nombre: $("#Expediente_exp_nombre").val()
+                    },
+                    dataType: "json"
+                }).done(function (data) {
+                    if (data !== 0) {
+                        vnombre = 1;
+                        adderror("Expediente_exp_nombre");
+                        negativeattributes("validatenameProyecto", 'Este nombre ya existe');
+                    }
+                });
+            }
+            else {
+                adderror("Expediente_exp_nombre");
+                negativeattributes("validatenameProyecto", 'Este nombre no es valido');
+                return false;
+            }
+
+            
         }
         if (vnombre === 1) {
             adderror("Expediente_exp_nombre");
@@ -213,27 +254,38 @@
         return true;
     }
     var key = function () {
+        var RegularExpression = /^[^\W\d]*[A-Za-z ]*[^ \d\W]{1}$/;
         var $valor = $("#Expediente_exp_nombre");
         if ($valor.val() === "") {
-            negativeattributes("validatenameProyecto",'Debe ingresar un nombre');
+            negativeattributes("validatenameProyecto", 'Debe ingresar un nombre');
             adderror("Expediente_exp_nombre");
         } else {
-            $.ajax({
-                url: "/Expediente/Evaluar_Nombre_Proyecto",
-                method: "GET",
-                data: {
-                    exp_nombre: $("#Expediente_exp_nombre").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    adderror("Expediente_exp_nombre");
-                    negativeattributes("validatenameProyecto", 'Este nombre ya existe');
-                } else {
-                    attributes("validatenameProyecto");
-                    addgood("Expediente_exp_nombre");
-                }
-            });
+            if ($valor.val().match(RegularExpression)) {
+                attributes("validatenameProyecto");
+                addgood("Expediente_exp_nombre");
+                $.ajax({
+                    url: "/Expediente/Evaluar_Nombre_Proyecto",
+                    method: "GET",
+                    async: false,
+                    data: {
+                        exp_nombre: $("#Expediente_exp_nombre").val()
+                    },
+                    dataType: "json"
+                }).done(function (data) {
+                    if (data !== 0) {
+                        adderror("Expediente_exp_nombre");
+                        negativeattributes("validatenameProyecto", 'Este nombre ya existe');
+                    } else {
+                        attributes("validatenameProyecto");
+                        addgood("Expediente_exp_nombre");
+                    }
+                });
+
+            } else {
+                adderror("Expediente_exp_nombre");
+                negativeattributes("validatenameProyecto", 'Este nombre no es valido');
+            }
+
         }
 
     };
@@ -243,8 +295,23 @@
             negativeattributes("validatePlanProyecto", 'Debe ingresar un plan');
             adderror("Expediente_plan_nombre");
         } else {
-            attributes("validatePlanProyecto");
-            addgood("Expediente_plan_nombre", 'Debe ingresar un plan');
+            $.ajax({
+                url: "/Expediente/Evaluar_Nombre_Plan",
+                method: "GET",
+                data: {
+                    exp_plan: $("#Expediente_plan_nombre").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data === 0) {
+                    vplan = 0;
+                    negativeattributes("validatePlanProyecto", 'El pla no existe');
+                    adderror("Expediente_plan_nombre");
+                } else {
+                    attributes("validatePlanProyecto");
+                    addgood("Expediente_plan_nombre");
+                }
+            });
         }
     };
     function attributes(id) {
@@ -272,4 +339,5 @@
     }
 
     $("#btnRegistrar").click(validacion);
+
 });

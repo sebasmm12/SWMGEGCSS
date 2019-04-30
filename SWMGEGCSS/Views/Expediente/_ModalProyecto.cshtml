@@ -14,14 +14,14 @@
 
    }
 <div class="modal fade" id="ModalProyecto" tabindex="-1" role="dialog" aria-labelledby="#ModalProyecto" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="text-center font-weight-bolder">
                 Actualizar Proyecto
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
+                    <div class="col-sm-6 col-12 col-md-6">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
                                 Nombre del Proyecto
@@ -30,13 +30,11 @@
                         <div>
                             @Html.EditorFor(model => model.Expediente.exp_nombre, new
                             {
-                                htmlAttributes = new { @class = "text-center form-control" }
+                                htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
                             })
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
+                    <div class="col-12 col-md-6 col-sm-6">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
                                 Nombre del Plan
@@ -45,67 +43,63 @@
                         <div>
                             @Html.EditorFor(model => model.Expediente.plan_nombre, new
                             {
-                                htmlAttributes = new { @class = "text-center form-control" }
+                                htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
                             })
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Fecha de Inicio
-                            </label>
-                        </div>
-                        <div>
-                            <input type="date" name="Expediente.exp_inicio" value="@exp_inicio" class="text-center form-control" />
-                        </div>
+                    </div>
+            <div class="row">
+                <div class="col-sm-6 col-12 col-md-6">
+                    <div class="mt-2">
+                        <label class="font-weight-bolder">
+                            Fecha de Inicio
+                        </label>
+                    </div>
+                    <div>
+                        <input type="date" name="Expediente.exp_inicio" value="@exp_inicio" class="text-center form-control" />
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Fecha Fin
-                            </label>
-                        </div>
-                        <div>
-                            <input type="date" name="Expediente.exp_fin" value="@exp_fin" class="text-center form-control" />
-                        </div>
+                <div class="col-sm-6 col-12 col-md-6">
+                    <div class="mt-2">
+                        <label class="font-weight-bolder">
+                            Fecha Fin
+                        </label>
+                    </div>
+                    <div>
+                        <input type="date" name="Expediente.exp_fin" value="@exp_fin" class="text-center form-control" />
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Tipo de Servicio
-                            </label>
-                        </div>
-                        <div>
-                            @Html.EditorFor(model => model.Expediente.tipo_servicio_nombre, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control" }
-                            })
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-12 col-md-6">
+                    <div class="mt-2">
+                        <label class="font-weight-bolder">
+                            Tipo de Servicio
+                        </label>
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.Expediente.tipo_servicio_nombre, new
+                        {
+                            htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
+                        })
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Estado del Proyecto
-                            </label>
-                        </div>
-                        <div>
-                            @Html.EditorFor(model => model.Expediente.est_exp_nombre, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control" }
-                            })
-                        </div>
+                <div class="col-sm-6 col-12 col-md-6">
+                    <div class="mt-2">
+                        <label class="font-weight-bolder">
+                            Estado del Proyecto
+                        </label>
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.Expediente.est_exp_nombre, new
+                        {
+                            htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
+                        })
                     </div>
                 </div>
+            </div>
                 <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
+                    <div class="col-sm-6 col-12 col-md-6">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
                                 Costo del Proyecto
@@ -120,14 +114,14 @@
                     </div>
                 </div>
                 <div class="mt-4 mb-4">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-6">
+                    <div class="row justify-content-end">
+                        <div class="col-sm-3 col-md-3 col-12">
                             <button type="button" class="btn btn-warning rounded-pill" style="color:white !important">
                                 <i class="fa fa-check-circle" style="color:white !important"></i>
                                 Actualizar Proyecto
                             </button>
                         </div>
-                        <div class="col-sm-6 col-md-6 col-6">
+                        <div class="col-sm-2 col-md-2 col-12 align-self-end">
                             <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">
                                 <i class="fa fa-times-circle"></i>
                                 Cancelar

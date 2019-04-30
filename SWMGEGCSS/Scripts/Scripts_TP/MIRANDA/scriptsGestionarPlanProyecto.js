@@ -102,6 +102,7 @@
             var $newhtml = $(data);
             var target = $("div.pagedList").attr("data-exp-target");
             $(target).replaceWith($newhtml);
+            $(".btnModal").each(envioajaxModal);  
             });
 
         return true;
