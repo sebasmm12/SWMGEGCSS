@@ -85,7 +85,7 @@ namespace SWMGEGCSS.Controllers
         {
             GestionarEmpresaViewModel model = new GestionarEmpresaViewModel();
            
-            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().ToPagedList(page, 2);
+            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().ToPagedList(page, 4);
             return View(model);
         }
         public ActionResult Visualizar_Personal_Proyecto()
