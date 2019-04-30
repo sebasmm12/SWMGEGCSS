@@ -34,7 +34,9 @@
                         <td>@item.emp_ruc</td>
                         <td>@item.emp_representante</td>
                         <td>@item.emp_telefono</td>
-                        <td></td>
+                        <td>
+                   
+                        </td>
                     </tr>
                 }
 
@@ -47,10 +49,15 @@
                 @Html.PagedListPager(list_empresas, page => Url.Action("Gestionar_Empresas", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
             </div>
         </div>
-        <div class="agregar ">
 
 
-        </div>
+    </div>
+    <div>
+        <a href="@Url.Action("_Registrar_Empresa","Empresa")" class="btn btn-success rounded-pill">
+            <i class="fa fa-plus-circle"></i>
+            Registrar Nueva Empresa
+        </a>
+
     </div>
 
 
