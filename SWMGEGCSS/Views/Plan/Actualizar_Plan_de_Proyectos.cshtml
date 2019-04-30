@@ -6,14 +6,11 @@
 
     //var fecha_plan = Model.plans.plan_fecha.ToString("yyyy/MM/dd");
 }
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 
 <h2>Actualizar_Plan_de_Proyectos</h2>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <div class="container-fluid">
-    @using (Html.BeginForm())
-    {
+    <form id="form">
         <div>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.plans_aux.plan_id)
@@ -136,11 +133,9 @@
                 </a>
             </div>
         </div>
-    }
+        </form>
 </div>
-<link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
+
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
-    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
-    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
