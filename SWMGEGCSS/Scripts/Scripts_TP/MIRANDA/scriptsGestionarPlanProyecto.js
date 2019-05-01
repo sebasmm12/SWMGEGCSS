@@ -55,7 +55,7 @@
     };
     var EnvioComentario = function (comentario) {
         $.ajax({
-            url: "/Plan/EliminarPlanDeProyecto",
+            url: "/Expediente/EliminarExpediente",
             method: "GET",
             data: {
                 id: id_proyecto,
@@ -64,7 +64,7 @@
             contentType: "application/json; charset=utf-8",
             dataType:"json"
         }).done(function (data) {
-                window.location.href = "/Gerente/Gestionar_Proyecto";
+                window.location.href = "/Gerente/Gestionar_Proyectos";
               
             });
         return false;

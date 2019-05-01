@@ -15,13 +15,13 @@
                     <div class="col-sm-12 col-12 col-md-12">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
-                                Nombre del Plan
+                                Nombre de la Actividad Planificada
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.plans_aux.plan_nombre, new
+                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_nombre, new
                             {
-                                htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
+                                htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })
                         </div>
                     </div>
@@ -30,13 +30,13 @@
                     <div class="col-sm-12 col-12 col-md-12">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
-                                Fecha del Plan de Proyecto
+                                Descripcion de la Actividad Planificada
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.plans_aux.plan_fecha, new
+                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_descripcion, new
                             {
-                                htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
+                                htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })
                         </div>
                     </div>
@@ -45,13 +45,13 @@
                     <div class="col-sm-12 col-12 col-md-12">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
-                                Nombre de la empresa
+                                Costo
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
+                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_costo, new
                             {
-                                htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
+                                htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })
                         </div>
                     </div>
@@ -60,69 +60,24 @@
                     <div class="col-sm-12 col-12 col-md-12">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
-                                Estado del Plan
+                                Duracion de la Actividad
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.plans_aux.plan_estado_nobre, new
+                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
                             {
-                                htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
+                                htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Costo del Plan
-                            </label>
-                        </div>
-                        <div>
-                            @Html.EditorFor(model => model.plans_aux.plan_costo, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly" }
-                            })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Tipo de Servicio del Plan
-                            </label>
-                        </div>
-                        <div>
-                            @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly" }
-                            })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Tipo del plan (en años)
-                            </label>
-                        </div>
-                        <div>
-                            @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly" }
-                            })
-                        </div>
-                    </div>
-                </div>
-
+                
                 <div class="mt-4 mb-4">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-6">
-                            <button type="button" class="btn btn-danger rounded-pill btnEliminar" style="color:white !important">
+                            <button type="button" class="btn btn-danger rounded-pill btnEjecutar" style="color:white !important">
                                 <i class="fa fa-times-circle" style="color:white !important"></i>
-                                Eliminar Plan
+                                REGISTRAR O ELEMINAR
                             </button>
                         </div>
                         <div class="col-sm-6 col-md-6 col-6">
@@ -132,7 +87,6 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
