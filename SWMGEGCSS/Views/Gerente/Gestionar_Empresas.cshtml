@@ -7,12 +7,66 @@
 
 
 
-<h2>Gestionar_Empresas</h2>
+<h2>Gestionar Empresas</h2>
+
+<div class="row mt-2 ml-2">
+
+    <div class="col-12 col-sm-4 col-md-4">
+        <div>
+            <label class="font-weight-bolder">
+                Nombre del Proyecto:
+            </label>
+        </div>
+
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("Autocomplete_Empresa")" />
+
+        <div id="error-plan-costo" class="errordiv"></div>
+    </div>
+    <div class="col-12 col-sm-4 col-md-4">
+        <div>
+            <label class="font-weight-bolder">Seleccione una opción</label>
+        </div>
+        <select class="custom-select" id="estado" name="estado">
+            <option value="Todos">Todos</option>
+            *foreach (var item in list_estado_expediente)
+            {
+            <option value="1">Habilitado</option>
+            <option value="0">Desabilitado</option>
+            }
+        </select>
+    </div>
+
+
+</div>
+
+<div class="row mt-3 ml-2">
+
+    <div class="col-12 col-sm-4 col-md-4">
+        <button class="btn btn-primary rounded-pill" id="Buscar">
+            <i class="fa fa-search"></i>
+            Buscar Proyecto
+        </button>
+    </div>
+
+
+    <div class="col-12 col-sm-4 col-md-4">
+        <a href="@Url.Action("Registrar_Empresa","Empresa")" class="btn btn-success mx-md-auto">
+            <i class="fa fa-plus-circle"></i>
+            Registrar Nueva Empresa
+        </a>
+
+    </div>
+
+
+
+
+</div>
+
 
 <div class="container form mt-5">
     <div class="table-responsive mt-4">
         <table class="table">
-            <thead>
+            <thead class="bg-success">
                 <tr>
 
                     <th scope="col">Id</th>
@@ -28,26 +82,26 @@
             <tbody>
                 @foreach (var item in list_empresas)
                 {
-                <tr>
+                    <tr>
 
-                    <td>@item.emp_id</td>
-                    
-                    <td>@item.emp_sigla</td>
-                    <td>@item.emp_razon_social</td>
-                    <td>@item.emp_representante</td>
-                    <td>@item.emp_telefono</td>
-                    <td>@item.emp_email</td>
-                    
-                    <td>
-                        <button type="button" class="btn btn-warning">
-                            @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
-                        </button>
+                        <td>@item.emp_id</td>
 
-                        <button type="button" class="btn btn-warning">
-                            @Html.ActionLink("Eliminar Empresa", "_Eliminar_Empresa", "Empresa", new { emp_id = item.emp_id },new { @style = "color: white !important" })
-                        </button>
-                    </td>
-                </tr>
+                        <td>@item.emp_sigla</td>
+                        <td>@item.emp_razon_social</td>
+                        <td>@item.emp_representante</td>
+                        <td>@item.emp_telefono</td>
+                        <td>@item.emp_email</td>
+
+                        <td>
+                            <button type="button" class="btn btn-warning">
+                                @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
+                            </button>
+
+                            <button type="button" class="btn btn-danger">
+                                @Html.ActionLink("Eliminar Empresa", "_Eliminar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
+                            </button>
+                        </td>
+                    </tr>
                 }
 
 
@@ -62,15 +116,18 @@
 
 
     </div>
-    <div>
-        <a href="@Url.Action("Registrar_Empresa","Empresa")" class="btn btn-success rounded-pill">
-            <i class="fa fa-plus-circle"></i>
-            Registrar Nueva Empresa
-        </a>
 
-    </div>
 
 
 </div>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <!--<script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>-->
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}
+
+
 
 
