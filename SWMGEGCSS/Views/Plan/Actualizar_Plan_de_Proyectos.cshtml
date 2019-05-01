@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Actualizar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-
+    var listaTareaPlan = Model.List_Actividades_planeadas;
     var plan_fecha = "";
+    var count = 0;
     if (Model.plans_aux != null)
     {
         plan_fecha = Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd");
@@ -59,10 +60,9 @@
                htmlAttributes = new {
                    @class = "text-center form-control", @id = "plan-emp"
 
-               },
-
+               }
            })
-
+                <div id="error-plan-emp" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -103,6 +103,7 @@
            {
                htmlAttributes = new { @class = "text-center form-control", @id = "plan-tipo-servicio" }
            })
+                <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -119,9 +120,58 @@
                 <div id="error-plan-tiempo" class="errordiv"></div>
             </div>
         </div>
+
+        <!--LISTA DE TAREAS PLANIFICADAS-->
+
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Actividad Planificada</th>
+                            <th scope="col">Costo de la Act Planificada</th>
+                            <th scope="col">Tiempo</th>
+                            <th scope="col">Actividad</th>
+                            <th scope="col">Tiempo del plan</th>
+                            <th scope="col">FUNCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in listaTareaPlan)
+                        {
+                            count = count + 1;
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+                                <td>@item.act_plan_nombre</td>
+                                <td>@item.act_plan_costo</td>
+                                <td>@item.act_plan_tiempo</td>
+                                <td>@item.act_id</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-times"></i>
+                                        @Html.ActionLink("Actualizar Plan", "Actualizar_Plan_de_Proyectos", "Plan", new { id = item.plan_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-times"></i>
+                                        Eliminar Plan
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+        <!---------------------------------->
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" id="btnRegistrar" class="btn btn-success">
+                <button type="submit" id="boton-Actualizar" class="btn btn-success">
                     <i class="fa fa-check-circle"></i>
                     Actualizar
                 </button>
@@ -135,7 +185,7 @@
                 </a>
             </div>
         </div>
-   </form> 
+    </form> 
 </div>
 
 

@@ -93,6 +93,95 @@ namespace SWMGEGCSS_DA
                 return new List<T_actividades_planeadas>();
             }
         }
-       
+        public OperationResult sp_actualizar_actividades_planeadas(T_actividades_planeadas actividades_planeadas)
+        {
+            var operation = new OperationResult();
+            using (DbCommand command = Database.GetStoredProcCommand("sp_actualizar_actividades_planeadas"))
+            {
+                Database.AddInParameter(command, "@act_plan_id", DbType.Int32, actividades_planeadas.act_plan_id);
+                Database.AddInParameter(command, "@plan_id", DbType.Int32, actividades_planeadas.plan_id);
+                Database.AddInParameter(command, "@act_id", DbType.Int32, actividades_planeadas.act_id);
+                Database.AddInParameter(command, "@act_plan_nombre", DbType.String, actividades_planeadas.act_plan_nombre);
+                Database.AddInParameter(command, "@act_plan_descripcion", DbType.String, actividades_planeadas.act_plan_descripcion);
+                Database.AddInParameter(command, "@act_plan_costo", DbType.Double, actividades_planeadas.act_plan_costo);
+                Database.AddInParameter(command, "@act_plan_tiempo", DbType.Int32, actividades_planeadas.act_plan_tiempo);
+                Database.ExecuteScalar(command);
+                operation.NewId = 1;
+            }
+            return operation;
+        }
+        public List<T_actividades_planeadas_aux> sp_Consultar_Lista_Actividades_Planeadas_aux()
+        {
+            try
+            {
+                List<T_actividades_planeadas_aux> list_act_planeadas_aux = new List<T_actividades_planeadas_aux>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Actividades_Planeadas_aux"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades_planeadas_aux act_planeadas_aux = new T_actividades_planeadas_aux();
+                            act_planeadas_aux.act_plan_id = DataUtil.DbValueToDefault<int>(reader["act_plan_id"]);
+                            act_planeadas_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            act_planeadas_aux.act_nombre = DataUtil.DbValueToDefault<int>(reader["act_nombre"]);
+                            act_planeadas_aux.act_plan_nombre = DataUtil.DbValueToDefault<string>(reader["act_plan_nombre"]);
+                            act_planeadas_aux.act_plan_descripcion = DataUtil.DbValueToDefault<string>(reader["act_plan_descripcion"]);
+                            act_planeadas_aux.act_plan_costo = DataUtil.DbValueToDefault<double>(reader["act_plan_costo"]);
+                            act_planeadas_aux.act_plan_tiempo = DataUtil.DbValueToDefault<int>(reader["act_plan_tiempo"]);
+                            list_act_planeadas_aux.Add(act_planeadas_aux);
+                        }
+                    }
+                }
+                return list_act_planeadas_aux;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_actividades_planeadas_aux>();
+            }
+        }
+        public T_actividades sp_Consultar_Actividades_planeadas_por_plan_act(int plan_id, int act_id)
+        {
+            try
+            {
+                T_actividades list_actividades = new T_actividades();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_actividades_planeadas_act_plan"))
+                {
+                    Database.AddInParameter(command, "@plan_id", DbType.Int32, plan_id);
+                    Database.AddInParameter(command, "@act_id", DbType.Int32, act_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {                   
+                            T_actividades t_actividad = new T_actividades();
+                            t_actividad.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
+                            t_actividad.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
+                            t_actividad.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);
+                            
+                    }
+                }
+                return list_actividades;
+            }
+            catch (Exception)
+            {
+
+                return new T_actividades();
+            }
+        }
+        public OperationResult sp_registrar_actividades_planeadas(T_actividades_planeadas actividades_planeadas)
+        {
+            var operation = new OperationResult();
+            using (DbCommand command = Database.GetStoredProcCommand("sp_registrar_actividades_planeadas"))
+            {
+                Database.AddInParameter(command, "@plan_id", DbType.Int32, actividades_planeadas.plan_id);
+                Database.AddInParameter(command, "@act_id", DbType.Int32, actividades_planeadas.act_id);
+                Database.AddInParameter(command, "@act_plan_nombre", DbType.String, actividades_planeadas.act_plan_nombre);
+                Database.AddInParameter(command, "@act_plan_descripcion", DbType.String, actividades_planeadas.act_plan_descripcion);
+                Database.AddInParameter(command, "@act_plan_costo", DbType.Double, actividades_planeadas.act_plan_costo);
+                Database.AddInParameter(command, "@act_plan_tiempo", DbType.Int32, actividades_planeadas.act_plan_tiempo);
+                Database.ExecuteScalar(command);
+                operation.NewId = 1;
+            }
+            return operation;
+        }
     }
 }

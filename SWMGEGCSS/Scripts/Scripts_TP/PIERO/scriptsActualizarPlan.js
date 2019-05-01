@@ -3,19 +3,19 @@
         //declaracion de variables jquery
         var $planNombre = $("#plan-nombre");
         var $planFecha = $("#plan-fecha");
-        var $planCosto = $("#plan-costo");
+        /*var $planCosto = $("#plan-costo");
         var $planTiempo = $("#plan-tiempo");
         var $planEmp = $("#plan-emp");
-        var $planTipoServicio = $("#plan-tipo-servicio");
+        var $planTipoServicio = $("#plan-tipo-servicio");*/
 
         var vnombre = validar_nombre_plan($planNombre.val());
         var vfecha = validar_fecha_plan($planFecha.val());
-        var vcosto = validar_costo_plan($planCosto.val());
+        /*var vcosto = validar_costo_plan($planCosto.val());
         var vtiempo = validar_tiempo_plan($planTiempo.val());
         var vemp = validar_emp_plan($planEmp.val());
-        var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());
+        var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());*/
 
-        if (vnombre === false || vfecha === false || vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false) {
+        if (vnombre === false|| vfecha === false /*|| vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false*/) {
             return false;
         }
         else {
@@ -25,15 +25,16 @@
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
-                Swal.fire({
+                /*Swal.fire({
                     type: 'success',
                     title: 'Se registro el plan exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        window.location.href = "/Gerente/Gestionar_Proyectos";
+                        window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
                     }
-                });
+                });*/
+                console.log("XD");
             });
         }
     };
@@ -217,291 +218,292 @@
             }
         }
     };
+
     //Validacion Costo
-    function validar_costo_plan(id) {
-        var RegularExpression = /^\d+[.]*\d*$/;
-        var $valor = $("#plan-costo");
-        if (id === "") {
-            adderror("plan-costo");
-            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
-            $("#plan-costo").keyup(keyC);
-            return false;
-        }
-        else {
-            if ($valor.val().match(RegularExpression)) {
-                attributes("error-plan-costo");
-                addgood("plan-costo");
-            } else {
-                negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
-                adderror("plan-costo");
-                $("#plan-costo").keyup(keyC);
-                return false;
-            }
+    //function validar_costo_plan(id) {
+    //    var RegularExpression = /^\d+[.]*\d*$/;
+    //    var $valor = $("#plan-costo");
+    //    if (id === "") {
+    //        adderror("plan-costo");
+    //        negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+    //        $("#plan-costo").keyup(keyC);
+    //        return false;
+    //    }
+    //    else {
+    //        if ($valor.val().match(RegularExpression)) {
+    //            attributes("error-plan-costo");
+    //            addgood("plan-costo");
+    //        } else {
+    //            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
+    //            adderror("plan-costo");
+    //            $("#plan-costo").keyup(keyC);
+    //            return false;
+    //        }
 
-        }
-        return true;
-    }
-    function keyC() {
-        var RegularExpression = /^\d+[.]*\d*$/;
-        var $valor = $("#plan-costo");
-        if ($valor.val() === "") {
-            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
-            adderror("plan-costo");
-        } else {
-            if ($valor.val().match(RegularExpression)) {
-                attributes("error-plan-costo");
-                addgood("plan-costo");
-            } else {
-                negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
-                adderror("plan-costo");
-            }
+    //    }
+    //    return true;
+    //}
+    //function keyC() {
+    //    var RegularExpression = /^\d+[.]*\d*$/;
+    //    var $valor = $("#plan-costo");
+    //    if ($valor.val() === "") {
+    //        negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+    //        adderror("plan-costo");
+    //    } else {
+    //        if ($valor.val().match(RegularExpression)) {
+    //            attributes("error-plan-costo");
+    //            addgood("plan-costo");
+    //        } else {
+    //            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
+    //            adderror("plan-costo");
+    //        }
 
-        }
-    }
-    //Validacion Tiempo
-    function validar_tiempo_plan(id) {
-        if (id === "") {
-            adderror("plan-tiempo");
-            negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
-            $("#plan-tiempo").focus();
-            $("#plan-tiempo").keyup(keyT);
-            return false;
-        }
-        if (id < 0 || id.match("/^\d+[.]*\d*$/")) {
-            adderror("plan-tiempo");
-            negativeattributes("error-plan-tiempo", 'El número debe ser positivo y entero');
-            $("#plan-tiempo").focus();
-            $("#plan-tiempo").keyup(keyT);
-            return false;
-        }
-        else { return true; }
-    }
-    function keyT() {
-        var $valor = $("#plan-tiempo");
-        if ($valor.val() === "") {
-            negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
-            adderror("plan-tiempo");
-        }
-        else if ($valor.val() < 0 || $valor.val().match("/^\d+[.]*\d*$/")) {
-            negativeattributes("error-plan-tiempo", 'El número debe ser positivo y entero');
-            adderror("plan-tiempo");
-        }
-        else {
-            attributes("error-plan-tiempo");
-            addgood("plan-tiempo");
-        }
-    }
-    //Validacion Empresa
-    function validar_emp_plan(id) {
-        var vemp = 0;
-        if (id === "") {
-            adderror("plan-emp");
-            negativeattributes("error-plan-emp", 'Debe ingresar un nombre');
-            $("#plan-emp").focus();
-            $("#plan-emp").keyup(keyE);
-            return false;
-        }
-        if (id === " ") {
-            adderror("plan-emp");
-            negativeattributes("error-plan-emp", 'El nombre de la empresa no debe empezar con un espacio en blanco');
-            $("#plan-emp").focus();
-            $("#plan-emp").keyup(keyE);
-            return false;
-        }
-        if (esNum(id) === true) {
-            adderror("plan-emp");
-            negativeattributes("error-plan-emp", 'El nombre no puede ser un número');
-            $("#plan-emp").focus();
-            $("#plan-emp").keyup(keyE);
-            return false;
-        }
-        if (tieneCaracEsp(id) === true) {
-            adderror("plan-emp");
-            negativeattributes("error-plan-emp", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
-            $("#plan-emp").focus();
-            $("#plan-emp").keyup(keyE);
-            return false;
-        }
-        if (maximoNumeroCaracteres50(id) === true) {
-            adderror("plan-emp");
-            negativeattributes("error-plan-emp", 'El nombre debe ser de menos de 50 caracteres');
-            $("#plan-emp").focus();
-            $("#plan-emp").keyup(keyE);
-            return false;
-        }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Empresa_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_emp: $("#plan-emp").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    vemp = 1;
-                }
-            });
-        }
-        if (vemp === 0) {
-            adderror("plan-emp");
-            negativeattributes("error-plan-emp", 'El nombre de esta empresa no existe');
-            $("#plan-emp").keyup(keyE);
-            return false;
-        }
-        else { return true;}
-    }
-    var keyE = function () {
-        var $valor = $("#plan-emp");
-        if ($valor.val() === "") {
-            negativeattributes("error-plan-emp", 'Debe ingresar un nombre');
-            adderror("plan-emp");
-        }
-        else if ($valor.val() === " ") {
-            negativeattributes("error-plan-emp", 'El nombre de la empresa no debe empezar con un espacio en blanco');
-            adderror("plan-emp");
-        }
-        else if (esNum($valor.val()) === true) {
-            negativeattributes("error-plan-emp", 'El nombre no puede ser un número');
-            adderror("plan-emp");
-        }
-        else if (tieneCaracEsp($valor.val()) === true) {
-            negativeattributes("error-plan-emp", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
-            adderror("plan-emp");
-        }
-        else if (maximoNumeroCaracteres50($valor.val()) === true) {
-            negativeattributes("error-plan-emp", 'El nombre debe ser de menos de 50 caracteres');
-            adderror("plan-emp");
-        }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Empresa_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_emp: $("#plan-emp").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    attributes("error-plan-emp");
-                    addgood("plan-emp");
-                }
-                else {
-                    adderror("plan-emp");
-                    negativeattributes("error-plan-emp", 'El nombre de esta empresa no existe');
-                }
-            });
-        }
+    //    }
+    //}
+    ////Validacion Tiempo
+    //function validar_tiempo_plan(id) {
+    //    if (id === "") {
+    //        adderror("plan-tiempo");
+    //        negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
+    //        $("#plan-tiempo").focus();
+    //        $("#plan-tiempo").keyup(keyT);
+    //        return false;
+    //    }
+    //    if (id < 0 || id.match("/^\d+[.]*\d*$/")) {
+    //        adderror("plan-tiempo");
+    //        negativeattributes("error-plan-tiempo", 'El número debe ser positivo y entero');
+    //        $("#plan-tiempo").focus();
+    //        $("#plan-tiempo").keyup(keyT);
+    //        return false;
+    //    }
+    //    else { return true; }
+    //}
+    //function keyT() {
+    //    var $valor = $("#plan-tiempo");
+    //    if ($valor.val() === "") {
+    //        negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
+    //        adderror("plan-tiempo");
+    //    }
+    //    else if ($valor.val() < 0 || $valor.val().match("/^\d+[.]*\d*$/")) {
+    //        negativeattributes("error-plan-tiempo", 'El número debe ser positivo y entero');
+    //        adderror("plan-tiempo");
+    //    }
+    //    else {
+    //        attributes("error-plan-tiempo");
+    //        addgood("plan-tiempo");
+    //    }
+    //}
+    ////Validacion Empresa
+    //function validar_emp_plan(id) {
+    //    var vemp = 0;
+    //    if (id === "") {
+    //        adderror("plan-emp");
+    //        negativeattributes("error-plan-emp", 'Debe ingresar un nombre');
+    //        $("#plan-emp").focus();
+    //        $("#plan-emp").keyup(keyE);
+    //        return false;
+    //    }
+    //    if (id === " ") {
+    //        adderror("plan-emp");
+    //        negativeattributes("error-plan-emp", 'El nombre de la empresa no debe empezar con un espacio en blanco');
+    //        $("#plan-emp").focus();
+    //        $("#plan-emp").keyup(keyE);
+    //        return false;
+    //    }
+    //    if (esNum(id) === true) {
+    //        adderror("plan-emp");
+    //        negativeattributes("error-plan-emp", 'El nombre no puede ser un número');
+    //        $("#plan-emp").focus();
+    //        $("#plan-emp").keyup(keyE);
+    //        return false;
+    //    }
+    //    if (tieneCaracEsp(id) === true) {
+    //        adderror("plan-emp");
+    //        negativeattributes("error-plan-emp", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
+    //        $("#plan-emp").focus();
+    //        $("#plan-emp").keyup(keyE);
+    //        return false;
+    //    }
+    //    if (maximoNumeroCaracteres50(id) === true) {
+    //        adderror("plan-emp");
+    //        negativeattributes("error-plan-emp", 'El nombre debe ser de menos de 50 caracteres');
+    //        $("#plan-emp").focus();
+    //        $("#plan-emp").keyup(keyE);
+    //        return false;
+    //    }
+    //    else {
+    //        $.ajax({
+    //            url: "/Plan/Evaluar_Nombre_Empresa_Plan",
+    //            method: "GET",
+    //            async: false,
+    //            data: {
+    //                plan_emp: $("#plan-emp").val()
+    //            },
+    //            dataType: "json"
+    //        }).done(function (data) {
+    //            if (data !== 0) {
+    //                vemp = 1;
+    //            }
+    //        });
+    //    }
+    //    if (vemp === 0) {
+    //        adderror("plan-emp");
+    //        negativeattributes("error-plan-emp", 'El nombre de esta empresa no existe');
+    //        $("#plan-emp").keyup(keyE);
+    //        return false;
+    //    }
+    //    else { return true;}
+    //}
+    //var keyE = function () {
+    //    var $valor = $("#plan-emp");
+    //    if ($valor.val() === "") {
+    //        negativeattributes("error-plan-emp", 'Debe ingresar un nombre');
+    //        adderror("plan-emp");
+    //    }
+    //    else if ($valor.val() === " ") {
+    //        negativeattributes("error-plan-emp", 'El nombre de la empresa no debe empezar con un espacio en blanco');
+    //        adderror("plan-emp");
+    //    }
+    //    else if (esNum($valor.val()) === true) {
+    //        negativeattributes("error-plan-emp", 'El nombre no puede ser un número');
+    //        adderror("plan-emp");
+    //    }
+    //    else if (tieneCaracEsp($valor.val()) === true) {
+    //        negativeattributes("error-plan-emp", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
+    //        adderror("plan-emp");
+    //    }
+    //    else if (maximoNumeroCaracteres50($valor.val()) === true) {
+    //        negativeattributes("error-plan-emp", 'El nombre debe ser de menos de 50 caracteres');
+    //        adderror("plan-emp");
+    //    }
+    //    else {
+    //        $.ajax({
+    //            url: "/Plan/Evaluar_Nombre_Empresa_Plan",
+    //            method: "GET",
+    //            async: false,
+    //            data: {
+    //                plan_emp: $("#plan-emp").val()
+    //            },
+    //            dataType: "json"
+    //        }).done(function (data) {
+    //            if (data !== 0) {
+    //                attributes("error-plan-emp");
+    //                addgood("plan-emp");
+    //            }
+    //            else {
+    //                adderror("plan-emp");
+    //                negativeattributes("error-plan-emp", 'El nombre de esta empresa no existe');
+    //            }
+    //        });
+    //    }
 
-    };
-    //Validacion Tipo Servicio
-    function validar_tipo_servicio_plan(id) {
-        var vtiposervicio = 0;
-        if (id === "") {
-            adderror("plan-tipo-servicio");
-            negativeattributes("error-plan-tipo-servicio", 'Debe ingresar un nombre');
-            $("#plan-tipo-servicio").focus();
-            $("#plan-tipo-servicio").keyup(keyTS);
-            return false;
-        }
-        if (id === " ") {
-            adderror("plan-tipo-servicio");
-            negativeattributes("error-plan-tipo-servicio", 'El nombre del tipo servicio no debe empezar con un espacio en blanco');
-            $("#plan-tipo-servicio").focus();
-            $("#plan-tipo-servicio").keyup(keyTS);
-            return false;
-        }
-        if (esNum(id) === true) {
-            adderror("plan-tipo-servicio");
-            negativeattributes("error-plan-tipo-servicio", 'El nombre no puede ser un número');
-            $("#plan-tipo-servicio").focus();
-            $("#plan-tipo-servicio").keyup(keyTS);
-            return false;
-        }
-        if (tieneCaracEsp(id) === true) {
-            adderror("plan-tipo-servicio");
-            negativeattributes("error-plan-tipo-servicio", 'El nombre del tipo servicio debe empezar con una letra y no debe ser caracter especial');
-            $("#plan-tipo-servicio").focus();
-            $("#plan-tipo-servicio").keyup(keyTS);
-            return false;
-        }
-        if (maximoNumeroCaracteres50(id) === true) {
-            adderror("plan-tipo-servicio");
-            negativeattributes("error-plan-tipo-servicio", 'El nombre debe ser de menos de 50 caracteres');
-            $("#plan-tipo-servicio").focus();
-            $("#plan-tipo-servicio").keyup(keyTS);
-            return false;
-        }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Tipo_Servicio_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_tipo_servicio: $("#plan-tipo-servicio").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    vtiposervicio = 1;
-                }
-            });
-        }
-        if (vtiposervicio === 0) {
-            adderror("plan-tipo-servicio");
-            negativeattributes("error-plan-tipo-servicio", 'El nombre de este servicio no existe');
-            $("#plan-tipo-servicio").keyup(keyTS);
-            return false;
-        }
-        else { return true; }
-    }
-    var keyTS = function () {
-        var $valor = $("#plan-tipo-servicio");
-        if ($valor.val() === "") {
-            negativeattributes("error-plan-tipo-servicio", 'Debe ingresar un nombre');
-            adderror("plan-tipo-servicio");
-        }
-        else if ($valor.val() === " ") {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa no debe empezar con un espacio en blanco');
-            adderror("plan-tipo-servicio");
-        }
-        else if (esNum($valor.val()) === true) {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre no puede ser un número');
-            adderror("plan-tipo-servicio");
-        }
-        else if (tieneCaracEsp($valor.val()) === true) {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
-            adderror("plan-tipo-servicio");
-        }
-        else if (maximoNumeroCaracteres50($valor.val()) === true) {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre debe ser de menos de 50 caracteres');
-            adderror("plan-tipo-servicio");
-        }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Tipo_Servicio_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_tipo_servicio: $("#plan-tipo-servicio").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    attributes("error-plan-tipo-servicio");
-                    addgood("plan-tipo-servicio");
-                }
-                else {
-                    adderror("plan-tipo-servicio");
-                    negativeattributes("error-plan-tipo-servicio", 'El nombre de este servicio no existe');
-                }
-            });
-        }
+    //};
+    ////Validacion Tipo Servicio
+    //function validar_tipo_servicio_plan(id) {
+    //    var vtiposervicio = 0;
+    //    if (id === "") {
+    //        adderror("plan-tipo-servicio");
+    //        negativeattributes("error-plan-tipo-servicio", 'Debe ingresar un nombre');
+    //        $("#plan-tipo-servicio").focus();
+    //        $("#plan-tipo-servicio").keyup(keyTS);
+    //        return false;
+    //    }
+    //    if (id === " ") {
+    //        adderror("plan-tipo-servicio");
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre del tipo servicio no debe empezar con un espacio en blanco');
+    //        $("#plan-tipo-servicio").focus();
+    //        $("#plan-tipo-servicio").keyup(keyTS);
+    //        return false;
+    //    }
+    //    if (esNum(id) === true) {
+    //        adderror("plan-tipo-servicio");
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre no puede ser un número');
+    //        $("#plan-tipo-servicio").focus();
+    //        $("#plan-tipo-servicio").keyup(keyTS);
+    //        return false;
+    //    }
+    //    if (tieneCaracEsp(id) === true) {
+    //        adderror("plan-tipo-servicio");
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre del tipo servicio debe empezar con una letra y no debe ser caracter especial');
+    //        $("#plan-tipo-servicio").focus();
+    //        $("#plan-tipo-servicio").keyup(keyTS);
+    //        return false;
+    //    }
+    //    if (maximoNumeroCaracteres50(id) === true) {
+    //        adderror("plan-tipo-servicio");
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre debe ser de menos de 50 caracteres');
+    //        $("#plan-tipo-servicio").focus();
+    //        $("#plan-tipo-servicio").keyup(keyTS);
+    //        return false;
+    //    }
+    //    else {
+    //        $.ajax({
+    //            url: "/Plan/Evaluar_Tipo_Servicio_Plan",
+    //            method: "GET",
+    //            async: false,
+    //            data: {
+    //                plan_tipo_servicio: $("#plan-tipo-servicio").val()
+    //            },
+    //            dataType: "json"
+    //        }).done(function (data) {
+    //            if (data !== 0) {
+    //                vtiposervicio = 1;
+    //            }
+    //        });
+    //    }
+    //    if (vtiposervicio === 0) {
+    //        adderror("plan-tipo-servicio");
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre de este servicio no existe');
+    //        $("#plan-tipo-servicio").keyup(keyTS);
+    //        return false;
+    //    }
+    //    else { return true; }
+    //}
+    //var keyTS = function () {
+    //    var $valor = $("#plan-tipo-servicio");
+    //    if ($valor.val() === "") {
+    //        negativeattributes("error-plan-tipo-servicio", 'Debe ingresar un nombre');
+    //        adderror("plan-tipo-servicio");
+    //    }
+    //    else if ($valor.val() === " ") {
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa no debe empezar con un espacio en blanco');
+    //        adderror("plan-tipo-servicio");
+    //    }
+    //    else if (esNum($valor.val()) === true) {
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre no puede ser un número');
+    //        adderror("plan-tipo-servicio");
+    //    }
+    //    else if (tieneCaracEsp($valor.val()) === true) {
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
+    //        adderror("plan-tipo-servicio");
+    //    }
+    //    else if (maximoNumeroCaracteres50($valor.val()) === true) {
+    //        negativeattributes("error-plan-tipo-servicio", 'El nombre debe ser de menos de 50 caracteres');
+    //        adderror("plan-tipo-servicio");
+    //    }
+    //    else {
+    //        $.ajax({
+    //            url: "/Plan/Evaluar_Tipo_Servicio_Plan",
+    //            method: "GET",
+    //            async: false,
+    //            data: {
+    //                plan_tipo_servicio: $("#plan-tipo-servicio").val()
+    //            },
+    //            dataType: "json"
+    //        }).done(function (data) {
+    //            if (data !== 0) {
+    //                attributes("error-plan-tipo-servicio");
+    //                addgood("plan-tipo-servicio");
+    //            }
+    //            else {
+    //                adderror("plan-tipo-servicio");
+    //                negativeattributes("error-plan-tipo-servicio", 'El nombre de este servicio no existe');
+    //            }
+    //        });
+    //    }
 
-    };
-    //
+    //};
+    
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
         $("#" + id).addClass("textsuccess");
@@ -620,5 +622,5 @@
             $("#plan-tiempo").focus();
             return false;
         }*/
-    $("#boton-Registrar").click(validacion);
+    $("#boton-Actualizar").click(validacion);
 });
