@@ -29,6 +29,8 @@ namespace SWMGEGCSS.Controllers
             var model = new ExpedienteViewModel();
             model.Expediente = Expediente;
             var plan_expediente = planesmodel.Find(modelo => (modelo.plan_nombre == model.Expediente.plan_nombre));
+            var modeloActividades = new ActividadViewModel();
+            modeloActividades.list_Actividades_Planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r=>r.plan_id==plan_expediente.plan_id);
             var modelExpediente = new T_expedientes();
             modelExpediente.plan_id = plan_expediente.plan_id;
             modelExpediente.usu_creador = (int)Session["login"];
@@ -38,12 +40,26 @@ namespace SWMGEGCSS.Controllers
             modelExpediente.exp_ganancia = model.Expediente.exp_ganancia;
             modelExpediente.exp_nombre = model.Expediente.exp_nombre;
             var operationResult = new ExpedienteDataAccess().sp_Insertar_Proyecto(modelExpediente);
+            modelExpediente = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(r => r.exp_nombre == modelExpediente.exp_nombre);
+            foreach (var item in modeloActividades.list_Actividades_Planeadas)
+            {
+                T_actividades_desarrollar act_desarrollar = new T_actividades_desarrollar();
+                act_desarrollar.exp_id = modelExpediente.exp_id;
+                act_desarrollar.usu_creador = modelExpediente.usu_creador;
+                act_desarrollar.est_act_id = 1;
+                act_desarrollar.act_desa_nombre = item.act_plan_nombre;
+                act_desarrollar.act_desa_descripcion = item.act_plan_descripcion;
+                var operationResult1 = new ActividadesDataAccess().sp_Insertar_Actividades_Desarrollar(act_desarrollar);
+            }
+
             return Json(new { data=operationResult.NewId},JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult _ModalProyecto()
         {
             var model = new ExpedienteViewModel();
+            model.ActividadModel = new ActividadViewModel();
+            model.ActividadModel.list_Actividades = new List<T_actividades>();
             return PartialView(model);
         }
         [HttpPost]
@@ -51,6 +67,9 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new ExpedienteViewModel();
             model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => (r.exp_id == id));
+            model.Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(r=>(r.exp_id==id));
+            model.ActividadModel = new ActividadViewModel();
+            model.ActividadModel.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(model.Expedientes.tipo_servicio_id);
             return PartialView(model);
         }
         [HttpGet]
@@ -114,6 +133,12 @@ namespace SWMGEGCSS.Controllers
                 label = r.plan_nombre
             });
             return Json(namePlanes, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult _ListarActividadesNoPlan(int id)
+        {
+            var model =new  ActividadViewModel();
+            model.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(id);
+            return PartialView(model);
         }
     }
 }

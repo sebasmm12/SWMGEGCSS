@@ -17,5 +17,7 @@ namespace SWMGEGCSS.Models
         public T_estado_expediente Estado_Expediente { get; set; }
         public List<T_estado_expediente> List_Estado_Expediente { get; set; }
         public string tipo_estado { get; set; }
+        public ActividadViewModel ActividadModel { get; set; }
+
     }
 }

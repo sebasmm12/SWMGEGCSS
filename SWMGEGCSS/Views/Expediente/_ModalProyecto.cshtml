@@ -3,6 +3,8 @@
        Layout = null;
        var exp_inicio = "";
        var exp_fin = "";
+       var count = 0;
+       var list_actividades = Model.ActividadModel.list_Actividades;
        if (Model.Expediente != null)
        {
            exp_inicio = Model.Expediente.exp_inicio.ToString("yyyy-MM-dd");
@@ -10,6 +12,10 @@
        if (Model.Expediente!= null)
        {
            exp_fin = Model.Expediente.exp_fin.ToString("yyyy-MM-dd");;
+       }
+       if (Model.ActividadModel.list_Actividades != null)
+       {
+           list_actividades = Model.ActividadModel.list_Actividades;
        }
 
    }
@@ -111,6 +117,42 @@
                                 htmlAttributes = new { @class = "text-center form-control" }
                             })
                         </div>
+                    </div>
+                    <div class="col-sm-6 col-12 col-md-6">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                               Actividades Extra
+                            </label>
+                        </div>
+                        <div>
+                           <select class="custom-select" id="actividades" name="actividades">
+                               <option class="font-weight-bolder">Elige una opción</option>
+                                  @foreach (var item in list_actividades)
+                                  {
+                                      <option value="@item.act_id">@item.act_nombre</option>
+                                  }
+                           </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-success">
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre de la Actividad</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Acciones del Proyecto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in )
+                                {
+
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="mt-4 mb-4">
