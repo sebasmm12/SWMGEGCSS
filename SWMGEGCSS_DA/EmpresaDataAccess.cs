@@ -16,7 +16,7 @@ namespace SWMGEGCSS_DA
             var l_empresa = new List<T_empresa>();
             try
             {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Empresa"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Empresas"))
                 {
                     
                     using (IDataReader reader = Database.ExecuteReader(command))
