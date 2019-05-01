@@ -173,11 +173,27 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Registrar_Actualizar_Tareas_Planeadas(int id, T_actividades actividades)
+       /*public ActionResult Registrar_Actualizar_Tareas_Planeadas(int plan_id, int act_id, T_actividades_planeadas act_plan)
         {
-            var actividad = actividades;
-            var model = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => (x.act_id == actividad.act_id));
+            
+            var model = new ActividadesDataAccess().sp_Consultar_Actividades_planeadas_por_plan_act(plan_id, act_id);
+            
+            if(model != null)
+            {
+                var actividadesPlaneadas = new T_actividades_planeadas();
+                actividadesPlaneadas.plan_id = plan_id;
+                actividadesPlaneadas.act_id = act_id;
+                actividadesPlaneadas.act_plan_nombre = act_plan.act_plan_nombre;
+                actividadesPlaneadas.act_plan_descripcion = act_plan.act_plan_descripcion;
+                actividadesPlaneadas.act_plan_costo = act_plan.act_plan_costo;
+                actividadesPlaneadas.act_plan_tiempo = act_plan.act_plan_tiempo;
+                var actividad = new ActividadesDataAccess().sp_registrar_actividades_planeadas(actividadesPlaneadas);
+            }
+            else
+            {
 
-        }
+            }
+
+        }*/
     }
 }

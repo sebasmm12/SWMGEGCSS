@@ -63,11 +63,8 @@
             },
             contentType: "application/json; charset=utf-8",
             dataType: "json"
-        }).done(function (data) {
-            if (data === "1") {
+        }).done(function (data) {          
                 window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
-            }
-
         });
         return false;
     };
@@ -75,7 +72,7 @@
         $(this).click(function () {
             var $button = $(this);
             var modal = $button.attr("data-id-target");
-            var id_plan = $(this).attr("data-id-plan");
+            id_plan = $(this).attr("data-id-plan");
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "POST",

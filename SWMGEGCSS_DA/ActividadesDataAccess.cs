@@ -164,8 +164,24 @@ namespace SWMGEGCSS_DA
             catch (Exception)
             {
 
-                return new List<T_actividades>();
+                return new T_actividades();
             }
+        }
+        public OperationResult sp_registrar_actividades_planeadas(T_actividades_planeadas actividades_planeadas)
+        {
+            var operation = new OperationResult();
+            using (DbCommand command = Database.GetStoredProcCommand("sp_registrar_actividades_planeadas"))
+            {
+                Database.AddInParameter(command, "@plan_id", DbType.Int32, actividades_planeadas.plan_id);
+                Database.AddInParameter(command, "@act_id", DbType.Int32, actividades_planeadas.act_id);
+                Database.AddInParameter(command, "@act_plan_nombre", DbType.String, actividades_planeadas.act_plan_nombre);
+                Database.AddInParameter(command, "@act_plan_descripcion", DbType.String, actividades_planeadas.act_plan_descripcion);
+                Database.AddInParameter(command, "@act_plan_costo", DbType.Double, actividades_planeadas.act_plan_costo);
+                Database.AddInParameter(command, "@act_plan_tiempo", DbType.Int32, actividades_planeadas.act_plan_tiempo);
+                Database.ExecuteScalar(command);
+                operation.NewId = 1;
+            }
+            return operation;
         }
     }
 }
