@@ -95,7 +95,11 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Gestionar_Plan_Proyecto(int page = 1)
         { 
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
-            model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3);
+            model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 4);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaPlan", model);
+            }
             return View(model);
         }
         public ActionResult AutoComplete(string term)
