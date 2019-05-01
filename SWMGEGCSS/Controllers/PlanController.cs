@@ -90,8 +90,9 @@ namespace SWMGEGCSS.Controllers
             });
             return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
         }
+
         //*Metodos para el autocompletado*//
-        public ActionResult CompletarNombreEmpresas(string term)
+        public ActionResult CompletarNombreEmpresas([Bind(Prefix = "term")]string term)
         {
             var model = new GestionarEmpresaViewModel();
             model.listempresas = new PlanDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
@@ -111,7 +112,7 @@ namespace SWMGEGCSS.Controllers
             });
             return Json(namePlanEstado, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult CompletarNombreTipoServicio(string term)
+        public ActionResult CompletarNombreTipoServicio([Bind(Prefix = "term")]string term)
         {
             var model = new List<T_tipo_servicio>();
             model = new PlanDataAccess().sp_Consultar_Lista_Nombre_Tipo_Servicio(term);
