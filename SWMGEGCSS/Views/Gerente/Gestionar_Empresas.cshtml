@@ -38,7 +38,15 @@
                     <td>@item.emp_telefono</td>
                     <td>@item.emp_email</td>
                     
-                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-warning">
+                            @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
+                        </button>
+
+                        <button type="button" class="btn btn-warning">
+                            @Html.ActionLink("Eliminar Empresa", "_Eliminar_Empresa", "Empresa", new { emp_id = item.emp_id },new { @style = "color: white !important" })
+                        </button>
+                    </td>
                 </tr>
                 }
 

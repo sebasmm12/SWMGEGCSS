@@ -19,13 +19,7 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
 
-        public ActionResult _Eliminar_Empresa()
-        {
-            
 
-
-            return View();
-        }
         public ActionResult Actualizar_Empresa()
         {
             return View();
@@ -46,5 +40,23 @@ namespace SWMGEGCSS.Controllers
             operationResult = new EmpresaDataAccess().sp_Insertar_Empresa(model.empresas);
             return View();
         }
+        [HttpGet]
+        public ActionResult _Eliminar_Empresa(int emp_id)
+        {
+            var model = new GestionarEmpresaViewModel();
+            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().Find(r => r.emp_id == emp_id);
+                return View(model);
+        }
+        [HttpPost]
+        public ActionResult _Eliminar_Empresa(T_empresa empresas)
+        {
+            var model = new GestionarEmpresaViewModel();
+            model.empresas = empresas;
+            model.empresas.usu_codigo = (int)Session["login"];
+            var operationResult = new OperationResult();
+            operationResult = new EmpresaDataAccess().sp_Eliminar_Empresa(model.empresas);
+            return View();
+        }
+        
     }
 }
