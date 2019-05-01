@@ -75,7 +75,7 @@
         return false;
     };
     var tieneCaracEspOnly = function empiezaConCaracteresEspecialesOnly(X) {
-        var iChars = "/^[0-9]+$/";
+        var iChars = "!@#_$%^&*()+=-[]\\\';,./{}|\":<>?";
         for (var i = 0; i < X.length; i++) {
             if (iChars.indexOf(X.charAt(i)) !== -1) {//numero es un CE o un numero
                 return true;
@@ -306,7 +306,7 @@
         return true;
     }
     function keyT() {
-        var RegularExpression = /^\d+[.]*\d*$/;
+        //var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#plan-tiempo");
         if ($valor.val() === "") {
             negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
@@ -351,13 +351,13 @@
             $("#plan-emp").keyup(keyE);
             return false;
         }
-        if (tieneCaracEsp(id) === true) {
+        /*if (tieneCaracEspOnly(id) === true) {
             adderror("plan-emp");
             negativeattributes("error-plan-emp", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
             $("#plan-emp").focus();
             $("#plan-emp").keyup(keyE);
             return false;
-        }
+        }*/
         if (maximoNumeroCaracteres50(id) === true) {
             adderror("plan-emp");
             negativeattributes("error-plan-emp", 'El nombre debe ser de menos de 50 caracteres');
@@ -402,10 +402,10 @@
             negativeattributes("error-plan-emp", 'El nombre no puede ser un número');
             adderror("plan-emp");
         }
-        else if (tieneCaracEsp($valor.val()) === true) {
+        /*else if (tieneCaracEsp($valor.val()) === true) {
             negativeattributes("error-plan-emp", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
             adderror("plan-emp");
-        }
+        }*/
         else if (maximoNumeroCaracteres50($valor.val()) === true) {
             negativeattributes("error-plan-emp", 'El nombre debe ser de menos de 50 caracteres');
             adderror("plan-emp");
