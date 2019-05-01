@@ -46,12 +46,14 @@
             </div>
         </div>
         @Html.Partial("_ListaPlan", Model)
+        @Html.Action("_Eliminar_Plan_De_Proyecto", "Plan")
     </div>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/scriptGestionarPlan1.js"></script>
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
