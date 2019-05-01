@@ -85,7 +85,6 @@ namespace SWMGEGCSS.Controllers
         {
             GestionarEmpresaViewModel model = new GestionarEmpresaViewModel();
             if (searchTerm == null && estado == null)
-                // model.listEmpresas = new EmpresaDataAccessDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page, 2);
                 model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).ToPagedList(page, 2);
             if (estado != null)
             {
