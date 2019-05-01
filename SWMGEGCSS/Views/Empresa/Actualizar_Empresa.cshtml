@@ -1,4 +1,4 @@
-﻿
+﻿@model SWMGEGCSS.Models.GestionarEmpresaViewModel
 @{
     ViewBag.Title = "Actualizar_Empresa";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
@@ -7,62 +7,133 @@
 <h2>Actualizar_Empresa</h2>
 
 <div>
-    <div class="container form mt-5">
-        <div>
-            <label>
-                Id
-            </label>
-            
-                <input type="text" value="" id="emp_telefono" disabled />
-
-           
-        </div>
-        <div>
-            <label>
-                Ruc
-            </label>
-            <input type="text" value="" id="emp_ruc"disabled />
-        </div>
-        <div>
-            <label>
-                Razón Social
-            </label>
-            <input type="text" value="" id="emp_razon_social"disabled />
-        </div>
-
-        <div>
-            <label>
-                Representante
-            </label>
-            <input type="text" value="" id="emp_representante"disabled />
-        </div>
-
-        <div>
-            <label>
-                Teléfono
-            </label>
-            <input type="text" value="" id="emp_telefono" disabled />
-        </div>
-
-
-        <div class="mt-4 mb-4">
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-6">
-                    <button type="button" class="btn btn-danger rounded-pill btnActualizar" style="color:white !important">
-                        <i class="fa fa-times-circle" style="color:white !important"></i>
-                        Actualizar
-                    </button>
+    @using (Html.BeginForm())
+    {
+        <div class="row mt-5 pl-2">
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        RAZÓN SOCIAL
+                    </label>
                 </div>
-                <div class="col-sm-6 col-md-6 col-6">
-                    <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
-                        <i class="fa fa-arrow-left"></i>
-                        Cancelar
-                    </button>
-                </div>
+                @Html.EditorFor(model => model.empresas.emp_razon_social, new
+                {
+                   htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "text-center form-control" }
+                })
+                <div id="error-plan-fecha" class="errordiv"></div>
             </div>
-
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">.sp
+                        DIRECCIÓN
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.empresas.emp_direccion, new
+                {
+                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
+                })
+                <div id="error-plan-tipo-servicio" class="errordiv"></div>
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        SIGLAS
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.empresas.emp_sigla, new
+               {
+                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+               })
+                <div id="error-plan-emp" class="errordiv"></div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        NÚMERO DE CONTACTO
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.empresas.emp_telefono, new
+                {
+                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
+                })
+                <div id="error-plan-tipo-servicio" class="errordiv"></div>
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        RUC
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.empresas.emp_ruc, new
+               {
+                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+               })
+                <div id="error-plan-emp" class="errordiv"></div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        FAX
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.empresas.emp_fax, new
+               {
+                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+               })
+                <div id="error-plan-emp" class="errordiv"></div>
+            </div>
+        </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        REPRESENTANTE LEGAL
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.empresas.emp_representante, new
+               {
+                   htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
+               })
+                <div id="error-plan-costo" class="errordiv"></div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        EMAIL
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.empresas.emp_email, new
+               {
+                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+               })
+                <div id="error-plan-emp" class="errordiv"></div>
+            </div>
         </div>
 
+        <div id="errordiv"></div>
+        <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success" id="boton-Registrar">
+                    <i class="fa fa-check-circle"></i>
+                    Registrar Plan
+                </button>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <a href="@Url.Action("Gestionar_Empresas","Gerente")" class="btn btn-secondary">
+                    <i class="fa fa-backward">
 
-    </div>
+                    </i>
+                    Regresar
+                </a>
+            </div>
+        </div>
+    }
+
 </div>
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+}

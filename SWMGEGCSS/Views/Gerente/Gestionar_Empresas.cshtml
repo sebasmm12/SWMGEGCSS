@@ -38,7 +38,14 @@
                     <td>@item.emp_telefono</td>
                     <td>@item.emp_email</td>
                     
-                    <td></td>
+                    <td>
+                        <a href="@Url.Action("Actualizar_Empresa","Empresa")" class="btn btn-success rounded-pill">
+                            Actualizar
+                        </a>
+                        <a href="@Url.Action("_Eliminar_Empresa","Empresa")" class="btn btn-danger rounded-pill">
+                            Eliminar
+                        </a>
+                    </td>
                 </tr>
                 }
 
@@ -59,6 +66,7 @@
             <i class="fa fa-plus-circle"></i>
             Registrar Nueva Empresa
         </a>
+
 
     </div>
 

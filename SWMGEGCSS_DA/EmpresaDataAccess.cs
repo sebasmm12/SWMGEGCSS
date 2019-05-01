@@ -100,6 +100,37 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+
+        public OperationResult sp_Actualizar_Empresa(T_empresa Empresa)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Empresa"))
+                {
+                    Database.AddInParameter(command, "@emp_ruc", DbType.String, Empresa.emp_ruc);
+                    Database.AddInParameter(command, "@emp_razon_social", DbType.String, Empresa.emp_razon_social);
+                    Database.AddInParameter(command, "@emp_sigla", DbType.String, Empresa.emp_sigla);
+                    Database.AddInParameter(command, "@emp_representante", DbType.String, Empresa.emp_representante);
+                    Database.AddInParameter(command, "@emp_direccion", DbType.String, Empresa.emp_direccion);
+                    Database.AddInParameter(command, "@emp_telefono", DbType.String, Empresa.emp_telefono);
+                    Database.AddInParameter(command, "@emp_fax", DbType.String, Empresa.emp_fax);
+                    Database.AddInParameter(command, "@emp_email", DbType.String, Empresa.emp_email);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+                return new OperationResult();
+            }
+        }
+
+
+
+
+
         public OperationResult sp_Eliminar_Empresa(int exp_id, string exp_comentario)
         {
             try
