@@ -30,8 +30,20 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult _Registrar_Empresa()
+        [HttpGet]
+        public ActionResult Registrar_Empresa()
         {
+            var model = new GestionarEmpresaViewModel();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Registrar_Empresa(T_empresa empresas)
+        {
+            var model = new GestionarEmpresaViewModel();
+            model.empresas = empresas;
+            model.empresas.usu_codigo = (int)Session["login"];
+            var operationResult = new OperationResult();
+            operationResult = new EmpresaDataAccess().sp_Insertar_Empresa(model.empresas);
             return View();
         }
     }
