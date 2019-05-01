@@ -15,5 +15,11 @@ namespace SWMGEGCSS.Models
 
         public IPagedList<T_plan_aux> listPplans
         { get; set; }
+
+        public T_plan_estado Estado_Plan { get; set; }
+        public List<T_plan_estado> List_Estado_Plan { get; set; }
+        public List<T_actividades> List_Actividades { get; set; }
+        public List<T_actividades_planeadas_aux> List_Actividades_planeadas_aux { get; set; }
+        //public string tipo_estado { get; set; }
     }
 }

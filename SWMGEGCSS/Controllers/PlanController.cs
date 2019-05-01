@@ -47,7 +47,14 @@ namespace SWMGEGCSS.Controllers
         {
             /*var model = new GestionarPlanProyectoViewModel();*/
             var model = new GestionarPlanProyectoViewModel();
+            //se obtiene el plan
             model.plans_aux = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(r => (r.plan_id == id));
+            //se obtiene los valores del tipo servicio
+            var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
+            //se obtiene la lista de actividades segun el tipo de servicio
+            model.List_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(tipoServicioModel.tipo_servicio_id);
+            //se obtiene las actividades planificadas previamente
+            model.List_Actividades_planeadas_aux = new  ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().FindAll(r => (r.plan_nombre == model.plans_aux.plan_nombre));
             return View(model);
         }
         [HttpPost]
@@ -155,6 +162,22 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
-        
+        public ActionResult Evaluar_Tipo_Servicio_Plan(string plan_tipo_servicio)
+        {
+            var model = new TipoServicioDataAccess().sp_Consultar_Lista_Tipo_Servicio();
+            var modelEvaluado = model.Find(r => r.tipo_servicio_nombre == plan_tipo_servicio);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Registrar_Actualizar_Tareas_Planeadas(int id, T_actividades actividades)
+        {
+            var actividad = actividades;
+            var model = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => (x.act_id == actividad.act_id));
+
+        }
     }
 }

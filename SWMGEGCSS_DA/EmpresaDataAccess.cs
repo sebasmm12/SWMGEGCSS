@@ -129,18 +129,16 @@ namespace SWMGEGCSS_DA
         }
 
 
-
-
-
-        public OperationResult sp_Eliminar_Empresa(int exp_id, string exp_comentario)
+        public OperationResult sp_Eliminar_Empresa(T_empresa Empresa)
         {
             try
             {
                 var operation = new OperationResult();
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Eliminar_Proyecto"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Eliminar_Empresa"))
                 {
-                    Database.AddInParameter(command, "@exp_id", DbType.Int32, exp_id);
-                    Database.AddInParameter(command, "@exp_comentario", DbType.String, exp_comentario);
+
+                    Database.AddInParameter(command, "@emp_id", DbType.Int32, Empresa.emp_id);
+
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
@@ -152,8 +150,14 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+
     }
 
 
-    }
+}
+
+
+
+
+
 

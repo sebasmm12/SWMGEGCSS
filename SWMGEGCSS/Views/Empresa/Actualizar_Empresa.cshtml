@@ -9,6 +9,9 @@
 <div>
     @using (Html.BeginForm())
     {
+        <div>
+            @Html.HiddenFor(model=>model.empresas.emp_id)
+        </div>
         <div class="row mt-5 pl-2">
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
