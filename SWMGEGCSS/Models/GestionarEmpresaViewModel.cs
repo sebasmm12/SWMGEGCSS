@@ -13,6 +13,8 @@ namespace SWMGEGCSS.Models
         public T_empresa empresas { get; set; }
         public List<T_empresa> listempresas { get; set; }
 
+        
+
         public IPagedList<T_empresa> listEmpresas
         { get; set; }
     }

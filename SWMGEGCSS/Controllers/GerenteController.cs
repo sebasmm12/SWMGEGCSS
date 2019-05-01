@@ -81,12 +81,65 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Empresas(int page = 1)
+        public ActionResult Gestionar_Empresas(string searchTerm, string estado, int page = 1)
         {
             GestionarEmpresaViewModel model = new GestionarEmpresaViewModel();
-           
-            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().ToPagedList(page, 4);
+            if (searchTerm == null && estado == null)
+                // model.listEmpresas = new EmpresaDataAccessDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page, 2);
+                model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).ToPagedList(page, 2);
+            if (estado != null)
+            {
+                if (searchTerm != null)
+                {
+                    if (estado.Equals("Todos"))
+                    {
+                        model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).ToPagedList(page, 2);
+                    }
+                    else
+                    {
+                        model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).FindAll(r => (r.emp_estado == Convert.ToBoolean(estado))).ToPagedList(page, 2);
+                    }
+
+                }
+            }
+            if (estado != null)
+            {
+                model.empresas.emp_estado = Convert.ToBoolean(estado);
+                Session["est_razon_social"] = model.empresas.emp_estado;
+            }
+
+            else
+            {
+                model.empresas.emp_estado = true;
+                Session["est_razon_social"] = model.empresas.emp_estado;
+            }
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaProyecto", model);
+            }
+            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).ToPagedList(page, 4);
             return View(model);
+        }
+
+        public ActionResult AutoCompleteEmpresa(string term)
+        {
+            var model = new GestionarEmpresaViewModel();
+            string estado = (string)Session["est_razon_social"];
+            if (estado.Equals("Todos"))
+            {
+                model.listempresas= new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
+            }
+            else
+            {
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == Convert.ToBoolean(estado)));
+            }
+
+            var nameExpedientes = model.listempresas.Select(r => new
+            {
+                label = r.emp_razon_social
+            });
+            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Visualizar_Personal_Proyecto()
         {
