@@ -3,12 +3,15 @@
 @{
     ViewBag.Title = "Actualizar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-    var listaTareaPlan = Model.List_Actividades_planeadas;
+    var listaTareaPlan = Model.List_Actividades_planeadas_aux;
+    var listaTotalActividades = Model.List_Actividades;
+    var listaActividadesPlaneadas = Model.List_Actividades_planeadas;
     var plan_fecha = "";
     var count = 0;
     if (Model.plans_aux != null)
     {
         plan_fecha = Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd");
+
     }
 
 }
@@ -146,7 +149,7 @@
                                 <td>@item.act_plan_nombre</td>
                                 <td>@item.act_plan_costo</td>
                                 <td>@item.act_plan_tiempo</td>
-                                <td>@item.act_id</td>
+                                <td>@item.act_nombre</td>
                                 <td>
                                     <button type="button" class="btn btn-danger">
                                         <i class="fa fa-times"></i>

@@ -55,7 +55,7 @@
     };
     var EnvioComentario = function (comentario) {
         $.ajax({
-            url: "/Plan/EliminarPlanDeProyecto",
+            url: "/Expediente/EliminarExpediente",
             method: "GET",
             data: {
                 id: id_proyecto,
