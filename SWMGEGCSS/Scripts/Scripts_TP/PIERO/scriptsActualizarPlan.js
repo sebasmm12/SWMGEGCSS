@@ -2,20 +2,20 @@
     validacion = function () {
         //declaracion de variables jquery
         var $planNombre = $("#plan-nombre");
-        /*var $planFecha = $("#plan-fecha");
-        var $planCosto = $("#plan-costo");
+        var $planFecha = $("#plan-fecha");
+        /*var $planCosto = $("#plan-costo");
         var $planTiempo = $("#plan-tiempo");
         var $planEmp = $("#plan-emp");
         var $planTipoServicio = $("#plan-tipo-servicio");*/
 
         var vnombre = validar_nombre_plan($planNombre.val());
-        /*var vfecha = validar_fecha_plan($planFecha.val());
-        var vcosto = validar_costo_plan($planCosto.val());
+        var vfecha = validar_fecha_plan($planFecha.val());
+        /*var vcosto = validar_costo_plan($planCosto.val());
         var vtiempo = validar_tiempo_plan($planTiempo.val());
         var vemp = validar_emp_plan($planEmp.val());
         var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());*/
 
-        if (vnombre === false/* || vfecha === false || vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false*/) {
+        if (vnombre === false|| vfecha === false /*|| vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false*/) {
             return false;
         }
         else {
@@ -172,53 +172,54 @@
         }
 
     };
-    ////Validacion Fecha Plan
-    //function validar_fecha_plan(id) {
-    //    var fechaIngresada = new Date($("#plan-fecha").val());
-    //    fechaIngresada.setDate(fechaIngresada.getDate() + 1);
-    //    var dateActual = new Date();
-    //    dateActual.setHours(0, 0, 0, 0);
-    //    fechaIngresada.setHours(0, 0, 0, 0);
-    //    if (id === "") {
-    //        adderror("plan-fecha");
-    //        negativeattributes("error-plan-fecha", 'Debe ingresar una fecha');
-    //        $("#plan-fecha").focus();
-    //        $("#plan-fecha").change(keyfechaI);
-    //        return false;
-    //    }
-    //    else {
-    //        if (fechaIngresada >= dateActual) {
-    //            attributes("error-plan-fecha");
-    //            addgood("plan-fecha");
-    //        } else {
-    //            negativeattributes("error-plan-fecha", 'Debe ingresar una fecha válida');
-    //            adderror("plan-fecha");
-    //            return false;
-    //        }
-    //    }
-    //    return true;
-    //}
-    //var keyfechaI = function () {
-    //    var fechaIngresada = new Date($("#plan-fecha").val());
-    //    fechaIngresada.setDate(fechaIngresada.getDate() + 1);
-    //    var dateActual = new Date();
-    //    dateActual.setHours(0, 0, 0, 0);
-    //    fechaIngresada.setHours(0, 0, 0, 0);
-    //    var $fecha_inicio = $("#plan-fecha");
-    //    if ($fecha_inicio.val() === "") {
-    //        negativeattributes("error-plan-fecha", 'Debe ingresar una fecha');
-    //        adderror("plan-fecha");
-    //    } else {
-    //        if (fechaIngresada >= dateActual) {
-    //            attributes("error-plan-fecha");
-    //            addgood("plan-fecha");
-    //        } else {
-    //            negativeattributes("error-plan-fecha", 'Debe ingresar una fecha válida');
-    //            adderror("plan-fecha");
-    //        }
-    //    }
-    //};
-    ////Validacion Costo
+    //Validacion Fecha Plan
+    function validar_fecha_plan(id) {
+        var fechaIngresada = new Date($("#plan-fecha").val());
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        var dateActual = new Date();
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
+        if (id === "") {
+            adderror("plan-fecha");
+            negativeattributes("error-plan-fecha", 'Debe ingresar una fecha');
+            $("#plan-fecha").focus();
+            $("#plan-fecha").change(keyfechaI);
+            return false;
+        }
+        else {
+            if (fechaIngresada >= dateActual) {
+                attributes("error-plan-fecha");
+                addgood("plan-fecha");
+            } else {
+                negativeattributes("error-plan-fecha", 'Debe ingresar una fecha válida');
+                adderror("plan-fecha");
+                return false;
+            }
+        }
+        return true;
+    }
+    var keyfechaI = function () {
+        var fechaIngresada = new Date($("#plan-fecha").val());
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        var dateActual = new Date();
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
+        var $fecha_inicio = $("#plan-fecha");
+        if ($fecha_inicio.val() === "") {
+            negativeattributes("error-plan-fecha", 'Debe ingresar una fecha');
+            adderror("plan-fecha");
+        } else {
+            if (fechaIngresada >= dateActual) {
+                attributes("error-plan-fecha");
+                addgood("plan-fecha");
+            } else {
+                negativeattributes("error-plan-fecha", 'Debe ingresar una fecha válida');
+                adderror("plan-fecha");
+            }
+        }
+    };
+
+    //Validacion Costo
     //function validar_costo_plan(id) {
     //    var RegularExpression = /^\d+[.]*\d*$/;
     //    var $valor = $("#plan-costo");
@@ -502,7 +503,7 @@
     //    }
 
     //};
-    //
+    
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
         $("#" + id).addClass("textsuccess");
@@ -621,5 +622,5 @@
             $("#plan-tiempo").focus();
             return false;
         }*/
-    $("#boton-Registrar").click(validacion);
+    $("#boton-Actualizar").click(validacion);
 });
