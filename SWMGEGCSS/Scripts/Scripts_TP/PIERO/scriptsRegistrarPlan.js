@@ -1,5 +1,5 @@
 ﻿$(function () {
-    var autocompletado = function () {
+    /*var autocompletado = function () {
         var $input = $(this);
         var options = {
             source: $input.attr("dataid")
@@ -7,7 +7,7 @@
         $input.autocomplete(options);
 
     };
-    $("input[dataid]").each(autocompletado);
+    $("input[dataid]").each(autocompletado);*/
     validacion = function () {
         //declaracion de variables jquery
         var $planNombre = $("#plan-nombre");
@@ -276,8 +276,8 @@
     }
     //Validacion Tiempo
     function validar_tiempo_plan(id) {
-        var RegularExpression = /^\d+[.]*\d*$/;
-        var $valor = $("#plan-tiempo");
+        //var RegularExpression = /^\d+[.]*\d*$/;
+        //var $valor = $("#plan-tiempo");
         if (id === "") {
             adderror("plan-tiempo");
             negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
@@ -292,17 +292,17 @@
             $("#plan-tiempo").keyup(keyT);
             return false;
         }
-        else {
-            if (!$valor.val().match(RegularExpression)) {
-                attributes("error-plan-tiempo");
-                addgood("plan-tiempo");
-            } else {
+        /*else {
+            if ($valor.val().match(RegularExpression)) {
                 negativeattributes("error-plan-tiempo", 'No se aceptan caracteres especiales');
                 adderror("plan-tiempo");
                 $("#plan-tiempo").keyup(keyT);
                 return false;
+            } else {
+                attributes("error-plan-tiempo");
+                addgood("plan-tiempo");
             }
-        }
+        }*/
         return true;
     }
     function keyT() {
@@ -317,14 +317,14 @@
             adderror("plan-tiempo");
         }
         else {
-            if (!$valor.val().match(RegularExpression)) {
-                negativeattributes("error-plan-tiempo", 'No se aceptan caracteres especiales');
-                adderror("plan-tiempo");
-            }
-            else {
+        //    if (!$valor.val().match(RegularExpression)) {
                 attributes("error-plan-tiempo");
                 addgood("plan-tiempo");
-            }
+        /*    }
+            else {
+                negativeattributes("error-plan-tiempo", 'No se aceptan caracteres especiales');
+                adderror("plan-tiempo");
+            }*/
         }
     }
     //Validacion Empresa
