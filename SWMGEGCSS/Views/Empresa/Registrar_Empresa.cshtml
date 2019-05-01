@@ -1,18 +1,14 @@
 ﻿@model SWMGEGCSS.Models.GestionarEmpresaViewModel
 @{
-    ViewBag.Title = "_Eliminar_Empresa";
+    ViewBag.Title = "Registrar_Empresa";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-    
 }
 
-<h2>_Eliminar_Empresa</h2>
-
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<h2>_Registrar_Empresa</h2>
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
-        <div>
-            @Html.HiddenFor(model=>model.empresas.emp_id))
-        </div>
         <div class="row mt-5 pl-2">
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
@@ -121,9 +117,9 @@
         <div id="errordiv"></div>
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" class="btn btn-success" id="boton-Eliminar">
+                <button type="submit" class="btn btn-success" id="boton-Registrar">
                     <i class="fa fa-check-circle"></i>
-                    Eliminar Empresa
+                    Registrar Plan
                 </button>
             </div>
             <div class="col-12 col-sm-3 col-md-3">
@@ -140,3 +136,8 @@
 
 
 </div>
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+}
+
+

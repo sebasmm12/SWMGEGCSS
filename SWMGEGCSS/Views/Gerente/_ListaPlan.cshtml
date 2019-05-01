@@ -1,7 +1,7 @@
 ﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
 @{
     var list_planes = Model.listPplans;
-    var selected_plan = Model.plans_aux;
+    /*var selected_plan = Model.plans_aux;*/
     var count = 0;
     Layout = null;
 }
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4 col-md-4 col-12">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
             @Html.PagedListPager(list_planes, page => Url.Action("Gestionar_Plan_Proyecto", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>

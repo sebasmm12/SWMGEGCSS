@@ -136,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ActividadViewModel.cs" />
     <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EjemploViewModel.cs" />
     <Compile Include="Models\ExpedienteViewModel.cs" />
@@ -297,6 +298,7 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
     <Content Include="Scripts\Scripts_TP\scriptsS.js" />
@@ -426,8 +428,8 @@
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
     <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
-    <Content Include="Views\Empresa\_Registrar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
