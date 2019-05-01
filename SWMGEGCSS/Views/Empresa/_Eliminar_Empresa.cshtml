@@ -5,13 +5,13 @@
     
 }
 
-<h2>_Eliminar_Empresa</h2>
+<h2>Eliminar Empresa</h2>
 
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
         <div>
-            @Html.HiddenFor(model=>model.empresas.emp_id))
+            @Html.HiddenFor(model=>model.empresas.emp_id)
         </div>
         <div class="row mt-5 pl-2">
             <div class="col-12 col-sm-6 col-md-6">
@@ -20,9 +20,10 @@
                         RAZÓN SOCIAL
                     </label>
                 </div>
+               
                 @Html.EditorFor(model => model.empresas.emp_razon_social, new
                 {
-                   htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-fecha", @class = "text-center form-control", @type = "text-center form-control" }
                 })
                 <div id="error-plan-fecha" class="errordiv"></div>
             </div>
@@ -34,7 +35,7 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_direccion, new
                 {
-                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-tipo-servicio", @class = "text-center form-control" }
                 })
                 <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
@@ -48,7 +49,7 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_sigla, new
                {
-                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-emp", @class = "text-center form-control" }
                })
                 <div id="error-plan-emp" class="errordiv"></div>
             </div>
@@ -60,7 +61,7 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_telefono, new
                 {
-                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-tipo-servicio", @class = "text-center form-control" }
                 })
                 <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
@@ -74,7 +75,7 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_ruc, new
                {
-                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-emp", @class = "text-center form-control" }
                })
                 <div id="error-plan-emp" class="errordiv"></div>
             </div>
@@ -86,7 +87,7 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_fax, new
                {
-                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-emp", @class = "text-center form-control" }
                })
                 <div id="error-plan-emp" class="errordiv"></div>
             </div>
@@ -100,7 +101,7 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_representante, new
                {
-                   htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-costo", @class = "text-center form-control" }
                })
                 <div id="error-plan-costo" class="errordiv"></div>
             </div>
@@ -112,7 +113,7 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_email, new
                {
-                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+                   htmlAttributes = new {@readonly="readonly", @id = "plan-emp", @class = "text-center form-control" }
                })
                 <div id="error-plan-emp" class="errordiv"></div>
             </div>
@@ -121,9 +122,10 @@
         <div id="errordiv"></div>
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" class="btn btn-success" id="boton-Eliminar">
-                    <i class="fa fa-check-circle"></i>
-                    Eliminar Empresa
+                <button type="submit" class="btn btn-success" id="boton-Eliminar" >
+                    
+                        <i class="fa fa-check-circle"></i>
+                        Eliminar Empresa
                 </button>
             </div>
             <div class="col-12 col-sm-3 col-md-3">

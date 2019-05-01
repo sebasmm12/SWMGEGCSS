@@ -1,12 +1,5 @@
 ﻿$(function () {
-     /*var autocompletado = function () {
-        var $input = $(this);
-        var options = {
-            source: $input.attr("dataid")
-        };
-        $input.autocomplete(options);
-    };
-    $("input[dataid]").each(autocompletado);*/
+       
     //var id_plan = 0;
     var getPage = function () {
         //var select = document.getElementById("estado");

@@ -40,9 +40,9 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
-               {
-                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
-               })
+           {
+               htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" , @dataid = Url.Action("CompletarNombreEmpresas", "Plan") }
+           })
                 <div id="error-plan-emp" class="errordiv"></div>
             </div>
         </div>
@@ -68,9 +68,9 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
-                {
-                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
-                })
+           {
+               htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
+           })
                 <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
         </div>
@@ -105,6 +105,8 @@
         </div>
     </form>
 </div>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsRegistrarPlan.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
