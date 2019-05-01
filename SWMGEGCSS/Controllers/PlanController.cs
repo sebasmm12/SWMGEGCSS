@@ -71,7 +71,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
-            return RedirectToAction("Gestionar_Plan_Proyecto", "Gerente");
+            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult CompletarNombrePlanes(string term)
         {
@@ -130,9 +130,6 @@ namespace SWMGEGCSS.Controllers
         [HttpGet]
         public ActionResult EliminarPlanDeProyecto(int id, string comentario)
         {
-            /*var planEliminar = new T_plan();
-            planEliminar.plan_id = id;
-            planEliminar.plan_comentario = comentario;*/
             var operationResult = new PlanDataAccess().sp_Cancelar_Plan(id, comentario);
             return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
@@ -158,17 +155,6 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Evaluar_Tipo_Servicio_Plan(string plan_tipo_servicio)
-        {
-            var model = new TipoServicioDataAccess().sp_Consultar_Lista_Tipo_Servicio();
-            var modelEvaluado = model.Find(r => r.tipo_servicio_nombre == plan_tipo_servicio);
-            int cont = 0;
-            if (modelEvaluado != null)
-            {
-                cont = 1;
-            }
-            return Json(cont, JsonRequestBehavior.AllowGet);
-        }
-
+        
     }
 }

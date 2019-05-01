@@ -1,12 +1,12 @@
 ﻿@model SWMGEGCSS.Models.GestionarEmpresaViewModel
 @{
-    ViewBag.Title = "Actualizar_Empresa";
+    ViewBag.Title = "Registrar_Empresa";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
 
-<h2>Actualizar_Empresa</h2>
-
-<div>
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<h2>_Registrar_Empresa</h2>
+<div class="container-fluid">
     @using (Html.BeginForm())
     {
         <div class="row mt-5 pl-2">
@@ -118,7 +118,8 @@
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
                 <button type="submit" class="btn btn-success" id="boton-Registrar">
-                   Actualizar Empresa
+                    <i class="fa fa-check-circle"></i>
+                    Registrar Plan
                 </button>
             </div>
             <div class="col-12 col-sm-3 col-md-3">
@@ -130,9 +131,13 @@
                 </a>
             </div>
         </div>
+
     }
+
 
 </div>
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
 }
+
+
