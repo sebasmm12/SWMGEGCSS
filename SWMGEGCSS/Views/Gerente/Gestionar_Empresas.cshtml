@@ -39,7 +39,7 @@
                     <td>@item.emp_email</td>
                     
                     <td>
-                        <a href="@Url.Action("Actualizar_Empresa","Empresa")" class="btn btn-success rounded-pill">
+                        <a href="@Url.Action("Actualizar_Empresa","Empresa",new {emp_id =item.emp_id })" class="btn btn-success rounded-pill">
                             Actualizar
                         </a>
                         <a href="@Url.Action("_Eliminar_Empresa","Empresa")" class="btn btn-danger rounded-pill">

@@ -30,10 +30,11 @@ namespace SWMGEGCSS.Controllers
 
 
         [HttpGet]
-        public ActionResult Actualizar_Empresa()
+        public ActionResult Actualizar_Empresa(int emp_id)
         {
             var model = new GestionarEmpresaViewModel();
-            return View();
+            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().Find(r => r.emp_id == emp_id);
+            return View(model);
         }
         [HttpPost]
         public ActionResult Actualizar_Empresa(T_empresa empresas)
