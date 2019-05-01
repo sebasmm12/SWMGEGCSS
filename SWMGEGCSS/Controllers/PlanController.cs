@@ -173,7 +173,7 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
-       /*public ActionResult Registrar_Actualizar_Tareas_Planeadas(int plan_id, int act_id, T_actividades_planeadas act_plan)
+      public ActionResult Registrar_Actualizar_Tareas_Planeadas(int plan_id, int act_id, T_actividades_planeadas act_plan)
         {
             
             var model = new ActividadesDataAccess().sp_Consultar_Actividades_planeadas_por_plan_act(plan_id, act_id);
@@ -194,6 +194,6 @@ namespace SWMGEGCSS.Controllers
 
             }
 
-        }*/
+        }
     }
 }

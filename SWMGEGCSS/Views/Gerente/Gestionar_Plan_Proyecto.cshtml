@@ -17,18 +17,18 @@
                 <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("CompletarNombrePlanes")" />
             </div>
             <!--<div class="col-12 col-sm-4 col-md-4">
-            <div>
-                <label class="font-weight-bolder">Seleccione una opción</label>
+                <div>
+                    <label class="font-weight-bolder">Seleccione una opción</label>
+                </div>
+                <select class="custom-select" id="estado" name="estado">
+                    <option value="Todos">Todos</option>
+                    *foreach (var item in list_estado_expediente)
+                    {
+                        <option value="*item.est_exp_nombre">*item.est_exp_nombre</option>
+                    }
+                </select>
             </div>
-            <select class="custom-select" id="estado" name="estado">
-                <option value="Todos">Todos</option>
-                *foreach (var item in list_estado_expediente)
-                {
-                    <option value="*item.est_exp_nombre">*item.est_exp_nombre</option>
-                }
-            </select>
-        </div>
-            -->
+                -->
         </div>
         <div class="row mt-4">
             <div class="col-12 col-sm-4 col-md-4">
@@ -55,5 +55,6 @@
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/scriptGestionarPlan1.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
