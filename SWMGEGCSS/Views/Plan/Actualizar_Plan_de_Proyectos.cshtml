@@ -4,21 +4,22 @@
     ViewBag.Title = "Actualizar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 
-    //var fecha_plan = Model.plans.plan_fecha.ToString("yyyy/MM/dd");
-}
-
-<h2>Actualizar_Plan_de_Proyectos</h2>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
-<div class="container-fluid">
-    @using (Html.BeginForm())
+    var plan_fecha = "";
+    if (Model.plans_aux != null)
     {
+        plan_fecha = Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd");
+    }
+
+}
+<link href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" rel="stylesheet" />
+<h2>Actualizar_Plan_de_Proyectos</h2>
+
+<div class="container-fluid">
+    <form id="form">
         <div>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.plans_aux.plan_id)
         </div>
-        //@Html.HiddenFor(model => model.plans.plan_id)
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
@@ -41,10 +42,8 @@
                     </label>
                 </div>
                 <!--<input type="date" name="plans.plan_fecha" value="Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />-->
-                @Html.EditorFor(model => model.plans_aux.plan_fecha, new
-           {
-               htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control",@value = @Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")}
-           })
+
+                <input id="plan-fecha" type="date" name="plans_aux.plan_fecha" value="@plan_fecha" class="text-center form-control" onkeydown="return false" />
                 <div id="error-plan-fecha" class="errordiv"></div>
             </div>
         </div>
@@ -58,7 +57,7 @@
                 @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
            {
                htmlAttributes = new {
-                   @class = "text-center form-control",
+                   @class = "text-center form-control", @id = "plan-emp"
 
                },
 
@@ -75,7 +74,7 @@
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_estado_nobre, new
                 {
-                   htmlAttributes = new { @class = "text-center form-control" }
+                   htmlAttributes = new { @class = "text-center form-control" , }
                 })
             </div>
         </div>
@@ -101,9 +100,9 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" }
-                })
+           {
+               htmlAttributes = new { @class = "text-center form-control", @id = "plan-tipo-servicio" }
+           })
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -122,7 +121,7 @@
         </div>
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" id="boton-Registrar" class="btn btn-success">
+                <button type="submit" id="btnRegistrar" class="btn btn-success">
                     <i class="fa fa-check-circle"></i>
                     Actualizar
                 </button>
@@ -136,11 +135,10 @@
                 </a>
             </div>
         </div>
-    }
+   </form> 
 </div>
-<link href="~/Content/StyleTP/PIERO/stylesPiero.css" rel="stylesheet" />
+
+
 @section Scripts{
-    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
-    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
-    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>
 }

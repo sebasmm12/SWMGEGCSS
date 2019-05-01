@@ -294,6 +294,7 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
