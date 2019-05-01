@@ -114,7 +114,7 @@ namespace SWMGEGCSS_DA
                         Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Plan.tipo_servicio_id);
                         Database.AddInParameter(command, "@plan_tiempo", DbType.Int32, Plan.plan_tiempo);
                         Database.ExecuteScalar(command);
-                        //operation.NewId = 1;
+                        operation.NewId = 1;
                 }
                 return operation;
             /*}
@@ -213,6 +213,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@plan_id", DbType.String, plan_id);
                     Database.AddInParameter(command, "@plan_comentario", DbType.String, plan_comentario);
                     Database.ExecuteScalar(command);
+                    operation.NewId = 1;
                     //execute scalar permite ejecutar el comando
                 }
                     return operation;

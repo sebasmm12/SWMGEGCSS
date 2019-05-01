@@ -14,12 +14,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col"></th>
+
                     <th scope="col">Id</th>
+                    <th scope="col">Sigla</th>
                     <th scope="col">Razón Social</th>
-                    <th scope="col">Ruc</th>
                     <th scope="col">Representante legal</th>
                     <th scope="col">N° Contacto</th>
+                    <th scope="col">Email</th>
                     <th scope="col"></th>
 
                 </tr>
@@ -27,17 +28,25 @@
             <tbody>
                 @foreach (var item in list_empresas)
                 {
-                    <tr>
-                        <th scope="row">item</th>
-                        <td>@item.emp_id</td>
-                        <td>@item.emp_razon_social</td>
-                        <td>@item.emp_ruc</td>
-                        <td>@item.emp_representante</td>
-                        <td>@item.emp_telefono</td>
-                        <td>
-                   
-                        </td>
-                    </tr>
+                <tr>
+
+                    <td>@item.emp_id</td>
+                    
+                    <td>@item.emp_sigla</td>
+                    <td>@item.emp_razon_social</td>
+                    <td>@item.emp_representante</td>
+                    <td>@item.emp_telefono</td>
+                    <td>@item.emp_email</td>
+                    
+                    <td>
+                        <a href="@Url.Action("Actualizar_Empresa","Empresa",new {emp_id =item.emp_id })" class="btn btn-success rounded-pill">
+                            Actualizar
+                        </a>
+                        <a href="@Url.Action("_Eliminar_Empresa","Empresa")" class="btn btn-danger rounded-pill">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
                 }
 
 
@@ -53,10 +62,11 @@
 
     </div>
     <div>
-        <a href="@Url.Action("_Registrar_Empresa","Empresa")" class="btn btn-success rounded-pill">
+        <a href="@Url.Action("Registrar_Empresa","Empresa")" class="btn btn-success rounded-pill">
             <i class="fa fa-plus-circle"></i>
             Registrar Nueva Empresa
         </a>
+
 
     </div>
 

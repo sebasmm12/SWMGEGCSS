@@ -1,10 +1,10 @@
 ﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
 @{
-    ViewBag.Title = "Gestionar_Proyectos";
+    ViewBag.Title = "Gestionar_Plan_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_planes = Model.listPplans;
     var selected_plan = Model.plans_aux;
-    var count = 0;
+    //var list_estado_planes = Model.list_estado_plan;
 }
 
 <div class="mt-2 ml-4">
@@ -16,13 +16,26 @@
                 </div>
                 <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("CompletarNombrePlanes")" />
             </div>
+            <!--<div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">Seleccione una opción</label>
+                </div>
+                <select class="custom-select" id="estado" name="estado">
+                    <option value="Todos">Todos</option>
+                    *foreach (var item in list_estado_expediente)
+                    {
+                        <option value="*item.est_exp_nombre">*item.est_exp_nombre</option>
+                    }
+                </select>
+            </div>
+                -->
         </div>
         <div class="row mt-4">
             <div class="col-12 col-sm-4 col-md-4">
-                <a href="@Url.Action("Insertar_Plan","Gerente")" class="btn btn-primary rounded-pill">
+                <button class="btn btn-primary rounded-pill" id="Buscar">
                     <i class="fa fa-search"></i>
-                    Buscar Plan
-                </a>
+                    Buscar Proyecto
+                </button>
             </div>
             <div class="col-12 col-sm-4 col-md-4">
                 <a href="@Url.Action("Agregar_Plan_de_Proyectos","Plan")" class="btn btn-success rounded-pill">
@@ -33,59 +46,13 @@
             <div class="col-12 col-sm-4 col-md-4">
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-12 col-sm-12 col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="bg-success">
-                            <tr class="text-center">
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre del Plan</th>
-                                <th scope="col">Fecha del Plan</th>
-                                <th scope="col">Estado del Plan</th>
-                                <th scope="col">Costo del Plan</th>
-                                <th scope="col">Tiempo del plan</th>
-                                <th scope="col">Funcionalidades de Plan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in list_planes)
-                            {
-                                count = count + 1;
-                                <tr class="text-center">
-                                    <th scope="row">@count</th>
-                                    <td>@item.plan_nombre</td>
-                                    <td>@item.plan_fecha.ToShortDateString()</td>
-                                    <td>@item.plan_estado_nobre</td>
-                                    <td>@item.plan_costo</td>
-                                    <td>@item.plan_tiempo</td>
-                                    <td>
-                                        <button type="button" class="btn btn-warning">
-                                            @Html.ActionLink("Actualizar Plan", "Actualizar_Plan_de_Proyectos", "Plan", new { id = item.plan_id }, new { @style = "color: white !important" })
-                                        </button>
-
-                                        <button type="button" class="btn btn-danger btnModal" data-id-plan="@item.plan_id" data-url ="@Url.Action("_Eliminar_Plan_De_Proyecto", "Plan")" data-id-target="#ModalEliminar_Plan_De_Proyecto">
-                                            <i class="fa fa-times"></i>
-                                            Eliminar
-                                        </button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 col-md-4 col-12">
-                @Html.PagedListPager(list_planes, page => Url.Action("Gestionar_Plan_Proyecto", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
-            </div>
-        </div>
+        @Html.Partial("_ListaPlan", Model)
     </div>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
-    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <!--<script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>-->
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }

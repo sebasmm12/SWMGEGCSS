@@ -16,7 +16,7 @@ namespace SWMGEGCSS_DA
             var l_empresa = new List<T_empresa>();
             try
             {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Empresa"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Empresas"))
                 {
                     
                     using (IDataReader reader = Database.ExecuteReader(command))
@@ -72,6 +72,85 @@ namespace SWMGEGCSS_DA
                 return new List<T_empresa>();
             }
             return T_Empresa;
+        }
+
+       public OperationResult sp_Insertar_Empresa(T_empresa Empresa)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Empresa"))
+                {
+                    Database.AddInParameter(command, "@emp_ruc", DbType.String,Empresa.emp_ruc);
+                    Database.AddInParameter(command, "@emp_razon_social", DbType.String, Empresa.emp_razon_social);
+                    Database.AddInParameter(command, "@emp_sigla", DbType.String, Empresa.emp_sigla);
+                    Database.AddInParameter(command, "@emp_representante", DbType.String, Empresa.emp_representante);
+                    Database.AddInParameter(command, "@emp_direccion", DbType.String, Empresa.emp_direccion);
+                    Database.AddInParameter(command, "@emp_telefono", DbType.String, Empresa.emp_telefono);
+                    Database.AddInParameter(command, "@emp_fax", DbType.String, Empresa.emp_fax);
+                    Database.AddInParameter(command, "@emp_email", DbType.String, Empresa.emp_email);
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, Empresa.usu_codigo);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+                return new OperationResult();
+            }
+        }
+
+        public OperationResult sp_Actualizar_Empresa(T_empresa Empresa)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Empresa"))
+                {
+                    Database.AddInParameter(command, "@emp_ruc", DbType.String, Empresa.emp_ruc);
+                    Database.AddInParameter(command, "@emp_razon_social", DbType.String, Empresa.emp_razon_social);
+                    Database.AddInParameter(command, "@emp_sigla", DbType.String, Empresa.emp_sigla);
+                    Database.AddInParameter(command, "@emp_representante", DbType.String, Empresa.emp_representante);
+                    Database.AddInParameter(command, "@emp_direccion", DbType.String, Empresa.emp_direccion);
+                    Database.AddInParameter(command, "@emp_telefono", DbType.String, Empresa.emp_telefono);
+                    Database.AddInParameter(command, "@emp_fax", DbType.String, Empresa.emp_fax);
+                    Database.AddInParameter(command, "@emp_email", DbType.String, Empresa.emp_email);
+                    Database.AddInParameter(command, "@emp_id", DbType.Int32, Empresa.emp_id);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+                return new OperationResult();
+            }
+        }
+
+
+
+
+
+        public OperationResult sp_Eliminar_Empresa(int exp_id, string exp_comentario)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Eliminar_Proyecto"))
+                {
+                    Database.AddInParameter(command, "@exp_id", DbType.Int32, exp_id);
+                    Database.AddInParameter(command, "@exp_comentario", DbType.String, exp_comentario);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
         }
     }
 
