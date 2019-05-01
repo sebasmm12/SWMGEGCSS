@@ -84,11 +84,11 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarPlanProyectoViewModel();
             model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
-            var nameExpedientes = model.listplans.Select(r => new
+            var namePlanes = model.listplans.Select(r => new
             {
                 label = r.plan_nombre
             });
-            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
+            return Json(namePlanes, JsonRequestBehavior.AllowGet);
         }
         //*Metodos para el autocompletado*//
         public ActionResult CompletarNombreEmpresas(string term)
@@ -173,11 +173,11 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Registrar_Actualizar_Tareas_Planeadas(int id, T_actividades actividades)
+        /*public ActionResult Registrar_Actualizar_Tareas_Planeadas(int id, T_actividades actividades)
         {
             var actividad = actividades;
             var model = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => (x.act_id == actividad.act_id));
-
-        }
+            
+        }*/
     }
 }

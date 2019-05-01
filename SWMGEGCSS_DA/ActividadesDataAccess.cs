@@ -141,7 +141,7 @@ namespace SWMGEGCSS_DA
                 return new List<T_actividades_planeadas_aux>();
             }
         }
-        public T_actividades sp_Consultar_Actividades_planeadas_por_plan_act(int plan_id, int act_id)
+        /*public T_actividades sp_Consultar_Actividades_planeadas_por_plan_act(int plan_id, int act_id)
         {
             try
             {
@@ -166,6 +166,6 @@ namespace SWMGEGCSS_DA
 
                 return new List<T_actividades>();
             }
-        }
+        }*/
     }
 }
