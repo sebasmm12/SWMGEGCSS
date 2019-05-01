@@ -426,8 +426,8 @@
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
     <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
-    <Content Include="Views\Empresa\_Registrar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
