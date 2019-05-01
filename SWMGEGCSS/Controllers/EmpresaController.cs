@@ -41,8 +41,11 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarEmpresaViewModel();
             model.empresas = empresas;
-            var operationResult = new EmpresaDataAccess();
+            model.empresas.usu_codigo = (int)Session["login"];
+            var operationResult = new OperationResult();
+            operationResult = new EmpresaDataAccess().sp_Actualizar_Empresa(model.empresas);
             return View();
+
         }
 
 
