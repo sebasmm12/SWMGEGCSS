@@ -27,7 +27,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Actualizar_Empresa(int emp_id)
         {
             var model = new GestionarEmpresaViewModel();
-            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().Find(r => r.emp_id == emp_id);
+            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().Find(r => r.emp_id == emp_id);
             return View(model);
         }
         [HttpPost]
@@ -46,7 +46,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _Eliminar_Empresa(int emp_id)
         {
             var model = new GestionarEmpresaViewModel();
-            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresa().Find(r => r.emp_id == emp_id);
+            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().Find(r => r.emp_id == emp_id);
                 return View(model);
         }
         [HttpPost]
