@@ -93,5 +93,36 @@ namespace SWMGEGCSS_DA
                 return new List<T_actividades_planeadas>();
             }
         }
+        public List<T_actividades_desarrollar> sp_Consultar_Actividades_Desarrollar_Expediente()
+        {
+            try
+            {
+
+                List<T_actividades_desarrollar> list_actividades_desarrollar = new List<T_actividades_desarrollar>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Activiades_Desarrollar_Expediente"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades_desarrollar actividades_desarrollar = new T_actividades_desarrollar();
+                            actividades_desarrollar.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            actividades_desarrollar.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
+                            actividades_desarrollar.usu_creador = DataUtil.DbValueToDefault<int>(reader["usu_creador"]);
+                            actividades_desarrollar.est_act_id = DataUtil.DbValueToDefault<int>(reader["est_act_id"]);
+                            actividades_desarrollar.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
+                            actividades_desarrollar.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            list_actividades_desarrollar.Add(actividades_desarrollar);
+                        }
+                    }
+                }
+                return list_actividades_desarrollar;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_actividades_desarrollar>();
+            }
+        }
     }
 }

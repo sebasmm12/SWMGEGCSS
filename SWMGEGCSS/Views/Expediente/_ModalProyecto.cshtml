@@ -136,23 +136,10 @@
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="bg-success">
-                                <tr class="text-center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nombre de la Actividad</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Acciones del Proyecto</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @*@foreach (var item in )
-                                {
-
-                                }*@
-                            </tbody>
-                        </table>
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="table-responsive">
+                            @Html.Partial("_ListarActividad", Model)
+                        </div>
                     </div>
                 </div>
                 <div class="mt-4 mb-4">
