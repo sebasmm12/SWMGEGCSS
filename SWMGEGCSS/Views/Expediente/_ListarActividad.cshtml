@@ -1,0 +1,51 @@
+﻿
+@model SWMGEGCSS.Models.ExpedienteViewModel
+@{ 
+    Layout = null;
+    var Actividades_Total = Model.ActividadModel.list_Actividades;
+    var Actividades_Desarrollar = Model.ActividadModel.list_Actividades_Desarrollar;
+    var count = 0;
+}
+    <table class="table table-bordered">
+        <thead class="bg-success">
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Nombre de la Actividad</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Acciones del Proyecto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Actividades_Total)
+            {
+                count = count + 1;
+                var evaluar = Actividades_Desarrollar.Find(r => r.act_desa_nombre == item.act_nombre);
+            <tr class="text-center">
+                <th scope="row">@count</th>
+                @if (evaluar != null)
+                {
+                    <td>@evaluar.act_desa_nombre</td>
+                    <td>@evaluar.act_desa_descripcion</td>
+                    <td>
+                        <button class="btn btn-danger">
+                            <i class="fa fa-times-circle"></i>
+                            Eliminar Actividad
+                        </button>
+                    </td>
+                }
+                else
+                {
+                    <td>@item.act_nombre</td>
+                    <td>@item.act_descripcion</td>
+                    <td>
+                        <button class="btn btn-success">
+                            <i class="fa fa-check-circle"></i>
+                            Ingresar Actividad
+                        </button>
+                    </td>
+                }
+            </tr>
+
+            }
+        </tbody>
+    </table>

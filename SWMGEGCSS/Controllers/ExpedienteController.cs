@@ -60,6 +60,7 @@ namespace SWMGEGCSS.Controllers
             var model = new ExpedienteViewModel();
             model.ActividadModel = new ActividadViewModel();
             model.ActividadModel.list_Actividades = new List<T_actividades>();
+            model.ActividadModel.list_Actividades_Desarrollar = new List<T_actividades_desarrollar>();
             return PartialView(model);
         }
         [HttpPost]
@@ -70,6 +71,7 @@ namespace SWMGEGCSS.Controllers
             model.Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(r=>(r.exp_id==id));
             model.ActividadModel = new ActividadViewModel();
             model.ActividadModel.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(model.Expedientes.tipo_servicio_id);
+            model.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==id);
             return PartialView(model);
         }
         [HttpGet]
@@ -92,6 +94,7 @@ namespace SWMGEGCSS.Controllers
             Expedientes.Expedientes= new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(modelo=>modelo.exp_id==id);
             var AuditoriaExpediente = new AuditoriaViewModel();
             AuditoriaExpediente.auditoria_expediente = new T_auditar_expedientes();
+ 
             AuditoriaExpediente.auditoria_expediente.exp_id = Expedientes.Expedientes.exp_id;
             AuditoriaExpediente.auditoria_expediente.aud_exp_inicio = Expedientes.Expedientes.exp_inicio;
             AuditoriaExpediente.auditoria_expediente.aud_exp_fin = Expedientes.Expedientes.exp_fin;
