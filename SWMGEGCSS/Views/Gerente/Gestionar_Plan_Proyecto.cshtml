@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_planes = Model.listPplans;
     var selected_plan = Model.plans_aux;
-    //var list_estado_planes = Model.list_estado_plan;
+    var list_estado_plan = Model.List_Estado_Plan;
 }
 
 <div class="mt-2 ml-4">
@@ -17,18 +17,17 @@
                 <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("CompletarNombrePlanes")" />
             </div>
             <!--<div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">Seleccione una opción</label>
-                </div>
-                <select class="custom-select" id="estado" name="estado">
-                    <option value="Todos">Todos</option>
-                    *foreach (var item in list_estado_expediente)
-                    {
-                        <option value="*item.est_exp_nombre">*item.est_exp_nombre</option>
-                    }
-                </select>
+            <div>
+                <label class="font-weight-bolder">Seleccione una opción</label>
             </div>
-                -->
+            <select class="custom-select" id="estado" name="estado">
+                <option value="Todos">Todos</option>
+                *foreach (var item in list_estado_plan)
+                {
+                    <option value="*item.plan_estado_id">*item.plan_estado_id</option>
+                }
+            </select>
+        </div>-->
         </div>
         <div class="row mt-4">
             <div class="col-12 col-sm-4 col-md-4">
@@ -47,12 +46,14 @@
             </div>
         </div>
         @Html.Partial("_ListaPlan", Model)
+        @Html.Action("_Eliminar_Plan_De_Proyecto", "Plan")
     </div>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
-    <!--<script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>-->
+    <script src="~/Scripts/Scripts_TP/COLOMBO/scriptGestionarPlan1.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }

@@ -164,7 +164,54 @@ namespace SWMGEGCSS_DA
             catch (Exception)
             {
 
-                return new List<T_actividades>();
+                return new T_actividades();
+            }
+        }
+        public OperationResult sp_registrar_actividades_planeadas(T_actividades_planeadas actividades_planeadas)
+        {
+            var operation = new OperationResult();
+            using (DbCommand command = Database.GetStoredProcCommand("sp_registrar_actividades_planeadas"))
+            {
+                Database.AddInParameter(command, "@plan_id", DbType.Int32, actividades_planeadas.plan_id);
+                Database.AddInParameter(command, "@act_id", DbType.Int32, actividades_planeadas.act_id);
+                Database.AddInParameter(command, "@act_plan_nombre", DbType.String, actividades_planeadas.act_plan_nombre);
+                Database.AddInParameter(command, "@act_plan_descripcion", DbType.String, actividades_planeadas.act_plan_descripcion);
+                Database.AddInParameter(command, "@act_plan_costo", DbType.Double, actividades_planeadas.act_plan_costo);
+                Database.AddInParameter(command, "@act_plan_tiempo", DbType.Int32, actividades_planeadas.act_plan_tiempo);
+                Database.ExecuteScalar(command);
+                operation.NewId = 1;
+            }
+            return operation;
+        }
+        public List<T_actividades_desarrollar> sp_Consultar_Actividades_Desarrollar_Expediente()
+        {
+            try
+            {
+
+                List<T_actividades_desarrollar> list_actividades_desarrollar = new List<T_actividades_desarrollar>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Activiades_Desarrollar_Expediente"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades_desarrollar actividades_desarrollar = new T_actividades_desarrollar();
+                            actividades_desarrollar.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            actividades_desarrollar.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
+                            actividades_desarrollar.usu_creador = DataUtil.DbValueToDefault<int>(reader["usu_creador"]);
+                            actividades_desarrollar.est_act_id = DataUtil.DbValueToDefault<int>(reader["est_act_id"]);
+                            actividades_desarrollar.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
+                            actividades_desarrollar.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            list_actividades_desarrollar.Add(actividades_desarrollar);
+                        }
+                    }
+                }
+                return list_actividades_desarrollar;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_actividades_desarrollar>();
             }
         }
     }
