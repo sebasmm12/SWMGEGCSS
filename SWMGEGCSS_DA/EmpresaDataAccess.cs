@@ -116,6 +116,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@emp_telefono", DbType.String, Empresa.emp_telefono);
                     Database.AddInParameter(command, "@emp_fax", DbType.String, Empresa.emp_fax);
                     Database.AddInParameter(command, "@emp_email", DbType.String, Empresa.emp_email);
+                    Database.AddInParameter(command, "@emp_id", DbType.Int32, Empresa.emp_id);
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
