@@ -243,5 +243,29 @@ namespace SWMGEGCSS_DA
                 return new List<T_actividades>();
             }
         }
+        public List<T_actividades> sp_Consultar_Actividades_Plan()
+        {
+            try
+            {
+                List<T_actividades> list_actividades_plan = new List<T_actividades>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Actividades_Plan"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades act = new T_actividades();
+                            act.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
+                            list_actividades_plan.Add(act);
+                        }
+                    }
+                }
+                return list_actividades_plan;
+            }
+            catch (Exception)
+            {
+                return new List<T_actividades>();
+            }
+        }
     }
 }
