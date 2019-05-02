@@ -293,6 +293,7 @@
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
@@ -438,6 +439,7 @@
     <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
     <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
     <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
