@@ -155,7 +155,7 @@ namespace SWMGEGCSS_DA
             List<T_tipo_servicio> T_Tipo_Servicio = new List<T_tipo_servicio>();
             try
             {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Tipo_Servicio"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Nombre_Tipo_Servicio"))
                 {
                     Database.AddInParameter(command, "@tipo_servicio_nombre", DbType.String, tipo_servicio_nombre);
                     using (IDataReader reader = Database.ExecuteReader(command))
@@ -277,9 +277,6 @@ namespace SWMGEGCSS_DA
             }
             return T_Plan_Estado;
         }
-        //
-
-
         public List<T_tipo_servicio> sp_Consultar_Lista_Tipo_Servicio()
         {
             List<T_tipo_servicio> lista_tipo_servicio = new List<T_tipo_servicio>();

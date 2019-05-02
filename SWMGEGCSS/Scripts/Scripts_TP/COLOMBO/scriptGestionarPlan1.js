@@ -1,5 +1,5 @@
 ﻿$(function () {
-    var id_plan = 0;
+    /*var id_plan = 0;
     var getPage = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
@@ -29,7 +29,7 @@
         };
         $input.autocomplete(options);
 
-    };
+    };*/
     var Alerta = function () {
         $(this).click(function () {
 
@@ -90,7 +90,7 @@
             return false;
         });
     };
-    var BuscarProyecto = function () {
+    /*var BuscarProyecto = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
         $.ajax({
@@ -104,9 +104,9 @@
         });
 
         return true;
-    };
+    };*/
     $(".btnModal").each(envioajaxModal);
-    $("input[data-exp-autocomplete]").each(autcompletado);
-    $(".pcoded-content").on("click", ".pagedList a", getPage);
-    $("#Buscar").click(BuscarProyecto);
+    //$("input[data-exp-autocomplete]").each(autcompletado);
+    //$(".pcoded-content").on("click", ".pagedList a", getPage);
+    //$("#Buscar").click(BuscarProyecto);
 });
