@@ -1,13 +1,11 @@
 ﻿$(function () {
-    /*var autocompletado = function () {
+    var autocompletado = function () {
         var $input = $(this);
         var options = {
             source: $input.attr("dataid")
         };
         $input.autocomplete(options);
-
     };
-    $("input[dataid]").each(autocompletado);*/
     validacion = function () {
         //declaracion de variables jquery
         var $planNombre = $("#plan-nombre");
@@ -560,4 +558,5 @@
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
     $("#boton-Registrar").click(validacion);
+    $("input[dataid]").each(autocompletado);
 });

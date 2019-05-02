@@ -11,7 +11,7 @@ namespace SWMGEGCSS_DA
 {
     public class EmpresaDataAccess : BaseConexion
     {
-        public List<T_empresa> sp_Consultar_Lista_Empresa()
+        public List<T_empresa> sp_Consultar_Lista_Empresas()
         {
             var l_empresa = new List<T_empresa>();
             try

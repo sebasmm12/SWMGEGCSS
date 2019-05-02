@@ -187,7 +187,6 @@ namespace SWMGEGCSS_DA
         {
             try
             {
-
                 List<T_actividades_desarrollar> list_actividades_desarrollar = new List<T_actividades_desarrollar>();
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Activiades_Desarrollar_Expediente"))
                 {

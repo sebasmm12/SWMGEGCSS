@@ -84,7 +84,7 @@ namespace SWMGEGCSS_DA
                             T_plan_aux t_plan_aux = new T_plan_aux();
                             t_plan_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
                             t_plan_aux.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
-                            t_plan_aux.plan_estado_nobre = DataUtil.DbValueToDefault<string>(reader["plan_estado"]);
+                            t_plan_aux.plan_estado_nobre = DataUtil.DbValueToDefault<string>(reader["plan_estado_nobre"]);
                             t_plan_aux.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
                             t_plan_aux.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
                             T_Plan.Add(t_plan_aux);
@@ -155,7 +155,7 @@ namespace SWMGEGCSS_DA
             List<T_tipo_servicio> T_Tipo_Servicio = new List<T_tipo_servicio>();
             try
             {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Tipo_Servicio"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Nombre_Tipo_Servicio"))
                 {
                     Database.AddInParameter(command, "@tipo_servicio_nombre", DbType.String, tipo_servicio_nombre);
                     using (IDataReader reader = Database.ExecuteReader(command))
@@ -277,9 +277,6 @@ namespace SWMGEGCSS_DA
             }
             return T_Plan_Estado;
         }
-        //
-
-
         public List<T_tipo_servicio> sp_Consultar_Lista_Tipo_Servicio()
         {
             List<T_tipo_servicio> lista_tipo_servicio = new List<T_tipo_servicio>();
