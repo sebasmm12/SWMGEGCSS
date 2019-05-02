@@ -277,9 +277,6 @@ namespace SWMGEGCSS_DA
             }
             return T_Plan_Estado;
         }
-        //
-
-
         public List<T_tipo_servicio> sp_Consultar_Lista_Tipo_Servicio()
         {
             List<T_tipo_servicio> lista_tipo_servicio = new List<T_tipo_servicio>();
