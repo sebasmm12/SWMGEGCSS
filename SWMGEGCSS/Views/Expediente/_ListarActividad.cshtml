@@ -20,6 +20,7 @@
             {
                 count = count + 1;
                 var evaluar = Actividades_Desarrollar.Find(r => r.act_desa_nombre == item.act_nombre);
+                var exp_id = Actividades_Desarrollar.ElementAt(0).exp_id;
             <tr class="text-center">
                 <th scope="row">@count</th>
                 @if (evaluar != null)
@@ -27,7 +28,7 @@
                     <td>@evaluar.act_desa_nombre</td>
                     <td>@evaluar.act_desa_descripcion</td>
                     <td>
-                        <button class="btn btn-danger btnSubModal" data-id-target="@evaluar.act_desa_id" data-url="@Url.Action("EliminarActividad","Expediente")">
+                        <button class="btn btn-danger btnSubModal" data-id-target="@evaluar.act_desa_nombre" data-exp-target="@evaluar.exp_id" data-url="@Url.Action("EliminarActividad","Expediente")">
                             <i class="fa fa-times-circle"></i>
                             Eliminar Actividad
                         </button>
@@ -38,7 +39,7 @@
                     <td>@item.act_nombre</td>
                     <td>@item.act_descripcion</td>
                     <td>
-                        <button class="btn btn-success btnSubModal" data-id-target="@item.act_id" data-url="@Url.Action("AñadirActividad","Expediente")">
+                        <button class="btn btn-success btnSubModal" data-id-target="@item.act_nombre" data-exp-target="@exp_id" data-url="@Url.Action("AñadirActividad","Expediente")">
                             <i class="fa fa-check-circle"></i>
                             Ingresar Actividad
                         </button>

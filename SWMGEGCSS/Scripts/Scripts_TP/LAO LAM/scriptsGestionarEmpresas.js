@@ -25,10 +25,12 @@
         
 
 
-        if (vfax === false || vrepresentante === false || vdireccion === false || vtelefono === false ||vemail === false) {
+        if (vfax === false || vrepresentante === false || vdireccion === false || vtelefono === false || vemail === false) {
+          
             return false;
         }
         else {
+            
             $.ajax({
                 url: "/Empresa/Actualizar_Empresa",
                 method: "POST",
@@ -45,9 +47,13 @@
                     }
                 });
             });
+            
         }
     };
+    
 
+
+    
     var esNum = function esNumero(txt) {
         if (isNaN(txt)) {
             return false;
@@ -76,6 +82,7 @@
             return false;
         }
     };
+
     var tieneCaracEsp = function empiezaConCaracteresEspeciales(X) {
         var iChars = "!@#_$%^&*()+=-[]\\\';,./{}|\":<>?";
         var iNum = "0123456789";
@@ -98,72 +105,109 @@
         }
         return false;
     };
+    //-------------------------------------------------------------------------------------------------------
     //Validacion Telefono
     function validar_telefono(telefono) {
-
+        var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
 
         if (telefono === "") {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'Debe ingresar un Número de Contacto');
             $("#emp-telefono").focus();
-            $("#emp-telefono").keyup(key);
+          //  alert("telefono vacio");
+            $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
         if (telefono === " ") {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto no debe empezar con un espacio en blanco');
             $("#emp-telefono").focus();
-            $("#emp-telefono").keyup(key);
+         //   alert("telefono solo espacios");
+            $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
         if (esNum(telefono) === false) {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser un número');
             $("#emp-telefono").focus();
-            $("#emp-telefono").keyup(key);
+        //    alert("telefono no es numero");
+            $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
-        if (maximoNumeroCaracteres20(telefono) === true) {
+  /*      if (maximoNumeroCaracteres20(telefono) === true) {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de menos de 20 caracteres');
             $("#emp-telefono").focus();
-            $("#emp-telefono").keyup(key);
+            alert("telefono largo");
+     //       $("#emp-telefono").keyup(key);
+            return false;
+        }*/
+        if (telefono.match(regular)) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser menor o igual a 9 digitos');
+            $("#emp-telefono").focus();
+         //   alert("telefono largo");
+            $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_nombre: $("#plan-nombre").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    vnombre = 1;
-                }
-            });
-        }
-        if (vnombre === 1) {
-            adderror("plan-nombre");
-            negativeattributes("error-plan-nombre", 'Este nombre ya existe, debe escribir otro');
-            $("#plan-nombre").keyup(key);
+        if (telefono.length < 7) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser mayor o igual a 7');
+            $("#emp-telefono").focus();
+            $("#emp-telefono").keyup(keyTelefono);
+       //     alert("telefono largo");
             return false;
         }
+        
         return true;
     }
     //Validacion Fax
 
-
+   
     function validar_fax(fax) {
-        var regular = "51[0-9]{1,3}\d{7}";
-        if (fax.val().match(regular)) {
+        
+        var regular = '51[0-9]{1,3}\\d{7}$';
+        
+        if (fax.match(regular)) {
+
             return true;
-        } else {
+        }
+        /*else if (fax === "") {
+            adderror("emp-fax");
+            negativeattributes("error-emp-fax", 'Debe ingresar un fax');
+            $("#emp-fax").focus();
+            //       $("#emp-email").keyup(key);
+            alert("fax vacio");
 
             return false;
+        }*/
+        else if (fax === " ") {
+            adderror("emp-fax");
+            negativeattributes("error-emp-fax", 'El fax no debe empezar con un espacio en blanco');
+            $("#emp-fax").focus();
+            $("#emp-fax").keyup(keyFax);
+        //    alert("fax con espacio ");
+            return false;
         }
+
+      else if (maximoNumeroCaracteres20(fax) === true) {
+            adderror("emp-fax");
+            negativeattributes("error-emp-fax", 'El fax debe ser de menos de 20 caracteres');
+            $("#emp-fax").focus();
+            $("#emp-fax").keyup(keyFax);
+         //   alert("fax largo");
+            return false;
+        }
+
+     else if (esNum(fax) == false) {
+            adderror("emp-fax");
+            negativeattributes("error-emp-fax", 'El fax debe ser un número');
+            $("#emp-fax").focus();
+            $("#emp-fax").keyup(keyFax);
+       //     alert("fax no numerico");
+            return false;
+        }
+        
     };
     //Validacion email
     function validar_email(email) {
@@ -173,14 +217,16 @@
             adderror("emp-email");
             negativeattributes("error-emp-email", 'Debe ingresar un email');
             $("#emp-email").focus();
-            $("#emp-email").keyup(key);
+           $("#emp-email").keyup(keyEmail);
+        //    alert("email vacio");
             return false;
         }
         if (email === " ") {
             adderror("emp-email");
             negativeattributes("error-emp-email", 'El email no debe empezar con un espacio en blanco');
             $("#emp-email").focus();
-            $("#emp-email").keyup(key);
+            $("#emp-email").keyup(keyEmail);
+        //    alert("email con espacio ");
             return false;
         }
 
@@ -188,219 +234,153 @@
             adderror("emp-email");
             negativeattributes("error-emp-email", 'El email debe ser de menos de 20 caracteres');
             $("#emp-email").focus();
-            $("#emp-email").keyup(key);
+            $("#emp-email").keyup(keyEmail);
+         //   alert("email largo");
             return false;
         }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_nombre: $("#plan-nombre").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    vnombre = 1;
-                }
-            });
-        }
-        if (vnombre === 1) {
-            adderror("plan-nombre");
-            negativeattributes("error-plan-nombre", 'Este nombre ya existe, debe escribir otro');
-            $("#plan-nombre").keyup(key);
-            return false;
-        }
+        
         return true;
     }
      //Validacion direccion
 
     function validar_direccion(direccion) {
-   
-        var regular = "!@$%^*()+=[]\\\'/{}|<>?";
-        if (direccion.val().match(regular)) {
+
+        
+      /*  var regular = "!@\$%\^\*\(\)\+=\[]\\\'\/{}\|<>\?";
+        if (direccion.match(regular)) {
             return false;
-        }
-        if (representante === "") {
+        }*/
+        if (direccion === "") {
             adderror("emp-direccion");
             negativeattributes("error-emp-direccion", 'Debe ingresar una dirección');
             $("#emp-direccion").focus();
-            $("#emp-direccion").keyup(key);
+      //      alert("direccion vacio");
+            $("#emp-direccion").keyup(keyDireccion);
             return false;
         }
-        if (representante === " ") {
+        if (direccion === " ") {
             adderror("emp-direccion");
             negativeattributes("error-emp-direccion", 'La dirección no debe empezar con un espacio en blanco');
             $("#emp-direccion").focus();
-            $("#emp-direccion").keyup(key);
+       //     alert("direccion con espacio");
+            $("#emp-direccion").keyup(keyDireccion);
             return false;
         }
-
+        var vnombre;
         if (maximoNumeroCaracteres200(direccion) === true) {
             adderror("emp-direccion");
             negativeattributes("error-emp-direccion", 'La dirección debe ser de menos de 200 caracteres');
             $("#emp-direccion").focus();
-            $("#emp-direccion").keyup(key);
+            $("#emp-direccion").keyup(keyDireccion);
+        //    alert("direccion largo");
             return false;
-        }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_nombre: $("#plan-nombre").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    vnombre = 1;
-                }
-            });
-        }
-        if (vnombre === 1) {
-            adderror("plan-nombre");
-            negativeattributes("error-plan-nombre", 'Este nombre ya existe, debe escribir otro');
-            $("#plan-nombre").keyup(key);
-            return false;
-        }
+        }       
         return true;
     }
 
 
         //Validacion Representante
     function validar_representante(representante) {
+        
         var vnombre = 0;
         if (representante === "") {
             adderror("emp-representante");
             negativeattributes("error-emp-representante", 'Debe ingresar un representante');
             $("#emp-representante").focus();
-            $("#emp-representante").keyup(key);
+      //      alert("representante vacio");
+            $("#emp-representante").keyup(keyRepresentante);
             return false;
         }
         if (representante === " ") {
             adderror("emp-representante");
             negativeattributes("error-emp-representante", 'El Representante no debe empezar con un espacio en blanco');
             $("#emp-representante").focus();
-            $("#emp-representante").keyup(key);
+        //    alert("representante con espacio");
+            $("#emp-representante").keyup(keyRepresentante);
             return false;
         }
         if (esNum(representante) === true) {
             adderror("emp-representante");
             negativeattributes("error-emp-representante", 'El representante no puede ser un número');
             $("#emp-representante").focus();
-            $("#emp-representante").keyup(key);
+        //    alert("representante es numero");
+            $("#emp-representante").keyup(keyRepresentante);
             return false;
         }
         if (tieneCaracEsp(representante) === true) {
             adderror("emp-representante");
             negativeattributes("error-emp-representante", 'El representante debe empezar con una letra, no debe contener caracteres especiales o numeros');
             $("#emp-representante").focus();
-            $("#emp-representante").keyup(key);
+       //     alert("representante con caES");
+            $("#emp-representante").keyup(keyRepresentante);
             return false;
         }
         if (maximoNumeroCaracteres100(representante) === true) {
             adderror("emp-representante");
             negativeattributes("error-emp-representante", 'El representante debe ser de menos de 100 caracteres');
             $("#emp-representante").focus();
-            $("#emp-representante").keyup(key);
+       //     alert("representante largo");
+            $("#emp-representante").keyup(keyRepresentante);
             return false;
         }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_nombre: $("#plan-nombre").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    vnombre = 1;
-                }
-            });
-        }
-        if (vnombre === 1) {
-            adderror("plan-nombre");
-            negativeattributes("error-plan-nombre", 'Este nombre ya existe, debe escribir otro');
-            $("#plan-nombre").keyup(key);
-            return false;
-        }
+        
         return true;
     }
-    var key = function () {
-        var $valor = $("#plan-nombre");
+
+    //--------------------------------------------------------------------------------------------
+    var keyRepresentante = function () {
+        var $valor = $("#emp-representante");
         if ($valor.val() === "") {
-            negativeattributes("error-plan-nombre", 'Debe ingresar un nombre');
-            adderror("plan-nombre");
+            negativeattributes("error-emp-representante", 'Debe ingresar un representante');
+            adderror("emp-representante");
         }
         else if ($valor.val() === " ") {
-            negativeattributes("error-plan-nombre", 'El nombre no debe empezar con un espacio en blanco');
-            adderror("plan-nombre");
+            negativeattributes("error-emp-representantee", 'El representante no debe empezar con un espacio en blanco');
+            adderror("emp-representante");
         }
         else if (esNum($valor.val()) === true) {
-            negativeattributes("error-plan-nombre", 'El nombre no puede ser un número');
-            adderror("plan-nombre");
+            negativeattributes("error-plan-nombre", 'El representante no puede ser un número');
+            adderror("emp-representante");
         }
         else if (tieneCaracEsp($valor.val()) === true) {
-            negativeattributes("error-plan-nombre", 'El nombre debe empezar con una letra, no debe contener caracteres especiales o numeros');
-            adderror("plan-nombre");
+            negativeattributes("error-emp-representante", 'El representante debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            adderror("emp-representante");
         }
-        else if (maximoNumeroCaracteres50($valor.val()) === true) {
-            negativeattributes("error-plan-nombre", 'El nombre debe ser de menos de 50 caracteres');
-            adderror("plan-nombre");
+        else if (maximoNumeroCaracteres100($valor.val()) === true) {
+            negativeattributes("error-emp-representante", 'El representante debe ser de menos de 100 caracteres');
+            adderror("emp-representante");
         }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_nombre: $("#plan-nombre").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    adderror("plan-nombre");
-                    negativeattributes("error-plan-nombre", 'Este nombre ya existe, debe escribir otro');
-                }
-                else {
-                    attributes("error-plan-nombre");
-                    addgood("plan-nombre");
-                }
-            });
-        }
+       
+        
 
     };
 
 
-    function keyT() {
-        var RegularExpression = /^\d+[.]*\d*$/;
-        var $valor = $("#plan-tiempo");
+    function keyDireccion() {
+      
+        var $valor = $("#emp-direccion");
         if ($valor.val() === "") {
-            negativeattributes("error-plan-tiempo", 'Debe ingresar un número');
-            adderror("plan-tiempo");
+            
+            negativeattributes("error-emp-direccion", 'Debe ingresar una dirección');
+            adderror("emp-direccion");
         }
-        else if ($valor.val() <= 0) {
-            negativeattributes("error-plan-tiempo", 'El número debe ser positivo y mayor que 0');
-            adderror("plan-tiempo");
+        if ($valor.val() === " ") {
+           
+            negativeattributes("error-emp-direccion", 'La dirección no debe empezar con un espacio en blanco');
+            adderror("emp-direccion");
         }
-        else {
-            //    if (!$valor.val().match(RegularExpression)) {
-            attributes("error-plan-tiempo");
-            addgood("plan-tiempo");
-            /*    }
-                else {
-                    negativeattributes("error-plan-tiempo", 'No se aceptan caracteres especiales');
-                    adderror("plan-tiempo");
-                }*/
-        }
+
+        if (maximoNumeroCaracteres200($valor.val()) === true) {
+           
+            negativeattributes("error-emp-direccion", 'La dirección debe ser de menos de 200 caracteres');
+            adderror("emp-direccion");
+
+        } 
     }
 
-    var keyE = function () {
-        var $valor = $("#plan-emp");
+    var keyTelefono = function () {
+        var $valor = $("#emp-telefono");
+        var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
         if ($valor.val() === "") {
             negativeattributes("error-plan-emp", 'Debe ingresar un nombre');
             adderror("plan-emp");
@@ -421,73 +401,65 @@
             negativeattributes("error-plan-emp", 'El nombre debe ser de menos de 50 caracteres');
             adderror("plan-emp");
         }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Nombre_Empresa_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_emp: $("#plan-emp").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    attributes("error-plan-emp");
-                    addgood("plan-emp");
-                }
-                else {
-                    adderror("plan-emp");
-                    negativeattributes("error-plan-emp", 'El nombre de esta empresa no existe');
-                }
-            });
+        else if ($valor.match(regular)) {
+            
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser menor o igual a 9 digitos');
+            adderror("emp-telefono");
         }
-
+        else if ($valor.length < 7) {
+            
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser mayor o igual a 7');
+            adderror("emp-telefono");
+        }
+       
     };
 
-    var keyTS = function () {
-        var $valor = $("#plan-tipo-servicio");
+
+    var keyEmail = function () {
+        var $valor = $("#emp-email");
+        
         if ($valor.val() === "") {
-            negativeattributes("error-plan-tipo-servicio", 'Debe ingresar un nombre');
-            adderror("plan-tipo-servicio");
+            
+            negativeattributes("error-emp-email", 'Debe ingresar un email');
+            adderror("emp-email");
         }
-        else if ($valor.val() === " ") {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa no debe empezar con un espacio en blanco');
-            adderror("plan-tipo-servicio");
-        }
-        else if (esNum($valor.val()) === true) {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre no puede ser un número');
-            adderror("plan-tipo-servicio");
-        }
-        else if (tieneCaracEsp($valor.val()) === true) {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre de la empresa debe empezar con una letra y no debe ser caracter especial');
-            adderror("plan-tipo-servicio");
-        }
-        else if (maximoNumeroCaracteres50($valor.val()) === true) {
-            negativeattributes("error-plan-tipo-servicio", 'El nombre debe ser de menos de 50 caracteres');
-            adderror("plan-tipo-servicio");
-        }
-        else {
-            $.ajax({
-                url: "/Plan/Evaluar_Tipo_Servicio_Plan",
-                method: "GET",
-                async: false,
-                data: {
-                    plan_tipo_servicio: $("#plan-tipo-servicio").val()
-                },
-                dataType: "json"
-            }).done(function (data) {
-                if (data !== 0) {
-                    attributes("error-plan-tipo-servicio");
-                    addgood("plan-tipo-servicio");
-                }
-                else {
-                    adderror("plan-tipo-servicio");
-                    negativeattributes("error-plan-tipo-servicio", 'El nombre de este servicio no existe');
-                }
-            });
+        if ($valor.val() === " ") {
+           
+            negativeattributes("error-emp-email", 'El email no debe empezar con un espacio en blanco');
+            adderror("emp-email");
         }
 
-    };
+        if (maximoNumeroCaracteres20($valor.val()) === true) {
+            
+            negativeattributes("error-emp-email", 'El email debe ser de menos de 20 caracteres');
+            adderror("emp-email");
+        }
+    }
+
+    var keyFax = function () {
+        var $valor = $("#emp-email");
+      
+
+
+
+        if ($valor.val() === " ") {
+            
+            negativeattributes("error-emp-fax", 'El fax no debe empezar con un espacio en blanco');
+            adderror("emp-fax");
+        }
+
+        else if (maximoNumeroCaracteres20($valor.val()) === true) {
+            
+            negativeattributes("error-emp-fax", 'El fax debe ser de menos de 20 caracteres');
+            adderror("emp-fax");
+        }
+
+        else if (esNum($valor.val()) == false) {
+            adderror("emp-fax");
+            negativeattributes("error-emp-fax", 'El fax debe ser un número');
+
+        }
+    }
     //
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
