@@ -47,7 +47,7 @@ namespace SWMGEGCSS.Controllers
         {
             /*var model = new GestionarPlanProyectoViewModel();*/
             var model = new GestionarPlanProyectoViewModel();
-            //se obtiene el plan
+            //se obtiene el plan seleccionado
             model.plans_aux = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(r => (r.plan_id == id));
             //se obtiene los valores del tipo servicio del plan seleccionado
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
@@ -187,7 +187,7 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarPlanProyectoViewModel();
             model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
-            return PartialView(model);
+            return PartialView("_ModalActualizarActividadesPlanificadas",model);
         }
         [HttpPost]
       public ActionResult _ModalActualizarActividadesPlanificadasFinal(int plan_id, int act_id, T_actividades_planeadas act_plan)

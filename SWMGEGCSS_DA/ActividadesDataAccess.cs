@@ -27,7 +27,10 @@ namespace SWMGEGCSS_DA
                             t_actividad.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
                             t_actividad.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
                             t_actividad.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);
+                            t_actividad.act_plazo = DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
+                            t_actividad.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
                             list_actividades.Add(t_actividad);
+                            
                         }
 
                     }
@@ -124,7 +127,7 @@ namespace SWMGEGCSS_DA
                             T_actividades_planeadas_aux act_planeadas_aux = new T_actividades_planeadas_aux();
                             act_planeadas_aux.act_plan_id = DataUtil.DbValueToDefault<int>(reader["act_plan_id"]);
                             act_planeadas_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
-                            act_planeadas_aux.act_nombre = DataUtil.DbValueToDefault<int>(reader["act_nombre"]);
+                            act_planeadas_aux.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
                             act_planeadas_aux.act_plan_nombre = DataUtil.DbValueToDefault<string>(reader["act_plan_nombre"]);
                             act_planeadas_aux.act_plan_descripcion = DataUtil.DbValueToDefault<string>(reader["act_plan_descripcion"]);
                             act_planeadas_aux.act_plan_costo = DataUtil.DbValueToDefault<double>(reader["act_plan_costo"]);
