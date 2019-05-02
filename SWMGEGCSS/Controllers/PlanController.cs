@@ -204,5 +204,26 @@ namespace SWMGEGCSS.Controllers
                 var operationResult = new ActividadesDataAccess().sp_actualizar_actividades_planeadas(actividadesPlaneadas);
             return Json(actplan.plan_id, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult _ModalEliminarActividadesPlanificadas()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalEliminarActividadesPlanificadas(int act_plan_id)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
+            return PartialView("_ModalEliminarActividadesPlanificadas", model);
+        }
+        [HttpPost]
+        public ActionResult _ModalEliminarActividadesPlanificadasFinal(int act_plan_id)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan_id);
+            var operationResult = new ActividadesDataAccess().sp_eliminar_actividades_planeadas(act_plan_id);
+            return Json(actplan.plan_id, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -156,7 +156,7 @@
                                     <td>@item.act_nombre</td>
                                     <td>@item.act_plazo </td>
                                     <td>
-                                        <button class="btn btn-danger btnModal">
+                                        <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
                                             <i class="fa fa-times-circle"></i>
                                             Eliminar
                                         </button>
@@ -207,10 +207,12 @@
 
     </form>
     @Html.Action("_ModalActualizarActividadesPlanificadas", "Plan")
+    @Html.Action("_ModalEliminarActividadesPlanificadas", "Plan")
 </div>
 
 
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/ActualizarActividadesPlaneadas.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/EliminarActividadesPlaneadas.js"></script>
 }
