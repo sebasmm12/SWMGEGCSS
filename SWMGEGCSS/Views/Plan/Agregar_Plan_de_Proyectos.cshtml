@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Agregar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+
 }
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
@@ -88,12 +89,11 @@
                 <div id="error-plan-tiempo" class="errordiv"></div>
             </div>
         </div>
-        <div id="errordiv"></div>
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" class="btn btn-success" id="boton-Registrar">
+                <button type="button" class="btn btn-success" id="boton-Registrar">
                     <i class="fa fa-check-circle"></i>
-                    Registrar Plan
+                     Continuar
                 </button>
             </div>
             <div class="col-12 col-sm-3 col-md-3">
@@ -103,7 +103,6 @@
                 </a>
             </div>
         </div>
-    </form>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 @section Scripts{

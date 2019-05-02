@@ -147,7 +147,7 @@
                             count = count + 1;
 
                             var listaActividades = listaPlanActividad.Find(x => x.act_id == item.act_id);
-
+                            var plan_id = listaPlanActividad.ElementAt(0).plan_id;
                             <tr class="text-center">
                                 <th scope="row">@count</th>
 
@@ -156,7 +156,7 @@
                                     <td>@item.act_nombre</td>
                                     <td>@item.act_plazo </td>
                                     <td>
-                                        <button class="btn btn-danger btnModal">
+                                        <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
                                             <i class="fa fa-times-circle"></i>
                                             Eliminar
                                         </button>
@@ -171,7 +171,7 @@
                                     <td>@item.act_nombre</td>
                                     <td>@item.act_plazo </td>
                                     <td>
-                                        <button class="btn btn-success">
+                                        <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
                                             <i class="fa fa-plus-circle"></i>
                                             Agregar a la Planificacion
                                         </button>
@@ -183,10 +183,6 @@
                 </table>
             </div>
         </div>
-
-
-
-
         <!---------------------------------->
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
@@ -207,10 +203,15 @@
 
     </form>
     @Html.Action("_ModalActualizarActividadesPlanificadas", "Plan")
+    @Html.Action("_ModalEliminarActividadesPlanificadas", "Plan")
+    @Html.Action("_ModalAgregarActividadesPlanificadas", "Plan")
 </div>
 
 
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/ActualizarActividadesPlaneadas.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/EliminarActividadesPlaneadas.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/RegistrarActividadesPlaneadas.js"></script>
+
 }

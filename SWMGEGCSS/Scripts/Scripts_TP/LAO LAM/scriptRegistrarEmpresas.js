@@ -110,7 +110,7 @@
         }
     };
     var igual= function maxCharacters(X) {
-        if (X.length ==11) {
+        if (X.length === 11) {
             return true;
         } else {
             return false;
@@ -310,7 +310,7 @@
             return false;
         }
 
-        if (igual(ruc)==false) {
+        if (igual(ruc)===false) {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'El Ruc debe ser 11 dígitos');
             $("#emp-ruc").focus();
@@ -449,7 +449,7 @@
             return false;
         }
 
-        else if (esNum(fax) == false) {
+        else if (esNum(fax) === false) {
             adderror("emp-fax");
             negativeattributes("error-emp-fax", 'El fax debe ser un número');
             $("#emp-fax").focus();
@@ -862,7 +862,7 @@
             adderror("emp-fax");
         }
 
-        else if (esNum($valor.val()) == false) {
+        else if (esNum($valor.val()) === false) {
             adderror("emp-fax");
             negativeattributes("error-emp-fax", 'El fax debe ser un número');
 

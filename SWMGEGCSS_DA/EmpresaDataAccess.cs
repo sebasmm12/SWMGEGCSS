@@ -54,15 +54,25 @@ namespace SWMGEGCSS_DA
             {
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Nombre_Empresa"))
                 {
+
                     Database.AddInParameter(command, "@emp_nombre", DbType.String, emp_razon_social);
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
                         while (reader.Read())
                         {
-                            T_empresa t_empresa = new T_empresa();
-                            
-                            t_empresa.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
-                            T_Empresa.Add(t_empresa);
+                            T_empresa empresa = new T_empresa();
+
+                            empresa.emp_direccion = DataUtil.DbValueToDefault<string>(reader["emp_direccion"]);
+                            empresa.emp_email = DataUtil.DbValueToDefault<string>(reader["emp_email"]);
+                            empresa.emp_estado = DataUtil.DbValueToDefault<bool>(reader["emp_estado"]);
+                            empresa.emp_fax = DataUtil.DbValueToDefault<string>(reader["emp_fax"]);
+                            empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            empresa.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+                            empresa.emp_representante = DataUtil.DbValueToDefault<string>(reader["emp_representante"]);
+                            empresa.emp_ruc = DataUtil.DbValueToDefault<string>(reader["emp_ruc"]);
+                            empresa.emp_sigla = DataUtil.DbValueToDefault<string>(reader["emp_sigla"]);
+                            empresa.emp_telefono = DataUtil.DbValueToDefault<string>(reader["emp_telefono"]);
+                            T_Empresa.Add(empresa);
                         }
                     }
                 }

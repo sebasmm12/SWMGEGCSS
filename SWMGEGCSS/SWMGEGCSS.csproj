@@ -292,8 +292,9 @@
     <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
-    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
@@ -430,12 +431,16 @@
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
+    <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Expediente\_ListarActividad.cshtml" />
     <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
-    <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
+    <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
+    <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\Plan\Agregar_Plan_de_Proyectos_1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

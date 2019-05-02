@@ -3,19 +3,19 @@
         //declaracion de variables jquery
         var $planNombre = $("#plan-nombre");
         var $planFecha = $("#plan-fecha");
-        /*var $planCosto = $("#plan-costo");
-        var $planTiempo = $("#plan-tiempo");
+        var $planCosto = $("#plan-costo");
+        /*var $planTiempo = $("#plan-tiempo");
         var $planEmp = $("#plan-emp");
         var $planTipoServicio = $("#plan-tipo-servicio");*/
 
         var vnombre = validar_nombre_plan($planNombre.val());
         var vfecha = validar_fecha_plan($planFecha.val());
-        /*var vcosto = validar_costo_plan($planCosto.val());
-        var vtiempo = validar_tiempo_plan($planTiempo.val());
+        var vcosto = validar_costo_plan($planCosto.val());
+        /*var vtiempo = validar_tiempo_plan($planTiempo.val());
         var vemp = validar_emp_plan($planEmp.val());
         var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());*/
 
-        if (vnombre === false|| vfecha === false /*|| vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false*/) {
+        if (vnombre === false|| vfecha === false || vcosto === false /*|| vtiempo === false || vemp === false || vtiposervicio === false*/) {
             return false;
         }
         else {
@@ -220,46 +220,46 @@
     };
 
     //Validacion Costo
-    //function validar_costo_plan(id) {
-    //    var RegularExpression = /^\d+[.]*\d*$/;
-    //    var $valor = $("#plan-costo");
-    //    if (id === "") {
-    //        adderror("plan-costo");
-    //        negativeattributes("error-plan-costo", 'Debe ingresar un numero');
-    //        $("#plan-costo").keyup(keyC);
-    //        return false;
-    //    }
-    //    else {
-    //        if ($valor.val().match(RegularExpression)) {
-    //            attributes("error-plan-costo");
-    //            addgood("plan-costo");
-    //        } else {
-    //            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
-    //            adderror("plan-costo");
-    //            $("#plan-costo").keyup(keyC);
-    //            return false;
-    //        }
+    function validar_costo_plan(id) {
+        var RegularExpression = /^\d+[.]*\d*$/;
+        var $valor = $("#plan-costo");
+        if (id === "") {
+            adderror("plan-costo");
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+            $("#plan-costo").keyup(keyC);
+            return false;
+        }
+        else {
+            if ($valor.val().match(RegularExpression)) {
+                attributes("error-plan-costo");
+                addgood("plan-costo");
+            } else {
+                negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
+                adderror("plan-costo");
+                $("#plan-costo").keyup(keyC);
+                return false;
+            }
 
-    //    }
-    //    return true;
-    //}
-    //function keyC() {
-    //    var RegularExpression = /^\d+[.]*\d*$/;
-    //    var $valor = $("#plan-costo");
-    //    if ($valor.val() === "") {
-    //        negativeattributes("error-plan-costo", 'Debe ingresar un numero');
-    //        adderror("plan-costo");
-    //    } else {
-    //        if ($valor.val().match(RegularExpression)) {
-    //            attributes("error-plan-costo");
-    //            addgood("plan-costo");
-    //        } else {
-    //            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
-    //            adderror("plan-costo");
-    //        }
+        }
+        return true;
+    }
+    function keyC() {
+        var RegularExpression = /^\d+[.]*\d*$/;
+        var $valor = $("#plan-costo");
+        if ($valor.val() === "") {
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+            adderror("plan-costo");
+        } else {
+            if ($valor.val().match(RegularExpression)) {
+                attributes("error-plan-costo");
+                addgood("plan-costo");
+            } else {
+                negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
+                adderror("plan-costo");
+            }
 
-    //    }
-    //}
+        }
+    }
     ////Validacion Tiempo
     //function validar_tiempo_plan(id) {
     //    if (id === "") {

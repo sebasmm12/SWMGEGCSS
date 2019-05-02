@@ -17,11 +17,6 @@
         return false;
     };
 
-  
-
-
-
-
     var autocompletado = function () {
         var $input = $(this);
         var options = {
@@ -49,11 +44,27 @@
         });
     };
 
+    var BuscarProyecto = function () {
+        var select = document.getElementById("estado");
+        var searchTerm = document.getElementById("searchTerm");
+        $.ajax({
+            url: "/Gerente/Gestionar_Empresas",
+            data: { searchTerm: searchTerm.value, estado: select.value },
+            type: "GET"
+        }).done(function (data) {
+            var $newhtml = $(data);
+            var target = $("div.pagedList").attr("data-exp-target");
+            $(target).replaceWith($newhtml);
+        });
+        return true;
+    }
+
+
 
 
     $(".btnModal").each(envioajaxModal);    
     $("input[data-exp-autocomplete]").each(autocompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
-   
+    $("#Buscar").click(BuscarProyecto);
 });
 

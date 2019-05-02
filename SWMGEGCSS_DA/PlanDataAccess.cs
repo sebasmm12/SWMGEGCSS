@@ -393,6 +393,30 @@ namespace SWMGEGCSS_DA
             }
             return lista_planes_aux;
         }
-        
+        public List<T_actividades> sp_Consultar_Actividades_Plan(int tipo_servicio_id)
+        {
+            List<T_actividades> lista_actividades = new List<T_actividades>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Actividades_Plan"))
+                {
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, tipo_servicio_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades t_act = new T_actividades();
+                            t_act.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
+                            lista_actividades.Add(t_act);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_actividades>();
+            }
+            return lista_actividades;
+        }
     }
 }
