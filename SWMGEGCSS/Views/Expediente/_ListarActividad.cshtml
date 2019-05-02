@@ -4,7 +4,10 @@
     Layout = null;
     var Actividades_Total = Model.ActividadModel.list_Actividades;
     var Actividades_Desarrollar = Model.ActividadModel.list_Actividades_Desarrollar;
+    var Actividades_Planeadas = Model.ActividadModel.list_Actividades_Planeadas;
     var count = 0;
+    var p = 0;
+    
 }
     <table class="table table-bordered">
         <thead class="bg-success">
@@ -18,17 +21,21 @@
         <tbody>
             @foreach (var item in Actividades_Total)
             {
-                count = count + 1;
-                var evaluar = Actividades_Desarrollar.Find(r => r.act_desa_nombre == item.act_nombre);
-                var exp_id = Actividades_Desarrollar.ElementAt(0).exp_id;
+                count = count + 1;  
+                 var exp_id = Actividades_Desarrollar.ElementAt(0).exp_id;
             <tr class="text-center">
                 <th scope="row">@count</th>
-                @if (evaluar != null)
+                @if (p!= Actividades_Desarrollar.Count)
                 {
-                    <td>@evaluar.act_desa_nombre</td>
-                    <td>@evaluar.act_desa_descripcion</td>
+                 var evaluar0 = Actividades_Desarrollar.ElementAt(p);
+                p = p + 1;
+                var evaluar1 = Actividades_Planeadas.Find(r=>r.act_plan_nombre==evaluar0.act_desa_nombre);
+                var evaluar = Actividades_Total.Find(r => r.act_id == evaluar1.act_id);
+               
+                    <td>@evaluar1.act_plan_nombre</td>
+                    <td>@evaluar1.act_plan_descripcion</td>
                     <td>
-                        <button class="btn btn-danger btnSubModal" data-id-target="@evaluar.act_desa_nombre" data-exp-target="@evaluar.exp_id" data-url="@Url.Action("EliminarActividad","Expediente")">
+                        <button class="btn btn-danger btnSubModal" data-id-target="@evaluar1.act_plan_nombre" data-exp-target="@evaluar0.exp_id" data-url="@Url.Action("EliminarActividad","Expediente")">
                             <i class="fa fa-times-circle"></i>
                             Eliminar Actividad
                         </button>

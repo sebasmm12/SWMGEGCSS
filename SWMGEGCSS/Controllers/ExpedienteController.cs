@@ -72,6 +72,7 @@ namespace SWMGEGCSS.Controllers
             model.ActividadModel = new ActividadViewModel();
             var model1 = new ExpedienteViewModel();
             model1.ActividadModel = new ActividadViewModel();
+            model.ActividadModel.list_Actividades_Planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => r.plan_id == model.Expedientes.plan_id);
             model1.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r => r.exp_id == id);
             model.ActividadModel.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(model.Expedientes.tipo_servicio_id);
             model.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==id);
@@ -150,8 +151,10 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult AñadirActividad(string act_nombre,int exp_id)
         {
-            var Actividad = new T_actividades();
-            Actividad = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r=>r.act_nombre==act_nombre);
+            var Actividad = new T_actividades_planeadas();
+            Actividad = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(r => r.act_plan_nombre == act_nombre);
+            var ActividadG = new T_actividades();
+            ActividadG = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r => r.act_nombre == act_nombre);
             var Actividades_Desarrollar = new T_actividades_desarrollar();
             List<T_actividades_desarrollar> list_actividades = new List<T_actividades_desarrollar>();
             if (Session["list_actividades"] != null)
@@ -163,11 +166,16 @@ namespace SWMGEGCSS.Controllers
             if (Actividades_D != null)
             {
                Actividades_Desarrollar.act_desa_id = Actividades_D.act_desa_id;
+               Actividades_Desarrollar.act_desa_nombre = Actividad.act_plan_nombre;
+               Actividades_Desarrollar.act_desa_descripcion = Actividad.act_plan_descripcion;
+            }
+            else
+            {
+                Actividades_Desarrollar.act_desa_nombre = ActividadG.act_nombre;
+                Actividades_Desarrollar.act_desa_descripcion = ActividadG.act_descripcion;
             }
             Actividades_Desarrollar.usu_creador = (int)Session["login"];
             Actividades_Desarrollar.est_act_id = 1;
-            Actividades_Desarrollar.act_desa_nombre = Actividad.act_nombre;
-            Actividades_Desarrollar.act_desa_descripcion = Actividad.act_descripcion;
             list_actividades.Add(Actividades_Desarrollar);
             int p = 1;
             Session["list_actividades"] = list_actividades;
@@ -175,8 +183,10 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult EliminarActividad(string act_nombre, int exp_id)
         {
-            var Actividad = new T_actividades();
-            Actividad = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r => r.act_nombre == act_nombre);
+            var Actividad = new T_actividades_planeadas();
+            Actividad = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(r => r.act_plan_nombre == act_nombre);
+            var ActividadG = new T_actividades();
+            ActividadG = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r=>r.act_nombre==act_nombre);
             var Actividades_Desarrollar = new T_actividades_desarrollar();
             List<T_actividades_desarrollar> list_actividades = new List<T_actividades_desarrollar>();
             if (Session["list_actividades"] != null)
@@ -186,8 +196,17 @@ namespace SWMGEGCSS.Controllers
             Actividades_Desarrollar.exp_id = exp_id;
             Actividades_Desarrollar.usu_creador = (int)Session["login"];
             Actividades_Desarrollar.est_act_id = 1;
-            Actividades_Desarrollar.act_desa_nombre = Actividad.act_nombre;
-            Actividades_Desarrollar.act_desa_descripcion = Actividad.act_descripcion;
+            if (Actividad != null)
+            {
+                Actividades_Desarrollar.act_desa_nombre = Actividad.act_plan_nombre;
+                Actividades_Desarrollar.act_desa_descripcion = Actividad.act_plan_descripcion;
+            }
+            if (ActividadG != null)
+            {
+                Actividades_Desarrollar.act_desa_nombre = ActividadG.act_nombre;
+                Actividades_Desarrollar.act_desa_descripcion = ActividadG.act_descripcion;
+            }
+
            var Act_aux= list_actividades.Find(r=>r.act_desa_nombre==act_nombre);
             list_actividades.Remove(Act_aux);
             int p = 2;
