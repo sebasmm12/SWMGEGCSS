@@ -199,7 +199,7 @@
             return false;
         }
 
-     else if (esNum(fax) == false) {
+     else if (esNum(fax) === false) {
             adderror("emp-fax");
             negativeattributes("error-emp-fax", 'El fax debe ser un número');
             $("#emp-fax").focus();
@@ -454,7 +454,7 @@
             adderror("emp-fax");
         }
 
-        else if (esNum($valor.val()) == false) {
+        else if (esNum($valor.val()) === false) {
             adderror("emp-fax");
             negativeattributes("error-emp-fax", 'El fax debe ser un número');
 

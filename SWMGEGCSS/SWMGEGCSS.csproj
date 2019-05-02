@@ -429,13 +429,12 @@
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
-    <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Expediente\_ListarActividad.cshtml" />
     <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
-    <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
+    <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
