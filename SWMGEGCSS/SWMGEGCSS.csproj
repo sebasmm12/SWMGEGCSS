@@ -440,6 +440,7 @@
     <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
     <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\Plan\Agregar_Plan_de_Proyectos_1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
