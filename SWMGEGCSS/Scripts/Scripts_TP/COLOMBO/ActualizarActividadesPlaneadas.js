@@ -82,10 +82,31 @@
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
                 $(modal).modal();
+                 $(".btnActualizarPlanAct").click(envioajaxActualizar);
             });
             return false;
         });
     };
+    var envioajaxActualizar = function () {
+        //mismo nombre del parametro de actualizacion del metodo
+        //creando objeto
+        var act_plan = {         
+            act_plan_id: id_plan,
+            act_plan_nombre: $("#Actividades_planeadas_aux_act_plan_nombre").val(),
+            act_plan_descripcion: $("#Actividades_planeadas_aux_act_plan_descripcion").val(), 
+            act_plan_costo: $("#Actividades_planeadas_aux_act_plan_costo").val(),
+            act_plan_tiempo: $("#Actividades_planeadas_aux_act_plan_tiempo").val()
+        };
+        $.ajax({
+            url: "/Plan/_ModalActualizarActividadesPlanificadasFinal",
+            method: "POST",
+            data: {
+                act_plan: act_plan
+            }
+        }).done(function (data) {
+            alert("LLEGO ACA!!");
+        });
+    }
     /*var BuscarProyecto = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
@@ -102,6 +123,7 @@
         return true;
     };*/
     $(".btnModal").each(envioajaxModal);
+    $(".btnActualizarPlanAct").click(envioajaxActualizar);
     //$("input[data-exp-autocomplete]").each(autcompletado);
     //$(".pcoded-content").on("click", ".pagedList a", getPage);
     //$("#Buscar").click(BuscarProyecto);

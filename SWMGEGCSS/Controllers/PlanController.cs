@@ -190,12 +190,12 @@ namespace SWMGEGCSS.Controllers
             return PartialView("_ModalActualizarActividadesPlanificadas",model);
         }
         [HttpPost]
-      public ActionResult _ModalActualizarActividadesPlanificadasFinal(int plan_id, int act_id, T_actividades_planeadas act_plan)
+      public ActionResult _ModalActualizarActividadesPlanificadasFinal( T_actividades_planeadas act_plan)
         {
                 var actividadesPlaneadas = new T_actividades_planeadas();
                 actividadesPlaneadas.act_plan_id = act_plan.act_plan_id;
-                actividadesPlaneadas.plan_id = plan_id;
-                actividadesPlaneadas.act_id = act_id;
+                actividadesPlaneadas.plan_id = act_plan.plan_id;
+                actividadesPlaneadas.act_id = act_plan.act_id;
                 actividadesPlaneadas.act_plan_nombre = act_plan.act_plan_nombre;
                 actividadesPlaneadas.act_plan_descripcion = act_plan.act_plan_descripcion;
                 actividadesPlaneadas.act_plan_costo = act_plan.act_plan_costo;
