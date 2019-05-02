@@ -19,6 +19,14 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Agregar_Plan_de_Proyectos()
         {
             var model = new GestionarPlanProyectoViewModel();
+
+            return View(model);
+        }
+        public ActionResult Agregar_Plan_de_Proyectos_1()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            T_plan modelPlan = (T_plan)Session["Plan_datos"];
+            model.List_Actividades = new PlanDataAccess().sp_Consultar_Actividades_Plan(modelPlan.tipo_servicio_id);
             return View(model);
         }
         [HttpPost]
@@ -39,8 +47,11 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
-            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
-            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            //var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+            Session["Plan_datos"] = modelPlan;
+            //return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet
+            //redireccion al Agregar_plan_1
+            return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult Actualizar_Plan_de_Proyectos(int id)
