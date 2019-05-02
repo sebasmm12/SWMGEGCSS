@@ -12,6 +12,7 @@
     <div>
         @Html.HiddenFor(model => model.empresas.emp_id)
     </div>
+    
     <div class="row mt-5 pl-2">
 
         <div class="row mt-2">
@@ -25,7 +26,7 @@
            {
                htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "text-center form-control", @readonly = "readonly" }
            })
-                <div id="error-plan-fecha" class="errordiv"></div>
+            <div id="error-plan-fecha" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-5 col-md-5">
                 <div>
@@ -143,8 +144,6 @@
 }
 
 
-
-
-        @section Scripts{
-            <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
-        }
+    @section Scripts{
+        <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+    }
