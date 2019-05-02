@@ -15,7 +15,7 @@
         var vemp = validar_emp_plan($planEmp.val());
         var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());*/
 
-        if (vnombre === false|| vfecha === false || vcosto === false /*|| vtiempo === false || vemp === false || vtiposervicio === false*/) {
+        if (vnombre === false|| vfecha === false /*|| vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false*/) {
             return false;
         }
         else {
