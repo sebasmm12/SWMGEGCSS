@@ -112,10 +112,10 @@ namespace SWMGEGCSS.Controllers
                 Session["est_razon_social"] = model.tipo_estado;
             }
 
-            if (Request.IsAjaxRequest())
+            /*if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaEmpresa", model);
-            }
+            }*/
             model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().ToPagedList(page, 4);
             if (Request.IsAjaxRequest())
             {
@@ -167,14 +167,7 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarEmpresaViewModel();
             string estado = (string)Session["est_razon_social"];
-            /*if (estado.Equals("Todos"))
-            {
-                model.listempresas= new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
-            }
-            else
-            {
-                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == Convert.ToBoolean(estado)));
-            }*/
+            
             model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
 
             var nameExpedientes = model.listempresas.Select(r => new
