@@ -1,7 +1,7 @@
 ﻿$(function () {
     var id_plan = 0;
     var id_act = 0;
-    
+
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -13,7 +13,8 @@
                 method: "POST",
                 data: {
                     plan_id: id_plan,
-                    act_id: id_act}
+                    act_id: id_act
+                }
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
@@ -40,30 +41,12 @@
             url: "/Plan/_ModalRegistrarActividadesPlanificadasFinal",
             method: "POST",
             data: {
-                act_plan:act_plan
+                act_plan: act_plan
             }
         }).done(function (data) {
-            window.location.href = "/Plan/Actualizar_Plan_de_Proyectos?id=" + data;
+            window.location.href = "/Plan/Agregar_Plan_de_Proyectos_1";
         });
     };
-    /*var BuscarProyecto = function () {
-        var select = document.getElementById("estado");
-        var searchTerm = document.getElementById("searchTerm");
-        $.ajax({
-            url: "/Gerente/Gestionar_Proyectos",
-            data: { searchTerm: searchTerm.value, estado: select.value },
-            type: "GET"
-        }).done(function (data) {
-            var $newhtml = $(data);
-            var target = $("div.pagedList").attr("data-exp-target");
-            $(target).replaceWith($newhtml);
-        });
-
-        return true;
-    };*/
     $(".btnModal3").each(envioajaxModal);
     $(".btnRegistrarPlanAct").click(envioajaxRegistrar);
-    //$("input[data-exp-autocomplete]").each(autcompletado);
-    //$(".pcoded-content").on("click", ".pagedList a", getPage);
-    //$("#Buscar").click(BuscarProyecto);
 });

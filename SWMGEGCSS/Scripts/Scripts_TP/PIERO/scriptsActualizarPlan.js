@@ -15,16 +15,16 @@
         var vemp = validar_emp_plan($planEmp.val());
         var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());*/
 
-        if (vnombre === false|| vfecha === false || vcosto === false /*|| vtiempo === false || vemp === false || vtiposervicio === false*/) {
+        if (vnombre === false|| vfecha === false /*|| vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false*/) {
             return false;
         }
         else {
-            $.ajax({
+            /*$.ajax({
                 url: "/Plan/Actualizar_Plan_de_Proyectos",
                 method: "POST",
                 data: $("form").serialize(),
                 dataType: "json"
-            }).done(function (data) {
+            }).done(function (data) {*/
                 /*Swal.fire({
                     type: 'success',
                     title: 'Se registro el plan exitosamente',
@@ -35,7 +35,7 @@
                     }
                 });*/
                 console.log("XD");
-            });
+            //});
         }
     };
     
