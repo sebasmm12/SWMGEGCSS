@@ -22,13 +22,40 @@ namespace SWMGEGCSS.Controllers
 
             return View(model);
         }
-        public ActionResult Agregar_Plan_de_Proyectos_1()
+        /*public ActionResult Agregar_Plan_de_Proyectos_1()
         {
             var model = new GestionarPlanProyectoViewModel();
             T_plan modelPlan = (T_plan)Session["Plan_datos"];
             model.List_Actividades = new PlanDataAccess().sp_Consultar_Actividades_Plan(modelPlan.tipo_servicio_id);
             return View(model);
         }
+        [HttpPost]
+        public ActionResult _ModalAgregarActividadesPlanificadas()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            T_plan modelPlan = (T_plan)Session["Plan_datos"];
+            model.plans = new PlanDataAccess().sp_Consultar_Plan_Por_Nombre(modelPlan.plan_nombre);
+            model.List_Actividades = new PlanDataAccess().sp_Consultar_Actividades_Plan(modelPlan.tipo_servicio_id);
+            //var v = model.List_Actividades.;
+            model.Actividad_planeada = new T_actividades_planeadas();
+            model.Actividad_planeada.plan_id = model.plans.plan_id;
+            model.Actividad_planeada.act_id = /*consultar sobre;
+            return PartialView("_ModalAgregarActividadesPlanificadas", model);
+        }
+        [HttpPost]
+        public ActionResult _ModalRegistrarActividades1PlanificadasFinal(T_actividades_planeadas act_plan)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.Actividad_planeada = new T_actividades_planeadas();
+            model.Actividad_planeada.plan_id = act_plan.plan_id;
+            model.Actividad_planeada.act_id = act_plan.act_id;
+            model.Actividad_planeada.act_plan_nombre = act_plan.act_plan_nombre;
+            model.Actividad_planeada.act_plan_descripcion = act_plan.act_plan_descripcion;
+            model.Actividad_planeada.act_plan_costo = act_plan.act_plan_costo;
+            model.Actividad_planeada.act_plan_tiempo = act_plan.act_plan_tiempo;
+            var operationResult = new ActividadesDataAccess().sp_registrar_actividades_planeadas(model.Actividad_planeada);
+            return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);
+        }*/
         [HttpPost]
         public ActionResult Agregar_Plan_de_Proyectos(T_plan_aux plans_aux)
         {
@@ -47,11 +74,11 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
-            //var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             Session["Plan_datos"] = modelPlan;
-            //return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet
+            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
-            return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
+            //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult Actualizar_Plan_de_Proyectos(int id)

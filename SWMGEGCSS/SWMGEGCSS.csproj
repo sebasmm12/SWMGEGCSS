@@ -302,7 +302,9 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsModalAgregarActividades.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
     <Content Include="Scripts\Scripts_TP\scriptsS.js" />
