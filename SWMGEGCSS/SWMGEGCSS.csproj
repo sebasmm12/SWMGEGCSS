@@ -293,6 +293,7 @@
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
@@ -435,6 +436,7 @@
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Expediente\_ListarActividad.cshtml" />
     <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
+    <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

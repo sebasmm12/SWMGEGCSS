@@ -27,7 +27,10 @@ namespace SWMGEGCSS_DA
                             t_actividad.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
                             t_actividad.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
                             t_actividad.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);
+                            t_actividad.act_plazo = DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
+                            t_actividad.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
                             list_actividades.Add(t_actividad);
+                            
                         }
 
                     }
@@ -99,8 +102,6 @@ namespace SWMGEGCSS_DA
             using (DbCommand command = Database.GetStoredProcCommand("sp_actualizar_actividades_planeadas"))
             {
                 Database.AddInParameter(command, "@act_plan_id", DbType.Int32, actividades_planeadas.act_plan_id);
-                Database.AddInParameter(command, "@plan_id", DbType.Int32, actividades_planeadas.plan_id);
-                Database.AddInParameter(command, "@act_id", DbType.Int32, actividades_planeadas.act_id);
                 Database.AddInParameter(command, "@act_plan_nombre", DbType.String, actividades_planeadas.act_plan_nombre);
                 Database.AddInParameter(command, "@act_plan_descripcion", DbType.String, actividades_planeadas.act_plan_descripcion);
                 Database.AddInParameter(command, "@act_plan_costo", DbType.Double, actividades_planeadas.act_plan_costo);
@@ -124,7 +125,7 @@ namespace SWMGEGCSS_DA
                             T_actividades_planeadas_aux act_planeadas_aux = new T_actividades_planeadas_aux();
                             act_planeadas_aux.act_plan_id = DataUtil.DbValueToDefault<int>(reader["act_plan_id"]);
                             act_planeadas_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
-                            act_planeadas_aux.act_nombre = DataUtil.DbValueToDefault<int>(reader["act_nombre"]);
+                            act_planeadas_aux.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
                             act_planeadas_aux.act_plan_nombre = DataUtil.DbValueToDefault<string>(reader["act_plan_nombre"]);
                             act_planeadas_aux.act_plan_descripcion = DataUtil.DbValueToDefault<string>(reader["act_plan_descripcion"]);
                             act_planeadas_aux.act_plan_costo = DataUtil.DbValueToDefault<double>(reader["act_plan_costo"]);
@@ -211,6 +212,35 @@ namespace SWMGEGCSS_DA
             {
 
                 return new List<T_actividades_desarrollar>();
+            }
+        }
+        public List<T_actividades> sp_Consultar_Actividades()
+        {
+            try
+            {
+                List<T_actividades> list_actividades = new List<T_actividades>();
+                using (DbCommand command= Database.GetStoredProcCommand("sp_Consultar_Actividades"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades t_Actividades = new T_actividades();
+                            t_Actividades.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
+                            t_Actividades.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
+                            t_Actividades.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);
+                            t_Actividades.act_plazo = DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
+                            t_Actividades.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
+                            list_actividades.Add(t_Actividades);
+                        }
+                    }
+                }
+                return list_actividades;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_actividades>();
             }
         }
     }
