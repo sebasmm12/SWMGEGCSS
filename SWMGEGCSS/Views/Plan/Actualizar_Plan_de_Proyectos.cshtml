@@ -6,7 +6,7 @@
     //retorna un lista auxiliar de actividades planeadas
     var listaPlanActividadAux = Model.List_Actividades_planeadas_aux;
     var listaPlanActividad = Model.List_Actividades_planeadas;
-    
+
     //retorna la lista de todas las actividades
     var listaTotalActividades = Model.List_Actividades;
 
@@ -137,7 +137,8 @@
                         <tr class="text-center">
                             <th scope="col">#</th>
                             <th scope="col">Actividad </th>
-                            <th scope="col">Plazo Aprox.</th>                       
+                            <th scope="col">Plazo Aprox.</th>
+                            <th scope="col">Funciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,36 +148,36 @@
 
                             var listaActividades = listaPlanActividad.Find(x => x.act_id == item.act_id);
 
-                        <tr class="text-center">
-                            <th scope="row">@count</th>
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
 
-                            @if (listaActividades != null)
-                            {
-                                <td>@item.act_nombre</td>
-                                <td>@item.act_plazo </td>
-                                <td>
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-times-circle"></i>
-                                        Eliminar Actividad de la planificacion
-                                    </button>
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-times-circle"></i>
-                                        Actualizar Actividad Planificada
-                                    </button>
-                                </td>
-                            }
-                            else
-                            {
-                                <td>@item.act_nombre</td>
-                                <td>@item.act_plazo </td>
-                                <td>
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-times-circle"></i>
-                                        Agregar a la Planificacion
-                                    </button>
-                                </td>
-                            }
-                        </tr>
+                                @if (listaActividades != null)
+                                {
+                                    <td>@item.act_nombre</td>
+                                    <td>@item.act_plazo </td>
+                                    <td>
+                                        <button class="btn btn-danger btnModal">
+                                            <i class="fa fa-times-circle"></i>
+                                            Eliminar
+                                        </button>
+                                        <button class="btn btn-warning btnModal" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
+                                            <i class="fa fa-edit" style="color:white !important"></i>
+                                            Actualizar
+                                        </button>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>@item.act_nombre</td>
+                                    <td>@item.act_plazo </td>
+                                    <td>
+                                        <button class="btn btn-success">
+                                            <i class="fa fa-plus-circle"></i>
+                                            Agregar a la Planificacion
+                                        </button>
+                                    </td>
+                                }
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -189,8 +190,8 @@
         <!---------------------------------->
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" id="boton-Actualizar" class="btn btn-success">
-                    <i class="fa fa-check-circle"></i>
+                <button type="submit" id="boton-Actualizar" class="btn btn-warning rounded-pill">
+                    <i class="fa fa-edit" style="color:white !important"></i>
                     Actualizar
                 </button>
             </div>
@@ -203,10 +204,13 @@
                 </a>
             </div>
         </div>
-    </form> 
+
+    </form>
+    @Html.Action("_ModalActualizarActividadesPlanificadas", "Plan")
 </div>
 
 
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/ActualizarActividadesPlaneadas.js"></script>
 }

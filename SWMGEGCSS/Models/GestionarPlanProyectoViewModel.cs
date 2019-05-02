@@ -22,6 +22,7 @@ namespace SWMGEGCSS.Models
         public List<T_actividades_planeadas_aux> List_Actividades_planeadas_aux { get; set; }
         public List<T_actividades_planeadas> List_Actividades_planeadas { get; set; }
         public T_actividades_planeadas_aux Actividades_planeadas_aux { get; set; }
-        public string tipo_estado { get; set; }
+        public T_actividades_desarrollar Actividades_planeadas { get; set; }
+        //public string tipo_estado { get; set; }
     }
 }
