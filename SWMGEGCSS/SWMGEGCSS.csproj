@@ -294,6 +294,7 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
@@ -433,6 +434,7 @@
     <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Expediente\_ListarActividad.cshtml" />
+    <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -443,7 +445,6 @@
     <Folder Include="Content\StyleTP\MAURICIO\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
     <Folder Include="Scripts\Scripts_TP\EGG\" />
-    <Folder Include="Scripts\Scripts_TP\MAURICIO\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

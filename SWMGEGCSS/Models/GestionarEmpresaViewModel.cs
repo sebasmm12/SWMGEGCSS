@@ -17,5 +17,6 @@ namespace SWMGEGCSS.Models
 
         public IPagedList<T_empresa> listEmpresas
         { get; set; }
+        public string tipo_estado { get; set; }
     }
 }
