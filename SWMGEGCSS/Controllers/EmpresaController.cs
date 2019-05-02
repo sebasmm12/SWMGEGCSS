@@ -79,8 +79,20 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
 
+        public ActionResult Evaluar_Nombre_Empresa(string emp_razon_social)
+        {
+            var model = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
+            var modelEvaluado = model.Find(r => r.emp_razon_social == emp_razon_social);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
 
-        
-       
+
+
+
     }
 }

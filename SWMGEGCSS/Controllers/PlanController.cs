@@ -153,7 +153,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Evaluar_Nombre_Empresa_Plan(string plan_emp)
         {
-            var model = new EmpresaDataAccess().sp_Consultar_Lista_Empresa();
+            var model = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
             var modelEvaluado = model.Find(r => r.emp_razon_social == plan_emp);
             int cont = 0;
             if (modelEvaluado != null)
