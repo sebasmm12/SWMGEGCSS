@@ -4,19 +4,21 @@
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
 
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <h2>Actualizar Empresa</h2>
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptsGestionarEmpresas.js"></script>
+}
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.HiddenFor(model => model.empresas.emp_id)
+        </div>
+        <div class="row mt-5 pl-2">
 
 
-@using (Html.BeginForm())
-{
-    <div>
-        @Html.HiddenFor(model => model.empresas.emp_id)
-    </div>
-    
-    <div class="row mt-5 pl-2">
-
-        <div class="row mt-2">
-            <div class="col-12 col-sm-5 col-md-5">
+            <div class="col-12 col-sm-6 col-md-6">
                 <div>
                     <label class="font-weight-bolder">
                         RAZÓN SOCIAL
@@ -24,11 +26,11 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_razon_social, new
            {
-               htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "text-center form-control", @readonly = "readonly" }
+               htmlAttributes = new { @id = "emp-razon-social", @class = "text-center form-control", @type = "text-center form-control", @readonly = "readonly" }
            })
-            <div id="error-plan-fecha" class="errordiv"></div>
+                
             </div>
-            <div class="col-12 col-sm-5 col-md-5">
+            <div class="col-12 col-sm-6 col-md-6">
                 <div>
                     <label class="font-weight-bolder">
                         DIRECCIÓN
@@ -36,12 +38,12 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_direccion, new
            {
-               htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
+               htmlAttributes = new { @id = "emp-direccion", @class = "text-center form-control" }
            })
-                <div id="error-plan-tipo-servicio" class="errordiv"></div>
+                <div id="error-emp-direccion" class="errordiv"></div>
             </div>
-        </div>
 
+        </div>
 
 
         <div class="row mt-2 pl-2">
@@ -53,9 +55,9 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_sigla, new
            {
-               htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control", @readonly = "readonly" }
+               htmlAttributes = new { @id = "emp-sigla", @class = "text-center form-control", @readonly = "readonly" }
            })
-                <div id="error-plan-emp" class="errordiv"></div>
+                
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
@@ -65,9 +67,9 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_telefono, new
            {
-               htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control" }
+               htmlAttributes = new { @id = "emp-telefono", @class = "text-center form-control" }
            })
-                <div id="error-plan-tipo-servicio" class="errordiv"></div>
+                <div id="error-emp-telefono" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -79,9 +81,9 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_ruc, new
            {
-               htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control", @readonly = "readonly" }
+               htmlAttributes = new { @id = "emp-ruc", @class = "text-center form-control", @readonly = "readonly" }
            })
-                <div id="error-plan-emp" class="errordiv"></div>
+                
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
@@ -91,9 +93,9 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_fax, new
            {
-               htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+               htmlAttributes = new { @id = "emp-fax", @class = "text-center form-control" }
            })
-                <div id="error-plan-emp" class="errordiv"></div>
+                <div id="error-emp-fax" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
@@ -105,9 +107,9 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_representante, new
            {
-               htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
+               htmlAttributes = new { @id = "emp-representante", @class = "text-center form-control" }
            })
-                <div id="error-plan-costo" class="errordiv"></div>
+                <div id="error-emp-representante" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
@@ -117,9 +119,9 @@
                 </div>
                 @Html.EditorFor(model => model.empresas.emp_email, new
            {
-               htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" }
+               htmlAttributes = new { @id = "emp-email", @class = "text-center form-control" }
            })
-                <div id="error-plan-emp" class="errordiv"></div>
+                <div id="error-emp-email" class="errordiv"></div>
             </div>
         </div>
 
@@ -135,15 +137,14 @@
                 </a>
             </div>
             <div class="col-9 col-sm-5 col-md-5">
-                <button type="submit" class="btn btn-success" id="boton-Registrar">
+                <button type="submit" class="btn btn-success" id="boton-Actualizar">
                     Actualizar Empresa
                 </button>
             </div>
         </div>
-    </div>
-}
 
 
-    @section Scripts{
-        <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+
     }
+</div>
+

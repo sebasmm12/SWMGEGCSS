@@ -79,144 +79,20 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public ActionResult Gestionar_Empresas(string searchTerm, string estado, int page = 1)
+        public ActionResult Evaluar_Nombre_Empresa(string emp_razon_social)
         {
-            GestionarEmpresaViewModel model = new GestionarEmpresaViewModel();
-            if (searchTerm == null && estado == null)
-                model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).ToPagedList(page, 2);
-            if (estado != null)
+            var model = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
+            var modelEvaluado = model.Find(r => r.emp_razon_social == emp_razon_social);
+            int cont = 0;
+            if (modelEvaluado != null)
             {
-                if (searchTerm != null)
-                {
-                    if (estado.Equals("Todos"))
-                    {
-                        model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).ToPagedList(page, 2);
-                    }
-                    else
-                    {
-                        model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).FindAll(r => (r.emp_estado == Convert.ToBoolean(estado))).ToPagedList(page, 2);
-                    }
-                }
+                cont = 1;
             }
-            if (estado != null)
-            {
-                model.tipo_estado = estado;
-                Session["est_razon_social"] = model.tipo_estado;
-            }
-
-            else
-            {
-                model.tipo_estado = "Todos";
-                Session["est_razon_social"] = model.tipo_estado;
-            }
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ListaEmpresa", model);
-            }
-            model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().ToPagedList(page, 4);
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ListaEmpresa", model);
-            }
-            return View(model);
+            return Json(cont, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AutoCompleteEmpresa(string term)
-        {
-            var model = new GestionarEmpresaViewModel();
-            string estado = (string)Session["est_razon_social"];
-            /*if (estado.Equals("Todos"))
-            {
-                model.listempresas= new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
-            }
-            else
-            {
-                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == Convert.ToBoolean(estado)));
-            }*/
-            model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
 
-            var nameExpedientes = model.listempresas.Select(r => new
-            {
-                label = r.emp_razon_social
-            });
-            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
-        }
+
 
     }
 }
