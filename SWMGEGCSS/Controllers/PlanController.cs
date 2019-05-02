@@ -19,6 +19,14 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Agregar_Plan_de_Proyectos()
         {
             var model = new GestionarPlanProyectoViewModel();
+
+            return View(model);
+        }
+        public ActionResult Agregar_Plan_de_Proyectos_1()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            T_plan modelPlan = (T_plan)Session["Plan_datos"];
+            model.List_Actividades = new PlanDataAccess().sp_Consultar_Actividades_Plan(modelPlan.tipo_servicio_id);
             return View(model);
         }
         [HttpPost]
@@ -39,8 +47,11 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
-            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
-            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            //var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+            Session["Plan_datos"] = modelPlan;
+            //return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet
+            //redireccion al Agregar_plan_1
+            return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult Actualizar_Plan_de_Proyectos(int id)
@@ -204,5 +215,57 @@ namespace SWMGEGCSS.Controllers
                 var operationResult = new ActividadesDataAccess().sp_actualizar_actividades_planeadas(actividadesPlaneadas);
             return Json(actplan.plan_id, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult _ModalEliminarActividadesPlanificadas()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalEliminarActividadesPlanificadas(int act_plan_id)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
+            return PartialView("_ModalEliminarActividadesPlanificadas", model);
+        }
+        [HttpPost]
+        public ActionResult _ModalEliminarActividadesPlanificadasFinal(int act_plan_id)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan_id);
+            var operationResult = new ActividadesDataAccess().sp_eliminar_actividades_planeadas(act_plan_id);
+            return Json(actplan.plan_id, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult _ModalAgregarActividadesPlanificadas()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalAgregarActividadesPlanificadas(int plan_id, int act_id)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.Actividad_planeada = new T_actividades_planeadas();
+            model.Actividad_planeada.plan_id = plan_id;
+            model.Actividad_planeada.act_id = act_id;
+            return PartialView("_ModalAgregarActividadesPlanificadas", model);
+        }
+        [HttpPost]
+        public ActionResult _ModalRegistrarActividadesPlanificadasFinal(T_actividades_planeadas act_plan)
+        {
+            var model   = new GestionarPlanProyectoViewModel();
+            model.Actividad_planeada = new T_actividades_planeadas();
+            model.Actividad_planeada.plan_id = act_plan.plan_id;
+            model.Actividad_planeada.act_id = act_plan.act_id;
+            model.Actividad_planeada.act_plan_nombre = act_plan.act_plan_nombre;
+            model.Actividad_planeada.act_plan_descripcion = act_plan.act_plan_descripcion;
+            model.Actividad_planeada.act_plan_costo = act_plan.act_plan_costo;
+            model.Actividad_planeada.act_plan_tiempo = act_plan.act_plan_tiempo;
+            var operationResult = new ActividadesDataAccess().sp_registrar_actividades_planeadas(model.Actividad_planeada);
+            return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

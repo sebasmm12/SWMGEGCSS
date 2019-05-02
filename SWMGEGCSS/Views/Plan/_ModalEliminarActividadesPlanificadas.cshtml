@@ -1,10 +1,11 @@
 ﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
 
+
 @{
     ViewBag.Title = "ACTIVIDAD PLANIFICADA";
 }
 
-<div class="modal fade" id="ActualizarActPlan" tabindex="-1" role="dialog" aria-labelledby="#ActualizarActPlan" aria-hidden="true">
+<div class="modal fade" id="EliminarActPlan" tabindex="-1" role="dialog" aria-labelledby="#EliminarActPlan" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="text-center font-weight-bolder">
@@ -21,7 +22,7 @@
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_nombre, new
                             {
-                                htmlAttributes = new { @class = "text-center form-control bg-white" }
+                                htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly ="readonly"}
                             })
                         </div>
                     </div>
@@ -35,9 +36,9 @@
                         </div>
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_descripcion, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control bg-white" }
-                            })
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly" }
+                       })
                         </div>
                     </div>
                 </div>
@@ -50,9 +51,9 @@
                         </div>
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_costo, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control bg-white" }
-                            })
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly" }
+                       })
                         </div>
                     </div>
                 </div>
@@ -65,19 +66,19 @@
                         </div>
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
-                            {
-                                htmlAttributes = new { @class = "text-center form-control bg-white" }
-                            })
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly" }
+                       })
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="mt-4 mb-4">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-6">
-                            <button type="button" class="btn btn-danger rounded-pill btnActualizarPlanAct" style="color:white !important">
+                            <button type="button" class="btn btn-danger rounded-pill btnEliminarPlanAct" style="color:white !important">
                                 <i class="fa fa-times-circle" style="color:white !important"></i>
-                                ACTUALIZAR
+                                ELIMINAR
                             </button>
                         </div>
                         <div class="col-sm-6 col-md-6 col-6">
