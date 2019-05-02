@@ -30,8 +30,30 @@
         $input.autocomplete(options);
     };
 
+    var envioajaxModal = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            var modal = $button.attr("data-id-target");
+            id_proyecto = $(this).attr("data-id-proyecto");
+            $.ajax({
+                url: $(this).attr("data-url"),
+                method: "POST",
+                data: { id: $(this).attr("data-id-empresa") }
+            }).done(function (data) {
+                var $target = $($button.attr("data-id-target"));
+                var $newhtml = $(data);
+                $target.replaceWith($newhtml);
+                $(modal).modal();
+            });
+            return false;
+        });
+    };
+
+
+
+    $(".btnModal").each(envioajaxModal);    
     $("input[data-exp-autocomplete]").each(autocompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
-    $("#Buscar").click(BuscarProyecto);
+   
 });
 

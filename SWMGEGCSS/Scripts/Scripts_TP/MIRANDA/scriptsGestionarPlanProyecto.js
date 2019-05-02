@@ -53,6 +53,26 @@
 
         });
     };
+    var AlertaActividad = function () {
+
+        (async function getEmail() {
+            const { value: comentario } = await Swal.fire({
+                title: 'Ingrese el porque quiere eliminarlo',
+                input: 'textarea',
+                inputPlaceholder: 'Ingrese comentario',
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Debe escribir algo!';
+                    }
+                }
+            });
+
+            if (comentario) {
+                EnvioComentario(comentario);
+            }
+        })();
+    };
     var EnvioComentario = function (comentario) {
         $.ajax({
             url: "/Expediente/EliminarExpediente",
@@ -120,7 +140,9 @@
                 data: { act_nombre: $button.attr("data-id-target"), exp_id: $button.attr("data-exp-target") },
                 contentType: "json"
             }).done(function (data) {
+
                 if (data === 1) {
+
                     $button.removeClass("btn-success");
                     $button.addClass("btn-danger");
                     $button.attr("data-url", "/Expediente/EliminarActividad");
@@ -136,15 +158,19 @@
                     $button.html();
                     $button.append("<i class='fa fa-check-circle'></i> Insertar Actividad");
                 }
-                }); 
+               
+                }
+           ); 
         });
     };
     var enviarActualizarTotal = function () {
         $.ajax({
-            url: "/Expediente/ModificarExpediente",
+            url: "/Expediente/Comprobar_Validacion_Actividades",
             dataType: "json"
         }).done(function (data) {
-            alert("xd");
+            if (data !== 0) {
+                AlertaActividad();
+            }
         });
     };
     $(".btnModal").each(envioajaxModal);        

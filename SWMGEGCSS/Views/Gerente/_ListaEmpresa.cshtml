@@ -30,6 +30,7 @@
                         <tr>
 
                             <td>@item.emp_id</td>
+                          
                             <td>@item.emp_sigla</td>
                             <td>@item.emp_razon_social</td>
                             <td>@item.emp_representante</td>
@@ -41,8 +42,9 @@
                                     @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
                                 </button>
 
-                                <button type="button" class="btn btn-danger">
-                                    @Html.ActionLink("Eliminar Empresa", "_Eliminar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
+                                <button type="button" class="btn btn-danger btnModal" data-id-empresa="@item.emp_id" data-url="@Url.Action("_EliminarEmpresa","Empresa")" data-id-target="#ModalEliminarEmpresa">
+                                    <i class="fa fa-tomes"></i>
+                                    Eliminar
                                 </button>
                             </td>
                         </tr>
