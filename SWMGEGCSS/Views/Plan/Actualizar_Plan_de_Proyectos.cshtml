@@ -77,8 +77,9 @@
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_estado_nobre, new
                 {
-                   htmlAttributes = new { @class = "text-center form-control" , }
+                   htmlAttributes = new { @class = "text-center form-control"}
                 })
+                <div id="error-plan-estado" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">

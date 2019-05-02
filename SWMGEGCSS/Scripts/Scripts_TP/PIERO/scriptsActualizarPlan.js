@@ -19,12 +19,12 @@
             return false;
         }
         else {
-            $.ajax({
+            /*$.ajax({
                 url: "/Plan/Actualizar_Plan_de_Proyectos",
                 method: "POST",
                 data: $("form").serialize(),
                 dataType: "json"
-            }).done(function (data) {
+            }).done(function (data) {*/
                 /*Swal.fire({
                     type: 'success',
                     title: 'Se registro el plan exitosamente',
@@ -35,7 +35,7 @@
                     }
                 });*/
                 console.log("XD");
-            });
+            //});
         }
     };
     
