@@ -82,6 +82,20 @@
             return false;
         }
     };
+    var maximoNumeroCaracteres9 = function maxCharacters(X) {
+        if (X.length > 9) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    var minimoNumeroCaracteres7 = function maxCharacters(X) {
+        if (X.length <6) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     var tieneCaracEsp = function empiezaConCaracteresEspeciales(X) {
         var iChars = "!@#_$%^&*()+=-[]\\\';,./{}|\":<>?";
@@ -151,15 +165,22 @@
             return false;
         }
         */
-        if (telefono.length < 7|| telefono.length>9) {
+        if (maximoNumeroCaracteres9(telefono) === true) {
             adderror("emp-telefono");
-            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser entre 7 a 9');
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de menor de 10 caracteres');
             $("#emp-telefono").focus();
+            //  alert("telefono largo");
             $("#emp-telefono").keyup(keyTelefono);
-       //     alert("telefono largo");
             return false;
         }
-
+        if (minimoNumeroCaracteres7(telefono) === true) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de mayor de 6 caracteres');
+            $("#emp-telefono").focus();
+            //  alert("telefono largo");
+            $("#emp-telefono").keyup(keyTelefono);
+            return false;
+        }
         addgood("emp-telefono");
         attributes("error-emp-telefono");
         return true;
@@ -330,7 +351,7 @@
             $("#emp-representante").keyup(keyRepresentante);
             return false;
         }
-        addgood("emp-representante");
+        addgood("emp-representante");   
         attributes("error-emp-representante");
         return true;
     }
@@ -421,9 +442,18 @@
                     negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser menor o igual a 9 digitos');
                     adderror("emp-telefono");
                 }*/
-        else if ($valor.length < 7 || $valor.length > 9) {
+     /*   else if ($valor.length < 7 || $valor.length > 9) {
 
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser entre 7 a 9');
+            adderror("emp-telefono");
+        }*/
+        else if (maximoNumeroCaracteres9($valor.val()) === true) {
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser debe ser menor de 10 caracteres');
+            adderror("emp-telefono");
+        }
+        else if (minimoNumeroCaracteres7($valor.val())===true) {
+
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser mayor de 6 caracteres');
             adderror("emp-telefono");
         }
         else {

@@ -37,7 +37,7 @@
         var vemail = validar_email($empEmail.val());
 
 
-        if (vfax === false || vrepresentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social===false || vsigla===false || vruc===false) {
+        if (vfax === false || vrepresentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social === false || vsigla === false || vruc===false) {
 
             return false;
         }
@@ -61,6 +61,7 @@
             });
 
         }
+        
     };
 
 
@@ -94,7 +95,27 @@
             return false;
         }
     };
-
+    var maximoNumeroCaracteres9 = function maxCharacters(X) {
+        if (X.length > 9) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    var minimoNumeroCaracteres7 = function maxCharacters(X) {
+        if (X.length < 6) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    var igual= function maxCharacters(X) {
+        if (X.length ==11) {
+            return true;
+        } else {
+            return false;
+        }
+    };
     var tieneCaracEsp = function empiezaConCaracteresEspeciales(X) {
         var iChars = "!@#_$%^&*()+=-[]\\\';,./{}|\":<>?";
         var iNum = "0123456789";
@@ -120,11 +141,12 @@
     //-------------------------------------------------------------------------------------------------------
     //Validacion Razon Social
     function validar_razon_social(razon_social) {
+        vrazon = 0;
         if (razon_social === "") {
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'Debe ingresar una Razon Social');
             $("#emp-razon-social").focus();
-            //      alert("representante vacio");
+               
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -132,7 +154,7 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'La Razon Social no debe empezar con un espacio en blanco');
             $("#emp-razon-social").focus();
-            //    alert("representante con espacio");
+                
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -140,7 +162,7 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'La Razon Social no puede ser un número');
             $("#emp-razon-social").focus();
-            //    alert("representante es numero");
+                
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -148,7 +170,7 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'La Razon Social debe empezar con una letra, no debe contener caracteres especiales o numeros');
             $("#emp-razon-social").focus();
-            //     alert("representante con caES");
+              
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -156,30 +178,53 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'La Razon Social debe ser de menos de 100 caracteres');
             $("#emp-razon-social").focus();
-            //     alert("representante largo");
+
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
-        addegood("emp-razon-social");
-        attributes("error-emp-razon-social");
+        else {
+            $.ajax({
+                url: "/Empresa/Evaluar_Nombre_Empresa",
+                method: "GET",
+                async: false,
+                data: {
+                    emp_razon_social: $("#emp-razon-social").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    vrazon = 1;
+                }
+            });
+        }
+        if (vrazon === 1) {
+            adderror("emp-razon-social");
+            negativeattributes("error-emp-razon-social", 'Esta Razon Social ya existe, debe escribir otro');
+            $("#emp-razon-sociale").keyup(keyRazon);
+            return false;
+        }
 
+        addgood("emp-razon-social");
+        attributes("error-emp-razon-social");
+       
         return true;
     }
     //Validacion Sigla
     function validar_sigla(sigla) {
+        var vsig = 0;
         if (sigla === "") {
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'Debe ingresar una Sigla');
-            $("#emp-emp-sigla").focus();
-            //      alert("representante vacio");
-            $("#emp-emp-sigla").keyup(keysigla);
+            $("#emp-sigla").focus();
+             
+            $("#emp-sigla").keyup(keysigla);
             return false;
         }
         if (sigla === " ") {
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'La Sigla no debe empezar con un espacio en blanco');
             $("#emp-sigla").focus();
-            //    alert("representante con espacio");
+            
             $("#emp-sigla").keyup(keysigla);
             return false;
         }
@@ -187,15 +232,15 @@
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'La Sigla no puede ser un número');
             $("#emp-sigla").focus();
-            //    alert("representante es numero");
-            $("#emp-siglal").keyup(keysigla);
+             
+            $("#emp-sigla").keyup(keysigla);
             return false;
         }
         if (tieneCaracEsp(sigla) === true) {
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'La Sigla debe empezar con una letra, no debe contener caracteres especiales o numeros');
             $("#emp-sigla").focus();
-            //     alert("representante con caES");
+          
             $("#emp-sigla").keyup(keysigla);
             return false;
         }
@@ -203,58 +248,105 @@
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'La Sigla debe ser de menos de 20 caracteres');
             $("#emp-sigla").focus();
-            //     alert("representante largo");
+
             $("#emp-sigla").keyup(keysigla);
             return false;
         }
-        addegood("emp-sigla");
+        else {
+            $.ajax({
+            url: "/Empresa/Evaluar_Sigla_Empresa",
+            method: "GET",
+            async: false,
+            data: {
+                emp_sigla: $("#emp-sigla").val()
+            },
+            dataType: "json"
+        }).done(function (data) {
+            if (data !== 0) {
+                vsig = 1;
+            }
+        });
+    }
+        if (vsig === 1) {
+        adderror("emp-sigla");
+            negativeattributes("error-emp-sigla", 'Esta Sigla ya existe, debe escribir otro');
+            $("#emp-sigla").keyup(keysigla);
+        return false;
+    }
+        addgood("emp-sigla");
         attributes("error-emp-sigla");
+        
         return true;
 
     }
     //Validacion Ruc
     function validar_ruc(ruc) {
+        var vru = 0;
         if (ruc === "") {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'Debe ingresar un Ruc');
             $("#emp-ruc").focus();
-            //  alert("telefono vacio");
+            
             $("#emp-ruc").keyup(keyRuc);
+      
             return false;
         }
         if (ruc === " ") {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'El Ruc no debe empezar con un espacio en blanco');
             $("#emp-ruc").focus();
-            //   alert("telefono solo espacios");
+             
             $("#emp-ruc").keyup(keyRuc);
+           
             return false;
         }
         if (esNum(ruc) === false) {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'El Ruc debe ser un número');
             $("#emp-ruc").focus();
-            //    alert("telefono no es numero");
+         
             $("#emp-ruc").keyup(keyRuc);
+           
             return false;
         }
 
-        if (ruc.length != 11) {
+        if (igual(ruc)==false) {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'El Ruc debe ser 11 dígitos');
             $("#emp-ruc").focus();
             $("#emp-ruc").keyup(keyRuc);
-            //     alert("telefono largo");
+           
             return false;
         }
-        addegood("emp-ruc");
+        else {
+            $.ajax({
+                url: "/Empresa/Evaluar_Ruc_Empresa",
+                method: "GET",
+                async: false,
+                data: {
+                    emp_ruc: $("#emp-ruc").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    vru = 1;
+                }
+            });
+        }
+        if (vru === 1) {
+            adderror("emp-ruc");
+            negativeattributes("error-emp-ruc", 'Este Ruc ya existe, debe escribir otro');
+            $("#emp-ruc").keyup(keyRuc);
+            return false;
+        }
+        addgood("emp-ruc");
         attributes("error-emp-ruc");
-
+    
         return true;
     }
     //Validacion Telefono
     function validar_telefono(telefono) {
-        var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
+       
 
         if (telefono === "") {
             adderror("emp-telefono");
@@ -297,12 +389,20 @@
                   return false;
               }
               */
-        if (telefono.length < 7 || telefono.length > 9) {
+        if (maximoNumeroCaracteres9(telefono) === true) {
             adderror("emp-telefono");
-            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser entre 7 a 9');
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de menor de 10 caracteres');
             $("#emp-telefono").focus();
+            //  alert("telefono largo");
             $("#emp-telefono").keyup(keyTelefono);
-            //     alert("telefono largo");
+            return false;
+        }
+        if (minimoNumeroCaracteres7(telefono) === true) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de mayor de 6 caracteres');
+            $("#emp-telefono").focus();
+            //  alert("telefono largo");
+            $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
 
@@ -417,7 +517,7 @@
             $("#emp-direccion").keyup(keyDireccion);
             return false;
         }
-        var vnombre;
+        
         if (maximoNumeroCaracteres200(direccion) === true) {
             adderror("emp-direccion");
             negativeattributes("error-emp-direccion", 'La dirección debe ser de menos de 200 caracteres');
@@ -505,11 +605,29 @@
             adderror("emp-razon-social");
         }
         else {
-            
-            attributes("error-emp-razon-social");
-            addegood("emp-razon-social");
+            $.ajax({
+                url: "/Empresa/Evaluar_Nombre_Empresa",
+                method: "GET",
+                async: false,
+                data: {
+                    emp_razon_social: $("#emp-razon-social").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    adderror("emp-razon-social");
+                    negativeattributes("error-emp-razon-social", 'Esta Razon Social ya existe, debe escribir otro');
+                }
+                else {
+
+                    attributes("error-emp-razon-social");
+                    addgood("emp-razon-social");
+                }
+
+            });
         }
-    }
+    };
+
     var keysigla = function () {
         var $valor = $("#emp-sigla");
         if ($valor.val() === "") {
@@ -533,35 +651,72 @@
             adderror("emp-sigla");
         }
         else {
-            attributes("error-ruc-sigla");
-            addegood("emp-sigla");
+            $.ajax({
+                url: "/Empresa/Evaluar_Sigla_Empresa",
+                method: "GET",
+                async: false,
+                data: {
+                    emp_sigla: $("#emp-sigla").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    adderror("emp-sigla");
+                    negativeattributes("error-emp-sigla", 'Esta Sigla ya existe, debe escribir otro');
+                }
+                else {
+
+                    attributes("error-emp-sigla");
+                    addgood("emp-sigla");
+                }
+
+            });
         }
-    }
+    };
     var keyRuc = function () {
         var $valor = $("#emp-ruc");
-     
+
         if ($valor.val() === "") {
             negativeattributes("error-emp-ruc", 'Debe ingresar un Ruc');
             adderror("emp-ruc");
         }
         else if ($valor.val() === " ") {
             negativeattributes("error-emp-ruc", 'El Ruc no debe empezar con un espacio en blanco');
-            adderror("emp-ruco");
+            adderror("emp-ruc");
         }
         else if (esNum($valor.val()) === false) {
             negativeattributes("error-emp-ruc", 'El Ruc debe ser un número');
             adderror("emp-ruc");
         }
-        else if ($valor.length != 11) {
+        else if (igual($valor.val())===false) {
 
             negativeattributes("error-emp-ruc", 'El Ruc debe ser 11 dígitos');
             adderror("emp-ruc");
         }
-        else {
-            attributes("error-ruc");
-            addegood("emp-ruc");
+          else {
+            $.ajax({
+                url: "/Empresa/Evaluar_Ruc_Empresa",
+                method: "GET",
+                async: false,
+                data: {
+                    emp_ruc: $("#emp_ruc").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    adderror("emp_ruc");
+                    negativeattributes("error-emp_ruc", 'Este Ruc ya existe, debe escribir otro');
+                }
+                else {
+
+                    attributes("error-emp_ruc");
+                    addgood("emp_ruc");
+                }
+
+            });
         }
-    }
+        
+    };
     var keyRepresentante = function () {
         var $valor = $("#emp-representante");
         if ($valor.val() === "") {
@@ -647,9 +802,13 @@
                     negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser menor o igual a 9 digitos');
                     adderror("emp-telefono");
                 }*/
-        else if ($valor.length < 7 || $valor.length > 9) {
+        else if (maximoNumeroCaracteres9($valor.val()) === true) {
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser debe ser menor de 10 caracteres');
+            adderror("emp-telefono");
+        }
+        else if (minimoNumeroCaracteres7($valor.val()) === true) {
 
-            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser entre 7 a 9');
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser mayor de 6 caracteres');
             adderror("emp-telefono");
         }
         else {
