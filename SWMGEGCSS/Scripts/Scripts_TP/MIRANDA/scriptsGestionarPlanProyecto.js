@@ -57,7 +57,7 @@
 
         (async function getEmail() {
             const { value: comentario } = await Swal.fire({
-                title: 'Ingrese el porque quiere eliminarlo',
+                title: 'Ingrese el porque quiere cambiar las actividades',
                 input: 'textarea',
                 inputPlaceholder: 'Ingrese comentario',
                 showCancelButton: true,
@@ -69,10 +69,35 @@
             });
 
             if (comentario) {
-                EnvioComentario(comentario);
+                EnvioComentarioFinal(comentario);
             }
         })();
     };
+    var EnvioComentarioFinal = function (comentario) {
+        $.ajax({
+            url: "/Expediente/ModificarExpediente",
+            method: "GET",
+            data: {
+                comentario: comentario
+            },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function (data) {
+            Swal.fire({
+                type: 'success',
+                title: 'Se modifico los datos exitosamente',
+                confirmButtonText: 'OK'
+
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = "/Gerente/Gestionar_Proyectos";
+                }
+            }); 
+
+        });
+        return false;
+    };
+
     var EnvioComentario = function (comentario) {
         $.ajax({
             url: "/Expediente/EliminarExpediente",
@@ -170,6 +195,23 @@
         }).done(function (data) {
             if (data !== 0) {
                 AlertaActividad();
+            } else {
+                $.ajax({
+                    url: "/Expediente/ModificarExpediente",
+                    method:"POST",
+                    dataType: "json"
+                }).done(function (data) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se modifico los datos exitosamente',
+                        confirmButtonText: 'OK'
+
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Gerente/Gestionar_Proyectos";
+                        }
+                    }); 
+                });
             }
         });
     };

@@ -75,6 +75,20 @@ namespace SWMGEGCSS.Controllers
             model.ActividadModel.list_Actividades_Planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => r.plan_id == model.Expedientes.plan_id);
             model1.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r => r.exp_id == id);
             model.ActividadModel.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(model.Expedientes.tipo_servicio_id);
+            for(int i =0;i<model.ActividadModel.list_Actividades.Count;i++)
+            {
+                var p = model.ActividadModel.list_Actividades_Planeadas.Find(r => r.act_id == model.ActividadModel.list_Actividades.ElementAt(i).act_id);
+                if (p != null)
+                {
+                    model.ActividadModel.list_Actividades.ElementAt(i).act_nombre = p.act_plan_nombre;
+                    model.ActividadModel.list_Actividades.ElementAt(i).act_descripcion = p.act_plan_descripcion;
+                    model.ActividadModel.list_Actividades.ElementAt(i).act_id = p.act_id;
+                }
+                else
+                {
+
+                }
+            }
             model.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==id);
             Session["list_actividades"] = model.ActividadModel.list_Actividades_Desarrollar;
             Session["list_actividades_comparadora"] = model1.ActividadModel.list_Actividades_Desarrollar;
@@ -166,13 +180,13 @@ namespace SWMGEGCSS.Controllers
             if (Actividades_D != null)
             {
                Actividades_Desarrollar.act_desa_id = Actividades_D.act_desa_id;
-               Actividades_Desarrollar.act_desa_nombre = Actividad.act_plan_nombre;
-               Actividades_Desarrollar.act_desa_descripcion = Actividad.act_plan_descripcion;
+               Actividades_Desarrollar.act_desa_nombre = Actividades_D.act_desa_nombre;
+               Actividades_Desarrollar.act_desa_descripcion = Actividades_D.act_desa_descripcion;
             }
             else
             {
-                Actividades_Desarrollar.act_desa_nombre = ActividadG.act_nombre;
-                Actividades_Desarrollar.act_desa_descripcion = ActividadG.act_descripcion;
+                Actividades_Desarrollar.act_desa_nombre = Actividad.act_plan_nombre;
+                Actividades_Desarrollar.act_desa_descripcion = Actividad.act_plan_descripcion;
             }
             Actividades_Desarrollar.usu_creador = (int)Session["login"];
             Actividades_Desarrollar.est_act_id = 1;
@@ -213,14 +227,52 @@ namespace SWMGEGCSS.Controllers
             Session["list_actividades"] = list_actividades;
             return Json(p, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult ModificarExpediente(string comentario)
+        {
+            List<T_actividades_desarrollar> list_actividades = new List<T_actividades_desarrollar>();
+            List<T_actividades_desarrollar> list_actividades_inicial = new List<T_actividades_desarrollar>();
+            list_actividades = (List<T_actividades_desarrollar>)Session["list_actividades"];
+            list_actividades_inicial = (List<T_actividades_desarrollar>)Session["list_actividades_comparadora"];
+
+            foreach (var item in list_actividades_inicial)
+            {
+                T_actividades_desarrollar t_actividades = list_actividades.Find(r => r.act_desa_id == item.act_desa_id);
+                if (t_actividades == null)
+                {
+                    item.act_desa_comentario = comentario;
+                    var operationResult = new ExpedienteDataAccess().sp_Insertar_Auditoria_Actividades_Desarrollar(item);
+                    var operationResult1 = new ExpedienteDataAccess().sp_Eliminar_Actividades_Desarrollar_Expediente(item.act_desa_id);
+                }
+               
+            }
+            foreach (var item in list_actividades)
+            {
+                T_actividades_desarrollar t_act = list_actividades_inicial.Find(r => r.act_desa_id == item.act_desa_id);
+                if (t_act == null)
+                {
+                    var operationResult = new ActividadesDataAccess().sp_Insertar_Actividades_Desarrollar(item);
+                }
+
+            }
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
         public ActionResult ModificarExpediente()
         {
             List<T_actividades_desarrollar> list_actividades = new List<T_actividades_desarrollar>();
+            List<T_actividades_desarrollar> list_actividades_inicial = new List<T_actividades_desarrollar>();
             list_actividades = (List<T_actividades_desarrollar>)Session["list_actividades"];
+            list_actividades_inicial = (List<T_actividades_desarrollar>)Session["list_actividades_comparadora"];
 
             foreach (var item in list_actividades)
             {
-                var operationResult = new ActividadesDataAccess().sp_Insertar_Actividades_Desarrollar(item);
+                T_actividades_desarrollar t_act = list_actividades_inicial.Find(r => r.act_desa_id == item.act_desa_id);
+                if (t_act == null)
+                {
+                    var operationResult = new ActividadesDataAccess().sp_Insertar_Actividades_Desarrollar(item);
+                }
+            
             }
             return Json(1, JsonRequestBehavior.AllowGet);
         }
