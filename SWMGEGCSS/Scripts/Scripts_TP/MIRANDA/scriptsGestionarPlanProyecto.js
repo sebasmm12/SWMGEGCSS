@@ -89,6 +89,7 @@
                 });
                 $(".btnEliminar").each(Alerta);
                 $(".btnSubModal").each(envioAjaxActividad);
+                $("#btnActualizarTotal").click(enviarActualizarTotal);
                 });
             return false;
         });
@@ -106,6 +107,7 @@
             $(target).replaceWith($newhtml);
             $(".btnModal").each(envioajaxModal);
             $(".btnSubModal").each(envioAjaxActividad);
+            $("#btnActualizarTotal").click(enviarActualizarTotal);
             });
 
         return true;
@@ -116,7 +118,7 @@
 
             $.ajax({
                 url: $button.attr("data-url"),
-                data: { act_desa_id: $button.attr("data-id-target") },
+                data: { act_nombre: $button.attr("data-id-target"), exp_id: $button.attr("data-exp-target") },
                 contentType: "json"
             }).done(function (data) {
                 if (data === 1) {
@@ -138,9 +140,18 @@
                 }); 
         });
     };
+    var enviarActualizarTotal = function () {
+        $.ajax({
+            url: "/Expediente/ModificarExpediente",
+            dataType: "json"
+        }).done(function (data) {
+            alert("xd");
+        });
+    };
     $(".btnModal").each(envioajaxModal);        
     $("input[data-exp-autocomplete]").each(autcompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     $("#Buscar").click(BuscarProyecto);
     $(".btnSubModal").each(envioAjaxActividad);
+    $("#btnActualizarTotal").click(enviarActualizarTotal);
 });
