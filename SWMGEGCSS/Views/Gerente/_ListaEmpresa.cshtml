@@ -1,0 +1,64 @@
+﻿@model SWMGEGCSS.Models.GestionarEmpresaViewModel
+@{
+    
+
+    var list_empresas = Model.listEmpresas;
+    var count = 0;
+    Layout = null;
+
+}
+<div id="tableExp">
+    <div class="container form mt-5">
+        <div class="table-responsive mt-4">
+            <table class="table">
+                <thead class="bg-success">
+                    <tr>
+
+                        <th scope="col">Id</th>
+                        <th scope="col">Sigla</th>
+                        <th scope="col">Razón Social</th>
+                        <th scope="col">Representante legal</th>
+                        <th scope="col">N° Contacto</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in list_empresas)
+                    {
+                        <tr>
+
+                            <td>@item.emp_id</td>
+                            <td>@item.emp_sigla</td>
+                            <td>@item.emp_razon_social</td>
+                            <td>@item.emp_representante</td>
+                            <td>@item.emp_telefono</td>
+                            <td>@item.emp_email</td>
+
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
+                                </button>
+
+                                <button type="button" class="btn btn-danger">
+                                    @Html.ActionLink("Eliminar Empresa", "_Eliminar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
+                                </button>
+                            </td>
+                        </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+            @Html.PagedListPager(list_empresas, page => Url.Action("Gestionar_Empresas", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>    
+</div>

@@ -18,7 +18,7 @@
             </label>
         </div>
 
-        <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("Autocomplete_Empresa")" />
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("AutocompleteEmpresa")" />
 
         <div id="error-plan-costo" class="errordiv"></div>
     </div>
@@ -62,69 +62,17 @@
 
 </div>
 
+    @Html.Partial("_ListaEmpresa",Model)
 
-<div class="container form mt-5">
-    <div class="table-responsive mt-4">
-        <table class="table">
-            <thead class="bg-success">
-                <tr>
-
-                    <th scope="col">Id</th>
-                    <th scope="col">Sigla</th>
-                    <th scope="col">Razón Social</th>
-                    <th scope="col">Representante legal</th>
-                    <th scope="col">N° Contacto</th>
-                    <th scope="col">Email</th>
-                    <th scope="col"></th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in list_empresas)
-                {
-                    <tr>
-
-                        <td>@item.emp_id</td>
-
-                        <td>@item.emp_sigla</td>
-                        <td>@item.emp_razon_social</td>
-                        <td>@item.emp_representante</td>
-                        <td>@item.emp_telefono</td>
-                        <td>@item.emp_email</td>
-
-                        <td>
-                            <button type="button" class="btn btn-warning">
-                                @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
-                            </button>
-
-                            <button type="button" class="btn btn-danger">
-                                @Html.ActionLink("Eliminar Empresa", "_Eliminar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
-                            </button>
-                        </td>
-                    </tr>
-                }
+       
 
 
 
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-sm-4 col-md-4 col-12">
-                @Html.PagedListPager(list_empresas, page => Url.Action("Gestionar_Empresas", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
-            </div>
-        </div>
-
-
-    </div>
-
-
-
-</div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
-    <!--<script src="~/Scripts/Scripts_TP/MIRANDA/scriptsGestionarPlanProyecto.js"></script>-->
+    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsConsultarEmpresa.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
 

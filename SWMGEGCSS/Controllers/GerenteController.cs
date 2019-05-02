@@ -92,14 +92,39 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Plan_Proyecto(int page = 1)
+        public ActionResult Gestionar_Plan_Proyecto(string searchTerm, string estado, int page = 1)
         { 
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
-            model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 4);
+            if (searchTerm == null && estado == null) { model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3); }
+            if (estado != null)
+            {
+                if (searchTerm != null)
+                {
+                    if (estado.Equals("Todos"))
+                    {
+                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).ToPagedList(page, 3);
+                    }
+                    else
+                    {
+                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).FindAll(r => (r.plan_estado_nobre == estado)).ToPagedList(page, 3);
+                    }
+                }
+            }
+            if (estado != null)
+            {
+                model.tipo_estado = estado;
+                Session["est_plan"] = model.tipo_estado;
+            }
+            else
+            {
+                model.tipo_estado = "Todos";
+                Session["est_plan"] = model.tipo_estado;
+            }
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaPlan", model);
             }
+            model.List_Estado_Plan = new EstadoPlanDataAccess().sp_Consultar_Lista_Estado_Plan();
             return View(model);
         }
         public ActionResult AutoComplete(string term)
@@ -124,12 +149,20 @@ namespace SWMGEGCSS.Controllers
         public ActionResult CompletarNombrePlanes(string term)
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
-            var nameExpedientes = model.listplans.Select(r => new
+            string estado = (string)Session["est_plan"];
+            if (estado.Equals("Todos"))
+            {
+                model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
+            }
+            else
+            {
+                model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term).FindAll(r => (r.plan_estado_nobre == estado));
+            }
+            var namePlan = model.listplans.Select(r => new
             {
                 label = r.plan_nombre
             });
-            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
+            return Json(namePlan, JsonRequestBehavior.AllowGet);
         }
     }
 }

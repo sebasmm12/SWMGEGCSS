@@ -16,18 +16,19 @@
                 </div>
                 <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("CompletarNombrePlanes")" />
             </div>
-            <!--<div class="col-12 col-sm-4 col-md-4">
-            <div>
-                <label class="font-weight-bolder">Seleccione una opción</label>
+            <div class="col-12 col-sm-4 col-md-4">
+                <div>
+                    <label class="font-weight-bolder">Seleccione una opción</label>
+                </div>
+                <select class="custom-select" id="estado" name="estado">
+                    <option value="Todos">Todos</option>
+                    @foreach (var item in list_estado_plan)
+                    {
+                        <option value="@item.plan_estado_nombre">@item.plan_estado_nombre</option>
+                    }
+                </select>
             </div>
-            <select class="custom-select" id="estado" name="estado">
-                <option value="Todos">Todos</option>
-                *foreach (var item in list_estado_plan)
-                {
-                    <option value="*item.plan_estado_id">*item.plan_estado_id</option>
-                }
-            </select>
-        </div>-->
+
         </div>
         <div class="row mt-4">
             <div class="col-12 col-sm-4 col-md-4">

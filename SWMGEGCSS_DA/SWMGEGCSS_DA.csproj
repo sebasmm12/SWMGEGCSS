@@ -61,6 +61,7 @@
     <Compile Include="Base\DataUtil.cs" />
     <Compile Include="EmpresaDataAccess.cs" />
     <Compile Include="EstadoExpedienteDataAccess.cs" />
+    <Compile Include="EstadoPlanDataAccess.cs" />
     <Compile Include="ExpedienteDataAccess.cs" />
     <Compile Include="PermisoDataAccess.cs" />
     <Compile Include="PlanDataAccess.cs" />
