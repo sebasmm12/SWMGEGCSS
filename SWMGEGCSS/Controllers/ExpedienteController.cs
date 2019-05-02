@@ -12,6 +12,7 @@ namespace SWMGEGCSS.Controllers
     public class ExpedienteController : Controller
     {
         // GET: Expediente
+        static List<T_actividades_desarrollar> list_desarrollar = new List<T_actividades_desarrollar>();
         public ActionResult Index()
         {
             return View();
@@ -143,5 +144,22 @@ namespace SWMGEGCSS.Controllers
             model.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(id);
             return PartialView(model);
         }
+        public ActionResult AñadirActividad(int act_desa_id)
+        {
+            var Actividad = new T_actividades_desarrollar();
+            list_desarrollar.Add(Actividad);
+            int p = 1;
+            return Json(p, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult EliminarActividad(int act_desa_id)
+        {
+            var Actividad = new T_actividades_desarrollar();
+           // Actividad= new ActividadesDataAccess().sp
+            list_desarrollar.Remove(Actividad);
+            int p = 2;
+            return Json(p, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
