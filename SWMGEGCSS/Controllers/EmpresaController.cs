@@ -88,6 +88,29 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Evaluar_Sigla_Empresa(string emp_sigla)
+        {
+            var model = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
+            var modelEvaluado = model.Find(r => r.emp_sigla == emp_sigla);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Evaluar_Ruc_Empresa(string emp_ruc)
+        {
+            var model = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
+            var modelEvaluado = model.Find(r => r.emp_ruc == emp_ruc);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+
 
 
         public ActionResult RecibeEmpresa(T_empresa empresas)
