@@ -104,7 +104,7 @@
                 act_plan: act_plan
             }
         }).done(function (data) {
-            alert("LLEGO ACA!!");
+            window.location.href = "/Plan/Actualizar_Plan_de_Proyectos?id=" + data;
         });
     }
     /*var BuscarProyecto = function () {

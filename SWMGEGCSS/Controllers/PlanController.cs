@@ -192,7 +192,8 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
       public ActionResult _ModalActualizarActividadesPlanificadasFinal( T_actividades_planeadas act_plan)
         {
-                var actividadesPlaneadas = new T_actividades_planeadas();
+                var actividadesPlaneadas = new T_actividades_planeadas();       
+                var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan.act_plan_id);
                 actividadesPlaneadas.act_plan_id = act_plan.act_plan_id;
                 actividadesPlaneadas.plan_id = act_plan.plan_id;
                 actividadesPlaneadas.act_id = act_plan.act_id;
@@ -201,7 +202,7 @@ namespace SWMGEGCSS.Controllers
                 actividadesPlaneadas.act_plan_costo = act_plan.act_plan_costo;
                 actividadesPlaneadas.act_plan_tiempo = act_plan.act_plan_tiempo;
                 var operationResult = new ActividadesDataAccess().sp_actualizar_actividades_planeadas(actividadesPlaneadas);
-            return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            return Json(actplan.plan_id, JsonRequestBehavior.AllowGet);
         }
     }
 }
