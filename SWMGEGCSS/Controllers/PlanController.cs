@@ -47,7 +47,7 @@ namespace SWMGEGCSS.Controllers
         {
             /*var model = new GestionarPlanProyectoViewModel();*/
             var model = new GestionarPlanProyectoViewModel();
-            //se obtiene el plan
+            //se obtiene el plan seleccionado
             model.plans_aux = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(r => (r.plan_id == id));
             //se obtiene los valores del tipo servicio del plan seleccionado
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
@@ -187,21 +187,22 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarPlanProyectoViewModel();
             model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
-            return PartialView(model);
+            return PartialView("_ModalActualizarActividadesPlanificadas",model);
         }
         [HttpPost]
-      public ActionResult _ModalActualizarActividadesPlanificadasFinal(int plan_id, int act_id, T_actividades_planeadas act_plan)
+      public ActionResult _ModalActualizarActividadesPlanificadasFinal( T_actividades_planeadas act_plan)
         {
-                var actividadesPlaneadas = new T_actividades_planeadas();
+                var actividadesPlaneadas = new T_actividades_planeadas();       
+                var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan.act_plan_id);
                 actividadesPlaneadas.act_plan_id = act_plan.act_plan_id;
-                actividadesPlaneadas.plan_id = plan_id;
-                actividadesPlaneadas.act_id = act_id;
+                actividadesPlaneadas.plan_id = act_plan.plan_id;
+                actividadesPlaneadas.act_id = act_plan.act_id;
                 actividadesPlaneadas.act_plan_nombre = act_plan.act_plan_nombre;
                 actividadesPlaneadas.act_plan_descripcion = act_plan.act_plan_descripcion;
                 actividadesPlaneadas.act_plan_costo = act_plan.act_plan_costo;
                 actividadesPlaneadas.act_plan_tiempo = act_plan.act_plan_tiempo;
                 var operationResult = new ActividadesDataAccess().sp_actualizar_actividades_planeadas(actividadesPlaneadas);
-            return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            return Json(actplan.plan_id, JsonRequestBehavior.AllowGet);
         }
     }
 }

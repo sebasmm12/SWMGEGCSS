@@ -20,7 +20,7 @@ namespace SWMGEGCSS_EN
     {
         public int act_plan_id { get; set; }
         public string plan_nombre { get; set; }
-        public int act_nombre { get; set; }
+        public string act_nombre { get; set; }
         public string act_plan_nombre { get; set; }
         public string act_plan_descripcion { get; set; }
         public double act_plan_costo { get; set; }

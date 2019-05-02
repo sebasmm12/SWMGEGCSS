@@ -43,6 +43,7 @@
                 });
             });
         }
+        return false;
     };
 
     var esNum = function esNumero(txt) {
@@ -275,7 +276,7 @@
     //Validacion Tiempo
     function validar_tiempo_plan(id) {
         //var RegularExpression = /^\d+[.]*\d*$/;
-        //var $valor = $("#plan-tiempo");
+        var $valor = $("#plan-tiempo");
         if (id === "") {
             adderror("plan-tiempo");
             negativeattributes("error-plan-tiempo", 'Debe ingresar un número');

@@ -436,6 +436,7 @@
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Expediente\_ListarActividad.cshtml" />
     <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
+    <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
