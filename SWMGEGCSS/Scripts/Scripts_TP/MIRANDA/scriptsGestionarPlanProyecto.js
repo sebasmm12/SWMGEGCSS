@@ -14,7 +14,6 @@
             $(".btnModal").each(envioajaxModal);       
         });
         return false;
-       
     };
     var submitAutocompleteform = function (event,ui) {
         var $input = $(this);
