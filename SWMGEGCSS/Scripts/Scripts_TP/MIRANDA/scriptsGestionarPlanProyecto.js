@@ -11,10 +11,10 @@
         }).done(function (data) {
             var target = $a.parents("div.pagedList").attr("data-exp-target");
             $(target).replaceWith(data);
-            $(".btnModal").each(envioajaxModal);       
+            $(".btnModal").each(envioajaxModal); 
+            $(".btnSubModal").each(envioAjaxActividad);
         });
         return false;
-       
     };
     var submitAutocompleteform = function (event,ui) {
         var $input = $(this);
@@ -41,7 +41,7 @@
                     showCancelButton: true,
                     inputValidator: (value) => {
                         if (!value) {
-                            return 'Debe escribir algo!'
+                            return 'Debe escribir algo!';
                         }
                     }
                 });
@@ -87,6 +87,8 @@
                     $(document).off('focusin.modal');
                 });
                 $(".btnEliminar").each(Alerta);
+                $(".btnSubModal").each(envioAjaxActividad);
+                $("#btnActualizarTotal").click(enviarActualizarTotal);
                 });
             return false;
         });
@@ -102,13 +104,53 @@
             var $newhtml = $(data);
             var target = $("div.pagedList").attr("data-exp-target");
             $(target).replaceWith($newhtml);
-            $(".btnModal").each(envioajaxModal);  
+            $(".btnModal").each(envioajaxModal);
+            $(".btnSubModal").each(envioAjaxActividad);
+            $("#btnActualizarTotal").click(enviarActualizarTotal);
             });
 
         return true;
+    };
+    var envioAjaxActividad = function () {
+        $(this).click(function () {
+            var $button = $(this);
+
+            $.ajax({
+                url: $button.attr("data-url"),
+                data: { act_nombre: $button.attr("data-id-target"), exp_id: $button.attr("data-exp-target") },
+                contentType: "json"
+            }).done(function (data) {
+                if (data === 1) {
+                    $button.removeClass("btn-success");
+                    $button.addClass("btn-danger");
+                    $button.attr("data-url", "/Expediente/EliminarActividad");
+                    $button.text("Eliminar Actividad");
+                    $button.text("");
+                    $button.html();
+                    $button.append("<i class='fa fa-times-circle'></i> Eliminar Actividad");
+                } else {
+                    $button.removeClass("btn-danger");
+                    $button.addClass("btn-success");
+                    $button.attr("data-url", "/Expediente/AñadirActividad");
+                    $button.text("");
+                    $button.html();
+                    $button.append("<i class='fa fa-check-circle'></i> Insertar Actividad");
+                }
+                }); 
+        });
+    };
+    var enviarActualizarTotal = function () {
+        $.ajax({
+            url: "/Expediente/ModificarExpediente",
+            dataType: "json"
+        }).done(function (data) {
+            alert("xd");
+        });
     };
     $(".btnModal").each(envioajaxModal);        
     $("input[data-exp-autocomplete]").each(autcompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     $("#Buscar").click(BuscarProyecto);
+    $(".btnSubModal").each(envioAjaxActividad);
+    $("#btnActualizarTotal").click(enviarActualizarTotal);
 });

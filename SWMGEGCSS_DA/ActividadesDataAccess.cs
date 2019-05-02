@@ -187,7 +187,6 @@ namespace SWMGEGCSS_DA
         {
             try
             {
-
                 List<T_actividades_desarrollar> list_actividades_desarrollar = new List<T_actividades_desarrollar>();
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Activiades_Desarrollar_Expediente"))
                 {
@@ -212,6 +211,35 @@ namespace SWMGEGCSS_DA
             {
 
                 return new List<T_actividades_desarrollar>();
+            }
+        }
+        public List<T_actividades> sp_Consultar_Actividades()
+        {
+            try
+            {
+                List<T_actividades> list_actividades = new List<T_actividades>();
+                using (DbCommand command= Database.GetStoredProcCommand("sp_Consultar_Actividades"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades t_Actividades = new T_actividades();
+                            t_Actividades.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
+                            t_Actividades.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
+                            t_Actividades.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);
+                            t_Actividades.act_plazo = DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
+                            t_Actividades.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
+                            list_actividades.Add(t_Actividades);
+                        }
+                    }
+                }
+                return list_actividades;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_actividades>();
             }
         }
     }

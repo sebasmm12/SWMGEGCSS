@@ -72,6 +72,7 @@ namespace SWMGEGCSS.Controllers
             model.ActividadModel = new ActividadViewModel();
             model.ActividadModel.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(model.Expedientes.tipo_servicio_id);
             model.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==id);
+            Session["list_actividades"] = model.ActividadModel.list_Actividades_Desarrollar;
             return PartialView(model);
         }
         [HttpGet]
@@ -143,5 +144,54 @@ namespace SWMGEGCSS.Controllers
             model.list_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(id);
             return PartialView(model);
         }
+        public ActionResult AñadirActividad(string act_nombre,int exp_id)
+        {
+            var Actividad = new T_actividades();
+            Actividad = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r=>r.act_nombre==act_nombre);
+            var Actividades_Desarrollar = new T_actividades_desarrollar();
+            List<T_actividades_desarrollar> list_actividades = new List<T_actividades_desarrollar>();
+            if (Session["list_actividades"] != null)
+            {
+                list_actividades = (List<T_actividades_desarrollar>)Session["list_actividades"];
+            }
+            Actividades_Desarrollar.exp_id = exp_id;
+            Actividades_Desarrollar.usu_creador = (int)Session["login"];
+            Actividades_Desarrollar.est_act_id = 1;
+            Actividades_Desarrollar.act_desa_nombre = Actividad.act_nombre;
+            Actividades_Desarrollar.act_desa_descripcion = Actividad.act_descripcion;
+            list_actividades.Add(Actividades_Desarrollar);
+            int p = 1;
+            Session["list_actividades"] = list_actividades;
+            return Json(p, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult EliminarActividad(string act_nombre, int exp_id)
+        {
+            var Actividad = new T_actividades();
+            Actividad = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r => r.act_nombre == act_nombre);
+            var Actividades_Desarrollar = new T_actividades_desarrollar();
+            List<T_actividades_desarrollar> list_actividades = new List<T_actividades_desarrollar>();
+            if (Session["list_actividades"] != null)
+            {
+                list_actividades = (List<T_actividades_desarrollar>)Session["list_actividades"];
+            }
+            Actividades_Desarrollar.exp_id = exp_id;
+            Actividades_Desarrollar.usu_creador = (int)Session["login"];
+            Actividades_Desarrollar.est_act_id = 1;
+            Actividades_Desarrollar.act_desa_nombre = Actividad.act_nombre;
+            Actividades_Desarrollar.act_desa_descripcion = Actividad.act_descripcion;
+           var Act_aux= list_actividades.Find(r=>r.act_desa_nombre==act_nombre);
+            list_actividades.Remove(Act_aux);
+            int p = 2;
+            Session["list_actividades"] = list_actividades;
+            return Json(p, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ModificarExpediente()
+        {
+            List<T_actividades_desarrollar> list_actividades = new List<T_actividades_desarrollar>();
+            list_actividades = (List<T_actividades_desarrollar>)Session["list_actividades"];
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }

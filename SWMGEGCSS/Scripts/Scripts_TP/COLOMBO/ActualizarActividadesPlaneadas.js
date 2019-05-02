@@ -1,6 +1,6 @@
 ﻿$(function () {
-    /*var id_plan = 0;
-    var getPage = function () {
+    var id_plan = 0;
+    /*var getPage = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
         var $a = $(this);
@@ -29,7 +29,7 @@
         };
         $input.autocomplete(options);
 
-    };*/
+    };
     var Alerta = function () {
         $(this).click(function () {
 
@@ -63,11 +63,11 @@
             },
             contentType: "application/json; charset=utf-8",
             dataType: "json"
-        }).done(function (data) {          
-                window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
+        }).done(function (data) {
+            window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
         });
         return false;
-    };
+    };*/
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -76,16 +76,12 @@
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "POST",
-                data: { id: $(this).attr("data-id-plan") }
+                data: { act_plan_id: $(this).attr("data-id-plan") }
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
                 $(modal).modal();
-                $(modal).on('shown.bs.modal', function () {
-                    $(document).off('focusin.modal');
-                });
-                $(".btnEliminar").each(Alerta);
             });
             return false;
         });
