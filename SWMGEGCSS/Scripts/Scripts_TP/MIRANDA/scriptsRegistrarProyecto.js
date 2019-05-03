@@ -201,7 +201,7 @@
         if (vplan === 0) {
             adderror("Expediente_plan_nombre");
             negativeattributes("validatePlanProyecto", 'El plan no existe');
-            $("#Expediente_plan_nombre").keyup(key);
+            $("#Expediente_plan_nombre").keyup(keyp);
             return false;
         }
 
