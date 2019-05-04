@@ -91,7 +91,7 @@
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_costo, new
                 {
-                   htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" @readonly = "readonly"}
+                   htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control", @readonly = "readonly"}
                 })
                 <div id="error-plan-costo" class="errordiv"></div>
             </div>
@@ -119,9 +119,9 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
-                {
-                   htmlAttributes = new { @id = "plan-tiempo", @class = "text-center form-control" }
-                })
+           {
+               htmlAttributes = new { @id = "plan-tiempo", @class = "text-center form-control" ,@readonly = "readonly" }
+           })
                 <div id="error-plan-tiempo" class="errordiv"></div>
             </div>
         </div>
