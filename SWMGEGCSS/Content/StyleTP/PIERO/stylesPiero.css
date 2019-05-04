@@ -4,3 +4,6 @@
 .esconder{
     visibility: hidden;
 }
+.mostrar {
+    visibility: visible;
+}

@@ -16,10 +16,32 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Agregar_Plan_de_Proyectos()
+        public ActionResult Agregar_Plan_de_Proyectos(string tipo_servicio_nombre)
         {
             var model = new GestionarPlanProyectoViewModel();
-
+            if (tipo_servicio_nombre == null)
+            {
+                //
+            }
+            if (tipo_servicio_nombre != null && tipo_servicio_nombre == "")
+            {
+                 //
+            }
+            else
+            {
+                var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == tipo_servicio_nombre));
+                if (tipoServicioModel != null) {
+                    model.List_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(tipoServicioModel.tipo_servicio_id);
+                }
+                else
+                {
+                    return View(model);
+                }
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListarActividadesPlan", model);
+            }
             return View(model);
         }
         /*public ActionResult Agregar_Plan_de_Proyectos_1()
@@ -75,7 +97,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
-            Session["Plan_datos"] = modelPlan;
+            //Session["Plan_datos"] = modelPlan;
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);

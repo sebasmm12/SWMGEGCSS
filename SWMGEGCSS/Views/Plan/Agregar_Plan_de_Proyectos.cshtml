@@ -121,16 +121,22 @@
 
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente")" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i>
+                        Regresar
+                    </a>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
                     <button type="button" class="btn btn-success" id="boton-Registrar">
                         <i class="fa fa-check-circle"></i>
                         Continuar
                     </button>
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">
-                    <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente")" class="btn btn-secondary">
-                        <i class="fa fa-backward"></i>
-                        Regresar
-                    </a>
+                    <button type="button" class="btn btn-success" id="btnPrueba">
+                        <i class="fa fa-check-circle"></i>
+                        Prueba Servicio
+                    </button>
                 </div>
             </div>
             @Html.Partial("_ListarActividadesPlan", Model)
@@ -138,7 +144,9 @@
     </form>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/StyleTP/PIERO/stylesPiero.css" />
 @section Scripts{
-     <script src="~/Scripts/Scripts_TP/PIERO/scriptsRegistrarPlan.js"></script>
-     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsRegistrarPlan.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsRegistrarPlan1.js"></script>
 }

@@ -5,14 +5,17 @@
     var listaPlanes = Model.plans;
     int count = 0;
 }
-<link rel="stylesheet" href="~/Content/StyleTP/PIERO/stylesPiero.css" />
-<div class="container-fluid">
-    <form id="form">
-        <div class="row mt-2 pl-2 esconder">
+
+<div class="container-fluid" id="tablaActividades">
+    <!--div form id = "form"-->
+    @if (listaTotalActividades != null)
+    {
+        <div class="row mt-2 pl-2">
             <div class="col-sm-1 col-md-1">
 
             </div>
             <div class="col-8 col-sm-8 col-md-8">
+
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="bg-success">
@@ -22,30 +25,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (listaTotalActividades != null)
+                            @foreach (var item in listaTotalActividades)
                             {
-                                foreach (var item in listaTotalActividades)
-                                {
-                                    count = count + 1;
-                                    var plan_id = listaPlanes.plan_id;
-                                    <tr class="text-center">
-                                        <th scope="row">@count</th>
-                                        <td>@item.act_nombre</td>
-                                        <td>
-                                            <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
-                                                <i class="fa fa-plus-circle"></i>
-                                                Agregar a la Planificacion
-                                            </button>
-                                        </td>
-                                    </tr>
-                                }
+                                count = count + 1;
+                                //var plan_id = listaPlanes.plan_id;
+                                //data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan"
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    <td>@item.act_nombre</td>
+                                    <td>
+                                        <button class="btn btn-success btnModal3">
+                                            <i class="fa fa-plus-circle"></i>
+                                            Agregar a la Planificacion
+                                        </button>
+                                    </td>
+                                </tr>
                             }
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="row mt-4 pl-2 esconder">
+        <div class="row mt-4 pl-2">
             <div class="col-sm-1 col-md-1">
 
             </div>
@@ -56,7 +58,7 @@
                 </button>
             </div>
         </div>
-    </form>
-    @Html.Action("_ModalAgregarActividadesPlanificadas", "Plan")
+        @Html.Action("_ModalAgregarActividadesPlanificadas", "Plan")
+    }
 </div>
-<script src="~/Scripts/Scripts_TP/PIERO/scriptsRegistrarPlan1.js"></script>
+
