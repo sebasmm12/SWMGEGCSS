@@ -175,7 +175,7 @@
     //Validacion Fecha Plan
     function validar_fecha_plan(id) {
         var fechaIngresada = new Date($("#plan-fecha").val());
-        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        fechaIngresada.setDate(fechaIngresada.getDate());
         var dateActual = new Date();
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
@@ -188,8 +188,9 @@
         }
         else {
             if (fechaIngresada >= dateActual) {
-                attributes("error-plan-fecha");
                 addgood("plan-fecha");
+                attributes("error-plan-fecha");
+                
             } else {
                 negativeattributes("error-plan-fecha", 'Debe ingresar una fecha válida');
                 adderror("plan-fecha");
