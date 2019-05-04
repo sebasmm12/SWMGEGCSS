@@ -26,8 +26,7 @@
     };
     var envioajaxRegistrar = function () {
         //mismo nombre del parametro de actualizacion del metodo
-        //creando objeto
-        alert($("#Actividades_planeadas_aux_act_plan_nombre").val());
+        //creando objeto 
         var act_plan = {
             plan_id: id_plan,
             act_id: id_act,

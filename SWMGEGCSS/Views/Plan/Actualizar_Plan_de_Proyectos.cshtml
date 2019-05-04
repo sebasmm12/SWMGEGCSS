@@ -145,7 +145,8 @@
                                 count = count + 1;
 
                                 var listaActividades = listaPlanActividad.Find(x => x.act_id == item.act_id);
-                                var plan_id = listaPlanActividad.ElementAt(0).plan_id;
+                                //var plan_id = listaPlanActividad.ElementAt(0).plan_id;
+                                var plan_id = Model.plans_aux.plan_id;
                                 <tr class="text-center">
                                     <th scope="row">@count</th>
 
