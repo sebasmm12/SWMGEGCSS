@@ -1,14 +1,6 @@
 ﻿/*body {
     font-family: 'Open Sans', sans-serif;
 }*/
-.enlinea{
-    display: inline-block;
-}
-.errordiv {
-    clear: both;
-    padding: 20px;
-    text-align: center;
-    text-decoration-color: red;
-    display: none;
-    color: red;
+.esconder{
+    visibility: hidden;
 }
