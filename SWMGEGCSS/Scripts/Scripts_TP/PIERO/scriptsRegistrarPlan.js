@@ -239,9 +239,9 @@
     function validar_costo_plan(id) {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#plan-costo");
-        if (id === "") {
+        if (id === "" || id <= 0) {
             adderror("plan-costo");
-            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
             $("#plan-costo").keyup(keyC);
             return false;
         }
@@ -261,8 +261,8 @@
     function keyC() {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#plan-costo");
-        if ($valor.val() === "") {
-            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+        if ($valor.val() === "" || $valor.val() <= 0) {
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
             adderror("plan-costo");
         } else {
             if ($valor.val().match(RegularExpression)) {
