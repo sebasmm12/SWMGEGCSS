@@ -295,6 +295,7 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
@@ -443,6 +444,7 @@
     <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\Agregar_Plan_de_Proyectos_1.cshtml" />
+    <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

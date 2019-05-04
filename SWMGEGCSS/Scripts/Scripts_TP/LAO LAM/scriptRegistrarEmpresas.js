@@ -41,7 +41,8 @@
 
             return false;
         }
-        else {
+        else 
+        {
 
             $.ajax({
                 url: "/Empresa/Registrar_Empresa",
@@ -61,6 +62,7 @@
             });
 
         }
+        return false;
         
     };
 

@@ -17,9 +17,8 @@ namespace SWMGEGCSS_DA
             var lista_Tipo_Servicio = new List<T_tipo_servicio>();
             try
             {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Tipo_Servicio"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Listar_Tipo_Servicio"))
                 {
-
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
                         while (reader.Read())
