@@ -444,6 +444,7 @@
     <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\Agregar_Plan_de_Proyectos_1.cshtml" />
+    <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
