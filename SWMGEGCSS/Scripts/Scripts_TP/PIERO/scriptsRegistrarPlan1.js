@@ -19,7 +19,7 @@
     };
 
     //Para mostrar la tabla de actividades
-    Verify = function () {
+    /*Verify = function () {
         var $button = $("#btnMostrar");
         if ($button.hasClass("vision")) {
             $("#tablaActividades").removeClass("esconder");
@@ -36,27 +36,27 @@
             $button.text("Mostrar");
         }
         return true;
-     };
+     };*/
 
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
-            var modal = $button.attr("data-id-target");
-            id_plan = $(this).attr("data-id-plan");
-            id_act = $(this).attr("data-id-act");
+            //var modal = $button.attr("data-id-target");
+            //id_plan = $(this).attr("data-id-plan");
+            //id_act = $(this).attr("data-id-act");
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "POST",
-                data: {
+                /*data: {
                     plan_id: id_plan,
                     act_id: id_act
-                }
+                }*/
             }).done(function (data) {
-                var $target = $($button.attr("data-id-target"));
+                /*var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
-                $target.replaceWith($newhtml);
+                $target.replaceWith($newhtml);*/
                 $(modal).modal();
-                $(".btnRegistrarPlanAct").click(envioajaxRegistrar);
+                //$(".btnRegistrarPlanAct").click(envioajaxRegistrar);
             });
             return false;
         });
