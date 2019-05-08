@@ -10,6 +10,9 @@
     //retorna la lista de todas las actividades
     var listaTotalActividades = Model.List_Actividades;
 
+    //retorna todos los tipod de servicio vigenetes
+    var listaTotalTipoServicio = Model.tipoServicioModel.ListtipoServicio;
+
     var plan_fecha = "";
     var count = 0;
     if (Model.plans_aux != null)
@@ -20,7 +23,7 @@
 
 }
 <link href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" rel="stylesheet" />
-<h2>Actualizar Plan de Proyectos</h2>
+<h2 class="text-center">Actualizar Plan de Proyectos</h2>
 
 <div class="container-fluid">
     <form id="form">
@@ -103,10 +106,12 @@
                         Tipo de servicio del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
-           {
-               htmlAttributes = new { @class = "text-center form-control", @id = "plan-tipo-servicio" }
-           })
+                <select class = "text-center form-control", id = "plan-tipo-servicio">
+                    @foreach(var item in listaTotalTipoServicio)
+                    {
+                    <option value="@item.tipo_servicio_id">@item.tipo_servicio_nombre</option>
+                    }
+                </select>           
                 <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
             <!--/div-->
@@ -125,7 +130,7 @@
                 <div id="error-plan-tiempo" class="errordiv"></div>
             </div>
         </div>
-
+        <h3 class="text-center">Actividades del Servicio</h3>
         <!--LISTA DE TAREAS PLANIFICADAS-->
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-12 col-md-12">
@@ -136,6 +141,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Actividad </th>
                                 <th scope="col">Plazo Aprox.</th>
+                                <th scope="col">Cantidad Max</th>
+                                <th scope="col">Cantidad Disp</th>
                                 <th scope="col">Funciones</th>
                             </tr>
                         </thead>
@@ -149,34 +156,66 @@
                                 var plan_id = Model.plans_aux.plan_id;
                                 <tr class="text-center">
                                     <th scope="row">@count</th>
+                                    @{ var cantidadDisp = @item.act_cantidad_maxima;}
 
-                                    @if (listaActividades != null)
-                                    {
-                                        <td>@item.act_nombre</td>
-                                        <td>@item.act_plazo </td>
-                                        <td>
-                                            <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
+                                    <td>@item.act_nombre</td>
+                                    <td>@item.act_plazo </td>
+                                    <td>@item.act_cantidad_maxima</td>
+                                    <td>@cantidadDisp</td>
+                                    <td>
+                                        <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
+                                            <i class="fa fa-plus-circle"></i>
+                                            Agregar a la Planificacion
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------->
+
+        <h3 class="text-center">Actividades Planificadas</h3>
+        <!--LISTA DE TAREAS PLANIFICADAS-->
+        <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-success">
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">Actividad </th>
+                                <th scope="col">Costo act</th>
+                                <th scope="col">Tiempo Aprox</th>
+                                <th scope="col">Funciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in listaPlanActividadAux)
+                            {
+                                count = count + 1;
+
+                                var listaActividades = listaPlanActividad.Find(x => x.act_plan_nombre == item.act_plan_nombre);
+                                //var plan_id = listaPlanActividad.ElementAt(0).plan_id;
+                                var plan_id = Model.plans_aux.plan_id;
+                            <tr class="text-center">
+                                <th scope="row">@count</th> 
+                                    <td>@item.act_plan_nombre</td>
+                                    <td>@item.act_plan_costo </td>
+                                    <td>@item.act_plan_tiempo</td>
+                                    <td>
+                                        <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
                                                 <i class="fa fa-times-circle"></i>
                                                 Eliminar
-                                            </button>
-                                            <button class="btn btn-warning btnModal" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
+                                        </button>
+                                        <button class="btn btn-warning btnModal" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
                                                 <i class="fa fa-edit" style="color:white !important"></i>
                                                 Actualizar
-                                            </button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>@item.act_nombre</td>
-                                        <td>@item.act_plazo </td>
-                                        <td>
-                                            <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
-                                                <i class="fa fa-plus-circle"></i>
-                                                Agregar a la Planificacion
-                                            </button>
-                                        </td>
-                                    }
-                                </tr>
+                                        </button>
+                                    </td>                                
+                            </tr>
                             }
                         </tbody>
                     </table>

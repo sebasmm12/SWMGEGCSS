@@ -116,6 +116,9 @@ namespace SWMGEGCSS.Controllers
             //se obtiene las actividades planificadas previamente
             model.List_Actividades_planeadas_aux = new  ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().FindAll(r => (r.plan_nombre == model.plans_aux.plan_nombre));
             model.List_Actividades_planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => (r.plan_id == id));
+            /*listado de Servicios: al trataarse de otra view model dentro del plan view model, se debe inicializar*/
+            model.tipoServicioModel = new TipoServicioViewModel();
+            model.tipoServicioModel.ListtipoServicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio();
             return View(model);
             
         }
@@ -289,16 +292,21 @@ namespace SWMGEGCSS.Controllers
         [HttpGet]
         public ActionResult _ModalAgregarActividadesPlanificadas()
         {
+            /*no recibe paraetros, llama a la vista partcial con un model*/
             var model = new GestionarPlanProyectoViewModel();
             return PartialView(model);
         }
-        [HttpPost]
+        [HttpPost]/*ddd*/
         public ActionResult _ModalAgregarActividadesPlanificadas(int plan_id, int act_id)
         {
             var model = new GestionarPlanProyectoViewModel();
             model.Actividad_planeada = new T_actividades_planeadas();
             model.Actividad_planeada.plan_id = plan_id;
             model.Actividad_planeada.act_id = act_id;
+            model.ActividadesModel = new ActividadViewModel();
+            var ActPlazo= new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id));
+            model.ActividadesModel.Actividades = ActPlazo;
+            ViewBag.plazo = ActPlazo.act_plazo;
             return PartialView("_ModalAgregarActividadesPlanificadas", model);
         }
         [HttpPost]

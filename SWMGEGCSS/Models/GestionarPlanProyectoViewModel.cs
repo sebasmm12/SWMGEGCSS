@@ -25,6 +25,8 @@ namespace SWMGEGCSS.Models
         //alguien lo cambio
         public T_actividades_desarrollar Actividades_planeadas { get; set; }
         public T_actividades_planeadas Actividad_planeada { get; set; }
+        public TipoServicioViewModel tipoServicioModel { get; set; }
+        public ActividadViewModel ActividadesModel { get; set; }
         public string tipo_estado { get; set; }
     }
 }
