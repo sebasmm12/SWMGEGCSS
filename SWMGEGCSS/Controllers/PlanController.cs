@@ -117,16 +117,33 @@ namespace SWMGEGCSS.Controllers
             model.List_Actividades_planeadas_aux = new  ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().FindAll(r => (r.plan_nombre == model.plans_aux.plan_nombre));
             model.List_Actividades_planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => (r.plan_id == id));
 
+            var costoTotalPlan = 0.0;
+            var tiempoTotalPlan = 0;
+            /*selector de lista o de session que varia  dependiendo del contenido*/
             var ListaActPlanTemp = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
             if (ListaActPlanTemp != null)
             {
                 model.List_Actividades_planeadas = ListaActPlanTemp;
+                foreach (var it in ListaActPlanTemp)
+                {
+                    costoTotalPlan = costoTotalPlan + it.act_plan_costo;
+                    tiempoTotalPlan = tiempoTotalPlan + it.act_plan_tiempo;
+                }
+
             }
             else
             {
                 ListaActPlanTemp = model.List_Actividades_planeadas;
+                foreach (var it in model.List_Actividades_planeadas_aux)
+                {
+                    costoTotalPlan = costoTotalPlan + it.act_plan_costo;
+                    tiempoTotalPlan = tiempoTotalPlan + it.act_plan_tiempo;
+                }
             }
             Session["ListaActPlanTemp"] = ListaActPlanTemp;
+            Session["costoTotalPlan"] = costoTotalPlan;
+            Session["tiempoTotalPlan"] = tiempoTotalPlan;
+
             /*listado de Servicios: al trataarse de otra view model dentro del plan view model, se debe inicializar*/
             model.tipoServicioModel = new TipoServicioViewModel();
             model.tipoServicioModel.ListtipoServicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio();
@@ -138,6 +155,7 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarPlanProyectoViewModel();
             model.plans_aux = plans_aux;
+            //var nombreTipoServicio = (int)Session["tipoServicioNombre"];
 
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             var empresaModel = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(y => (y.emp_razon_social == model.plans_aux.emp_razon_social));
@@ -153,8 +171,28 @@ namespace SWMGEGCSS.Controllers
 
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
+            /*actualizacion o creacion de actividades planificadas*/
+            var ListaActPlan = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+            foreach ( var item in ListaActPlan)
+            {
+                if(item.act_plan_id == 0)//existe?
+                {
+                    //se registra
+                    var registro  = new ActividadesDataAccess().sp_registrar_actividades_planeadas(item);
+                }
+                else
+                {
+                    //se actualiza
+                    var actualizacion = new ActividadesDataAccess().sp_actualizar_actividades_planeadas(item);
+                }
+            }
+            ListaActPlan = null;
+            Session["ListaActPlanTemp"] = ListaActPlan;
+            Session["tipoServicioNombre"] = null;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
+            //return View( "Gestionar_Plan_Proyecto");
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+        
         }
         public ActionResult CompletarNombrePlanes(string term)
         {
