@@ -116,6 +116,17 @@ namespace SWMGEGCSS.Controllers
             //se obtiene las actividades planificadas previamente
             model.List_Actividades_planeadas_aux = new  ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().FindAll(r => (r.plan_nombre == model.plans_aux.plan_nombre));
             model.List_Actividades_planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => (r.plan_id == id));
+
+            var ListaActPlanTemp = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+            if (ListaActPlanTemp != null)
+            {
+                model.List_Actividades_planeadas = ListaActPlanTemp;
+            }
+            else
+            {
+                ListaActPlanTemp = model.List_Actividades_planeadas;
+            }
+            Session["ListaActPlanTemp"] = ListaActPlanTemp;
             /*listado de Servicios: al trataarse de otra view model dentro del plan view model, se debe inicializar*/
             model.tipoServicioModel = new TipoServicioViewModel();
             model.tipoServicioModel.ListtipoServicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio();
@@ -311,8 +322,14 @@ namespace SWMGEGCSS.Controllers
         }
         [HttpPost]
         public ActionResult _ModalRegistrarActividadesPlanificadasFinal(T_actividades_planeadas act_plan)
-        {
+        {         
             var model   = new GestionarPlanProyectoViewModel();
+            //List<T_actividades_planeadas> ListaActividadesPlaneadasAux = new List<T_actividades_planeadas>();
+            //ListaActividadesPlaneadasAux = (List<T_actividades_planeadas>)ViewBag.ListaActPlaneadasAux;
+
+            List<T_actividades_planeadas> ListaActividadesPlaneadasAux = new List<T_actividades_planeadas>();
+            ListaActividadesPlaneadasAux = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+
             model.Actividad_planeada = new T_actividades_planeadas();
             model.Actividad_planeada.plan_id = act_plan.plan_id;
             model.Actividad_planeada.act_id = act_plan.act_id;
@@ -320,8 +337,13 @@ namespace SWMGEGCSS.Controllers
             model.Actividad_planeada.act_plan_descripcion = act_plan.act_plan_descripcion;
             model.Actividad_planeada.act_plan_costo = act_plan.act_plan_costo;
             model.Actividad_planeada.act_plan_tiempo = act_plan.act_plan_tiempo;
-            var operationResult = new ActividadesDataAccess().sp_registrar_actividades_planeadas(model.Actividad_planeada);
+            ListaActividadesPlaneadasAux.Add(model.Actividad_planeada);
+
+            Session["ListaActPlanTemp"] = ListaActividadesPlaneadasAux;
+            //ViewBag.listaActPlanAux = (List<T_actividades_planeadas>)ListaActividadesPlaneadasAux;
             return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);
+            /*var operationResult = new ActividadesDataAccess().sp_registrar_actividades_planeadas(model.Actividad_planeada);
+            return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);*/
         }
 
     }

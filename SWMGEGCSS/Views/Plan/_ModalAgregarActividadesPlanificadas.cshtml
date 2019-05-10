@@ -66,27 +66,25 @@
                                     Duracion de la Actividad
                                 </label>
                             </div>
+                            &nbsp;&nbsp;
                             <div>
-                                    <label style="border: 1px solid #C00">
-                                        <Font size="1" color="red">
-                                            Plazo Max.:
-                                            @Html.EditorFor(model => model.ActividadesModel.Actividades.act_plazo, new
+                                <label style="border: 1px solid #C00">
+                                    <Font size="1" color="red">
+                                        Plazo Max.:
+                                        @Html.DisplayFor(model => model.ActividadesModel.Actividades.act_plazo, new
+                                   {
+                                       htmlAttributes = new
                                        {
-                                           htmlAttributes = new
-                                           {
-                                               @class = "text-center",
-                                               @type = "label",
-                                               @color = "red",
-                                               @readonly = "readonly",
-                                               @size = "1",
-                                               @border = "none"
-                                           }
-                                       })
-                                            Dias
-                                        </Font>
-                                    </label>
-                                </div>
-                                </div>
+                                           @class = "text-center",
+                                           @type = "label",
+                                           @color = "red"
+                                       }
+                                   })
+                                        Dias
+                                    </Font>
+                                </label>
+                            </div>
+                        </div>
                                 <div>
                                     @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
                                {
