@@ -10,7 +10,7 @@ using System.Data.Common;
 
 namespace SWMGEGCSS_DA
 {
-    class SecretariaDataAccess : BaseConexion
+    public class SecretariaDataAccess : BaseConexion
     {
 
         public List<T_Citas> sp_Consultar_Lista_Citas()
