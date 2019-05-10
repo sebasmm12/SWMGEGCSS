@@ -304,9 +304,9 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarPlanProyectoViewModel();
             //model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
-            var listaActividadesPlaneadas = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+            /*var listaActividadesPlaneadas = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
             var listaActividadesPlaneadasAux = 
-            model.Actividades_planeadas_aux = listaActividadesPlaneadas.Find(x => (x.act_plan_id == act_plan_id));
+            model.Actividades_planeadas_aux = listaActividadesPlaneadas.Find(x => (x.act_plan_id == act_plan_id));*/
             return PartialView("_ModalActualizarActividadesPlanificadas",model);
         }
         [HttpPost]
