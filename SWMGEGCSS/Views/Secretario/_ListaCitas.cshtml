@@ -1,0 +1,32 @@
+﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
+@{
+
+
+    var list_citas = Model.listCitas;
+    Layout = null;
+
+}
+
+<div class="container form-bar mt-5">
+    <div class="table-responsive mt-4">
+        <table class="table" ">
+            <thead class="bg-success">
+                <tr>
+                    <th scope="col">Fecha y Hora</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-12 pagedList" >
+        @Html.PagedListPager(list_citas, page => Url.Action("Gestionar_Citas", "Secretario", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+    </div>
+</div>
+
+
