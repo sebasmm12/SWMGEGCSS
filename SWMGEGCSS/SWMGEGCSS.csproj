@@ -448,6 +448,7 @@
     <Content Include="Views\Plan\Agregar_Plan_de_Proyectos_1.cshtml" />
     <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
     <Content Include="Views\Secretario\_ListaCitas.cshtml" />
+    <Content Include="Views\Secretario\Registrar_Cita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

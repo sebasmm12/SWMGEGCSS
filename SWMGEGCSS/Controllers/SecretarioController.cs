@@ -23,6 +23,28 @@ namespace SWMGEGCSS.Controllers
             model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
             return View(model);
         }
+
+
+        [HttpGet]
+        public ActionResult Registrar_Cita()
+        {
+            var model = new GestionarCitasViewModel();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registrar_Cita(T_Citas citas)
+        {
+            var model = new GestionarCitasViewModel();
+            model.citas = citas;
+            model.citas.cita_id = (int)Session["login"];
+            //var operationResult = new OperationResult();
+            //operationResult = new SecretariaDataAccess().sp_Consultar_Lista_Citas(model.citas);
+            return View(model);
+
+        }
+
+        
         public ActionResult Registrar_Ingresos_Egresos()
         {
             return View();
