@@ -109,6 +109,9 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarPlanProyectoViewModel();
             //se obtiene el plan seleccionado
             model.plans_aux = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(r => (r.plan_id == id));
+            Session["nombrePlanActual"] = (string)model.plans_aux.plan_nombre;
+            //obtener estados
+
             //se obtiene los valores del tipo servicio del plan seleccionado
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             //se obtiene la lista de actividades segun el tipo de servicio del plan seleccionado
@@ -147,6 +150,7 @@ namespace SWMGEGCSS.Controllers
             /*listado de Servicios: al trataarse de otra view model dentro del plan view model, se debe inicializar*/
             model.tipoServicioModel = new TipoServicioViewModel();
             model.tipoServicioModel.ListtipoServicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio();
+            model.lista_plan_estado = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado();
             return View(model);
             
         }
@@ -160,6 +164,7 @@ namespace SWMGEGCSS.Controllers
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             var empresaModel = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(y => (y.emp_razon_social == model.plans_aux.emp_razon_social));
             var planEstadoModel = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado().Find(z => (z.plan_estado_nombre == model.plans_aux.plan_estado_nobre));
+
 
             var modelPlan = new T_plan();
             modelPlan.plan_id = model.plans_aux.plan_id;
@@ -298,7 +303,10 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _ModalActualizarActividadesPlanificadas(int act_plan_id)
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
+            //model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
+            var listaActividadesPlaneadas = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+            var listaActividadesPlaneadasAux = 
+            model.Actividades_planeadas_aux = listaActividadesPlaneadas.Find(x => (x.act_plan_id == act_plan_id));
             return PartialView("_ModalActualizarActividadesPlanificadas",model);
         }
         [HttpPost]
@@ -382,6 +390,21 @@ namespace SWMGEGCSS.Controllers
             return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);
             /*var operationResult = new ActividadesDataAccess().sp_registrar_actividades_planeadas(model.Actividad_planeada);
             return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);*/
+        }
+
+        public ActionResult Evaluar_Nombre_Plan_Actualizar(string plan_nombre)
+        {
+            var model = new PlanDataAccess().sp_Consultar_Lista_Plan();
+            var modelEvaluado = model.Find(r => r.plan_nombre == plan_nombre);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                if (modelEvaluado.plan_nombre != (string)Session["nombrePlanActual"])
+                {
+                    cont = 1;
+                }
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
         }
 
     }

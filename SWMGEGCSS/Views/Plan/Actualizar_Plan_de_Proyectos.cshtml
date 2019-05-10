@@ -12,8 +12,9 @@
 
     //retorna todos los tipod de servicio vigenetes
     var listaTotalTipoServicio = Model.tipoServicioModel.ListtipoServicio;
-
+    var listaTotalEstadoPlan = Model.lista_plan_estado;
     var costoTotalPlan = 0;
+
 
     var plan_fecha = "";
     var count = 0;
@@ -26,6 +27,7 @@
 
 }
 <link href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" rel="stylesheet" />
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <h2 class="text-center">Actualizar Plan de Proyectos</h2>
 
 <div class="container-fluid">
@@ -55,7 +57,18 @@
                 </div>
                 <!--<input type="date" name="plans.plan_fecha" value="Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />-->
 
-                <input id="plan-fecha" type="date" name="plans_aux.plan_fecha" value="@plan_fecha" class="text-center form-control" onkeydown="return false" />
+                @Html.EditorFor(model => model.plans_aux.plan_fecha, new
+               {
+               htmlAttributes = new
+               {
+                   @id = "plan-fecha",
+                   @class = "text-center form-control",
+                   @onkeydown = "return false",
+                   @type = "date",
+                   @Value = Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")
+
+               }
+               })
                 <div id="error-plan-fecha" class="errordiv"></div>
             </div>
         </div>
@@ -69,7 +82,9 @@
                 @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
            {
                htmlAttributes = new {
-                   @class = "text-center form-control", @id = "plan-emp"
+                   @class = "text-center form-control",
+                   @id = "plan-emp",
+                   @dataid = Url.Action("CompletarNombreEmpresas", "Plan")
 
                }
            })
@@ -81,10 +96,11 @@
                         Estado del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans_aux.plan_estado_nobre, new
-           {
-               htmlAttributes = new { @class = "text-center form-control" }
-           })
+                @Html.DropDownListFor(model => model.plans_aux.plan_estado_nobre, new SelectList(listaTotalEstadoPlan, "plan_estado_nombre", "plan_estado_nombre",Model.plans_aux.plan_estado_nobre),
+
+                   htmlAttributes : new { @id = "plan-estado", @class = "text-center form-control"})
+
+                
                 <div id="error-plan-estado" class="errordiv"></div>
             </div>
         </div>
@@ -114,9 +130,12 @@
                         Tipo de servicio del plan
                     </label>
                 </div>
-                @Html.DropDownListFor(model => model.plans_aux.tipo_servicio_nombre, new SelectList(listaTotalTipoServicio, "tipo_servicio_nombre", "tipo_servicio_nombre"),
-               
-                   htmlAttributes : new { @id = "plan-tipo-servicio", @class = "text-center form-control"})
+                @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
+                {
+                    htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
+                })
+
+                
                 <!--<select class="text-center form-control" , id="plan-tipo-servicio">
         foreach (var item in listaTotalTipoServicio)
         {
@@ -142,7 +161,7 @@
                    @id = "plan-tiempo",
                    @class = "text-center form-control",
                    @readonly = "readonly",
-                   @value = Session["tiempoTotalPlan"]
+                   @Value = Session["tiempoTotalPlan"]
                     }
                 })
                 <div id="error-plan-tiempo" class="errordiv"></div>
@@ -172,21 +191,21 @@
                                 var listaActividades = listaPlanActividad.Find(x => x.act_id == item.act_id);
                                 //var plan_id = listaPlanActividad.ElementAt(0).plan_id;
                                 var plan_id = Model.plans_aux.plan_id;
-                            <tr class="text-center">
-                                <th scope="row">@count</th>
-                                @{ var cantidadDisp = @item.act_cantidad_maxima;}
-                                
-                                <td>@item.act_nombre</td>
-                                <td>@item.act_plazo </td>
-                                <td>@item.act_cantidad_maxima</td>
-                                <td>@cantidadDisp</td>
-                                <td>
-                                    <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
-                                        <i class="fa fa-plus-circle"></i>
-                                        Agregar a la Planificacion
-                                    </button>
-                                </td>
-                            </tr>
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    @{ var cantidadDisp = @item.act_cantidad_maxima;}
+
+                                    <td>@item.act_nombre</td>
+                                    <td>@item.act_plazo </td>
+                                    <td>@item.act_cantidad_maxima</td>
+                                    <td>@cantidadDisp</td>
+                                    <td>
+                                        <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
+                                            <i class="fa fa-plus-circle"></i>
+                                            Agregar a la Planificacion
+                                        </button>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -243,7 +262,7 @@
         <!---------------------------------->
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" id="btnActualizarPlan" class="btn btn-warning rounded-pill">
+                <button type="button" id="btnActualizarPlan" class="btn btn-warning rounded-pill">
                     <i class="fa fa-edit" style="color:white !important"></i>
                     Actualizar
 
@@ -262,9 +281,9 @@
         <div class="row mt-4 pl-2"></div>
     </form>
     @Html.Action("_ModalActualizarActividadesPlanificadas", "Plan")
-    @Html.Action("_ModalEliminarActividadesPlanificadas"  , "Plan")
-    @Html.Action("_ModalAgregarActividadesPlanificadas"   , "Plan")
-</div> 
+    @Html.Action("_ModalEliminarActividadesPlanificadas", "Plan")
+    @Html.Action("_ModalAgregarActividadesPlanificadas", "Plan")
+</div>
 
 
 @section Scripts{
@@ -272,5 +291,6 @@
     <script src="~/Scripts/Scripts_TP/COLOMBO/ActualizarActividadesPlaneadas.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/EliminarActividadesPlaneadas.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/RegistrarActividadesPlaneadas.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/ActualizarPlan.js"></script>
-    }
+}
