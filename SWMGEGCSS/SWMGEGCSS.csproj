@@ -140,6 +140,7 @@
     <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EjemploViewModel.cs" />
     <Compile Include="Models\ExpedienteViewModel.cs" />
+    <Compile Include="Models\GestionarCitasViewModel.cs" />
     <Compile Include="Models\GestionarEmpresaViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\PermisoViewModel.cs" />
@@ -445,6 +446,7 @@
     <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\Agregar_Plan_de_Proyectos_1.cshtml" />
     <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
+    <Content Include="Views\Secretario\_ListaCitas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
