@@ -165,7 +165,6 @@ namespace SWMGEGCSS.Controllers
             var empresaModel = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(y => (y.emp_razon_social == model.plans_aux.emp_razon_social));
             var planEstadoModel = new PlanDataAccess().sp_Consultar_Lista_Plan_Estado().Find(z => (z.plan_estado_nombre == model.plans_aux.plan_estado_nobre));
 
-
             var modelPlan = new T_plan();
             modelPlan.plan_id = model.plans_aux.plan_id;
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
@@ -176,22 +175,15 @@ namespace SWMGEGCSS.Controllers
 
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
-            /*actualizacion o creacion de actividades planificadas*/
-            var ListaActPlan = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
-            foreach ( var item in ListaActPlan)
+            /*eliminacion y creacion de actividades planificadas*/
+            var ListaActPlan     = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+
+            var eliminar = new ActividadesDataAccess().sp_eliminar_actividades_planeadas(modelPlan.plan_id);
+            foreach (var item in ListaActPlan)
             {
-                if(item.act_plan_id == 0)//existe?
-                {
-                    //se registra
-                    var registro  = new ActividadesDataAccess().sp_registrar_actividades_planeadas(item);
-                }
-                else
-                {
-                    //se actualiza
-                    var actualizacion = new ActividadesDataAccess().sp_actualizar_actividades_planeadas(item);
-                }
-            }
-            ListaActPlan = null;
+                var creacion = new ActividadesDataAccess().sp_registrar_actividades_planeadas(item);
+            }   
+            ListaActPlan = null;         
             Session["ListaActPlanTemp"] = ListaActPlan;
             Session["tipoServicioNombre"] = null;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
@@ -325,12 +317,13 @@ namespace SWMGEGCSS.Controllers
             actividadesPlaneadas.act_plan_costo = act_plan.act_plan_costo;
             actividadesPlaneadas.act_plan_tiempo = act_plan.act_plan_tiempo;
 
+            /*identificando y almacenado el objeto actualizado*/
             T_actividades_planeadas actPlanTemp = new T_actividades_planeadas();
             foreach (var item in listaActividadesPlaneadasTemp)
             {
                 if (item.act_plan_id == actividadesPlaneadas.act_plan_id)
                 {
-                    actPlanTemp = item;
+                    actPlanTemp = item;                  
                 }
             }
             listaActividadesPlaneadasTemp.Remove(actPlanTemp);
@@ -349,16 +342,30 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _ModalEliminarActividadesPlanificadas(int act_plan_id)
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
+            var listaActividadesPlaneadas = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+            model.Actividad_planeada = listaActividadesPlaneadas.Find(x => (x.act_plan_id == act_plan_id));
             return PartialView("_ModalEliminarActividadesPlanificadas", model);
         }
         [HttpPost]
         public ActionResult _ModalEliminarActividadesPlanificadasFinal(int act_plan_id)
         {
             var model = new GestionarPlanProyectoViewModel();
+            var actPlanTemp = new T_actividades_planeadas();
+            var listaActividadesPlaneadas = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
+            foreach (var item in listaActividadesPlaneadas)
+            {
+                if(item.act_plan_id == act_plan_id)
+                {
+                    actPlanTemp = item; break;
+                }
+            }
+            listaActividadesPlaneadas.Remove(actPlanTemp);
+            Session["ListaActPlanTemp"] = listaActividadesPlaneadas;
+
+            /*model.Actividad_planeada = listaActividadesPlaneadas.Find(x => (x.act_plan_id == act_plan_id));
             var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan_id);
-            var operationResult = new ActividadesDataAccess().sp_eliminar_actividades_planeadas(act_plan_id);
-            return Json(actplan.plan_id, JsonRequestBehavior.AllowGet);
+            var operationResult = new ActividadesDataAccess().sp_eliminar_actividades_planeadas(act_plan_id);*/
+            return Json(actPlanTemp.plan_id, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -388,19 +395,9 @@ namespace SWMGEGCSS.Controllers
             //List<T_actividades_planeadas> ListaActividadesPlaneadasAux = new List<T_actividades_planeadas>();
             //ListaActividadesPlaneadasAux = (List<T_actividades_planeadas>)ViewBag.ListaActPlaneadasAux;
 
-            List<T_actividades_planeadas> ListaActividadesPlaneadasTemp = new List<T_actividades_planeadas>();
-            var ListaActividadesPlaneadasTempCreado = new List<T_actividades_planeadas>();
-            ListaActividadesPlaneadasTemp = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
-            if((List<T_actividades_planeadas>)Session["ListaActPlanTempCreado"] == null)
-            {
-                ListaActividadesPlaneadasTempCreado = new List<T_actividades_planeadas>();
-            }
-            else
-            {
-                ListaActividadesPlaneadasTempCreado = (List<T_actividades_planeadas>)Session["ListaActPlanTempCreado"];
-            }
-            ListaActividadesPlaneadasTempCreado = (List<T_actividades_planeadas>)Session["ListaActPlanTempCreado"];
-
+            List<T_actividades_planeadas> ListaActividadesPlaneadasTemp = new List<T_actividades_planeadas>();  
+            ListaActividadesPlaneadasTemp = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];        
+            //ListaActividadesPlaneadasTempCreado = (List<T_actividades_planeadas>)Session["ListaActPlanTempCreado"];
             model.Actividad_planeada = new T_actividades_planeadas();
             model.Actividad_planeada.plan_id = act_plan.plan_id;
             model.Actividad_planeada.act_id = act_plan.act_id;
@@ -409,15 +406,21 @@ namespace SWMGEGCSS.Controllers
             model.Actividad_planeada.act_plan_costo = act_plan.act_plan_costo;
             model.Actividad_planeada.act_plan_tiempo = act_plan.act_plan_tiempo;
 
-            ListaActividadesPlaneadasTemp.Add(model.Actividad_planeada);
-            ListaActividadesPlaneadasTempCreado.Add(model.Actividad_planeada);
-
-            Session["ListaActPlanTempCreado"] = ListaActividadesPlaneadasTempCreado;
+            /*asignacion de act_plan_id temporal para los que se van a agregar*/
+            var act_plan_id = ListaActividadesPlaneadasTemp.Count();
+            for (int i = 0; i <= ListaActividadesPlaneadasTemp.Count() - 1; i++)
+            {
+                if(act_plan_id == ListaActividadesPlaneadasTemp[i].act_plan_id)
+                {
+                    act_plan_id = act_plan_id + 1;
+                    i = 0;
+                }
+            }
+            model.Actividad_planeada.act_plan_id = act_plan_id;
+            
+            ListaActividadesPlaneadasTemp.Add(model.Actividad_planeada);              
             Session["ListaActPlanTemp"] = ListaActividadesPlaneadasTemp;
-            //ViewBag.listaActPlanAux = (List<T_actividades_planeadas>)ListaActividadesPlaneadasAux;
             return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);
-            /*var operationResult = new ActividadesDataAccess().sp_registrar_actividades_planeadas(model.Actividad_planeada);
-            return Json(act_plan.plan_id, JsonRequestBehavior.AllowGet);*/
         }
 
         public ActionResult Evaluar_Nombre_Plan_Actualizar(string plan_nombre)
@@ -434,6 +437,5 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

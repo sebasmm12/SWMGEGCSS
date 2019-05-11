@@ -243,17 +243,18 @@ namespace SWMGEGCSS_DA
                 return new List<T_actividades>();
             }
         }
-        public OperationResult sp_eliminar_actividades_planeadas(int act_plan_id)
+        public OperationResult sp_eliminar_actividades_planeadas(int plan_id)
         {
             var operation = new OperationResult();
             using (DbCommand command = Database.GetStoredProcCommand("sp_eliminar_actividades_planeadas"))
             {
-                Database.AddInParameter(command, "@act_plan_id", DbType.Int32, act_plan_id);
+                Database.AddInParameter(command, "@plan_id", DbType.Int32, plan_id);
                 Database.ExecuteScalar(command);
                 operation.NewId = 1;
             }
             return operation;
         }
         
+
     }
 }
