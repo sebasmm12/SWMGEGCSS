@@ -140,6 +140,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Gestionar_Plan_Proyecto(string searchTerm, string estado, int page = 1)
         {
             Session["ListaActPlanTemp"] = null;
+            Session["ListaActPlanTempCreado"]= null;
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             if (searchTerm == null && estado == null) {
                 model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3); }
