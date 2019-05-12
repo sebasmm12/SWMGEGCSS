@@ -124,6 +124,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadesDesarrollarController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
@@ -459,6 +460,7 @@
     <Folder Include="Content\StyleTP\MAURICIO\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
     <Folder Include="Scripts\Scripts_TP\EGG\" />
+    <Folder Include="Views\ActividadesDesarrollar\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
