@@ -1,23 +1,6 @@
 ﻿$(function () {
     var id_plan = 0;
     var id_act = 0;
-
-    //TablaActiv : evaluar si existe y mostrar
-    TablaActiv = function () {
-        $.ajax({
-            url: "/Plan/Agregar_Plan_de_Proyectos",
-            data: {
-                tipo_servicio_nombre: $("#plan-tipo-servicio").val()
-            },
-            type: "GET"
-        }).done(function (data) {
-            var $newhtml = $(data);
-            var target = $("#tablaActividades");
-            $(target).replaceWith($newhtml);
-        });
-        return true;
-    };
-
     //Para mostrar la tabla de actividades
     /*Verify = function () {
         var $button = $("#btnMostrar");
@@ -41,27 +24,22 @@
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
-            //var modal = $button.attr("data-id-target");
-            //id_plan = $(this).attr("data-id-plan");
-            //id_act = $(this).attr("data-id-act");
+            var modal = $button.attr("data-id-target");
             $.ajax({
                 url: $(this).attr("data-url"),
-                method: "POST",
-                /*data: {
-                    plan_id: id_plan,
-                    act_id: id_act
-                }*/
+                type: "GET"
             }).done(function (data) {
-                /*var $target = $($button.attr("data-id-target"));
+                var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
-                $target.replaceWith($newhtml);*/
+                $target.replaceWith($newhtml);
                 $(modal).modal();
                 //$(".btnRegistrarPlanAct").click(envioajaxRegistrar);
-            });
+                });
             return false;
         });
     };
-    var envioajaxRegistrar = function () {
+
+    /*var envioajaxRegistrar = function () {
         //mismo nombre del parametro de actualizacion del metodo
         //creando objeto
         alert($("#Actividades_planeadas_aux_act_plan_nombre").val());
@@ -82,9 +60,25 @@
         }).done(function (data) {
             window.location.href = "/Plan/Agregar_Plan_de_Proyectos_1";
         });
+    };*/
+    //TablaActiv : evaluar si existe y mostrar
+    TablaActiv = function () {
+        $.ajax({
+            url: "/Plan/Agregar_Plan_de_Proyectos",
+            data: {
+                tipo_servicio_nombre: $("#plan-tipo-servicio").val()
+            },
+            type: "GET"
+        }).done(function (data) {
+            var $newhtml = $(data);
+            var target = $("#tablaActividades");
+            $(target).replaceWith($newhtml);
+        });
+        return true;
     };
     $("#btnPrueba").click(TablaActiv);
+    
     //$("#btnMostrar").click(Verify);
-    $(".btnModal3").each(envioajaxModal);
-    $(".btnRegistrarPlanAct").click(envioajaxRegistrar);
+    $(".btnModal").each(envioajaxModal);
+    //$(".btnRegistrarPlanAct").click(envioajaxRegistrar);
 });
