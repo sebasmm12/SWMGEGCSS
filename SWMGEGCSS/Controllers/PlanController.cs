@@ -116,9 +116,12 @@ namespace SWMGEGCSS.Controllers
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             //se obtiene la lista de actividades segun el tipo de servicio del plan seleccionado
             model.List_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(tipoServicioModel.tipo_servicio_id);
+            
             //se obtiene las actividades planificadas previamente
             model.List_Actividades_planeadas_aux = new  ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().FindAll(r => (r.plan_nombre == model.plans_aux.plan_nombre));
             model.List_Actividades_planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => (r.plan_id == id));
+
+            /*restar valores*/
 
             var costoTotalPlan = 0.0;
             var tiempoTotalPlan = 0;
@@ -143,6 +146,18 @@ namespace SWMGEGCSS.Controllers
                     tiempoTotalPlan = tiempoTotalPlan + it.act_plan_tiempo;
                 }
             }
+
+            //procesos para actualizacion de actividades permitidas
+            var listaActividades = model.List_Actividades;
+            List<int> cantidadesActividadesPermitidas = new List<int>();
+            foreach (var item in listaActividades)
+            {
+                var actPerTemp = ListaActPlanTemp.FindAll(X => X.act_id == item.act_id).Count();
+                var actPlanRest = item.act_cantidad_maxima - actPerTemp;
+                cantidadesActividadesPermitidas.Add(actPlanRest);
+            }
+
+            Session["ListaActCantPermitida"] = cantidadesActividadesPermitidas;
             Session["ListaActPlanTemp"] = ListaActPlanTemp;
             Session["costoTotalPlan"] = costoTotalPlan;
             Session["tiempoTotalPlan"] = tiempoTotalPlan;
@@ -298,6 +313,13 @@ namespace SWMGEGCSS.Controllers
             //model.Actividades_planeadas_aux = new ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().Find(c => (c.act_plan_id == act_plan_id));
             var listaActividadesPlaneadas = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
             model.Actividad_planeada = listaActividadesPlaneadas.Find(x => (x.act_plan_id == act_plan_id));
+            Session["plan_id"] = model.Actividad_planeada.plan_id;
+            Session["act_id"] = model.Actividad_planeada.act_id;
+
+            var ActPlazo = new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id));
+            model.ActividadesModel = new ActividadViewModel();
+            model.ActividadesModel.Actividades = ActPlazo;
+            //ViewBag.plazo1 = ActPlazo.act_plazo;
             return PartialView("_ModalActualizarActividadesPlanificadas",model);
         }
         [HttpPost]
@@ -308,10 +330,13 @@ namespace SWMGEGCSS.Controllers
             List<T_actividades_planeadas> listaActividadesPlaneadasTemp = new List<T_actividades_planeadas>();
             listaActividadesPlaneadasTemp = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
 
+            int actId = (int)Session["act_id"];
+            int planId = (int)Session["plan_id"];
+
             var actplan = listaActividadesPlaneadasTemp.Find(x => x.act_plan_id == act_plan.act_plan_id);
             actividadesPlaneadas.act_plan_id = act_plan.act_plan_id;
-            actividadesPlaneadas.plan_id = act_plan.plan_id;
-            actividadesPlaneadas.act_id = act_plan.act_id;
+            actividadesPlaneadas.plan_id = planId;
+            actividadesPlaneadas.act_id = actId;
             actividadesPlaneadas.act_plan_nombre = act_plan.act_plan_nombre;
             actividadesPlaneadas.act_plan_descripcion = act_plan.act_plan_descripcion;
             actividadesPlaneadas.act_plan_costo = act_plan.act_plan_costo;
@@ -326,6 +351,10 @@ namespace SWMGEGCSS.Controllers
                     actPlanTemp = item;                  
                 }
             }
+
+            Session["plan_id"] = null;
+            Session["act_id"] = null;
+
             listaActividadesPlaneadasTemp.Remove(actPlanTemp);
             listaActividadesPlaneadasTemp.Add(actividadesPlaneadas);
             Session["ListaActPlanTemp"] = listaActividadesPlaneadasTemp;
@@ -344,6 +373,7 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarPlanProyectoViewModel();
             var listaActividadesPlaneadas = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];
             model.Actividad_planeada = listaActividadesPlaneadas.Find(x => (x.act_plan_id == act_plan_id));
+
             return PartialView("_ModalEliminarActividadesPlanificadas", model);
         }
         [HttpPost]

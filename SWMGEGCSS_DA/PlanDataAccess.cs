@@ -184,7 +184,7 @@ namespace SWMGEGCSS_DA
             {
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Nombre_Empresa"))
                 {
-                    Database.AddInParameter(command, "@emp_razon_social", DbType.String, emp_razon_social);
+                    Database.AddInParameter(command, "@emp_nombre", DbType.String, emp_razon_social);
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
                         while (reader.Read())
