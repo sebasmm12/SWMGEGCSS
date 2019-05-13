@@ -35,11 +35,41 @@
             return false;
         }
         else {
-
-            alert("ID ACTIVIDAD : " + id_act);
-            return true;
+            var act_plan = {
+                act_id: id_act,
+                act_plan_nombre: $("#ActPlanNombre").val(),
+                act_plan_descripcion: $("#ActPlanDescripcion").val(),
+                act_plan_costo: $("#ActPlanCosto").val(),
+                act_plan_tiempo: $("#ActPlanTiempo").val()
+            };
+            /*var act_plan = {
+            plan_id: id_plan,
+            act_id: id_act,
+            act_plan_nombre: $("#ActPlanNombre").val(),
+            act_plan_descripcion: $("#ActPlanDescripcion").val(),
+            act_plan_costo: $("#ActPlanCosto").val(),
+            act_plan_tiempo: $("#ActPlanTiempo").val()
+        };
+        $.ajax({
+            url: "/Plan/_ModalRegistrarActividadesPlanificadasFinal",
+            method: "POST",
+            data: {
+                act_plan: act_plan
+            }
+        }).done(function (data) {
+            //$(modal).modal("hide");
+        });*/
+            $.ajax({
+                url: "/Plan/_ModalRegistrarActividadesPlanificadas",
+                method: "POST",
+                data: {
+                    act_plan: act_plan
+                }
+            }).done(function (data) {
+                $(this).modal("hide");
+            });
         }
-        //return false;
+        return false;
     };
     var esNum = function esNumero(txt) {
         if (isNaN(txt)) {
@@ -62,23 +92,7 @@
         return false;
     };
         /*************************************************************************/
-        /*var act_plan = {
-            plan_id: id_plan,
-            act_id: id_act,
-            act_plan_nombre: $("#ActPlanNombre").val(),
-            act_plan_descripcion: $("#ActPlanDescripcion").val(),
-            act_plan_costo: $("#ActPlanCosto").val(),
-            act_plan_tiempo: $("#ActPlanTiempo").val()
-        };
-        $.ajax({
-            url: "/Plan/_ModalRegistrarActividadesPlanificadasFinal",
-            method: "POST",
-            data: {
-                act_plan: act_plan
-            }
-        }).done(function (data) {
-            //$(modal).modal("hide");
-        });*/
+        
     //validacion nombre actividad
     function validar_nombre(id) {
         if (id === "") {
@@ -267,6 +281,7 @@
         $(this).click(function () {
             var $button = $(this);
             var modal = $button.attr("data-id-target");
+            id_act = $button.attr("data-id-act");
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "GET"

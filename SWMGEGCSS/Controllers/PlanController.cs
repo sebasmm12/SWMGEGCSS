@@ -474,5 +474,24 @@ namespace SWMGEGCSS.Controllers
             model.Actividad_planeada = new T_actividades_planeadas();
             return PartialView(model);
         }
+        [HttpPost]
+        public ActionResult _ModalRegistrarActividadesPlanificadas(T_actividades_planeadas act_plan)
+        {
+            T_actividades_planeadas actividadesPlaneadas = new T_actividades_planeadas();
+            /*var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan.act_plan_id);*/
+            List<T_actividades_planeadas> listaActividadesPlaneadasTemp = new List<T_actividades_planeadas>();
+            if (Session["ListaActividades"] == null)
+            {
+                listaActividadesPlaneadasTemp.Add(act_plan);
+            }
+            else
+            {
+                listaActividadesPlaneadasTemp = (List<T_actividades_planeadas>)Session["ListaActividades"];
+                listaActividadesPlaneadasTemp.Add(act_plan);
+            }
+            Session["ListaActividades"] = listaActividadesPlaneadasTemp;
+
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }
