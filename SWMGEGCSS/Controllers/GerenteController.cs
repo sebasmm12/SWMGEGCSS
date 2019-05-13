@@ -31,7 +31,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Servicios()
         {
-            return View();
+            return RedirectToAction("VisualizarServicios", "Servicios");
         }
         public ActionResult Gestionar_Cuenta()
         {

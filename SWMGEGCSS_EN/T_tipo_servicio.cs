@@ -10,5 +10,8 @@ namespace SWMGEGCSS_EN
     {
         public int tipo_servicio_id { get; set; }
         public string tipo_servicio_nombre { get; set; }
+        public bool tipo_servicio_estado { get; set; }
+        public string tipo_servicio_descripcion { get; set; }
+
     }
 }

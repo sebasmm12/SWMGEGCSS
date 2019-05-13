@@ -37,5 +37,59 @@ namespace SWMGEGCSS_DA
             }
             return lista_Tipo_Servicio;
         }
+        public List<T_tipo_servicio> sp_Consultar_Tipo_Servicio()
+        {
+            try
+            {
+                List<T_tipo_servicio> list_tipo_servicio = new List<T_tipo_servicio>();
+                using (DbCommand command= Database.GetStoredProcCommand("sp_Consultar_Tipo_Servicio"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var tipo_servicio = new T_tipo_servicio();
+                            tipo_servicio.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
+                            tipo_servicio.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
+                            tipo_servicio.tipo_servicio_descripcion = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_descripcion"]);
+                            tipo_servicio.tipo_servicio_estado = DataUtil.DbValueToDefault<bool>(reader["tipo_servicio_estado"]);
+                            list_tipo_servicio.Add(tipo_servicio);
+                        }
+                    }
+                }
+                return list_tipo_servicio;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_tipo_servicio>();
+            }
+        }
+        public List<T_tipo_servicio> sp_Consultar_Lista_Servicios_Nombre(string tipo_servicio_nombre)
+        {
+            try
+            {
+                List<T_tipo_servicio> list_tipo_servicio = new List<T_tipo_servicio>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Servicios_Nombre"))
+                {
+                    Database.AddInParameter(command,"@tipo_servicio_nombre",DbType.String,tipo_servicio_nombre);
+                    using (IDataReader reader= Database.ExecuteReader(command))
+                    {
+                        var tipo_servicio = new T_tipo_servicio();
+                        tipo_servicio.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
+                        tipo_servicio.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
+                        tipo_servicio.tipo_servicio_descripcion = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_descripcion"]);
+                        tipo_servicio.tipo_servicio_estado = DataUtil.DbValueToDefault<bool>(reader["tipo_servicio_estado"]);
+                        list_tipo_servicio.Add(tipo_servicio);
+                    }
+                }
+                return list_tipo_servicio;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_tipo_servicio>();
+            }
+        }
     }
 }

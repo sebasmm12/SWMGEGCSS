@@ -467,5 +467,12 @@ namespace SWMGEGCSS.Controllers
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult _ModalRegistrarActividadesPlanificadas()
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.Actividades_planeadas_aux = new T_actividades_planeadas_aux();
+            return PartialView(model);
+        }
     }
 }
