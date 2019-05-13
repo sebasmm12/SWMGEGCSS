@@ -6,6 +6,10 @@
     var count = 0;
     var fechaProyectoInicio = Model.expedienteActDesarrollar.exp_inicio.ToString("yyyy-MM-dd");
     var fechaProyectoFin = Model.expedienteActDesarrollar.exp_fin.ToString("yyyy-MM-dd");
+    int act_desa_id = Model.actividadesDesarrollar.act_desa_id;
+    var usuariAsignado = Model.usuarioEncargado;
+    //var usuarioRevisor = Model.usuarioRevisor;
+    var detalleUsuTrabajador = Session["detUsuTrabajador"];
 }
 
 <div class="container-fluid">
@@ -158,6 +162,152 @@
             </div>
         </div>
         <br><br>
+        @{
+            if (Model.usuarioEncargado != null)
+            {
+
+                <div style="border: 5px solid #C00 , border-radius: 9px">
+                    <label class="font-weight-bolder text-center">
+                        Trabajador Encargado de la Actividad
+                    </label>
+                    <div class="row mt-4 pl-2">
+                        <div style="width:30px"></div>
+                        <div class="col-12 col-sm-4 col-md-3">
+
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Nombre Completo
+                                </label>
+                            </div>
+                            @Html.EditorFor(model => model.usuarioEncargado.det_usu_nombre,
+                            new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "text-center form-control",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                    <div class="row mt-4 pl-2">
+                        <div style="width:30px"></div>
+                        <div class="col-12 col-sm-4 col-md-3">
+
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Especialidad
+                                </label>
+                            </div>
+                            @Html.EditorFor(model => model.usuarioEncargado.det_usu_especialidad,
+                            new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "text-center form-control",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                    <div class="row mt-4 pl-2">
+                        <div style="width:30px"></div>
+                        <div class="col-12 col-sm-4 col-md-3">
+
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Correo Electronico
+                                </label>
+                            </div>
+                            @Html.EditorFor(model => model.usuarioEncargado.det_usu_correo,
+                            new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "text-center form-control",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+            }
+        }
+
+
+        @{
+            if (Model.usuarioRevisor != null)
+            {
+                <div style="border: 1px solid #C00">
+                    <label class="font-weight-bolder text-center">
+                        Trabajador Revisor de la Actividad
+                    </label>
+                    <div class="row mt-4 pl-2">
+                        <div style="width:30px"></div>
+                        <div class="col-12 col-sm-4 col-md-3">
+
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Nombre Completo
+                                </label>
+                            </div>
+                            @Html.EditorFor(model => model.usuarioRevisor.det_usu_nombre,
+                            new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "text-center form-control",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                    <div class="row mt-4 pl-2">
+                        <div style="width:30px"></div>
+                        <div class="col-12 col-sm-4 col-md-3">
+
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Especialidad
+                                </label>
+                            </div>
+                            @Html.EditorFor(model => model.usuarioRevisor.det_usu_especialidad,
+                            new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "text-center form-control",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                    <div class="row mt-4 pl-2">
+                        <div style="width:30px"></div>
+                        <div class="col-12 col-sm-4 col-md-3">
+
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Correo Electronico
+                                </label>
+                            </div>
+                            @Html.EditorFor(model => model.usuarioRevisor.det_usu_correo,
+                            new
+                            {
+                                htmlAttributes = new
+                                {
+                                    @class = "text-center form-control",
+                                    @readonly = "readonly"
+                                }
+                            })
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+            }
+        }
+
         <div>
             <div class="mt-2 ml-4">
                 <div class="container-fluid">
@@ -190,15 +340,20 @@
                                                 <td>@item.det_usu_correo</td>
                                                 <td>
                                                     @{
-                                                        <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
-                                                            <i class="fa fa-check-circle"></i>
-                                                            Como Encargado
-                                                        </button>
-                                                        <button class="btn btn-success">
-                                                            <i class="fa fa-times-circle" style="color:white !important"></i>
-                                                            Como Revizor
-                                                        </button>
-
+                                                        if (Model.usuarioEncargado == null)
+                                                        {
+                                                            <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                Como Encargado
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
+                                                                <i class="fa fa-times-circle" style="color:white !important"></i>
+                                                                Como Revisor
+                                                            </button>
+                                                        }
                                                     }
                                                 </td>
                                             </tr>
@@ -212,6 +367,14 @@
             </div>
 
         </div>
+        <div class="row mt-2 pl-2">
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="button" id="btnAsignarTarea" class="btn btn-warning rounded-pill">
+                    <i class="fa fa-edit" style="color:white !important"></i>
+                    Actualizar
+                </button>
+            </div>
+        </div>
 
     </form>
     @Html.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")
@@ -219,4 +382,5 @@
 @section Scripts{
     <!--<script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>-->
     <script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividad.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/AsignarActividades.js"></script>
 }

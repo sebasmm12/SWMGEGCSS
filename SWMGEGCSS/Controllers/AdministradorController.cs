@@ -30,6 +30,9 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Asignacion_Tareas()
         {
+            Session["detUsuTrabajador"] = null;
+            Session["act_desa_id"] = null;
+            Session["detUsuRevisor"] = null;
             GestionarAsignacionActividadesDesarrollar model = new GestionarAsignacionActividadesDesarrollar();
             model.listActividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux();
             
