@@ -1,10 +1,12 @@
 ﻿$(function () {
     var usu_cod = 0;
+    var act_desa_id = 0;
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
             var modal = $button.attr("data-id-target");
             usu_cod = $(this).attr("data-id-usu");
+            act_desa_id = $(this).attr("data-act-desa-id");
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "POST",
@@ -30,7 +32,7 @@
                 usu_codigo: usu_cod
             }
         }).done(function (data) {
-            window.location.href = "/ActividadesDesarrollar/RegistrarAsignacionActividades_Desarrollar";
+            window.location.href = "/ActividadesDesarrollar/RegistrarAsignacionActividades_Desarrollar?act_desa_id=" + act_desa_id;
         });
     };
 

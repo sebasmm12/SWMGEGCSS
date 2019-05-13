@@ -20,7 +20,12 @@ namespace SWMGEGCSS.Models
         
         public List<T_usuario> listUsuarios { get; set; }
         public List<T_detalle_usuario> listDetalleUsuario { get; set; }
+
+        public T_detalle_usuario usuarioEncargado { get; set; }
+        public T_detalle_usuario usuarioRevisor { get; set; }
         public T_detalle_usuario detalle_Usuario { get; set; }
+
+        
         public T_rol_usuario_Aux rol_usuario_aux { get; set; }
         public T_expedientes expedienteActDesarrollar {get; set;}
     }
