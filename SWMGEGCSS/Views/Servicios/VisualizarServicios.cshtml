@@ -12,7 +12,7 @@
                 <div>
                     <label class="font-weight-bolder">Nombre del Servicio: </label>
                 </div>
-                <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("Autocomplete")" />
+                <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-serv-autocomplete="@Url.Action("Autocomplete")" />
             </div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
@@ -20,7 +20,7 @@
                 </div>
                 <select class="custom-select" id="estado" name="estado">
                     <option value="Todos">Todos</option>
-                    <option value="Activos">Activos</option>
+                    <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>
             </div>
@@ -33,7 +33,7 @@
                 </button>
             </div>
             <div class="col-12 col-sm-4 col-md-4">
-                <a href="@Url.Action("Registrar_Proyecto","Expediente")" class="btn btn-success rounded-pill">
+                <a href="@Url.Action("Registrar_Servicio","Servicios")" class="btn btn-success rounded-pill">
                     <i class="fa fa-plus-circle"></i>
                     Registrar Nuevo Proyecto
                 </a>

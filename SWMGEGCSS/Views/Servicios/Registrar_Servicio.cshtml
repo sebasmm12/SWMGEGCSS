@@ -1,0 +1,88 @@
+﻿@model SWMGEGCSS.Models.TipoServicioViewModel
+@{
+    ViewBag.Title = "Registrar_Servicio";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<div class="container-fluid">
+    <form id="form">
+        <div class="border-registrar">
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <label class="font-weight-bolder titulo-registrar">
+                        Registrar Nuevo Servicio
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-2 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder label-registrar">
+                            Nombre del Servicio
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.tipoServicio.tipo_servicio_nombre, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control" }
+                    })
+                    <span id="validatenameServicio"></span>
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder label-registrar">
+                            Descripción del Servicio
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.tipoServicio.tipo_servicio_descripcion, new
+                    {
+                        htmlAttributes = new { @class = "text-center form-control" }
+                    })
+                    <span id="validatedescripcionServicio"></span>
+                </div>
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button type="button" class="btn btn-success" id="btnRegistrar">
+                        <i class="fa fa-check-circle"></i>
+                        Registrar Proyecto
+                    </button>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button type="button" class="btn btn-success" id="btnRegistrarActividad">
+                        <i class="fa fa-check-circle"></i>
+                        Registrar Actividades
+                    </button>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("VisualizarServicios","Servicios")" class="btn btn-secondary">
+                        <i class="fa fa-backward">
+
+                        </i>
+                        Regresar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsRegistrarServicio.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}
+
+
