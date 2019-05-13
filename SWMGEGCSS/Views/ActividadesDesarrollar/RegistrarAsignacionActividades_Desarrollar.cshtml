@@ -135,7 +135,7 @@
                    {
                        @class = "text-center form-control",
                        @type = "Date"
-                       
+
                     }
                 })
             </div>
@@ -190,18 +190,10 @@
                                                 <td>@item.det_usu_correo</td>
                                                 <td>
                                                     @{
-                                                    <button class="btn btn-success btnModalTrabajador" data-id-usu ="@item.usu_codigo" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
-                                                        <i class="fa fa-check-circle"></i>
-                                                        Como Encargado
-
-
-                                                        <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan">
-                                                            <i class="fa fa-plus-circle"></i>
-                                                            Agregar a la Planificacion
+                                                        <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
+                                                            <i class="fa fa-check-circle"></i>
+                                                            Como Encargado
                                                         </button>
-
-
-                                                    </button>
                                                         <button class="btn btn-success">
                                                             <i class="fa fa-times-circle" style="color:white !important"></i>
                                                             Como Revizor
@@ -222,4 +214,9 @@
         </div>
 
     </form>
+    @Html.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")
 </div>
+@section Scripts{
+    <!--<script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>-->
+    <script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividad.js"></script>
+}

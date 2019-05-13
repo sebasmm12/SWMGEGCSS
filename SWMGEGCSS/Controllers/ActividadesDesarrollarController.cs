@@ -43,7 +43,7 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarAsignacionActividadesDesarrollar();
             model.detalle_Usuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().Find(X => (X.usu_codigo == usu_codigo));
-            var rolTrabajador = new ActividadesDesarrollarDataAccess().sp_listar_roles_usuario
+            model.rol_usuario_aux = new ActividadesDesarrollarDataAccess().sp_listar_roles_usuario().Find(X => (X.usu_codigo == usu_codigo));
             return PartialView(model);
         }
         [HttpPost]
