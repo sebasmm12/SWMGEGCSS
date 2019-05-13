@@ -1,7 +1,7 @@
 ﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
 @{
     ViewBag.Title = "Gestionar_Citas";
-    //Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_citas = Model.listCitas;
 }
 
@@ -24,3 +24,4 @@
 
 
 @Html.Partial("_ListaCitas",Model)
+

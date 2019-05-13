@@ -1,45 +1,15 @@
 ﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
 @{
-    ViewBag.Title = "Registrar_Cita";
+    ViewBag.Title = "Modificar_Cita";
 }
 
-<h2 class=" pl-3 ml-3 mt-3 mb-3">Registrar Cita</h2>
+<h2>Modificar Cita</h2>
 
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
         <div class="row mt-3 pl-3">
-            <div class="col-12 col-sm-6 col-md-6">
-                <label class="font-weight-bolder">
-                    Fecha
-                </label>
-                @Html.EditorFor(model => model.citas.cita_fecha, new
-               {
-                  htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
-               })
-            </div>
-            <div class="col-12 col-sm-6 col-md-6">
-                <label class="font-weight-bolder">
-                    Hora
-                </label>
-                @Html.EditorFor(model => model.citas.cita_fecha, new
-               {
-                  htmlAttributes = new { @id = "cita_hora", @class = "form-control", @type = "time" }
-               })
-            </div>
 
-
-        </div>
-        <div class="row mt-3 pl-3">
-            <div class="col-12 col-sm-6 col-md-6">
-                <label class="font-weight-bolder">
-                    Empresa
-                </label>
-
-                <select class="custom-select" id="estado" name="estado">
-                    <option>Esta Semana</option>
-                </select>
-            </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Representante
@@ -50,8 +20,44 @@
                 })
             </div>
 
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Fecha
+                </label>
+                @Html.EditorFor(model => model.citas.cita_fecha, new
+               {
+                  htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
+               })
+            </div>
+
         </div>
+
         <div class="row mt-3 pl-3">
+
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Representante
+                </label>
+                @Html.EditorFor(model => model.citas.cita_representante, new
+                {
+                   htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
+                })
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Hora
+                </label>
+                @Html.EditorFor(model => model.citas.cita_fecha, new
+               {
+                  htmlAttributes = new { @id = "cita_hora", @class = "form-control", @type = "time" }
+               })
+            </div>
+
+        </div>
+
+        <div class="row mt-3 pl-3">
+
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Telefono
@@ -61,6 +67,7 @@
                    htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
                 })
             </div>
+
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Correo
@@ -70,7 +77,9 @@
                    htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
                 })
             </div>
+
         </div>
+
         <div class="mt-4">
             <div class="col-12 col-sm-6 col-md-12">
                 <label class="font-weight-bolder">
@@ -82,13 +91,8 @@
                 })
             </div>
         </div>
+
         <div class="row mt-4 pl-3">
-            <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" class="btn btn-success" id="boton-Registrar">
-                    <i class="fa fa-check-circle"></i>
-                    Registrar Empresa
-                </button>
-            </div>
             <div class="col-12 col-sm-3 col-md-3">
                 <a href="@Url.Action("Gestionar_Citas", "Secretario")" class="btn btn-secondary">
                     <i class="fa fa-backward">
@@ -97,12 +101,21 @@
                     Regresar
                 </a>
             </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success" id="boton-Registrar">
+                    <i class="fa fa-check-circle"></i>
+                    Guardar Cambios
+                </button>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success" id="boton-Modificar">
+                    <i class="fa fa-tomes"></i>
+                    Eliminar Cita
+                </button>
+            </div>
+
         </div>
-
-
-
 
 
     }
 </div>
-
