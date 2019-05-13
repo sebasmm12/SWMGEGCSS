@@ -124,6 +124,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadesDesarrollarController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanController.cs" />
     <Compile Include="Controllers\SecretarioController.cs" />
+    <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\TrabajadorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,6 +142,7 @@
     <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EjemploViewModel.cs" />
     <Compile Include="Models\ExpedienteViewModel.cs" />
+    <Compile Include="Models\GestionarAsignacionActividadesDesarrollar.cs" />
     <Compile Include="Models\GestionarCitasViewModel.cs" />
     <Compile Include="Models\GestionarEmpresaViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
@@ -294,6 +297,8 @@
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\AsignarActividades.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividad.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
@@ -301,7 +306,9 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
@@ -406,13 +413,20 @@
     <Content Include="Views\Client\Normatividad.cshtml" />
     <Content Include="Views\Secretario\Index.cshtml" />
     <Content Include="Views\Gerente\Index.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
     <Content Include="Views\Secretario\Gestionar_Citas.cshtml" />
     <Content Include="Views\Secretario\Registrar_Ingresos_Egresos.cshtml" />
     <Content Include="Views\Gerente\Consultar_Capital.cshtml" />
+    <Content Include="Views\Administrador\Gestionar_Historial.cshtml" />
     <Content Include="Views\Secretario\Visualizar_I_E.cshtml" />
     <Content Include="Views\Secretario\Visualizar_Cuenta.cshtml" />
     <Content Include="Views\Secretario\Registrar_Cuenta.cshtml" />
     <Content Include="Views\Gerente\Generar_Reportes.cshtml" />
+    <Content Include="Views\Administrador\Generar_Reportes_Desempeño.cshtml" />
+    <Content Include="Views\Administrador\Visualizar_Trabajadores.cshtml" />
+    <Content Include="Views\Administrador\Modificar_I_E.cshtml" />
+    <Content Include="Views\Administrador\Modificar_Cuenta.cshtml" />
+    <Content Include="Views\Administrador\Asignacion_Tareas.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Formularios.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Servicios.cshtml" />
     <Content Include="Views\Gerente\Gestionar_Cuenta.cshtml" />
@@ -442,7 +456,13 @@
     <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
     <Content Include="Views\Secretario\_ListaCitas.cshtml" />
     <Content Include="Views\Secretario\Registrar_Cita.cshtml" />
-    <Content Include="Views\Secretario\Modificar_Cita.cshtml" />
+    <Content Include="Views\Plan\_ModalRegistrarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\RegistrarAsignacionActividades_Desarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalAsignarTrabajadorResponsable.cshtml" />
+    <Content Include="Views\Servicios\Index.cshtml" />
+    <Content Include="Views\Servicios\VisualizarServicios.cshtml" />
+    <Content Include="Views\Servicios\_ListaServicios.cshtml" />
+    <Content Include="Views\Servicios\Registrar_Servicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,11 +13,15 @@
     //retorna todos los tipod de servicio vigenetes
     var listaTotalTipoServicio = Model.tipoServicioModel.ListtipoServicio;
     var listaTotalEstadoPlan = Model.lista_plan_estado;
-    var costoTotalPlan = 0;
+    //var costoTotalPlan = 0;
 
+    //
+    List<int> cantidadDisp = (List<int>)Session["ListaActCantPermitida"];
+    //
 
     var plan_fecha = "";
     var count = 0;
+    //var i = 0;
     var count1 = 0;
     if (Model.plans_aux != null)
     {
@@ -36,7 +40,9 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.plans_aux.plan_id)
         </div>
+        
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -48,7 +54,9 @@
                htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
            })
                 <div id="error-plan-nombre" class="errordiv"></div>
+
             </div>
+            <div style="width:100px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -73,6 +81,7 @@
             </div>
         </div>
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -90,6 +99,7 @@
            })
                 <div id="error-plan-emp" class="errordiv"></div>
             </div>
+            <div style="width:100px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -100,11 +110,12 @@
 
                    htmlAttributes : new { @id = "plan-estado", @class = "text-center form-control"})
 
-                
+
                 <div id="error-plan-estado" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -122,6 +133,7 @@
            })
                 <div id="error-plan-costo" class="errordiv"></div>
             </div>
+            <div style="width:100px"></div>
             <!--/div-->
             <!--div class="row mt-2 pl-2"-->
             <div class="col-12 col-sm-4 col-md-4">
@@ -135,20 +147,21 @@
                     htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
                 })
 
-                
-                <!--<select class="text-center form-control" , id="plan-tipo-servicio">
-        foreach (var item in listaTotalTipoServicio)
-        {
-            <option value="item.tipo_servicio_id">item.tipo_servicio_nombre</option>
-            //Session["tipoServicioNombre"] = item.tipo_servicio_id;
-        }
 
-    </select>-->
+                <!--<select class="text-center form-control" , id="plan-tipo-servicio">
+            foreach (var item in listaTotalTipoServicio)
+            {
+                <option value="item.tipo_servicio_id">item.tipo_servicio_nombre</option>
+                //Session["tipoServicioNombre"] = item.tipo_servicio_id;
+            }
+
+        </select>-->
                 <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
             <!--/div-->
         </div>
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -186,6 +199,7 @@
                         <tbody>
                             @foreach (var item in listaTotalActividades)
                             {
+                                var cd = cantidadDisp[count];
                                 count = count + 1;
 
                                 var listaActividades = listaPlanActividad.Find(x => x.act_id == item.act_id);
@@ -193,17 +207,30 @@
                                 var plan_id = Model.plans_aux.plan_id;
                                 <tr class="text-center">
                                     <th scope="row">@count</th>
-                                    @{ var cantidadDisp = @item.act_cantidad_maxima;}
+
 
                                     <td>@item.act_nombre</td>
                                     <td>@item.act_plazo </td>
                                     <td>@item.act_cantidad_maxima</td>
-                                    <td>@cantidadDisp</td>
+                                    <td>@cd</td>
                                     <td>
-                                        <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
-                                            <i class="fa fa-plus-circle"></i>
-                                            Agregar a la Planificacion
-                                        </button>
+                                        @{ 
+                                            if(cd != 0)
+                                            {
+                                                <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    Agregar a la Planificacion
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <label style="border: 1px solid #C00" class="text-center form-control">
+                                                    <Font size="3" color="red">
+                                                       Cantidad Max. Alcanzada
+                                                    </Font>
+                                                </label>
+                                            }
+                                         }
                                     </td>
                                 </tr>
                             }

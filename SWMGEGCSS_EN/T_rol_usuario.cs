@@ -11,4 +11,9 @@ namespace SWMGEGCSS_EN
         public int rol_codigo { get; set; }
         public int usu_codigo { get; set; }
     }
+    public class T_rol_usuario_Aux
+    {
+        public string rol_nombre { get; set;}
+        public int usu_codigo { get; set; }
+    }
 }

@@ -559,6 +559,7 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
+    
     $("#boton-Registrar").click(validacion);
     $("input[dataid]").each(autocompletado);
 });
