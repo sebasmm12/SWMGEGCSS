@@ -1,6 +1,6 @@
 ﻿$(function () {
     //var id_plan = 0;
-    //var id_act = 0;
+    var id_act = 0;
     //Para mostrar la tabla de actividades
     /*Verify = function () {
         var $button = $("#btnMostrar");
@@ -35,7 +35,8 @@
             return false;
         }
         else {
-            alert("AVENGERS EZGAME");
+
+            alert("ID ACTIVIDAD : " + id_act);
             return true;
         }
         //return false;
@@ -268,14 +269,15 @@
             var modal = $button.attr("data-id-target");
             $.ajax({
                 url: $(this).attr("data-url"),
-                type: "GET"
+                method: "GET"
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
                 $(modal).modal();
                 $(".btnRegistrarActividades").click(envioajaxRegistrar);
-                });
+                //alert($button.attr("data-id-act")); funciona
+            });
             return false;
         });
     };

@@ -35,7 +35,7 @@ namespace SWMGEGCSS.Controllers
                 }
                 else
                 {
-                    return View(model);
+                    //
                 }
             }
             if (Request.IsAjaxRequest())
@@ -92,10 +92,10 @@ namespace SWMGEGCSS.Controllers
             modelPlan.usu_codigo = (int)Session["login"];
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
             modelPlan.plan_fecha = model.plans_aux.plan_fecha;
-            modelPlan.emp_id = empresaModel.emp_id;
-            modelPlan.plan_costo = model.plans_aux.plan_costo;
+            modelPlan.emp_ruc = empresaModel.emp_ruc;
+            //modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
-            modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
+            //modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
             var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             //Session["Plan_datos"] = modelPlan;
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
@@ -184,7 +184,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_id = model.plans_aux.plan_id;
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
             modelPlan.plan_fecha = model.plans_aux.plan_fecha;
-            modelPlan.emp_id = empresaModel.emp_id;
+            modelPlan.emp_ruc = empresaModel.emp_ruc;
             modelPlan.plan_estado = planEstadoModel.plan_estado_id;
             modelPlan.plan_costo = model.plans_aux.plan_costo;
 
@@ -471,7 +471,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _ModalRegistrarActividadesPlanificadas()
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas_aux = new T_actividades_planeadas_aux();
+            model.Actividad_planeada = new T_actividades_planeadas();
             return PartialView(model);
         }
     }
