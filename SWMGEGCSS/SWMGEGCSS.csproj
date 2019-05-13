@@ -455,6 +455,11 @@
     <Content Include="Views\Secretario\_ListaCitas.cshtml" />
     <Content Include="Views\Secretario\Registrar_Cita.cshtml" />
     <Content Include="Views\Plan\_ModalRegistrarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\RegistrarAsignacionActividades_Desarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalAsignarTrabajadorResponsable.cshtml" />
+    <Content Include="Views\Servicios\Index.cshtml" />
+    <Content Include="Views\Servicios\VisualizarServicios.cshtml" />
+    <Content Include="Views\Servicios\_ListaServicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
