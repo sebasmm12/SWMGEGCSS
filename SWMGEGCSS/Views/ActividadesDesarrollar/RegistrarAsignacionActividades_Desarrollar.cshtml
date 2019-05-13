@@ -1,0 +1,225 @@
+﻿@model SWMGEGCSS.Models.GestionarAsignacionActividadesDesarrollar
+
+@{
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var listaDetalleUsuario = Model.listDetalleUsuario;
+    var count = 0;
+    var fechaProyectoInicio = Model.expedienteActDesarrollar.exp_inicio.ToString("yyyy-MM-dd");
+    var fechaProyectoFin = Model.expedienteActDesarrollar.exp_fin.ToString("yyyy-MM-dd");
+}
+
+<div class="container-fluid">
+    <form id="form">
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.actividadesDesarrollarAux.act_desa_id)
+        </div>
+
+        <div class="row">
+            <div style="width:60px"></div>
+            <div class="col-12 col-sm-5 col-md-5">
+                <h2 class="font-weight-bolder text-center">
+                    Registrar Asignacion
+                </h2>
+            </div>
+        </div>
+        <div class="row mt-4 pl-2">
+            <div style="width:60px"></div>
+            <div class="col-12 col-sm-4 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        Nombre del Proyecto:
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.actividadesDesarrollarAux.exp_nombre,
+              new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "text-center form-control", @readonly = "readonly"
+                       }
+                   })
+            </div>
+        </div>
+        <div class="row mt-4 pl-2">
+            <div style="width:60px"></div>
+            <div class="col-12 col-sm-4 col-md-6">
+                <div>
+                    <label class="font-weight-bolder text-center">
+                        Nombre de la Actividad:
+                    </label>
+                </div>
+
+                @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_nombre,
+               new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "text-center form-control",
+                       @readonly = "readonly"
+                   }
+               })
+            </div>
+        </div>
+        <div class="row mt-4 pl-2">
+            <div style="width:60px"></div>
+            <div class="col-12 col-sm-4 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        Descripcion de la Actividad:
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_descripcion,
+               new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "text-center form-control",
+                            @readonly = "readonly"
+                        }
+                    })
+            </div>
+        </div>
+        <div class="row mt-4 pl-2">
+            <div style="width:60px"></div>
+            <div class="col-12 col-sm-4 col-md-3">
+                <div>
+                    <label class="font-weight-bolder">
+                        Fecha de Inicio del Proyecto:
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.expedienteActDesarrollar.exp_inicio,
+               new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "text-center form-control",
+                            @readonly = "readonly",
+                            @type = "Date",
+                            @Value = fechaProyectoInicio
+                        }
+                    })
+            </div>
+            <div style="width:13px"></div>
+            <div class="col-12 col-sm-4 col-md-3">
+                <div>
+                    <label class="font-weight-bolder">
+                        Fecha finalizacion del proyecto :
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.expedienteActDesarrollar.exp_fin,
+               new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "text-center form-control",
+                            @readonly = "readonly",
+                            @type = "Date",
+                            @Value = fechaProyectoFin
+                        }
+                    })
+            </div>
+        </div>
+        <div class="row mt-4 pl-2">
+            <div style="width:60px"></div>
+            <div class="col-12 col-sm-4 col-md-3">
+                <div>
+                    <label class="font-weight-bolder">
+                        Fecha de inicio de la Actividad:
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_fecha_inicio,
+               new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "text-center form-control",
+                       @type = "Date"
+                       
+                    }
+                })
+            </div>
+            <div style="width:13px"></div>
+            <div class="col-12 col-sm-4 col-md-3">
+                <div>
+                    <label class="font-weight-bolder">
+                        Fecha de finalizacion de la Actividad:
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_fecha_fin,
+               new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "text-center form-control",
+                            @type = "Date",
+                        }
+                    })
+            </div>
+        </div>
+        <br><br>
+        <div>
+            <div class="mt-2 ml-4">
+                <div class="container-fluid">
+                    <div class="row mt-4 pl-2">
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="bg-success">
+                                        <tr class="text-center">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre </th>
+                                            <th scope="col">N° Documento</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Correo</th>
+                                            <th scope="col">Seleccionar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in listaDetalleUsuario)
+                                        {
+
+                                            count = count + 1;
+                                            <tr class="text-center">
+                                                <th scope="row">@count</th>
+
+
+                                                <td>@item.det_usu_nombre</td>
+                                                <td>@item.det_usu_tip_doc_numero </td>
+                                                <td>@item.det_usu_especialidad</td>
+                                                <td>@item.det_usu_correo</td>
+                                                <td>
+                                                    @{
+                                                    <button class="btn btn-success btnModalTrabajador" data-id-usu ="@item.usu_codigo" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
+                                                        <i class="fa fa-check-circle"></i>
+                                                        Como Encargado
+
+
+                                                        <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan">
+                                                            <i class="fa fa-plus-circle"></i>
+                                                            Agregar a la Planificacion
+                                                        </button>
+
+
+                                                    </button>
+                                                        <button class="btn btn-success">
+                                                            <i class="fa fa-times-circle" style="color:white !important"></i>
+                                                            Como Revizor
+                                                        </button>
+
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>

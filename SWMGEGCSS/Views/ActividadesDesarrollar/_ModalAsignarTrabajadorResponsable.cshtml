@@ -1,0 +1,59 @@
+﻿@model SWMGEGCSS.Models.GestionarAsignacionActividadesDesarrollar
+@{
+    Layout = null;
+    ViewBag.Title = "ACTIVIDAD PLANIFICADA";
+}
+
+<div class="modal fade" id="AsignarTrabajadorActividad" tabindex="-1" role="dialog" aria-labelledby="#AsignarTrabajadorActividad" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="text-center font-weight-bolder">
+                Postulante para la Asignacion
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Nombre del Trabajador
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_nombre, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Especialidad
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_especialidad, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Nombre del Trabajador
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_tip_doc_numero, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+</div>
+
