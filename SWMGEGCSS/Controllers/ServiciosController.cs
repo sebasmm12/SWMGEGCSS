@@ -48,22 +48,13 @@ namespace SWMGEGCSS.Controllers
             }
             if (estado != null)
             {
-                if (estado.Equals("Activo"))
-                {
-                    model.tipo_servicio_estado = "Activo";
-                }
-                else
-                {
-                    model.tipo_servicio_estado = "Inactivo";
-                } 
-                
-                
+               model.tipo_servicio_estado = estado;
                 Session["est_tipo_serv_nombre"] = model.tipo_servicio_estado;
             }
             else
             {
                 model.tipo_servicio_estado = "Todos";
-                Session["est_nombre"] = model.tipo_servicio_estado;
+                Session["est_tipo_serv_nombre"] = model.tipo_servicio_estado;
             }
             if (Request.IsAjaxRequest())
             {
@@ -71,6 +62,40 @@ namespace SWMGEGCSS.Controllers
             }
             return View(model);
          
+        }
+        public ActionResult Autocomplete(string term)
+        {
+            var state = false;
+            string estado = (String)Session["est_tipo_serv_nombre"];
+            var model = new TipoServicioViewModel();
+            if (estado.Equals("Todos"))
+            {
+                model.ListtipoServicio = new TipoServicioDataAccess().sp_Consultar_Lista_Servicios_Nombre(term);
+            }
+            else
+            {
+                if (estado.Equals("Activo"))
+                {
+                    state = true;
+                    model.ListtipoServicio = new TipoServicioDataAccess().sp_Consultar_Lista_Servicios_Nombre(term).FindAll(r=>r.tipo_servicio_estado==state);
+                }
+                else
+                {
+                    state = false;
+                    model.ListtipoServicio = new TipoServicioDataAccess().sp_Consultar_Lista_Servicios_Nombre(term).FindAll(r => r.tipo_servicio_estado == state);
+                }
+            }
+           
+            var nameServicios = model.ListtipoServicio.Select(r => new
+            {
+                label = r.tipo_servicio_nombre
+            }
+            );
+            return Json(nameServicios, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Registrar_Servicio()
+        {
+            return View();
         }
     }
 }
