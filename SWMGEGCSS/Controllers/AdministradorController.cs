@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SWMGEGCSS.Models;
+using SWMGEGCSS_DA;
+using SWMGEGCSS_EN;
 using System.Web.Mvc;
 
 namespace SWMGEGCSS.Controllers
@@ -27,7 +30,10 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Asignacion_Tareas()
         {
-            return View();
+            GestionarAsignacionActividadesDesarrollar model = new GestionarAsignacionActividadesDesarrollar();
+            model.listActividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux();
+            
+            return View(model);
         }
         public ActionResult Modificar_I_E()
         {

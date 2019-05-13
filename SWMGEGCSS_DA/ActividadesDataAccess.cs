@@ -26,7 +26,7 @@ namespace SWMGEGCSS_DA
                             T_actividades t_actividad = new T_actividades();
                             t_actividad.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
                             t_actividad.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
-                            t_actividad.act_plazo= DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
+                            //t_actividad.act_plazo= DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
                             t_actividad.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
                             t_actividad.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);                        
                             list_actividades.Add(t_actividad);

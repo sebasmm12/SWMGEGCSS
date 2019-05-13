@@ -17,7 +17,7 @@ namespace SWMGEGCSS_DA
             List<T_plan_estado> list_est_plan = new List<T_plan_estado>();
             try
             {//sp_Consultar_Lista_Estado_Plan
-                using (DbCommand command = Database.GetStoredProcCommand("sp_lista_Plan_Estado"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_Plan_Estado"))
                 {
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
