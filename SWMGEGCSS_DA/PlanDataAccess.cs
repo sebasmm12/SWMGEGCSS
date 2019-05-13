@@ -190,7 +190,7 @@ namespace SWMGEGCSS_DA
                         while (reader.Read())
                         {
                             T_empresa t_empresa = new T_empresa();
-                            t_empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            //t_empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
                             t_empresa.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
                             T_Empresa.Add(t_empresa);
                         }
