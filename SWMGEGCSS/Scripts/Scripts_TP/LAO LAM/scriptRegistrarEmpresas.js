@@ -463,7 +463,7 @@
     };
     //Validacion email
     function validar_email(email) {
-
+        var regular = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i
 
         if (email === "") {
             adderror("emp-email");
@@ -490,9 +490,12 @@
             //   alert("email largo");
             return false;
         }
-        addgood("emp-email");
-        attributes("error-emp-email");
-        return true;
+        if (email.match(regular)) {
+            addgood("emp-email");
+            attributes("error-emp-email");
+            return true;
+        }
+     
     }
     //Validacion direccion
 
@@ -823,6 +826,7 @@
 
     var keyEmail = function () {
         var $valor = $("#emp-email");
+        var regular = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i
 
         if ($valor.val() === "") {
 
@@ -840,7 +844,7 @@
             negativeattributes("error-emp-email", 'El email debe ser de menos de 20 caracteres');
             adderror("emp-email");
         }
-        else {
+        else if($valor.match(regular)){
             attributes("error-emp-email");
             addgood("emp-email");
         }
@@ -848,7 +852,7 @@
 
     var keyFax = function () {
         var $valor = $("#emp-fax");
-
+      
 
 
 
