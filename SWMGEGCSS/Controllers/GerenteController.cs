@@ -125,8 +125,7 @@ namespace SWMGEGCSS.Controllers
                 Session["est_razon_social"] = model.tipo_estado;
             }
 
-            
-           // model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().ToPagedList(page, 4);
+           
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaEmpresa", model);
