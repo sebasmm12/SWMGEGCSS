@@ -313,9 +313,9 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
-    <Content Include="Scripts\Scripts_TP\PIERO\scriptsModalAgregarActividades.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
     <Content Include="Scripts\Scripts_TP\scriptsS.js" />
@@ -444,6 +444,7 @@
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
+    <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
@@ -452,7 +453,6 @@
     <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
     <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
-    <Content Include="Views\Plan\Agregar_Plan_de_Proyectos_1.cshtml" />
     <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
     <Content Include="Views\Secretario\_ListaCitas.cshtml" />
     <Content Include="Views\Secretario\Registrar_Cita.cshtml" />
@@ -463,9 +463,9 @@
     <Content Include="Views\Servicios\VisualizarServicios.cshtml" />
     <Content Include="Views\Servicios\_ListaServicios.cshtml" />
     <Content Include="Views\Servicios\Registrar_Servicio.cshtml" />
-    <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
-    <Content Include="Views\Secretario\Modificar_Cita.cshtml" />
-    <Content Include="Views\Secretario\_verDetalles.cshtml" />
+    <Content Include="Views\Servicios\_ListaActividades.cshtml" />
+    <Content Include="Views\Servicios\_ModalActividad.cshtml" />
+    <Content Include="Views\Trabajador\_ListaTareasAsignadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
