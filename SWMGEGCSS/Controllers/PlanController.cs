@@ -319,6 +319,15 @@ namespace SWMGEGCSS.Controllers
             var ActPlazo = new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id));
             model.ActividadesModel = new ActividadViewModel();
             model.ActividadesModel.Actividades = ActPlazo;
+
+            var plan_id = model.Actividad_planeada.plan_id;
+
+            var plan = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(X => X.plan_id == plan_id);
+            var tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(X => X.tipo_servicio_nombre == plan.tipo_servicio_nombre);
+
+            model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
+
+
             //ViewBag.plazo1 = ActPlazo.act_plazo;
             return PartialView("_ModalActualizarActividadesPlanificadas",model);
         }
@@ -414,8 +423,12 @@ namespace SWMGEGCSS.Controllers
             model.Actividad_planeada.act_id = act_id;
             model.ActividadesModel = new ActividadViewModel();
             var ActPlazo= new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id));
-            model.ActividadesModel.Actividades = ActPlazo;
-            ViewBag.plazo = ActPlazo.act_plazo;
+
+            var plan = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(X => X.plan_id == plan_id);
+            var tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(X => X.tipo_servicio_nombre == plan.tipo_servicio_nombre);
+
+            model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
+
             return PartialView("_ModalAgregarActividadesPlanificadas", model);
         }
         [HttpPost]
