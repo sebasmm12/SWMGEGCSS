@@ -38,15 +38,17 @@ namespace SWMGEGCSS.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult RegistrarAsignacionActividades_Desarrollar(T_actividades_desarrollar act_desa )
+        public ActionResult RegistrarAsignacionActividades_Desarrollar(T_actividades_desarrollar_aux actividadesDesarrollarAux)
         {
             var model = new GestionarAsignacionActividadesDesarrollar();
             model.usuarioEncargado = (T_detalle_usuario)Session["detUsuTrabajador"];
             model.usuarioRevisor = (T_detalle_usuario)Session["detUsuRevisor"];
 
-            model.actividadesDesarrollar.act_desa_id = act_desa.act_desa_id;
-            model.actividadesDesarrollar.act_desa_fecha_inicio = act_desa.act_desa_fecha_inicio;
-            model.actividadesDesarrollar.act_desa_fecha_inicio = act_desa.act_desa_fecha_fin;
+            int act_desa_id = (int)Session["act_desa_id"];
+            model.actividadesDesarrollar = new T_actividades_desarrollar();
+            model.actividadesDesarrollar.act_desa_id = act_desa_id;
+            model.actividadesDesarrollar.act_desa_fecha_inicio = actividadesDesarrollarAux.act_desa_fecha_inicio;
+            model.actividadesDesarrollar.act_desa_fecha_fin = actividadesDesarrollarAux.act_desa_fecha_fin;
             model.actividadesDesarrollar.usu_revisor = model.usuarioRevisor.usu_codigo;
             model.actividadesDesarrollar.usu_asignado = model.usuarioEncargado.usu_codigo;
             var operationResult = new ActividadesDesarrollarDataAccess().sp_actualizar_actividades_Desarrollar_asignacion(model.actividadesDesarrollar);

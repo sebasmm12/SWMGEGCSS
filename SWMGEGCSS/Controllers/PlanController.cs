@@ -96,9 +96,24 @@ namespace SWMGEGCSS.Controllers
             //modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             //modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
-            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+            var operationResult1 = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             //Session["Plan_datos"] = modelPlan;
-            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            var planId = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(z => (z.plan_nombre == modelPlan.plan_nombre));
+            var listaActividad = (List<T_actividades_planeadas>)Session["ListaActividades"];
+            var costototal = 0.0;
+            var tiempototal = 0;
+            foreach (var item in listaActividad)
+            {
+                item.plan_id = planId.plan_id;
+            }
+            foreach (var item in listaActividad)
+            {
+                var operationResult2 = new ActividadesDataAccess().sp_registrar_actividades_planeadas(item);
+                costototal += item.act_plan_costo;
+                tiempototal += item.act_plan_tiempo;
+            }
+            var operationResult3 = new PlanDataAccess().sp_Actualizar_Costo_Tiempo_Actividades(costototal,tiempototal, planId.plan_id);
+            return Json(new { data = operationResult1.NewId }, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }
