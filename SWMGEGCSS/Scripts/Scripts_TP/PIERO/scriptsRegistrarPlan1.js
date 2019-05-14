@@ -1,6 +1,7 @@
 ﻿$(function () {
     //var id_plan = 0;
     var id_act = 0;
+    var SelectorBoton;
     //Para mostrar la tabla de actividades
     /*Verify = function () {
         var $button = $("#btnMostrar");
@@ -66,7 +67,12 @@
                     act_plan: act_plan
                 }
             }).done(function (data) {
-                $(this).modal("hide");
+                $('#RegistrarActividad').modal('hide');
+                //cambiar de color al boton
+                $(SelectorBoton).css('background-color', 'red');
+                $(SelectorBoton).css('border-color', 'red');
+                $(SelectorBoton).text('Actividad Registrada');
+                $(SelectorBoton).attr('disabled', 'disabled');
             });
         }
         return false;
@@ -282,6 +288,7 @@
             var $button = $(this);
             var modal = $button.attr("data-id-target");
             id_act = $button.attr("data-id-act");
+            SelectorBoton = $(this);
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "GET"

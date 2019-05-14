@@ -13,5 +13,7 @@ namespace SWMGEGCSS_EN
         public string act_descripcion { get; set; }
         public int act_plazo { get; set; }
         public int act_cantidad_maxima { get; set; }
+        public double costo { get; set; }
+        public bool act_obligatorio { get; set; }
     }
 }

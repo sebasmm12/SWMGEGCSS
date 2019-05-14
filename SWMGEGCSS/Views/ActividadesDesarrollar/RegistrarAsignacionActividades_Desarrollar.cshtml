@@ -137,11 +137,15 @@
                {
                    htmlAttributes = new
                    {
+                       @id = "actDesaFechaInicio",
                        @class = "text-center form-control",
-                       @type = "Date"
+                       @onkeydown = "return false",
+                       @type = "date",
+                       //@Value = Model.actividadesDesarrollarAux.act_desa_fecha_inicio.ToString("yyyy-MM-dd")
 
-                    }
-                })
+                   }
+               })
+            <div id="error-act-desa-fecha" class="errordiv"></div>
             </div>
             <div style="width:13px"></div>
             <div class="col-12 col-sm-4 col-md-3">
@@ -152,13 +156,15 @@
                 </div>
                 @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_fecha_fin,
                new
-                    {
-                        htmlAttributes = new
-                        {
-                            @class = "text-center form-control",
-                            @type = "Date",
-                        }
-                    })
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "text-center form-control",
+                       @onkeydown = "return false",
+                       @type = "date",
+                       //@Value = Model.actividadesDesarrollarAux.act_desa_fecha_fin.ToString("yyyy-MM-dd")
+                   }
+               })
             </div>
         </div>
         <br><br>
@@ -166,7 +172,7 @@
             if (Model.usuarioEncargado != null)
             {
 
-                <div style="border: 5px solid #C00 , border-radius: 9px">
+                <div style="border: 5px solid #C00">
                     <label class="font-weight-bolder text-center">
                         Trabajador Encargado de la Actividad
                     </label>
@@ -371,7 +377,7 @@
             <div class="col-12 col-sm-3 col-md-3">
                 <button type="button" id="btnAsignarTarea" class="btn btn-warning rounded-pill">
                     <i class="fa fa-edit" style="color:white !important"></i>
-                    Actualizar
+                    Registrar Asignacion
                 </button>
             </div>
         </div>
