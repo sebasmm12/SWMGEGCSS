@@ -24,6 +24,7 @@
 
 
 @Html.Partial("_ListaCitas", Model)
+@Html.Action("_verDetalles", "Secretario")
 
 
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
@@ -31,5 +32,6 @@
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
     <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsConsultarEmpresa.js"></script>
+    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsConsultarSecretario.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }

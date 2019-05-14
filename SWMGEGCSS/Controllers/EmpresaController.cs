@@ -49,7 +49,7 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarEmpresaViewModel();
             model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().Find(r => r.emp_ruc == emp_ruc);
-            return PartialView(model); ;
+            return PartialView(model); 
         }
 
         [HttpPost]

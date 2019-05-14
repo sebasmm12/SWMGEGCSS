@@ -60,14 +60,23 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
 
-
-        public ActionResult verDetalles(int id)
+        [HttpGet]
+        public ActionResult _verDetalles()
         {
-            var model = new GestionarEmpresaViewModel();
-            return View();
+            var model = new GestionarCitasViewModel();
+            return PartialView(model);
         }
 
-        
+        [HttpPost]
+        public ActionResult _verDetalles(int id)
+        {
+            var model = new GestionarCitasViewModel();
+            model.citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == id);
+            return PartialView(model);
+        }
+
+
+
         public ActionResult Registrar_Ingresos_Egresos()
         {
             return View();
