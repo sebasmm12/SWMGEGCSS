@@ -50,7 +50,7 @@
         </div>
         
     </div>
-    <div class="row">
+    <div class="row ml-2">
         <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
             @Html.PagedListPager(list_empresas, page => Url.Action("Gestionar_Empresas", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>

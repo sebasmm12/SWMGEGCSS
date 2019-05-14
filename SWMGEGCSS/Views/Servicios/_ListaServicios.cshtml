@@ -44,7 +44,7 @@
                                     <i class="fa fa-times"></i>
                                     Eliminar
                                 </button>
-                                <button type="button" class="btn btn-info" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_ConsultarDatosServicios","Servicios")" data-id-target="#ModalConsultarDatosProyecto">
+                                <button type="button" class="btn btn-info btnModal" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_ConsultarDatosServicios","Servicios")" data-id-target="#ModalConsultarDatosProyecto">
                                     <i class="fa fa-eye">
                                     </i>
                                     Consultar
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableServ">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-serv-target="#tableServ">
             @Html.PagedListPager(list_servicios, page => Url.Action("VisualizarServicios", "Servicios", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>

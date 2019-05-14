@@ -41,7 +41,22 @@ namespace SWMGEGCSS.Controllers
             //var operationResult = new OperationResult();
             //operationResult = new SecretariaDataAccess().sp_Consultar_Lista_Citas(model.citas);
             return View(model);
+        }
 
+        [HttpGet]
+        public ActionResult Modificar_Cita(int cita_id)
+        {
+            var model = new GestionarCitasViewModel();
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult Modificar_Cita(T_Citas cita)
+        {
+            var model = new GestionarCitasViewModel();
+            model.citas = cita;
+            model.citas.cita_id = (int)Session["login"];
+            return View();
         }
 
         
