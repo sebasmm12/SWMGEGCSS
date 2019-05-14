@@ -229,7 +229,7 @@ namespace SWMGEGCSS_DA
                             t_Actividades.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
                             t_Actividades.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
                             t_Actividades.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);
-                            t_Actividades.act_plazo = DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
+                           // t_Actividades.act_plazo = DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
                             t_Actividades.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
                             list_actividades.Add(t_Actividades);
                         }

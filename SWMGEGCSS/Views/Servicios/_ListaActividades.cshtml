@@ -1,0 +1,73 @@
+﻿@model SWMGEGCSS.Models.TipoServicioViewModel
+@{
+    Layout = null;
+    var list_actividades = Model.Plist_actividades;
+    var count = 0;
+}
+<div id="tableAct">
+    <div class="row mt-4 pl-2">
+        <div class="col-sm-1 col-md-1">
+
+        </div>
+        <div class="col-12 col-sm-10 col-md-10">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre de la Actividad</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Obligatorio</th>
+                            <th scope="col">Acciones de la Actividad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in list_actividades)
+                        {
+                            count = count + 1;
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            <td>@item.act_nombre</td>
+                            <td>@item.act_descripcion</td>
+                            <td>@item.costo</td>
+                            @if (item.act_obligatorio)
+                            {
+                                <td>No</td>
+                            }
+                            else
+                            {
+                                <td>Sí</td>
+                            }
+                            <td>
+                                <button type="button" class="btn btn-warning btnModal" data-id-actividad="@item.act_id" data-url="@Url.Action("_ModalActividad","Servicios")" data-id-target="#ModalAgregarActividad">
+                                    <i class="fa fa-edit" style="color:white !important"></i>
+                                    <span style="color:white">Modificar</span>
+                                </button>
+                                <button type="button" class="btn btn-danger btnEliminar" data-id-actividad="@item.act_id" data-url="@Url.Action("EliminarActividad","Servicios")">
+                                    <i class="fa fa-times"></i>
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-1 col-md-1">
+
+        </div>
+    </div>
+    <div class="row mt-4 pl-2">
+        <div class="col-sm-1 col-md-1">
+
+        </div>
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-serv-target="#tableServ">
+            @Html.PagedListPager(list_actividades, page => Url.Action("Registrar_Servicio", "Servicios", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>
+
+

@@ -35,7 +35,7 @@ namespace SWMGEGCSS.Controllers
                 }
                 else
                 {
-                    return View(model);
+                    //
                 }
             }
             if (Request.IsAjaxRequest())
@@ -92,13 +92,28 @@ namespace SWMGEGCSS.Controllers
             modelPlan.usu_codigo = (int)Session["login"];
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
             modelPlan.plan_fecha = model.plans_aux.plan_fecha;
-            modelPlan.emp_id = empresaModel.emp_id;
-            modelPlan.plan_costo = model.plans_aux.plan_costo;
+            modelPlan.emp_ruc = empresaModel.emp_ruc;
+            //modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
-            modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
-            var operationResult = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
+            //modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
+            var operationResult1 = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             //Session["Plan_datos"] = modelPlan;
-            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            var planId = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(z => (z.plan_nombre == modelPlan.plan_nombre));
+            var listaActividad = (List<T_actividades_planeadas>)Session["ListaActividades"];
+            var costototal = 0.0;
+            var tiempototal = 0;
+            foreach (var item in listaActividad)
+            {
+                item.plan_id = planId.plan_id;
+            }
+            foreach (var item in listaActividad)
+            {
+                var operationResult2 = new ActividadesDataAccess().sp_registrar_actividades_planeadas(item);
+                costototal += item.act_plan_costo;
+                tiempototal += item.act_plan_tiempo;
+            }
+            var operationResult3 = new PlanDataAccess().sp_Actualizar_Costo_Tiempo_Actividades(costototal,tiempototal, planId.plan_id);
+            return Json(new { data = operationResult1.NewId }, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }
@@ -184,7 +199,7 @@ namespace SWMGEGCSS.Controllers
             modelPlan.plan_id = model.plans_aux.plan_id;
             modelPlan.plan_nombre = model.plans_aux.plan_nombre;
             modelPlan.plan_fecha = model.plans_aux.plan_fecha;
-            modelPlan.emp_id = empresaModel.emp_id;
+            modelPlan.emp_ruc = empresaModel.emp_ruc;
             modelPlan.plan_estado = planEstadoModel.plan_estado_id;
             modelPlan.plan_costo = model.plans_aux.plan_costo;
 
@@ -471,8 +486,27 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _ModalRegistrarActividadesPlanificadas()
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas_aux = new T_actividades_planeadas_aux();
+            model.Actividad_planeada = new T_actividades_planeadas();
             return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalRegistrarActividadesPlanificadas(T_actividades_planeadas act_plan)
+        {
+            T_actividades_planeadas actividadesPlaneadas = new T_actividades_planeadas();
+            /*var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan.act_plan_id);*/
+            List<T_actividades_planeadas> listaActividadesPlaneadasTemp = new List<T_actividades_planeadas>();
+            if (Session["ListaActividades"] == null)
+            {
+                listaActividadesPlaneadasTemp.Add(act_plan);
+            }
+            else
+            {
+                listaActividadesPlaneadasTemp = (List<T_actividades_planeadas>)Session["ListaActividades"];
+                listaActividadesPlaneadasTemp.Add(act_plan);
+            }
+            Session["ListaActividades"] = listaActividadesPlaneadasTemp;
+
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
     }
 }

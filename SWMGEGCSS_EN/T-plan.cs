@@ -12,7 +12,7 @@ namespace SWMGEGCSS_EN
         public string plan_nombre { get; set; }
         public DateTime plan_fecha { get; set; }
         public int usu_codigo { get; set; }
-        public int emp_id { get; set; }
+        public string emp_ruc { get; set; }
         public int plan_estado { get; set; }
         public double plan_costo { get; set; }
         public int plan_tiempo { get; set; }

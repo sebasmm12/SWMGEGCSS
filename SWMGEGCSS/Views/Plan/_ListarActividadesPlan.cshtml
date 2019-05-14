@@ -34,7 +34,7 @@
                                         <th scope="row">@count</th>
                                         <td>@item.act_nombre</td>
                                         <td>
-                                            <button class="btn btn-success btnModal" type="button" data-url="@Url.Action("_ModalRegistrarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActividad">
+                                            <button class="btn btn-success btnModal" type="button" data-id-act="@item.act_id" data-url="@Url.Action("_ModalRegistrarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActividad">
                                                 <i class="fa fa-plus-circle"></i>
                                                 Agregar a la Planificacion
                                             </button>
@@ -48,14 +48,8 @@
                 </div>
             </div>
             <div class="row mt-4 pl-2">
-                <div class="col-sm-1 col-md-1">
-
-                </div>
                 <div class="col-12 col-sm-3 col-md-3">
-                    <button type="button" class="btn btn-success" id="">
-                        <i class="fa fa-check-circle"></i>
-                        Registrar Plan Proyecto
-                    </button>
+
                 </div>
             </div>
             @Html.Action("_ModalRegistrarActividadesPlanificadas", "Plan")

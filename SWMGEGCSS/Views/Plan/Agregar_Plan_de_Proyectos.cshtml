@@ -65,30 +65,6 @@
                     <div id="error-plan-emp" class="errordiv"></div>
                 </div>
                 <div class="col-12 col-sm-4 col-md-4">
-                    <div class="col-sm-1 col-md-1">
-
-                    </div>
-                    <div>
-                        <label class="font-weight-bolder">
-                            Costo del plan
-                        </label>
-                    </div>
-                    @Html.EditorFor(model => model.plans_aux.plan_costo, new
-                   {
-                       htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
-                   })
-                    <div id="error-plan-costo" class="errordiv"></div>
-                </div>
-                <div class="col-sm-1 col-md-1">
-
-                </div>
-            </div>
-
-            <div class="row mt-4 pl-2">
-                <div class="col-sm-1 col-md-1">
-
-                </div>
-                <div class="col-12 col-sm-4 col-md-4">
                     <div>
                         <label class="font-weight-bolder">
                             Tipo de servicio del plan
@@ -100,22 +76,38 @@
                })
                     <div id="error-plan-tipo-servicio" class="errordiv"></div>
                 </div>
-                <div class="col-12 col-sm-4 col-md-4">
-                    <div>
-                        <label class="font-weight-bolder">
-                            Tiempo del plan (en dias)
-                        </label>
-                    </div>
-                    @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
-                   {
-                       htmlAttributes = new { @id = "plan-tiempo", @class = "text-center form-control" }
-                   })
-                    <div id="error-plan-tiempo" class="errordiv"></div>
-                </div>
                 <div class="col-sm-1 col-md-1">
 
                 </div>
+                <!--<div class="col-12 col-sm-4 col-md-4">
+            <div class="col-sm-1 col-md-1">
+
             </div>
+            <div>
+                <label class="font-weight-bolder">
+                    Costo del plan
+                </label>
+            </div>
+            Html.EditorFor(model => model.plans_aux.plan_costo, new
+           {
+               htmlAttributes = new { id = "plan-costo", class = "text-center form-control" }
+           })
+            <div id="error-plan-costo" class="errordiv"></div>
+        </div>-->
+            </div>
+
+            <!--<div class="col-12 col-sm-4 col-md-4">
+        <div>
+            <label class="font-weight-bolder">
+                Tiempo del plan (en dias)
+            </label>
+        </div>
+        Html.EditorFor(model => model.plans_aux.plan_tiempo, new
+       {
+           htmlAttributes = new { id = "plan-tiempo", class = "text-center form-control" }
+       })
+        <div id="error-plan-tiempo" class="errordiv"></div>
+    </div>-->
             <div class="row mt-4 pl-2">
                 <div class="col-sm-1 col-md-1">
 
@@ -127,10 +119,10 @@
                     </a>
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">
-                    <button type="button" class="btn btn-success" id="boton-Registrar">
-                        <i class="fa fa-check-circle"></i>
-                        Continuar
-                    </button>
+                    <!--<button type="button" class="btn btn-success" id="boton-Registrar">
+                <i class="fa fa-check-circle"></i>
+                Continuar
+            </button>-->
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">
                     <button type="button" class="btn btn-success" id="btnPrueba">
@@ -140,6 +132,17 @@
                 </div>
             </div>
             @Html.Partial("_ListarActividadesPlan", Model)
+            <div class="row mt-4 pl-2">
+                <div class="col-12 col-sm-3 col-md-3">
+
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button type="button" class="btn btn-success" id="boton-Registrar">
+                        <i class="fa fa-check-circle"></i>
+                        Registrar Plan Proyecto
+                    </button>
+                </div>
+            </div>
         </div>
     </form>
 </div>
