@@ -5,7 +5,7 @@
     var list_citas = Model.listCitas;
 }
 
-<h2>Gestionar Citas</h2>
+<h2 class="ml-3">Gestionar Citas</h2>
 
 <div class=" row mt-4 ml-2">
     <div class="col-7">
@@ -23,5 +23,15 @@
 </div>
 
 
-@Html.Partial("_ListaCitas",Model)
+@Html.Partial("_ListaCitas", Model)
+@Html.Action("_verDetalles", "Secretario")
 
+
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsConsultarEmpresa.js"></script>
+    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsConsultarSecretario.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}

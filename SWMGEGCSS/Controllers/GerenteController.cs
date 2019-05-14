@@ -74,9 +74,12 @@ namespace SWMGEGCSS.Controllers
             model.List_Estado_Expediente = new EstadoExpedienteDataAccess().sp_Consultar_Lista_Estado_Expediente();           
             return View(model);
         }
-        public ActionResult Gestionar_I_E()
+        public ActionResult Gestionar_I_E(int page=1)
         {
-            return View();
+            Gestionar_I_EViewModel model = new Gestionar_I_EViewModel();
+            model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().ToPagedList(page, 4);
+            
+            return View(model);
         }
         public ActionResult Gestionar_Empresas(string searchTerm, string estado, int page = 1)
         {
@@ -125,8 +128,7 @@ namespace SWMGEGCSS.Controllers
                 Session["est_razon_social"] = model.tipo_estado;
             }
 
-            
-           // model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().ToPagedList(page, 4);
+           
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaEmpresa", model);

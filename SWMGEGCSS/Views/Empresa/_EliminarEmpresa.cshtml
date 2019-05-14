@@ -10,10 +10,10 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="container-fluid">
-                @using (Html.BeginForm("RecibeEmpresa","Empresa"))
+                @using (Html.BeginForm("RecibeEmpresa", "Empresa"))
                 {
                     <div>
-                        @Html.HiddenFor(model => model.empresas.emp_id)
+                        @Html.HiddenFor(model => model.empresas.emp_ruc)
                     </div>
                     <div class="row mt-5 pl-2">
                         <div class="col-12 col-sm-6 col-md-6">
@@ -121,7 +121,7 @@
                         </div>
                     </div>
 
-                    <div id="errordiv"></div>
+                    
                     <div class="row mt-4 pl-2 mb-3">
                         <div class="col-12 col-sm-3 col-md-3">
                             <button type="submit" class="btn btn-success" id="boton-Eliminar">

@@ -33,7 +33,7 @@
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "POST",
-                data: { id: $(this).attr("data-id-empresa") }
+                data: { ruc: $(this).attr("data-ruc-empresa") }
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);

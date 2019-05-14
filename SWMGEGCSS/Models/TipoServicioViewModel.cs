@@ -16,5 +16,11 @@ namespace SWMGEGCSS.Models
         public IPagedList<T_tipo_servicio> PList_tipo_servicio { get; set; }
 
         public string tipo_servicio_estado { get; set; }
+
+        public List<T_actividades> list_actividades { get; set; }
+
+        public IPagedList<T_actividades> Plist_actividades { get; set; }
+
+        public T_actividades actividades { get; set; }
     }
 }

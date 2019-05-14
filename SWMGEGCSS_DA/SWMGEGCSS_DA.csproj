@@ -64,6 +64,7 @@
     <Compile Include="EstadoExpedienteDataAccess.cs" />
     <Compile Include="EstadoPlanDataAccess.cs" />
     <Compile Include="ExpedienteDataAccess.cs" />
+    <Compile Include="Ing_EgrDataAccess.cs" />
     <Compile Include="PermisoDataAccess.cs" />
     <Compile Include="PlanDataAccess.cs" />
     <Compile Include="Program.cs" />

@@ -19,15 +19,11 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
 
-
-
-
-
         [HttpGet]
-        public ActionResult Actualizar_Empresa(int emp_id)
+        public ActionResult Actualizar_Empresa(string emp_ruc)
         {
             var model = new GestionarEmpresaViewModel();
-            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().Find(r => r.emp_id == emp_id);
+            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().Find(r => r.emp_ruc == emp_ruc);
             return View(model);
         }
         [HttpPost]
@@ -38,7 +34,7 @@ namespace SWMGEGCSS.Controllers
             model.empresas.usu_codigo = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new EmpresaDataAccess().sp_Actualizar_Empresa(model.empresas);
-            return View();
+            return RedirectToAction("Gestionar_Empresas", "Gerente");
 
         }
 
@@ -49,13 +45,22 @@ namespace SWMGEGCSS.Controllers
             return PartialView(model);
         }
         [HttpPost]
-        public ActionResult _EliminarEmpresa(int id)
+        public ActionResult _EliminarEmpresa(string emp_ruc)
         {
             var model = new GestionarEmpresaViewModel();
-            // model.empresas = empresas;
-            //model.empresas.usu_codigo = (int)Session["login"];
-            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().Find(r => r.emp_id == id);
-            return PartialView(model); ;
+            model.empresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().Find(r => r.emp_ruc == emp_ruc);
+            return PartialView(model); 
+        }
+
+        [HttpPost]
+        public ActionResult RecibeEmpresa(T_empresa empresas)
+        {
+            var model = new GestionarEmpresaViewModel();
+            model.empresas = empresas;
+            model.empresas.usu_codigo = (int)Session["login"];
+            var operationResult = new OperationResult();
+            operationResult = new EmpresaDataAccess().sp_Eliminar_Empresa(model.empresas);
+            return RedirectToAction("Gestionar_Empresas", "Gerente");
         }
 
 
@@ -74,7 +79,7 @@ namespace SWMGEGCSS.Controllers
             model.empresas.usu_codigo = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new EmpresaDataAccess().sp_Insertar_Empresa(model.empresas);
-            return View(model);
+            return RedirectToAction("Gestionar_Empresas", "Gerente");
         }
 
         public ActionResult Evaluar_Nombre_Empresa(string emp_razon_social)
@@ -112,16 +117,7 @@ namespace SWMGEGCSS.Controllers
         }
 
 
-
-        public ActionResult RecibeEmpresa(T_empresa empresas)
-        {
-            var model = new GestionarEmpresaViewModel();
-            model.empresas = empresas;
-            model.empresas.usu_codigo = (int)Session["login"];
-            var operationResult = new OperationResult();
-            operationResult = new EmpresaDataAccess().sp_Eliminar_Empresa(model.empresas);
-            return RedirectToAction("Gestionar_Empresas","Gerente");
-        }
+        
 
       
     }
