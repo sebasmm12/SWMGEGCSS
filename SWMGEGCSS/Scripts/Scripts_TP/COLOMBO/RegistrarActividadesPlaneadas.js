@@ -1,74 +1,7 @@
 ﻿$(function () {
     var id_plan = 0;
     var id_act = 0;
-    /*var getPage = function () {
-        var select = document.getElementById("estado");
-        var searchTerm = document.getElementById("searchTerm");
-        var $a = $(this);
-        $.ajax({
-            url: $a.attr("href"),
-            data: { searchTerm: searchTerm.value, estado: select.value },
-            type: "GET"
-        }).done(function (data) {
-            var target = $a.parents("div.pagedList").attr("data-exp-target");
-            $(target).replaceWith(data);
-            $(".btnModal").each(envioajaxModal);
-        });
-        return false;
-
-    };
-    var submitAutocompleteform = function (event, ui) {
-        var $input = $(this);
-        $input.val(ui.item.label);
-        $("#Buscar").click();
-    };
-    var autcompletado = function () {
-        var $input = $(this);
-        var options = {
-            source: $input.attr("data-exp-autocomplete"),
-            select: submitAutocompleteform
-        };
-        $input.autocomplete(options);
-
-    };
-    var Alerta = function () {
-        $(this).click(function () {
-
-            (async function getEmail() {
-                const { value: comentario } = await Swal.fire({
-                    title: 'Ingrese el porque quiere eliminarlo',
-                    input: 'textarea',
-                    inputPlaceholder: 'Ingrese comentario',
-                    showCancelButton: true,
-                    inputValidator: (value) => {
-                        if (!value) {
-                            return 'Debe escribir algo!';
-                        }
-                    }
-                });
-
-                if (comentario) {
-                    EnvioComentario(comentario);
-                }
-            })();
-
-        });
-    };
-    var EnvioComentario = function (comentario) {
-        $.ajax({
-            url: "/Plan/EliminarPlanDeProyecto",
-            method: "GET",
-            data: {
-                id: id_plan,
-                comentario: comentario
-            },
-            contentType: "application/json; charset=utf-8",
-            dataType: "json"
-        }).done(function (data) {
-            window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
-        });
-        return false;
-    };*/
+    
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -93,8 +26,7 @@
     };
     var envioajaxRegistrar = function () {
         //mismo nombre del parametro de actualizacion del metodo
-        //creando objeto
-        alert($("#Actividades_planeadas_aux_act_plan_nombre").val());
+        //creando objeto 
         var act_plan = {
             plan_id: id_plan,
             act_id: id_act,

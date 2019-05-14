@@ -31,7 +31,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Servicios()
         {
-            return View();
+            return RedirectToAction("VisualizarServicios", "Servicios");
         }
         public ActionResult Gestionar_Cuenta()
         {
@@ -138,7 +138,8 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
         public ActionResult Gestionar_Plan_Proyecto(string searchTerm, string estado, int page = 1)
-        { 
+        {
+            Session["ListaActPlanTemp"] = null;
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             if (searchTerm == null && estado == null) {
                 model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3); }

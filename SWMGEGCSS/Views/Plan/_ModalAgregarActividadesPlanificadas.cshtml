@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "ACTIVIDAD PLANIFICADA";
-    Layout = null;
+    //var costototal = Model.ActividadesModel.Actividades.act_plazo;
+    //Layout = null;
 }
 
 <div class="modal fade" id="RegistrarActPlan" tabindex="-1" role="dialog" aria-labelledby="#RegistrarActPlan" aria-hidden="true">
@@ -12,7 +13,7 @@
                 Agregar a la Planificacion
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row mt-2 pl-2">
                     <div class="col-sm-12 col-12 col-md-12">
                         <div class="mt-2">
                             <label class="font-weight-bolder">
@@ -47,7 +48,7 @@
                         <div class="mt-2">
                             <label class="font-weight-bolder">
                                 Costo
-                            </label>
+                            </label>                         
                         </div>
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_costo, new
@@ -59,16 +60,36 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Duracion de la Actividad
-                            </label>
+                        <div class=" row mt-2 pl-2">
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Duracion de la Actividad
+                                </label>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div>
+                                <label style="border: 1px solid #C00">
+                                    <Font size="1" color="red">
+                                        Plazo Max.:
+                                        @Html.DisplayFor(model => model.ActividadesModel.Actividades.act_plazo, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "text-center",
+                                           @type = "label",
+                                           @color = "red"
+                                       }
+                                   })
+                                        Dias
+                                    </Font>
+                                </label>
+                            </div>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
-                       {
-                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanTiempo" }
-                       })
+                                @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
+                            {
+                                htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanTiempo" }
+                            })
                         </div>
                     </div>
                 </div>

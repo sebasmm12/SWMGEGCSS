@@ -1,0 +1,66 @@
+﻿@model SWMGEGCSS.Models.TipoServicioViewModel
+@{
+    Layout = null;
+    var list_servicios = Model.PList_tipo_servicio;
+    var count = 0;
+}
+<div id="tableServ">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre del Servicio</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones del Servicio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in list_servicios)
+                        {
+                            count = count + 1;
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            <td>@item.tipo_servicio_nombre</td>
+                            <td>@item.tipo_servicio_descripcion</td>
+                            @if (item.tipo_servicio_estado)
+                            {
+                                <td>Activo</td>
+                            }
+                            else
+                            {
+                                <td>Inactivo</td>
+                            }
+
+                            <td>
+                                <button type="button" class="btn btn-warning btnModal" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_ModalProyecto","Expediente")" data-id-target="#ModalProyecto">
+                                    <i class="fa fa-edit" style="color:white !important"></i>
+                                    <span style="color:white">Modificar</span>
+                                </button>
+                                <button type="button" class="btn btn-danger btnModal" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_EliminarProyecto","Expediente")" data-id-target="#ModalEliminarProyecto">
+                                    <i class="fa fa-times"></i>
+                                    Eliminar
+                                </button>
+                                <button type="button" class="btn btn-info btnModal" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_ConsultarDatosServicios","Servicios")" data-id-target="#ModalConsultarDatosProyecto">
+                                    <i class="fa fa-eye">
+                                    </i>
+                                    Consultar
+                                </button>
+                            </td>
+                        </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-serv-target="#tableServ">
+            @Html.PagedListPager(list_servicios, page => Url.Action("VisualizarServicios", "Servicios", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>

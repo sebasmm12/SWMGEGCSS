@@ -1,0 +1,118 @@
+﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
+
+@{
+    ViewBag.Title = "ACTIVIDAD PLANIFICADA";
+}
+
+<div class="modal fade" id="RegistrarActividad" tabindex="-1" role="dialog" aria-labelledby="#RegistrarActividad" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="text-center font-weight-bolder">
+                Agregar a la Planificacion del Plan
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Nombre de la Actividad Planificada
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_nombre, new
+                            {
+                                htmlAttributes = new { @class = "text-center form-control bg-white",@id="ActPlanNombre" }
+                            })
+                        </div>
+                        <div id="error_act_plan_nombre" class="errordiv"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Descripcion de la Actividad Planificada
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_descripcion, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @id = "ActPlanDescripcion" }
+                       })
+                        </div>
+                        <div id="error_act_plan_descripcion" class="errordiv"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Costo
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_costo, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanCosto" }
+                       })
+                        </div>
+                        <div id="error_act_plan_costo" class="errordiv"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class=" row mt-2 pl-2">
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Duracion de la Actividad
+                                </label>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div>
+                                <label style="border: 1px solid #C00">
+                                    <Font size="1" color="red">
+                                        Plazo Max.:
+                                        @Html.DisplayFor(model => model.ActividadesModel.Actividades.act_plazo, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "text-center",
+                                                @type = "label",
+                                                @color = "red"
+                                            }
+                                        })
+                                        Dias
+                                    </Font>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_tiempo, new
+                            {
+                                htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanTiempo" }
+                            })
+                        </div>
+                        <div id="error_act_plan_tiempo" class="errordiv"></div>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-4">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-danger rounded-pill btnRegistrarActividades" style="color:white !important">
+                                <i class="fa fa-times-circle" style="color:white !important"></i>
+                                REGISTRAR
+                            </button>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
+                                <i class="fa fa-arrow-left"></i>
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

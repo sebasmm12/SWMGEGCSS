@@ -19,7 +19,7 @@
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_nombre, new
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_nombre, new
                             {
                                 htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })
@@ -34,7 +34,7 @@
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_descripcion, new
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_descripcion, new
                             {
                                 htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })
@@ -49,7 +49,7 @@
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_costo, new
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_costo, new
                             {
                                 htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })
@@ -58,13 +58,33 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-12 col-md-12">
-                        <div class="mt-2">
-                            <label class="font-weight-bolder">
-                                Duracion de la Actividad
-                            </label>
+                        <div class="row mt-2 pl-2">
+                            <div>
+                                <label class="font-weight-bolder">
+                                    Duracion de la Actividad
+                                </label>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div>
+                                <label style="border: 1px solid #C00">
+                                    <Font size="1" color="red">
+                                        Plazo Max.:
+                                        @Html.DisplayFor(model => model.ActividadesModel.Actividades.act_plazo, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "text-center",
+                                           @type = "label",
+                                           @color = "red"
+                                       }
+                                   })
+                                        Dias
+                                    </Font>
+                                </label>
+                            </div>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
+                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_tiempo, new
                             {
                                 htmlAttributes = new { @class = "text-center form-control bg-white" }
                             })

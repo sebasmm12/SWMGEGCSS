@@ -10,8 +10,19 @@
     //retorna la lista de todas las actividades
     var listaTotalActividades = Model.List_Actividades;
 
+    //retorna todos los tipod de servicio vigenetes
+    var listaTotalTipoServicio = Model.tipoServicioModel.ListtipoServicio;
+    var listaTotalEstadoPlan = Model.lista_plan_estado;
+    //var costoTotalPlan = 0;
+
+    //
+    List<int> cantidadDisp = (List<int>)Session["ListaActCantPermitida"];
+    //
+
     var plan_fecha = "";
     var count = 0;
+    //var i = 0;
+    var count1 = 0;
     if (Model.plans_aux != null)
     {
         plan_fecha = Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd");
@@ -20,7 +31,8 @@
 
 }
 <link href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" rel="stylesheet" />
-<h2>Actualizar_Plan_de_Proyectos</h2>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<h2 class="text-center">Actualizar Plan de Proyectos</h2>
 
 <div class="container-fluid">
     <form id="form">
@@ -28,7 +40,9 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.plans_aux.plan_id)
         </div>
+        
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -36,13 +50,13 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_nombre, new
-                {
-                    htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
-                })
+           {
+               htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
+           })
                 <div id="error-plan-nombre" class="errordiv"></div>
+
             </div>
-        </div>
-        <div class="row mt-2 pl-2">
+            <div style="width:100px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -51,11 +65,23 @@
                 </div>
                 <!--<input type="date" name="plans.plan_fecha" value="Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")" class="text-center form-control" />-->
 
-                <input id="plan-fecha" type="date" name="plans_aux.plan_fecha" value="@plan_fecha" class="text-center form-control" onkeydown="return false" />
+                @Html.EditorFor(model => model.plans_aux.plan_fecha, new
+               {
+               htmlAttributes = new
+               {
+                   @id = "plan-fecha",
+                   @class = "text-center form-control",
+                   @onkeydown = "return false",
+                   @type = "date",
+                   @Value = Model.plans_aux.plan_fecha.ToString("yyyy-MM-dd")
+
+               }
+               })
                 <div id="error-plan-fecha" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -65,27 +91,31 @@
                 @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
            {
                htmlAttributes = new {
-                   @class = "text-center form-control", @id = "plan-emp"
+                   @class = "text-center form-control",
+                   @id = "plan-emp",
+                   @dataid = Url.Action("CompletarNombreEmpresas", "Plan")
 
                }
            })
                 <div id="error-plan-emp" class="errordiv"></div>
             </div>
-        </div>
-        <div class="row mt-2 pl-2">
+            <div style="width:100px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
                         Estado del plan
                     </label>
                 </div>
-                @Html.EditorFor(model => model.plans_aux.plan_estado_nobre, new
-                {
-                   htmlAttributes = new { @class = "text-center form-control" , }
-                })
+                @Html.DropDownListFor(model => model.plans_aux.plan_estado_nobre, new SelectList(listaTotalEstadoPlan, "plan_estado_nombre", "plan_estado_nombre",Model.plans_aux.plan_estado_nobre),
+
+                   htmlAttributes : new { @id = "plan-estado", @class = "text-center form-control"})
+
+
+                <div id="error-plan-estado" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -93,13 +123,19 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_costo, new
-                {
-                   htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
-                })
+           {
+               htmlAttributes = new {
+                   @id = "plan-costo",
+                   @class = "text-center form-control",
+                   @readonly = "readonly",
+                   @Value = Session["costoTotalPlan"]
+               }
+           })
                 <div id="error-plan-costo" class="errordiv"></div>
             </div>
-        </div>
-        <div class="row mt-2 pl-2">
+            <div style="width:100px"></div>
+            <!--/div-->
+            <!--div class="row mt-2 pl-2"-->
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
@@ -107,54 +143,132 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
-           {
-               htmlAttributes = new { @class = "text-center form-control", @id = "plan-tipo-servicio" }
-           })
+                {
+                    htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
+                })
+
+
+                <!--<select class="text-center form-control" , id="plan-tipo-servicio">
+            foreach (var item in listaTotalTipoServicio)
+            {
+                <option value="item.tipo_servicio_id">item.tipo_servicio_nombre</option>
+                //Session["tipoServicioNombre"] = item.tipo_servicio_id;
+            }
+
+        </select>-->
                 <div id="error-plan-tipo-servicio" class="errordiv"></div>
             </div>
+            <!--/div-->
         </div>
         <div class="row mt-2 pl-2">
+            <div style="width:65px"></div>
             <div class="col-12 col-sm-4 col-md-4">
                 <div>
                     <label class="font-weight-bolder">
-                        Tiempo del plan (en años)
+                        Tiempo del plan (en Dias)
                     </label>
                 </div>
                 @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
-                {
-                   htmlAttributes = new { @id = "plan-tiempo", @class = "text-center form-control" }
+           {
+               htmlAttributes = new {
+                   @id = "plan-tiempo",
+                   @class = "text-center form-control",
+                   @readonly = "readonly",
+                   @Value = Session["tiempoTotalPlan"]
+                    }
                 })
                 <div id="error-plan-tiempo" class="errordiv"></div>
             </div>
         </div>
-
+        <h3 class="text-center">Actividades del Servicio</h3>
         <!--LISTA DE TAREAS PLANIFICADAS-->
-
-        <div class="col-12 col-sm-12 col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead class="bg-success">
-                        <tr class="text-center">
-                            <th scope="col">#</th>
-                            <th scope="col">Actividad </th>
-                            <th scope="col">Plazo Aprox.</th>
-                            <th scope="col">Funciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in listaTotalActividades)
-                        {
-                            count = count + 1;
-
-                            var listaActividades = listaPlanActividad.Find(x => x.act_id == item.act_id);
-                            var plan_id = listaPlanActividad.ElementAt(0).plan_id;
+        <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-success">
                             <tr class="text-center">
-                                <th scope="row">@count</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Actividad </th>
+                                <th scope="col">Plazo Aprox.</th>
+                                <th scope="col">Cantidad Max</th>
+                                <th scope="col">Cantidad Disp</th>
+                                <th scope="col">Funciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in listaTotalActividades)
+                            {
+                                var cd = cantidadDisp[count];
+                                count = count + 1;
 
-                                @if (listaActividades != null)
-                                {
+                                var listaActividades = listaPlanActividad.Find(x => x.act_id == item.act_id);
+                                //var plan_id = listaPlanActividad.ElementAt(0).plan_id;
+                                var plan_id = Model.plans_aux.plan_id;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+
+
                                     <td>@item.act_nombre</td>
                                     <td>@item.act_plazo </td>
+                                    <td>@item.act_cantidad_maxima</td>
+                                    <td>@cd</td>
+                                    <td>
+                                        @{ 
+                                            if(cd != 0)
+                                            {
+                                                <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    Agregar a la Planificacion
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <label style="border: 1px solid #C00" class="text-center form-control">
+                                                    <Font size="3" color="red">
+                                                       Cantidad Max. Alcanzada
+                                                    </Font>
+                                                </label>
+                                            }
+                                         }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------->
+
+        <h3 class="text-center">Actividades Planificadas</h3>
+        <!--LISTA DE TAREAS PLANIFICADAS-->
+        <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-success">
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">Actividad </th>
+                                <th scope="col">Costo act</th>
+                                <th scope="col">Tiempo Aprox</th>
+                                <th scope="col">Funciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.List_Actividades_planeadas)
+                            {
+                                count1 = count1 + 1;
+
+                                var listaActividades = listaPlanActividad.Find(x => x.act_plan_nombre == item.act_plan_nombre);
+                                //var plan_id = listaPlanActividad.ElementAt(0).plan_id;
+                                var plan_id = Model.plans_aux.plan_id;
+                                <tr class="text-center">
+                                    <th scope="row">@count1</th>
+                                    <td>@item.act_plan_nombre</td>
+                                    <td>@item.act_plan_costo </td>
+                                    <td>@item.act_plan_tiempo</td>
                                     <td>
                                         <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
                                             <i class="fa fa-times-circle"></i>
@@ -165,30 +279,20 @@
                                             Actualizar
                                         </button>
                                     </td>
-                                }
-                                else
-                                {
-                                    <td>@item.act_nombre</td>
-                                    <td>@item.act_plazo </td>
-                                    <td>
-                                        <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActPlan">
-                                            <i class="fa fa-plus-circle"></i>
-                                            Agregar a la Planificacion
-                                        </button>
-                                    </td>
-                                }
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!---------------------------------->
-        <div class="row mt-4 pl-2">
+        <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="submit" id="boton-Actualizar" class="btn btn-warning rounded-pill">
+                <button type="button" id="btnActualizarPlan" class="btn btn-warning rounded-pill">
                     <i class="fa fa-edit" style="color:white !important"></i>
                     Actualizar
+
                 </button>
             </div>
             <div class="col-12 col-sm-3 col-md-3">
@@ -197,10 +301,11 @@
 
                     </i>
                     Regresar
+
                 </a>
             </div>
         </div>
-
+        <div class="row mt-4 pl-2"></div>
     </form>
     @Html.Action("_ModalActualizarActividadesPlanificadas", "Plan")
     @Html.Action("_ModalEliminarActividadesPlanificadas", "Plan")
@@ -209,9 +314,10 @@
 
 
 @section Scripts{
-    <script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>
+    <!--<script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>-->
     <script src="~/Scripts/Scripts_TP/COLOMBO/ActualizarActividadesPlaneadas.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/EliminarActividadesPlaneadas.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/RegistrarActividadesPlaneadas.js"></script>
-
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/ActualizarPlan.js"></script>
 }

@@ -10,5 +10,7 @@ namespace SWMGEGCSS_EN
     {
         public int tipo_servicio_id { get; set; }
         public int act_id { get; set; }
+        public double costo { get; set; }
+        public bool act_obligatorio { get; set; }
     }
 }

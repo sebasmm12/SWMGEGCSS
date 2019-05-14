@@ -1,8 +1,84 @@
-﻿
+﻿@model SWMGEGCSS.Models.GestionarAsignacionActividadesDesarrollar
 @{
+    /**/
+
     ViewBag.Title = "Asignacion_Tareas";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+
+    var listaActividadesDesarrollarAux = Model.listActividadesDesarrollarAux;
+    var count = 0;
 }
 
 <h2>Asignacion_Tareas</h2>
 
+<div class="mt-2 ml-4">
+    <div class="container-fluid">
+    <div class="row mt-4 pl-2">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre Actividad </th>
+                            <th scope="col">Proyecto</th>
+                            <th scope="col">Estado de Activididad</th>
+                            <th scope="col">Asignacion</th>
+                            <th scope="col">Funciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in listaActividadesDesarrollarAux)
+                        {
+
+                            count = count + 1;
+                            var estadoAsignacion ="Asignado";
+                            //var ActDesaAux = listaActividadesDesarrollarAux.Find(x => x.act_desa_id == item.act_desa_id);
+                            if(item.usu_asignado == 0 || item.usu_creador == 0)
+                            {
+                                estadoAsignacion = "No Asignado";
+                            }
+                            //var plan_id = listaPlanActividad.ElementAt(0).plan_id;
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+
+
+                            <td>@item.act_desa_nombre</td>
+                            <td>@item.exp_nombre </td>
+                            <td>@item.est_act_nombre</td>
+                            <td>@estadoAsignacion</td>
+                            <td>
+                                @{
+                                    if (item.usu_asignado == 0 || item.usu_creador == 0)
+                                    {
+                                <button class="btn btn-success">
+                                    <i class="fa fa-plus-circle"></i>
+                                    @Html.ActionLink("Asignar Tarea", "RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-warning rounded-pill">
+                                            <i class="fa fa-edit" style="color:white !important"></i>
+                                            Reasignar Actividad
+                                        </button>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/scriptGestionarPlan1.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsGestionarPlan.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}

@@ -123,7 +123,7 @@ namespace SWMGEGCSS_DA
                             plan.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
                             plan.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
                             plan.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
-                            plan.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            plan.emp_ruc = DataUtil.DbValueToDefault<string>(reader["emp_ruc"]);
                             plan.plan_estado = DataUtil.DbValueToDefault<int>(reader["plan_estado"]);
                             plan.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
                             plan.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
@@ -263,6 +263,46 @@ namespace SWMGEGCSS_DA
             }
            
             
+        }
+        public OperationResult sp_Insertar_Auditoria_Actividades_Desarrollar(T_actividades_desarrollar act_desarrollar)
+        {
+            try
+            {
+                var operationResult = new OperationResult();
+                using (DbCommand command=Database.GetStoredProcCommand("sp_Insertar_Auditoria_Actividades_Desarrollar"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, act_desarrollar.act_desa_id);
+                    Database.AddInParameter(command, "@audi_act_comentario", DbType.String, act_desarrollar.act_desa_comentario);
+                    Database.AddInParameter(command, "@audi_act_nombre", DbType.String, act_desarrollar.act_desa_nombre);
+                    Database.ExecuteScalar(command);
+                    operationResult.NewId = 1;
+                }
+                return operationResult;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
+        public OperationResult sp_Eliminar_Actividades_Desarrollar_Expediente(int act_desa_id)
+        {
+            try
+            {
+                var operationResult = new OperationResult();
+                using (DbCommand command= Database.GetStoredProcCommand("sp_Eliminar_Actividades_Desarrollar_Expediente"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, act_desa_id);
+                    Database.ExecuteScalar(command);
+                    operationResult.NewId = 1;
+                }
+                return operationResult;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
         }
 
     }

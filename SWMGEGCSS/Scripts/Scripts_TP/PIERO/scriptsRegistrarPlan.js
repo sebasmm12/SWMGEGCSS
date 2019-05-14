@@ -10,19 +10,19 @@
         //declaracion de variables jquery
         var $planNombre = $("#plan-nombre");
         var $planFecha = $("#plan-fecha");
-        var $planCosto = $("#plan-costo");
-        var $planTiempo = $("#plan-tiempo");
+        //var $planCosto = $("#plan-costo");
+        //var $planTiempo = $("#plan-tiempo");
         var $planEmp = $("#plan-emp");
         var $planTipoServicio = $("#plan-tipo-servicio");
 
         var vnombre = validar_nombre_plan($planNombre.val());
         var vfecha = validar_fecha_plan($planFecha.val());
-        var vcosto = validar_costo_plan($planCosto.val());
-        var vtiempo = validar_tiempo_plan($planTiempo.val());
+        //var vcosto = validar_costo_plan($planCosto.val());
+        //var vtiempo = validar_tiempo_plan($planTiempo.val());
         var vemp = validar_emp_plan($planEmp.val());
         var vtiposervicio = validar_tipo_servicio_plan($planTipoServicio.val());
 
-        if (vnombre === false || vfecha === false || vcosto === false || vtiempo === false || vemp === false || vtiposervicio === false) {
+        if (vnombre === false || vfecha === false || /*vcosto === false || vtiempo === false ||*/ vemp === false || vtiposervicio === false) {
             return false;
         }
         else {
@@ -32,16 +32,16 @@
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
-                window.location.href = "/Plan/Agregar_Plan_de_Proyectos_1";
-                /*Swal.fire({
+                Swal.fire({
                     type: 'success',
                     title: 'Se registro el plan exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
+                        //window.location.href = "/Plan/Agregar_Plan_de_Proyectos_1";
                         window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
                     }
-                });*/
+                });
             });
         }
         return false;
@@ -236,12 +236,12 @@
         }
     };
     //Validacion Costo
-    function validar_costo_plan(id) {
+    /*function validar_costo_plan(id) {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#plan-costo");
-        if (id === "") {
+        if (id === "" || id <= 0) {
             adderror("plan-costo");
-            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
             $("#plan-costo").keyup(keyC);
             return false;
         }
@@ -261,8 +261,8 @@
     function keyC() {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#plan-costo");
-        if ($valor.val() === "") {
-            negativeattributes("error-plan-costo", 'Debe ingresar un numero');
+        if ($valor.val() === "" || $valor.val() <= 0) {
+            negativeattributes("error-plan-costo", 'Debe ingresar un numero positivo');
             adderror("plan-costo");
         } else {
             if ($valor.val().match(RegularExpression)) {
@@ -273,9 +273,9 @@
                 adderror("plan-costo");
             }
         }
-    }
+    }*/
     //Validacion Tiempo
-    function validar_tiempo_plan(id) {
+    /*function validar_tiempo_plan(id) {
         //var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#plan-tiempo");
         if (id === "") {
@@ -292,7 +292,7 @@
             $("#plan-tiempo").keyup(keyT);
             return false;
         }
-        /*else {
+        else {
             if ($valor.val().match(RegularExpression)) {
                 negativeattributes("error-plan-tiempo", 'No se aceptan caracteres especiales');
                 adderror("plan-tiempo");
@@ -302,7 +302,7 @@
                 attributes("error-plan-tiempo");
                 addgood("plan-tiempo");
             }
-        }*/
+        }
         return true;
     }
     function keyT() {
@@ -320,13 +320,13 @@
         //    if (!$valor.val().match(RegularExpression)) {
                 attributes("error-plan-tiempo");
                 addgood("plan-tiempo");
-        /*    }
+            }
             else {
                 negativeattributes("error-plan-tiempo", 'No se aceptan caracteres especiales');
                 adderror("plan-tiempo");
-            }*/
+            }
         }
-    }
+    }*/
     //Validacion Empresa
     function validar_emp_plan(id) {
         var vemp = 0;
@@ -559,6 +559,7 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
+    
     $("#boton-Registrar").click(validacion);
     $("input[dataid]").each(autocompletado);
 });

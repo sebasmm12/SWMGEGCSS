@@ -1,8 +1,27 @@
-﻿
+﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
 @{
     ViewBag.Title = "Gestionar_Citas";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var list_citas = Model.listCitas;
 }
 
-<h2>Gestionar_Citas</h2>
+<h2>Gestionar Citas</h2>
+
+<div class=" row mt-4 ml-2">
+    <div class="col-7">
+        <a href="@Url.Action("Registrar_Cita","Secretario")" class="btn btn-primary mx-md-auto col-6">
+            <i class="fa fa-plus-circle"></i>
+            Registrar Cita
+        </a>
+    </div>
+    <div class="col-3">
+        <select class="custom-select" id="estado" name="estado">
+            <option>Esta Semana</option>
+            <option>Hoy</option>
+        </select>
+    </div>
+</div>
+
+
+@Html.Partial("_ListaCitas",Model)
 

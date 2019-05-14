@@ -74,7 +74,7 @@ namespace SWMGEGCSS.Controllers
             model.empresas.usu_codigo = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new EmpresaDataAccess().sp_Insertar_Empresa(model.empresas);
-            return View();
+            return View(model);
         }
 
         public ActionResult Evaluar_Nombre_Empresa(string emp_razon_social)

@@ -7,105 +7,146 @@
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
     <form id="form">
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4 tam">
-                <label class="font-weight-bolder">
-                    Nombre del Plan del Proyecto
-                </label>
-                @Html.EditorFor(model => model.plans_aux.plan_nombre, new
+        <div class="border-registrar">
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <label class="font-weight-bolder titulo-registrar">
+                        Registrar Nuevo Plan
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-4 col-md-4">
+                    <label class="font-weight-bolder">
+                        Nombre del Plan del Proyecto
+                    </label>
+                    @Html.EditorFor(model => model.plans_aux.plan_nombre, new
+                        {
+                            htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
+                        })
+                    <div id="error-plan-nombre" class="errordiv"></div>
+                </div>
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Fecha del Plan del Proyecto
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.plans_aux.plan_fecha, new
                     {
-                        htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
+                       htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "date" }
                     })
-                <div id="error-plan-nombre" class="errordiv"></div>
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Fecha del Plan del Proyecto
-                    </label>
+                    <div id="error-plan-fecha" class="errordiv"></div>
                 </div>
-                @Html.EditorFor(model => model.plans_aux.plan_fecha, new
-                {
-                   htmlAttributes = new { @id = "plan-fecha", @class = "text-center form-control", @type = "date" }
-                })
-                <div id="error-plan-fecha" class="errordiv"></div>
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Nombre de la empresa
-                    </label>
+                <div class="col-sm-1 col-md-1">
+
                 </div>
-                @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
-           {
-               htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" , @dataid = Url.Action("CompletarNombreEmpresas", "Plan") }
-           })
-                <div id="error-plan-emp" class="errordiv"></div>
             </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Costo del plan
-                    </label>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
                 </div>
-                @Html.EditorFor(model => model.plans_aux.plan_costo, new
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Nombre de la empresa
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.plans_aux.emp_razon_social, new
                {
-                   htmlAttributes = new { @id = "plan-costo", @class = "text-center form-control" }
+                   htmlAttributes = new { @id = "plan-emp", @class = "text-center form-control" , @dataid = Url.Action("CompletarNombreEmpresas", "Plan") }
                })
-                <div id="error-plan-costo" class="errordiv"></div>
-            </div>
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Tipo de servicio del plan
-                    </label>
+                    <div id="error-plan-emp" class="errordiv"></div>
                 </div>
-                @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
-           {
-               htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
-           })
-                <div id="error-plan-tipo-servicio" class="errordiv"></div>
-            </div>
+                <!--<div class="col-12 col-sm-4 col-md-4">
+        <div class="col-sm-1 col-md-1">
+
         </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-4 col-md-4">
-                <div>
-                    <label class="font-weight-bolder">
-                        Tiempo del plan (en años)
-                    </label>
+        <div>
+            <label class="font-weight-bolder">
+                Costo del plan
+            </label>
+        </div>
+        Html.EditorFor(model => model.plans_aux.plan_costo, new
+       {
+           htmlAttributes = new { id = "plan-costo", class = "text-center form-control" }
+       })
+        <div id="error-plan-costo" class="errordiv"></div>
+    </div>-->
+                <div class="col-sm-1 col-md-1">
+
                 </div>
-                @Html.EditorFor(model => model.plans_aux.plan_tiempo, new
+            </div>
+
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Tipo de servicio del plan
+                        </label>
+                    </div>
+                    @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
                {
-                   htmlAttributes = new { @id = "plan-tiempo", @class = "text-center form-control" }
+                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
                })
-                <div id="error-plan-tiempo" class="errordiv"></div>
-            </div>
+                    <div id="error-plan-tipo-servicio" class="errordiv"></div>
+                </div>
+                <!--<div class="col-12 col-sm-4 col-md-4">
+        <div>
+            <label class="font-weight-bolder">
+                Tiempo del plan (en dias)
+            </label>
         </div>
-        <div class="row mt-4 pl-2">
-            <div class="col-12 col-sm-3 col-md-3">
-                <button type="button" class="btn btn-success" id="boton-Registrar">
-                    <i class="fa fa-check-circle"></i>
-                     Continuar
-                </button>
+        Html.EditorFor(model => model.plans_aux.plan_tiempo, new
+       {
+           htmlAttributes = new { id = "plan-tiempo", class = "text-center form-control" }
+       })
+        <div id="error-plan-tiempo" class="errordiv"></div>
+    </div>-->
+                <div class="col-sm-1 col-md-1">
+
+                </div>
             </div>
-            <div class="col-12 col-sm-3 col-md-3">
-                <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente")" class="btn btn-secondary">
-                    <i class="fa fa-backward"></i>
-                    Regresar
-                </a>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente")" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i>
+                        Regresar
+                    </a>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button type="button" class="btn btn-success" id="boton-Registrar">
+                        <i class="fa fa-check-circle"></i>
+                        Continuar
+                    </button>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button type="button" class="btn btn-success" id="btnPrueba">
+                        <i class="fa fa-check-circle"></i>
+                        Prueba Servicio
+                    </button>
+                </div>
             </div>
+            @Html.Partial("_ListarActividadesPlan", Model)
         </div>
+    </form>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/StyleTP/PIERO/stylesPiero.css" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsRegistrarPlan.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsRegistrarPlan1.js"></script>
 }

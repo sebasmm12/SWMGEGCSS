@@ -1,0 +1,56 @@
+﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
+@{
+
+
+    var list_citas = Model.listCitas;
+    Layout = null;
+
+}
+
+<div class="container form-bar mt-5">
+    <div class="table-responsive mt-4">
+        <table class="table" ">
+            <thead class="bg-success">
+                <tr>
+                    <th scope="col">Fecha y Hora</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Representante</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in list_citas)
+                {
+                    <tr>
+                        <td>@item.cita_fecha</td>
+                        <td>@item.cita_empresa</td>
+                        <td>@item.cita_correo</td>
+                        <td>@item.cita_telefono</td>
+                        <td>@item.cita_representante</td>
+                        <td>
+                            
+
+                            <button type="button" class="btn btn-info">
+                                Ver Detalles
+                            </button>
+
+                            <button type="button" class="btn btn-warning">
+                                @Html.ActionLink("Modificar Cita", "Actualizar_Cita","Secretario",new { cita_id = item.cita_id }, new { @style="color: white !important" })
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-12 pagedList" >
+        @Html.PagedListPager(list_citas, page => Url.Action("Gestionar_Citas", "Secretario", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+    </div>
+</div>
+
+

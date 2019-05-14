@@ -28,7 +28,7 @@ namespace SWMGEGCSS_DA
                             empresa.emp_email = DataUtil.DbValueToDefault<string>(reader["emp_email"]);
                             empresa.emp_estado = DataUtil.DbValueToDefault<bool>(reader["emp_estado"]);
                             empresa.emp_fax = DataUtil.DbValueToDefault<string>(reader["emp_fax"]);
-                            empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
+                            //empresa.emp_id = DataUtil.DbValueToDefault<int>(reader["emp_id"]);
                             empresa.emp_razon_social= DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
                             empresa.emp_representante = DataUtil.DbValueToDefault<string>(reader["emp_representante"]);
                             empresa.emp_ruc = DataUtil.DbValueToDefault<string>(reader["emp_ruc"]);

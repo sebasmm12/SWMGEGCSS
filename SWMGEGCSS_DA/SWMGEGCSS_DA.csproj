@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadesDataAccess.cs" />
+    <Compile Include="ActividadesDesarrollarDataAccess.cs" />
     <Compile Include="Base\BaseConexion.cs" />
     <Compile Include="Base\DataUtil.cs" />
     <Compile Include="EmpresaDataAccess.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolDataAccess.cs" />
+    <Compile Include="SecretariaDataAccess.cs" />
     <Compile Include="ServicioEmpresaDataAccess.cs" />
     <Compile Include="TipoServicioDataAccess.cs" />
     <Compile Include="TrabajadorDataAccess.cs" />
