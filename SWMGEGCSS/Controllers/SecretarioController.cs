@@ -47,7 +47,8 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Modificar_Cita(int cita_id)
         {
             var model = new GestionarCitasViewModel();
-            return View();
+            model.citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == cita_id);
+            return View(model);
         }
         
         [HttpPost]
@@ -56,6 +57,13 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarCitasViewModel();
             model.citas = cita;
             model.citas.cita_id = (int)Session["login"];
+            return View();
+        }
+
+
+        public ActionResult verDetalles(int id)
+        {
+            var model = new GestionarEmpresaViewModel();
             return View();
         }
 

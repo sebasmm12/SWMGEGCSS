@@ -12,7 +12,7 @@
             <table class="table">
                 <thead class="bg-success">
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">RUC</th>
                         <th scope="col">Sigla</th>
                         <th scope="col">Razón Social</th>
                         <th scope="col">Representante legal</th>
@@ -26,7 +26,7 @@
                     {
                         <tr>
 
-                            <td>@item.emp_id</td>
+                            <td>@item.emp_ruc</td>
                             <td>@item.emp_sigla</td>
                             <td>@item.emp_razon_social</td>
                             <td>@item.emp_representante</td>
@@ -35,10 +35,10 @@
 
                             <td>
                                 <button type="button" class="btn btn-warning">
-                                    @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_id = item.emp_id }, new { @style = "color: white !important" })
+                                    @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_ruc = item.emp_ruc }, new { @style = "color: white !important" })
                                 </button>
 
-                                <button type="button" class="btn btn-danger btnModal" data-id-empresa="@item.emp_id" data-url="@Url.Action("_EliminarEmpresa","Empresa")" data-id-target="#ModalEliminarEmpresa">
+                                <button type="button" class="btn btn-danger btnModal" data-ruc-empresa="@item.emp_ruc" data-url="@Url.Action("_EliminarEmpresa","Empresa", new { emp_ruc = item.emp_ruc })" data-id-target="#ModalEliminarEmpresa">
                                     <i class="fa fa-tomes"></i>
                                     Eliminar
                                 </button>

@@ -37,7 +37,7 @@
                             </button>
 
                             <button type="button" class="btn btn-warning">
-                                @Html.ActionLink("Modificar Cita", "Actualizar_Cita","Secretario",new { cita_id = item.cita_id }, new { @style="color: white !important" })
+                                @Html.ActionLink("Modificar Cita", "Modificar_Cita","Secretario",new { cita_id = item.cita_id }, new { @style="color: white !important" })
                             </button>
                         </td>
                     </tr>
@@ -47,7 +47,7 @@
         </table>
     </div>
 </div>
-<div class="row">
+<div class="row ml-3">
     <div class="col-sm-4 col-md-4 col-12 pagedList" >
         @Html.PagedListPager(list_citas, page => Url.Action("Gestionar_Citas", "Secretario", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
     </div>

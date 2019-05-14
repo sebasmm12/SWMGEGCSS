@@ -443,7 +443,6 @@
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
-    <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
@@ -463,6 +462,9 @@
     <Content Include="Views\Servicios\VisualizarServicios.cshtml" />
     <Content Include="Views\Servicios\_ListaServicios.cshtml" />
     <Content Include="Views\Servicios\Registrar_Servicio.cshtml" />
+    <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
+    <Content Include="Views\Secretario\Modificar_Cita.cshtml" />
+    <Content Include="Views\Secretario\_verDetalles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
