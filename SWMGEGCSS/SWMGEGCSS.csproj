@@ -463,6 +463,8 @@
     <Content Include="Views\Servicios\VisualizarServicios.cshtml" />
     <Content Include="Views\Servicios\_ListaServicios.cshtml" />
     <Content Include="Views\Servicios\Registrar_Servicio.cshtml" />
+    <Content Include="Views\Servicios\_ListaActividades.cshtml" />
+    <Content Include="Views\Servicios\_ModalActividad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

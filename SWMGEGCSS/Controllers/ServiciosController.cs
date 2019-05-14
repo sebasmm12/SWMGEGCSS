@@ -93,9 +93,61 @@ namespace SWMGEGCSS.Controllers
             );
             return Json(nameServicios, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Registrar_Servicio()
+        public ActionResult Registrar_Servicio(int page=1)
         {
-            return View();
+            var model = new TipoServicioViewModel();
+            model.list_actividades = new ActividadesDataAccess().sp_Consultar_Actividades();
+            var list_act = new List<T_actividades>();
+            if (Session["lista_actividades"] != null)
+            {
+                list_act = (List<T_actividades>)Session["lista_actividades"];
+            }
+            model.Plist_actividades = list_act.ToPagedList(page, 3);
+            return View(model);
+        }
+        public ActionResult Añadir_Actividad(int actividad)
+        {
+            List<T_actividades> list_actividades = new List<T_actividades>();
+            if (Session["lista_actividades"]!=null)
+            {
+                list_actividades = (List<T_actividades>)Session["lista_actividades"];
+            }
+            var actividad_encontrada = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r=>r.act_id==actividad);
+            list_actividades.Add(actividad_encontrada);
+            Session["lista_actividades"] = list_actividades;
+            var model = new TipoServicioViewModel();
+            model.list_actividades = list_actividades;
+            model.Plist_actividades = list_actividades.ToPagedList(1, 3);
+            return PartialView("_ListaActividades",model);
+        }
+        [HttpGet]
+        public ActionResult _ModalActividad()
+        {
+            var model = new TipoServicioViewModel();
+            model.actividades = new T_actividades();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalActividad(int id)
+        {
+            var model = new TipoServicioViewModel();
+            model.actividades = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r=>r.act_id==id);
+            return View(model);
+        }
+        public ActionResult EliminarActividad(int id)
+        {
+            List<T_actividades> list_actividades = new List<T_actividades>();
+            if (Session["lista_actividades"] != null)
+            {
+                list_actividades = (List<T_actividades>)Session["lista_actividades"];
+            }
+            var actividad_encontrada = list_actividades.Find(r=>r.act_id==id);
+            list_actividades.Remove(actividad_encontrada);
+            Session["lista_actividades"] = list_actividades;
+            var model = new TipoServicioViewModel();
+            model.list_actividades = list_actividades;
+            model.Plist_actividades = list_actividades.ToPagedList(1, 3);
+            return PartialView("_ListaActividades", model);
         }
     }
 }

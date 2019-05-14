@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Registrar_Servicio";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var list_actividades = Model.list_actividades;
 }
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
@@ -54,14 +55,33 @@
                 <div class="col-sm-1 col-md-1">
 
                 </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder label-registrar">
+                            Nombre de la Actividad
+                        </label>
+                    </div>
+                    <select class="custom-select" id="actividad" name="actividad">
+                        @foreach (var item in list_actividades)
+                        {
+                            <option value="@item.act_id">@item.act_nombre</option>
+                        }
+                    </select>
+                    <span id="validateActividad"></span>
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
                 <div class="col-12 col-sm-3 col-md-3">
                     <button type="button" class="btn btn-success" id="btnRegistrar">
                         <i class="fa fa-check-circle"></i>
-                        Registrar Proyecto
+                        Registrar Servicio
                     </button>
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">
-                    <button type="button" class="btn btn-success" id="btnRegistrarActividad">
+                    <button type="button" class="btn btn-success" id="btnRegistrarActividad" data-url="@Url.Action("Añadir_Actividad","Servicios")">
                         <i class="fa fa-check-circle"></i>
                         Registrar Actividades
                     </button>
@@ -75,13 +95,17 @@
                     </a>
                 </div>
             </div>
+            @Html.Partial("_ListaActividades", Model)
         </div>
     </form>
 
 </div>
+@Html.Action("_ModalActividad", "Servicios")
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsRegistrarServicio.js"></script>
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
 

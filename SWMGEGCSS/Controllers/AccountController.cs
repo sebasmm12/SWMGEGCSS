@@ -40,6 +40,7 @@ namespace SWMGEGCSS.Controllers
                     HttpContext.Session["name"] = t_d_usuario.det_usu_nombre;
                     HttpContext.Session["rol_name"] = rol_name;
                     HttpContext.Session["l_permiso_usuario"] = l_permiso_usuario;
+                    Session["lista_actividades"] = null;
                     if (rol_name.Equals("SECRETARIO"))
                     {
                         return RedirectToAction("Index", "Secretario");
