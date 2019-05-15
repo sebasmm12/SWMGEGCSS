@@ -321,7 +321,7 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarPlanProyectoViewModel();
             return PartialView(model);
         }
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult _ModalActualizarActividadesPlanificadas(int act_plan_id)
         {
             var model = new GestionarPlanProyectoViewModel();
@@ -345,7 +345,7 @@ namespace SWMGEGCSS.Controllers
 
             //ViewBag.plazo1 = ActPlazo.act_plazo;
             return PartialView("_ModalActualizarActividadesPlanificadas",model);
-        }
+        }*/
         [HttpPost]
       public ActionResult _ModalActualizarActividadesPlanificadasFinal( T_actividades_planeadas act_plan)
         {
@@ -430,6 +430,7 @@ namespace SWMGEGCSS.Controllers
             return PartialView(model);
         }
         [HttpPost]/*ddd*/
+        
         public ActionResult _ModalAgregarActividadesPlanificadas(int plan_id, int act_id)
         {
             var model = new GestionarPlanProyectoViewModel();
