@@ -2,8 +2,15 @@
 @{
 
 
-    var list_citas = Model.listCitas;
+
     Layout = null;
+    var fecha = "";
+    var list_citas = Model.listCitas;
+    if(Model.Citas != null)
+    {
+        fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
+    }
+    
 
 }
 
@@ -16,21 +23,22 @@
                         <tr>
                             <th scope="col">Fecha y Hora</th>
                             <th scope="col">Empresa</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Telefono</th>
                             <th scope="col">Representante</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Encargado</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in list_citas)
                         {
+
                             <tr>
                                 <td>@item.cita_fecha</td>
                                 <td>@item.cita_empresa</td>
-                                <td>@item.cita_correo</td>
-                                <td>@item.cita_telefono</td>
                                 <td>@item.cita_representante</td>
+                                <td>@item.cita_telefono</td>
+                                <td>@item.usu_citado</td>
                                 <td>
 
 
@@ -41,6 +49,13 @@
                                     <button type="button" class="btn btn-warning">
                                         @Html.ActionLink("Modificar Cita", "Modificar_Cita", "Secretario", new { cita_id = item.cita_id }, new { @style = "color: white !important" })
                                     </button>
+
+                                    
+                                    <button type="submit" class="btn btn-danger" id="boton-Eliminar">
+                                        <i class="fa fa-check-circle"></i>
+                                        Eliminar Cita
+                                    </button>
+                                    
                                 </td>
                             </tr>
                         }

@@ -13,10 +13,12 @@ namespace SWMGEGCSS.Models
     {
 
         public T_Citas citas { get; set; }
+        
+        public T_Citas_aux Citas { get; set; }
 
-        public List<T_Citas> listcitas { get; set; }
+        public List<T_Citas_aux> listcitas { get; set; }
 
-        public IPagedList<T_Citas> listCitas { get; set; }
+        public IPagedList<T_Citas_aux> listCitas { get; set; }
 
        
 
