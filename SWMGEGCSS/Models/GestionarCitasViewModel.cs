@@ -20,6 +20,7 @@ namespace SWMGEGCSS.Models
 
         public IPagedList<T_Citas_aux> listCitas { get; set; }
 
+        public UsuarioViewModel UsuarioModel { get; set; }
        
 
 

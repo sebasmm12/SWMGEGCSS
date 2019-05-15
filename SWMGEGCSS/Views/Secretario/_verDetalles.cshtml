@@ -9,17 +9,17 @@
         <div class="modal-content">
             <h2 class="text-center">Detalles de la Cita</h2>
             <div>
+                
                 <div class="col-12 col-sm-12 col-md-12">
-                    <div class="col-12 col-sm-12 col-md-12">
-                        <label class="font-weight-bolder">
+                   <label class="font-weight-bolder">
                             Fecha
-                        </label>
-                        @Html.EditorFor(model => model.citas.cita_fecha, new
-                       {
-                          htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
-                       })
-                    </div>
+                   </label>
+                   @Html.EditorFor(model => model.Citas.cita_fecha, new
+                   {
+                      htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
+                   })
                 </div>
+                
                 <div class="col-12 col-sm-12 col-md-12">
                     <label class="font-weight-bolder">
                         Empresa
@@ -33,7 +33,7 @@
                     <label class="font-weight-bolder">
                         Representante
                     </label>
-                    @Html.EditorFor(model => model.citas.cita_representante, new
+                    @Html.EditorFor(model => model.Citas.cita_representante, new
                     {
                        htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
                     })
@@ -42,7 +42,7 @@
                     <label class="font-weight-bolder">
                         Telefono
                     </label>
-                    @Html.EditorFor(model => model.citas.cita_telefono, new
+                    @Html.EditorFor(model => model.Citas.cita_telefono, new
                     {
                        htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
                     })
@@ -51,7 +51,7 @@
                     <label class="font-weight-bolder">
                         Correo
                     </label>
-                    @Html.EditorFor(model => model.citas.cita_correo, new
+                    @Html.EditorFor(model => model.Citas.cita_correo, new
                     {
                        htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
                     })

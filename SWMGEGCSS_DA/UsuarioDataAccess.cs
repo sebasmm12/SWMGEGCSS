@@ -11,6 +11,33 @@ namespace SWMGEGCSS_DA
 {
     public class UsuarioDataAccess:BaseConexion
     {
+
+        public List<T_usuario> sp_Consultar_Lista_Usuario()
+        {
+            var l_usu = new List<T_usuario>();
+            try
+            {
+                using(DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Usuario"))
+                {
+                    using(IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var usu = new T_usuario();
+                            usu.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            usu.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
+                            l_usu.Add(usu);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return new List<T_usuario>();
+            }
+            return l_usu;
+        }
         public int sp_Encontrar_Usuario(T_usuario usuario,T_detalle_usuario t_d_usuario)
         {
             int count = 0;
