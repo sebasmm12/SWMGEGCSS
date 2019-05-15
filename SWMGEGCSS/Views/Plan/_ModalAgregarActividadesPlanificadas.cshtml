@@ -1,7 +1,7 @@
 ﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
 
 @{
-    ViewBag.Title = "ACTIVIDAD PLANIFICADA";
+    ViewBag.Title = "ACTIVIDAD PLANIFICADA AUX";
     //var costototal = Model.ActividadesModel.Actividades.act_plazo;
     //Layout = null;
 }
@@ -23,10 +23,10 @@
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_nombre, new
                        {
-                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanNombre" }
+                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanNombre1" }
                        })
                         </div>
-                        <div id="error_act_plan_nombre" class="errordiv"></div>
+                        <div id="error_act_plan_nombre1" class="errordiv"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -39,10 +39,10 @@
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_descripcion, new
                        {
-                           htmlAttributes = new { @class = "text-center form-control bg-white" , @id = "ActPlanDescripcion" }
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @id = "ActPlanDescripcion1" }
                        })
                         </div>
-                        <div id="error_act_plan_descripcion" class="errordiv"></div>
+                        <div id="error_act_plan_descripcion1" class="errordiv"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -74,10 +74,10 @@
                                 <div>
                                     @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_costo, new
                                {
-                                   htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanCosto" }
+                                   htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanCosto1" }
                                })
                                 </div>
-                                <div id="error_act_plan_costo" class="errordiv"></div>
+                                <div id="error_act_plan_costo1" class="errordiv"></div>
                             </div>
                 </div>
                 <div class="row">
@@ -94,10 +94,10 @@
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
                         {
-                            htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanTiempo" }
+                            htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanTiempo1" }
                         })
                         </div>
-                        <div id="error_act_plan_tiempo" class="errordiv"></div>
+                        <div id="error_act_plan_tiempo1" class="errordiv"></div>
                     </div>
                 </div>
 

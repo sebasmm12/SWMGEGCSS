@@ -26,7 +26,14 @@
     <div class="col-12 col-sm-4 col-md-4">
         <a href="@Url.Action("Registrar_Ing_Egr","Ing_Egr")" class="btn btn-success mx-md-auto">
             <i class="fa fa-plus-circle"></i>
-            Registrar Nuevo Ingreso o Egreso
+            Registrar Ingreso
+        </a>
+
+    </div>
+    <div class="col-12 col-sm-4 col-md-4">
+        <a href="@Url.Action("Registrar_Ing_Egr","Ing_Egr")" class="btn btn-success mx-md-auto">
+            <i class="fa fa-plus-circle"></i>
+            Registrar Egreso
         </a>
 
     </div>
@@ -48,8 +55,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Ingreso</th>
+                        <th scope="col">Fecha</th>       
                         <th scope="col">Monto</th>
                         <th scope="col"></th>
                     </tr>
@@ -63,7 +69,7 @@
                             <td>@item.ing_egr_nombre</td>
                             <td>@item.ing_egr_descripcion</td>
                             <td>@item.ing_egr_fecha</td>
-                            <td>@item.ing_egr_ingrso</td>
+                           
                             <td>@item.ing_egr_monto</td>
 
                             <td>
@@ -71,10 +77,7 @@
                                     @Html.ActionLink("Actualizar Ing Egr", "Actualizar_Ing_Egr", "Ing_Egr", new { ing_egr_id = item.ing_egr_id }, new { @style = "color: white !important" })
                                 </button>
 
-                                <button type="button" class="btn btn-danger btnModal" data-id-empresa="@item.ing_egr_id" data-url="@Url.Action("Eliminar_Ing_Egr","Ing_Egr")">
-                                    <i class="fa fa-tomes"></i>
-                                    Eliminar
-                                </button>
+                               
                             </td>
                         </tr>
                     }
