@@ -47,5 +47,34 @@ namespace SWMGEGCSS_DA
             return l_citas;
         }
 
+        public OperationResult sp_Insertar_Cita(T_Citas citas)
+        {
+
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Cita"))
+                {
+
+                    Database.AddInParameter(command, "@cita_representante", DbType.String, citas.cita_representante);
+                    Database.AddInParameter(command, "@cita_fecha", DbType.DateTime, citas.cita_fecha);
+                    Database.AddInParameter(command, "@cita_comentario", DbType.String, citas.cita_comentario);
+                    Database.AddInParameter(command, "@cita_empresa", DbType.String, citas.cita_empresa);
+                    Database.AddInParameter(command, "@cita_correo", DbType.String, citas.cita_correo);
+                    Database.AddInParameter(command, "@cita_telefono", DbType.String, citas.cita_telefono);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e + "");
+                return new OperationResult();
+               
+            }
+            
+        }
+
     }
 }

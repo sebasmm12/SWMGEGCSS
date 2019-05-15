@@ -4,7 +4,7 @@
     Layout = null;
     var fecha = "";
     var list_citas = Model.listCitas;
-    var list_usuario = Model.UsuarioModel.list_usuario;
+    //var list_usu = Model.UsuarioModel.list_usuario;
     
 }
 
@@ -26,14 +26,13 @@
                     <tbody>
                         @foreach (var item in list_citas)
                         {
-                            foreach (var item1 in list_usuario)
-                            {
+                            
                                 <tr>
-                                    <td>@fecha</td>
+                                    <td>@item.cita_fecha</td>
                                     <td>@item.cita_empresa</td>
                                     <td>@item.cita_representante</td>
                                     <td>@item.cita_telefono</td>
-                                    <td>@item1.usu_usuario</td>
+                                    <td>@item.usu_usuario</td>
                                     <td>
 
 
@@ -53,7 +52,7 @@
 
                                     </td>
                                 </tr>
-                            }
+                            
 
                         }
                     </tbody>
