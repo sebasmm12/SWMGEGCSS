@@ -20,7 +20,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Gestionar_Citas(int page = 1)
         {
             GestionarCitasViewModel model = new GestionarCitasViewModel();
-            model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
+            //model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
             return View(model);
         }
 

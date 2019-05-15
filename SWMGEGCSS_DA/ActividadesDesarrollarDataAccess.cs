@@ -197,5 +197,30 @@ namespace SWMGEGCSS_DA
                 return new List<T_rol_usuario_Aux>();
             }
         }
+        public OperationResult sp_registrar_actividades_desarrollar_auditoria(T_auditoria_actividades_desarrollo act_desa_audi)
+        {
+            var OperationResult = new OperationResult();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_registrar_actividades_desarrollar_auditoria"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, act_desa_audi.act_desa_id);
+                    Database.AddInParameter(command, "@audi_act_comentario", DbType.String, act_desa_audi.audi_act_comentario);
+                    Database.AddInParameter(command, "@audi_act_revisor", DbType.Int32, act_desa_audi.audi_act_revisor);
+                    Database.AddInParameter(command, "@audi_act_fecha_inicio", DbType.Date, act_desa_audi.audi_act_fecha_inicio);
+                    Database.AddInParameter(command, "@audi_act_fecha_fin", DbType.Date, act_desa_audi.audi_act_fecha_fin);
+                    Database.AddInParameter(command, "@usu_asignado", DbType.Int32, act_desa_audi.usu_asignado);//@audi_act_fecha_auditoria
+                    Database.AddInParameter(command, "@audi_act_nombre", DbType.String, act_desa_audi.audi_act_nombre);
+
+                    Database.ExecuteScalar(command);
+                    OperationResult.NewId = 1;
+                }
+                return OperationResult;
+            }
+            catch (Exception)
+            {
+                return new OperationResult();
+            }
+        }
     }
 }

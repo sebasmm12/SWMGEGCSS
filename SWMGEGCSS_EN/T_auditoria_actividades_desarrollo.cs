@@ -20,5 +20,6 @@ namespace SWMGEGCSS_EN
         public string audi_act_archivo_url { get; set; }
         public string audi_act_comentario { get; set; }
         public string audi_act_archivo_nombre { get; set; }
+        public string audi_act_nombre { get; set; }
     }
 }
