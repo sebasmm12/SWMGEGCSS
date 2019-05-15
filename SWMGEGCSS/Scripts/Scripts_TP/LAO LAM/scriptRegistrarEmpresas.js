@@ -118,6 +118,8 @@
             return false;
         }
     };
+
+
     var tieneCaracEsp = function empiezaConCaracteresEspeciales(X) {
         var iChars = "!@#_$%^&*()+=-[]\\\';,./{}|\":<>?";
         var iNum = "0123456789";
@@ -407,6 +409,14 @@
             $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
+        if (telefono < 0) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser positivo');
+            $("#emp-telefono").focus();
+             alert("telefono negativo");
+            $("#emp-telefono").keyup(keyTelefono);
+            return false;
+        }
 
         addgood("emp-telefono");
         attributes("error-emp-telefono");
@@ -490,7 +500,7 @@
             //   alert("email largo");
             return false;
         }
-        if (email.match(regular)) {
+        {
             addgood("emp-email");
             attributes("error-emp-email");
             return true;
@@ -514,7 +524,7 @@
             $("#emp-direccion").keyup(keyDireccion);
             return false;
         }
-        if (direccion === " ") {
+        if (direccion.charAt(0)===' ') {
             adderror("emp-direccion");
             negativeattributes("error-emp-direccion", 'La dirección no debe empezar con un espacio en blanco');
             $("#emp-direccion").focus();
@@ -704,18 +714,18 @@
                 method: "GET",
                 async: false,
                 data: {
-                    emp_ruc: $("#emp_ruc").val()
+                    emp_ruc: $("#emp-ruc").val()
                 },
                 dataType: "json"
             }).done(function (data) {
                 if (data !== 0) {
-                    adderror("emp_ruc");
-                    negativeattributes("error-emp_ruc", 'Este Ruc ya existe, debe escribir otro');
+                    adderror("emp-ruc");
+                    negativeattributes("error-emp-ruc", 'Este Ruc ya existe, debe escribir otro');
                 }
                 else {
 
-                    attributes("error-emp_ruc");
-                    addgood("emp_ruc");
+                    attributes("error-emp-ruc");
+                    addgood("emp-ruc");
                 }
 
             });
@@ -763,7 +773,7 @@
             negativeattributes("error-emp-direccion", 'Debe ingresar una dirección');
             adderror("emp-direccion");
         }
-        else if ($valor.val() === " ") {
+        else if ($valor.val().charAt(0)===' ') {
 
             negativeattributes("error-emp-direccion", 'La dirección no debe empezar con un espacio en blanco');
             adderror("emp-direccion");
@@ -816,6 +826,13 @@
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser mayor de 6 caracteres');
             adderror("emp-telefono");
         }
+        else if ($valor.val()<0)
+        {
+            
+
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser positivo');
+            adderror("emp-telefono");
+        }
         else {
             attributes("error-emp-telefono");
             addgood("emp-telefono");
@@ -826,8 +843,7 @@
 
     var keyEmail = function () {
         var $valor = $("#emp-email");
-        var regular = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i
-
+      
         if ($valor.val() === "") {
 
             negativeattributes("error-emp-email", 'Debe ingresar un email');
@@ -844,7 +860,7 @@
             negativeattributes("error-emp-email", 'El email debe ser de menos de 20 caracteres');
             adderror("emp-email");
         }
-        else if($valor.match(regular)){
+        else{
             attributes("error-emp-email");
             addgood("emp-email");
         }
