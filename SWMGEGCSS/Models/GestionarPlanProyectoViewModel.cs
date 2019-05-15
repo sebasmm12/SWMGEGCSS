@@ -29,5 +29,7 @@ namespace SWMGEGCSS.Models
         public ActividadViewModel ActividadesModel { get; set; }
         public List<T_plan_estado> lista_plan_estado { get; set; }
         public string tipo_estado { get; set; }
+
+        public T_tipo_servicio_actividades tipo_servicio_act { get; set; }
     }
 }

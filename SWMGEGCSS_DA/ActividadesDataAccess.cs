@@ -254,7 +254,34 @@ namespace SWMGEGCSS_DA
             }
             return operation;
         }
-        
+
+        public List<T_tipo_servicio_actividades> sp_consultar_lista_tipo_servicio_actividades()
+        {
+            try
+            {
+                List<T_tipo_servicio_actividades> listTipoServicioAct = new List<T_tipo_servicio_actividades>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_consultar_lista_tipo_servicio_actividades"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_tipo_servicio_actividades tsa = new T_tipo_servicio_actividades();
+                            tsa.tipo_servicio_id = DataUtil.DbValueToDefault<int>(reader["tipo_servicio_id"]);
+                            tsa.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
+                            tsa.act_obligatorio = DataUtil.DbValueToDefault<bool>(reader["tipo_servicio_obligatorio"]);
+                            tsa.costo = DataUtil.DbValueToDefault<double>(reader["tipo_servicio_costo"]);
+                            listTipoServicioAct.Add(tsa);
+                        }
+                    }
+                }
+                return listTipoServicioAct;
+            }
+            catch
+            {
+                return new List<T_tipo_servicio_actividades>();
+            }
+        }
 
     }
 }
