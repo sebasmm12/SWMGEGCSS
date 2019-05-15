@@ -216,5 +216,12 @@ namespace SWMGEGCSS.Controllers
             model.PList_tipo_servicio_actividades = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades().FindAll(r=>r.tipo_servicio_id==tipo_servicio_id).ToPagedList(1,3);
             return PartialView(model);
         }
+        [HttpGet]
+        public ActionResult EliminarServicio(int tipo_servicio_id)
+        {
+            var model = new TipoServicioViewModel();
+            var operationResult = new TipoServicioDataAccess().sp_Cambiar_Estado_Tipo_Servicio(tipo_servicio_id);
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }
