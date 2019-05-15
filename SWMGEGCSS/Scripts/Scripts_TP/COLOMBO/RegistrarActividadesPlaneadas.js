@@ -27,11 +27,11 @@
     var envioajaxRegistrar = function () {
         //mismo nombre del parametro de actualizacion del metodo
         //creando objeto 
-
-        var $actplannombre = $("#ActPlanNombre");
-        var $actplandescripcion = $("#ActPlanDescripcion");
-        var $actplancosto = $("#ActPlanCosto");
-        var $actplantiempo = $("#ActPlanTiempo");
+        
+        var $actplannombre = $("#ActPlanNombre1");
+        var $actplandescripcion = $("#ActPlanDescripcion1");
+        var $actplancosto = $("#ActPlanCosto1");
+        var $actplantiempo = $("#ActPlanTiempo1");
 
         var vnombre = validar_nombre($actplannombre.val());
         var vdescripcion = validar_descripcion($actplandescripcion.val());
@@ -45,10 +45,10 @@
             var act_plan = {
                 plan_id: id_plan,
                 act_id: id_act,
-                act_plan_nombre: $("#ActPlanNombre").val(),
-                act_plan_descripcion: $("#ActPlanDescripcion").val(),
-                act_plan_costo: $("#ActPlanCosto").val(),
-                act_plan_tiempo: $("#ActPlanTiempo").val()
+                act_plan_nombre: $("#ActPlanNombre1").val(),
+                act_plan_descripcion: $("#ActPlanDescripcion1").val(),
+                act_plan_costo: $("#ActPlanCosto1").val(),
+                act_plan_tiempo: $("#ActPlanTiempo1").val()
             };
         $.ajax({
             url: "/Plan/_ModalRegistrarActividadesPlanificadasFinal",
@@ -60,7 +60,7 @@
             window.location.href = "/Plan/Actualizar_Plan_de_Proyectos?id=" + data;
         });
         }
-        return false;
+       return false;
     };
 
     var esNum = function esNumero(txt) {
@@ -88,131 +88,131 @@
     //validacion nombre actividad
     function validar_nombre(id) {
         if (id === "") {
-            adderror("ActPlanNombre");
-            negativeattributes("error_act_plan_nombre", 'Debe ingresar un nombre');
-            $("#ActPlanNombre").focus();
-            $("#ActPlanNombre").keyup(keyN);
+            adderror("ActPlanNombre1");
+            negativeattributes("error_act_plan_nombre1", 'Debe ingresar un nombre');
+            $("#ActPlanNombre1").focus();
+            $("#ActPlanNombre1").keyup(keyN);
             return false;
         }
         if (id === " ") {
-            adderror("ActPlanNombre");
-            negativeattributes("error_act_plan_nombre", 'El nombre no debe empezar con un espacio en blanco');
-            $("#ActPlanNombre").focus();
-            $("#ActPlanNombre").keyup(keyN);
+            adderror("ActPlanNombre1");
+            negativeattributes("error_act_plan_nombre1", 'El nombre no debe empezar con un espacio en blanco');
+            $("#ActPlanNombre1").focus();
+            $("#ActPlanNombre1").keyup(keyN);
             return false;
         }
         if (esNum(id) === true) {
-            adderror("ActPlanNombre");
-            negativeattributes("error_act_plan_nombre", 'El nombre no puede ser un número');
-            $("#ActPlanNombre").focus();
-            $("#ActPlanNombre").keyup(keyN);
+            adderror("ActPlanNombre1");
+            negativeattributes("error_act_plan_nombre1", 'El nombre no puede ser un número');
+            $("#ActPlanNombre1").focus();
+            $("#ActPlanNombre1").keyup(keyN);
             return false;
         }
         if (tieneCaracEsp(id) === true) {
-            adderror("ActPlanNombre");
-            negativeattributes("error_act_plan_nombre", 'El nombre debe empezar con una letra, no debe contener caracteres especiales o numeros');
-            $("#ActPlanNombre").focus();
-            $("#ActPlanNombre").keyup(keyN);
+            adderror("ActPlanNombre1");
+            negativeattributes("error_act_plan_nombre1", 'El nombre debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            $("#ActPlanNombre1").focus();
+            $("#ActPlanNombre1").keyup(keyN);
             return false;
         }
         return true;
     }
     var keyN = function () {
-        var $valor = $("#ActPlanNombre");
+        var $valor = $("#ActPlanNombre1");
         if ($valor.val() === "") {
-            negativeattributes("error_act_plan_nombre", 'Debe ingresar un nombre');
-            adderror("ActPlanNombre");
+            negativeattributes("error_act_plan_nombre1", 'Debe ingresar un nombre');
+            adderror("ActPlanNombre1");
         }
         else if ($valor.val() === " ") {
-            negativeattributes("error_act_plan_nombre", 'El nombre no debe empezar con un espacio en blanco');
-            adderror("ActPlanNombre");
+            negativeattributes("error_act_plan_nombre1", 'El nombre no debe empezar con un espacio en blanco');
+            adderror("ActPlanNombre1");
         }
         else if (esNum($valor.val()) === true) {
-            negativeattributes("error_act_plan_nombre", 'El nombre no puede ser un número');
-            adderror("ActPlanNombre");
+            negativeattributes("error_act_plan_nombre1", 'El nombre no puede ser un número');
+            adderror("ActPlanNombre1");
         }
         else if (tieneCaracEsp($valor.val()) === true) {
-            negativeattributes("error_act_plan_nombre", 'El nombre debe empezar con una letra, no debe contener caracteres especiales o numeros');
-            adderror("ActPlanNombre");
+            negativeattributes("error_act_plan_nombre1", 'El nombre debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            adderror("ActPlanNombre1");
         }
         else {
-            attributes("error_act_plan_nombre");
-            addgood("ActPlanNombre");
+            attributes("error_act_plan_nombre1");
+            addgood("ActPlanNombre1");
         }
     };
     //validacion descripcion actividad
     function validar_descripcion(id) {
         if (id === "") {
-            adderror("ActPlanDescripcion");
-            negativeattributes("error_act_plan_descripcion", 'Debe ingresar un nombre en la descripcion');
-            $("#ActPlanDescripcion").focus();
-            $("#ActPlanDescripcion").keyup(keyD);
+            adderror("ActPlanDescripcion1");
+            negativeattributes("error_act_plan_descripcion1", 'Debe ingresar un nombre en la descripcion');
+            $("#ActPlanDescripcion1").focus();
+            $("#ActPlanDescripcion1").keyup(keyD);
             return false;
         }
         if (id === " ") {
-            adderror("ActPlanDescripcion");
-            negativeattributes("error_act_plan_descripcion", 'La descripcion no debe empezar con un espacio en blanco');
-            $("#ActPlanDescripcion").focus();
-            $("#ActPlanDescripcion").keyup(keyD);
+            adderror("ActPlanDescripcion1");
+            negativeattributes("error_act_plan_descripcion1", 'La descripcion no debe empezar con un espacio en blanco');
+            $("#ActPlanDescripcion1").focus();
+            $("#ActPlanDescripcion1").keyup(keyD);
             return false;
         }
         if (esNum(id) === true) {
-            adderror("ActPlanDescripcion");
-            negativeattributes("error_act_plan_descripcion", 'La descripcion no puede ser un número');
-            $("#ActPlanDescripcion").focus();
-            $("#ActPlanDescripcion").keyup(keyD);
+            adderror("ActPlanDescripcion1");
+            negativeattributes("error_act_plan_descripcion1", 'La descripcion no puede ser un número');
+            $("#ActPlanDescripcion1").focus();
+            $("#ActPlanDescripcion1").keyup(keyD);
             return false;
         }
         if (tieneCaracEsp(id) === true) {
-            adderror("ActPlanDescripcion");
-            negativeattributes("error_act_plan_descripcion", 'La descripcion debe empezar con una letra, no debe contener caracteres especiales o numeros');
-            $("#ActPlanDescripcion").focus();
-            $("#ActPlanDescripcion").keyup(keyD);
+            adderror("ActPlanDescripcion1");
+            negativeattributes("error_act_plan_descripcion1", 'La descripcion debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            $("#ActPlanDescripcion1").focus();
+            $("#ActPlanDescripcion1").keyup(keyD);
             return false;
         }
         return true;
     }
     var keyD = function () {
-        var $valor = $("#ActPlanDescripcion");
+        var $valor = $("#ActPlanDescripcion1");
         if ($valor.val() === "") {
-            negativeattributes("error_act_plan_descripcion", 'Debe ingresar un nombre en la descripcion');
-            adderror("ActPlanDescripcion");
+            negativeattributes("error_act_plan_descripcion1", 'Debe ingresar un nombre en la descripcion');
+            adderror("ActPlanDescripcion1");
         }
         else if ($valor.val() === " ") {
-            negativeattributes("error_act_plan_descripcion", 'La descripcion no debe empezar con un espacio en blanco');
-            adderror("ActPlanDescripcion");
+            negativeattributes("error_act_plan_descripcion1", 'La descripcion no debe empezar con un espacio en blanco');
+            adderror("ActPlanDescripcion1");
         }
         else if (esNum($valor.val()) === true) {
-            negativeattributes("error_act_plan_descripcion", 'La descripcion no puede ser un número');
-            adderror("ActPlanDescripcion");
+            negativeattributes("error_act_plan_descripcion1", 'La descripcion no puede ser un número');
+            adderror("ActPlanDescripcion1");
         }
         else if (tieneCaracEsp($valor.val()) === true) {
-            negativeattributes("error_act_plan_descripcion", 'La descripcion debe empezar con una letra, no debe contener caracteres especiales o numeros');
-            adderror("ActPlanDescripcion");
+            negativeattributes("error_act_plan_descripcion1", 'La descripcion debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            adderror("ActPlanDescripcion1");
         }
         else {
-            attributes("error_act_plan_descripcion");
-            addgood("ActPlanDescripcion");
+            attributes("error_act_plan_descripcion1");
+            addgood("ActPlanDescripcion1");
         }
     };
     //validacion costo actividad
     function validar_costo(id) {
         var RegularExpression = /^\d+[.]*\d*$/;
-        var $valor = $("#ActPlanCosto");
+        var $valor = $("#ActPlanCosto1");
         if (id === "" || id <= 0) {
-            adderror("ActPlanCosto");
-            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
-            $("#ActPlanCosto").keyup(keyC);
+            adderror("ActPlanCosto1");
+            negativeattributes("error_act_plan_costo1", 'Debe ingresar un numero positivo');
+            $("#ActPlanCosto1").keyup(keyC);
             return false;
         }
         else {
             if ($valor.val().match(RegularExpression)) {
-                attributes("error_act_plan_costo");
-                addgood("ActPlanCosto");
+                attributes("error_act_plan_costo1");
+                addgood("ActPlanCosto1");
             } else {
-                negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
-                adderror("plan-costoActPlanCosto");
-                $("#ActPlanCosto").keyup(keyC);
+                negativeattributes("error_act_plan_costo1", 'Debe ingresar un numero positivo');
+                adderror("ActPlanCosto1");
+                $("#ActPlanCosto1").keyup(keyC);
                 return false;
             }
         }
@@ -220,17 +220,17 @@
     }
     function keyC() {
         var RegularExpression = /^\d+[.]*\d*$/;
-        var $valor = $("#ActPlanCosto");
+        var $valor = $("#ActPlanCosto1");
         if ($valor.val() === "" || $valor.val() <= 0) {
-            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
-            adderror("ActPlanCosto");
+            negativeattributes("error_act_plan_costo1", 'Debe ingresar un numero positivo');
+            adderror("ActPlanCosto1");
         } else {
             if ($valor.val().match(RegularExpression)) {
-                attributes("error_act_plan_costo");
-                addgood("ActPlanCosto");
+                attributes("error_act_plan_costo1");
+                addgood("ActPlanCosto1");
             } else {
-                negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
-                adderror("ActPlanCosto");
+                negativeattributes("error_act_plan_costo1", 'Debe ingresar un numero positivo');
+                adderror("ActPlanCosto1");
             }
         }
     }
@@ -238,37 +238,37 @@
     //Validacion tiempo
     function validar_tiempo(id) {
         if (id === "") {
-            adderror("ActPlanTiempo");
-            negativeattributes("error_act_plan_tiempo", 'Debe ingresar un número');
-            $("#ActPlanTiempo").focus();
-            $("#ActPlanTiempo").keyup(keyT);
+            adderror("ActPlanTiempo1");
+            negativeattributes("error_act_plan_tiempo1", 'Debe ingresar un número');
+            $("#ActPlanTiempo1").focus();
+            $("#ActPlanTiempo1").keyup(keyT);
             return false;
         }
         if (id <= 0) {
-            adderror("ActPlanTiempo");
-            negativeattributes("error_act_plan_tiempo", 'El número debe ser positivo y mayor que 0');
-            $("#ActPlanTiempo").focus();
-            $("#ActPlanTiempo").keyup(keyT);
+            adderror("ActPlanTiempo1");
+            negativeattributes("error_act_plan_tiempo1", 'El número debe ser positivo y mayor que 0');
+            $("#ActPlanTiempo1").focus();
+            $("#ActPlanTiempo1").keyup(keyT);
             return false;
         }
         return true;
     }
     function keyT() {
-        var $valor = $("#ActPlanTiempo");
+        var $valor = $("#ActPlanTiempo1");
         if ($valor.val() === "") {
-            negativeattributes("error_act_plan_tiempo", 'Debe ingresar un número');
-            adderror("ActPlanTiempo");
+            negativeattributes("error_act_plan_tiempo1", 'Debe ingresar un número');
+            adderror("ActPlanTiempo1");
         }
         else if ($valor.val() <= 0) {
-            negativeattributes("error_act_plan_tiempo", 'El número debe ser positivo y mayor que 0');
-            adderror("ActPlanTiempo");
+            negativeattributes("error_act_plan_tiempo1", 'El número debe ser positivo y mayor que 0');
+            adderror("ActPlanTiempo1");
         }
         else {
-            attributes("error_act_plan_tiempo");
-            addgood("ActPlanTiempo");
+            attributes("error_act_plan_tiempo1");
+            addgood("ActPlanTiempo1");
         }
     }
-    $(".btnModal").each(envioajaxModal);
+    //$(".btnModal").each(envioajaxModal);
     //TablaActiv : evaluar si existe y mostrar
     TablaActiv = function () {
         $.ajax({
