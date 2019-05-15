@@ -36,15 +36,15 @@
                             }
 
                             <td>
-                                <button type="button" class="btn btn-warning btnModal" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_ModalProyecto","Expediente")" data-id-target="#ModalProyecto">
+                                <button type="button" class="btn btn-warning btnModal" data-id-servicio="@item.tipo_servicio_id" data-url="@Url.Action("_ModalProyecto","Servicios")" data-id-target="#ModalProyecto">
                                     <i class="fa fa-edit" style="color:white !important"></i>
                                     <span style="color:white">Modificar</span>
                                 </button>
-                                <button type="button" class="btn btn-danger btnModal" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_EliminarProyecto","Expediente")" data-id-target="#ModalEliminarProyecto">
+                                <button type="button" class="btn btn-danger btnModal" data-id-servicio="@item.tipo_servicio_id" data-url="@Url.Action("_EliminarServicio","Servicios")" data-id-target="#ModalEliminarServicio">
                                     <i class="fa fa-times"></i>
                                     Eliminar
                                 </button>
-                                <button type="button" class="btn btn-info btnModal" data-id-proyecto="@item.tipo_servicio_id" data-url="@Url.Action("_ConsultarDatosServicios","Servicios")" data-id-target="#ModalConsultarDatosProyecto">
+                                <button type="button" class="btn btn-info btnModal" data-id-servicio="@item.tipo_servicio_id" data-url="@Url.Action("_ConsultarDatosServicios","Servicios")" data-id-target="#ModalConsultarDatosProyecto">
                                     <i class="fa fa-eye">
                                     </i>
                                     Consultar

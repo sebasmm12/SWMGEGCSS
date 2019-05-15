@@ -137,5 +137,35 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+        public List<T_tipo_servicio_actividades_aux> sp_Consultar_tipos_servicios_actividades()
+        {
+            try
+            {
+                List<T_tipo_servicio_actividades_aux> list_tipo_act = new List<T_tipo_servicio_actividades_aux>();
+                using (DbCommand command= Database.GetStoredProcCommand("sp_Consultar_tipos_servicios_actividades"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_tipo_servicio_actividades_aux tipo_serv_act = new T_tipo_servicio_actividades_aux();
+                            tipo_serv_act.tipo_servicio_id = DataUtil.DbValueToDefault<Int32>(reader["tipo_servicio_id"]);
+                            tipo_serv_act.tipo_servicio_nombre = DataUtil.DbValueToDefault<String>(reader["tipo_servicio_nombre"]);
+                            tipo_serv_act.act_id = DataUtil.DbValueToDefault<Int32>(reader["act_id"]);
+                            tipo_serv_act.act_nombre = DataUtil.DbValueToDefault<String>(reader["act_nombre"]);
+                            tipo_serv_act.tipo_servicio_costo = DataUtil.DbValueToDefault<double>(reader["tipo_servicio_costo"]);
+                            tipo_serv_act.tipo_servicio_obligatorio = DataUtil.DbValueToDefault<bool>(reader["tipo_servicio_obligatorio"]);
+                            list_tipo_act.Add(tipo_serv_act);
+                        }
+                    }
+                }
+                return list_tipo_act;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_tipo_servicio_actividades_aux>();
+            }
+        }
     }
 }

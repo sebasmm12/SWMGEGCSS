@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    var id_servicio = 0;
     var submitAutocompleteform = function (event, ui) {
         var $input = $(this);
         $input.val(ui.item.label);
@@ -29,6 +29,7 @@
             var $newhtml = $(data);
             var target = $("div.pagedList").attr("data-serv-target");
             $(target).replaceWith($newhtml);
+            $(".btnModal").each(cargarModal);
 
             });
         return true;
@@ -44,14 +45,33 @@
         }).done(function (data) {
             var target = $a.parents("div.pagedList").attr("data-serv-target");
             $(target).replaceWith(data);
+            $(".btnModal").each(cargarModal);
             });
         return false;
     };
 
+    var cargarModal = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            var modal = $button.attr("data-id-target");
+            id_servicio = $(this).attr("data-id-servicio");
+            $.ajax({
+                url: $(this).attr("data-url"),
+                method: "POST",
+                data: { tipo_servicio_id: $(this).attr("data-id-servicio") }
+            }).done(function (data) {
+                var $newhtml = $(data);
+                var $target = $($button.attr("data-id-target"));
+                $target.replaceWith($newhtml);
+                $(modal).modal();
+            });
 
+        });
+    };
 
 
     $("input[data-serv-autocomplete]").each(autocompletado);
     $("#Buscar").click(BuscarServicio);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
+    $(".btnModal").each(cargarModal);
 });

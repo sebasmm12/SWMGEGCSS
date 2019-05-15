@@ -474,6 +474,8 @@
     <Content Include="Views\Servicios\_ListaActividades.cshtml" />
     <Content Include="Views\Servicios\_ModalActividad.cshtml" />
     <Content Include="Views\Trabajador\_ListaTareasAsignadas.cshtml" />
+    <Content Include="Views\Servicios\_EliminarServicio.cshtml" />
+    <Content Include="Views\Servicios\_ListarActividadesEliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
