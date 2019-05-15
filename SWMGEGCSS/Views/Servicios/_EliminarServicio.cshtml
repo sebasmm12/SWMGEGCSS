@@ -30,10 +30,7 @@
                                 </label>
                             </div>
                             <div>
-                                @Html.EditorFor(model => model.tipoServicio.tipo_servicio_descripcion, new
-                                {
-                                    htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly" }
-                                })
+                                @Html.TextAreaFor(model => model.tipoServicio.tipo_servicio_descripcion, htmlAttributes : new { @class = "text-center form-control bg-white", @readonly = "readonly" })
                             </div>
                         </div>
                     </div>
