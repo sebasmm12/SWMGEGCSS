@@ -64,11 +64,55 @@
                 var $target = $($button.attr("data-id-target"));
                 $target.replaceWith($newhtml);
                 $(modal).modal();
+                $(modal).on('shown.bs.modal', function () {
+                    $(document).off('focusin.modal');
+                });
+                $(".btnEliminarServicio").each(alerta);
             });
 
         });
     };
+    var alerta = function () {
+        $(this).click(function () {
+            Swal.fire({
+                title: 'Estás seguro de elimianr el servicio?',
+                text: "Si se elimina las actividades quedarán inactivas",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar Servicio'
+            }).then((result) => {
+                if (result.value) {
+                    eliminarServicio();
+                }
+            });
+        });
 
+    };
+    var eliminarServicio = function () {
+        $.ajax({
+            url: $(".btnEliminarServicio").attr("data-url"),
+                type: "GET",
+                data: {
+                    tipo_servicio_id: id_servicio
+                }
+
+            }).done(function (data) {
+                if (data === 1) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se elimino el servicio exitosamente',
+                        confirmButtonText: 'OK'
+
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Servicios/VisualizarServicios";
+                        }
+                    });  
+                }
+            });
+    };
 
     $("input[data-serv-autocomplete]").each(autocompletado);
     $("#Buscar").click(BuscarServicio);

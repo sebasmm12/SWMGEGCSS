@@ -167,5 +167,24 @@ namespace SWMGEGCSS_DA
                 return new List<T_tipo_servicio_actividades_aux>();
             }
         }
+        public OperationResult sp_Cambiar_Estado_Tipo_Servicio(int tipo_servicio_id)
+        {
+            try
+            {
+                var operationResult = new OperationResult();
+                using (DbCommand command=Database.GetStoredProcCommand("sp_Cambiar_Estado_Tipo_Servicio"))
+                {
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, tipo_servicio_id);
+                    Database.ExecuteScalar(command);
+                    operationResult.NewId = 1;
+                }
+                return operationResult;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
     }
 }
