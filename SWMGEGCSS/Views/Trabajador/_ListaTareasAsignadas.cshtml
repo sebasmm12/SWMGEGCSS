@@ -1,58 +1,60 @@
-﻿@model SWMGEGCSS.Models.
+﻿@model SWMGEGCSS.Models.TareasAsignadasViewModel
 @{
-    var listaTotalActividades = Model.List_Actividades;
-    var listaPlanActividad = Model.List_Actividades_planeadas;
-    var listaPlanes = Model.plans;
-    int count = 0;
+    var lista_act_des = Model.PLista_Actividades_a_Desarrollar;
+    var count = 0;
+    Layout = null;
 }
 
-<div class="container-fluid" id="tablaActividades">
-    <form form id="form">
-        @if (listaTotalActividades != null)
-        {
-            <div class="row mt-2 pl-2">
-                <div class="col-sm-1 col-md-1">
-
-                </div>
-                <div class="col-8 col-sm-8 col-md-8">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="bg-success">
-                                <tr class="text-center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Actividad </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in listaTotalActividades)
-                                {
-                                    count = count + 1;
-                                    //var plan_id = listaPlanes.plan_id;
-                                    //data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan"
-                                    <tr class="text-center">
-                                        <th scope="row">@count</th>
-                                        <td>@item.act_nombre</td>
-                                        <td>
-                                            <button class="btn btn-success btnModal" type="button" data-id-act="@item.act_id" data-url="@Url.Action("_ModalRegistrarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActividad">
-                                                <i class="fa fa-plus-circle"></i>
-                                                Agregar a la Planificacion
-                                            </button>
-                                        </td>
-                                    </tr>
-                                }
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+<div id="tableExp">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre de la Actividad</th>
+                            <th scope="col">Fecha Inicio</th>
+                            <th scope="col">Fecha Fin</th>
+                            <th scope="col">Archivo Subido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in lista_act_des)
+                        {
+                            count = count + 1;
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+                                <td>@item.act_desa_nombre</td>
+                                <td>@item.act_desa_fecha_inicio.ToShortDateString()</td>
+                                <td>@item.act_desa_fecha_fin.ToShortDateString()</td>
+                                <td>@item.act_desa_archivo_nombre</td>
+                                <td>
+                                    @if (item.act_desa_archivo_nombre == null)
+                                    {
+                                        <button type="button" class="btn btn-success">
+                                            <i class="fa fa-edit" style="color:white !important"></i>
+                                            Subir Archivo
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa fa-times"></i>
+                                            Modificar Archivo
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-            <div class="row mt-4 pl-2">
-                <div class="col-12 col-sm-3 col-md-3">
-
-                </div>
-            </div>
-            @Html.Action("_ModalRegistrarActividadesPlanificadas", "Plan")
-        }
-    </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+            @Html.PagedListPager(lista_act_des, page => Url.Action("V_Tareas", "Trabajador", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
 </div>
