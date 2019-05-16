@@ -24,7 +24,6 @@ namespace SWMGEGCSS_DA
                         while(reader.Read())
                         {
                             var cita = new T_Citas_aux();
-                            cita.cita_id = DataUtil.DbValueToDefault<int>(reader["cita_id"]);
                             cita.cita_representante = DataUtil.DbValueToDefault<string>(reader["cita_representante"]);
                             cita.estado_cita_id = DataUtil.DbValueToDefault<int>(reader["estado_cita_id"]);
                             cita.cita_comentario = DataUtil.DbValueToDefault<string>(reader["cita_comentario"]);
@@ -55,7 +54,6 @@ namespace SWMGEGCSS_DA
                 var operation = new OperationResult();
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Cita"))
                 {
-
                     Database.AddInParameter(command, "@cita_representante", DbType.String, citas.cita_representante);
                     Database.AddInParameter(command, "@cita_fecha", DbType.DateTime, citas.cita_fecha);
                     Database.AddInParameter(command, "@cita_comentario", DbType.String, citas.cita_comentario);
