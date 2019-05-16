@@ -42,7 +42,7 @@ namespace SWMGEGCSS_DA
             try
             {
                 List<T_tipo_servicio> list_tipo_servicio = new List<T_tipo_servicio>();
-                using (DbCommand command= Database.GetStoredProcCommand("sp_Consultar_Tipo_Servicio"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Tipo_Servicio"))
                 {
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
@@ -72,8 +72,8 @@ namespace SWMGEGCSS_DA
                 List<T_tipo_servicio> list_tipo_servicio = new List<T_tipo_servicio>();
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Servicios_Nombre"))
                 {
-                    Database.AddInParameter(command,"@tipo_servicio_nombre",DbType.String,tipo_servicio_nombre);
-                    using (IDataReader reader= Database.ExecuteReader(command))
+                    Database.AddInParameter(command, "@tipo_servicio_nombre", DbType.String, tipo_servicio_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
                     {
                         while (reader.Read())
                         {
@@ -99,9 +99,9 @@ namespace SWMGEGCSS_DA
             try
             {
                 var operationResult = new OperationResult();
-                using (DbCommand command= Database.GetStoredProcCommand("sp_Insertar_Tipo_Servicio"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Tipo_Servicio"))
                 {
-                    Database.AddInParameter(command, "@tipo_servicio_nombre",DbType.String,tipo_servicio.tipo_servicio_nombre);
+                    Database.AddInParameter(command, "@tipo_servicio_nombre", DbType.String, tipo_servicio.tipo_servicio_nombre);
                     Database.AddInParameter(command, "@tipo_servicio_descripcion", DbType.String, tipo_servicio.tipo_servicio_descripcion);
                     Database.ExecuteScalar(command);
                     operationResult.NewId = 1;
@@ -142,7 +142,7 @@ namespace SWMGEGCSS_DA
             try
             {
                 List<T_tipo_servicio_actividades_aux> list_tipo_act = new List<T_tipo_servicio_actividades_aux>();
-                using (DbCommand command= Database.GetStoredProcCommand("sp_Consultar_tipos_servicios_actividades"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_tipos_servicios_actividades"))
                 {
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
@@ -172,7 +172,7 @@ namespace SWMGEGCSS_DA
             try
             {
                 var operationResult = new OperationResult();
-                using (DbCommand command=Database.GetStoredProcCommand("sp_Cambiar_Estado_Tipo_Servicio"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Cambiar_Estado_Tipo_Servicio"))
                 {
                     Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, tipo_servicio_id);
                     Database.ExecuteScalar(command);
@@ -186,5 +186,27 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+        public OperationResult sp_Actualizar_Datos_del_Servicio(T_tipo_servicio tipo_servicio)
+        {
+            try
+            {
+                var operationResult = new OperationResult();
+                using (DbCommand command= Database.GetStoredProcCommand("sp_Actualizar_Datos_del_Servicio"))
+                {
+                    Database.AddInParameter(command, "@tipo_servicio_nombre", DbType.String, tipo_servicio.tipo_servicio_nombre);
+                    Database.AddInParameter(command, "@tipo_servicio_descripcion", DbType.String, tipo_servicio.tipo_servicio_descripcion);
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.String, tipo_servicio.tipo_servicio_id);
+                    Database.ExecuteScalar(command);
+                    operationResult.NewId = 1;
+                }
+                return operationResult;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
+
     }
 }

@@ -1,0 +1,82 @@
+﻿@model SWMGEGCSS.Models.TipoServicioViewModel
+@{
+    Layout = null;
+}
+    <div class="modal fade" id="ModalConsultarDatosServicio" tabindex="-1" role="dialog" aria-labelledby="#ModalConsultarDatosServicio" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="text-center font-weight-bolder mt-1">
+                    Consultar Datos del Servicio
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-12 col-md-6">
+                            <div class="mt-2">
+                                <label class="font-weight-bolder">
+                                    Nombre del Servicio
+                                </label>
+                            </div>
+                            <div>
+                                @Html.EditorFor(model => model.tipoServicio.tipo_servicio_nombre, new
+                                {
+                                    htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly", @id = "servicio_nombre" }
+                                })
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-12 col-md-6">
+                            <div class="mt-2">
+                                <label class="font-weight-bolder">
+                                    Estado del Servicio
+                                </label>
+                            </div>
+                            @if (Model.tipoServicio.tipo_servicio_estado)
+                            {
+                                <div>
+                                    <input type="text" class="form-control text-center bg-white" name="tipoServicio.tipo_servicio_estado" value="Activo" readonly="readonly" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <input type="text" class="form-control text-center bg-white" name="tipoServicio.tipo_servicio_estado" value="Inactivo" readonly="readonly" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-12 col-md-12">
+                            <div class="mt-2">
+                                <label class="font-weight-bolder">
+                                    Descripcion del Servicio
+                                </label>
+                            </div>
+                            <div>
+                                @Html.TextAreaFor(model => model.tipoServicio.tipo_servicio_descripcion, htmlAttributes: new { @class = "text-center form-control bg-white", @readonly = "readonly", @id = "servicio_descripción" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-12 col-md-12">
+                            @Html.Partial("_ListarActividadesEliminar", Model)
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-12 col-md-12">
+                            @Html.Partial("_ListarExpedientesTipoServicio", Model)
+                        </div>
+                    </div>
+                    <div class="mt-4 mb-4">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4 col-12">
+                                <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left"></i>
+                                    Regresar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
