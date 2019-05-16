@@ -1,15 +1,15 @@
 ﻿@model SWMGEGCSS.Models.TipoServicioViewModel
-@{ 
+@{
     Layout = null;
 }
-    <div class="modal fade" id="ModalEliminarServicio" tabindex="-1" role="dialog" aria-labelledby="#ModalEliminarServicio" aria-hidden="true">
+    <div class="modal fade" id="ModalConsultarDatosServicio" tabindex="-1" role="dialog" aria-labelledby="#ModalConsultarDatosServicio" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="text-center font-weight-bolder mt-1">
                     Eliminar Servicio
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-sm-6 col-12 col-md-6">
                             <div class="mt-2">
                                 <label class="font-weight-bolder">
@@ -19,38 +19,37 @@
                             <div>
                                 @Html.EditorFor(model => model.tipoServicio.tipo_servicio_nombre, new
                                 {
-                                    htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly" }
+                                    htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly", @id = "servicio_nombre" }
                                 })
                             </div>
                         </div>
                         <div class="col-sm-6 col-12 col-md-6">
                             <div class="mt-2">
                                 <label class="font-weight-bolder">
-                                   Descripcion del Servicio
+                                    Descripcion del Servicio
                                 </label>
                             </div>
                             <div>
-                                @Html.TextAreaFor(model => model.tipoServicio.tipo_servicio_descripcion, htmlAttributes : new { @class = "text-center form-control bg-white", @readonly = "readonly" })
+                                @Html.TextAreaFor(model => model.tipoServicio.tipo_servicio_descripcion, htmlAttributes: new { @class = "text-center form-control bg-white", @readonly = "readonly", @id = "servicio_descripción" })
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-sm-12 col-12 col-md-12">
-                             @Html.Partial("_ListarActividadesEliminar",Model)
+                            @Html.Partial("_ListarActividadesEliminar", Model)
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-12 col-md-12">
+                            @Html.Partial("_ListarExpedientesTipoServicio", Model)
                         </div>
                     </div>
                     <div class="mt-4 mb-4">
                         <div class="row">
                             <div class="col-sm-4 col-md-4 col-12">
-                                <button type="button" class="btn btn-danger rounded-pill btnEliminarServicio" style="color:white !important" data-id-serv="@Model.tipoServicio.tipo_servicio_id" data-url="@Url.Action("EliminarServicio","Servicios")">
-                                    <i class="fa fa-times-circle" style="color:white !important"></i>
-                                    Eliminar Servicio
-                                </button>
-                            </div>
-                            <div class="col-sm-4 col-md-4 col-12">
                                 <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
                                     <i class="fa fa-arrow-left"></i>
-                                    Cancelar
+                                    Regresar
                                 </button>
                             </div>
                         </div>

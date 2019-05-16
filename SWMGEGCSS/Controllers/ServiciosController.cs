@@ -206,7 +206,7 @@ namespace SWMGEGCSS.Controllers
             var model = new TipoServicioViewModel();
             model.tipoServicio = new T_tipo_servicio();
             model.PList_tipo_servicio_actividades = new List<T_tipo_servicio_actividades_aux>().ToPagedList(1, 1);
-            return View(model);
+            return PartialView(model);
         }
         [HttpPost]
         public ActionResult _EliminarServicio(int tipo_servicio_id)
@@ -223,5 +223,24 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new TipoServicioDataAccess().sp_Cambiar_Estado_Tipo_Servicio(tipo_servicio_id);
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult _ConsultarDatosServicios()
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new T_tipo_servicio();
+            model.PList_tipo_servicio_actividades = new List<T_tipo_servicio_actividades_aux>().ToPagedList(1, 1);
+            model.PList_Expedientes_Servicio = new List<T_expediente_aux>().ToPagedList(1, 1);
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ConsultarDatosServicios(int tipo_servicio_id)
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().Find(r => r.tipo_servicio_id == tipo_servicio_id);
+            model.PList_tipo_servicio_actividades = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades().FindAll(r => r.tipo_servicio_id == tipo_servicio_id).ToPagedList(1, 3);
+            model.PList_Expedientes_Servicio = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().FindAll(r=>r.tipo_servicio_nombre==model.tipoServicio.tipo_servicio_nombre).ToPagedList(1, 3);
+            return PartialView(model);
+        }
+
     }
 }

@@ -478,6 +478,8 @@
     <Content Include="Views\Servicios\_EliminarServicio.cshtml" />
     <Content Include="Views\Servicios\_ListarActividadesEliminar.cshtml" />
     <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
+    <Content Include="Views\Servicios\_ConsultarDatosServicios.cshtml" />
+    <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
