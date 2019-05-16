@@ -1,0 +1,73 @@
+﻿@model SWMGEGCSS.Models.TareasAsignadasViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<div class="container-fluid">
+    <form id="form">
+        <div class="border-registrar">
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <label class="font-weight-bolder titulo-registrar">
+                        Agregar Nuevo Archivo
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-4 col-md-4">
+                    <label class="font-weight-bolder">
+                        Comentario acerca del archivo :
+                    </label>
+                    @Html.EditorFor(model => model.Actividad_a_Desarrollar, new
+                        {
+                            htmlAttributes = new { @id = "actividad_comentario", @class = "text-center form-control" }
+                        })
+                    <div id="error_actividad_comentario" class="errordiv"></div>
+                </div>
+                <!--<div class="col-12 col-sm-4 col-md-4">
+        <div>
+            <label class="font-weight-bolder">
+                Fecha del Plan del Proyecto
+            </label>
+        </div>
+        Html.EditorFor(model => model.plans_aux.plan_fecha, new
+        {
+           htmlAttributes = new { id = "plan-fecha", class = "text-center form-control", type = "date" }
+        })
+        <div id="error-plan-fecha" class="errordiv"></div>
+    </div>-->
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("AgregarArchivo","Trabajador")" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i>
+                        Regresar
+                    </a>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3"></div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button type="button" class="btn btn-success" id="btnSubirArchivo">
+                        <i class="fa fa-check-circle"></i>
+                        Agregar Archivo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts{
+
+}
+
