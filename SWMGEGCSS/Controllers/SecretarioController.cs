@@ -19,8 +19,9 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Citas(int page = 1)
         {
-            GestionarCitasViewModel model = new GestionarCitasViewModel();
+            var model = new GestionarCitasViewModel();
             model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
+            //model.UsuarioModel.list_usuario = new List<T_usuario>();
             return View(model);
         }
 
@@ -38,25 +39,25 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarCitasViewModel();
             model.citas = citas;
             model.citas.cita_id = (int)Session["login"];
-            //var operationResult = new OperationResult();
-            //operationResult = new SecretariaDataAccess().sp_Consultar_Lista_Citas(model.citas);
-            return View(model);
+            var operationResult = new OperationResult();
+            operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas);
+            return RedirectToAction("Gestionar_Citas", "Secretario");
         }
 
         [HttpGet]
         public ActionResult Modificar_Cita(int cita_id)
         {
             var model = new GestionarCitasViewModel();
-            model.citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == cita_id);
+            model.Citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == cita_id);
             return View(model);
         }
         
         [HttpPost]
-        public ActionResult Modificar_Cita(T_Citas cita)
+        public ActionResult Modificar_Cita(T_Citas_aux cita)
         {
             var model = new GestionarCitasViewModel();
-            model.citas = cita;
-            model.citas.cita_id = (int)Session["login"];
+            model.Citas = cita;
+            model.Citas.cita_id = (int)Session["login"];
             return View();
         }
 
@@ -71,7 +72,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _verDetalles(int id)
         {
             var model = new GestionarCitasViewModel();
-            model.citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == id);
+            model.Citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == id);
             return PartialView(model);
         }
 

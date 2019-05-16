@@ -25,7 +25,7 @@ namespace SWMGEGCSS.Models
         public T_detalle_usuario usuarioRevisor { get; set; }
         public T_detalle_usuario detalle_Usuario { get; set; }
 
-        
+        public T_auditoria_actividades_desarrollo auditoriaActividadesDesarrollar { get; set; }
         public T_rol_usuario_Aux rol_usuario_aux { get; set; }
         public T_expedientes expedienteActDesarrollar {get; set;}
     }

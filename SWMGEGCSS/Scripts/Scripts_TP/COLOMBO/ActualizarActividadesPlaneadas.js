@@ -42,10 +42,10 @@
         {
         var act_plan = {
             act_plan_id: id_plan,
-            act_plan_nombre: $("#Actividad_planeada_act_plan_nombre").val(),
-            act_plan_descripcion: $("#Actividad_planeada_act_plan_descripcion").val(),
-            act_plan_costo: $("#Actividad_planeada_act_plan_costo").val(),
-            act_plan_tiempo: $("#Actividad_planeada_act_plan_tiempo").val()
+            act_plan_nombre: $("#ActPlanNombre").val(),
+            act_plan_descripcion: $("#ActPlanDescripcion").val(),
+            act_plan_costo: $("#ActPlanCosto").val(),
+            act_plan_tiempo: $("#ActPlanTiempo").val()
         };
         $.ajax({
             url: "/Plan/_ModalActualizarActividadesPlanificadasFinal",

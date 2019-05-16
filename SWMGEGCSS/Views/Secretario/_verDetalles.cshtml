@@ -2,60 +2,92 @@
 @{
     ViewBag.Title = "_Ver_Detalles";
     Layout = null;
+    var fecha = "";
+    var hora = "";
+    if(Model.Citas != null)
+    {
+        fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
+        hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
+    }
 }
 
 <div class="modal fade" id="ModalVerDetallesCita" tabindex="-1" role="dialog" aria-labelledby="#ModalVerDetallesCita" aria-hidden="true">
-    <div class="modal-dialog modal-body" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <h2 class="text-center">Detalles de la Cita</h2>
+            <h2 class="text-center my-3">Detalles de la Cita</h2>
             <div>
-                <div class="col-12 col-sm-12 col-md-12">
+                <div class="mx-2">
                     <div class="col-12 col-sm-12 col-md-12">
+                        <label class="font-weight-bolder">
+                            Empresa
+                        </label>
+
+                        <select class="custom-select" id="estado" name="estado">
+                            <option>Esta Semana</option>
+                        </select>
+                    </div>
+                </div>
+                
+
+                <div class="row mx-2">
+                    <div class="col-12 col-sm-6 col-md-6">
                         <label class="font-weight-bolder">
                             Fecha
                         </label>
-                        @Html.EditorFor(model => model.citas.cita_fecha, new
-                       {
-                          htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
-                       })
+                        <input type="date" name="Citas.cita_fecha" value="@fecha" class="text-center form-control" />
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Hora
+                        </label>
+                        <input type="time" name="Citas.cita_fecha" value="@hora" class="text-center form-control" />
+                    </div>
+
+
+                </div>
+
+                <div class="row mx-2">
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Representante
+                        </label>
+                        @Html.EditorFor(model => model.Citas.cita_representante, new
+                        {
+                           htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
+                        })
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Telefono
+                        </label>
+                        @Html.EditorFor(model => model.Citas.cita_telefono, new
+                        {
+                           htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
+                        })
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-12">
-                    <label class="font-weight-bolder">
-                        Empresa
-                    </label>
 
-                    <select class="custom-select" id="estado" name="estado">
-                        <option>Esta Semana</option>
-                    </select>
+                <div class="row mx-2">
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Correo
+                        </label>
+                        @Html.EditorFor(model => model.Citas.cita_correo, new
+                        {
+                           htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
+                        })
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Empleado Encargado
+                        </label>
+                        @Html.EditorFor(model => model.Citas.usu_usuario, new
+                        {
+                           htmlAttributes = new { @id = "cita_usuario", @class = "text-center form-control" }
+                        })
+                    </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-12">
-                    <label class="font-weight-bolder">
-                        Representante
-                    </label>
-                    @Html.EditorFor(model => model.citas.cita_representante, new
-                    {
-                       htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
-                    })
-                </div>
-                <div class="col-12 col-sm-12 col-md-12">
-                    <label class="font-weight-bolder">
-                        Telefono
-                    </label>
-                    @Html.EditorFor(model => model.citas.cita_telefono, new
-                    {
-                       htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
-                    })
-                </div>
-                <div class="col-12 col-sm-12 col-md-12">
-                    <label class="font-weight-bolder">
-                        Correo
-                    </label>
-                    @Html.EditorFor(model => model.citas.cita_correo, new
-                    {
-                       htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
-                    })
-                </div>
+
                 <div class="col-12 col-sm-6 col-md-6 mt-3 mb-4 ">
                     <a href="@Url.Action("Gestionar_Citas","Secretario")" class="btn btn-secondary">
                         <i class="fa fa-backward">

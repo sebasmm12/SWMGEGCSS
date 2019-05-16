@@ -321,7 +321,7 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarPlanProyectoViewModel();
             return PartialView(model);
         }
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult _ModalActualizarActividadesPlanificadas(int act_plan_id)
         {
             var model = new GestionarPlanProyectoViewModel();
@@ -340,12 +340,12 @@ namespace SWMGEGCSS.Controllers
             var plan = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(X => X.plan_id == plan_id);
             var tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(X => X.tipo_servicio_nombre == plan.tipo_servicio_nombre);
 
-            model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
+            //model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
 
 
             //ViewBag.plazo1 = ActPlazo.act_plazo;
             return PartialView("_ModalActualizarActividadesPlanificadas",model);
-        }
+        }*/
         [HttpPost]
       public ActionResult _ModalActualizarActividadesPlanificadasFinal( T_actividades_planeadas act_plan)
         {
@@ -430,6 +430,7 @@ namespace SWMGEGCSS.Controllers
             return PartialView(model);
         }
         [HttpPost]/*ddd*/
+        
         public ActionResult _ModalAgregarActividadesPlanificadas(int plan_id, int act_id)
         {
             var model = new GestionarPlanProyectoViewModel();
@@ -442,7 +443,7 @@ namespace SWMGEGCSS.Controllers
             var plan = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(X => X.plan_id == plan_id);
             var tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(X => X.tipo_servicio_nombre == plan.tipo_servicio_nombre);
 
-            model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
+          //  model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
 
             return PartialView("_ModalAgregarActividadesPlanificadas", model);
         }

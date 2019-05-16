@@ -20,6 +20,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult VisualizarServicios(string searchTerm,string estado,int page=1)
         {
             var model = new TipoServicioViewModel();
+            Session["lista_actividades"] = null;
             if (searchTerm == null && estado == null)
                 model.PList_tipo_servicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().ToPagedList(page, 3);
             if (estado != null)
@@ -131,7 +132,17 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _ModalActividad(int id)
         {
             var model = new TipoServicioViewModel();
-            model.actividades = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r=>r.act_id==id);
+            List<T_actividades> list_actividades = new List<T_actividades>();
+            if (Session["lista_actividades"] == null)
+            {
+                model.actividades = new ActividadesDataAccess().sp_Consultar_Actividades().Find(r => r.act_id == id);
+            }
+            else
+            {
+                list_actividades = (List<T_actividades>)Session["lista_actividades"];
+                model.actividades = list_actividades.Find(r => r.act_id == id);
+            }
+
             return View(model);
         }
         public ActionResult EliminarActividad(int id)
@@ -148,6 +159,69 @@ namespace SWMGEGCSS.Controllers
             model.list_actividades = list_actividades;
             model.Plist_actividades = list_actividades.ToPagedList(1, 3);
             return PartialView("_ListaActividades", model);
+        }
+        [HttpPost]
+        public ActionResult ModificarDatosActividad(T_actividades actividad,int page=1)
+        {
+            int paginado = page;
+            var model = new TipoServicioViewModel();
+            List<T_actividades> list_actividades = new List<T_actividades>();
+            if (Session["lista_actividades"] != null)
+            {
+                list_actividades = (List<T_actividades>)Session["lista_actividades"];
+            }
+            var actividadE = list_actividades.Find(r => r.act_id == actividad.act_id);
+            int index = list_actividades.FindIndex(r => r.act_id == actividad.act_id);
+            list_actividades.Remove(actividadE);
+            list_actividades.Insert(index, actividad);
+            Session["lista_actividades"] = list_actividades;
+            model.list_actividades = list_actividades;
+            model.Plist_actividades = list_actividades.ToPagedList(paginado, 3);
+            return PartialView("_ListaActividades", model);
+        }
+        [HttpPost]
+        public ActionResult RegistrarServicioActividad(T_tipo_servicio servicio)
+        {
+            List<T_actividades> list_actividades = new List<T_actividades>();
+            if (Session["lista_actividades"] != null)
+            {
+                list_actividades = (List<T_actividades>)Session["lista_actividades"];
+            }
+            var operationResult1 = new TipoServicioDataAccess().sp_Insertar_Tipo_Servicio(servicio);
+            servicio = new TipoServicioDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(r=>r.tipo_servicio_nombre==servicio.tipo_servicio_nombre);
+            foreach (var item in list_actividades)
+            {
+                T_tipo_servicio_actividades t_actividades = new T_tipo_servicio_actividades();
+                t_actividades.act_id = item.act_id;
+                t_actividades.act_obligatorio = item.act_obligatorio;
+                t_actividades.costo = item.costo;
+                t_actividades.tipo_servicio_id = servicio.tipo_servicio_id;
+                var operationResult = new TipoServicioDataAccess().sp_Insertar_Tipo_Servicio_Actividades(t_actividades);
+            }
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult _EliminarServicio()
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new T_tipo_servicio();
+            model.PList_tipo_servicio_actividades = new List<T_tipo_servicio_actividades_aux>().ToPagedList(1, 1);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult _EliminarServicio(int tipo_servicio_id)
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().Find(r => r.tipo_servicio_id ==tipo_servicio_id);
+            model.PList_tipo_servicio_actividades = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades().FindAll(r=>r.tipo_servicio_id==tipo_servicio_id).ToPagedList(1,3);
+            return PartialView(model);
+        }
+        [HttpGet]
+        public ActionResult EliminarServicio(int tipo_servicio_id)
+        {
+            var model = new TipoServicioViewModel();
+            var operationResult = new TipoServicioDataAccess().sp_Cambiar_Estado_Tipo_Servicio(tipo_servicio_id);
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
     }
 }
