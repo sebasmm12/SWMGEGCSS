@@ -2,11 +2,11 @@
 @{
     Layout = null;
 }
-    <div class="modal fade" id="ModalConsultarDatosServicio" tabindex="-1" role="dialog" aria-labelledby="#ModalConsultarDatosServicio" aria-hidden="true">
+    <div class="modal fade" id="ModalActualizarDatosServicio" tabindex="-1" role="dialog" aria-labelledby="#ModalActualizarDatosServicio" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="text-center font-weight-bolder mt-1">
-                    Consultar Datos del Servicio
+                    Actualizar Datos del Servicio
                 </div>
                 <div class="modal-body">
                     <div class="row mt-2">
@@ -19,7 +19,7 @@
                             <div>
                                 @Html.EditorFor(model => model.tipoServicio.tipo_servicio_nombre, new
                                 {
-                                    htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly", @id = "servicio_nombre" }
+                                    htmlAttributes = new { @class = "text-center form-control bg-white", @id = "servicio_nombre_act" }
                                 })
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                 </label>
                             </div>
                             <div>
-                                @Html.TextAreaFor(model => model.tipoServicio.tipo_servicio_descripcion, htmlAttributes: new { @class = "text-center form-control bg-white", @readonly = "readonly", @id = "servicio_descripción" })
+                                @Html.TextAreaFor(model => model.tipoServicio.tipo_servicio_descripcion, htmlAttributes: new { @class = "text-center form-control bg-white", @id = "servicio_descripción_act" })
                             </div>
                         </div>
                     </div>
@@ -60,13 +60,14 @@
                             @Html.Partial("_ListarActividadesEliminar", Model)
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-sm-12 col-12 col-md-12">
-                            @Html.Partial("_ListarExpedientesTipoServicio", Model)
-                        </div>
-                    </div>
                     <div class="mt-4 mb-4">
                         <div class="row">
+                            <div class="col-sm-4 col-md-4 col-12">
+                                <button type="button" class="btn btn-warning rounded-pill btnActualizarServicio" style="color:white !important" data-id-serv="@Model.tipoServicio.tipo_servicio_id" data-url="@Url.Action("ActualizarServicio","Servicios")">
+                                    <i class="fa fa-user-edit" style="color:white !important"></i>
+                                    Actualizar Servicio
+                                </button>
+                            </div>
                             <div class="col-sm-4 col-md-4 col-12">
                                 <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
                                     <i class="fa fa-arrow-left"></i>
