@@ -484,6 +484,9 @@
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="1234538912\1\" />
+    <Folder Include="12345678912\2\" />
+    <Folder Include="45231546484\3\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\StyleTP\ANGELLO\" />
     <Folder Include="Content\StyleTP\COLOMBO\" />
