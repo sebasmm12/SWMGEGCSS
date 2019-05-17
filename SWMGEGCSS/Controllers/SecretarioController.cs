@@ -30,7 +30,10 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Registrar_Cita()
         {
             var model = new GestionarCitasViewModel();
-            return View();
+            model.EmpresaModel = new GestionarEmpresaViewModel();
+            model.EmpresaModel.listempresas = new List<T_empresa>();
+            model.EmpresaModel.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
+            return View(model);
         }
 
         [HttpPost]

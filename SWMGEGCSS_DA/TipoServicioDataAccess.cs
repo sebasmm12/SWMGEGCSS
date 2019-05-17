@@ -207,6 +207,25 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+        public OperationResult sp_Activar_Servicio(int tipo_servicio_id)
+        {
+            try
+            {
+                var operationResult = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Activar_Servicio"))
+                {
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, tipo_servicio_id);
+                    Database.ExecuteScalar(command);
+                    operationResult.NewId = 1;
+                }
+                return operationResult;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
 
     }
 }
