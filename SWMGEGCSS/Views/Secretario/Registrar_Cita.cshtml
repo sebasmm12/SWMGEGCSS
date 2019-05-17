@@ -1,7 +1,13 @@
 ﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
 @{
     ViewBag.Title = "Registrar_Cita";
+    var list_empresa = Model.EmpresaModel.listempresas;
+    if(Model.EmpresaModel.listempresas != null)
+    {
+        list_empresa = Model.EmpresaModel.listempresas;
+    }
 }
+
 
 <h2 class=" pl-3 ml-3 mt-3 mb-3">Registrar Cita</h2>
 
@@ -35,9 +41,12 @@
                 <label class="font-weight-bolder">
                     Empresa
                 </label>
-
-                <select class="custom-select" id="estado" name="estado">
-                    <option>Esta Semana</option>
+                <select class="custom-select" id="cita_empresa" name="cita_empresa">
+                    <option class="font-weight-bolder" >Elige una opción</option>
+                        @foreach (var item in list_empresa)
+                        {
+                            <option value="@item.emp_razon_social">@item.emp_razon_social</option>
+                        }
                 </select>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
