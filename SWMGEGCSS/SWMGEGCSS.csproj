@@ -481,6 +481,7 @@
     <Content Include="Views\Servicios\_ConsultarDatosServicios.cshtml" />
     <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
     <Content Include="Views\Servicios\_ActualizarDatosServicio.cshtml" />
+    <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
@@ -40,9 +41,12 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult V_Tareas()
+        public ActionResult V_Tareas(int page = 1)
         {
-            return View();
+            TareasAsignadasViewModel model = new TareasAsignadasViewModel();
+            int Usuario = (int)Session["login"];
+            model.PLista_Actividades_a_Desarrollar = new TrabajadorDataAccess().sp_listar_plan_por_usuario_asignado(Usuario).ToPagedList(page, 4);
+            return View(model);
         }
     }
 }

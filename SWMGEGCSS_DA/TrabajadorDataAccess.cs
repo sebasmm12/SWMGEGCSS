@@ -57,6 +57,33 @@ namespace SWMGEGCSS_DA
             }
             return count;
         }
-        
+        public List<T_actividades_desarrollar> sp_listar_plan_por_usuario_asignado(int usu_asignado)
+        {
+            List<T_actividades_desarrollar> lista_actividades_desarrollar = new List<T_actividades_desarrollar>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_plan_por_usuario_asignado"))
+                {
+                    Database.AddInParameter(command, "@usu_asignado", DbType.Int32, usu_asignado);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades_desarrollar t_Act_des = new T_actividades_desarrollar();
+                            t_Act_des.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
+                            t_Act_des.act_desa_fecha_inicio = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_inicio"]);
+                            t_Act_des.act_desa_fecha_fin = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_fin"]);
+                            t_Act_des.act_desa_archivo_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_archivo_nombre"]);
+                            lista_actividades_desarrollar.Add(t_Act_des);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_actividades_desarrollar>();
+            }
+            return lista_actividades_desarrollar;
+        }
     }
 }
