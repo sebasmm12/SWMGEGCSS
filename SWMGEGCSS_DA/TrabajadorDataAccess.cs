@@ -107,5 +107,29 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+        public T_actividades_desarrollar_aux2 sp_Consultar_Ruc_Plan_por_Act_Desa(int act_desa_id)
+        {
+            try
+            {
+                var t_act_desa = new T_actividades_desarrollar_aux2();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Ruc_Plan_por_Act_Desa"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, act_desa_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            t_act_desa.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                            t_act_desa.emp_ruc = DataUtil.DbValueToDefault<string>(reader["emp_ruc"]);
+                        }
+                    }
+                }
+                return t_act_desa;
+            }
+            catch (Exception ex)
+            {
+                return new T_actividades_desarrollar_aux2();
+            }
+        }
     }
 }

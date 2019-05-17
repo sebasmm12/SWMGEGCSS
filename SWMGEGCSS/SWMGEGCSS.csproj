@@ -315,6 +315,7 @@
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsAgregarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />

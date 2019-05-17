@@ -56,28 +56,28 @@ namespace SWMGEGCSS.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult AgregarArchivo(HttpPostedFileBase archivo, T_actividades_desarrollar t_act_desa)
+        public ActionResult AgregarArchivo(HttpPostedFileBase archivo,String act_desa_comentario)
         {
-            String ruc = "";
-            int planid = 0;
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
             if (archivo != null)
             {
-                String ruta = Server.MapPath("~/"+ ruc + "/" + planid.ToString() + "/");
-                ruta += archivo.FileName;
+                String ruta = Server.MapPath("~/"+ valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
+                String nombreArchivo = archivo.FileName;
+                ruta += nombreArchivo;
                 subirArchivo(archivo,ruta);
+                
+                var modelAct = new T_actividades_desarrollar();
+                modelAct.act_desa_id = (int)Session["ArchivoId"];
+                modelAct.act_desa_archivo_nombre = nombreArchivo;
+                modelAct.act_desa_archivourl = ruta;
+                modelAct.act_desa_comentario = act_desa_comentario;
+
+                var operationResult = new TrabajadorDataAccess().sp_Agregar_Tarea_Asignada(modelAct);
+                Session["ArchivoId"] = null;
+
+                return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             }
-            var model = new ActividadViewModel();
-            model.Actividades_Desarrollar = t_act_desa;
-
-            var modelAct = new T_actividades_desarrollar();
-            modelAct.act_desa_id = (int)Session["ArchivoId"];
-            modelAct.act_desa_archivo_nombre = t_act_desa.act_desa_archivo_nombre;
-            modelAct.act_desa_archivourl = t_act_desa.act_desa_archivourl;
-            modelAct.act_desa_comentario = t_act_desa.act_desa_comentario;
-
-            var operationResult = new TrabajadorDataAccess().sp_Agregar_Tarea_Asignada(modelAct);
-
-            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
         }
         public void subirArchivo(HttpPostedFileBase archivo,String ruta)
         {
