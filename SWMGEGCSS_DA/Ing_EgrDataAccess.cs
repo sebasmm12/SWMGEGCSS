@@ -84,7 +84,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@ing_egr_fecha", DbType.Date, Ingresos_Egresos.ing_egr_fecha);
                     Database.AddInParameter(command, "@ing_egr_ingreso", DbType.Int32, Ingresos_Egresos.ing_egr_ingrso);
                     Database.AddInParameter(command, "@ing_egr_monto", DbType.Double, Ingresos_Egresos.ing_egr_monto);
-                    Database.AddInParameter(command, "@ing_egr_id", DbType.Int32, Ingresos_Egresos.ing_egr_id);
+                   // Database.AddInParameter(command, "@ing_egr_id", DbType.Int32, Ingresos_Egresos.ing_egr_id);
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }

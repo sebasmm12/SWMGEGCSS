@@ -9,6 +9,11 @@
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
+        <div>@{ 
+
+            Html.HiddenFor(model => model.ingresos_egresos.ing_egr_id);
+            }
+        </div>
         <div class="row mt-5 pl-2">
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
@@ -52,21 +57,21 @@
             </div>
 
 
-   
-                <div class="col-12 col-sm-6 col-md-6">
-                    <div>
-                        <label class="font-weight-bolder">
-                            MONTO
-                        </label>
-                    </div>
-                    @Html.EditorFor(model => model.ingresos_egresos.ing_egr_monto, new
-                   {
-                       htmlAttributes = new { @id = "ing-egr-monto", @class = "text-center form-control" }
-                   })
-                    <div id="error-ing-egr-monto" class="errordiv"></div>
-                </div>
 
-    
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        MONTO
+                    </label>
+                </div>
+                @Html.EditorFor(model => model.ingresos_egresos.ing_egr_monto, new
+               {
+                   htmlAttributes = new { @id = "ing-egr-monto", @class = "text-center form-control" }
+               })
+                <div id="error-ing-egr-monto" class="errordiv"></div>
+            </div>
+
+
         </div>
 
 
