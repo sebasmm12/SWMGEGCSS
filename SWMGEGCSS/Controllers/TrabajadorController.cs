@@ -18,12 +18,12 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase imagen,int p)
+        public ActionResult Index(HttpPostedFileBase imagen, int p)
         {
-            if(imagen!=null && imagen.ContentLength > 0)
+            if (imagen != null && imagen.ContentLength > 0)
             {
                 byte[] imagenData = null;
-                using (var binaryImagen= new BinaryReader(imagen.InputStream))
+                using (var binaryImagen = new BinaryReader(imagen.InputStream))
                 {
                     imagenData = binaryImagen.ReadBytes(imagen.ContentLength);
                 }
@@ -47,6 +47,48 @@ namespace SWMGEGCSS.Controllers
             int Usuario = (int)Session["login"];
             model.PLista_Actividades_a_Desarrollar = new TrabajadorDataAccess().sp_listar_plan_por_usuario_asignado(Usuario).ToPagedList(page, 4);
             return View(model);
+        }
+        [HttpGet]
+        public ActionResult AgregarArchivo(int id)
+        {
+            TareasAsignadasViewModel model = new TareasAsignadasViewModel();
+            Session["ArchivoId"] = id;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AgregarArchivo(HttpPostedFileBase archivo,String act_desa_comentario)
+        {
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            if (archivo != null)
+            {
+                String ruta = Server.MapPath("~/"+ valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
+                String nombreArchivo = archivo.FileName;
+                ruta += nombreArchivo;
+                subirArchivo(archivo,ruta);
+                
+                var modelAct = new T_actividades_desarrollar();
+                modelAct.act_desa_id = (int)Session["ArchivoId"];
+                modelAct.act_desa_archivo_nombre = nombreArchivo;
+                modelAct.act_desa_archivourl = ruta;
+                modelAct.act_desa_comentario = act_desa_comentario;
+
+                var operationResult = new TrabajadorDataAccess().sp_Agregar_Tarea_Asignada(modelAct);
+                Session["ArchivoId"] = null;
+
+                return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
+        }
+        public void subirArchivo(HttpPostedFileBase archivo,String ruta)
+        {
+            try
+            {
+                archivo.SaveAs(ruta);
+            }
+            catch (Exception ez)
+            {
+
+            }
         }
     }
 }

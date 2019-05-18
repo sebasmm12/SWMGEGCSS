@@ -68,6 +68,7 @@
                     $(document).off('focusin.modal');
                 });
                 $(".btnEliminarServicio").each(alerta);
+                $(".btnActualizarServicio").each(actualizarDatosServicio);
             });
 
         });
@@ -113,9 +114,40 @@
                 }
             });
     };
+    var actualizarDatosServicio = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            var servicio = {
+                tipo_servicio_id: $button.attr("data-id-serv"),
+                tipo_servicio_nombre: document.getElementById("servicio_nombre_act").value,
+                tipo_servicio_descripcion: document.getElementById("servicio_descripción_act").value
+            };
+            $.ajax({
+                url: $button.attr("data-url"),
+                data: {
+                    servicio: servicio
+                },
+                type: "POST"
+
+            }).done(function (data) {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Se actualizo el servicio exitosamente',
+                    confirmButtonText: 'OK'
+
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/Servicios/VisualizarServicios";
+                    }
+                });  
+                
+            });
+        });
+    };
 
     $("input[data-serv-autocomplete]").each(autocompletado);
     $("#Buscar").click(BuscarServicio);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     $(".btnModal").each(cargarModal);
+    $(".btnActualizarServicio").each(actualizarDatosServicio);
 });

@@ -1,7 +1,18 @@
 ﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
 @{
     ViewBag.Title = "Registrar_Cita";
+    var list_empresa = Model.EmpresaModel.listempresas;
+    var list_usuario = Model.UsuarioModel.list_usuario;
+    if(Model.EmpresaModel.listempresas != null)
+    {
+        list_empresa = Model.EmpresaModel.listempresas;
+    }
+    if(Model.UsuarioModel.list_usuario != null)
+    {
+        list_usuario = Model.UsuarioModel.list_usuario;
+    }
 }
+
 
 <h2 class=" pl-3 ml-3 mt-3 mb-3">Registrar Cita</h2>
 
@@ -35,9 +46,12 @@
                 <label class="font-weight-bolder">
                     Empresa
                 </label>
-
-                <select class="custom-select" id="estado" name="estado">
-                    <option>Esta Semana</option>
+                <select class="custom-select" id="cita_empresa" name="cita_empresa">
+                    <option class="font-weight-bolder" >Elige una opción</option>
+                        @foreach (var item in list_empresa)
+                        {
+                            <option value="@item.emp_razon_social">@item.emp_razon_social</option>
+                        }
                 </select>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
@@ -71,8 +85,20 @@
                 })
             </div>
         </div>
-        <div class="mt-4">
-            <div class="col-12 col-sm-6 col-md-12">
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Encargado
+                </label>
+                <select class="custom-select" id="usu_citado" name="usu_citado">
+                    <option class="font-weight-bolder">Elige una opción</option>
+                    @foreach (var item in list_usuario)
+                    {
+                        <option value="@item.usu_codigo">@item.usu_usuario</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Comentario
                 </label>

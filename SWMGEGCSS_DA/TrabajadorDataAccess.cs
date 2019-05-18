@@ -70,6 +70,7 @@ namespace SWMGEGCSS_DA
                         while (reader.Read())
                         {
                             T_actividades_desarrollar t_Act_des = new T_actividades_desarrollar();
+                            t_Act_des.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
                             t_Act_des.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
                             t_Act_des.act_desa_fecha_inicio = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_inicio"]);
                             t_Act_des.act_desa_fecha_fin = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_fin"]);
@@ -84,6 +85,51 @@ namespace SWMGEGCSS_DA
                 return new List<T_actividades_desarrollar>();
             }
             return lista_actividades_desarrollar;
+        }
+        public OperationResult sp_Agregar_Tarea_Asignada(T_actividades_desarrollar t_act_desa)
+        {
+            try
+            {
+                var operationresult = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Agregar_Tarea_Asignada"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, t_act_desa.act_desa_id);
+                    Database.AddInParameter(command, "@act_desa_archivo_nombre", DbType.String, t_act_desa.act_desa_archivo_nombre);
+                    Database.AddInParameter(command, "@act_desa_archivourl", DbType.String, t_act_desa.act_desa_archivourl);
+                    Database.AddInParameter(command, "@act_desa_comentario", DbType.String, t_act_desa.act_desa_comentario);
+                    Database.ExecuteScalar(command);
+                    operationresult.NewId = 1;
+                }
+                return operationresult;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult();
+            }
+        }
+        public T_actividades_desarrollar_aux2 sp_Consultar_Ruc_Plan_por_Act_Desa(int act_desa_id)
+        {
+            try
+            {
+                var t_act_desa = new T_actividades_desarrollar_aux2();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Ruc_Plan_por_Act_Desa"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, act_desa_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            t_act_desa.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                            t_act_desa.emp_ruc = DataUtil.DbValueToDefault<string>(reader["emp_ruc"]);
+                        }
+                    }
+                }
+                return t_act_desa;
+            }
+            catch (Exception ex)
+            {
+                return new T_actividades_desarrollar_aux2();
+            }
         }
     }
 }

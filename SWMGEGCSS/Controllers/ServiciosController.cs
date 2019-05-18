@@ -257,6 +257,21 @@ namespace SWMGEGCSS.Controllers
             model.PList_tipo_servicio_actividades = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades().FindAll(r => r.tipo_servicio_id == tipo_servicio_id).ToPagedList(1, 3);
             return PartialView(model);
         }
+        [HttpPost]
+        public ActionResult ActualizarServicio(T_tipo_servicio servicio)
+        {
+
+            var operationResult = new OperationResult();
+            operationResult = new TipoServicioDataAccess().sp_Actualizar_Datos_del_Servicio(servicio);
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult ActivarServicio(int tipo_servicio_id)
+        {
+            var model = new TipoServicioViewModel();
+            var operationResult = new TipoServicioDataAccess().sp_Activar_Servicio(tipo_servicio_id);
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

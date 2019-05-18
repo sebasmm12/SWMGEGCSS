@@ -21,7 +21,9 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
-            //model.UsuarioModel.list_usuario = new List<T_usuario>();
+            model.UsuarioModel = new UsuarioViewModel();
+            model.UsuarioModel.list_usuario = new List<T_usuario>();
+            model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
             return View(model);
         }
 
@@ -30,17 +32,23 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Registrar_Cita()
         {
             var model = new GestionarCitasViewModel();
-            return View();
+            model.EmpresaModel = new GestionarEmpresaViewModel();
+            model.EmpresaModel.listempresas = new List<T_empresa>();
+            model.EmpresaModel.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
+            model.UsuarioModel = new UsuarioViewModel();
+            model.UsuarioModel.list_usuario = new List<T_usuario>();
+            model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Registrar_Cita(T_Citas citas)
+        public ActionResult Registrar_Cita(T_Citas citas, int usu_citado, string cita_empresa)
         {
             var model = new GestionarCitasViewModel();
             model.citas = citas;
             model.citas.cita_id = (int)Session["login"];
             var operationResult = new OperationResult();
-            operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas);
+            operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas,cita_empresa, usu_citado);
             return RedirectToAction("Gestionar_Citas", "Secretario");
         }
 
@@ -49,6 +57,13 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.Citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == cita_id);
+            model.EmpresaModel = new GestionarEmpresaViewModel();
+            model.EmpresaModel.listempresas = new List<T_empresa>();
+            model.EmpresaModel.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
+            model.UsuarioModel = new UsuarioViewModel();
+            model.UsuarioModel.list_usuario = new List<T_usuario>();
+            model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+            model.list_estado_cita = new SecretariaDataAccess().sp_Consultar_Lista_Estado_Cita();
             return View(model);
         }
         
@@ -59,6 +74,22 @@ namespace SWMGEGCSS.Controllers
             model.Citas = cita;
             model.Citas.cita_id = (int)Session["login"];
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult _Eliminar_Cita()
+        {
+            var model = new GestionarCitasViewModel();
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult _Eliminar_Cita(int cita_id)
+        {
+            var model = new GestionarCitasViewModel();
+            model.Citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == cita_id);
+            return PartialView(model);
+
         }
 
         [HttpGet]

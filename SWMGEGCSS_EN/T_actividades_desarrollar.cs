@@ -44,4 +44,10 @@ namespace SWMGEGCSS_EN
         public string act_desa_archivo_nombre { get; set; }
         public DateTime act_desa_fecha_revision { get; set; }
     }
+    public class T_actividades_desarrollar_aux2
+    {
+        public int act_desa_id { get; set; }
+        public string emp_ruc { get; set; }
+        public int plan_id { get; set; }
+    }
 }

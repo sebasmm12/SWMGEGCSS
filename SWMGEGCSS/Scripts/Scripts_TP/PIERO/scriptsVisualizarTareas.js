@@ -10,6 +10,5 @@
         });
         return false;
     };
-    $("input[data-exp-autocomplete]").each(autcompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
 });

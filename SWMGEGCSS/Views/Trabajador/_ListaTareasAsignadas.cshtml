@@ -32,10 +32,10 @@
                                 <td>
                                     @if (item.act_desa_archivo_nombre == null)
                                     {
-                                        <button type="button" class="btn btn-success">
-                                            <i class="fa fa-edit" style="color:white !important"></i>
-                                            Subir Archivo
-                                        </button>
+                                    <button type="button" class="btn btn-success">
+                                        <i class="fa fa-edit" style="color:white !important"></i>
+                                        @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                    </button>
                                     }
                                     else
                                     {

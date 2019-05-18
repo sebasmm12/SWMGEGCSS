@@ -1,6 +1,26 @@
 ﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
 @{
     ViewBag.Title = "Modificar_Cita";
+    var fecha = "";
+    var hora = "";
+    var empresa = "";
+    var list_empresa = Model.EmpresaModel.listempresas;
+    var list_usuario = Model.UsuarioModel.list_usuario;
+    var list_estado_cita = Model.list_estado_cita;
+    if(Model.Citas != null)
+    {
+        fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
+        hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
+        empresa = Model.Citas.cita_empresa;
+    }
+    if(Model.EmpresaModel.listempresas != null)
+    {
+        list_empresa = Model.EmpresaModel.listempresas;
+    }
+    if(Model.UsuarioModel.list_usuario != null)
+    {
+        list_usuario = Model.UsuarioModel.list_usuario;
+    }
 }
 
 <h2 class="ml-3">Modificar Cita</h2>
@@ -14,19 +34,13 @@
                 <label class="font-weight-bolder">
                     Fecha
                 </label>
-                @Html.EditorFor(model => model.Citas.cita_fecha, new
-               {
-                  htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
-               })
+                <input type="date" name="cita_fecha" value="@fecha" class="text-center form-control" />
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Hora
                 </label>
-                @Html.EditorFor(model => model.Citas.cita_fecha, new
-               {
-                  htmlAttributes = new { @id = "cita_hora", @class = "form-control", @type = "time" }
-               })
+                <input type="time" name="Citas.cita_fecha" value="@hora" class="text-center form-control" />
             </div>
 
 
@@ -36,10 +50,11 @@
                 <label class="font-weight-bolder">
                     Empresa
                 </label>
+                @Html.EditorFor(model => model.Citas.cita_empresa, new
+                {
+                   htmlAttributes = new { @id = "cita_empresa", @class = "text-center form-control" }
+                })
 
-                <select class="custom-select" id="estado" name="estado">
-                    <option>Esta Semana</option>
-                </select>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -72,8 +87,20 @@
                 })
             </div>
         </div>
-        <div class="mt-4">
-            <div class="col-12 col-sm-6 col-md-12">
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Encargado
+                </label>
+                <select class="custom-select" id="usu_citado" name="usu_citado">
+                    <option class="font-weight-bolder">Elige una opción</option>
+                    @foreach (var item in list_usuario)
+                    {
+                        <option value="@item.usu_codigo = ">@item.usu_usuario</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Comentario
                 </label>
@@ -81,6 +108,29 @@
                 {
                    htmlAttributes = new { @id = "cita_comentario", @class = "text-center form-control" }
                 })
+            </div>
+        </div>
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Comentario
+                </label>
+                @Html.EditorFor(model => model.Citas.cita_comentario, new
+                {
+                   htmlAttributes = new { @id = "cita_comentario", @class = "text-center form-control" }
+                })
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Estado de la Cita
+                </label>
+                <select class="custom-select" id="estado_cita_id" name="estado_cita_id">
+                    <option class="font-weight-bolder">Elige una opción</option>
+                    @foreach (var item in list_estado_cita)
+                    {
+                        <option value="@item.estado_cita_id">@item.estado_cita_nombre</option>
+                    }
+                </select>
             </div>
         </div>
         <div class="row mt-4">
@@ -99,7 +149,7 @@
                     Modificar Cita
                 </button>
             </div>
-            
+
         </div>
 
 
