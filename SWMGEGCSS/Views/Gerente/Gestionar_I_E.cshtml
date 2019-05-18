@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Gestionar_I_E";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-     var list_ing_egr = Model.list_ingresos_egresos;
+    var list_ing_egr = Model.list_ingresos_egresos;
 }
 
 <h2>Gestionar Ingresos y Egresos</h2>
@@ -13,7 +13,7 @@
 
     <div class="col-12 col-sm-4 col-md-4">
 
-        <!--<a href="@Url.Action("Gestionar_I_E","Gerente")" class="btn btn-primary mx-md-auto">
+        <!--<a href="@Url.Action("Gestionar_I_E", "Gerente")" class="btn btn-primary mx-md-auto">
             <i class="fa fa-search"></i>
             Buscar Proyecto
         </a>-->
@@ -26,15 +26,13 @@
     <div class="col-12 col-sm-4 col-md-4">
         <a href="@Url.Action("Registrar_Ing_Egr","Ing_Egr")" class="btn btn-success mx-md-auto">
             <i class="fa fa-plus-circle"></i>
-            Registrar Ingreso
+            
+            Registrar Ingreso o Egreso
         </a>
 
     </div>
     <div class="col-12 col-sm-4 col-md-4">
-        <a href="@Url.Action("Registrar_Ing_Egr","Ing_Egr")" class="btn btn-success mx-md-auto">
-            <i class="fa fa-plus-circle"></i>
-            Registrar Egreso
-        </a>
+     
 
     </div>
 
@@ -65,10 +63,12 @@
                     {
                         <tr>
 
-                            <td>@item.ing_egr_id</td>
+                            <td>@item.ing_egr_id
+
+                            </td>
                             <td>@item.ing_egr_nombre</td>
                             <td>@item.ing_egr_descripcion</td>
-                            <td>@item.ing_egr_fecha</td>
+                            <td>@item.ing_egr_fecha.ToShortDateString()</td>
                            
                             <td>@item.ing_egr_monto</td>
 

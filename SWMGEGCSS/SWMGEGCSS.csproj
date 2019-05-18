@@ -482,6 +482,7 @@
     <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
     <Content Include="Views\Servicios\_ActualizarDatosServicio.cshtml" />
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
+    <Content Include="Views\Secretario\_Eliminar_Cita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="1234538912\1\" />

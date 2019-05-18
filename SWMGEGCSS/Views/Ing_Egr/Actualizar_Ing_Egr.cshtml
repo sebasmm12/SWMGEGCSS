@@ -38,7 +38,7 @@
                 <div id="error-emp-direccion" class="errordiv"></div>
             </div>
         </div>
-        <div class="row mt-2 pl-2">
+        <div class="row mt-5 pl-2">
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
                     <label class="font-weight-bolder">
@@ -47,13 +47,13 @@
                 </div>
                 @Html.EditorFor(model => model.ingresos_egresos.ing_egr_fecha, new
                {
-                   htmlAttributes = new { @id = "ing-egr-fecha", @class = "text-center form-control" }
+                   htmlAttributes = new { @id = "ing-egr-fecha", @class = "text-center form-control" , @type="date"}
                })
                 <div id="error-emp-sigla" class="errordiv"></div>
             </div>
 
 
-            <div class="row mt-2 pl-2">
+        
                 <div class="col-12 col-sm-6 col-md-6">
                     <div>
                         <label class="font-weight-bolder">
@@ -67,7 +67,7 @@
                     <div id="error-emp-ruc" class="errordiv"></div>
                 </div>
 
-            </div>
+            
         </div>
 
 
