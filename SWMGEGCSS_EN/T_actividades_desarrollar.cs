@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SWMGEGCSS_EN
 {
@@ -50,4 +51,10 @@ namespace SWMGEGCSS_EN
         public string emp_ruc { get; set; }
         public int plan_id { get; set; }
     }
+    public class T_actividades_desarrollar_aux3
+    {
+        public string act_desa_comentario { get; set; }
+        public HttpPostedFileBase archivo { get; set; }
+    }
+    
 }

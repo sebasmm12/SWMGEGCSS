@@ -107,6 +107,28 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+        public OperationResult sp_Insertar_Tarea_Asignada_Auditoria(T_auditoria_actividades_desarrollo t_audi_act)
+        {
+            try
+            {
+                var operationresult = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Tarea_Asignada_Auditoria"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, t_audi_act.act_desa_id);
+                    Database.AddInParameter(command, "@audi_act_comentario", DbType.String, t_audi_act.audi_act_comentario);
+                    Database.AddInParameter(command, "@audi_act_archivo_url", DbType.String, t_audi_act.audi_act_archivo_url);
+                    Database.AddInParameter(command, "@audi_act_archivo_nombre", DbType.String, t_audi_act.audi_act_archivo_nombre);
+                    Database.AddInParameter(command, "@usu_asignado", DbType.Int32, t_audi_act.usu_asignado);
+                    Database.ExecuteScalar(command);
+                    operationresult.NewId = 1;
+                }
+                return operationresult;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult();
+            }
+        }
         public T_actividades_desarrollar_aux2 sp_Consultar_Ruc_Plan_por_Act_Desa(int act_desa_id)
         {
             try
