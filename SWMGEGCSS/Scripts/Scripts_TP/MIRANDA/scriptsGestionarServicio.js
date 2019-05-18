@@ -1,5 +1,6 @@
 ﻿$(function () {
     var id_servicio = 0;
+    var page = 1;
     var submitAutocompleteform = function (event, ui) {
         var $input = $(this);
         $input.val(ui.item.label);
@@ -46,6 +47,7 @@
             var target = $a.parents("div.pagedList").attr("data-serv-target");
             $(target).replaceWith(data);
             $(".btnModal").each(cargarModal);
+            $(".btnActivarServicio").each(activarservicio);
             });
         return false;
     };
@@ -69,6 +71,7 @@
                 });
                 $(".btnEliminarServicio").each(alerta);
                 $(".btnActualizarServicio").each(actualizarDatosServicio);
+                $(".btnActivarServicio").each(activarservicio);
             });
 
         });
@@ -144,10 +147,31 @@
             });
         });
     };
+    var activarservicio = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            $.ajax({
+                url: $button.attr("data-url"),
+                data: {
+                    tipo_servicio_id: $button.attr("data-id-servicio"),
+                    page : page
+                },
+                type: "GET"
+            }).done(function (data) {
+                var $newhtml = $(data);
+                var target = document.getElementById("tableServ");
+                $(target).replaceWith($newhtml);
+                $(".btnModal").each(cargarModal);
+                $(".btnEliminarServicio").each(alerta);
+                $(".btnActualizarServicio").each(actualizarDatosServicio);    
+            });
+        });
+    };
 
     $("input[data-serv-autocomplete]").each(autocompletado);
     $("#Buscar").click(BuscarServicio);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     $(".btnModal").each(cargarModal);
     $(".btnActualizarServicio").each(actualizarDatosServicio);
+    $(".btnActivarServicio").each(activarservicio);
 });
