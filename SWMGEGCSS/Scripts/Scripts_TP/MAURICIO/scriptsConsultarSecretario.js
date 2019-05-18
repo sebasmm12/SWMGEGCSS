@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    var cita_id;
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -16,9 +16,34 @@
             });
             return false;
         });
+
+        
+    }
+
+    var eliminaCita = function () {
+        $.ajax({
+            url: $(".btnEliminaCita").attr("data-url"),
+            type: "POST",
+            data: {
+                cita_id: cita_id;
+            }
+        }).done(function (data) {
+            if (data === 1) {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Se elimino el servicio exitosamente',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/"
+                    }
+                }
+            }
+        });
     }
 
     $(".btnModal").each(envioajaxModal);
     $(".btnModal1").each(envioajaxModal);
+    $(".btnEliminarCita").each(eliminaCita);
 
 });

@@ -33,10 +33,8 @@
                 <label class="font-weight-bolder">
                     Hora
                 </label>
-                @Html.EditorFor(model => model.citas.cita_fecha, new
-               {
-                  htmlAttributes = new { @id = "cita_hora", @class = "form-control", @type = "time" }
-               })
+               
+                <input type="time" name="cita_hora" id="cita_hora" class="text-center form-control"/>
             </div>
 
 

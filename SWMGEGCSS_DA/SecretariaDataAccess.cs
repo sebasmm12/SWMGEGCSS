@@ -24,12 +24,13 @@ namespace SWMGEGCSS_DA
                         while(reader.Read())
                         {
                             var cita = new T_Citas_aux();
-                            //cita.cita_correo = DataUtil.DbValueToDefault<String>(reader["cita_correo"]);
-                            //cita.cita_comentario = DataUtil.DbValueToDefault<String>(reader["cita_comentario"]);
+                            
+                            cita.cita_comentario = DataUtil.DbValueToDefault<string>(reader["cita_comentario"]);
 
                             cita.cita_fecha = DataUtil.DbValueToDefault<DateTime>(reader["cita_fecha"]);
                             cita.cita_empresa = DataUtil.DbValueToDefault<string>(reader["cita_empresa"]);
                             cita.cita_representante = DataUtil.DbValueToDefault<string>(reader["cita_representante"]);
+                            cita.cita_correo = DataUtil.DbValueToDefault<string>(reader["citas_correo"]);
                             cita.cita_telefono = DataUtil.DbValueToDefault<string>(reader["cita_telefono"]);
                             cita.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
                             l_citas.Add(cita);
@@ -40,6 +41,7 @@ namespace SWMGEGCSS_DA
             }
             catch(Exception e)
             {
+                Console.Write(e + " ");
                 return new List<T_Citas_aux>();
             }
             return l_citas;
@@ -74,16 +76,17 @@ namespace SWMGEGCSS_DA
             
         }
 
-        public OperationResult sp_Insertar_Cita(T_Citas citas, string cita_empresa, int usu_citado)
+        public OperationResult sp_Insertar_Cita(T_Citas citas, string cita_empresa, int usu_citado, string cita_hora)
         {
 
             try
             {
                 var operation = new OperationResult();
+                var fecha = citas.cita_fecha.ToString("yyyy-MM-dd") + " " + cita_hora +":00";
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Cita"))
                 {
                     Database.AddInParameter(command, "@cita_representante", DbType.String, citas.cita_representante);
-                    Database.AddInParameter(command, "@cita_fecha", DbType.DateTime, citas.cita_fecha);
+                    Database.AddInParameter(command, "@cita_fecha", DbType.DateTime, fecha);
                     Database.AddInParameter(command, "@usu_citado", DbType.Int32, usu_citado);
                     Database.AddInParameter(command, "@cita_comentario", DbType.String, citas.cita_comentario);
                     Database.AddInParameter(command, "@cita_empresa", DbType.String, cita_empresa);
