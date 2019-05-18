@@ -2,9 +2,14 @@
 @{
     ViewBag.Title = "Registrar_Cita";
     var list_empresa = Model.EmpresaModel.listempresas;
+    var list_usuario = Model.UsuarioModel.list_usuario;
     if(Model.EmpresaModel.listempresas != null)
     {
         list_empresa = Model.EmpresaModel.listempresas;
+    }
+    if(Model.UsuarioModel.list_usuario != null)
+    {
+        list_usuario = Model.UsuarioModel.list_usuario;
     }
 }
 
@@ -80,8 +85,20 @@
                 })
             </div>
         </div>
-        <div class="mt-4">
-            <div class="col-12 col-sm-6 col-md-12">
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Encargado
+                </label>
+                <select class="custom-select" id="usu_citado" name="usu_citado">
+                    <option class="font-weight-bolder">Elige una opción</option>
+                    @foreach (var item in list_usuario)
+                    {
+                        <option value="@item.usu_codigo">@item.usu_usuario</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Comentario
                 </label>

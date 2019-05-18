@@ -17,31 +17,38 @@
                 </div>
             </div>
             <div class="row mt-4 pl-2">
+                <div class="col-sm-2 col-md-2">
+
+                </div>
+                <div class="col-12 col-sm-8 col-md-8">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Subir Archivo :
+                        </label>
+                    </div>
+                    <input type="file" id="newFile" name="newFile" size="23" />
+                    <div id="error_actividad_archivo" class="errordiv"></div>
+                </div>
+                <div class="col-sm-2 col-md-2">
+
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
                 <div class="col-sm-1 col-md-1">
 
                 </div>
-                <div class="col-12 col-sm-4 col-md-4">
-                    <label class="font-weight-bolder">
-                        Comentario acerca del archivo :
-                    </label>
-                    @Html.EditorFor(model => model.Actividad_a_Desarrollar, new
-                        {
-                            htmlAttributes = new { @id = "actividad_comentario", @class = "text-center form-control" }
-                        })
+                <div class="col-12 col-sm-10 col-md-10">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Comentario acerca del archivo :
+                        </label>
+                    </div>
+                    @Html.TextAreaFor(model => model.Actividad_a_Desarrollar.act_desa_comentario,
+
+                htmlAttributes : new { @id = "actividad_comentario", @class = "text-center form-control bg-white" })
+
                     <div id="error_actividad_comentario" class="errordiv"></div>
                 </div>
-                <!--<div class="col-12 col-sm-4 col-md-4">
-        <div>
-            <label class="font-weight-bolder">
-                Fecha del Plan del Proyecto
-            </label>
-        </div>
-        Html.EditorFor(model => model.plans_aux.plan_fecha, new
-        {
-           htmlAttributes = new { id = "plan-fecha", class = "text-center form-control", type = "date" }
-        })
-        <div id="error-plan-fecha" class="errordiv"></div>
-    </div>-->
                 <div class="col-sm-1 col-md-1">
 
                 </div>
@@ -51,14 +58,14 @@
 
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">
-                    <a href="@Url.Action("AgregarArchivo","Trabajador")" class="btn btn-secondary">
+                    <a href="@Url.Action("V_Tareas","Trabajador")" class="btn btn-secondary">
                         <i class="fa fa-backward"></i>
                         Regresar
                     </a>
                 </div>
                 <div class="col-12 col-sm-3 col-md-3"></div>
                 <div class="col-12 col-sm-3 col-md-3">
-                    <button type="button" class="btn btn-success" id="btnSubirArchivo">
+                    <button class="btn btn-success" id="btnSubirArchivo">
                         <i class="fa fa-check-circle"></i>
                         Agregar Archivo
                     </button>
@@ -67,7 +74,8 @@
         </div>
     </form>
 </div>
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 @section Scripts{
-
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsVisualizarTareas.js"></script>
 }
 

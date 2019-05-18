@@ -1,0 +1,114 @@
+﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
+@{ 
+    ViewBag.Tiitle = "_Eliminar_Cita";
+    Layout = null;
+    var fecha = "";
+    var hora = "";
+    if(Model.Citas != null)
+    {
+        fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
+        hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
+    }
+
+}
+
+<div class="modal fade" id="ModalEliminarCita" tabidex="-1" role"dialog" aria-labelledby="#ModalEliminarCita" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <h2 class="text-center my-3">¿Desea Eliminar la Cita?</h2>
+            <div>
+                <div class="mx-2">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <label class="font-weight-bolder">
+                            Empresa
+                        </label>
+
+                        <select class="custom-select" name="Citas.cita_empresa">
+                            <option value="todos">Esta Semana</option>
+                            <option value="Minera">Minera</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="row mx-2">
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Fecha
+                        </label>
+                        <input type="date" name="Citas.cita_fecha" value="@fecha" class="text-center form-control" />
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Hora
+                        </label>
+                        <input type="time" name="Citas.cita_fecha" value="@hora" class="text-center form-control" />
+                    </div>
+                </div>
+
+                <div class="row mx-2">
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Representante
+                        </label>
+                        @Html.EditorFor(model => model.Citas.cita_representante, new
+                        {
+                           htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
+                        })
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Telefono
+                        </label>
+                        @Html.EditorFor(model => model.Citas.cita_telefono, new
+                        {
+                           htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
+                        })
+                    </div>
+                </div>
+
+                <div class="row mx-2">
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Correo
+                        </label>
+                        @Html.EditorFor(model => model.Citas.cita_correo, new
+                        {
+                           htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
+                        })
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <label class="font-weight-bolder">
+                            Empleado Encargado
+                        </label>
+                        @Html.EditorFor(model => model.Citas.usu_usuario, new
+                        {
+                           htmlAttributes = new { @id = "cita_usuario", @class = "text-center form-control" }
+                        })
+                    </div>
+                </div>
+
+                <div class="row mx-2 my-3">
+
+                    <div class="col-12 col-sm-3 col-md-3">
+                        <button type="submit" class="btn btn-success" id="boton-Eliminar">
+                            <i class="fa fa-check-circle"></i>
+                            Si
+                        </button>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-6 ">
+                        <a href="@Url.Action("Gestionar_Citas","Secretario")" class="btn btn-secondary">
+                            <i class="fa fa-backward">
+
+                            </i>
+                            No
+                        </a>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>

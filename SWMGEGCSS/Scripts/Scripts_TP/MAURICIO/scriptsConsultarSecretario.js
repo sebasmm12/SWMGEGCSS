@@ -19,5 +19,6 @@
     }
 
     $(".btnModal").each(envioajaxModal);
+    $(".btnModal1").each(envioajaxModal);
 
 });

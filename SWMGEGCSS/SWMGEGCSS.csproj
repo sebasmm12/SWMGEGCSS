@@ -315,6 +315,7 @@
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsAgregarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
@@ -481,8 +482,12 @@
     <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
     <Content Include="Views\Servicios\_ActualizarDatosServicio.cshtml" />
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
+    <Content Include="Views\Secretario\_Eliminar_Cita.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="1234538912\1\" />
+    <Folder Include="12345678912\2\" />
+    <Folder Include="45231546484\3\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\StyleTP\ANGELLO\" />
     <Folder Include="Content\StyleTP\COLOMBO\" />
