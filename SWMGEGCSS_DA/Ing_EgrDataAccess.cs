@@ -30,7 +30,7 @@ namespace SWMGEGCSS_DA
                             ing_egr.ing_egr_fecha = DataUtil.DbValueToDefault<DateTime>(reader["ing_egr_fecha"]);
                             ing_egr.ing_egr_ingrso = DataUtil.DbValueToDefault<int>(reader["ing_egr_ingreso"]);
                             ing_egr.ing_egr_monto = DataUtil.DbValueToDefault<double>(reader["ing_egr_monto"]);
-
+                            ing_egr.ing_egr_id = DataUtil.DbValueToDefault<int>(reader["ing_egr_id"]);
                             l_ing_egr.Add(ing_egr);
                         }
 
@@ -82,9 +82,9 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@ing_egr_nombre", DbType.String, Ingresos_Egresos.ing_egr_nombre);
                     Database.AddInParameter(command, "@ing_egr_descripcion", DbType.String, Ingresos_Egresos.ing_egr_descripcion);
                     Database.AddInParameter(command, "@ing_egr_fecha", DbType.Date, Ingresos_Egresos.ing_egr_fecha);
-                    Database.AddInParameter(command, "@ing_egr_ingreso", DbType.Int32, Ingresos_Egresos.ing_egr_ingrso);
+               
                     Database.AddInParameter(command, "@ing_egr_monto", DbType.Double, Ingresos_Egresos.ing_egr_monto);
-                   // Database.AddInParameter(command, "@ing_egr_id", DbType.Int32, Ingresos_Egresos.ing_egr_id);
+                 
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }

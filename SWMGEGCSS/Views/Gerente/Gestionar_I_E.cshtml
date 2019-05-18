@@ -50,7 +50,7 @@
             <table class="table">
                 <thead class="bg-success">
                     <tr>
-                        <th scope="col">Tipo</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Fecha</th>       
@@ -63,12 +63,12 @@
                     {
                         <tr>
 
-                            <td>@item.ing_egr_ingrso
+                            <td>@item.ing_egr_id
 
                             </td>
                             <td>@item.ing_egr_nombre</td>
                             <td>@item.ing_egr_descripcion</td>
-                            <td>@item.ing_egr_fecha</td>
+                            <td>@item.ing_egr_fecha.ToShortDateString()</td>
                            
                             <td>@item.ing_egr_monto</td>
 
