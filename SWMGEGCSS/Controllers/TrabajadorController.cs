@@ -98,5 +98,52 @@ namespace SWMGEGCSS.Controllers
 
             }
         }
+        public FileResult DescargarArchivo()
+        {
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            string nombre = valores.act_desa_archivo_nombre;
+            String rut = Server.MapPath("~/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/" + nombre );
+            String[] lista = nombre.Split('.');
+            string extension = lista[lista.Length - 1];
+            string tipo = "";
+             switch (extension)
+            {
+                case "txt":
+                    tipo = "application/txt";
+                    break;
+                case "pdf":
+                    tipo = "application/pdf";
+                    break;
+                case "xls":
+                    tipo = "application/vnd.ms-excel";
+                    break;
+                case "rar":
+                    tipo = "application/x-rar-compressed";
+                    break;
+                case "zip":
+                    tipo = "application/zip";
+                    break;
+                case "doc":
+                    tipo = "application/msword";
+                    break;
+                case "xlsx":
+                    tipo = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case "docx":
+                    tipo = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                    break;
+                default:
+                    tipo = "application/octet-stream";
+                    break;
+            }
+            return File(rut, tipo, valores.act_desa_archivo_nombre);
+        }
+        [HttpGet]
+        public ActionResult ModificarArchivo(int id)
+        {
+            TareasAsignadasViewModel model = new TareasAsignadasViewModel();
+            Session["ArchivoId"] = id;
+            return View(model);
+        }
     }
 }

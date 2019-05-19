@@ -487,6 +487,7 @@
     <Content Include="Views\Servicios\_ActualizarDatosServicio.cshtml" />
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
     <Content Include="Views\Secretario\_Eliminar_Cita.cshtml" />
+    <Content Include="Views\Trabajador\ModificarArchivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
