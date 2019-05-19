@@ -1,0 +1,50 @@
+﻿@model SWMGEGCSS.Models.TipoServicioViewModel
+@{
+    var list_expedientes = Model.PList_Expedientes_Servicio;
+    var count = 0;
+    Layout = null;
+}
+<div id="tableExp">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre del Proyecto</th>
+                            <th scope="col">Nombre del Plan</th>
+                            <th scope="col">Fecha de Inicio</th>
+                            <th scope="col">Fecha de Fin</th>
+                            <th scope="col">Tipo de Servicio</th>
+                            <th scope="col">Estado del Proyecto</th>
+                            <th scope="col">Costo del Proyecto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in list_expedientes)
+                        {
+                            count = count + 1;
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+                                <td>@item.exp_nombre</td>
+                                <td>@item.plan_nombre</td>
+                                <td>@item.exp_inicio.ToShortDateString()</td>
+                                <td>@item.exp_fin.ToShortDateString()</td>
+                                <td>@item.tipo_servicio_nombre</td>
+                                <td>@item.est_exp_nombre</td>
+                                <td>@item.exp_ganancia</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+            @Html.PagedListPager(list_expedientes, page => Url.Action("Gestionar_Proyectos", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>

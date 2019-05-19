@@ -1,0 +1,82 @@
+﻿@model SWMGEGCSS.Models.TareasAsignadasViewModel
+@{
+
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<div class="container-fluid">
+    <form id="form" enctype="multipart/form-data">
+        <div class="border-registrar">
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <label class="font-weight-bolder titulo-registrar">
+                        Agregar Nuevo Archivo
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-2 col-md-2">
+
+                </div>
+                <div class="col-12 col-sm-8 col-md-8">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Subir Archivo :
+                        </label>
+                    </div>
+                    @Html.TextBoxFor(model => model.Actividad_aux3.archivo, new { type = "file" , id = "newfile"})
+                    <div id="error_actividad_archivo" class="errordiv"></div>
+                </div>
+                <div class="col-sm-2 col-md-2">
+
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-10 col-md-10">
+                    <div>
+                        <label class="font-weight-bolder">
+                            Comentario :
+                        </label>
+                    </div>
+                    @Html.TextAreaFor(model => model.Actividad_aux3.act_desa_comentario,
+
+                htmlAttributes : new { @id = "actividad_comentario", @class = "text-center form-control bg-white" })
+
+                    <div id="error_actividad_comentario" class="errordiv"></div>
+                </div>
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("V_Tareas","Trabajador")" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i>
+                        Regresar
+                    </a>
+                </div>
+                <div class="col-12 col-sm-3 col-md-3"></div>
+                <div class="col-12 col-sm-3 col-md-3">
+                    <button class="btn btn-success" id="btnSubirArchivo">
+                        <i class="fa fa-check-circle"></i>
+                        Agregar Archivo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsAgregarArchivo.js"></script>
+}
+

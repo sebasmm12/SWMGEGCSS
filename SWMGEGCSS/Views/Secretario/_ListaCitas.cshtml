@@ -4,7 +4,7 @@
     Layout = null;
     var fecha = "";
     var list_citas = Model.listCitas;
-    //var list_usu = Model.UsuarioModel.list_usuario;
+    var list_usu = Model.UsuarioModel.list_usuario;
     
 }
 
@@ -45,7 +45,7 @@
                                         </button>
 
 
-                                        <button type="submit" class="btn btn-danger" id="boton-Eliminar">
+                                        <button type="button" class="btn btn-danger btnModal1" data-id-cit="@item.cita_id" data-url="@Url.Action("_Eliminar_Cita","Secretario", new { cita_id = item.cita_id })"  data-id-target="#ModalEliminarCita"  id="boton-Eliminar">
                                             <i class="fa fa-check-circle"></i>
                                             Eliminar Cita
                                         </button>
@@ -53,6 +53,8 @@
                                     </td>
                                 </tr>
                             
+
+
 
                         }
                     </tbody>

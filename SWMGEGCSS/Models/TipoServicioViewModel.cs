@@ -27,5 +27,10 @@ namespace SWMGEGCSS.Models
         public List<T_tipo_servicio_actividades_aux> List_tipo_servicio_actividades { get; set; }
 
         public IPagedList<T_tipo_servicio_actividades_aux> PList_tipo_servicio_actividades { get; set; }
+
+        //public T_expediente_aux Expediente { get; set; }
+        public List<T_expediente_aux> List_Expediente_Servicio { get; set; }
+
+        public IPagedList<T_expediente_aux> PList_Expedientes_Servicio { get; set; }
     }
 }
