@@ -143,7 +143,42 @@ namespace SWMGEGCSS.Controllers
         {
             TareasAsignadasViewModel model = new TareasAsignadasViewModel();
             Session["ArchivoId"] = id;
+
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            Session["comentarius"] = valores.act_desa_comentario;
             return View(model);
+        }
+        [HttpPost]
+        public ActionResult ModificarArchivo(T_actividades_desarrollar_aux3 Actividad_aux3)
+        {
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            if (Actividad_aux3.archivo != null)
+            {
+                String ruta = Server.MapPath("~/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
+                String nombreArchivo = Actividad_aux3.archivo.FileName;
+                ruta += nombreArchivo;
+                subirArchivo(Actividad_aux3.archivo, ruta);
+
+                var modelAct = new T_actividades_desarrollar();
+                modelAct.act_desa_id = (int)Session["ArchivoId"];
+                modelAct.act_desa_archivo_nombre = nombreArchivo;
+                modelAct.act_desa_archivourl = ruta;
+                modelAct.act_desa_comentario = Actividad_aux3.act_desa_comentario;
+
+                var modelAudi = new T_auditoria_actividades_desarrollo();
+                modelAudi.act_desa_id = (int)Session["ArchivoId"];
+                modelAudi.audi_act_archivo_nombre = nombreArchivo;
+                modelAudi.audi_act_archivo_url = ruta;
+                modelAudi.audi_act_comentario = Actividad_aux3.act_desa_comentario;
+                modelAudi.usu_asignado = (int)Session["login"];
+
+                var operationResult = new TrabajadorDataAccess().sp_Agregar_Tarea_Asignada(modelAct);
+                var operationResult1 = new TrabajadorDataAccess().sp_Insertar_Tarea_Asignada_Auditoria(modelAudi);
+                Session["ArchivoId"] = null;
+
+                return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
         }
     }
 }

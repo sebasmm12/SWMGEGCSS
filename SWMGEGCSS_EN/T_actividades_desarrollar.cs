@@ -51,6 +51,7 @@ namespace SWMGEGCSS_EN
         public string emp_ruc { get; set; }
         public int plan_id { get; set; }
         public string act_desa_archivo_nombre { get; set; }
+        public string act_desa_comentario { get; set; }
     }
     public class T_actividades_desarrollar_aux3
     {
