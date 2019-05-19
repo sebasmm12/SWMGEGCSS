@@ -156,7 +156,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1234538912\1\PROYECTOIOGGLINGO.txt" />
     <Content Include="Content\animate\animate.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -303,7 +302,9 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\AsignarActividades.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividad.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividadMod.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\ReasignarTarea.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
@@ -317,9 +318,9 @@
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
-    <Content Include="Scripts\Scripts_TP\PIERO\scriptsAgregarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsModificarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />
@@ -330,9 +331,6 @@
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
     <Content Include="webfonts\feather.woff" />
-    <Content Include="1234538912\1\Casos propuestos Metodo Grafico.docx" />
-    <Content Include="1234538912\1\Casos propuestos Simplex 2 fases.docx" />
-    <Content Include="1234538912\1\ProyectoIoObjGen-Esp.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -454,6 +452,7 @@
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
+    <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
@@ -483,15 +482,12 @@
     <Content Include="Views\Servicios\_EliminarServicio.cshtml" />
     <Content Include="Views\Servicios\_ListarActividadesEliminar.cshtml" />
     <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
-    <Content Include="Views\Servicios\_ConsultarDatosServicios.cshtml" />
-    <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
-    <Content Include="Views\Servicios\_ActualizarDatosServicio.cshtml" />
-    <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
-    <Content Include="Views\Secretario\_Eliminar_Cita.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalRegistrarAuditoriaActividadDesarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\ActualizarAsignacionActividades_Desarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalActualizarAuditoriaActividadDesarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalAsignarTrabajadorResponsableMod.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="12345678912\2\" />
-    <Folder Include="45231546484\3\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\StyleTP\ANGELLO\" />
     <Folder Include="Content\StyleTP\COLOMBO\" />

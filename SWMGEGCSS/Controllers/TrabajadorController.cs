@@ -45,7 +45,11 @@ namespace SWMGEGCSS.Controllers
         {
             TareasAsignadasViewModel model = new TareasAsignadasViewModel();
             int Usuario = (int)Session["login"];
-            model.PLista_Actividades_a_Desarrollar = new TrabajadorDataAccess().sp_listar_plan_por_usuario_asignado(Usuario).ToPagedList(page, 4);
+            model.PLista_Actividades_a_Desarrollar = new TrabajadorDataAccess().sp_listar_plan_por_usuario_asignado(Usuario).ToPagedList(page, 3);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaTareasAsignadas", model);
+            }
             return View(model);
         }
         [HttpGet]
@@ -97,6 +101,88 @@ namespace SWMGEGCSS.Controllers
             {
 
             }
+        }
+        public FileResult DescargarArchivo()
+        {
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            string nombre = valores.act_desa_archivo_nombre;
+            String rut = Server.MapPath("~/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/" + nombre );
+            String[] lista = nombre.Split('.');
+            string extension = lista[lista.Length - 1];
+            string tipo = "";
+             switch (extension)
+            {
+                case "txt":
+                    tipo = "application/txt";
+                    break;
+                case "pdf":
+                    tipo = "application/pdf";
+                    break;
+                case "xls":
+                    tipo = "application/vnd.ms-excel";
+                    break;
+                case "rar":
+                    tipo = "application/x-rar-compressed";
+                    break;
+                case "zip":
+                    tipo = "application/zip";
+                    break;
+                case "doc":
+                    tipo = "application/msword";
+                    break;
+                case "xlsx":
+                    tipo = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+                case "docx":
+                    tipo = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                    break;
+                default:
+                    tipo = "application/octet-stream";
+                    break;
+            }
+            return File(rut, tipo, valores.act_desa_archivo_nombre);
+        }
+        [HttpGet]
+        public ActionResult ModificarArchivo(int id)
+        {
+            TareasAsignadasViewModel model = new TareasAsignadasViewModel();
+            Session["ArchivoId"] = id;
+
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            Session["comentarius"] = valores.act_desa_revisor_obs;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ModificarArchivo(T_actividades_desarrollar_aux3 Actividad_aux3)
+        {
+            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            if (Actividad_aux3.archivo != null)
+            {
+                String ruta = Server.MapPath("~/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
+                String nombreArchivo = Actividad_aux3.archivo.FileName;
+                ruta += nombreArchivo;
+                subirArchivo(Actividad_aux3.archivo, ruta);
+
+                var modelAct = new T_actividades_desarrollar();
+                modelAct.act_desa_id = (int)Session["ArchivoId"];
+                modelAct.act_desa_archivo_nombre = nombreArchivo;
+                modelAct.act_desa_archivourl = ruta;
+                modelAct.act_desa_comentario = Actividad_aux3.act_desa_comentario;
+
+                var modelAudi = new T_auditoria_actividades_desarrollo();
+                modelAudi.act_desa_id = (int)Session["ArchivoId"];
+                modelAudi.audi_act_archivo_nombre = nombreArchivo;
+                modelAudi.audi_act_archivo_url = ruta;
+                modelAudi.audi_act_comentario = Actividad_aux3.act_desa_comentario;
+                modelAudi.usu_asignado = (int)Session["login"];
+
+                var operationResult = new TrabajadorDataAccess().sp_Agregar_Tarea_Asignada(modelAct);
+                var operationResult1 = new TrabajadorDataAccess().sp_Insertar_Tarea_Asignada_Auditoria(modelAudi);
+                Session["ArchivoId"] = null;
+
+                return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
         }
     }
 }

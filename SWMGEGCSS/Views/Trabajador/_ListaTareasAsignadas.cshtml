@@ -32,16 +32,16 @@
                                 <td>
                                     @if (item.act_desa_archivo_nombre == null)
                                     {
-                                    <button type="button" class="btn btn-success">
-                                        <i class="fa fa-edit" style="color:white !important"></i>
-                                        @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
-                                    </button>
+                                        <button type="button" class="btn btn-success">
+                                            <i class="fa fa-edit" style="color:white !important"></i>
+                                            @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                        </button>
                                     }
                                     else
                                     {
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="fa fa-times"></i>
-                                            Modificar Archivo
+                                        <button type="button" class="btn btn-warning">
+                                            <i class="fa fa-edit" style="color:white !important"></i>
+                                            @Html.ActionLink("Modificar Archivo", "ModificarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
                                         </button>
                                     }
                                 </td>

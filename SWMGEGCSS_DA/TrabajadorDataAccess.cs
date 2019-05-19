@@ -143,6 +143,9 @@ namespace SWMGEGCSS_DA
                         {
                             t_act_desa.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
                             t_act_desa.emp_ruc = DataUtil.DbValueToDefault<string>(reader["emp_ruc"]);
+                            t_act_desa.act_desa_archivo_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_archivo_nombre"]);
+                            t_act_desa.act_desa_comentario = DataUtil.DbValueToDefault<string>(reader["act_desa_comentario"]);
+                            t_act_desa.act_desa_revisor_obs = DataUtil.DbValueToDefault<string>(reader["act_desa_revisor_obs"]);
                         }
                     }
                 }
