@@ -1,0 +1,127 @@
+﻿@model SWMGEGCSS.Models.GestionarAsignacionActividadesDesarrollar
+@{
+    Layout = null;
+    ViewBag.Title = "ACTIVIDAD PLANIFICADA";
+}
+
+<div class="modal fade" id="AsignarTrabajadorActividadMod" tabindex="-1" role="dialog" aria-labelledby="#AsignarTrabajadorActividadMod" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="text-center font-weight-bolder">
+                Postulante para la Asignacion
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Nombre del Trabajador
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_nombre, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Especialidad
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_especialidad, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Nombre del Trabajador
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_tip_doc_numero, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Cargo del Empleado
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.rol_usuario_aux.rol_nombre, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Numero Telefonico
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_telefono, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Correo Electronico
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.detalle_Usuario.det_usu_correo, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-4">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-danger rounded-pill btnRegistrarResponsableMod" style="color:white !important">
+                                <i class="fa fa-times-circle" style="color:white !important"></i>
+                                REGISTRAR
+                            </button>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
+                                <i class="fa fa-arrow-left"></i>
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

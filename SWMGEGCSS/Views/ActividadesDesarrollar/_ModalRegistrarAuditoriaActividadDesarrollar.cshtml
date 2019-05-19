@@ -1,0 +1,159 @@
+﻿@model SWMGEGCSS.Models.GestionarAsignacionActividadesDesarrollar
+@{ 
+    Layout = null;
+    ViewBag.Title = "AUDITORIA ACTIVIDAD DESARROLLAR";
+}
+
+<div class="modal fade" id="registrarAuditoriaActDesa" tabindex="-1" role="dialog" aria-labelledby="#registrarAuditoriaActDesa" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="text-center font-weight-bolder">
+                Antes de Finalizar
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Actividad Desarrollar
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_nombre, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white", @readonly = "readonly" }
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Proyecto
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.actividadesDesarrollarAux.exp_nombre, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Trabajador Responsable
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.usuarioEncargado.det_usu_nombre, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+
+                        <div class="row">
+                            <div style="width:15px"></div>
+                            <label style="border: 1px solid #C00">
+                                <Font size="2" color="red">
+                                    Rol: &nbsp;
+                                    @Html.DisplayFor(model => model.rol_usuario_aux.rol_nombre, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "text-center",
+                                            @type = "label",
+                                            @color = "red"
+                                        }
+                                    })
+                                </Font>
+                            </label>
+                            <div style="width:30px"></div>
+                            <label style="border: 1px solid #C00">
+                                <Font size="2" color="red">
+                                    Especialidad: &nbsp;
+                                    @Html.DisplayFor(model => model.detalle_Usuario.det_usu_especialidad, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "text-center",
+                                            @type = "label",
+                                            @color = "red"
+                                        }
+                                    })
+                                </Font>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- <div class="row mt-2 pl-2">
+    <div class="col-sm-12 col-12 col-md-12">
+        <div class="mt-2">
+            <label class="font-weight-bolder">
+                Encargado Revizor
+            </label>
+        </div>
+        <div>
+            Html.EditorFor(model => model.actividadesDesarrollarAux.usu_revisor, new
+       {
+           htmlAttributes = new { class = "text-center form-control bg-white" , readonly = "readonly"}
+       })
+        </div>
+    </div>
+       </div>-->
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Fecha de Inicio de la Actividad
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_fecha_inicio, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 pl-2">
+                    <div class="col-sm-12 col-12 col-md-12">
+                        <div class="mt-2">
+                            <label class="font-weight-bolder">
+                                Fecha de Finalizacion
+                            </label>
+                        </div>
+                        <div>
+                            @Html.EditorFor(model => model.actividadesDesarrollarAux.act_desa_fecha_fin, new
+                       {
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                       })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-4">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-danger rounded-pill btnRegistrarActDesa" style="color:white !important">
+                                <i class="fa fa-times-circle" style="color:white !important"></i>
+                                CONTINUAR
+                            </button>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-6">
+                            <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
+                                <i class="fa fa-arrow-left"></i>
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+</div>
+

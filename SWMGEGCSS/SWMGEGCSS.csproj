@@ -302,7 +302,9 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\AsignarActividades.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividad.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividadMod.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\ReasignarTarea.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
@@ -478,6 +480,10 @@
     <Content Include="Views\Servicios\_EliminarServicio.cshtml" />
     <Content Include="Views\Servicios\_ListarActividadesEliminar.cshtml" />
     <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalRegistrarAuditoriaActividadDesarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\ActualizarAsignacionActividades_Desarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalActualizarAuditoriaActividadDesarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalAsignarTrabajadorResponsableMod.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

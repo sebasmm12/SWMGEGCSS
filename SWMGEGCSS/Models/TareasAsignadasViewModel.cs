@@ -8,6 +8,6 @@ namespace SWMGEGCSS.Models
 {
     public class TareasAsignadasViewModel
     {
-        public T_actividades_desarrollar
+        //public T_actividades_desarrollar
     }
 }
