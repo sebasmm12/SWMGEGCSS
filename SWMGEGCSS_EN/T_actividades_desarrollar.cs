@@ -52,11 +52,13 @@ namespace SWMGEGCSS_EN
         public int plan_id { get; set; }
         public string act_desa_archivo_nombre { get; set; }
         public string act_desa_comentario { get; set; }
+        public string act_desa_revisor_obs { get; set; }
     }
     public class T_actividades_desarrollar_aux3
     {
         public string act_desa_comentario { get; set; }
         public HttpPostedFileBase archivo { get; set; }
+        public string act_desa_revisor_obs { get; set; }
     }
     
 }

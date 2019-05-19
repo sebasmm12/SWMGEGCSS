@@ -319,6 +319,7 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsAgregarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
     <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsModificarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />

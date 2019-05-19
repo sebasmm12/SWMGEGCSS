@@ -1,46 +1,43 @@
 ﻿$(function () {
-    var valido = function () {
+    var valido1 = function () {
         var $actdesacomentario = $("#actividad_comentario");
         var $archivo = $("#newfile");
 
         var vComentario = validar_Comentario($actdesacomentario.val());
         var vArchivo = validar_Archivo($archivo.val());
 
-            if (vComentario === false || vArchivo === false) {
-                return false;
-            }
-            else {
-                        //FormData es necesario para el envio de archivo,
-                        //y de la siguiente manera capturamos todos los elementos del formulario
-                        var Actividad_aux3 = new FormData($("#form")[0]);
-                        //realizamos la petición ajax con la función de jquery
-                        $.ajax({
-                            type: "POST",
-                            url: "/Trabajador/AgregarArchivo",
-                            data: Actividad_aux3,
-                            contentType: false, //importante enviar este parametro en false
-                            processData: false, //importante enviar este parametro en false
-                            success: function (r) {
-                                alert("Archivo enviado");
-                            },
-                            error: function (r) {
-                                alert("Error del servidor");
-                            }
-                        }).done(function (data) {
-                            if (data !== 0) {
-                                Swal.fire({
-                                    type: 'success',
-                                    title: 'Se subio el archivo exitosamente',
-                                    confirmButtonText: 'OK'
-                                }).then((result) => {
-                                    if (result.value) {
-                                        window.location.href = "/Trabajador/V_Tareas";
-                                    }
-                                });
-                            }
-                        });
-             }
-             return false;
+        if (vComentario === false || vArchivo === false) {
+            return false;
+        }
+        else {
+            //FormData es necesario para el envio de archivo,
+            //y de la siguiente manera capturamos todos los elementos del formulario
+            var Actividad_aux3 = new FormData($("#form")[0]);
+            //realizamos la petición ajax con la función de jquery
+            $.ajax({
+                type: "POST",
+                url: "/Trabajador/ModificarArchivo",
+                data: Actividad_aux3,
+                contentType: false, //importante enviar este parametro en false
+                processData: false, //importante enviar este parametro en false
+                error: function (r) {
+                    alert("Error del servidor");
+                }
+            }).done(function (data) {
+                if (data !== 0) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se subio el archivo exitosamente',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Trabajador/V_Tareas";
+                        }
+                    });
+                }
+            });
+        }
+        return false;
     };
     var esNum = function esNumero(txt) {
         if (isNaN(txt)) {
@@ -140,20 +137,20 @@
             adderror("actividad_comentario");
         }
         else {
-             attributes("error_actividad_comentario");
-             addgood("actividad_comentario");
+            attributes("error_actividad_comentario");
+            addgood("actividad_comentario");
         }
     };
     //Validacion File
     function validar_Archivo(id) {
-            var archivo = id;
-            if (archivo === '') {
-                adderror("newfile");
-                negativeattributes("error_actividad_archivo", 'Debe escribir algo!');
-                $("#newfile").focus();
-                $("#newfile").change(keyF);
-                return false;
-            }
+        var archivo = id;
+        if (archivo === '') {
+            adderror("newfile");
+            negativeattributes("error_actividad_archivo", 'Debe escribir algo!');
+            $("#newfile").focus();
+            $("#newfile").change(keyF);
+            return false;
+        }
         return true;
     }
     var keyF = function () {
@@ -190,5 +187,5 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
-    $("#btnSubirArchivo").click(valido);
+    $("#btnModificarArchivo").click(valido1);
 });
