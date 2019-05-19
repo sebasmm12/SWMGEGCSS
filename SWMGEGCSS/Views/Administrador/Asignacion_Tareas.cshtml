@@ -49,7 +49,7 @@
                             <td>@estadoAsignacion</td>
                             <td>
                                 @{
-                                    if (item.usu_asignado == 0 || item.usu_creador == 0)
+                                    if (item.usu_asignado == 0 && item.usu_revisor == 0)
                                     {
                                 <button class="btn btn-success">
                                     <i class="fa fa-plus-circle"></i>
@@ -58,10 +58,10 @@
                                     }
                                     else
                                     {
-                                        <button class="btn btn-warning rounded-pill">
-                                            <i class="fa fa-edit" style="color:white !important"></i>
-                                            Reasignar Actividad
-                                        </button>
+                                <button class="btn btn-warning rounded-pill">
+                                    <i class="fa fa-edit" style="color:white !important"></i>
+                                    @Html.ActionLink("RE-Asignar Tarea", "ActualizarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                </button>
                                     }
                                 }
                             </td>

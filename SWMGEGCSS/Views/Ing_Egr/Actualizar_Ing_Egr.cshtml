@@ -4,7 +4,13 @@
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
 
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <h2>Actualizar_Ing_Egr</h2>
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptActualizarIng_Egr.js"></script>
+}
+
 
 <div class="container-fluid">
     @using (Html.BeginForm())
@@ -23,7 +29,7 @@
                 {
                    htmlAttributes = new { @id = "ing-egr-nombre", @class = "text-center form-control", @type = "text-center form-control" }
                 })
-                <div id="error-emp-razon-social" class="errordiv"></div>
+                <div id="error-ing-egr-nombre" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
@@ -35,10 +41,10 @@
                 {
                    htmlAttributes = new { @id = "ing-egr-descripcion", @class = "text-center form-control" }
                 })
-                <div id="error-emp-direccion" class="errordiv"></div>
+                <div id="error-ing-egr-descripcion" class="errordiv"></div>
             </div>
         </div>
-        <div class="row mt-2 pl-2">
+        <div class="row mt-5 pl-2">
             <div class="col-12 col-sm-6 col-md-6">
                 <div>
                     <label class="font-weight-bolder">
@@ -46,28 +52,28 @@
                     </label>
                 </div>
                 @Html.EditorFor(model => model.ingresos_egresos.ing_egr_fecha, new
-               {
-                   htmlAttributes = new { @id = "ing-egr-fecha", @class = "text-center form-control" }
-               })
-                <div id="error-emp-sigla" class="errordiv"></div>
+           {
+               htmlAttributes = new { @id = "ing-egr-fecha", @class = "text-center form-control", @type = "date", @Value = Model.ingresos_egresos.ing_egr_fecha.ToString("yyyy-MM-dd") }
+           })
+                <div id="error-ing-egr-fecha" class="errordiv"></div>
             </div>
 
 
-            <div class="row mt-2 pl-2">
-                <div class="col-12 col-sm-6 col-md-6">
-                    <div>
-                        <label class="font-weight-bolder">
-                            MONTO
-                        </label>
-                    </div>
-                    @Html.EditorFor(model => model.ingresos_egresos.ing_egr_monto, new
-                   {
-                       htmlAttributes = new { @id = "ing-egr-monto", @class = "text-center form-control" }
-                   })
-                    <div id="error-emp-ruc" class="errordiv"></div>
+
+            <div class="col-12 col-sm-6 col-md-6">
+                <div>
+                    <label class="font-weight-bolder">
+                        MONTO
+                    </label>
                 </div>
-
+                @Html.EditorFor(model => model.ingresos_egresos.ing_egr_monto, new
+               {
+                   htmlAttributes = new { @id = "ing-egr-monto", @class = "text-center form-control", @type = "number"  }
+               })
+                <div id="error-ing-egr-monto" class="errordiv"></div>
             </div>
+
+
         </div>
 
 

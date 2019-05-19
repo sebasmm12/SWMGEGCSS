@@ -1,10 +1,11 @@
 ﻿@model SWMGEGCSS.Models.TareasAsignadasViewModel
 @{
+
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
-<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+
 <div class="container-fluid">
-    <form id="form">
+    <form id="form" enctype="multipart/form-data">
         <div class="border-registrar">
             <div class="row mt-4 pl-2">
                 <div class="col-sm-1 col-md-1">
@@ -26,7 +27,7 @@
                             Subir Archivo :
                         </label>
                     </div>
-                    <input type="file" id="newFile" name="newFile" size="23" />
+                    @Html.TextBoxFor(model => model.Actividad_aux3.archivo, new { type = "file" , id = "newfile"})
                     <div id="error_actividad_archivo" class="errordiv"></div>
                 </div>
                 <div class="col-sm-2 col-md-2">
@@ -40,10 +41,10 @@
                 <div class="col-12 col-sm-10 col-md-10">
                     <div>
                         <label class="font-weight-bolder">
-                            Comentario acerca del archivo :
+                            Comentario :
                         </label>
                     </div>
-                    @Html.TextAreaFor(model => model.Actividad_a_Desarrollar.act_desa_comentario,
+                    @Html.TextAreaFor(model => model.Actividad_aux3.act_desa_comentario,
 
                 htmlAttributes : new { @id = "actividad_comentario", @class = "text-center form-control bg-white" })
 
@@ -76,6 +77,6 @@
 </div>
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 @section Scripts{
-    <script src="~/Scripts/Scripts_TP/PIERO/scriptsVisualizarTareas.js"></script>
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsAgregarArchivo.js"></script>
 }
 

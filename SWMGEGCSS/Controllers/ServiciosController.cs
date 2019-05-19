@@ -57,6 +57,7 @@ namespace SWMGEGCSS.Controllers
                 model.tipo_servicio_estado = "Todos";
                 Session["est_tipo_serv_nombre"] = model.tipo_servicio_estado;
             }
+            Session["page_servicio"] = page;
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaServicios", model);
@@ -266,12 +267,59 @@ namespace SWMGEGCSS.Controllers
             return Json(1, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public ActionResult ActivarServicio(int tipo_servicio_id)
+        public ActionResult ActivarServicio(int tipo_servicio_id,int page=1)
         {
             var model = new TipoServicioViewModel();
+            page = (int)Session["page_servicio"];
             var operationResult = new TipoServicioDataAccess().sp_Activar_Servicio(tipo_servicio_id);
-            return Json(1, JsonRequestBehavior.AllowGet);
+            model.PList_tipo_servicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().ToPagedList(page, 3);
+            return PartialView("_ListaServicios",model);
         }
-
+        [HttpGet]
+        public ActionResult EvaluarNombreServicio(string tipo_servicio_nombre)
+        {
+            int cont = 0;
+            var servicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().Find(r => r.tipo_servicio_nombre == tipo_servicio_nombre);
+            if (servicio!=null)
+            {
+                cont++;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult EvaluarActividades(int tipo_actividad)
+        {
+            int cont = 0;
+            List<T_actividades> list_actividades = new List<T_actividades>();
+            if (Session["lista_actividades"] != null)
+            {
+                list_actividades = (List<T_actividades>)Session["lista_actividades"];
+            }
+            var actividad = list_actividades.Find(r => r.act_id == tipo_actividad);
+            if (actividad != null)
+            {
+                cont++;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult ContarActividades()
+        {
+            int cont = 0;
+            List<T_actividades> list_actividades=null;
+            if (Session["lista_actividades"] != null)
+            {
+                list_actividades = (List<T_actividades>)Session["lista_actividades"];
+            }
+            if (list_actividades != null)
+            {
+                cont++;
+            }
+            if(list_actividades.Count == 0)
+            {
+                cont--;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
     }
 }

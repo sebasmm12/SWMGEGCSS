@@ -2,96 +2,123 @@
 @{
     ViewBag.Title = "Registrar_Ing_Egr";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    
+}
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<h2 class="ml-3" y>Registrar Ingreso-Egreso</h2>
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRegistrarIng_Egr.js"></script>
 }
 
-<h2>Registrar_Ing_Egr</h2>
+
 
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
-        <div class="row mt-5 pl-2">
-            <div class="col-12 col-sm-6 col-md-6">
-                <div>
-                    <label class="font-weight-bolder">
-                        NOMBRE
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.ingresos_egresos.ing_egr_nombre, new
-                {
-                   htmlAttributes = new { @id = "ing-egr-nombre", @class = "text-center form-control", @type = "text-center form-control" }
-                })
-                <div id="error-ing-egr-nombre" class="errordiv"></div>
+        <div>
+            @{
+
+                Html.HiddenFor(model => model.ingresos_egresos.ing_egr_id);
+        }
+    </div>
+    <div class="row mt-5 pl-2">
+        <div class="col-12 col-sm-6 col-md-6">
+            <div>
+                <label class="font-weight-bolder">
+                    NOMBRE
+                </label>
             </div>
-            <div class="col-12 col-sm-6 col-md-6">
-                <div>
-                    <label class="font-weight-bolder">
-                        DESCRIPCIÓN
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.ingresos_egresos.ing_egr_descripcion, new
-                {
-                   htmlAttributes = new { @id = "ing-egr-descripcion", @class = "text-center form-control" }
-                })
-                <div id="error-ing-egr-descripcion" class="errordiv"></div>
-            </div>
+            @Html.EditorFor(model => model.ingresos_egresos.ing_egr_nombre, new
+            {
+               htmlAttributes = new { @id = "ing-egr-nombre", @class = "text-center form-control", @type = "text-center form-control" }
+            })
+            <div id="error-ing-egr-nombre" class="errordiv"></div>
         </div>
-        <div class="row mt-5 pl-2">
+        <div class="col-12 col-sm-6 col-md-6">
+            <div>
+                <label class="font-weight-bolder">
+                    DESCRIPCIÓN
+                </label>
+            </div>
+            @Html.EditorFor(model => model.ingresos_egresos.ing_egr_descripcion, new
+            {
+               htmlAttributes = new { @id = "ing-egr-descripcion", @class = "text-center form-control" }
+            })
+            <div id="error-ing-egr-descripcion" class="errordiv"></div>
+        </div>
+    </div>
+    <div class="row mt-5 pl-2">
 
 
-            <div class="col-12 col-sm-6 col-md-6">
-                <div>
-                    <label class="font-weight-bolder">
-                        FECHA
-                    </label>
-                </div>
-                @Html.EditorFor(model => model.ingresos_egresos.ing_egr_fecha, new
-               {
-                   htmlAttributes = new { @id = "ing-egr-fecha", @class = "text-center form-control" }
-               })
-                <div id="error-ing-egr-fecha" class="errordiv"></div>
+        <div class="col-12 col-sm-5 col-md-5">
+            <div>
+                <label class="font-weight-bolder">
+                    FECHA
+                </label>
+            </div>
+            @Html.EditorFor(model => model.ingresos_egresos.ing_egr_fecha, new
+           {
+               htmlAttributes = new { @id = "ing-egr-fecha", @class = "text-center form-control", @type = "date" }
+           })
+            <div id="error-ing-egr-fecha" class="errordiv"></div>
+        </div>
+
+
+
+        <div class="col-12 col-sm-5 col-md-5">
+            <div>
+                <label class="font-weight-bolder">
+                    MONTO
+                </label>
+            </div>
+            @Html.EditorFor(model => model.ingresos_egresos.ing_egr_monto, new
+           {
+               htmlAttributes = new { @id = "ing-egr-monto", @class = "text-center form-control", @type="number" }
+           })
+            <div id="error-ing-egr-monto" class="errordiv"></div>
+        </div>
+
+
+        <div class="col-12 col-sm-2 col-md-2">
+            <div>
+                <label class="font-weight-bolder">
+                    TIPO
+                </label>
             </div>
 
-
-   
-                <div class="col-12 col-sm-6 col-md-6">
-                    <div>
-                        <label class="font-weight-bolder">
-                            MONTO
-                        </label>
-                    </div>
-                    @Html.EditorFor(model => model.ingresos_egresos.ing_egr_monto, new
-                   {
-                       htmlAttributes = new { @id = "ing-egr-monto", @class = "text-center form-control" }
-                   })
-                    <div id="error-ing-egr-monto" class="errordiv"></div>
-                </div>
-
+            Ingreso @Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,1)
+            Egreso @Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,0)
     
+
+            <div id="error-ing-egr-ingreso" class="errordiv"></div>
         </div>
 
 
-        <div id="errordiv"></div>
-        <div class="row mt-4 pl-2">
-            <div class="col-12 col-sm-3 col-md-3">
-
-                <button type="submit" class="btn btn-success" id="boton-Registrar">
-                    <i class="fa fa-check-circle"></i>
-                    Registrar Ingreso-Egreso
-                </button>
+    </div>
 
 
-            </div>
-            <div class="col-12 col-sm-3 col-md-3">
-                <a href="@Url.Action("Gestionar_I_E","Gerente")" class="btn btn-secondary">
-                    <i class="fa fa-backward">
+    <div id="errordiv"></div>
+    <div class="row mt-4 pl-2">
+        <div class="col-12 col-sm-3 col-md-3">
 
-                    </i>
-                    Regresar
-                </a>
-            </div>
+            <button type="submit" class="btn btn-success" id="boton-Registrar">
+                <i class="fa fa-check-circle"></i>
+                Registrar Ingreso-Egreso
+            </button>
+
+
         </div>
+        <div class="col-12 col-sm-3 col-md-3">
+            <a href="@Url.Action("Gestionar_I_E","Gerente")" class="btn btn-secondary">
+                <i class="fa fa-backward">
 
-    }
+                </i>
+                Regresar
+            </a>
+        </div>
+    </div>
+
+}
 
 
 </div>
