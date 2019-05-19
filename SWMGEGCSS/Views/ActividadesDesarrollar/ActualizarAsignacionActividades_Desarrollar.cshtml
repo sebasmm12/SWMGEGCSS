@@ -11,7 +11,7 @@
     //var usuarioRevisor = Model.usuarioRevisor;
     var detalleUsuTrabajador = Session["detUsuTrabajador"];
 }
-<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+
 <div class="container-fluid">
     <form id="form">
         <div>
@@ -23,7 +23,7 @@
             <div style="width:60px"></div>
             <div class="col-12 col-sm-5 col-md-5">
                 <h2 class="font-weight-bolder text-center">
-                    Registrar Asignacion
+                    Reasignacion de Actividad
                 </h2>
             </div>
         </div>
@@ -100,8 +100,7 @@
                             @class = "text-center form-control",
                             @readonly = "readonly",
                             @type = "Date",
-                            @Value = fechaProyectoInicio,
-                            @id = "expFechaInicio"
+                            @Value = fechaProyectoInicio
                         }
                     })
             </div>
@@ -120,8 +119,7 @@
                             @class = "text-center form-control",
                             @readonly = "readonly",
                             @type = "Date",
-                            @Value = fechaProyectoFin,
-                            @id = "expFechaFin"
+                            @Value = fechaProyectoFin
                         }
                     })
             </div>
@@ -139,14 +137,14 @@
                {
                    htmlAttributes = new
                    {
-                       @id = "actDesaFechaInicio",
+                       @id = "actDesaFechaInicio2",
                        @class = "text-center form-control",
                        @onkeydown = "return false",
                        @type = "date",
-                       //@Value = Model.actividadesDesarrollarAux.act_desa_fecha_inicio.ToString("yyyy-MM-dd")
+                       @Value = Model.actividadesDesarrollarAux.act_desa_fecha_inicio.ToString("yyyy-MM-dd")
                    }
                })
-                <div id="error-act-desa-fecha-inicio" class="errordiv"></div>
+                <div id="error-act-desa-fecha" class="errordiv"></div>
             </div>
             <div style="width:13px"></div>
             <div class="col-12 col-sm-4 col-md-3">
@@ -160,21 +158,19 @@
                {
                    htmlAttributes = new
                    {
-                       @id = "actDesaFechaFin",
+                       @id = "actDesaFechaFin2",
                        @class = "text-center form-control",
                        @onkeydown = "return false",
                        @type = "date",
-                       //@Value = Model.actividadesDesarrollarAux.act_desa_fecha_fin.ToString("yyyy-MM-dd")
+                       @Value = Model.actividadesDesarrollarAux.act_desa_fecha_fin.ToString("yyyy-MM-dd")
                    }
                })
-                <div id="error-act-desa-fecha-fin" class="errordiv"></div>
             </div>
         </div>
         <br><br>
-        <div id="error-usuario-asignado" class="errordiv"></div>
+
         @{
-            if (Model.usuarioEncargado != null)
-            {
+            
                 <div style="width: 800px">
                     <div style="border: 6px solid #C00">
                         <div class="col-md-12">
@@ -246,7 +242,7 @@
                         </div>
                     </div>
                 </div>
-            }
+            
         }
         <div>
             <div class="mt-2 ml-4">
@@ -281,7 +277,7 @@
                                                 <td>
                                                     @{
 
-                                                        <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
+                                                        <button class="btn btn-success btnModalTrabajadorMod" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsableMod", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividadMod">
                                                             <i class="fa fa-check-circle"></i>
                                                             Como Encargado
                                                         </button>
@@ -301,21 +297,19 @@
         </div>
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="button" class="btn btn-success btnModalActividadesDesarrollar1" data-url="@Url.Action("RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar")" data-id-target="#registrarAuditoriaActDesa">
+                <button type="button" class="btn btn-success btnModalActividadesDesarrollar2" data-url="@Url.Action("ActualizarAsignacionActividades_Desarrollar", "ActividadesDesarrollar")" data-id-target="#actualizarAuditoriaActDesa">
                     <i class="fa fa-check-circle"></i>
-                    Registrar Asignacion
+                    Realizar Reasignacion
                 </button>
             </div>
         </div>
 
     </form>
-    @Html.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")
-
-    @Html.Action("_ModalRegistrarAuditoriaActividadDesarrollar", "ActividadesDesarrollar")
+    @Html.Action("_ModalAsignarTrabajadorResponsableMod", "ActividadesDesarrollar")
+    @Html.Action("_ModalActualizarAuditoriaActividadDesarrollar", "ActividadesDesarrollar")
 </div>
 @section Scripts{
     <!--<script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>-->
-    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
-    <script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividad.js"></script>
-    <script src="~/Scripts/Scripts_TP/COLOMBO/AsignarActividades.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividadMod.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/ReasignarTarea.js"></script>
 }

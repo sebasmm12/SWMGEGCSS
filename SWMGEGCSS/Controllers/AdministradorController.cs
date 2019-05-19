@@ -33,6 +33,8 @@ namespace SWMGEGCSS.Controllers
             Session["detUsuTrabajador"] = null;
             Session["act_desa_id"] = null;
             Session["detUsuRevisor"] = null;
+            Session["auditoriaActividades"] = null;
+            Session["actividadesDesarrollar"] = null;
             GestionarAsignacionActividadesDesarrollar model = new GestionarAsignacionActividadesDesarrollar();
             model.listActividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux();
             
