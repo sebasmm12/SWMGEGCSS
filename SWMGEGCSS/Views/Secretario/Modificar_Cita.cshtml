@@ -4,9 +4,13 @@
     var fecha = "";
     var hora = "";
     var empresa = "";
-    var encargado = Model.Citas.usu_usuario;
+    var encargado_id = Model.Citas.usu_citado;
     var estado = Model.Citas.estado_cita_id;
+    var estado_nombre = Model.Citas.estado_cita_nombre;
+    var encargado = Model.Citas.usu_usuario;
+    
     var list_empresa = Model.EmpresaModel.listempresas;
+    var list_cita = Model.listCitas;
     var list_usuario = Model.UsuarioModel.list_usuario;
     var list_estado_cita = Model.list_estado_cita;
     if(Model.Citas != null)
@@ -14,6 +18,7 @@
         fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
         hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
         empresa = Model.Citas.cita_empresa;
+        
     }
     if(Model.EmpresaModel.listempresas != null)
     {
@@ -22,6 +27,7 @@
     if(Model.UsuarioModel.list_usuario != null)
     {
         list_usuario = Model.UsuarioModel.list_usuario;
+        
     }
     
 }
@@ -32,7 +38,7 @@
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
-        <div class="row mt-3 pl-3">
+        <div class="row mt-1 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Fecha
@@ -43,65 +49,54 @@
                 <label class="font-weight-bolder">
                     Hora
                 </label>
-                <input type="time" name="Citas.cita_fecha" value="@hora" class="text-center form-control" />
+                <input type="time" name="cita_hora" value="@hora" class="text-center form-control" />
             </div>
 
 
         </div>
-        <div class="row mt-3 pl-3">
+        <div class="row mt-1 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Empresa
                 </label>
-                @Html.EditorFor(model => model.Citas.cita_empresa, new
-                {
-                   htmlAttributes = new { @id = "cita_empresa", @class = "text-center form-control" }
-                })
+                <input type="text" name="cita_empresa" class ="text-center form-control" value="@Model.Citas.cita_empresa" />
+                
 
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Representante
                 </label>
-                @Html.EditorFor(model => model.Citas.cita_representante, new
-                {
-                   htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
-                })
+                <input type="text" name="cita_representante" class="text-center form-control" value="@Model.Citas.cita_representante" />
             </div>
 
         </div>
-        <div class="row mt-3 pl-3">
+        <div class="row mt-1 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Telefono
                 </label>
-                @Html.EditorFor(model => model.Citas.cita_telefono, new
-                {
-                   htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
-                })
+                <input type="text" name="cita_telefono" class="text-center form-control" value="@Model.Citas.cita_telefono" />
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Correo
                 </label>
-                @Html.EditorFor(model => model.Citas.cita_correo, new
-                {
-                   htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
-                })
+                <input type="text" name="cita_correo" class="text-center form-control" value="@Model.Citas.cita_correo" />
             </div>
         </div>
-        <div class="row mt-3 pl-3">
+        <div class="row mt-1 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Encargado
                 </label>
-                <select class="custom-select" id="usu_citado" name="usu_citado" value="xd">
-                    <option class="font-weight-bolder">@encargado</option>
+                <select class="custom-select" id="usu_citado" name="usu_citado">
+                    <option class="font-weight-bolder" value="@encargado_id">@encargado</option>
                     @foreach (var item in list_usuario)
                     {
                         if (encargado != item.usu_usuario)
                         {
-                            <option value="@item.usu_codigo = ">@item.usu_usuario</option>
+                            <option value="@item.usu_codigo">@item.usu_usuario</option>
                         }
 
                     }
@@ -109,30 +104,57 @@
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
-                    Comentario
-                </label>
-                @Html.EditorFor(model => model.Citas.cita_comentario, new
-                {
-                   htmlAttributes = new { @id = "cita_comentario", @class = "text-center form-control" }
-                })
-            </div>
-        </div>
-        <div class="row mt-3 pl-3">
-
-            <div class="col-12 col-sm-6 col-md-6">
-                <label class="font-weight-bolder">
                     Estado de la Cita
                 </label>
                 <select class="custom-select" id="estado_cita_id" name="estado_cita_id">
-                    <option class="font-weight-bolder">Elige una opción</option>
+                    <option class="font-weight-bolder" value="@estado">@estado_nombre</option>
                     @foreach (var item in list_estado_cita)
                     {
-                        <option value="@item.estado_cita_id">@item.estado_cita_nombre</option>
+                        if (estado != item.estado_cita_id)
+                        {
+                            <option value="@item.estado_cita_id">@item.estado_cita_nombre</option>
+                        }
+
                     }
                 </select>
             </div>
         </div>
-        <div class="row mt-4">
+        
+        
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Fecha Realiza
+                </label>
+                @*Html.EditorFor(model => model.Citas.cita_fecha_atendido, new
+                {
+                   htmlAttributes = new { @id = "cita_fecha_atendido", @class = "form-control", @type = "date" }
+                })*@
+                <input type="date" name="cita_fecha_atendido" id="cita_fecha_atendido" class="text-center form-control" />
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                 <label class="font-weight-bolder">
+                     Hora Realizada
+                 </label>
+                  <input type="time" name="cita_hora_atendido" id="cita_hora_atentido" class="text-center form-control" />
+            </div>
+
+
+         </div>
+       
+
+        <div class="row mt-1 pl-3">
+
+            
+            <div class="col-12 col-sm-12 col-md-12">
+                <label class="font-weight-bolder">
+                    Comentario
+                </label>
+
+                <input type="text" name="cita_comentario" class="text-center form-control" value="@Model.Citas.cita_comentario" />
+            </div>
+        </div>
+        <div class="row mt-3">
 
             <div class="col-12 col-sm-4 col-md-4 text-center">
                 <a href="@Url.Action("Gestionar_Citas", "Secretario")" class="btn btn-secondary">
@@ -150,10 +172,6 @@
             </div>
 
         </div>
-
-
-
-
 
     }
 </div>

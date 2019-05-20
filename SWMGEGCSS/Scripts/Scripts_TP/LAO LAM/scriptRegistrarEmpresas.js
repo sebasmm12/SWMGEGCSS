@@ -37,7 +37,7 @@
         var vemail = validar_email($empEmail.val());
 
 
-        if (vfax === false || vrepresentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social === false || vsigla === false || vruc===false) {
+        if (vfa$ (x === false || vrepreretusentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social === false || vsigla === false || vruc===false) {
 
             return false;
         }

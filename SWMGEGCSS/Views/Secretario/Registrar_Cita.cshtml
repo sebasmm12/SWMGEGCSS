@@ -14,6 +14,7 @@
 }
 
 
+
 <h2 class=" pl-3 ml-3 mt-3 mb-3">Registrar Cita</h2>
 
 <div class="container-fluid">
@@ -28,13 +29,14 @@
                {
                   htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
                })
+
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Hora
                 </label>
-               
-                <input type="time" name="cita_hora" id="cita_hora" class="text-center form-control"/>
+
+                <input type="time" name="cita_hora" id="cita_hora" class="text-center form-control" />
             </div>
 
 
@@ -45,11 +47,11 @@
                     Empresa
                 </label>
                 <select class="custom-select" id="cita_empresa" name="cita_empresa">
-                    <option class="font-weight-bolder" >Elige una opción</option>
-                        @foreach (var item in list_empresa)
-                        {
-                            <option value="@item.emp_razon_social">@item.emp_razon_social</option>
-                        }
+                    <option class="font-weight-bolder">Elige una opción</option>
+                    @foreach (var item in list_empresa)
+                    {
+                        <option value="@item.emp_razon_social">@item.emp_razon_social</option>
+                    }
                 </select>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
@@ -61,7 +63,7 @@
                    htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
                 })
             </div>
-
+            <div id="error-cita-representante" class="errordiv"></div>
         </div>
         <div class="row mt-3 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
@@ -122,11 +124,10 @@
                 </a>
             </div>
         </div>
+    }
 
-
-
-
-
+    @section Scripts{
+        <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsRegistrarCita.js"></script>
     }
 </div>
 

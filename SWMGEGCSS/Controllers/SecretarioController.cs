@@ -42,7 +42,7 @@ namespace SWMGEGCSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar_Cita(T_Citas citas, int usu_citado, string cita_empresa, string cita_hora)
+        public ActionResult Registrar_Cita(T_Citas citas, string usu_citado, string cita_empresa, string cita_hora)
         {
             var model = new GestionarCitasViewModel();
             model.citas = citas;
@@ -68,12 +68,14 @@ namespace SWMGEGCSS.Controllers
         }
         
         [HttpPost]
-        public ActionResult Modificar_Cita(T_Citas_aux cita)
+        public ActionResult Modificar_Cita(T_Citas_aux cita, string cita_hora_atendido, string cita_hora, int usu_citado)
         {
             var model = new GestionarCitasViewModel();
             model.Citas = cita;
             model.Citas.cita_id = (int)Session["login"];
-            return View();
+            var operationResult = new OperationResult();
+            operationResult = new SecretariaDataAccess().sp_Modificar_Cita(model.Citas, cita_hora_atendido,cita_hora, usu_citado);
+            return RedirectToAction("Gestionar_Citas", "Secretario");
         }
 
         [HttpGet]
