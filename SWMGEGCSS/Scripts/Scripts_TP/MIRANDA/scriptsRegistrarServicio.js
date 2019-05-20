@@ -167,26 +167,64 @@
         return true;
     };
     function validar_nombreservicio(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var evalnombre = 0;
         if (id === "") {
             adderror("tipoServicio_tipo_servicio_nombre");
             negativeattributes("validatenameServicio", 'Debe ingresar un nombre');
             $("#tipoServicio_tipo_servicio_nombre").keyup(keyservicio);
             return false;
+        } else {
+            if ($("#tipoServicio_tipo_servicio_nombre").val().match(RegularExpression)) {
+                adderror("tipoServicio_tipo_servicio_nombre");
+                negativeattributes("validatenameServicio", 'Debe ingresar un nombre válido');
+                return false;
+            } else {
+                $.ajax({
+                    url: "/Servicios/EvaluarNombreServicio",
+                    async: false,
+                    data: {
+                        tipo_servicio_nombre: $("#tipoServicio_tipo_servicio_nombre").val()
+                    },
+                    method: "GET"
+
+
+                }).done(function (data) {
+                    if (data === 1) {
+                        adderror("tipoServicio_tipo_servicio_nombre");
+                        negativeattributes("validatenameServicio", 'Ya existe este nombre');
+                        evalnombre = 0;
+                    } else {
+                        attributes("validatenameServicio");
+                        addgood("tipoServicio_tipo_servicio_nombre");
+                        evalnombre = 1;
+                    }
+                });
+            }
         }
-        attributes("validatenameServicio");
-        addgood("tipoServicio_tipo_servicio_nombre");
+        if (evalnombre === 1) {
+            return true;
+        }
         return false;
     }
     function validar_descripcion(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if (id === "") {
             adderror("tipoServicio_tipo_servicio_descripcion");
             negativeattributes("validatedescripcionServicio", 'Debe ingresar una descripción');
             $("#tipoServicio_tipo_servicio_descripcion").keyup(keydescripcionservicio);
             return false;
-        } 
-        attributes("validatedescripcionServicio");
-        addgood("tipoServicio_tipo_servicio_descripcion");
-        return false;
+        } else {
+            if ($("#tipoServicio_tipo_servicio_descripcion").val().match(RegularExpression)) {
+                adderror("tipoServicio_tipo_servicio_descripcion");
+                negativeattributes("validatedescripcionServicio", 'Debe ingresar una descripción');
+                return false;
+            } else {
+                attributes("validatedescripcionServicio");
+                addgood("tipoServicio_tipo_servicio_descripcion");
+                return true;
+            }
+        }
     }
     var keyservicio = function () {
         var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
