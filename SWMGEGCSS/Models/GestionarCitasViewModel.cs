@@ -13,7 +13,7 @@ namespace SWMGEGCSS.Models
     {
 
         public T_Citas citas { get; set; }
-        
+
         public T_Citas_aux Citas { get; set; }
 
         public T_estado_cita estado_cita { get; set; }
@@ -22,12 +22,16 @@ namespace SWMGEGCSS.Models
 
         public List<T_Citas_aux> listcitas { get; set; }
 
+        public List<T_Citas_aux> listcitasaux { get; set; }
+
         public IPagedList<T_Citas_aux> listCitas { get; set; }
 
         public UsuarioViewModel UsuarioModel { get; set; }
 
         public GestionarEmpresaViewModel EmpresaModel { get; set; }
 
+
     }
+
    
 }

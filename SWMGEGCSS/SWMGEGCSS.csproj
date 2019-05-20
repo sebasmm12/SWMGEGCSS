@@ -314,6 +314,7 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarSecretario.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCita.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
