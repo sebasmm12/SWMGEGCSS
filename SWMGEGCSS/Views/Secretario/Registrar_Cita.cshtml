@@ -3,11 +3,11 @@
     ViewBag.Title = "Registrar_Cita";
     var list_empresa = Model.EmpresaModel.listempresas;
     var list_usuario = Model.UsuarioModel.list_usuario;
-    if(Model.EmpresaModel.listempresas != null)
+    if (Model.EmpresaModel.listempresas != null)
     {
         list_empresa = Model.EmpresaModel.listempresas;
     }
-    if(Model.UsuarioModel.list_usuario != null)
+    if (Model.UsuarioModel.list_usuario != null)
     {
         list_usuario = Model.UsuarioModel.list_usuario;
     }
@@ -62,8 +62,9 @@
                 {
                    htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
                 })
+                <div id="error-cita-representante" class="errordiv"></div>
             </div>
-            <div id="error-cita-representante" class="errordiv"></div>
+            
         </div>
         <div class="row mt-3 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
@@ -74,6 +75,7 @@
                 {
                    htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
                 })
+                <div id="error-cita-telefono" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -83,6 +85,7 @@
                 {
                    htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
                 })
+                <div id="error-cita-correo" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-3 pl-3">
@@ -106,6 +109,7 @@
                 {
                    htmlAttributes = new { @id = "cita_comentario", @class = "text-center form-control" }
                 })
+                <div id="error-cita-comentario" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-4 pl-3">
@@ -126,8 +130,9 @@
         </div>
     }
 
-    @section Scripts{
-        <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsRegistrarCita.js"></script>
-    }
+
 </div>
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsRegistrarCita.js"></script>
+}
 

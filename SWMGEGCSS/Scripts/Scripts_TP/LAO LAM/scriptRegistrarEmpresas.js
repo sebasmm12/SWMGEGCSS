@@ -843,7 +843,7 @@
 
     var keyEmail = function () {
         var $valor = $("#emp-email");
-      
+
         if ($valor.val() === "") {
 
             negativeattributes("error-emp-email", 'Debe ingresar un email');
@@ -860,7 +860,7 @@
             negativeattributes("error-emp-email", 'El email debe ser de menos de 20 caracteres');
             adderror("emp-email");
         }
-        else{
+        else {
             attributes("error-emp-email");
             addgood("emp-email");
         }

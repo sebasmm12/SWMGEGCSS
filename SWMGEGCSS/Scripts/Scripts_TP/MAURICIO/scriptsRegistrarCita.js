@@ -1,18 +1,40 @@
 ﻿$(function () {
     validacion = function () {
         //declaracion de variables jquery
-        var $citaRepresentante = $("#cita_representante");
-
+        var $citaRepresentante = $("#cita_representante").val();
+        var $citaTelefono = $("#cita_telefono").val();
+        var $citaCorreo = $("#cita_correo").val();
+        var $citaComentario = $("#cita_comentario").val();
         //Metodos
 
         var vCitaRepresentante = validar_representante($citaRepresentante);
-
-        if (vCitaRepresentante === false) {
+        var vCitaTelefono = validar_telefono($citaTelefono);
+        var vCitaCorreo = validar_correo($citaCorreo);
+        var vCitaComentario = validar_comentario($citaComentario);
+        if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false) {
             return false;
         } else {
 
-            console.log("XD");
+            $.ajax({
+                url: "/Secretario/Registrar_Cita",
+                method: "POST",
+                data: $("form").serialize(),
+                dataType: "json"
+            }).done(function (data) {
+                Swal.fire({
+                    type: 'sucess',
+                    title: 'Se registró la empresa exitosamente',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/Secretario/Gestionar_Citas"
+                    }
+                });
+                
+            });
         }
+        return false;
+         
     };
     //VALIDACIONES GENERALES
     var esNum = function esNumero(txt) {
@@ -139,6 +161,199 @@
         
         return true;
     }
+
+
+    function keyRepresentante() {
+        var $valor = $("#cita_representante");
+        if ($valor.val() === "") {
+            negativeattributes("error-cita-representante", 'Debe ingresar un representante');
+            adderror("cita_representante");
+        }
+        else if ($valor.val() === " ") {
+            negativeattributes("error-cita-representante", 'El representante no debe empezar con un espacio en blanco');
+            adderror("cita_representante");
+        }
+        else if (esNum($valor.val()) === true) {
+            negativeattributes("error-cita-representante", 'El representante no puede ser un número');
+            adderror("cita_representante");
+        }
+        else if (tieneCaracEsp($valor.val()) === true) {
+            negativeattributes("error-cita-representante", 'El representante debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            adderror("cita_representante");
+        }
+        else if (maximoNumeroCaracteres100($valor.val()) === true) {
+            negativeattributes("error-cita-representante", 'El representante debe ser de menos de 100 caracteres');
+            adderror("cita_representante");
+        }
+        else {
+            attributes("error-cita-representante");
+            addgood("cita_representante");
+
+        }
+    }
+
+
+    //Validar Telefono
+    function validar_telefono(telefono) {
+        var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
+
+        if (telefono === "") {
+            adderror("cita_telefono");
+            negativeattributes("error-cita-telefono", 'Debe ingresar un Número de Contacto');
+            $("#cita_telefono").focus();
+            //  alert("telefono vacio");
+            $("#cita_telefono").keyup(keyTelefono);
+            return false;
+        }
+        if (telefono === " ") {
+            adderror("cita_telefono");
+            negativeattributes("error-cita-telefono", 'El Número de Contacto no debe empezar con un espacio en blanco');
+            $("#cita_telefono").focus();
+            //   alert("telefono solo espacios");
+            $("#cita_telefono").keyup(keyTelefono);
+            return false;
+        }
+        if (esNum(telefono) === false) {
+            adderror("cita_telefono");
+            negativeattributes("error-cita-telefono", 'El Número de Contacto debe ser un número');
+            $("#cita_telefono").focus();
+            //    alert("telefono no es numero");
+            $("#cita_telefono").keyup(keyTelefono);
+            return false;
+        }
+        if (maximoNumeroCaracteres9(telefono) === true) {
+            adderror("cita_telefono");
+            negativeattributes("error-cita-telefono", 'El Número de Contacto debe ser de menor de 10 caracteres');
+            $("#cita_telefono").focus();
+            //  alert("telefono largo");
+            $("#cita_telefono").keyup(keyTelefono);
+            return false;
+        }
+        if (minimoNumeroCaracteres7(telefono) === true) {
+            adderror("cita_telefono");
+            negativeattributes("error-cita-telefono", 'El Número de Contacto debe ser de mayor de 6 caracteres');
+            $("#cita_telefono").focus();
+            //  alert("telefono largo");
+            $("#cita_telefono").keyup(keyTelefono);
+            return false;
+        }
+        addgood("cita_telefono");
+        attributes("error-cita-telefono");
+        return true;
+    }
+    var keyTelefono = function () {
+        var $valor = $("#cita_telefono");
+        var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
+        if ($valor.val() === "") {
+            negativeattributes("error-cita-telefono", 'Debe ingresar un Número de Contacto');
+            adderror("cita_telefono");
+        }
+        else if ($valor.val() === " ") {
+            negativeattributes("error-cita-telefono", 'El Número de Contacto no debe empezar con un espacio en blanco');
+            adderror("cita_telefono");
+        }
+        else if (esNum($valor.val()) === false) {
+            negativeattributes("error-cita-telefono", 'El Número de Contacto debe ser un número');
+            adderror("cita_telefono");
+        }
+        else if (maximoNumeroCaracteres9($valor.val()) === true) {
+            negativeattributes("error-cita-telefonoo", 'El Número de Contacto debe ser debe ser menor de 10 caracteres');
+            adderror("cita_telefono");
+        }
+        else if (minimoNumeroCaracteres7($valor.val()) === true) {
+
+            negativeattributes("error-cita-telefono", 'El Número de Contacto debe ser mayor de 6 caracteres');
+            adderror("cita_telefono");
+        }
+        else {
+            attributes("error-cita-telefono");
+            addgood("cita_telefono");
+        }
+
+
+    };
+
+    //Validar Correo
+    function validar_correo(email) {
+        var regular = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i
+
+        if (email === "") {
+            adderror("cita_correo");
+            negativeattributes("error-cita-correo", 'Debe ingresar un email');
+            $("#cita_correo").focus();
+            $("#cita_correo").keyup(keyEmail);
+            //    alert("email vacio");
+            return false;
+        }
+        if (email === " ") {
+            adderror("cita_correo");
+            negativeattributes("error-cita-correo", 'El email no debe empezar con un espacio en blanco');
+            $("#cita_correo").focus();
+            $("#cita_correo").keyup(keyEmail);
+            //    alert("email con espacio ");
+            return false;
+        }
+
+        if (maximoNumeroCaracteres20(email) === true) {
+            adderror("cita_correo");
+            negativeattributes("error-cita-correo", 'El email debe ser de menos de 20 caracteres');
+            $("#cita_correo").focus();
+            $("#cita_correo").keyup(keyEmail);
+            //   alert("email largo");
+            return false;
+        }
+        else{
+            addgood("cita_correo");
+            attributes("error-cita-correo");
+            return true;
+        }
+    }
+
+    var keyEmail = function () {
+        var $valor = $("#cita_correo");
+
+        if ($valor.val() === "") {
+
+            negativeattributes("error-cita-email", 'Debe ingresar un email');
+            adderror("cita_correo");
+        }
+        else if ($valor.val() === " ") {
+
+            negativeattributes("error-cita-email", 'El email no debe empezar con un espacio en blanco');
+            adderror("cita_correo");
+        }
+
+        else if (maximoNumeroCaracteres20($valor.val()) === true) {
+
+            negativeattributes("error-cita-email", 'El email debe ser de menos de 20 caracteres');
+            adderror("cita_correo");
+        }
+        
+            attributes("error-cita-email");
+            addgood("cita_correo");
+        
+    };
+
+    //Validar Comentario
+    function validar_comentario(comentario) {
+        if (comentario === " ") {
+            adderror("cita_comentario");
+            negativeattributes("error-cita-comentario", 'El Comentario no debe empezar con un espacio en blanco');
+            $("#cita_comentario").focus();
+            //    alert("representante con espacio");
+            $("#cita_comentario").keyup(keyComentario);
+            return false;
+        }
+        return true;
+    }
+
+    var keyComentario = function () {
+        $valor = $("#cita_comentario")
+        if ($valor.val() === " ") {
+            negativeattributes("error-cita-comentario", 'El comentario no debe empezar con un espacio en blanco');
+            adderror("error-cita-comentario");
+        }
+    };
 
     ///NO SE QUE ES PERO ME DIJERON QUE ERA IMPORTANTE
     function attributes(id) {
