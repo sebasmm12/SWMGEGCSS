@@ -81,36 +81,83 @@
         
         return true;
     };
+    var validar_costo_actividad = function (id) {
+        var RegularExpression = /^\d+[,]*\d*$/;
+        if (id === ""||id==="0") {
+            adderror("actividades_costo");
+            negativeattributes("validatecostoActividad", 'Debe ingresar un costo');
+            $("#actividades_costo").keyup(keycostoactividad);
+            return false;
+        } else {
+            if ($("#actividades_costo").val().match(RegularExpression)) {
+                attributes("validatecostoActividad");
+                addgood("actividades_costo");
+                return true;
+            } else {
+                adderror("actividades_costo");
+                negativeattributes("validatecostoActividad", 'Debe ingresar un costo válido');
+                $("#actividades_costo").keyup(keycostoactividad);
+                return false;
+            }
+        }
+    };
+    var keycostoactividad = function () {
+        var RegularExpression = /^\d+[,]*\d*$/;
+        var $valor = $("#actividades_costo");
+        if ($valor.val() === "" || $valor.val() === "0") {
+            adderror("actividades_costo");
+            negativeattributes("validatecostoActividad", 'Debe ingresar un costo');
+            $("#actividades_costo").keyup(keycostoactividad);
+            return false;
+        } else {
+            if ($valor.val().match(RegularExpression)) {
+                attributes("validatecostoActividad");
+                addgood("actividades_costo");
+                return true;
+            } else {
+                adderror("actividades_costo");
+                negativeattributes("validatecostoActividad", 'Debe ingresar un costo válido');
+                $("#actividades_costo").keyup(keycostoactividad);
+                return false;
+            }
+        }
+    };
     var registrarActividadParcial = function () {
         $(this).click(function () {
-            var $button = $(this);
-            let params = new URLSearchParams(location.search);
-            var page = params.get('page');
-            var actividad = {
-                act_id : $button.attr("data-id-act"),
-                act_nombre: document.getElementById("actividades_act_nombre").value,
-                act_descripcion: document.getElementById("actividades_act_descripcion").value,
-                costo: document.getElementById("actividades_costo").value,
-                act_obligatorio: document.getElementById("est_actividad").value
-            };
-            $.ajax({
-                url: "/Servicios/ModificarDatosActividad",
-                data: {
-                    actividad: actividad,
-                    page: page
-                },
-                type: "POST"
+            var $costo = $("#actividades_costo");
+            var vcosto_actividad = validar_costo_actividad($costo.val());
+            if (vcosto_actividad === false) {
+                return false;
+            } else {
+                var $button = $(this);
+                let params = new URLSearchParams(location.search);
+                var page = params.get('page');
+                var actividad = {
+                    act_id: $button.attr("data-id-act"),
+                    act_nombre: document.getElementById("actividades_act_nombre").value,
+                    act_descripcion: document.getElementById("actividades_act_descripcion").value,
+                    costo: document.getElementById("actividades_costo").value,
+                    act_obligatorio: document.getElementById("est_actividad").value
+                };
+                $.ajax({
+                    url: "/Servicios/ModificarDatosActividad",
+                    data: {
+                        actividad: actividad,
+                        page: page
+                    },
+                    type: "POST"
 
-            }).done(function (data) {
-                var $newhtml = $(data);
-                var target = document.getElementById("tableAct");
-                $(target).replaceWith($newhtml);
-                $(modal).modal('hide');
-                $("#btnRegistrarActividad").click(añadir);
-                $(".btnModal").each(envioajaxModal);
-                $(".btnEliminar").each(eliminarActividad);
-            });
-        });
+                }).done(function (data) {
+                    var $newhtml = $(data);
+                    var target = document.getElementById("tableAct");
+                    $(target).replaceWith($newhtml);
+                    $(modal).modal('hide');
+                    $("#btnRegistrarActividad").click(añadir);
+                    $(".btnModal").each(envioajaxModal);
+                    $(".btnEliminar").each(eliminarActividad);
+                });
+            }
+            });       
     };
     var registrarServicioCompleto = function () {
         var $nombreservicio = $("#tipoServicio_tipo_servicio_nombre");
@@ -118,7 +165,7 @@
         var vnombre = validar_nombreservicio($nombreservicio.val());
         var vdescripción = validar_descripcion($descripcion.val());
         var evalactividades = validar_g_actividades();
-        if (vnombre === false || vdescripción === false || vnombre === false || evalactividades) {
+        if (vnombre === false || vdescripción === false || vnombre === false || evalactividades===false) {
             return false;
         } else {
             var servicio = {
@@ -178,6 +225,7 @@
             if ($("#tipoServicio_tipo_servicio_nombre").val().match(RegularExpression)) {
                 adderror("tipoServicio_tipo_servicio_nombre");
                 negativeattributes("validatenameServicio", 'Debe ingresar un nombre válido');
+                $("#tipoServicio_tipo_servicio_nombre").keyup(keyservicio);
                 return false;
             } else {
                 $.ajax({
@@ -218,6 +266,7 @@
             if ($("#tipoServicio_tipo_servicio_descripcion").val().match(RegularExpression)) {
                 adderror("tipoServicio_tipo_servicio_descripcion");
                 negativeattributes("validatedescripcionServicio", 'Debe ingresar una descripción');
+                $("#tipoServicio_tipo_servicio_nombre").keyup(keyservicio);
                 return false;
             } else {
                 attributes("validatedescripcionServicio");
