@@ -37,7 +37,7 @@
         var vemail = validar_email($empEmail.val());
 
 
-        if (vfax === false || vrepresentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social === false || vsigla === false || vruc===false) {
+        if (vfa$ (x === false || vrepreretusentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social === false || vsigla === false || vruc===false) {
 
             return false;
         }
@@ -843,7 +843,7 @@
 
     var keyEmail = function () {
         var $valor = $("#emp-email");
-      
+
         if ($valor.val() === "") {
 
             negativeattributes("error-emp-email", 'Debe ingresar un email');
@@ -860,7 +860,7 @@
             negativeattributes("error-emp-email", 'El email debe ser de menos de 20 caracteres');
             adderror("emp-email");
         }
-        else{
+        else {
             attributes("error-emp-email");
             addgood("emp-email");
         }

@@ -19,7 +19,6 @@
 
 
     };
-
     var getPage = function () {
         var $a = $(this);
         $.ajax({
@@ -33,12 +32,13 @@
         return false;
     };
 
+
     //var eliminaCita = function () {
     //    $.ajax({
     //        url: $(".btnEliminaCita").attr("data-url"),
     //        type: "POST",
     //        data: {
-    //            cita_id: cita_id;
+    //            cita_id: cita_id
     //        }
     //    }).done(function (data) {
     //        if (data === 1) {
@@ -53,11 +53,23 @@
     //            });
     //        }
     //    });
+    //};
+    //var eliminaCita = function () {
+    //    $.ajax({
+    //        url: "/Secretario/Gestionar_Citas",
+    //        type: "POST"
+    //    }).done(function (data) {
+    //        var $newhtml = $(data);
+    //        var target = $("div.pagedList").attr("data-exp-target");
+    //        $(target).replaceWith($newhtml);
+    //    });
+    //    return true;
     //}
 
     $(".btnModal").each(envioajaxModal);
     $(".btnModal1").each(envioajaxModal);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     //$(".btnEliminarCita").each(eliminaCita);
+    //$("#btnEliminarCita").click(eliminaCita);
 
 });

@@ -119,33 +119,152 @@
     };
     var actualizarDatosServicio = function () {
         $(this).click(function () {
-            var $button = $(this);
-            var servicio = {
-                tipo_servicio_id: $button.attr("data-id-serv"),
-                tipo_servicio_nombre: document.getElementById("servicio_nombre_act").value,
-                tipo_servicio_descripcion: document.getElementById("servicio_descripción_act").value
-            };
-            $.ajax({
-                url: $button.attr("data-url"),
-                data: {
-                    servicio: servicio
-                },
-                type: "POST"
+            var $nombreservicio = $("#servicio_nombre_act");
+            var $descripcion = $("#servicio_descripción_act");
+            var vnombre = validar_nombreservicio($nombreservicio.val());
+            var vdescripción = validar_descripcion($descripcion.val());
+            if (vnombre === false || vdescripción === false) {
+                return false;
+            } else {
+                var $button = $(this);
+                var servicio = {
+                    tipo_servicio_id: $button.attr("data-id-serv"),
+                    tipo_servicio_nombre: document.getElementById("servicio_nombre_act").value,
+                    tipo_servicio_descripcion: document.getElementById("servicio_descripción_act").value
+                };
+                $.ajax({
+                    url: $button.attr("data-url"),
+                    data: {
+                        servicio: servicio
+                    },
+                    type: "POST"
 
-            }).done(function (data) {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Se actualizo el servicio exitosamente',
-                    confirmButtonText: 'OK'
+                }).done(function (data) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se actualizo el servicio exitosamente',
+                        confirmButtonText: 'OK'
 
-                }).then((result) => {
-                    if (result.value) {
-                        window.location.href = "/Servicios/VisualizarServicios";
-                    }
-                });  
-                
-            });
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Servicios/VisualizarServicios";
+                        }
+                    });
+
+                });
+            }    
         });
+    };
+    function validar_nombreservicio(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var evalnombre = 0;
+        if (id === "") {
+            adderror("servicio_nombre_act");
+            negativeattributes("validatenameServicio", 'Debe ingresar un nombre');
+            $("#servicio_nombre_act").keyup(keyservicio);
+            return false;
+        } else {
+            if ($("#servicio_nombre_act").val().match(RegularExpression)) {
+                adderror("servicio_nombre_act");
+                negativeattributes("validatenameServicio", 'Debe ingresar un nombre válido');
+                $("#servicio_nombre_act").keyup(keyservicio);
+                return false;
+            } else {
+                $.ajax({
+                    url: "/Servicios/EvaluarNombreServicio",
+                    async: false,
+                    data: {
+                        tipo_servicio_nombre: $("#servicio_nombre_act").val()
+                    },
+                    method: "GET"
+
+
+                }).done(function (data) {
+                    if (data === 1) {
+                        adderror("servicio_nombre_act");
+                        negativeattributes("validatenameServicio", 'Ya existe este nombre');
+                        evalnombre = 0;
+                    } else {
+                        attributes("validatenameServicio");
+                        addgood("servicio_nombre_act");
+                        evalnombre = 1;
+                    }
+                });
+            }
+        }
+        if (evalnombre === 1) {
+            return true;
+        }
+        return false;
+    }
+    function validar_descripcion(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        if (id === "") {
+            adderror("servicio_descripción_act");
+            negativeattributes("validatedescripcionServicio", 'Debe ingresar una descripción');
+            $("#servicio_descripción_act").keyup(keydescripcionservicio);
+            return false;
+        } else {
+            if ($("#servicio_descripción_act").val().match(RegularExpression)) {
+                adderror("servicio_descripción_act");
+                negativeattributes("validatedescripcionServicio", 'Debe ingresar una descripción');
+                $("#servicio_descripción_act").keyup(keyservicio);
+                return false;
+            } else {
+                attributes("validatedescripcionServicio");
+                addgood("servicio_descripción_act");
+                return true;
+            }
+        }
+    }
+    var keyservicio = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var $valor = $("#servicio_nombre_act");
+        if ($valor.val() === "") {
+            adderror("servicio_nombre_act");
+            negativeattributes("validatenameServicio", 'Debe ingresar un nombre');
+        } else {
+            if ($valor.val().match(RegularExpression)) {
+                adderror("servicio_nombre_act");
+                negativeattributes("validatenameServicio", 'Debe ingresar un nombre');
+            } else {
+                $.ajax({
+                    url: "/Servicios/EvaluarNombreServicio",
+                    async: false,
+                    data: {
+                        tipo_servicio_nombre: $valor.val()
+                    },
+                    method: "GET"
+
+
+                }).done(function (data) {
+                    if (data === 1) {
+                        adderror("servicio_nombre_act");
+                        negativeattributes("validatenameServicio", 'Ya existe este nombre');
+                    } else {
+                        attributes("validatenameServicio");
+                        addgood("servicio_nombre_act");
+                    }
+                });
+            }
+        }
+    };
+    var keydescripcionservicio = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var $valor = $("#servicio_descripción_act");
+        if ($valor.val() === "") {
+            adderror("servicio_descripción_act");
+            negativeattributes("validatedescripcionServicio", 'Debe ingresar una descripción');
+        } else {
+
+            if ($valor.val().match(RegularExpression)) {
+                adderror("servicio_descripción_act");
+                negativeattributes("validatedescripcionServicio", 'Debe ingresar una descripción');
+            } else {
+                attributes("validatedescripcionServicio");
+                addgood("servicio_descripción_act");
+            }
+        }
     };
     var activarservicio = function () {
         $(this).click(function () {
@@ -167,7 +286,27 @@
             });
         });
     };
-
+    function attributes(id) {
+        $("#" + id).removeClass("text-danger");
+        $("#" + id).addClass("textsuccess");
+        $("#" + id).html("");
+        $("#" + id).html("<i class='fa fa-check'></i><label class='pl-2'>Correcto</label>");
+    }
+    function addgood(id) {
+        $("#" + id).removeClass("inputerror");
+        $("#" + id).addClass("inputtrue");
+    }
+    function adderror(id) {
+        $("#" + id).removeClass("inputtrue");
+        $("#" + id).addClass("inputerror");
+        $("#" + id).focus();
+    }
+    function negativeattributes(id, tipo) {
+        $("#" + id).removeClass("textsuccess");
+        $("#" + id).addClass("text-danger");
+        $("#" + id).html("");
+        $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
+    }
     $("input[data-serv-autocomplete]").each(autocompletado);
     $("#Buscar").click(BuscarServicio);
     $(".pcoded-content").on("click", ".pagedList a", getPage);

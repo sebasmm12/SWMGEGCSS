@@ -21,11 +21,10 @@
                         <label class="font-weight-bolder">
                             Empresa
                         </label>
-
-                        <select class="custom-select"  name="Citas.cita_empresa">
-                            <option value="todos">Esta Semana</option>
-                            <option value="Minera">Minera</option>
-                        </select>
+                        @Html.EditorFor(model => model.Citas.cita_empresa, new
+                        {
+                            htmlAttributes = new { @id = "cita_empresa", @class = "text-center form-control" }
+                        })
                     </div>
                 </div>
                 

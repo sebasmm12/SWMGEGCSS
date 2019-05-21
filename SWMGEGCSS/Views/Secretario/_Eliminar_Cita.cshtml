@@ -4,15 +4,17 @@
     Layout = null;
     var fecha = "";
     var hora = "";
+    var correo = "";
     if(Model.Citas != null)
     {
         fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
         hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
+        correo = Model.Citas.cita_correo;
     }
 
 }
 
-<div class="modal fade" id="ModalEliminarCita" tabidex="-1" role"dialog" aria-labelledby="#ModalEliminarCita" aria-hidden="true">
+<div class="modal fade" id="ModalEliminarCita" tabidex="-1" role="dialog" aria-labelledby="#ModalEliminarCita" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <h2 class="text-center my-3">¿Desea Eliminar la Cita?</h2>
@@ -22,11 +24,11 @@
                         <label class="font-weight-bolder">
                             Empresa
                         </label>
+                        @Html.EditorFor(model => model.Citas.cita_empresa, new
+                        {
+                            htmlAttributes = new { @id = "cita_empresa", @class = "text-center form-control" }
+                        })
 
-                        <select class="custom-select" name="Citas.cita_empresa">
-                            <option value="todos">Esta Semana</option>
-                            <option value="Minera">Minera</option>
-                        </select>
                     </div>
                 </div>
 
@@ -90,14 +92,11 @@
 
                 <div class="row mx-2 my-3">
 
-                    <div class="col-12 col-sm-3 col-md-3">
-                        <button type="submit" class="btn btn-success" id="boton-Eliminar">
-                            <i class="fa fa-check-circle"></i>
-                            Si
-                        </button>
+                    <div class="col-12 col-sm-3 col-md-3 ">
+
                     </div>
 
-                    <div class="col-12 col-sm-6 col-md-6 ">
+                    <div class="col-12 col-sm-4 col-md-4 ">
                         <a href="@Url.Action("Gestionar_Citas","Secretario")" class="btn btn-secondary">
                             <i class="fa fa-backward">
 
@@ -105,6 +104,14 @@
                             No
                         </a>
                     </div>
+
+                    <div class="col-12 col-sm-3 col-md-3">
+                        <button type="button" class="btn btn-danger rounded-pill btnEliminarCita" id="btnEliminar" data-id-cita="@Model.Citas.cita_id" data-url="@Url.Action("EliminaCita","Secretario")">
+                            <i class="fa fa-check-circle"></i>
+                            Si
+                        </button>
+                    </div>
+
                 </div>
                 
 

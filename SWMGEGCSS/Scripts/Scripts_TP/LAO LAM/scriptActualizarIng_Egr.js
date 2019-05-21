@@ -1,4 +1,4 @@
-﻿$(function(){
+﻿$(function () {
 
     validacion = function () {
 
@@ -7,31 +7,28 @@
         var $ing_egr_Descripcion = $("#ing-egr-descripcion");
         var $ing_egr_Fecha = $("#ing-egr-fecha");
         var $ing_egr_Monto = $("#ing-egr-monto");
-     //   var $ING = $("#ingresos");
-     //   var $EGR = $("#egresos");
-        
+
+
         var vnombre = validar_nombre($ing_egr_Nombre.val());
         var vdescripcion = validar_descripcion($ing_egr_Descripcion.val());
         var vfecha = validar_fecha($ing_egr_Fecha.val());
         var vmonto = validar_monto($ing_egr_Monto.val());
 
-        //var ving_egr = validar_ing_egr($ING.val(), $EGR.val());
 
-        if (vnombre === false || vdescripcion === false || vmonto === false || vfecha === false /* ||ving_egr === false*/) {
+        if (vnombre === false || vdescripcion === false || vmonto === false || vfecha === false) {
             return false;
         }
         else {
 
             $.ajax({
-                url: "/Ing_Egr/Registrar_Ing_Egr",
+                url: "/Ing_Egr/Actualizar_Ing_Egr",
                 method: "POST",
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
-                
                 Swal.fire({
                     type: 'success',
-                    title: 'Se registró  exitosamente',
+                    title: 'Se registró exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
@@ -99,23 +96,8 @@
             return false;
         }
     };
-//-------------------------------------------------------------------------------------------------------------------------------
- /*   function validar_ing_egr(ingresos, egresos) {
-        if (ingresos !==1 && egresos !== 0) {
-            adderror("ingresos");
-            adderror("egresos");
-            negativeattributes("error-ing-egr-ingreso", "Debe seleccionar un tipo");
-          $("#ingresos").keyup(KeyIngreso);
-           $("#egresos").keyup(KeyIngreso);
-            return false;
-        }
-        addgood("ingresos");
-        addgood("egresos");
-        attributes("error-ing-egr-ingreso");
-        return true;
+    //-------------------------------------------------------------------------------------------------------------------------------
 
-
-    }*/
     function validar_nombre(nombre) {
         if (nombre === "") {
             adderror("ing-egr-nombre");
@@ -124,28 +106,28 @@
             $("#ing-egr-nombre").keyup(KeyNombre);
             return false;
         }
-        else if (nombre.charAt(0)===' ') {
+        else if (nombre.charAt(0) === ' ') {
             adderror("ing-egr-nombre");
             negativeattributes("error-ing-egr-nombre", "El nombre no debe comenzar con espacio en blanco");
             $("#ing-egr-nombre").focus();
             $("#ing-egr-nombre").keyup(KeyNombre);
             return false;
         }
-        else if (tieneCaracEspOnly(nombre)===true) {
+        else if (tieneCaracEspOnly(nombre) === true) {
             adderror("ing-egr-nombre");
             negativeattributes("error-ing-egr-nombre", "El nombre no debe contener caracteres especiales");
             $("#ing-egr-nombre").focus();
             $("#ing-egr-nombre").keyup(KeyNombre);
             return false;
         }
-        else if (maximoNumeroCaracteres50(nombre)===true) {
+        else if (maximoNumeroCaracteres50(nombre) === true) {
             adderror("ing-egr-nombre");
             negativeattributes("error-ing-egr-nombre", "El nombre no debe contener más de 50 caracteres");
             $("#ing-egr-nombre").focus();
             $("#ing-egr-nombre").keyup(KeyNombre);
             return false;
         }
-        else if (esNum(nombre)===true) {
+        else if (esNum(nombre) === true) {
             adderror("ing-egr-nombre");
             negativeattributes("error-ing-egr-nombre", "El nombre no debe ser un número");
             $("#ing-egr-nombre").focus();
@@ -154,7 +136,7 @@
         }
         addgood("ing-egr-nombre");
         attributes("error-ing-egr-nombre");
-        return true;    
+        return true;
     }
     function validar_fecha(fechaa) {
         if (fechaa === "") {
@@ -244,23 +226,9 @@
         attributes("error-ing-egr-monto");
         return true;
     }
-//---------------------------------------------------------------------------------------------------------------------------------
- /*   var KeyIngreso = function () {
-        var $ing = $("ingresos");
-        var $egr = $("egresos");
-        if ($ing.val() !== 1 && $egr.val() !== 0) {
-            adderror("ingresos");
-            adderror("egresos");
-            negativeattributes("error-ing-egr-ingreso", "Debe seleccionar un tipo");
+    //---------------------------------------------------------------------------------------------------------------------------------
 
-        }
-        else {
-            addgood("ingresos");
-            addgood("egresos");
-            attributes("error-ing-egr-ingreso");
-        }
-
-    }*/
+    
     var KeyNombre = function () {
         var $valor = $("#ing-egr-nombre");
         if ($valor.val() === "") {
@@ -340,7 +308,7 @@
             negativeattributes("error-ing-egr-monto", "El monto debe ser un número");
             adderror("ing-egr-monto");
         }
-        else if (esnegativo($valor.val())===true) {
+        else if (esnegativo($valor.val()) === true) {
             negativeattributes("error-ing-egr-monto", "El monto debe ser positivo");
             adderror("ing-egr-monto");
         }
@@ -350,7 +318,7 @@
         }
 
     }
-//---------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
         $("#" + id).addClass("textsuccess");
@@ -372,5 +340,5 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
-    $("#boton-Registrar").click(validacion);
+    $("#boton-Actualizar").click(validacion);
 });

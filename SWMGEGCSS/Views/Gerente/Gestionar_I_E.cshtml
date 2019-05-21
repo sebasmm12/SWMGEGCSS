@@ -3,11 +3,39 @@
     ViewBag.Title = "Gestionar_I_E";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_ing_egr = Model.list_ingresos_egresos;
+    var tipo = "";
 }
 
 <h2>Gestionar Ingresos y Egresos</h2>
 
+<div class="row mt-2 ml-2">
 
+    <div class="col-12 col-sm-4 col-md-4">
+        <div>
+            <label class="font-weight-bolder">
+                Nombre del Ingreso-Egreso:
+            </label>
+        </div>
+
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("AutocompleteEmpresa")" />
+
+
+    </div>
+    <div class="col-12 col-sm-4 col-md-4">
+        <div>
+            <label class="font-weight-bolder">Seleccione una opción</label>
+        </div>
+        <select class="custom-select" id="estado" name="estado">
+            <option value="Todos">Todos</option>
+
+            <option value="1">Ingreso</option>
+            <option value="0">Egreso</option>
+
+        </select>
+    </div>
+
+
+</div>
 
 <div class="row mt-3 ml-2">
 
@@ -53,7 +81,8 @@
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Fecha</th>       
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo</th>
                         <th scope="col">Monto</th>
                         <th scope="col"></th>
                     </tr>
@@ -69,7 +98,11 @@
                             <td>@item.ing_egr_nombre</td>
                             <td>@item.ing_egr_descripcion</td>
                             <td>@item.ing_egr_fecha.ToShortDateString()</td>
-                           
+                           @if (item.ing_egr_ingrso == 1) { tipo = "Ingreso"; } else if(item.ing_egr_ingrso==0) { tipo = "Egreso"; }
+
+                               <td>@tipo</td>
+                               
+
                             <td>@item.ing_egr_monto</td>
 
                             <td>

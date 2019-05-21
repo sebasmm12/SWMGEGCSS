@@ -45,7 +45,11 @@ namespace SWMGEGCSS.Controllers
         {
             TareasAsignadasViewModel model = new TareasAsignadasViewModel();
             int Usuario = (int)Session["login"];
-            model.PLista_Actividades_a_Desarrollar = new TrabajadorDataAccess().sp_listar_plan_por_usuario_asignado(Usuario).ToPagedList(page, 4);
+            model.PLista_Actividades_a_Desarrollar = new TrabajadorDataAccess().sp_listar_plan_por_usuario_asignado(Usuario).ToPagedList(page, 3);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaTareasAsignadas", model);
+            }
             return View(model);
         }
         [HttpGet]
@@ -145,7 +149,7 @@ namespace SWMGEGCSS.Controllers
             Session["ArchivoId"] = id;
 
             var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
-            Session["comentarius"] = valores.act_desa_comentario;
+            Session["comentarius"] = valores.act_desa_revisor_obs;
             return View(model);
         }
         [HttpPost]

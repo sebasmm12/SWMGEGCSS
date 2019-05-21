@@ -24,6 +24,10 @@ namespace SWMGEGCSS.Controllers
             model.UsuarioModel = new UsuarioViewModel();
             model.UsuarioModel.list_usuario = new List<T_usuario>();
             model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaCitas", model);
+            }
             return View(model);
         }
 
@@ -42,13 +46,13 @@ namespace SWMGEGCSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar_Cita(T_Citas citas, int usu_citado, string cita_empresa)
+        public ActionResult Registrar_Cita(T_Citas citas, string usu_citado, string cita_empresa, string cita_hora)
         {
             var model = new GestionarCitasViewModel();
             model.citas = citas;
             model.citas.cita_id = (int)Session["login"];
             var operationResult = new OperationResult();
-            operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas,cita_empresa, usu_citado);
+            operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas,cita_empresa, usu_citado, cita_hora);
             return RedirectToAction("Gestionar_Citas", "Secretario");
         }
 
@@ -68,18 +72,21 @@ namespace SWMGEGCSS.Controllers
         }
         
         [HttpPost]
-        public ActionResult Modificar_Cita(T_Citas_aux cita)
+        public ActionResult Modificar_Cita(T_Citas_aux cita, string cita_hora_atendido, string cita_hora, int usu_citado)
         {
             var model = new GestionarCitasViewModel();
             model.Citas = cita;
             model.Citas.cita_id = (int)Session["login"];
-            return View();
+            var operationResult = new OperationResult();
+            operationResult = new SecretariaDataAccess().sp_Modificar_Cita(model.Citas, cita_hora_atendido,cita_hora, usu_citado);
+            return RedirectToAction("Gestionar_Citas", "Secretario");
         }
 
         [HttpGet]
         public ActionResult _Eliminar_Cita()
         {
             var model = new GestionarCitasViewModel();
+            model.Citas = new T_Citas_aux();
             return PartialView(model);
         }
 
@@ -92,10 +99,21 @@ namespace SWMGEGCSS.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult EliminaCita(T_Citas citas)
+        {
+            var model = new GestionarCitasViewModel();
+            model.citas.usu_generado = (int)Session["login"];
+            var operationResult = new OperationResult();
+            operationResult = new SecretariaDataAccess().sp_Eliminar_Cita(model.citas);
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult _verDetalles()
         {
             var model = new GestionarCitasViewModel();
+            model.Citas = new T_Citas_aux();
             return PartialView(model);
         }
 
