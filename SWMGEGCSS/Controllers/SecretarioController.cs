@@ -24,6 +24,10 @@ namespace SWMGEGCSS.Controllers
             model.UsuarioModel = new UsuarioViewModel();
             model.UsuarioModel.list_usuario = new List<T_usuario>();
             model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaCitas", model);
+            }
             return View(model);
         }
 
@@ -109,6 +113,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _verDetalles()
         {
             var model = new GestionarCitasViewModel();
+            model.Citas = new T_Citas_aux();
             return PartialView(model);
         }
 

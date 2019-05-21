@@ -8,6 +8,7 @@
         var $citaFecha = $("#cita_fecha").val();
         var $citaEmpresa = $("#cita_empresa").val();
         var $citaEncargado = $("#usu_citado").val();
+        var $citaFechaAtendido = $("#cita_fecha_atendido").val();
         //Metodos
 
         var vCitaRepresentante = validar_representante($citaRepresentante);
@@ -17,7 +18,8 @@
         var vCitaFecha = validar_fecha($citaFecha);
         var vCitaEmpresa = validar_empresa($citaEmpresa);
         var vCitaEncargado = validar_encargado($citaEncargado);
-        
+        var vCitaFechaAtendido = validar_fecha_atendido($citaFechaAtendido, $citaFecha);
+
 
 
         if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false || vCitaFecha === false || vCitaEmpresa === false || vCitaEncargado === false) {
@@ -25,7 +27,7 @@
         } else {
 
             $.ajax({
-                url: "/Secretario/Registrar_Cita",
+                url: "/Secretario/Modificar_Cita",
                 method: "POST",
                 data: $("form").serialize(),
                 dataType: "json"
@@ -39,11 +41,11 @@
                         window.location.href = "/Secretario/Gestionar_Citas"
                     }
                 });
-                
+
             });
         }
         return false;
-         
+
     };
     //VALIDACIONES GENERALES
     var esNum = function esNumero(txt) {
@@ -164,10 +166,10 @@
             $("#cita_representante").keyup(keyRepresentante);
             return false;
         }
-        
+
         addgood("cita_representante");
         attributes("error-cita-representante");
-        
+
         return true;
     }
 
@@ -311,7 +313,7 @@
             //   alert("email largo");
             return false;
         }
-        else{
+        else {
             addgood("cita_correo");
             attributes("error-cita-correo");
             return true;
@@ -337,10 +339,10 @@
             negativeattributes("error-cita-email", 'El email debe ser de menos de 20 caracteres');
             adderror("cita_correo");
         }
-        
-            attributes("error-cita-email");
-            addgood("cita_correo");
-        
+
+        attributes("error-cita-email");
+        addgood("cita_correo");
+
     };
 
     //Validar Comentario
@@ -469,6 +471,72 @@
             adderror("cita_empresa");
         }
     };
+    //Validar Fecha Atendido
+    function validar_fecha_atendido(fecha_atendido,fecha) {
+        var fechaIngresada = new Date(fecha);
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        var fechaAtendido = new Date(fecha_atendido);
+        fechaAtendido.setDate(fechaAtendido.getDay() + 1);
+        var dateActual = new Date();
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
+        if (fecha === "") {
+            adderror("cita_fecha_atendido");
+            negativeattributes("error-cita-fecha-atendido", 'Debe ingresar una fecha');
+            $("#cita_fecha_atendido").focus();
+            $("#cita_fecha_atendido").change(keyfechaAtendido);
+            return false;
+        } else {
+            if (fechaIngresada >= dateActual) {
+                attributes("error-cita-fecha-atendido");
+                addgood("cita_fecha_atendido");
+            } else {
+                negativeattributes("error-cita-fecha-atendido", 'No puede ingresar una fecha anterior al día actual');
+                adderror("cita_fecha_atendido");
+                return false;
+            }
+        }
+        if (fechaAtendido < fechaIngresada) {
+            adderror("cita_fecha_atendido");
+            negativeattributes("error-cita-fecha-atendido", 'Debe ingresar una fecha valida');
+            $("#cita_fecha_atendido").focus();
+            $("#cita_fecha_atendido").change(keyfechaAtendido);
+            return false;
+        } else {
+            attributes("error-cita-fecha-atendido");
+            addgood("cita_fecha_atendido");
+        }
+        return true;
+    }
+    var keyfechaAtendido = function () {
+        var fechaIngresada = new Date(fecha);
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        var fechaAtendido = new Date(fecha_atendido);
+        fechaAtendido.setDate(fechaAtendido.getDay() + 1);
+        var dateActual = new Date();
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
+        var $fecha_inicio = $("#cita_fecha");
+        if ($fecha_inicio.val() === "") {
+            negativeattributes("error-cita-fecha", 'Debe ingresar una fecha');
+            adderror("cita_fecha");
+        } else {
+            if (fechaIngresada >= dateActual) {
+                attributes("error-cita-fecha");
+                addgood("cita_fecha");
+            } else {
+                negativeattributes("error-cita-fecha", 'No puede ingresar una fecha anterior al día actual');
+                adderror("cita_fecha");
+            }
+        }
+        if (fechaAtendido < fechaIngresada) {
+            negativeattributes("error-cita-fecha-atendido", 'Debe ingresar una fecha valida');
+            adderror("cita_fecha_atendido");
+        } else {
+            attributes("error-cita-fecha-atendido");
+            addgood("cita_fecha_atendido");
+        }
+    };
 
     ///NO SE QUE ES PERO ME DIJERON QUE ERA IMPORTANTE
     function attributes(id) {
@@ -492,5 +560,5 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
-    $("#boton-Registrar").click(validacion);
+    $("#boton-Modificar").click(validacion);
 });

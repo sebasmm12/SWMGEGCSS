@@ -29,7 +29,7 @@
                {
                   htmlAttributes = new { @id = "cita_fecha", @class = "form-control", @type = "date" }
                })
-
+                <div id="error-cita-fecha" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -47,12 +47,13 @@
                     Empresa
                 </label>
                 <select class="custom-select" id="cita_empresa" name="cita_empresa">
-                    <option class="font-weight-bolder">Elige una opción</option>
+                    <option class="font-weight-bolder" value="Elige una opcion">Elige una opcion</option>
                     @foreach (var item in list_empresa)
                     {
                         <option value="@item.emp_razon_social">@item.emp_razon_social</option>
                     }
                 </select>
+                <div id="error-cita-empresa" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -94,12 +95,13 @@
                     Encargado
                 </label>
                 <select class="custom-select" id="usu_citado" name="usu_citado">
-                    <option class="font-weight-bolder">Elige una opción</option>
+                    <option class="font-weight-bolder">Elige una opcion</option>
                     @foreach (var item in list_usuario)
                     {
                         <option value="@item.usu_codigo">@item.usu_usuario</option>
                     }
                 </select>
+                <div id="error-cita-encargado" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
