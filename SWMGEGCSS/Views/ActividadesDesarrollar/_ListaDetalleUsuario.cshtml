@@ -1,0 +1,59 @@
+﻿@model SWMGEGCSS.Models.GestionarAsignacionActividadesDesarrollar
+@{
+    var listaDetalleUsuario = Model.listPagedDetalleUsuario;
+    int act_desa_id = Model.actividadesDesarrollar.act_desa_id;
+    var count = 0;
+    Layout = null;
+}
+
+<div id="tableDetUsu">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre </th>
+                            <th scope="col">N° Documento</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Seleccionar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in listaDetalleUsuario)
+                        {
+
+                            count = count + 1;
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+
+
+                                <td>@item.det_usu_nombre</td>
+                                <td>@item.det_usu_tip_doc_numero </td>
+                                <td>@item.det_usu_especialidad</td>
+                                <td>@item.det_usu_correo</td>
+                                <td>
+                                    @{
+
+                                        <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
+                                            <i class="fa fa-check-circle"></i>
+                                            Como Encargado
+                                        </button>
+
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12 pagedList1" data-exp-target="#tableDetUsu">
+            @Html.PagedListPager(listaDetalleUsuario, page => Url.Action("RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id, page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>

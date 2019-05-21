@@ -307,6 +307,8 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\ReasignarTarea.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarActividadesDesarrollar.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
@@ -484,6 +486,10 @@
     <Content Include="Views\ActividadesDesarrollar\ActualizarAsignacionActividades_Desarrollar.cshtml" />
     <Content Include="Views\ActividadesDesarrollar\_ModalActualizarAuditoriaActividadDesarrollar.cshtml" />
     <Content Include="Views\ActividadesDesarrollar\_ModalAsignarTrabajadorResponsableMod.cshtml" />
+    <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
+    <Content Include="Views\Trabajador\ModificarArchivo.cshtml" />
+    <Content Include="Views\Administrador\_ListaActividadesDesarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ListaDetalleUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

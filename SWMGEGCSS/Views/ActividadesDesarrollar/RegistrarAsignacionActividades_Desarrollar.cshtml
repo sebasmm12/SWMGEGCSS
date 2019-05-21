@@ -10,6 +10,7 @@
     var usuariAsignado = Model.usuarioEncargado;
     //var usuarioRevisor = Model.usuarioRevisor;
     var detalleUsuTrabajador = Session["detUsuTrabajador"];
+    
 }
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
@@ -251,53 +252,18 @@
         <div>
             <div class="mt-2 ml-4">
                 <div class="container-fluid">
-                    <div class="row mt-4 pl-2">
-                        <div class="col-12 col-sm-12 col-md-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead class="bg-success">
-                                        <tr class="text-center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nombre </th>
-                                            <th scope="col">N° Documento</th>
-                                            <th scope="col">Especialidad</th>
-                                            <th scope="col">Correo</th>
-                                            <th scope="col">Seleccionar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in listaDetalleUsuario)
-                                        {
-
-                                            count = count + 1;
-                                            <tr class="text-center">
-                                                <th scope="row">@count</th>
-
-
-                                                <td>@item.det_usu_nombre</td>
-                                                <td>@item.det_usu_tip_doc_numero </td>
-                                                <td>@item.det_usu_especialidad</td>
-                                                <td>@item.det_usu_correo</td>
-                                                <td>
-                                                    @{
-
-                                                        <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
-                                                            <i class="fa fa-check-circle"></i>
-                                                            Como Encargado
-                                                        </button>
-
-                                                    }
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="row mt-4">
+                        <div class="col-12 col-sm-4 col-md-4">
                         </div>
+                        <h2>Lista de Trabajadores</h2>
+                        <div class="col-12 col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        @Html.Partial("_ListaDetalleUsuario", Model)
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
@@ -310,12 +276,15 @@
 
     </form>
     @Html.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")
-
     @Html.Action("_ModalRegistrarAuditoriaActividadDesarrollar", "ActividadesDesarrollar")
+
+
 </div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <!--<script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>-->
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividad.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/AsignarActividades.js"></script>
+    <script src="~/Scripts/Scripts_TP/COLOMBO/visualizarDetalleUsuario.js"></script>
 }
