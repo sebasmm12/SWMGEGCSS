@@ -15,6 +15,7 @@
         var $planEmp = $("#plan-emp");
         var $planTipoServicio = $("#plan-tipo-servicio");
 
+
         var vnombre = validar_nombre_plan($planNombre.val());
         var vfecha = validar_fecha_plan($planFecha.val());
         //var vcosto = validar_costo_plan($planCosto.val());

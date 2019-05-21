@@ -1,9 +1,10 @@
 ﻿@model SWMGEGCSS.Models.GestionarCitasViewModel
 @{
     ViewBag.Title = "Gestionar_Citas";
-    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var list_citas = Model.listCitas;
 }
+
+
 
 <h2 class="ml-3">Gestionar Citas</h2>
 
@@ -32,7 +33,9 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
-    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsConsultarEmpresa.js"></script>
-    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsConsultarSecretario.js"></script>
+    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsGestionarCita.js"></script>
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
+
+
+
