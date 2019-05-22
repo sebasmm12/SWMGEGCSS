@@ -27,9 +27,9 @@
                         Nombre del Plan del Proyecto
                     </label>
                     @Html.EditorFor(model => model.plans_aux.plan_nombre, new
-                        {
-                            htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" }
-                        })
+               {
+                   htmlAttributes = new { @id = "plan-nombre", @class = "text-center form-control" , @onKeyUp = "this.value=this.value.toUpperCase();" }
+               })
                     <div id="error-plan-nombre" class="errordiv"></div>
                 </div>
                 <div class="col-12 col-sm-4 col-md-4">

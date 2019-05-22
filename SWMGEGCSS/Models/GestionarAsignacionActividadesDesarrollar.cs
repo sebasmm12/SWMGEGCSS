@@ -16,10 +16,12 @@ namespace SWMGEGCSS.Models
         public T_actividades_desarrollar_aux actividadesDesarrollarAux { get; set; }
         public List<T_actividades_desarrollar> listActividadesDesarrollar { get; set; }
         public IPagedList<T_actividades_desarrollar> listPagedActividadesDesarrollar { get; set; }
+        public IPagedList<T_actividades_desarrollar_aux> listPagedActividadesDesarrollarAux { get; set; }
         public List<T_actividades_desarrollar_aux> listActividadesDesarrollarAux { get; set; }
         
         public List<T_usuario> listUsuarios { get; set; }
         public List<T_detalle_usuario> listDetalleUsuario { get; set; }
+        public IPagedList<T_detalle_usuario> listPagedDetalleUsuario { get; set; }
 
         public T_detalle_usuario usuarioEncargado { get; set; }
         public T_detalle_usuario usuarioRevisor { get; set; }

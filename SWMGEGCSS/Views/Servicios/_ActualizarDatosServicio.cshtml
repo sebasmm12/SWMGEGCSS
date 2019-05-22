@@ -2,6 +2,7 @@
 @{
     Layout = null;
 }
+    <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
     <div class="modal fade" id="ModalActualizarDatosServicio" tabindex="-1" role="dialog" aria-labelledby="#ModalActualizarDatosServicio" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -22,6 +23,7 @@
                                     htmlAttributes = new { @class = "text-center form-control bg-white", @id = "servicio_nombre_act" }
                                 })
                             </div>
+                            <span id="validatenameServicio"></span>
                         </div>
                         <div class="col-sm-6 col-12 col-md-6">
                             <div class="mt-2">
@@ -53,6 +55,7 @@
                             <div>
                                 @Html.TextAreaFor(model => model.tipoServicio.tipo_servicio_descripcion, htmlAttributes: new { @class = "text-center form-control bg-white", @id = "servicio_descripción_act" })
                             </div>
+                            <span id="validatedescripcionServicio"></span>
                         </div>
                     </div>
                     <div class="row mt-2">

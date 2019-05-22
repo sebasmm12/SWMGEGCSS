@@ -113,7 +113,7 @@ namespace SWMGEGCSS.Controllers
                 tiempototal += item.act_plan_tiempo;
             }
             var operationResult3 = new PlanDataAccess().sp_Actualizar_Costo_Tiempo_Actividades(costototal,tiempototal, planId.plan_id);
-            return Json(new { data = operationResult1.NewId }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = operationResult3.NewId }, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }
