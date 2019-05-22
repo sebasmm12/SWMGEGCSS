@@ -5,10 +5,9 @@
 }
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
-<h2 class="ml-3"y>Registrar Empresa</h2>
+<h2 class="ml-3" y>Registrar Empresa</h2>
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRegistrarEmpresas.js"></script>
-    
 }
 <div class="container-fluid">
     @using (Html.BeginForm())
@@ -121,13 +120,13 @@
         <div id="errordiv"></div>
         <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                
-                    <button type="submit" class="btn btn-success" id="boton-Registrar">
-                        <i class="fa fa-check-circle"></i>
-                        Registrar Empresa
-                    </button>
-                
-                
+
+                <button type="submit" class="btn btn-success" id="boton-Registrar">
+                    <i class="fa fa-check-circle"></i>
+                    Registrar Empresa
+                </button>
+
+
             </div>
             <div class="col-12 col-sm-3 col-md-3">
                 <a href="@Url.Action("Gestionar_Empresas","Gerente")" class="btn btn-secondary">

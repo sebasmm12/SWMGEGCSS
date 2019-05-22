@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(function() {
     /*var autocompletado = function () {
         var $input = $(this);
         var options = {
@@ -20,7 +20,7 @@
         var $empRazonSocial = $("#emp-razon-social");
         var $empSigla = $("#emp-sigla");
         var $empRuc = $("#emp-ruc");
-        
+
 
 
         var vrazon_social = validar_razon_social($empRazonSocial.val());
@@ -37,12 +37,11 @@
         var vemail = validar_email($empEmail.val());
 
 
-        if (vfa$ (x === false || vrepreretusentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social === false || vsigla === false || vruc===false) {
+        if (vfax === false || vrepresentante === false || vdireccion === false || vtelefono === false || vemail === false || vrazon_social === false || vsigla === false || vruc === false) {
 
             return false;
         }
-        else 
-        {
+        else {
 
             $.ajax({
                 url: "/Empresa/Registrar_Empresa",
@@ -50,6 +49,7 @@
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
+        
                 Swal.fire({
                     type: 'success',
                     title: 'Se registró la empresa exitosamente',
@@ -63,7 +63,7 @@
 
         }
         return false;
-        
+
     };
 
 
@@ -111,7 +111,7 @@
             return false;
         }
     };
-    var igual= function maxCharacters(X) {
+    var igual = function maxCharacters(X) {
         if (X.length === 11) {
             return true;
         } else {
@@ -150,7 +150,7 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'Debe ingresar una Razon Social');
             $("#emp-razon-social").focus();
-               
+
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -158,7 +158,7 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'La Razon Social no debe empezar con un espacio en blanco');
             $("#emp-razon-social").focus();
-                
+
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -166,7 +166,7 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'La Razon Social no puede ser un número');
             $("#emp-razon-social").focus();
-                
+
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -174,7 +174,7 @@
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'La Razon Social debe empezar con una letra, no debe contener caracteres especiales o numeros');
             $("#emp-razon-social").focus();
-              
+
             $("#emp-razon-social").keyup(keyRazon);
             return false;
         }
@@ -210,7 +210,7 @@
 
         addgood("emp-razon-social");
         attributes("error-emp-razon-social");
-       
+
         return true;
     }
     //Validacion Sigla
@@ -220,7 +220,7 @@
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'Debe ingresar una Sigla');
             $("#emp-sigla").focus();
-             
+
             $("#emp-sigla").keyup(keysigla);
             return false;
         }
@@ -228,7 +228,7 @@
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'La Sigla no debe empezar con un espacio en blanco');
             $("#emp-sigla").focus();
-            
+
             $("#emp-sigla").keyup(keysigla);
             return false;
         }
@@ -236,7 +236,7 @@
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'La Sigla no puede ser un número');
             $("#emp-sigla").focus();
-             
+
             $("#emp-sigla").keyup(keysigla);
             return false;
         }
@@ -244,7 +244,7 @@
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'La Sigla debe empezar con una letra, no debe contener caracteres especiales o numeros');
             $("#emp-sigla").focus();
-          
+
             $("#emp-sigla").keyup(keysigla);
             return false;
         }
@@ -258,28 +258,28 @@
         }
         else {
             $.ajax({
-            url: "/Empresa/Evaluar_Sigla_Empresa",
-            method: "GET",
-            async: false,
-            data: {
-                emp_sigla: $("#emp-sigla").val()
-            },
-            dataType: "json"
-        }).done(function (data) {
-            if (data !== 0) {
-                vsig = 1;
-            }
-        });
-    }
+                url: "/Empresa/Evaluar_Sigla_Empresa",
+                method: "GET",
+                async: false,
+                data: {
+                    emp_sigla: $("#emp-sigla").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    vsig = 1;
+                }
+            });
+        }
         if (vsig === 1) {
-        adderror("emp-sigla");
+            adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'Esta Sigla ya existe, debe escribir otro');
             $("#emp-sigla").keyup(keysigla);
-        return false;
-    }
+            return false;
+        }
         addgood("emp-sigla");
         attributes("error-emp-sigla");
-        
+
         return true;
 
     }
@@ -290,36 +290,36 @@
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'Debe ingresar un Ruc');
             $("#emp-ruc").focus();
-            
+
             $("#emp-ruc").keyup(keyRuc);
-      
+
             return false;
         }
         if (ruc === " ") {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'El Ruc no debe empezar con un espacio en blanco');
             $("#emp-ruc").focus();
-             
+
             $("#emp-ruc").keyup(keyRuc);
-           
+
             return false;
         }
         if (esNum(ruc) === false) {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'El Ruc debe ser un número');
             $("#emp-ruc").focus();
-         
+
             $("#emp-ruc").keyup(keyRuc);
-           
+
             return false;
         }
 
-        if (igual(ruc)===false) {
+        if (igual(ruc) === false) {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'El Ruc debe ser 11 dígitos');
             $("#emp-ruc").focus();
             $("#emp-ruc").keyup(keyRuc);
-           
+
             return false;
         }
         else {
@@ -345,12 +345,12 @@
         }
         addgood("emp-ruc");
         attributes("error-emp-ruc");
-    
+
         return true;
     }
     //Validacion Telefono
     function validar_telefono(telefono) {
-       
+
 
         if (telefono === "") {
             adderror("emp-telefono");
@@ -413,7 +413,7 @@
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser positivo');
             $("#emp-telefono").focus();
-             alert("telefono negativo");
+            alert("telefono negativo");
             $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
@@ -421,7 +421,7 @@
         addgood("emp-telefono");
         attributes("error-emp-telefono");
         return true;
-    }
+    };
     //Validacion Fax
 
 
@@ -500,13 +500,13 @@
             //   alert("email largo");
             return false;
         }
-        {
-            addgood("emp-email");
-            attributes("error-emp-email");
-            return true;
-        }
-     
+
+        addgood("emp-email");
+        attributes("error-emp-email");
+        return true;
     }
+
+
     //Validacion direccion
 
     function validar_direccion(direccion) {
@@ -524,7 +524,7 @@
             $("#emp-direccion").keyup(keyDireccion);
             return false;
         }
-        if (direccion.charAt(0)===' ') {
+        if (direccion.charAt(0) === ' ') {
             adderror("emp-direccion");
             negativeattributes("error-emp-direccion", 'La dirección no debe empezar con un espacio en blanco');
             $("#emp-direccion").focus();
@@ -532,7 +532,7 @@
             $("#emp-direccion").keyup(keyDireccion);
             return false;
         }
-        
+
         if (maximoNumeroCaracteres200(direccion) === true) {
             adderror("emp-direccion");
             negativeattributes("error-emp-direccion", 'La dirección debe ser de menos de 200 caracteres');
@@ -594,9 +594,11 @@
         addgood("emp-representante");
         attributes("error-emp-representante");
         return true;
-    }
+    };
+
 
     //--------------------------------------------------------------------------------------------
+    
     var keyRazon = function () {
         var $valor = $("#emp-razon-social");
         if ($valor.val() === "") {
@@ -765,7 +767,7 @@
     };
 
 
-    function keyDireccion() {
+   var keyDireccion=function() {
 
         var $valor = $("#emp-direccion");
         if ($valor.val() === "") {
