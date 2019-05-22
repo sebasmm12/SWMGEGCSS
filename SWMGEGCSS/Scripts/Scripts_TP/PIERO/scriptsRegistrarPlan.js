@@ -48,6 +48,11 @@
         return false;
     };
 
+    function aMayusculas(obj, id) {
+        obj = obj.toUpperCase();
+        document.getElementById(id).value = obj;
+    }
+
     var esNum = function esNumero(txt) {
         if (isNaN(txt)) {
             return false;
