@@ -94,19 +94,24 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _Eliminar_Cita(int cita_id)
         {
             var model = new GestionarCitasViewModel();
+            Session["citaid"] = cita_id;         
             model.Citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == cita_id);
+            Session["estadocita"] = model.Citas.estado_cita_id;
             return PartialView(model);
 
         }
 
         [HttpPost]
-        public ActionResult EliminaCita(T_Citas citas)
+        public ActionResult EliminaCita(int id_cita, int id_estado_cita)
         {
             var model = new GestionarCitasViewModel();
-            model.citas.usu_generado = (int)Session["login"];
+            model.citas = new T_Citas();
+            //model.citas.usu_generado = (int)Session["login"];
+            model.citas.cita_id = id_cita;
+            model.citas.estado_cita_id = id_estado_cita;
             var operationResult = new OperationResult();
             operationResult = new SecretariaDataAccess().sp_Eliminar_Cita(model.citas);
-            return View(model);
+            return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

@@ -33,6 +33,13 @@
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
+                if (data === 5) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Error',
+                        text: 'Debe ingresar al menos 1 actividad!'
+                    });
+                }
                 Swal.fire({
                     type: 'success',
                     title: 'Se registro el plan exitosamente',
@@ -47,6 +54,11 @@
         }
         return false;
     };
+
+    function aMayusculas(obj, id) {
+        obj = obj.toUpperCase();
+        document.getElementById(id).value = obj;
+    }
 
     var esNum = function esNumero(txt) {
         if (isNaN(txt)) {

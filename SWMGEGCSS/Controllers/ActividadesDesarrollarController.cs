@@ -6,6 +6,7 @@ using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
 using System.Web.Mvc;
+using PagedList;
 
 namespace SWMGEGCSS.Controllers
 {
@@ -17,12 +18,13 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult RegistrarAsignacionActividades_Desarrollar(int act_desa_id)
+        public ActionResult RegistrarAsignacionActividades_Desarrollar(int act_desa_id, int page = 1)
         {
             var model = new GestionarAsignacionActividadesDesarrollar();
             model.actividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux().Find(X => (X.act_desa_id == act_desa_id));
             model.actividadesDesarrollar = new  ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar().Find(X => (X.act_desa_id == act_desa_id));
             model.listDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador();
+            model.listPagedDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().ToPagedList(page, 4);
             Session["actividadesDesarrollar"] = model.actividadesDesarrollar;
             Session["act_desa_id"] = act_desa_id;
 
@@ -33,6 +35,11 @@ namespace SWMGEGCSS.Controllers
             
             model.expedienteActDesarrollar = new T_expedientes();
             model.expedienteActDesarrollar = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(X => (X.exp_id == model.actividadesDesarrollar.exp_id));
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaDetalleUsuario", model);
+            }
             return View(model);
         }
         [HttpPost]
