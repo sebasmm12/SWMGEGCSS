@@ -28,7 +28,7 @@
             }).done(function (data) {
                 Swal.fire({
                     type: 'success',
-                    title: 'Se registró exitosamente',
+                    title: 'Se actualizó exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {

@@ -1,7 +1,7 @@
 ﻿$(function(){
 
     validacion = function () {
-
+        //validar fecha registrar mismo mes actualizar 28d
 
         var $ing_egr_Nombre = $("#ing-egr-nombre");
         var $ing_egr_Descripcion = $("#ing-egr-descripcion");
@@ -157,6 +157,9 @@
         return true;    
     }
     function validar_fecha(fechaa) {
+        var fechaingresada = new date($("#ing-egr-fecha").val());
+        var fechaactual = new date();
+
         if (fechaa === "") {
             adderror("ing-egr-fecha");
             negativeattributes("error-ing-egr-fecha", "La fecha no debe estar vacía");
@@ -164,6 +167,9 @@
             $("#ing-egr-fecha").keyup(KeyFecha);
             return false;
         }
+
+
+
         addgood("ing-egr-fecha");
         attributes("error-ing-egr-fecha");
         return true;

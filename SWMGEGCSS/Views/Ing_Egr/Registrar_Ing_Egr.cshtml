@@ -82,17 +82,22 @@
         <div class="col-12 col-sm-2 col-md-2">
             <div>
                 <label class="font-weight-bolder">
-                    TIPO
+                    Seleccione la opción
                 </label>
             </div>
 
-            Ingreso @Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,1)
-            Egreso @Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,0)
-    
-
+            <!--            Ingreso Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,1)
+              Egreso Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,0)
+      -->
+            <select class="custom-select" id="tipo" name="tipo">
+                <option value="Tipo">Tipo</option>
+              
+                    <option value=1>Ingreso</option>
+                    <option value=0>Egreso</option>
+            </select>
             <div id="error-ing-egr-ingreso" class="errordiv"></div>
         </div>
-
+       
 
     </div>
 
