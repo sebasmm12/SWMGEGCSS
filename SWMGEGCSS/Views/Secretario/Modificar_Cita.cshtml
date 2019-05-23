@@ -38,6 +38,9 @@
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
+        <div>
+            <input type="hidden" name="cita_id" value="@Model.Citas.cita_id" />
+        </div>
         <div class="row mt-1 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -60,7 +63,7 @@
                 <label class="font-weight-bolder">
                     Empresa
                 </label>
-                <input type="text" id="cita_empresa" name="cita_empresa" class="text-center form-control" value="@Model.Citas.cita_empresa" />
+                <input type="text" id="cita_empresa" name="cita_empresa" class="text-center form-control" value="@Model.Citas.cita_empresa" readonly="readonly"/>
                 <div id="error-cita-empresa" class="errordiv"></div>
 
             </div>
@@ -68,7 +71,7 @@
                 <label class="font-weight-bolder">
                     Representante
                 </label>
-                <input type="text" id="cita_representante" name="cita_representante" class="text-center form-control" value="@Model.Citas.cita_representante" />
+                <input type="text" id="cita_representante" name="cita_representante" class="text-center form-control" value="@Model.Citas.cita_representante" readonly="readonly" />
                 <div id="error-cita-representante" class="errordiv"></div>
             </div>
 
@@ -178,6 +181,7 @@
 
     }
 </div>
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsModificarCitas.js"></script>
 }
