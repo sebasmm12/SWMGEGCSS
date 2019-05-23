@@ -10,6 +10,8 @@
         fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
         hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
         correo = Model.Citas.cita_correo;
+        //int id_cita = (int)Session["citaid"];
+        //int estado_cita_id = (int)Session["estadocita"];
     }
 
 }
@@ -106,7 +108,7 @@
                     </div>
 
                     <div class="col-12 col-sm-3 col-md-3">
-                        <button type="button" class="btn btn-danger rounded-pill btnEliminarCita" id="btnEliminar" data-id-cita="@Model.Citas.cita_id" data-url="@Url.Action("EliminaCita","Secretario")">
+                        <button type="button" class="btn btn-danger rounded-pill btnEliminaCita" id="btnEliminar" data-id-cita="@Model.Citas.cita_id" data-estado-id-cita="@Model.Citas.estado_cita_id"  data-url="@Url.Action("EliminaCita","Secretario")">
                             <i class="fa fa-check-circle"></i>
                             Si
                         </button>

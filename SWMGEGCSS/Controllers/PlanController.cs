@@ -96,6 +96,10 @@ namespace SWMGEGCSS.Controllers
             //modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             //modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
+            if (Session["ListaActividades"] == null)
+            {
+                return Json(new { data = 5 }, JsonRequestBehavior.AllowGet);
+            }
             var operationResult1 = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             //Session["Plan_datos"] = modelPlan;
             var planId = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(z => (z.plan_nombre == modelPlan.plan_nombre));

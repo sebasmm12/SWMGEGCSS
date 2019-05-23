@@ -13,6 +13,7 @@
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
                 $(modal).modal();
+                 $(".btnEliminaCita").each(eliminaCita);
             });
             return false;
         });
@@ -33,27 +34,34 @@
     };
 
 
-    //var eliminaCita = function () {
-    //    $.ajax({
-    //        url: $(".btnEliminaCita").attr("data-url"),
-    //        type: "POST",
-    //        data: {
-    //            cita_id: cita_id
-    //        }
-    //    }).done(function (data) {
-    //        if (data === 1) {
-    //            Swal.fire({
-    //                type: 'success',
-    //                title: 'Se elimino el servicio exitosamente',
-    //                confirmButtonText: 'OK'
-    //            }).then((result) => {
-    //                if (result.value) {
-    //                    window.location.href = "/"
-    //                }
-    //            });
-    //        }
-    //    });
-    //};
+    var eliminaCita = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            var id_cita = $(this).attr("data-id-cita");
+            var id_estado_cita = $(this).attr("data-estado-id-cita");
+            $.ajax({
+                url: $(this).attr("data-url"),
+                type: "POST",
+                data: {
+                    id_cita: id_cita,
+                    id_estado_cita: id_estado_cita
+                }
+            }).done(function (data) {
+                //alert("GG CON TP");
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se elimino el servicio exitosamente',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Secretario/Gestionar_Citas";
+                        }
+                    });
+                
+                });
+            return false;
+        });  
+    };
     //var eliminaCita = function () {
     //    $.ajax({
     //        url: "/Secretario/Gestionar_Citas",
@@ -69,7 +77,7 @@
     $(".btnModal").each(envioajaxModal);
     $(".btnModal1").each(envioajaxModal);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
-    //$(".btnEliminarCita").each(eliminaCita);
+    $(".btnEliminaCita").each(eliminaCita);
     //$("#btnEliminarCita").click(eliminaCita);
 
 });

@@ -1,4 +1,17 @@
 ﻿$(function () {
+
+
+    var autocompletado = function () {
+        var $input = $(this);
+        var options = {
+            source: $input.attr("data-exp-autocomplete")
+        };
+        $input.autocomplete(options);
+    };
+
+
+
+
     validacion = function () {
         //declaracion de variables jquery
         var $citaRepresentante = $("#cita_representante").val();
@@ -493,4 +506,5 @@
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
     $("#boton-Registrar").click(validacion);
+    $("input[data-exp-autocomplete]").each(autocompletado);
 });

@@ -33,6 +33,13 @@
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
+                if (data === 5) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Error',
+                        text: 'Debe ingresar al menos 1 actividad!'
+                    });
+                }
                 Swal.fire({
                     type: 'success',
                     title: 'Se registro el plan exitosamente',
