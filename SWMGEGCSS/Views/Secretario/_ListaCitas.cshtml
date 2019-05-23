@@ -3,7 +3,8 @@
 
     Layout = null;
     var list_citas = Model.listCitas;
-    var list_usu = Model.UsuarioModel.list_usuario;
+    //var list_usu = Model.UsuarioModel.list_usuario;
+    var list_usu = Model.DetalleUsuarioModel.list_usuario;
 
 }
 @section Scripts{
@@ -35,7 +36,7 @@
                             <td>@item.cita_empresa</td>
                             <td>@item.cita_representante</td>
                             <td>@item.cita_telefono</td>
-                            <td>@item.usu_usuario</td>
+                            <td>@item.det_usu_nombre</td>
                             <td>
 
 
