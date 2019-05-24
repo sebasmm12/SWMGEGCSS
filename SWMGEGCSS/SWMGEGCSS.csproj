@@ -313,6 +313,7 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
