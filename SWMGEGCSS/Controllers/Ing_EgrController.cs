@@ -55,5 +55,7 @@ namespace SWMGEGCSS.Controllers
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             // return RedirectToAction("Gestionar_I_E", "Gerente");
         }
+
+       
     }
 }
