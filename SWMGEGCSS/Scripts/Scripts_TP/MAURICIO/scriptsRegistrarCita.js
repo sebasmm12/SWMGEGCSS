@@ -21,6 +21,7 @@
         var $citaFecha = $("#cita_fecha").val();
         var $citaEmpresa = $("#cita_empresa").val();
         var $citaEncargado = $("#usu_citado").val();
+        var $citaHora = $("#cita_hora").val();
         //Metodos
 
         var vCitaRepresentante = validar_representante($citaRepresentante);
@@ -30,10 +31,12 @@
         var vCitaFecha = validar_fecha($citaFecha);
         var vCitaEmpresa = validar_empresa($citaEmpresa);
         var vCitaEncargado = validar_encargado($citaEncargado);
+        var vcitaHora = validar_hora($citaHora);
+        
         
 
 
-        if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false || vCitaFecha === false || vCitaEmpresa === false || vCitaEncargado === false) {
+        if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false || vCitaFecha === false || vCitaEmpresa === false || vCitaEncargado === false || vcitaHora === false) {
             return false;
         } else {
 
@@ -386,7 +389,7 @@
         var dateActual = new Date();
         var fechaActual = dateActual;
         var fechaNoposible = new Date(dateActual);
-        fechaNoposible.setDate(fechaActual.getDate() + 15);
+        fechaNoposible.setDate(fechaActual.getDate() + 60);
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
         if (fecha === "") {
@@ -495,6 +498,31 @@
             negativeattributes("error-cita-empresa", 'Debe seleccionar un encargado5');
             adderror("cita_empresa");
         }
+    };
+
+    //Validar Hora
+    function validar_hora(hora) {
+        if (hora === "") {
+            adderror("cita_hora");
+            negativeattributes("error-cita-hora", 'La hora de la cita no puede estar vacía');
+            $("#cita_hora").focus();
+            $("#cita_hora").keyup(keyHora);
+            return false;
+        } else {
+            attributes("error-cita-hora");
+            addgood("cita_hora");
+        }
+        return true;
+    }
+
+    var keyHora = function () {
+        $valor = $("#cita_hora");
+        if ($valor.val() === "") {
+            negativeattributes("error-cita-hora", 'La hora de la cita no puede estar vacía');
+            adderror("cita_empresa");
+        }
+        attributes("error-cita-hora");
+        addgood("cita_hora");
     };
 
     ///NO SE QUE ES PERO ME DIJERON QUE ERA IMPORTANTE
