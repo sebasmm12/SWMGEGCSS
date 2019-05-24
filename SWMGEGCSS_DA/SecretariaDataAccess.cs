@@ -187,6 +187,7 @@ namespace SWMGEGCSS_DA
                 {
                     Database.AddInParameter(command, "@cita_id", DbType.Int32, citas.cita_id);
                     Database.AddInParameter(command, "@estado_cita_id", DbType.Int32, citas.estado_cita_id);
+                    Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
                 return operation;

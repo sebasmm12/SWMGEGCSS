@@ -50,7 +50,6 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.citas = citas;
-            model.citas.cita_id = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas,cita_empresa, usu_citado, cita_hora);
             return RedirectToAction("Gestionar_Citas", "Secretario");
@@ -76,7 +75,6 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.Citas = cita;
-            model.Citas.cita_id = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new SecretariaDataAccess().sp_Modificar_Cita(model.Citas, cita_hora_atendido,cita_hora, usu_citado);
             return RedirectToAction("Gestionar_Citas", "Secretario");
