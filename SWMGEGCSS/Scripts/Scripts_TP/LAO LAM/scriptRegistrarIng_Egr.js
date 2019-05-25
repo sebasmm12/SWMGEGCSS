@@ -1,4 +1,4 @@
-﻿$(function(){
+﻿$(function () {
 
     validacion = function () {
 
@@ -7,17 +7,15 @@
         var $ing_egr_Descripcion = $("#ing-egr-descripcion");
         var $ing_egr_Fecha = $("#ing-egr-fecha");
         var $ing_egr_Monto = $("#ing-egr-monto");
-     //   var $ING = $("#ingresos");
-     //   var $EGR = $("#egresos");
-        
+
+
         var vnombre = validar_nombre($ing_egr_Nombre.val());
         var vdescripcion = validar_descripcion($ing_egr_Descripcion.val());
         var vfecha = validar_fecha($ing_egr_Fecha.val());
         var vmonto = validar_monto($ing_egr_Monto.val());
 
-        //var ving_egr = validar_ing_egr($ING.val(), $EGR.val());
 
-        if (vnombre === false || vdescripcion === false || vmonto === false || vfecha === false /* ||ving_egr === false*/) {
+        if (vnombre === false || vdescripcion === false || vmonto === false || vfecha === false) {
             return false;
         }
         else {
@@ -28,10 +26,9 @@
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
-                
                 Swal.fire({
                     type: 'success',
-                    title: 'Se registró  exitosamente',
+                    title: 'Se registró exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
@@ -45,7 +42,7 @@
 
 
     };
-
+        //validar fecha registrar mismo mes actualizar 28d
     var esNum = function esNumero(txt) {
         if (isNaN(txt)) {
             return false;
@@ -157,6 +154,9 @@
         return true;    
     }
     function validar_fecha(fechaa) {
+        var fechaingresada = new date($("#ing-egr-fecha").val());
+        var fechaactual = new date();
+
         if (fechaa === "") {
             adderror("ing-egr-fecha");
             negativeattributes("error-ing-egr-fecha", "La fecha no debe estar vacía");
@@ -164,6 +164,9 @@
             $("#ing-egr-fecha").keyup(KeyFecha);
             return false;
         }
+
+
+
         addgood("ing-egr-fecha");
         attributes("error-ing-egr-fecha");
         return true;

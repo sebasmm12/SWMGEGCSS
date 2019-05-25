@@ -312,7 +312,9 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarActividadesDesarrollar.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptConsultarIng.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
@@ -509,6 +511,7 @@
     <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
     <Content Include="Views\Trabajador\ModificarArchivo.cshtml" />
+    <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />

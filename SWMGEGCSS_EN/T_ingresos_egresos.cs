@@ -13,7 +13,7 @@ namespace SWMGEGCSS_EN
         public string ing_egr_descripcion { get; set; }
         public int usu_codigo { get; set; }
         public DateTime ing_egr_fecha { get; set; }
-        public int ing_egr_ingrso { get; set; }
+        public bool ing_egr_ingrso { get; set; }
         public double ing_egr_monto { get; set; }
     }
 }
