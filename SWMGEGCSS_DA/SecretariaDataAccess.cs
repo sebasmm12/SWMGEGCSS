@@ -82,7 +82,7 @@ namespace SWMGEGCSS_DA
             }
             return l_citas;
         }
-
+        //Busca todos los estados
         public List<T_estado_cita> sp_Consultar_Lista_Estado_Cita()
         {
             var l_estado_cita = new List<T_estado_cita>();
@@ -110,6 +110,46 @@ namespace SWMGEGCSS_DA
             }
             return l_estado_cita;
             
+        }
+
+        //Busca por estados
+        public List<T_Citas_aux> sp_Consultar_Lista_Cita_Estado(string estado)
+        {
+            var l_cita_estado = new List<T_Citas_aux>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Citas_Estado"))
+                {
+                    Database.AddInParameter(command, "@estado_cita_id", DbType.Int32, Convert.ToInt32(estado));
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var cita = new T_Citas_aux();
+                            cita.cita_id = DataUtil.DbValueToDefault<Int32>(reader["cita_id"]);
+                            cita.estado_cita_nombre = DataUtil.DbValueToDefault<string>(reader["estado_cita_nombre"]);
+                            cita.usu_citado = DataUtil.DbValueToDefault<Int32>(reader["usu_citado"]);
+                            cita.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
+                            cita.cita_comentario = DataUtil.DbValueToDefault<string>(reader["cita_comentario"]);
+                            cita.estado_cita_id = DataUtil.DbValueToDefault<Int32>(reader["estado_cita_id"]);
+                            cita.cita_fecha = DataUtil.DbValueToDefault<DateTime>(reader["cita_fecha"]);
+                            cita.cita_empresa = DataUtil.DbValueToDefault<string>(reader["cita_empresa"]);
+                            cita.cita_representante = DataUtil.DbValueToDefault<string>(reader["cita_representante"]);
+                            cita.cita_correo = DataUtil.DbValueToDefault<string>(reader["citas_correo"]);
+                            cita.cita_telefono = DataUtil.DbValueToDefault<string>(reader["cita_telefono"]);
+                            cita.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
+                            l_cita_estado.Add(cita);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.Write(e + " ");
+                return new List<T_Citas_aux>();
+            }
+            return l_cita_estado;
         }
 
 

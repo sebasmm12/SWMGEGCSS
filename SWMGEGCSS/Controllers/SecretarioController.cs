@@ -17,13 +17,38 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Citas(string searchTerm, string estado, int page = 1)
+        [HttpGet]
+        public ActionResult Gestionar_Citas(string estado, int page = 1)
         {
             var model = new GestionarCitasViewModel();
-            model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
             model.DetalleUsuarioModel = new DetalleUsuarioViewModel();
             model.DetalleUsuarioModel.list_usuario = new List<T_detalle_usuario>();
+            if (estado == null)
+            {
+                model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
+            }
+            if(estado != null)
+            {
+                if (estado.Equals("1"))//pendiente
+                {
+                    model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().FindAll(r => r.estado_cita_id == Convert.ToInt32(estado)).ToPagedList(page, 4);
+                }
+                if (estado.Equals("2"))//cancelado
+                {
+                    model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().FindAll(r => r.estado_cita_id == Convert.ToInt32(estado)).ToPagedList(page, 4);
+                }
+                if (estado.Equals("3"))//No realizado
+                {
+                    model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().FindAll(r => r.estado_cita_id == Convert.ToInt32(estado)).ToPagedList(page, 4);
+                }
+            }
             model.DetalleUsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+
+
+
+
+
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaCitas", model);
@@ -104,7 +129,6 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.citas = new T_Citas();
-            //model.citas.usu_generado = (int)Session["login"];
             model.citas.cita_id = id_cita;
             model.citas.estado_cita_id = id_estado_cita;
             var operationResult = new OperationResult();
