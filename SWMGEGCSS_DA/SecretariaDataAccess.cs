@@ -67,6 +67,7 @@ namespace SWMGEGCSS_DA
                             cita.cita_empresa = DataUtil.DbValueToDefault<string>(reader["cita_empresa"]);
                             cita.cita_representante = DataUtil.DbValueToDefault<string>(reader["cita_representante"]);
                             cita.cita_correo = DataUtil.DbValueToDefault<string>(reader["citas_correo"]);
+                            cita.cita_fecha_atendido = DataUtil.DbValueToDefault<DateTime>(reader["cita_fecha_atendido"]);
                             cita.cita_telefono = DataUtil.DbValueToDefault<string>(reader["cita_telefono"]);
                             cita.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
                             l_citas.Add(cita);
@@ -200,7 +201,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@usu_citado", DbType.Int32, usu_citado);
                     Database.AddInParameter(command, "@cita_empresa", DbType.String, citas.cita_empresa);
                     Database.AddInParameter(command, "@citas_correo", DbType.String, citas.cita_correo);
-                    Database.AddInParameter(command, "@cita_fecha_atendido", DbType.DateTime, fecha);
+                    Database.AddInParameter(command, "@cita_fecha_atendido", DbType.DateTime, fecha_atendido);
                     Database.AddInParameter(command, "@cita_telefono", DbType.String, citas.cita_telefono);
                     Database.AddInParameter(command, "@estado_cita_id", DbType.Int32, citas.estado_cita_id);
                     Database.ExecuteScalar(command);

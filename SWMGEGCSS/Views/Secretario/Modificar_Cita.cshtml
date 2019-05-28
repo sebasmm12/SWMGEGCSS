@@ -3,6 +3,8 @@
     ViewBag.Title = "Modificar_Cita";
     var fecha = "";
     var hora = "";
+    var fecha_atendido = "";
+    var hora_atendido = "";
     var empresa = "";
     var encargado_id = Model.Citas.usu_citado;
     var estado = Model.Citas.estado_cita_id;
@@ -16,7 +18,9 @@
     if (Model.Citas != null)
     {
         fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
-        hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
+        hora = Model.Citas.cita_fecha.ToString("hh:mm");
+        fecha_atendido = Model.Citas.cita_fecha_atendido.ToString("yyyy-MM-dd");
+        hora_atendido = Model.Citas.cita_fecha_atendido.ToString("hh:mm");
         empresa = Model.Citas.cita_empresa;
 
     }
@@ -134,15 +138,15 @@
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Fecha Realiza
-                </label>
-                <input type="date" name="cita_fecha_atendido" id="cita_fecha_atendido" class="text-center form-control" />
+                </label> 
+                <input type="date" name="cita_fecha_atendido" id="cita_fecha_atendido" class="text-center form-control" value="@fecha_atendido"/>
                 <div id="error-cita-fecha-atendido" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Hora Realizada
                 </label>
-                <input type="time" name="cita_hora_atendido" id="cita_hora_atentido" class="text-center form-control" />
+                <input type="time" name="cita_hora_atendido" id="cita_hora_atentido" class="text-center form-control" value="@hora_atendido" />
             </div>
 
 

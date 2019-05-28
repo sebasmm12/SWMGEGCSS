@@ -22,7 +22,7 @@
 
 
 
-        if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false || vCitaFecha === false || vCitaEmpresa === false || vCitaEncargado === false) {
+        if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false || vCitaFecha === false || vCitaEmpresa === false || vCitaEncargado === false || vCitaFechaAtendido === false) {
             return false;
         } else {
 
@@ -370,7 +370,12 @@
     function validar_fecha(fecha) {
         var fechaIngresada = new Date(fecha);
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        //
+        //fechaNoposible.setDate(fechaNoposible.getDate() + 1);
         var dateActual = new Date();
+        var fechaActual = dateActual;
+        var fechaNoposible = new Date(dateActual);
+        fechaNoposible.setDate(fechaActual.getDate() + 60);
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
         if (fecha === "") {
@@ -380,21 +385,28 @@
             $("#cita_fecha").change(keyfechaI);
             return false;
         } else {
-            if (fechaIngresada >= dateActual) {
-                attributes("error-cita-fecha");
-                addgood("cita_fecha");
-            } else {
+            if (fechaIngresada < fechaActual) {
+
                 negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
                 adderror("cita_fecha");
                 return false;
-            }
+            } else if (fechaIngresada >= fechaNoposible) {
+                negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
+                adderror("cita_fecha");
+                return false;
+            } 
+                
+           
         }
+        attributes("error-cita-fecha");
+        addgood("cita_fecha");
         return true;
     }
     var keyfechaI = function () {
         var fechaIngresada = new Date(fecha);
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
         var dateActual = new Date();
+        var fechaActual = dateActual;
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
         var $fecha_inicio = $("#cita_fecha");
@@ -402,12 +414,15 @@
             negativeattributes("error-cita-fecha", 'Debe ingresar una fecha');
             adderror("cita_fecha");
         } else {
-            if (fechaIngresada >= dateActual) {
-                attributes("error-cita-fecha");
-                addgood("cita_fecha");
-            } else {
+            if (fechaIngresada < fechaActual) {
                 negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
                 adderror("cita_fecha");
+            } else if (fechaIngresada >= fechaNoposible) {
+                negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
+                adderror("cita_fecha");
+            } else {
+                attributes("error-cita-fecha");
+                addgood("cita_fecha");
             }
         }
     };
@@ -472,70 +487,38 @@
         }
     };
     //Validar Fecha Atendido
-    function validar_fecha_atendido(fecha_atendido,fecha) {
-        var fechaIngresada = new Date(fecha);
-        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
-        var fechaAtendido = new Date(fecha_atendido);
-        fechaAtendido.setDate(fechaAtendido.getDay() + 1);
+    function validar_fecha_atendido(fecha_atendido, fecha) {
         var dateActual = new Date();
+        var fechaActual = dateActual;
         dateActual.setHours(0, 0, 0, 0);
-        fechaIngresada.setHours(0, 0, 0, 0);
-        if (fecha === "") {
-            adderror("cita_fecha_atendido");
-            negativeattributes("error-cita-fecha-atendido", 'Debe ingresar una fecha');
-            $("#cita_fecha_atendido").focus();
-            $("#cita_fecha_atendido").change(keyfechaAtendido);
-            return false;
-        } else {
-            if (fechaIngresada >= dateActual) {
-                attributes("error-cita-fecha-atendido");
-                addgood("cita_fecha_atendido");
-            } else {
-                negativeattributes("error-cita-fecha-atendido", 'No puede ingresar una fecha anterior al día actual');
+
+        if (fecha_atendido != "") {
+            if (fecha_atendido < fecha) {
                 adderror("cita_fecha_atendido");
+                negativeattributes("error-cita-fecha-atendido", 'No puede ingresar una fecha menor a la cita');
+                $("#cita_fecha_atendido").focus();
+                $("#cita_fecha_atendido").change(keyfechaAtendido);
                 return false;
             }
-        }
-        if (fechaAtendido < fechaIngresada) {
-            adderror("cita_fecha_atendido");
-            negativeattributes("error-cita-fecha-atendido", 'Debe ingresar una fecha valida');
-            $("#cita_fecha_atendido").focus();
-            $("#cita_fecha_atendido").change(keyfechaAtendido);
-            return false;
-        } else {
-            attributes("error-cita-fecha-atendido");
-            addgood("cita_fecha_atendido");
-        }
+        } 
+        attributes("error-cita-fecha-atendido");
+        addgood("cita_fecha_atendido");
         return true;
     }
     var keyfechaAtendido = function () {
-        var fechaIngresada = new Date(fecha);
-        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
-        var fechaAtendido = new Date(fecha_atendido);
-        fechaAtendido.setDate(fechaAtendido.getDay() + 1);
         var dateActual = new Date();
         dateActual.setHours(0, 0, 0, 0);
-        fechaIngresada.setHours(0, 0, 0, 0);
-        var $fecha_inicio = $("#cita_fecha");
-        if ($fecha_inicio.val() === "") {
-            negativeattributes("error-cita-fecha", 'Debe ingresar una fecha');
-            adderror("cita_fecha");
-        } else {
-            if (fechaIngresada >= dateActual) {
-                attributes("error-cita-fecha");
-                addgood("cita_fecha");
-            } else {
-                negativeattributes("error-cita-fecha", 'No puede ingresar una fecha anterior al día actual');
-                adderror("cita_fecha");
+        var $fecha_inicio = $("#cita_fecha").val();
+        var $fecha_atendido = $("#cita_fecha_atendido").val();
+
+        if ($fecha_atendido != "") {
+            if (fechaAtendido < fechaIngresada) {
+                negativeattributes("error-cita-fecha-atendido", 'No puede ingresar una fecha menor a la cita');
+                adderror("cita_fecha_atendido");
             }
-        }
-        if (fechaAtendido < fechaIngresada) {
-            negativeattributes("error-cita-fecha-atendido", 'Debe ingresar una fecha valida');
-            adderror("cita_fecha_atendido");
-        } else {
-            attributes("error-cita-fecha-atendido");
-            addgood("cita_fecha_atendido");
-        }
+        }    
+        attributes("error-cita-fecha-atendido");
+        addgood("cita_fecha_atendido");
     };
 
     ///NO SE QUE ES PERO ME DIJERON QUE ERA IMPORTANTE

@@ -1,0 +1,63 @@
+﻿@model SWMGEGCSS.Models.GestionarCuentasViewModel
+@{
+    Layout = null;
+
+}
+@section Scripts{
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}
+
+<div id="tableExp">
+
+    <div class="container form-bar mt-5">
+        <div class="table-responsive mt-4">
+            <table class="table">
+                <thead class="bg-success">
+                    <tr>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Contraseña</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>
+
+
+                                <button type="button" class="btn btn-info btnModal">
+                                    Ver Detalles
+                                </button>
+
+                                
+
+
+                                <!--<button type="button" class="btn btn-danger" >
+                            <i class="fa fa-check-circle"></i>
+                                Eliminar Cita
+                                </button>-->
+
+                            </td>
+                        </tr>
+
+
+
+
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row ml-3">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+        </div>
+    </div>
+</div>

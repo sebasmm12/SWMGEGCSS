@@ -96,7 +96,7 @@ namespace SWMGEGCSS.Controllers
         }
         
         [HttpPost]
-        public ActionResult Modificar_Cita(T_Citas_aux cita, string cita_hora_atendido, string cita_hora, int usu_citado)
+        public ActionResult Modificar_Cita(T_Citas_aux cita, string cita_hora_atendido, string cita_hora , int usu_citado)
         {
             var model = new GestionarCitasViewModel();
             model.Citas = cita;
@@ -166,6 +166,24 @@ namespace SWMGEGCSS.Controllers
             return Json(nameEmpresas, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Evaluar_Fecha(string cita_hora, string cita_fecha)
+        {
+            var hora = cita_hora.Split(':');
+            var hh = Convert.ToInt32(hora[0], 10);
+            //Convertir fecha 2019/05/06
+            var fecha = cita_fecha.Split('-');
+            
+
+            var model = new SecretariaDataAccess().sp_Consultar_Lista_Citas();
+            var modelEvaluado = model.Find(r => r.cita_fecha.ToString("hh") == Convert.ToString(hh));
+            var modelEvaluadoFecha = model.Find(r => r.cita_fecha.ToString("yyyy-MM-dd") == cita_fecha);
+            int cont = 0;
+            if (modelEvaluado != null && modelEvaluadoFecha != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
 
 
         public ActionResult Registrar_Ingresos_Egresos()
