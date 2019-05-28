@@ -1,4 +1,4 @@
-﻿$(function() {
+﻿$(function () {
 
     validacion = function () {
 
@@ -21,14 +21,14 @@
         else {
 
             $.ajax({
-                url: "/Ing_Egr/Actualizar_Ing_Egr",
+                url: "/Ing_Egr/Registrar_Ing_Egr",
                 method: "POST",
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
                 Swal.fire({
                     type: 'success',
-                    title: 'Se actualizó exitosamente',
+                    title: 'Se registró exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
@@ -228,7 +228,7 @@
     }
     //---------------------------------------------------------------------------------------------------------------------------------
 
-    
+
     var KeyNombre = function () {
         var $valor = $("#ing-egr-nombre");
         if ($valor.val() === "") {
@@ -340,5 +340,5 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
-    $("#boton-Actualizar").click(validacion);
+    $("#boton-Registrar").click(validacion);
 });

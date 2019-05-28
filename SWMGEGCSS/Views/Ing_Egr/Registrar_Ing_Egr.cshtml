@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <h2 class="ml-3" y>Registrar Ingreso-Egreso</h2>
 @section Scripts{
-    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRegistrarIng_Egr.js"></script>
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRegistrarIngreso_Egreso.js"></script>
 }
 
 
@@ -86,15 +86,9 @@
                 </label>
             </div>
 
-            <!--            Ingreso Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,1)
-              Egreso Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,0)
-      -->
-            <select class="custom-select" id="tipo" name="tipo">
-                <option value="Tipo">Tipo</option>
-              
-                    <option value=1>Ingreso</option>
-                    <option value=0>Egreso</option>
-            </select>
+                       Ingreso @Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,true)
+              Egreso @Html.RadioButtonFor(m => m.ingresos_egresos.ing_egr_ingrso,false)
+
             <div id="error-ing-egr-ingreso" class="errordiv"></div>
         </div>
        
