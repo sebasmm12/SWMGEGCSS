@@ -291,7 +291,10 @@
             SelectorBoton = $(this);
             $.ajax({
                 url: $(this).attr("data-url"),
-                method: "GET"
+                method: "GET"/*,
+                data: {
+                    id_act: id_act
+                }*/
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
