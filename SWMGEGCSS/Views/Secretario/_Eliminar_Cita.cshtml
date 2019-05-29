@@ -10,6 +10,8 @@
         fecha = Model.Citas.cita_fecha.ToString("yyyy-MM-dd");
         hora = Model.Citas.cita_fecha.ToString("hh:mm:ss");
         correo = Model.Citas.cita_correo;
+        //int id_cita = (int)Session["citaid"];
+        //int estado_cita_id = (int)Session["estadocita"];
     }
 
 }
@@ -26,7 +28,7 @@
                         </label>
                         @Html.EditorFor(model => model.Citas.cita_empresa, new
                         {
-                            htmlAttributes = new { @id = "cita_empresa", @class = "text-center form-control" }
+                            htmlAttributes = new { @id = "cita_empresa", @class = "text-center form-control", @readonly = "readonly" }
                         })
 
                     </div>
@@ -38,13 +40,13 @@
                         <label class="font-weight-bolder">
                             Fecha
                         </label>
-                        <input type="date" name="Citas.cita_fecha" value="@fecha" class="text-center form-control" />
+                        <input type="date" name="Citas.cita_fecha" value="@fecha" class="text-center form-control"  readonly="readonly"/>
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
                         <label class="font-weight-bolder">
                             Hora
                         </label>
-                        <input type="time" name="Citas.cita_fecha" value="@hora" class="text-center form-control" />
+                        <input type="time" name="Citas.cita_fecha" value="@hora" class="text-center form-control"  readonly="readonly"/>
                     </div>
                 </div>
 
@@ -55,7 +57,7 @@
                         </label>
                         @Html.EditorFor(model => model.Citas.cita_representante, new
                         {
-                           htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control" }
+                           htmlAttributes = new { @id = "cita_representante", @class = "text-center form-control", @readonly = "readonly" }
                         })
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
@@ -64,7 +66,7 @@
                         </label>
                         @Html.EditorFor(model => model.Citas.cita_telefono, new
                         {
-                           htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control" }
+                           htmlAttributes = new { @id = "cita_telefono", @class = "text-center form-control", @readonly = "readonly" }
                         })
                     </div>
                 </div>
@@ -76,7 +78,7 @@
                         </label>
                         @Html.EditorFor(model => model.Citas.cita_correo, new
                         {
-                           htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control" }
+                           htmlAttributes = new { @id = "cita_correo", @class = "text-center form-control", @readonly = "readonly" }
                         })
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
@@ -85,7 +87,7 @@
                         </label>
                         @Html.EditorFor(model => model.Citas.usu_usuario, new
                         {
-                           htmlAttributes = new { @id = "cita_usuario", @class = "text-center form-control" }
+                           htmlAttributes = new { @id = "cita_usuario", @class = "text-center form-control", @readonly = "readonly" }
                         })
                     </div>
                 </div>
@@ -106,7 +108,7 @@
                     </div>
 
                     <div class="col-12 col-sm-3 col-md-3">
-                        <button type="button" class="btn btn-danger rounded-pill btnEliminarCita" id="btnEliminar" data-id-cita="@Model.Citas.cita_id" data-url="@Url.Action("EliminaCita","Secretario")">
+                        <button type="button" class="btn btn-danger rounded-pill btnEliminaCita" id="btnEliminar" data-id-cita="@Model.Citas.cita_id" data-estado-id-cita="@Model.Citas.estado_cita_id"  data-url="@Url.Action("EliminaCita","Secretario")">
                             <i class="fa fa-check-circle"></i>
                             Si
                         </button>

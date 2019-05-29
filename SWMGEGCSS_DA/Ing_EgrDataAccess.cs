@@ -28,7 +28,7 @@ namespace SWMGEGCSS_DA
                             ing_egr.ing_egr_nombre = DataUtil.DbValueToDefault<string>(reader["ing_egr_nombre"]);
                             ing_egr.ing_egr_descripcion = DataUtil.DbValueToDefault<string>(reader["ing_egr_descripcion"]);
                             ing_egr.ing_egr_fecha = DataUtil.DbValueToDefault<DateTime>(reader["ing_egr_fecha"]);
-                            ing_egr.ing_egr_ingrso = DataUtil.DbValueToDefault<int>(reader["ing_egr_ingreso"]);
+                            ing_egr.ing_egr_ingrso = DataUtil.DbValueToDefault<bool>(reader["ing_egr_ingreso"]);
                             ing_egr.ing_egr_monto = DataUtil.DbValueToDefault<double>(reader["ing_egr_monto"]);
                             ing_egr.ing_egr_id = DataUtil.DbValueToDefault<int>(reader["ing_egr_id"]);
                             l_ing_egr.Add(ing_egr);
@@ -94,6 +94,39 @@ namespace SWMGEGCSS_DA
             {
                 return new OperationResult();
             }
+        }
+        public List<T_ingresos_egresos> sp_Consultar_Lista_Ing_Egr_Nombre(string ing_egr_nombre)
+        {
+            List<T_ingresos_egresos> T_ingresos_egresos = new List<T_ingresos_egresos>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Ing_Egr_Nombre"))
+                {
+
+                    Database.AddInParameter(command, "@ing_egr_nombre", DbType.String, ing_egr_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_ingresos_egresos ing_egr = new T_ingresos_egresos();
+
+
+                            ing_egr.ing_egr_nombre = DataUtil.DbValueToDefault<string>(reader["ing_egr_nombre"]);
+                            ing_egr.ing_egr_descripcion = DataUtil.DbValueToDefault<string>(reader["ing_egr_descripcion"]);
+                            ing_egr.ing_egr_fecha = DataUtil.DbValueToDefault<DateTime>(reader["ing_egr_fecha"]);
+                            ing_egr.ing_egr_ingrso = DataUtil.DbValueToDefault<bool>(reader["ing_egr_ingreso"]);
+                            ing_egr.ing_egr_monto = DataUtil.DbValueToDefault<double>(reader["ing_egr_monto"]);
+                            ing_egr.ing_egr_id = DataUtil.DbValueToDefault<int>(reader["ing_egr_id"]);
+                            T_ingresos_egresos.Add(ing_egr);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_ingresos_egresos>();
+            }
+            return T_ingresos_egresos;
         }
     }
 }

@@ -7,11 +7,11 @@
     var encargado_id = Model.Citas.usu_citado;
     var estado = Model.Citas.estado_cita_id;
     var estado_nombre = Model.Citas.estado_cita_nombre;
-    var encargado = Model.Citas.usu_usuario;
+    var encargado = Model.Citas.det_usu_nombre;
 
     var list_empresa = Model.EmpresaModel.listempresas;
     var list_cita = Model.listCitas;
-    var list_usuario = Model.UsuarioModel.list_usuario;
+    var list_usuario = Model.DetalleUsuarioModel.list_usuario;
     var list_estado_cita = Model.list_estado_cita;
     if (Model.Citas != null)
     {
@@ -24,9 +24,9 @@
     {
         list_empresa = Model.EmpresaModel.listempresas;
     }
-    if (Model.UsuarioModel.list_usuario != null)
+    if (Model.DetalleUsuarioModel.list_usuario != null)
     {
-        list_usuario = Model.UsuarioModel.list_usuario;
+        list_usuario = Model.DetalleUsuarioModel.list_usuario;
 
     }
 
@@ -38,6 +38,9 @@
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
+        <div>
+            <input type="hidden" name="cita_id" value="@Model.Citas.cita_id" />
+        </div>
         <div class="row mt-1 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -60,7 +63,7 @@
                 <label class="font-weight-bolder">
                     Empresa
                 </label>
-                <input type="text" id="cita_empresa" name="cita_empresa" class="text-center form-control" value="@Model.Citas.cita_empresa" />
+                <input type="text" id="cita_empresa" name="cita_empresa" class="text-center form-control" value="@Model.Citas.cita_empresa" readonly="readonly"/>
                 <div id="error-cita-empresa" class="errordiv"></div>
 
             </div>
@@ -68,7 +71,7 @@
                 <label class="font-weight-bolder">
                     Representante
                 </label>
-                <input type="text" id="cita_representante" name="cita_representante" class="text-center form-control" value="@Model.Citas.cita_representante" />
+                <input type="text" id="cita_representante" name="cita_representante" class="text-center form-control" value="@Model.Citas.cita_representante" readonly="readonly" />
                 <div id="error-cita-representante" class="errordiv"></div>
             </div>
 
@@ -98,9 +101,9 @@
                     <option class="font-weight-bolder" value="@encargado_id">@encargado</option>
                     @foreach (var item in list_usuario)
                     {
-                        if (encargado != item.usu_usuario)
+                        if (encargado != item.det_usu_nombre)
                         {
-                            <option value="@item.usu_codigo">@item.usu_usuario</option>
+                            <option value="@item.usu_codigo">@item.det_usu_nombre</option>
                         }
 
                     }
@@ -178,6 +181,7 @@
 
     }
 </div>
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsModificarCitas.js"></script>
 }

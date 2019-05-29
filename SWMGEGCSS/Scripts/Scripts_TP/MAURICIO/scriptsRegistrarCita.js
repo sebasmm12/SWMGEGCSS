@@ -1,4 +1,17 @@
 ﻿$(function () {
+
+
+    var autocompletado = function () {
+        var $input = $(this);
+        var options = {
+            source: $input.attr("data-exp-autocomplete")
+        };
+        $input.autocomplete(options);
+    };
+
+
+
+
     validacion = function () {
         //declaracion de variables jquery
         var $citaRepresentante = $("#cita_representante").val();
@@ -368,7 +381,12 @@
     function validar_fecha(fecha) {
         var fechaIngresada = new Date(fecha);
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+        //
+        //fechaNoposible.setDate(fechaNoposible.getDate() + 1);
         var dateActual = new Date();
+        var fechaActual = dateActual;
+        var fechaNoposible = new Date(dateActual);
+        fechaNoposible.setDate(fechaActual.getDate() + 15);
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
         if (fecha === "") {
@@ -378,13 +396,18 @@
             $("#cita_fecha").change(keyfechaI);
             return false;
         } else {
-            if (fechaIngresada >= dateActual) {
-                attributes("error-cita-fecha");
-                addgood("cita_fecha");
-            } else {
+            if (fechaIngresada < fechaActual) {
+                
                 negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
                 adderror("cita_fecha");
                 return false;
+            } else if (fechaIngresada >= fechaNoposible) {
+                negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
+                adderror("cita_fecha");
+                return false;
+            } else {
+                attributes("error-cita-fecha");
+                addgood("cita_fecha");
             }
         }
         return true;
@@ -393,6 +416,7 @@
         var fechaIngresada = new Date(fecha);
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
         var dateActual = new Date();
+        var fechaActual = dateActual;
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
         var $fecha_inicio = $("#cita_fecha");
@@ -400,12 +424,15 @@
             negativeattributes("error-cita-fecha", 'Debe ingresar una fecha');
             adderror("cita_fecha");
         } else {
-            if (fechaIngresada >= dateActual) {
-                attributes("error-cita-fecha");
-                addgood("cita_fecha");
-            } else {
+            if (fechaIngresada < fechaActual) {
                 negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
                 adderror("cita_fecha");
+            } else if (fechaIngresada >= fechaNoposible) {
+                negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
+                adderror("cita_fecha");
+            }else {
+                attributes("error-cita-fecha");
+                addgood("cita_fecha");
             }
         }
     };
@@ -493,4 +520,5 @@
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
     $("#boton-Registrar").click(validacion);
+    $("input[data-exp-autocomplete]").each(autocompletado);
 });

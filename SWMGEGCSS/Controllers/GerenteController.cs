@@ -74,11 +74,63 @@ namespace SWMGEGCSS.Controllers
             model.List_Estado_Expediente = new EstadoExpedienteDataAccess().sp_Consultar_Lista_Estado_Expediente();           
             return View(model);
         }
-        public ActionResult Gestionar_I_E(int page=1)
+        public ActionResult Gestionar_I_E(string searchTerm, string estado, int page = 1)
         {
+            /* Gestionar_I_EViewModel model = new Gestionar_I_EViewModel();
+             model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().ToPagedList(page, 4);
+
+             return View(model);*/
+
             Gestionar_I_EViewModel model = new Gestionar_I_EViewModel();
-            model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().ToPagedList(page, 4);
-            
+
+            if (searchTerm == null && estado == null)
+            {
+                model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().ToPagedList(page, 4);
+            }
+            if (estado != null)
+            {
+                if (searchTerm != null && searchTerm == "")
+                {
+                    if (estado.Equals("Todos"))
+                    {
+                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().ToPagedList(page, 4);
+                    }
+                    else
+                    {
+                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().FindAll(r => r.ing_egr_ingrso = (estado.Equals("1"))).ToPagedList(page, 4);
+                    }
+                }
+                else
+                {
+                    if (estado.Equals("Todos"))
+                    {
+                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_Nombre(searchTerm).ToPagedList(page, 4);
+                    }
+                    else
+                    {
+                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_Nombre(searchTerm).FindAll(r => r.ing_egr_ingrso == (estado.Equals("1"))).ToPagedList(page, 4);
+                    }
+
+
+                }
+            }
+            if (estado != null)
+            {
+                model.tipo_estado = estado;
+                Session["est_nombre"] = model.tipo_estado;
+            }
+
+            else
+            {
+                model.tipo_estado = "Todos";
+                Session["est_nombre"] = model.tipo_estado;
+            }
+
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaIng_Egr", model);
+            }
             return View(model);
         }
         public ActionResult Gestionar_Empresas(string searchTerm, string estado, int page = 1)
@@ -190,6 +242,20 @@ namespace SWMGEGCSS.Controllers
             });
             return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult AutoCompleteING(string term)
+        {
+            var model = new Gestionar_I_EViewModel();
+            string estado = (string)Session["est_nombre"];
+
+            model.lista_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_Nombre(term);
+
+            var nameExpedientes = model.lista_ingresos_egresos.Select(r => new
+            {
+                label = r.ing_egr_nombre
+            });
+            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult AutoComplete(string term)
         {
             var model = new ExpedienteViewModel();

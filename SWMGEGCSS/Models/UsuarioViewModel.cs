@@ -15,4 +15,12 @@ namespace SWMGEGCSS.Models
         public IPagedList<T_usuario> IPlist_Usuario { get; set; }
 
     }
+
+    public class DetalleUsuarioViewModel
+    {
+        public T_detalle_usuario Detalle_Usuario { get; set; }
+
+        public List<T_detalle_usuario> list_usuario { get; set; }
+
+    }
 }

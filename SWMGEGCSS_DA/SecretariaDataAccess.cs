@@ -60,6 +60,7 @@ namespace SWMGEGCSS_DA
                             cita.cita_id = DataUtil.DbValueToDefault<Int32>(reader["cita_id"]);
                             cita.estado_cita_nombre = DataUtil.DbValueToDefault<string>(reader["estado_cita_nombre"]);
                             cita.usu_citado = DataUtil.DbValueToDefault<Int32>(reader["usu_citado"]);
+                            cita.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
                             cita.cita_comentario = DataUtil.DbValueToDefault<string>(reader["cita_comentario"]);
                             cita.estado_cita_id = DataUtil.DbValueToDefault<Int32>(reader["estado_cita_id"]);
                             cita.cita_fecha = DataUtil.DbValueToDefault<DateTime>(reader["cita_fecha"]);
@@ -110,6 +111,7 @@ namespace SWMGEGCSS_DA
             return l_estado_cita;
             
         }
+
 
         public OperationResult sp_Insertar_Cita(T_Citas citas, string cita_empresa, string usu_citado, string cita_hora)
         {
@@ -185,6 +187,7 @@ namespace SWMGEGCSS_DA
                 {
                     Database.AddInParameter(command, "@cita_id", DbType.Int32, citas.cita_id);
                     Database.AddInParameter(command, "@estado_cita_id", DbType.Int32, citas.estado_cita_id);
+                    Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
                 return operation;

@@ -17,13 +17,13 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Citas(int page = 1)
+        public ActionResult Gestionar_Citas(string searchTerm, string estado, int page = 1)
         {
             var model = new GestionarCitasViewModel();
             model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
-            model.UsuarioModel = new UsuarioViewModel();
-            model.UsuarioModel.list_usuario = new List<T_usuario>();
-            model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+            model.DetalleUsuarioModel = new DetalleUsuarioViewModel();
+            model.DetalleUsuarioModel.list_usuario = new List<T_detalle_usuario>();
+            model.DetalleUsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaCitas", model);
@@ -39,9 +39,9 @@ namespace SWMGEGCSS.Controllers
             model.EmpresaModel = new GestionarEmpresaViewModel();
             model.EmpresaModel.listempresas = new List<T_empresa>();
             model.EmpresaModel.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
-            model.UsuarioModel = new UsuarioViewModel();
-            model.UsuarioModel.list_usuario = new List<T_usuario>();
-            model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+            model.DetalleUsuarioModel = new DetalleUsuarioViewModel();
+            model.DetalleUsuarioModel.list_usuario = new List<T_detalle_usuario>();
+            model.DetalleUsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
             return View(model);
         }
 
@@ -50,7 +50,6 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.citas = citas;
-            model.citas.cita_id = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas,cita_empresa, usu_citado, cita_hora);
             return RedirectToAction("Gestionar_Citas", "Secretario");
@@ -64,9 +63,9 @@ namespace SWMGEGCSS.Controllers
             model.EmpresaModel = new GestionarEmpresaViewModel();
             model.EmpresaModel.listempresas = new List<T_empresa>();
             model.EmpresaModel.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas();
-            model.UsuarioModel = new UsuarioViewModel();
-            model.UsuarioModel.list_usuario = new List<T_usuario>();
-            model.UsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+            model.DetalleUsuarioModel = new DetalleUsuarioViewModel();
+            model.DetalleUsuarioModel.list_usuario = new List<T_detalle_usuario>();
+            model.DetalleUsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
             model.list_estado_cita = new SecretariaDataAccess().sp_Consultar_Lista_Estado_Cita();
             return View(model);
         }
@@ -76,7 +75,6 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.Citas = cita;
-            model.Citas.cita_id = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new SecretariaDataAccess().sp_Modificar_Cita(model.Citas, cita_hora_atendido,cita_hora, usu_citado);
             return RedirectToAction("Gestionar_Citas", "Secretario");
@@ -94,19 +92,24 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _Eliminar_Cita(int cita_id)
         {
             var model = new GestionarCitasViewModel();
+            Session["citaid"] = cita_id;         
             model.Citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == cita_id);
+            Session["estadocita"] = model.Citas.estado_cita_id;
             return PartialView(model);
 
         }
 
         [HttpPost]
-        public ActionResult EliminaCita(T_Citas citas)
+        public ActionResult EliminaCita(int id_cita, int id_estado_cita)
         {
             var model = new GestionarCitasViewModel();
-            model.citas.usu_generado = (int)Session["login"];
+            model.citas = new T_Citas();
+            //model.citas.usu_generado = (int)Session["login"];
+            model.citas.cita_id = id_cita;
+            model.citas.estado_cita_id = id_estado_cita;
             var operationResult = new OperationResult();
             operationResult = new SecretariaDataAccess().sp_Eliminar_Cita(model.citas);
-            return View(model);
+            return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -123,6 +126,20 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarCitasViewModel();
             model.Citas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().Find(r => r.cita_id == id);
             return PartialView(model);
+        }
+
+        public ActionResult AutoCompleteCita(string term)
+        {
+            var model = new GestionarCitasViewModel();
+            string estado = (string)Session["est_razon_social"];
+            model.EmpresaModel = new GestionarEmpresaViewModel();
+            model.EmpresaModel.listempresas = new List<T_empresa>();
+            model.EmpresaModel.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
+            var nameEmpresas = model.EmpresaModel.listempresas.Select(r => new
+            {
+                label = r.emp_razon_social
+            });
+            return Json(nameEmpresas, JsonRequestBehavior.AllowGet);
         }
 
 

@@ -81,6 +81,12 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult Agregar_Plan_de_Proyectos(T_plan_aux plans_aux)
         {
+            var operationResultp = new OperationResult();
+            if (Session["ListaActividades"] == null)
+            {
+                operationResultp.NewId = 5;
+                return Json(new { data = operationResultp.NewId }, JsonRequestBehavior.AllowGet);
+            }
             /*var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();*/
             var model = new GestionarPlanProyectoViewModel();
             model.plans_aux = plans_aux;
@@ -113,7 +119,7 @@ namespace SWMGEGCSS.Controllers
                 tiempototal += item.act_plan_tiempo;
             }
             var operationResult3 = new PlanDataAccess().sp_Actualizar_Costo_Tiempo_Actividades(costototal,tiempototal, planId.plan_id);
-            return Json(new { data = operationResult1.NewId }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = operationResult3.NewId }, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }

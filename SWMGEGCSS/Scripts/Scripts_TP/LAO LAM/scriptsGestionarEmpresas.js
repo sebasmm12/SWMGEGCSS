@@ -128,44 +128,44 @@
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'Debe ingresar un Número de Contacto');
             $("#emp-telefono").focus();
-          //  alert("telefono vacio");
+            //  alert("telefono vacio");
             $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
-        if (telefono === " ") {
+        else if (telefono === " ") {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto no debe empezar con un espacio en blanco');
             $("#emp-telefono").focus();
-         //   alert("telefono solo espacios");
+            //   alert("telefono solo espacios");
             $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
-        if (esNum(telefono) === false) {
+        else if (esNum(telefono) === false) {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser un número');
             $("#emp-telefono").focus();
-        //    alert("telefono no es numero");
+            //    alert("telefono no es numero");
             $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
-  /*      if (maximoNumeroCaracteres20(telefono) === true) {
-            adderror("emp-telefono");
-            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de menos de 20 caracteres');
-            $("#emp-telefono").focus();
-            alert("telefono largo");
-     //       $("#emp-telefono").keyup(key);
-            return false;
-        }
-        if (telefono.match(regular)) {
-            adderror("emp-telefono");
-            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser menor o igual a 9 digitos');
-            $("#emp-telefono").focus();
-         //   alert("telefono largo");
-            $("#emp-telefono").keyup(keyTelefono);
-            return false;
-        }
-        */
-        if (maximoNumeroCaracteres9(telefono) === true) {
+        /*      if (maximoNumeroCaracteres20(telefono) === true) {
+                  adderror("emp-telefono");
+                  negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de menos de 20 caracteres');
+                  $("#emp-telefono").focus();
+                  alert("telefono largo");
+           //       $("#emp-telefono").keyup(key);
+                  return false;
+              }
+              if (telefono.match(regular)) {
+                  adderror("emp-telefono");
+                  negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser menor o igual a 9 digitos');
+                  $("#emp-telefono").focus();
+               //   alert("telefono largo");
+                  $("#emp-telefono").keyup(keyTelefono);
+                  return false;
+              }
+              */
+        else if (maximoNumeroCaracteres9(telefono) === true) {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de menor de 10 caracteres');
             $("#emp-telefono").focus();
@@ -173,7 +173,7 @@
             $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
-        if (minimoNumeroCaracteres7(telefono) === true) {
+        else if (minimoNumeroCaracteres7(telefono) === true) {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser de mayor de 6 caracteres');
             $("#emp-telefono").focus();
@@ -181,9 +181,19 @@
             $("#emp-telefono").keyup(keyTelefono);
             return false;
         }
-        addgood("emp-telefono");
-        attributes("error-emp-telefono");
-        return true;
+        else if (telefono < 0) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser positivo');
+            $("#emp-telefono").focus();
+            alert("telefono negativo");
+            $("#emp-telefono").keyup(keyTelefono);
+            return false;
+        }
+        else {
+            addgood("emp-telefono");
+            attributes("error-emp-telefono");
+            return true;
+        }
     }
     //Validacion Fax
 
@@ -454,6 +464,12 @@
         else if (minimoNumeroCaracteres7($valor.val())===true) {
 
             negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser mayor de 6 caracteres');
+            adderror("emp-telefono");
+        }
+        else if ($valor.val() < 0) {
+
+
+            negativeattributes("error-emp-telefono", 'El Número de Contacto debe ser positivo');
             adderror("emp-telefono");
         }
         else {
