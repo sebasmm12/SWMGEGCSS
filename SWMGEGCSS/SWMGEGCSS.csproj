@@ -128,6 +128,7 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EvaluarFormularioController.cs" />
     <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Models\ActividadViewModel.cs" />
     <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\EvaluarFormularioViewModel.cs" />
     <Compile Include="Models\ExpedienteViewModel.cs" />
     <Compile Include="Models\GestionarAsignacionActividadesDesarrollar.cs" />
     <Compile Include="Models\GestionarCitasViewModel.cs" />
@@ -184,6 +186,7 @@
     <Content Include="Content\style-autocomplete\jquery-ui.min.css" />
     <Content Include="Content\StyleSesión\Style.css" />
     <Content Include="Content\StyleTP\ClientStyle.css" />
+    <Content Include="Content\StyleTP\EGG\scripteEvaluarFormulario.js" />
     <Content Include="Content\StyleTP\SEBASTIAN\RegistrarProyecto.css" />
     <Content Include="Content\StyleTP\styleClient.css" />
     <Content Include="Content\svg-with-js.css" />
@@ -311,6 +314,7 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\ValidacionesActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarActividadesDesarrollar.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scripteEvaluarFormulario.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
@@ -509,6 +513,9 @@
     <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
     <Content Include="Views\Trabajador\ModificarArchivo.cshtml" />
+    <Content Include="Views\EvaluarFormulario\Index.cshtml" />
+    <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
+    <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
@@ -516,11 +523,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\StyleTP\ANGELLO\" />
     <Folder Include="Content\StyleTP\COLOMBO\" />
-    <Folder Include="Content\StyleTP\EGG\" />
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
-    <Folder Include="Scripts\Scripts_TP\EGG\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
