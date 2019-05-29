@@ -1,0 +1,17 @@
+﻿@model SWMGEGCSS.Models.EvaluarFormularioViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<h2>Evaluar Actividades</h2>
+
+@Html.Partial("_ListaParcialTareas", Model)
+
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}

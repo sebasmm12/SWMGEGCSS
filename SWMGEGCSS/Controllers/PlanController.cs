@@ -85,7 +85,7 @@ namespace SWMGEGCSS.Controllers
             if (Session["ListaActividades"] == null)
             {
                 operationResultp.NewId = 5;
-                return Json(new { data = operationResultp.NewId }, JsonRequestBehavior.AllowGet);
+                return Json( operationResultp.NewId, JsonRequestBehavior.AllowGet);
             }
             /*var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();*/
             var model = new GestionarPlanProyectoViewModel();
@@ -119,7 +119,7 @@ namespace SWMGEGCSS.Controllers
                 tiempototal += item.act_plan_tiempo;
             }
             var operationResult3 = new PlanDataAccess().sp_Actualizar_Costo_Tiempo_Actividades(costototal,tiempototal, planId.plan_id);
-            return Json(new { data = operationResult3.NewId }, JsonRequestBehavior.AllowGet);
+            return Json(operationResult3.NewId, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
         }
@@ -503,10 +503,12 @@ namespace SWMGEGCSS.Controllers
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public ActionResult _ModalRegistrarActividadesPlanificadas()
+        public ActionResult _ModalRegistrarActividadesPlanificadas(/*int id_act*/)
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividad_planeada = new T_actividades_planeadas();
+            model.Actividades_planeadas = new T_actividades_desarrollar();
+            //var modeloevaluar = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(r => r.act_id == id_act);
+            //model.tipo_servicio_act = modeloevaluar;
             return PartialView(model);
         }
         [HttpPost]
