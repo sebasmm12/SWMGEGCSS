@@ -515,6 +515,10 @@
     <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
     <Content Include="Views\Trabajador\ModificarArchivo.cshtml" />
+    <Content Include="Views\EvaluarFormulario\Index.cshtml" />
+    <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
+    <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
+    <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
