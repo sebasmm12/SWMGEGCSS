@@ -27,7 +27,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Formularios()
         {
-            return View();
+            return RedirectToAction("Index", "EvaluarFormulario"); ;
         }
         public ActionResult Gestionar_Servicios()
         {

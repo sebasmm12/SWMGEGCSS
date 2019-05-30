@@ -222,5 +222,100 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+
+        public List<T_actividades_desarrollar> sp_Consultar_Lista_Actividades_Desarrollar_Revisar_Gerente(int usucod)
+        {
+            try
+            {
+                List<T_actividades_desarrollar> list_actividades_desarrollar = new List<T_actividades_desarrollar>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Actividades_Desarrollar_Revisar_Gerente"))
+                {
+                    Database.AddInParameter(command, "@usu_creador", DbType.Int32, usucod);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades_desarrollar actividades_desarrollar = new T_actividades_desarrollar();
+                            actividades_desarrollar.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
+                            actividades_desarrollar.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            actividades_desarrollar.usu_creador = DataUtil.DbValueToDefault<int>(reader["usu_creador"]);
+                            actividades_desarrollar.act_desa_fecha_inicio = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_inicio"]);
+                            actividades_desarrollar.act_desa_fecha_fin = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_fin"]);
+                            actividades_desarrollar.act_desa_fecha_finalizada = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_finalizada"]);
+                            actividades_desarrollar.est_act_id = DataUtil.DbValueToDefault<int>(reader["est_act_id"]);
+                            actividades_desarrollar.usu_revisor = DataUtil.DbValueToDefault<int>(reader["usu_revisor"]);
+                            actividades_desarrollar.usu_asignado = DataUtil.DbValueToDefault<int>(reader["usu_asignado"]);
+                            actividades_desarrollar.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
+                            actividades_desarrollar.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            actividades_desarrollar.act_desa_archivourl = DataUtil.DbValueToDefault<string>(reader["act_desa_archivourl"]);
+                            actividades_desarrollar.act_desa_revisor_obs = DataUtil.DbValueToDefault<string>(reader["act_desa_revisor_obs"]);
+                            actividades_desarrollar.act_desa_comentario = DataUtil.DbValueToDefault<string>(reader["act_desa_comentario"]);
+                            actividades_desarrollar.act_desa_archivo_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_archivo_nombre"]);
+                            actividades_desarrollar.act_desa_fecha_revision = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_revision"]);
+                            list_actividades_desarrollar.Add(actividades_desarrollar);
+                        }
+                    }
+                }
+                return list_actividades_desarrollar;
+            }
+            catch (Exception)
+            {
+                return new List<T_actividades_desarrollar>();
+            }
+        }
+
+        public T_actividades_desarrollar_gerente sp_Consultar_Actividad_Desarrollar_Gerente(int idactividadesarrollar)
+        {
+            T_actividades_desarrollar_gerente actividades_desarrollar = new T_actividades_desarrollar_gerente();
+            try
+            {
+
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Actividad_Desarrollar_Gerente"))
+                {                                                   //Consultar el id q se guarda usa en la sesion
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, idactividadesarrollar);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+
+                        while (reader.Read())
+                        {
+                            actividades_desarrollar.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            actividades_desarrollar.est_act_id = DataUtil.DbValueToDefault<int>(reader["est_act_id"]);
+                            actividades_desarrollar.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            actividades_desarrollar.act_desa_revisor_obs = DataUtil.DbValueToDefault<string>(reader["act_desa_revisor_obs"]);
+                            actividades_desarrollar.act_desa_comentario = DataUtil.DbValueToDefault<string>(reader["act_desa_comentario"]);
+                            actividades_desarrollar.act_desa_archivo_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_archivo_nombre"]);
+                            actividades_desarrollar.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
+                            actividades_desarrollar.act_desa_fecha_inicio = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_inicio"]);
+                            actividades_desarrollar.act_desa_fecha_fin = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_fin"]);
+                            actividades_desarrollar.act_desa_fecha_finalizada = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_finalizada"]);
+                            actividades_desarrollar.emp_razon_social = DataUtil.DbValueToDefault<string>(reader["emp_razon_social"]);
+
+                        }
+                    }
+                }
+                return actividades_desarrollar;
+            }
+            catch (Exception)
+            {
+                return new T_actividades_desarrollar_gerente();
+            }
+        }
+        public OperationResult sp_Actualizar_Actividades_Desarrollar_Gerente(T_actividades_desarrollar_gerente actividades_desarrollar)
+        {
+            var operation = new OperationResult();
+            using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Actividades_Desarrollar_Gerente"))
+            {
+                Database.AddInParameter(command, "@act_desa_id", DbType.Int32, actividades_desarrollar.act_desa_id);
+                Database.AddInParameter(command, "@act_desa_revisor_obs", DbType.String, actividades_desarrollar.act_desa_revisor_obs);
+                Database.AddInParameter(command, "@est_act_id", DbType.Int32, actividades_desarrollar.est_act_id);
+                Database.AddInParameter(command, "@fechafin", DbType.Date, actividades_desarrollar.act_desa_fecha_fin);
+                Database.ExecuteScalar(command);
+                operation.NewId = 1;
+            }
+            return operation;
+        }
+
+
+
     }
 }
