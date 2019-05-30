@@ -33,10 +33,13 @@ namespace SWMGEGCSS.Controllers
         {
             return RedirectToAction("VisualizarServicios", "Servicios");
         }
-        public ActionResult Gestionar_Cuenta()
+        public ActionResult Gestionar_Cuenta(int page = 1)
         {
-            return View();
+            var model = new GestionarCuentasViewModel();
+            model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().ToPagedList(page, 4);
+            return View(model);
         }
+
         public ActionResult Gestionar_Proyectos(string searchTerm,string estado, int page = 1)
         {
             ExpedienteViewModel model = new ExpedienteViewModel();

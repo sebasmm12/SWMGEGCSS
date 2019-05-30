@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Gestionar_Cuenta";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var lista_cuentas = Model.Plist_cuentas;
 }
 
 <h2>Gestionar Cuenta</h2>
@@ -26,10 +27,10 @@
         </div>
         <select class="custom-select" id="estado" name="estado">
             <option value="Todos">Todos</option>
-
+            <option>Gerente</option>
             <option>Adminsitrador</option>
             <option>Trabajador</option>
-            <option>Secretaria</option>
+            <option>Secretario(a)</option>
 
         </select>
     </div>
@@ -48,7 +49,7 @@
 
     </div>
     <div class="col-12 col-sm-6 col-md-6">
-        <a href="@Url.Action("Registrar_Empresa","Empresa")" class="btn btn-success mx-md-auto">
+        <a href="@Url.Action("Registrar_Cuenta","Cuentas")" class="btn btn-success mx-md-auto">
             <i class="fa fa-plus-circle"></i>
             Registrar Nueva Empleado
         </a>

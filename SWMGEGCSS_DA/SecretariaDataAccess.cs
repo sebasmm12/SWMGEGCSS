@@ -13,37 +13,6 @@ namespace SWMGEGCSS_DA
     public class SecretariaDataAccess : BaseConexion
     {
 
-        /*public List<T_Citas_aux> sp_Consultar_Lista_Citas_Estados(int estado_cita_id)
-        {
-            var l_citas1 = new List<T_Citas_aux>();
-            try
-            {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Citas_Estados"))
-                {
-                    Database.AddInParameter(command, "@cita_estado_id", DbType.String, estado_cita_id);
-                    using (IDataReader reader = Database.ExecuteReader(command))
-                    {
-                        while (reader.Read())
-                        {
-                            var cita = new T_Citas_aux();
-                            cita.estado_cita_nombre = DataUtil.DbValueToDefault<string>(reader["estado_cita_nombre"]);
-                            l_citas1.Add(cita);
-                        }
-
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-                Console.Write(e + " ");
-                return new List<T_Citas_aux>();
-            }
-            
-            return l_citas1;
-
-        }*/
-
         public List<T_Citas_aux> sp_Consultar_Lista_Citas()
         {
             var l_citas = new List<T_Citas_aux>();

@@ -1,7 +1,7 @@
 ﻿@model SWMGEGCSS.Models.GestionarCuentasViewModel
 @{
     Layout = null;
-
+    var lista_cuentas = Model.Plist_cuentas;
 }
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
@@ -23,13 +23,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
 
+                    @foreach (var item in lista_cuentas)
+                    {
                         <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
+                            <td>@item.det_usu_nombre</td>
+                            <td>@item.usu_usuario</td>
+                            <td>@item.usu_contraseña</td>
+                            <td>@item.rol_nombre</td>
                             <td>
 
 
@@ -37,27 +38,22 @@
                                     Ver Detalles
                                 </button>
 
-                                
-
-
-                                <!--<button type="button" class="btn btn-danger" >
-                            <i class="fa fa-check-circle"></i>
-                                Eliminar Cita
-                                </button>-->
-
                             </td>
                         </tr>
+                    }
 
 
 
 
-                    
+
+
                 </tbody>
             </table>
         </div>
     </div>
     <div class="row ml-3">
         <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+            @Html.PagedListPager(lista_cuentas, page => Url.Action("Gestionar_Cuenta", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>
 </div>
