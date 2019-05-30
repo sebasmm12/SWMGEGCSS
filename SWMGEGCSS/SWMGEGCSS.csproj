@@ -519,6 +519,7 @@
     <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
     <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
     <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
+    <Content Include="Views\Cuentas\Registrar_Cuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
