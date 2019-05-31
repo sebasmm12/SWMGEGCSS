@@ -158,7 +158,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1234538912\1\PROYECTOIOGGLINGO.txt" />
     <Content Include="Content\animate\animate.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -346,12 +345,6 @@
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
     <Content Include="webfonts\feather.woff" />
-    <Content Include="1234538912\1\Casos propuestos Metodo Grafico.docx" />
-    <Content Include="1234538912\1\Casos propuestos Simplex 2 fases.docx" />
-    <Content Include="1234538912\1\ProyectoIoObjGen-Esp.docx" />
-    <Content Include="1234538912\1\Requerimientos Funcionales V4.docx" />
-    <Content Include="1234538912\1\SWMGEGCSS_Requerimientos_No_Funcionales.docx" />
-    <Content Include="1234538912\1\UD_BD_Relacionales.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -522,14 +515,11 @@
     <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="12345678912\2\" />
-    <Folder Include="45231546484\3\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\StyleTP\ANGELLO\" />
     <Folder Include="Content\StyleTP\COLOMBO\" />
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
-    <Folder Include="Repositorio\55555555555\SWMGEGCSS_EN.T_plan_aux\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
   </ItemGroup>
   <ItemGroup>
