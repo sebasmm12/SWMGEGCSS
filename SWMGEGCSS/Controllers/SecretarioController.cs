@@ -17,13 +17,38 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Gestionar_Citas(string searchTerm, string estado, int page = 1)
+        [HttpGet]
+        public ActionResult Gestionar_Citas(string estado, int page = 1)
         {
             var model = new GestionarCitasViewModel();
-            model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
             model.DetalleUsuarioModel = new DetalleUsuarioViewModel();
             model.DetalleUsuarioModel.list_usuario = new List<T_detalle_usuario>();
+            if (estado == null)
+            {
+                model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
+            }
+            if(estado != null)
+            {
+                if (estado.Equals("1"))//pendiente
+                {
+                    model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().FindAll(r => r.estado_cita_id == Convert.ToInt32(estado)).ToPagedList(page, 4);
+                }
+                if (estado.Equals("2"))//cancelado
+                {
+                    model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().FindAll(r => r.estado_cita_id == Convert.ToInt32(estado)).ToPagedList(page, 4);
+                }
+                if (estado.Equals("3"))//No realizado
+                {
+                    model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().FindAll(r => r.estado_cita_id == Convert.ToInt32(estado)).ToPagedList(page, 4);
+                }
+            }
             model.DetalleUsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
+
+
+
+
+
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaCitas", model);
@@ -71,7 +96,7 @@ namespace SWMGEGCSS.Controllers
         }
         
         [HttpPost]
-        public ActionResult Modificar_Cita(T_Citas_aux cita, string cita_hora_atendido, string cita_hora, int usu_citado)
+        public ActionResult Modificar_Cita(T_Citas_aux cita, string cita_hora_atendido, string cita_hora , int usu_citado)
         {
             var model = new GestionarCitasViewModel();
             model.Citas = cita;
@@ -104,7 +129,6 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.citas = new T_Citas();
-            //model.citas.usu_generado = (int)Session["login"];
             model.citas.cita_id = id_cita;
             model.citas.estado_cita_id = id_estado_cita;
             var operationResult = new OperationResult();
@@ -142,6 +166,24 @@ namespace SWMGEGCSS.Controllers
             return Json(nameEmpresas, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Evaluar_Fecha(string cita_hora, string cita_fecha)
+        {
+            var hora = cita_hora.Split(':');
+            var hh = Convert.ToInt32(hora[0], 10);
+            //Convertir fecha 2019/05/06
+            var fecha = cita_fecha.Split('-');
+            
+
+            var model = new SecretariaDataAccess().sp_Consultar_Lista_Citas();
+            var modelEvaluado = model.Find(r => r.cita_fecha.ToString("hh") == Convert.ToString(hh));
+            var modelEvaluadoFecha = model.Find(r => r.cita_fecha.ToString("yyyy-MM-dd") == cita_fecha);
+            int cont = 0;
+            if (modelEvaluado != null && modelEvaluadoFecha != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+        }
 
 
         public ActionResult Registrar_Ingresos_Egresos()

@@ -65,7 +65,7 @@ namespace SWMGEGCSS.Controllers
         {
             var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
             string nombre = valores.act_desa_archivo_nombre;
-            String rut = Server.MapPath("~/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/" + nombre);
+            String rut = Server.MapPath("~/Repositorio/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/" + nombre);
             String[] lista = nombre.Split('.');
             string extension = lista[lista.Length - 1];
             string tipo = "";

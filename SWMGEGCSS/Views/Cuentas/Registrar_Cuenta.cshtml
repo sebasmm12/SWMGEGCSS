@@ -1,0 +1,168 @@
+﻿@model SWMGEGCSS.Models.GestionarCuentasViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    ViewBag.Title = "Registrar_Cuenta";
+}
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRegistrarEmpresas.js"></script>
+}
+
+<h2 class="pl-3 ml-3 mt-3 mb-3">Registrar Cuenta</h2>
+
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Nombre y Apellido
+                </label>
+                @Html.EditorFor(model => model.cuentas.det_usu_nombre, new
+               {
+                   htmlAttributes = new { @id = "det_usu_nombre", @class = "text-center form-control" }
+               })
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Correo
+                </label>
+                @Html.EditorFor(model => model.cuentas.det_usu_correo, new
+                {
+                   htmlAttributes = new { @id = "det_usu_correo", @class = "text-center form-control" }
+                })
+                <div id="error-cita-correo" class="errordiv"></div>
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Direccion
+                </label>
+                @Html.EditorFor(model => model.cuentas.det_usu_direccion, new
+               {
+                   htmlAttributes = new { @id = "det_usu_direccion", @class = "text-center form-control" }
+               })
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Telefono
+                </label>
+                @Html.EditorFor(model => model.cuentas.det_usu_telefono, new
+                {
+                   htmlAttributes = new { @id = "det_usu_telefono", @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Tipo de Documento
+                </label>
+                <select class="custom-select" id="det_usu_tip_doc" name="det_usu_tip_doc">
+                    <option class="font-weight-bolder" value="Tipo de Documento">Tipo de Documento</option>
+                    <option class="font-weight-bolder" value="1">DNI</option>
+                    <option class="font-weight-bolder" value="2">RUC</option>
+                    <option class="font-weight-bolder" value="3">Pasaporte</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Tipo de Usuario
+                </label>
+                <select class="custom-select" id="det_usu_sexo" name="det_usu_sexo">
+                    <option class="font-weight-bolder" value="Elige una opcion">Elija una opción</option>
+                    <option class="font-weight-bolder" value="1">Persona</option>
+                    <option class="font-weight-bolder" value="2">Empresa</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Número del Documento
+                </label>
+                @Html.EditorFor(model => model.cuentas.det_usu_tip_doc_numero, new
+                {
+                   htmlAttributes = new { @id = "det_usu_tip_doc_numero", @class = "text-center form-control" }
+                })
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Sexo
+                </label>
+                <select class="custom-select" id="det_usu_sexo" name="det_usu_sexo">
+                    <option class="font-weight-bolder" value="Elige una opcion">Elija una opción</option>
+                    <option class="font-weight-bolder" value="M">Masculino</option>
+                    <option class="font-weight-bolder" value="F">Femenino</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Universidad o Instituto
+                </label>
+                @Html.EditorFor(model => model.cuentas.det_usu_codigoColegio, new
+                {
+                   htmlAttributes = new { @id = "det_usu_codigoColegio", @class = "text-center form-control" }
+                })
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Especialidad
+                </label>
+                @Html.EditorFor(model => model.cuentas.det_usu_especialidad, new
+                {
+                   htmlAttributes = new { @id = "det_usu_especialidad", @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Nombre de Usuario
+                </label>
+                @Html.EditorFor(model => model.cuentas.usu_usuario, new
+                {
+                   htmlAttributes = new { @id = "usu_usuario", @class = "text-center form-control" }
+                })
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Contraseña
+                </label>
+                @Html.EditorFor(model => model.cuentas.usu_contraseña, new
+                {
+                   htmlAttributes = new { @id = "usu_contraseña", @class = "text-center form-control" }
+                })
+            </div>
+        </div>
+
+        <div class="row mt-3 ml-2">
+            <div class="col-12 col-sm-3 col-md-3">
+                <a href="@Url.Action("Gestionar_Cuenta", "Gerente")" class="btn btn-secondary">
+                    <i class="fa fa-backward">
+
+                    </i>
+                    Regresar
+                </a>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success" id="boton-Registrar">
+                    <i class="fa fa-check-circle"></i>
+                    Registrar Cuenta
+                </button>
+            </div>
+
+        </div>
+
+    }
+</div>

@@ -60,6 +60,7 @@
     <Compile Include="ActividadesDesarrollarDataAccess.cs" />
     <Compile Include="Base\BaseConexion.cs" />
     <Compile Include="Base\DataUtil.cs" />
+    <Compile Include="CuentasUsuariosDataAccess.cs" />
     <Compile Include="EmpresaDataAccess.cs" />
     <Compile Include="EstadoExpedienteDataAccess.cs" />
     <Compile Include="EstadoPlanDataAccess.cs" />
