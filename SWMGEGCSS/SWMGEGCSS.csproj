@@ -127,6 +127,7 @@
     <Compile Include="Controllers\ActividadesDesarrollarController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EvaluarFormularioController.cs" />
     <Compile Include="Controllers\ExpedienteController.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\ExpedienteViewModel.cs" />
     <Compile Include="Models\GestionarAsignacionActividadesDesarrollar.cs" />
     <Compile Include="Models\GestionarCitasViewModel.cs" />
+    <Compile Include="Models\GestionarCuentasViewModel.cs" />
     <Compile Include="Models\GestionarEmpresaViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\Gestionar_I_EViewModel.cs" />
@@ -512,14 +514,17 @@
     <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
     <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
     <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
-    <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="12345678912\2\" />
+    <Folder Include="45231546484\3\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\StyleTP\ANGELLO\" />
     <Folder Include="Content\StyleTP\COLOMBO\" />
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
+    <Folder Include="Repositorio\01245678912\" />
+    <Folder Include="Repositorio\10709764471\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
   </ItemGroup>
   <ItemGroup>
