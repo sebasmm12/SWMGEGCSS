@@ -65,7 +65,7 @@ namespace SWMGEGCSS.Controllers
             var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
             if (Actividad_aux3.archivo != null)
             {
-                String ruta = Server.MapPath("~/"+ valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
+                String ruta = Server.MapPath("~/Repositorio/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
                 String nombreArchivo = Actividad_aux3.archivo.FileName;
                 ruta += nombreArchivo;
                 subirArchivo(Actividad_aux3.archivo, ruta);

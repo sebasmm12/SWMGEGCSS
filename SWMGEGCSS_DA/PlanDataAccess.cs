@@ -87,6 +87,7 @@ namespace SWMGEGCSS_DA
                             t_plan_aux.plan_estado_nobre = DataUtil.DbValueToDefault<string>(reader["plan_estado_nobre"]);
                             t_plan_aux.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);
                             t_plan_aux.plan_tiempo = DataUtil.DbValueToDefault<int>(reader["plan_tiempo"]);
+                            t_plan_aux.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
                             T_Plan.Add(t_plan_aux);
                         }
                     }
