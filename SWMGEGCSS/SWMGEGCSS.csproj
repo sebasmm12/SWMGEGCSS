@@ -533,7 +533,8 @@
     <Folder Include="Content\StyleTP\COLOMBO\" />
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
-    <Folder Include="Repositorio\" />
+    <Folder Include="Repositorio\01245678912\" />
+    <Folder Include="Repositorio\10709764471\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
   </ItemGroup>
   <ItemGroup>
