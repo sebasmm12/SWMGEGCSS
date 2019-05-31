@@ -519,6 +519,7 @@
     <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
     <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
     <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
+    <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
@@ -528,6 +529,7 @@
     <Folder Include="Content\StyleTP\COLOMBO\" />
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
+    <Folder Include="Repositorio\55555555555\SWMGEGCSS_EN.T_plan_aux\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
   </ItemGroup>
   <ItemGroup>

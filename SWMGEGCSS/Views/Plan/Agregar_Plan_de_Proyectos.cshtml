@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Agregar_Plan_de_Proyectos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-
 }
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
@@ -71,9 +70,9 @@
                         </label>
                     </div>
                     @Html.EditorFor(model => model.plans_aux.tipo_servicio_nombre, new
-               {
-                   htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
-               })
+                       {
+                       htmlAttributes = new { @id = "plan-tipo-servicio", @class = "text-center form-control", @dataid = Url.Action("CompletarNombreTipoServicio", "Plan") }
+                       })
                     <div id="error-plan-tipo-servicio" class="errordiv"></div>
                 </div>
                 <div class="col-sm-1 col-md-1">
@@ -97,16 +96,16 @@
             </div>
 
             <!--<div class="col-12 col-sm-4 col-md-4">
-        <div>
-            <label class="font-weight-bolder">
-                Tiempo del plan (en dias)
-            </label>
-        </div>
+    <div>
+        <label class="font-weight-bolder">
+            Tiempo del plan (en dias)
+        </label>
+    </div>
         Html.EditorFor(model => model.plans_aux.plan_tiempo, new
        {
            htmlAttributes = new { id = "plan-tiempo", class = "text-center form-control" }
        })
-        <div id="error-plan-tiempo" class="errordiv"></div>
+    <div id="error-plan-tiempo" class="errordiv"></div>
     </div>-->
             <div class="row mt-4 pl-2">
                 <div class="col-sm-1 col-md-1">
@@ -131,7 +130,10 @@
                     </button>
                 </div>
             </div>
-            @Html.Partial("_ListarActividadesPlan", Model)
+            <div class="row mt-4 pl-2">
+                @Html.Partial("_ListarActividadesPlan", Model)
+            </div>
+            
             <div class="row mt-4 pl-2">
                 <div class="col-12 col-sm-3 col-md-3">
 
@@ -144,7 +146,7 @@
                 </div>
             </div>
         </div>
-    </form>
+</form>
 </div>
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/StyleTP/PIERO/stylesPiero.css" />
