@@ -67,11 +67,13 @@
                     act_plan: act_plan
                 }
             }).done(function (data) {
+                //ver si ya alcanzo el numero maximo de actividades
+
                 $('#RegistrarActividad').modal('hide');
                 //cambiar de color al boton
                 $(SelectorBoton).css('background-color', 'red');
                 $(SelectorBoton).css('border-color', 'red');
-                $(SelectorBoton).text('Actividad Registrada');
+                $(SelectorBoton).text('Cantidad Maxima alcanzada');
                 $(SelectorBoton).attr('disabled', 'disabled');
             });
         }
@@ -291,10 +293,7 @@
             SelectorBoton = $(this);
             $.ajax({
                 url: $(this).attr("data-url"),
-                method: "GET"/*,
-                data: {
-                    id_act: id_act
-                }*/
+                method: "GET"
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);

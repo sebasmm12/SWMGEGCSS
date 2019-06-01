@@ -40,5 +40,35 @@ namespace SWMGEGCSS_DA
             }
             return l_cuentas;
         }
+
+        public OperationResult sp_Insertar_Cuenta_Usuario_Detalle(T_usuario_cuentas_aux usuario, string det_usu_tip_doc, string det_usu_sexo, string tipo_det_usu_tipo)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using(DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Cuenta_Usuario_Detalle"))
+                {
+                    Database.AddInParameter(command, "@det_usu_nombre", DbType.String, usuario.det_usu_nombre);
+                    Database.AddInParameter(command, "@det_usu_correo", DbType.String, usuario.det_usu_correo);
+                    Database.AddInParameter(command, "@det_usu_direccion", DbType.String, usuario.det_usu_direccion);
+                    Database.AddInParameter(command, "@det_usu_telefono", DbType.String, usuario.det_usu_telefono);
+                    Database.AddInParameter(command, "@det_usu_tip_doc", DbType.Int32, Convert.ToInt32(det_usu_tip_doc));
+                    Database.AddInParameter(command, "@det_usu_tip_doc_numero", DbType.String, usuario.det_usu_tip_doc_numero);
+                    Database.AddInParameter(command, "@tipo_det_usu_tipo", DbType.Int32, Convert.ToInt32(tipo_det_usu_tipo));
+                    Database.AddInParameter(command, "@det_usu_sexo", DbType.String, det_usu_sexo);
+                    Database.AddInParameter(command, "@det_usu_codigoColegio", DbType.String, usuario.det_usu_codigoColegio);
+                    Database.AddInParameter(command, "@det_usu_especialidad", DbType.String, usuario.det_usu_especialidad);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e + "");
+                return new OperationResult();
+            }
+        }
+
     }
 }

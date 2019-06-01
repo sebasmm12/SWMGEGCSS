@@ -26,6 +26,7 @@ namespace SWMGEGCSS_EN
         public string det_usu_correo { get; set; }
         public string det_usu_direccion { get; set; }
         public string det_usu_telefono { get; set; }
+        public string det_usu_sexo { set; get; }
         public int det_usu_tip_doc { get; set; }
         public string det_usu_tip_doc_numero { get; set; }
         public int tipo_det_usu_tipo { get; set; }
