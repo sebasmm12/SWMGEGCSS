@@ -1,0 +1,58 @@
+﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
+@{
+    var listaTotalActividades = Model.List_Actividades;
+    var listaPlanActividad = Model.List_Actividades_planeadas;
+    var listaPlanes = Model.plans;
+    int count1 = 0;
+}
+
+<div class="container-fluid" id="tablaActividadesPorPlanear">
+    <form form id="form">
+        <h3 class="text-center">Actividades Planificadas</h3>
+        <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-success">
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">Actividad </th>
+                                <th scope="col">Descripcion </th>
+                                <th scope="col">Costo act</th>
+                                <th scope="col">Tiempo Aprox</th>
+                                <th scope="col">Funciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in listaPlanActividad)
+                            {
+                                count1 = count1 + 1;
+                                //var listaActividades = listaPlanActividad.Find(x => x.act_plan_nombre == item.act_plan_nombre);
+                                //var plan_id = Model.plans_aux.plan_id;
+                                <tr class="text-center">
+                                    <th scope="row">@count1</th>
+                                    <td>@item.act_plan_nombre</td>
+                                    <td>@item.act_plan_descripcion</td>
+                                    <td>@item.act_plan_costo </td>
+                                    <td>@item.act_plan_tiempo</td>
+                                    <td>
+                                        @*
+                                            <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
+                                                <i class="fa fa-times-circle"></i>
+                                                Eliminar
+                                            </button>
+                                            <button class="btn btn-warning btnModal" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
+                                                <i class="fa fa-edit" style="color:white !important"></i>
+                                                Actualizar
+                                            </button>
+                                        *@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

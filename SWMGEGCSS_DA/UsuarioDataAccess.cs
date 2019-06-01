@@ -7,6 +7,7 @@ using SWMGEGCSS_EN;
 using SWMGEGCSS_DA.Base;
 using System.Data;
 using System.Data.Common;
+using System.IO;
 namespace SWMGEGCSS_DA
 {
     public class UsuarioDataAccess:BaseConexion
@@ -31,7 +32,7 @@ namespace SWMGEGCSS_DA
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return new List<T_detalle_usuario>();

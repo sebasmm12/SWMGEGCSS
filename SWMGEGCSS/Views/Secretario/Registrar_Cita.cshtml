@@ -48,13 +48,6 @@
                 <label class="font-weight-bolder">
                     Empresa
                 </label>
-                @*<select class="custom-select" id="cita_empresa" name="cita_empresa">
-                    <option class="font-weight-bolder" value="Elige una opcion">Elige una opcion</option>
-                    @foreach (var item in list_empresa)
-                    {
-                        <option value="@item.emp_razon_social">@item.emp_razon_social</option>
-                    }
-                </select>*@
                 <input type="text" class="form-control" id="cita_empresa" name="cita_empresa" data-exp-autocomplete="@Url.Action("AutoCompleteCita")" />
                 <div id="error-cita-empresa" class="errordiv"></div>
             </div>
