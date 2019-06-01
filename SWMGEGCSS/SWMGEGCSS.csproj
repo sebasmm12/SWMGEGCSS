@@ -347,6 +347,8 @@
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
     <Content Include="webfonts\feather.woff" />
+    <Content Include="1070976447\12\TP_2 ITERACION %281%29.docx" />
+    <Content Include="1070976447\12\TP_2 ITERACION.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -514,6 +516,8 @@
     <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
     <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
     <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
+    <Content Include="Views\Cuentas\Registrar_Cuenta.cshtml" />
+    <Content Include="Views\Gerente\_ListaCuentaUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
