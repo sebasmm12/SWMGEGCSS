@@ -139,7 +139,6 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@cita_empresa", DbType.String, cita_empresa);
                     Database.AddInParameter(command, "@cita_correo", DbType.String, citas.cita_correo);
                     Database.AddInParameter(command, "@cita_telefono", DbType.String, citas.cita_telefono);
-                    
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
