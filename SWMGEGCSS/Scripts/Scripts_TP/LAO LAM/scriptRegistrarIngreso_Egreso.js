@@ -1,4 +1,4 @@
-﻿$(function() {
+﻿$(function () {
 
     validacion = function () {
 
@@ -21,14 +21,14 @@
         else {
 
             $.ajax({
-                url: "/Ing_Egr/Actualizar_Ing_Egr",
+                url: "/Ing_Egr/Registrar_Ing_Egr",
                 method: "POST",
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
                 Swal.fire({
                     type: 'success',
-                    title: 'Se actualizó exitosamente',
+                    title: 'Se registró exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
@@ -139,14 +139,16 @@
         return true;
     }
     function validar_fecha(fechaa) {
-        var fechaIngresada = new Date(fechaa);
+     var fechaIngresada = new Date(fechaa);
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
 
         var dateActual = new Date();
         var fechaActual = dateActual;
-
+        var fechaNoposible = new Date(dateActual);
+        fechaNoposible.setDate(fechaActual.getMonth()-1 );
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
+     
 
         if (fechaa === "") {
             adderror("ing-egr-fecha");
@@ -155,7 +157,7 @@
             $("#ing-egr-fecha").keyup(KeyFecha);
             return false;
         }
-        else if (fechaIngresada.getMonth() !== fechaActual.getMonth()) {
+     else if (fechaIngresada.getMonth() !== fechaActual.getMonth()) {
             adderror("ing-egr-fecha");
             negativeattributes("error-ing-egr-fecha", "La fecha debe ser dentro del mismo mes");
             $("#ing-egr-fecha").focus();
@@ -167,6 +169,7 @@
             attributes("error-ing-egr-fecha");
             return true;
         }
+
 
     }
     function validar_descripcion(descripcion) {
@@ -246,7 +249,7 @@
     }
     //---------------------------------------------------------------------------------------------------------------------------------
 
-    
+
     var KeyNombre = function () {
         var $valor = $("#ing-egr-nombre");
         if ($valor.val() === "") {
@@ -302,20 +305,22 @@
         }
     }
     var KeyFecha = function () {
-        var $valor = $("#ing-egr-fecha");
-        var fechaIngresada = new Date(fechaa);
+   var $valor = $("#ing-egr-fecha");
+        var fechaIngresada = new Date(fecha);
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
 
         var dateActual = new Date();
         var fechaActual = dateActual;
-
+        var fechaNoposible = new Date(dateActual);
+        fechaNoposible.setDate(fechaActual.getMonth()-1);
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
+
         if ($valor.val() === "") {
             negativeattributes("error-ing-egr-fecha", "La fecha no debe estar vacía");
             adderror("ing-egr-fecha");
         }
-        else if (fechaIngresada.getMonth() !== fechaActual.getMonth()) {
+    else if(fechaIngresada.getMonth() !==fechaActual.getMonth()){
             negativeattributes("error-ing-egr-fecha", "La fecha debe ser del mismo mes");
             adderror("ing-egr-fecha");
         }
@@ -370,5 +375,5 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
-    $("#boton-Actualizar").click(validacion);
+    $("#boton-Registrar").click(validacion);
 });

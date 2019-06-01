@@ -8,6 +8,7 @@ using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
 using System.Globalization;
 using PagedList;
+using System.IO;
 
 namespace SWMGEGCSS.Controllers
 {
@@ -79,6 +80,11 @@ namespace SWMGEGCSS.Controllers
             model.empresas.usu_codigo = (int)Session["login"];
             var operationResult = new OperationResult();
             operationResult = new EmpresaDataAccess().sp_Insertar_Empresa(model.empresas);
+            if (operationResult.NewId == 1)
+            {
+                String ruta = Server.MapPath("~/Repositorio/" + empresas.emp_ruc);
+                Directory.CreateDirectory(ruta);
+            }
             return RedirectToAction("Gestionar_Empresas", "Gerente");
         }
 

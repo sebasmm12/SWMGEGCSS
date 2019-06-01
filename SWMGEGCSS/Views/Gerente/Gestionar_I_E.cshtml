@@ -2,26 +2,25 @@
 @{
     ViewBag.Title = "Gestionar_I_E";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
-    var list_ing_egr = Model.list_ingresos_egresos;
-    var tipo = "";
+
 }
 
 <h2>Gestionar Ingresos y Egresos</h2>
 
 <div class="row mt-2 ml-2">
 
-    <div class="col-12 col-sm-4 col-md-4">
+    <div class="col-12 col-sm-6 col-md-5">
         <div>
             <label class="font-weight-bolder">
                 Nombre del Ingreso-Egreso:
             </label>
         </div>
 
-        <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("AutocompleteEmpresa")" />
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("AutoCompleteING")" />
 
 
     </div>
-    <div class="col-12 col-sm-4 col-md-4">
+    <div class="col-12 col-sm-6 col-md-6">
         <div>
             <label class="font-weight-bolder">Seleccione una opción</label>
         </div>
@@ -39,7 +38,7 @@
 
 <div class="row mt-3 ml-2">
 
-    <div class="col-12 col-sm-4 col-md-4">
+    <div class="col-12 col-sm-6 col-md-6">
 
         <!--<a href="@Url.Action("Gestionar_I_E", "Gerente")" class="btn btn-primary mx-md-auto">
             <i class="fa fa-search"></i>
@@ -51,80 +50,34 @@
         </button>
 
     </div>
-    <div class="col-12 col-sm-4 col-md-4">
+    <div class="col-12 col-sm-6 col-md-6">
         <a href="@Url.Action("Registrar_Ing_Egr","Ing_Egr")" class="btn btn-success mx-md-auto">
             <i class="fa fa-plus-circle"></i>
-            
+
             Registrar Ingreso o Egreso
         </a>
 
     </div>
-    <div class="col-12 col-sm-4 col-md-4">
-     
 
-    </div>
 
 
 
 
 </div>
 
+@Html.Partial("_ListaIng_Egr", Model);
 
 
 
-<div id="tableExp">
-    <div class="container form mt-5">
-        <div class="table-responsive mt-4">
-            <table class="table">
-                <thead class="bg-success">
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Monto</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in list_ing_egr)
-                    {
-                        <tr>
-
-                            <td>@item.ing_egr_id
-
-                            </td>
-                            <td>@item.ing_egr_nombre</td>
-                            <td>@item.ing_egr_descripcion</td>
-                            <td>@item.ing_egr_fecha.ToShortDateString()</td>
-                           @if (item.ing_egr_ingrso == 1) { tipo = "Ingreso"; } else if(item.ing_egr_ingrso==0) { tipo = "Egreso"; }
-
-                               <td>@tipo</td>
-                               
-
-                            <td>@item.ing_egr_monto</td>
-
-                            <td>
-                                <button type="button" class="btn btn-warning">
-                                    @Html.ActionLink("Actualizar Ing Egr", "Actualizar_Ing_Egr", "Ing_Egr", new { ing_egr_id = item.ing_egr_id }, new { @style = "color: white !important" })
-                                </button>
-
-                               
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-    <div class="row ml-2">
-        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
-            @Html.PagedListPager(list_ing_egr, page => Url.Action("Gestionar_I_E", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
-        </div>
-    </div>
-</div>
 
 
 
+
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptConsultarIng.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+
+}

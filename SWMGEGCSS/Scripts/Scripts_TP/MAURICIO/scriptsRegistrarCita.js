@@ -21,6 +21,7 @@
         var $citaFecha = $("#cita_fecha").val();
         var $citaEmpresa = $("#cita_empresa").val();
         var $citaEncargado = $("#usu_citado").val();
+        var $citaHora = $("#cita_hora").val();
         //Metodos
 
         var vCitaRepresentante = validar_representante($citaRepresentante);
@@ -30,10 +31,12 @@
         var vCitaFecha = validar_fecha($citaFecha);
         var vCitaEmpresa = validar_empresa($citaEmpresa);
         var vCitaEncargado = validar_encargado($citaEncargado);
+        var vcitaHora = validar_hora($citaHora);
+        
         
 
 
-        if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false || vCitaFecha === false || vCitaEmpresa === false || vCitaEncargado === false) {
+        if (vCitaRepresentante === false || vCitaTelefono === false || vCitaCorreo === false || vCitaComentario === false || vCitaFecha === false || vCitaEmpresa === false || vCitaEncargado === false || vcitaHora === false) {
             return false;
         } else {
 
@@ -379,6 +382,7 @@
 
     //Validar Fecha
     function validar_fecha(fecha) {
+        var vcita = 0;
         var fechaIngresada = new Date(fecha);
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
         //
@@ -386,7 +390,7 @@
         var dateActual = new Date();
         var fechaActual = dateActual;
         var fechaNoposible = new Date(dateActual);
-        fechaNoposible.setDate(fechaActual.getDate() + 15);
+        fechaNoposible.setDate(fechaActual.getDate() + 60);
         dateActual.setHours(0, 0, 0, 0);
         fechaIngresada.setHours(0, 0, 0, 0);
         if (fecha === "") {
@@ -395,21 +399,41 @@
             $("#cita_fecha").focus();
             $("#cita_fecha").change(keyfechaI);
             return false;
+        } else if (fechaIngresada < fechaActual) {
+
+            negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
+            adderror("cita_fecha");
+            return false;
+        } else if (fechaIngresada >= fechaNoposible) {
+            negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
+            adderror("cita_fecha");
+            return false;
         } else {
-            if (fechaIngresada < fechaActual) {
-                
-                negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
-                adderror("cita_fecha");
-                return false;
-            } else if (fechaIngresada >= fechaNoposible) {
-                negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
-                adderror("cita_fecha");
-                return false;
-            } else {
-                attributes("error-cita-fecha");
-                addgood("cita_fecha");
-            }
+            $.ajax({
+                url: "/Secretario/Evaluar_Fecha",
+                method: "GET",
+                async: false,
+                data: {
+                    cita_hora: $("#cita_hora").val(),
+                    cita_fecha: $("#cita_fecha").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    vcita = 1;
+                }
+            });
         }
+           
+        if (vcita === 1) {
+            
+            negativeattributes("error-cita-fecha", 'Ya hay una cita con la fecha indicada');
+            adderror("cita_fecha");
+            $("#cita_fecha").keyup(keyfechaI);
+            return false;
+        }
+        attributes("error-cita-fecha");
+        addgood("cita_fecha");
         return true;
     }
     var keyfechaI = function () {
@@ -423,18 +447,33 @@
         if ($fecha_inicio.val() === "") {
             negativeattributes("error-cita-fecha", 'Debe ingresar una fecha');
             adderror("cita_fecha");
+        } else if (fechaIngresada < fechaActual) {
+            negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
+            adderror("cita_fecha");
+        } else if (fechaIngresada >= fechaNoposible) {
+            negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
+            adderror("cita_fecha");
         } else {
-            if (fechaIngresada < fechaActual) {
-                negativeattributes("error-cita-fecha", 'Debe ingresar una fecha válida');
-                adderror("cita_fecha");
-            } else if (fechaIngresada >= fechaNoposible) {
-                negativeattributes("error-cita-fecha", 'Debe ingresar más cercana');
-                adderror("cita_fecha");
-            }else {
-                attributes("error-cita-fecha");
-                addgood("cita_fecha");
-            }
+            $.ajax({
+                url: "/Secretario/Evaluar_Fecha",
+                method: "GET",
+                async: false,
+                data: {
+                    cita_hora: $("#cita_hora").val(),
+                    cita_fecha: $("#cita_fecha").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    adderror("error-cita-fecha");
+                    negativeattributes("error-cita-fecha", 'Ya hay una cita con la fecha indicada');
+                }
+            });
         }
+             
+        
+        attributes("error-cita-fecha");
+        addgood("cita_fecha");
     };
     //Validar Empresa
     function validar_empresa(empresa) {
@@ -442,17 +481,35 @@
             adderror("cita_empresa");
             negativeattributes("error-cita-empresa", 'La empresa no debe empezar con un espacio en blanco');
             $("#cita_empresa").focus();
-            //    alert("representante con espacio");
             $("#cita_empresa").keyup(keyEmpresa);
             return false;
-        }
-        if (empresa === "Elige una opcion") {
+        } else if (empresa === "") {
             adderror("cita_empresa");
-            negativeattributes("error-cita-empresa", 'Debe seleccionar una empresa');
+            negativeattributes("error-cita-empresa", 'Debe ingresar una empresa');
             $("#cita_empresa").focus();
             $("#cita_empresa").keyup(keyEmpresa);
             return false;
-        }
+        } else if (esNum(empresa) === true) {
+            adderror("cita_empresa");
+            negativeattributes("error-cita-empresa", 'La empresa no puede ser un número');
+            $("#cita_empresa").focus();
+            $("#cita_empresa").keyup(keyEmpresa);
+            return false;
+        } else if (tieneCaracEsp(empresa) === true) {
+            adderror("cita_empresa");
+            negativeattributes("error-cita-empresa", 'La empresa debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            $("#cita_empresa").focus();
+            $("#cita_empresa").keyup(keyEmpresa);
+            return false;
+        } else if (maximoNumeroCaracteres100(empresa) === true) {
+            adderror("cita_empresa");
+            negativeattributes("error-cita-empresa", 'La empresa debe ser de menos de 100 caracteres');
+            $("#cita_empresa").focus();
+            $("#cita_empresa").keyup(keyEmpresa);
+            return false;
+        } 
+        addgood("cita_empresa");
+        attributes("error-cita-empresa");
         return true;
     }
     var keyEmpresa = function () {
@@ -495,6 +552,99 @@
             negativeattributes("error-cita-empresa", 'Debe seleccionar un encargado5');
             adderror("cita_empresa");
         }
+    };
+
+    //Validar Hora
+    function validar_hora(hora) {
+        var vcita = 0;
+        $valor = $("#cita_hora").val();
+        var hour = $valor.split(':');
+        var hh = parseInt(hour[0], 10);
+        var mm = parseInt(hour[1], 10);
+        if (hora === "") {
+            adderror("cita_hora");
+            negativeattributes("error-cita-hora", 'La hora de la cita no puede estar vacía');
+            $("#cita_hora").focus();
+            $("#cita_hora").keyup(keyHora);
+            return false;
+        } else if (hh < 8 || hh > 20) {
+            adderror("cita_hora");
+            negativeattributes("error-cita-hora", "Tiene que escoger una hora en horario de trabajo");
+            $("#cita_hora").focus();
+            $("#cita_hora").keyup(keyHora);
+            return false;
+        } else if (hh >= 20 && mm >= 1) {
+            adderror("cita_hora");
+            negativeattributes("error-cita-hora", "Tiene que escoger una hora en horario de trabajo");
+            $("#cita_hora").focus();
+            $("#cita_hora").keyup(keyHora);
+            return false;
+        } else {
+            $.ajax({
+                url: "/Secretario/Evaluar_Fecha",
+                method: "GET",
+                async: false,
+                data: {
+                    cita_hora: $("#cita_hora").val(),
+                    cita_fecha: $("#cita_fecha").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    vcita = 1;
+                }
+            });
+        }
+        if (vcita === 1) {
+            
+            negativeattributes("error-cita-hora", 'Ya hay una cita en la hora designada');
+            adderror("cita_hora");
+            $("#cita_hora").keyup(keyHora);
+            return false;
+        }
+        
+        attributes("error-cita-hora");
+        addgood("cita_hora");
+        return true;
+    }
+
+    var keyHora = function () {
+        $valor = $("#cita_hora").val();
+        var hour = $valor.split(':');
+        var hh = parseInt(hour[0], 10);
+        var mm = parseInt(hour[1], 10);
+        if ($valor.val() === "") {
+            negativeattributes("error-cita-hora", 'La hora de la cita no puede estar vacía');
+            adderror("cita_empresa");
+        }
+        if (hh < 8 || hh > 20) {
+            negativeattributes("error-cita-hora", "Tiene que escoger una hora en horario de trabajo");
+            adderror("cita_empresa");
+        } else if (hh >= 20 && mm >= 1) {
+            negativeattributes("error-cita-hora", "Tiene que escoger una hora en horario de trabajo");
+            adderror("cita_empresa");
+        } else if (hh <= 7 && mm <= 59) {
+            negativeattributes("error-cita-hora", "Tiene que escoger una hora en horario de trabajo");
+            adderror("cita_empresa");
+        } else {
+            $.ajax({
+                url: "/Secretario/Evaluar_Fecha",
+                method: "GET",
+                async: false,
+                data: {
+                    cita_hora: $("#cita_hora").val(),
+                    cita_fecha: $("#cita_fecha").val()
+                },
+                dataType: "json"
+            }).done(function (data) {
+                if (data !== 0) {
+                    adderror("cita_hora");
+                    negativeattributes("error-cita-hora", 'Ya hay una cita en la hora designada');
+                }
+            });
+        }
+        attributes("error-cita-hora");
+        addgood("cita_hora");
     };
 
     ///NO SE QUE ES PERO ME DIJERON QUE ERA IMPORTANTE
