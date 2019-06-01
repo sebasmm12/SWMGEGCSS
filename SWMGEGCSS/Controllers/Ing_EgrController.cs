@@ -32,6 +32,7 @@ namespace SWMGEGCSS.Controllers
             var model = new Gestionar_I_EViewModel();
             model.ingresos_egresos = ingresos_egresos;
             model.ingresos_egresos.usu_codigo = (int)Session["login"];
+
             var operationResult = new Ing_EgrDataAccess().sp_Actualizar_Ing_Egr(model.ingresos_egresos);
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
 
