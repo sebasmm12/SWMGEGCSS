@@ -34,8 +34,7 @@
             $.ajax({
                 url: "/Empresa/Actualizar_Empresa",
                 method: "POST",
-                data: $("form").serialize(),
-                dataType: "json"
+                data: $("form").serialize()
             }).done(function (data) {
                 Swal.fire({
                     type: 'success',
@@ -49,6 +48,7 @@
             });
             
         }
+        return false;
     };
     
 
@@ -400,8 +400,8 @@
     };
 
 
-    function keyDireccion() {
-      
+    var keyDireccion = function () {
+
         var $valor = $("#emp-direccion");
         if ($valor.val() === "") {
 
@@ -424,7 +424,7 @@
             attributes("error-emp-direccion");
             addgood("emp-direccion");
         }
-    }
+    };
 
 
     var keyTelefono = function () {
@@ -482,7 +482,7 @@
 
     var keyEmail = function () {
         var $valor = $("#emp-email");
-        
+
         if ($valor.val() === "") {
 
             negativeattributes("error-emp-email", 'Debe ingresar un email');
@@ -503,11 +503,11 @@
             attributes("error-emp-email");
             addgood("emp-email");
         }
-    }
+    };
 
     var keyFax = function () {
         var $valor = $("#emp-fax");
-      
+
 
 
 
@@ -532,7 +532,7 @@
             attributes("error-emp-fax");
             addgood("emp-fax");
         }
-    }
+    };
     //
     function attributes(id) {
         $("#" + id).removeClass("text-danger");

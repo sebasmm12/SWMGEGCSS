@@ -147,6 +147,7 @@
     <Compile Include="Models\ExpedienteViewModel.cs" />
     <Compile Include="Models\GestionarAsignacionActividadesDesarrollar.cs" />
     <Compile Include="Models\GestionarCitasViewModel.cs" />
+    <Compile Include="Models\GestionarCuentasViewModel.cs" />
     <Compile Include="Models\GestionarEmpresaViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\Gestionar_I_EViewModel.cs" />

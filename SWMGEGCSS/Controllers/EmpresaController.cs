@@ -32,9 +32,9 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarEmpresaViewModel();
             model.empresas = empresas;
             model.empresas.usu_codigo = (int)Session["login"];
-            var operationResult = new OperationResult();
-            operationResult = new EmpresaDataAccess().sp_Actualizar_Empresa(model.empresas);
-            return RedirectToAction("Gestionar_Empresas", "Gerente");
+           
+           var operationResult = new EmpresaDataAccess().sp_Actualizar_Empresa(model.empresas);
+            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -77,9 +77,10 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarEmpresaViewModel();
             model.empresas = empresas;
             model.empresas.usu_codigo = (int)Session["login"];
-            var operationResult = new OperationResult();
-            operationResult = new EmpresaDataAccess().sp_Insertar_Empresa(model.empresas);
-            return RedirectToAction("Gestionar_Empresas", "Gerente");
+
+           var operationResult = new EmpresaDataAccess().sp_Insertar_Empresa(model.empresas);
+            //  return RedirectToAction("Gestionar_Empresas", "Gerente");
+            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Evaluar_Nombre_Empresa(string emp_razon_social)
