@@ -23,6 +23,7 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarCitasViewModel();
             model.DetalleUsuarioModel = new DetalleUsuarioViewModel();
             model.DetalleUsuarioModel.list_usuario = new List<T_detalle_usuario>();
+            model.DetalleUsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
             if (estado == null)
             {
                 model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().ToPagedList(page, 4);
@@ -42,13 +43,6 @@ namespace SWMGEGCSS.Controllers
                     model.listCitas = new SecretariaDataAccess().sp_Consultar_Lista_Citas().FindAll(r => r.estado_cita_id == Convert.ToInt32(estado)).ToPagedList(page, 4);
                 }
             }
-            model.DetalleUsuarioModel.list_usuario = new UsuarioDataAccess().sp_Consultar_Lista_Usuario();
-
-
-
-
-
-
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaCitas", model);
