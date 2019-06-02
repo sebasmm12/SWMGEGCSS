@@ -1,15 +1,103 @@
 ﻿@model SWMGEGCSS.Models.GestionarAsignacionActividadesDesarrollar
 @{
+    int act_desa_id = 0;
     var listaDetalleUsuario = Model.listPagedDetalleUsuario;
-    int act_desa_id = Model.actividadesDesarrollar.act_desa_id;
+    if(Model.actividadesDesarrollar.act_desa_id == 0)
+    {
+        act_desa_id = (int)Session["act_desa_id"];
+    }
+    else
+    {
+        act_desa_id = Model.actividadesDesarrollar.act_desa_id;
+    }
+
     var count = 0;
     Layout = null;
+    var detalleUsuTrabajador = Session["detUsuTrabajador"];
 }
 
 <div id="tableDetUsu">
     <div class="row mt-4">
         <div class="col-12 col-sm-12 col-md-12">
             <div class="table-responsive">
+
+                @{
+                    if (Model.usuarioEncargado != null)
+                    {
+                        <div style="width: 800px">
+                            <div style="border: 6px solid #C00">
+                                <div class="col-md-12">
+                                    <label class="font-weight-bolder text-center">
+                                        Trabajador Encargado de la Actividad
+                                    </label>
+                                    <div class="row mt-4 pl-2">
+                                        <div style="width:30px"></div>
+                                        <div class="col-12 col-sm-4 col-md-6">
+
+                                            <div>
+                                                <label class="font-weight-bolder">
+                                                    Nombre Completo
+                                                </label>
+                                            </div>
+                                            @Html.EditorFor(model => model.usuarioEncargado.det_usu_nombre,
+                                            new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "text-center form-control",
+                                                    @readonly = "readonly"
+
+                                                }
+                                            })
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 pl-2">
+                                        <div style="width:30px"></div>
+                                        <div class="col-12 col-sm-4 col-md-6">
+
+                                            <div>
+                                                <label class="font-weight-bolder">
+                                                    Especialidad
+                                                </label>
+                                            </div>
+                                            @Html.EditorFor(model => model.usuarioEncargado.det_usu_especialidad,
+                                            new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "text-center form-control",
+                                                    @readonly = "readonly"
+                                                }
+                                            })
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 pl-2">
+                                        <div style="width:30px"></div>
+                                        <div class="col-12 col-sm-4 col-md-6">
+
+                                            <div>
+                                                <label class="font-weight-bolder">
+                                                    Correo Electronico
+                                                </label>
+                                            </div>
+                                            @Html.EditorFor(model => model.usuarioEncargado.det_usu_correo,
+                                            new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "text-center form-control",
+                                                    @readonly = "readonly"
+                                                }
+                                            })
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
                 <table class="table table-bordered">
                     <thead class="bg-success">
                         <tr class="text-center">
@@ -24,24 +112,19 @@
                     <tbody>
                         @foreach (var item in listaDetalleUsuario)
                         {
-
                             count = count + 1;
                             <tr class="text-center">
                                 <th scope="row">@count</th>
-
-
                                 <td>@item.det_usu_nombre</td>
                                 <td>@item.det_usu_tip_doc_numero </td>
                                 <td>@item.det_usu_especialidad</td>
                                 <td>@item.det_usu_correo</td>
                                 <td>
                                     @{
-
                                         <button class="btn btn-success btnModalTrabajador" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividad">
                                             <i class="fa fa-check-circle"></i>
                                             Como Encargado
                                         </button>
-
                                     }
                                 </td>
                             </tr>
@@ -52,7 +135,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4 col-md-4 col-12 pagedList1" data-exp-target="#tableDetUsu">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableDetUsu">
             @Html.PagedListPager(listaDetalleUsuario, page => Url.Action("RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id, page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>

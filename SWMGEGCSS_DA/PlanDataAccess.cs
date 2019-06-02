@@ -82,7 +82,8 @@ namespace SWMGEGCSS_DA
                         while (reader.Read())
                         {
                             T_plan_aux t_plan_aux = new T_plan_aux();
-                            t_plan_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            t_plan_aux.plan_id = DataUtil.DbValueToDefault<int>(reader["plan_id"]);
+                            t_plan_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);                            
                             t_plan_aux.plan_fecha = DataUtil.DbValueToDefault<DateTime>(reader["plan_fecha"]);
                             t_plan_aux.plan_estado_nobre = DataUtil.DbValueToDefault<string>(reader["plan_estado_nobre"]);
                             t_plan_aux.plan_costo = DataUtil.DbValueToDefault<double>(reader["plan_costo"]);

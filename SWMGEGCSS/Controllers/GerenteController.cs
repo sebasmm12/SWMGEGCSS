@@ -144,18 +144,18 @@ namespace SWMGEGCSS.Controllers
             Session["ListaActPlanTemp"] = null;
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             if (searchTerm == null && estado == null) {
-                model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3); }
+                model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 2); }
             if (estado != null)
             {
                 if (searchTerm != null)
                 {
                     if (estado.Equals("Todos"))
                     {
-                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).ToPagedList(page, 3);
+                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).ToPagedList(page, 2);
                     }
                     else
                     {
-                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).FindAll(r => (r.plan_estado_nobre == estado)).ToPagedList(page, 3);
+                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).FindAll(r => (r.plan_estado_nobre == estado)).ToPagedList(page, 2);
                     }
                 }
             }
@@ -169,11 +169,11 @@ namespace SWMGEGCSS.Controllers
                 model.tipo_estado = "Todos";
                 Session["est_plan"] = model.tipo_estado;
             }
+            model.List_Estado_Plan = new EstadoPlanDataAccess().sp_Consultar_Lista_Estado_Plan();
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaPlan", model);
             }
-            model.List_Estado_Plan = new EstadoPlanDataAccess().sp_Consultar_Lista_Estado_Plan();
             return View(model);
         }
 

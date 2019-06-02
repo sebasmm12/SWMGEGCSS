@@ -35,7 +35,8 @@ namespace SWMGEGCSS.Controllers
             
             model.expedienteActDesarrollar = new T_expedientes();
             model.expedienteActDesarrollar = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(X => (X.exp_id == model.actividadesDesarrollar.exp_id));
-
+            model.actividadesDesarrollar = new T_actividades_desarrollar();
+            model.actividadesDesarrollar = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar().Find(X => X.act_desa_id == act_desa_id);
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaDetalleUsuario", model);
@@ -140,14 +141,18 @@ namespace SWMGEGCSS.Controllers
             model.rol_usuario_aux = new ActividadesDesarrollarDataAccess().sp_listar_roles_usuario().Find(X => (X.usu_codigo == usu_codigo));
             return PartialView("_ModalAsignarTrabajadorResponsable", model);
         }
+
         [HttpPost]
-        public ActionResult AsignarTrabajadorResponsableFinal(int usu_codigo)
+        public ActionResult _ListaDetalleUsuario(int usu_codigo, int page = 1)
         {
             var model = new GestionarAsignacionActividadesDesarrollar();           
             model.detalle_Usuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().Find(X => (X.usu_codigo == usu_codigo));
             Session["detUsuTrabajador"] = model.detalle_Usuario;           
             var act_desa_id = (int)Session["act_desa_id"];
-            return Json(act_desa_id, JsonRequestBehavior.AllowGet);
+            model.listPagedDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().ToPagedList(page, 4);
+            model.actividadesDesarrollar = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar().Find(X => X.act_desa_id == act_desa_id);
+            model.usuarioEncargado = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().Find(X => X.usu_codigo == usu_codigo);
+            return PartialView( "_ListaDetalleUsuario", model);
         }
 
         public ActionResult Evaluar_UsuarioAsignado()
