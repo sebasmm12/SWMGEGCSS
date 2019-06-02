@@ -61,7 +61,7 @@
             //$(modal).modal("hide");
         });*/
             $.ajax({
-                url: "/Plan/_ModalRegistrarActividadesPlanificadas",
+                url: "/Plan/_ModalRegistrarActividadesPlanificadas2",
                 method: "POST",
                 data: {
                     act_plan: act_plan
@@ -289,11 +289,13 @@
         $(this).click(function () {
             var $button = $(this);
             var modal = $button.attr("data-id-target");
-            id_act = $button.attr("data-id-act");
+            id_act = $(this).attr("data-id-act");
             SelectorBoton = $(this);
             $.ajax({
-                url: $(this).attr("data-url"),
-                method: "GET"
+                //url: $(this).attr("data-url"),
+                url: "/Plan/_ModalRegistrarActividadesPlanificadas",
+                method: "POST",
+                data: { id_act: $(this).attr("data-id-act") }
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);

@@ -526,16 +526,22 @@ namespace SWMGEGCSS.Controllers
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public ActionResult _ModalRegistrarActividadesPlanificadas(/*int id_act*/)
+        public ActionResult _ModalRegistrarActividadesPlanificadas()
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas = new T_actividades_desarrollar();
-            //var modeloevaluar = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(r => r.act_id == id_act);
-            //model.tipo_servicio_act = modeloevaluar;
             return PartialView(model);
         }
         [HttpPost]
-        public ActionResult _ModalRegistrarActividadesPlanificadas(T_actividades_planeadas act_plan)
+        public ActionResult _ModalRegistrarActividadesPlanificadas(int id_act)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.Actividades_planeadas = new T_actividades_desarrollar();
+            var modeloevaluar = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(r => r.act_id == id_act);
+            model.tipo_servicio_act = modeloevaluar;
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalRegistrarActividadesPlanificadas2(T_actividades_planeadas act_plan)
         {
             //Session["ListaCantidadPermitida"]
             T_actividades_planeadas actividadesPlaneadas = new T_actividades_planeadas();
