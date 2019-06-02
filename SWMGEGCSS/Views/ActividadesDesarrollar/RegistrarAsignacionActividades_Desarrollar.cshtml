@@ -173,82 +173,10 @@
         </div>
         <br><br>
         <div id="error-usuario-asignado" class="errordiv"></div>
-        @{
-            if (Model.usuarioEncargado != null)
-            {
-                <div style="width: 800px">
-                    <div style="border: 6px solid #C00">
-                        <div class="col-md-12">
-                            <label class="font-weight-bolder text-center">
-                                Trabajador Encargado de la Actividad
-                            </label>
-                            <div class="row mt-4 pl-2">
-                                <div style="width:30px"></div>
-                                <div class="col-12 col-sm-4 col-md-6">
+        
 
-                                    <div>
-                                        <label class="font-weight-bolder">
-                                            Nombre Completo
-                                        </label>
-                                    </div>
-                                    @Html.EditorFor(model => model.usuarioEncargado.det_usu_nombre,
-                                    new
-                                    {
-                                        htmlAttributes = new
-                                        {
-                                            @class = "text-center form-control",
-                                            @readonly = "readonly"
 
-                                        }
-                                    })
-                                </div>
-                            </div>
-                            <div class="row mt-4 pl-2">
-                                <div style="width:30px"></div>
-                                <div class="col-12 col-sm-4 col-md-6">
 
-                                    <div>
-                                        <label class="font-weight-bolder">
-                                            Especialidad
-                                        </label>
-                                    </div>
-                                    @Html.EditorFor(model => model.usuarioEncargado.det_usu_especialidad,
-                                    new
-                                    {
-                                        htmlAttributes = new
-                                        {
-                                            @class = "text-center form-control",
-                                            @readonly = "readonly"
-                                        }
-                                    })
-                                </div>
-                            </div>
-                            <div class="row mt-4 pl-2">
-                                <div style="width:30px"></div>
-                                <div class="col-12 col-sm-4 col-md-6">
-
-                                    <div>
-                                        <label class="font-weight-bolder">
-                                            Correo Electronico
-                                        </label>
-                                    </div>
-                                    @Html.EditorFor(model => model.usuarioEncargado.det_usu_correo,
-                                    new
-                                    {
-                                        htmlAttributes = new
-                                        {
-                                            @class = "text-center form-control",
-                                            @readonly = "readonly"
-                                        }
-                                    })
-                                </div>
-                            </div>
-                            <br><br>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
         <div>
             <div class="mt-2 ml-4">
                 <div class="container-fluid">
