@@ -341,7 +341,21 @@ namespace SWMGEGCSS.Controllers
            
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
-       
+        public ActionResult ListarActividadesConsultar(int tipo_servicio_id,int page = 1)
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().Find(r => r.tipo_servicio_id == tipo_servicio_id);
+            model.PList_tipo_servicio_actividades = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades().FindAll(r => r.tipo_servicio_id == tipo_servicio_id).ToPagedList(page, 3);
+            return PartialView("_ListarActividadesEliminar", model);
+            
+        }
+        public ActionResult ListarExpediente(int tipo_servicio_id, int page = 1)
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().Find(r => r.tipo_servicio_id == tipo_servicio_id);
+            model.PList_Expedientes_Servicio = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().FindAll(r => r.tipo_servicio_nombre == model.tipoServicio.tipo_servicio_nombre).ToPagedList(page, 3);
+            return PartialView("_ListarExpedientesTipoServicio", model);
+        }
 
     }
 }

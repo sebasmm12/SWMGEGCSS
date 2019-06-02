@@ -57,9 +57,8 @@
             url: $a.attr("href"),
             type: "GET"
         }).done(function (data) {
-            var target = $a.parents("div.pagedList pgCA").attr("data-serv-target");
+            var target = $a.parents("div.pgCA").attr("data-serv-target");
             $(target).replaceWith(data);
-          
         });
         return false;
     };
@@ -69,9 +68,8 @@
             url: $a.attr("href"),
             type: "GET"
         }).done(function (data) {
-            var target = $a.parents("div.pagedList pgCE").attr("data-serv-target");
-            $(target).replaceWith(data);
-           
+            var target = $a.parents("div.pgCE").attr("data-exp-target");
+            $(target).replaceWith(data);      
         });
         return false;
     };
