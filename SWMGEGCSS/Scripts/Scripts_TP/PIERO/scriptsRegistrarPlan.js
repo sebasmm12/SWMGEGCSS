@@ -36,20 +36,21 @@
                 if (data === 5) {
                     Swal.fire({
                         type: 'error',
-                        title: 'Error',
-                        text: 'Debe ingresar al menos 1 actividad!'
+                        title: 'Debe ingresar al menos 1 actividad',
+                        confirmButtonText: 'OK'
                     });
                 }
-                Swal.fire({
-                    type: 'success',
-                    title: 'Se registro el plan exitosamente',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        //window.location.href = "/Plan/Agregar_Plan_de_Proyectos_1";
-                        window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
-                    }
-                });
+                else {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se registro el plan exitosamente',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
+                        }
+                    });
+                }
             });
         }
         return false;

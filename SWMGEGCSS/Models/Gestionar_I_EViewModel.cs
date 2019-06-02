@@ -15,6 +15,7 @@ namespace SWMGEGCSS.Models
         public List<T_ingresos_egresos> lista_ingresos_egresos { get; set; }
         public IPagedList<T_ingresos_egresos> list_ingresos_egresos
         { get; set; }
+        public string tipo_estado { get; set; }
 
     }
 }

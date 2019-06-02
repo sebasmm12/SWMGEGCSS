@@ -7,14 +7,15 @@ using SWMGEGCSS_EN;
 using SWMGEGCSS_DA.Base;
 using System.Data;
 using System.Data.Common;
+using System.IO;
 namespace SWMGEGCSS_DA
 {
     public class UsuarioDataAccess:BaseConexion
     {
 
-        public List<T_usuario> sp_Consultar_Lista_Usuario()
+        public List<T_detalle_usuario> sp_Consultar_Lista_Usuario()
         {
-            var l_usu = new List<T_usuario>();
+            var l_usu = new List<T_detalle_usuario>();
             try
             {
                 using(DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Usuario"))
@@ -23,18 +24,18 @@ namespace SWMGEGCSS_DA
                     {
                         while (reader.Read())
                         {
-                            var usu = new T_usuario();
+                            var usu = new T_detalle_usuario();
                             usu.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
-                            usu.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
+                            usu.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
                             l_usu.Add(usu);
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                return new List<T_usuario>();
+                return new List<T_detalle_usuario>();
             }
             return l_usu;
         }

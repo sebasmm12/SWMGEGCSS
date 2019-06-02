@@ -13,37 +13,6 @@ namespace SWMGEGCSS_DA
     public class SecretariaDataAccess : BaseConexion
     {
 
-        /*public List<T_Citas_aux> sp_Consultar_Lista_Citas_Estados(int estado_cita_id)
-        {
-            var l_citas1 = new List<T_Citas_aux>();
-            try
-            {
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Citas_Estados"))
-                {
-                    Database.AddInParameter(command, "@cita_estado_id", DbType.String, estado_cita_id);
-                    using (IDataReader reader = Database.ExecuteReader(command))
-                    {
-                        while (reader.Read())
-                        {
-                            var cita = new T_Citas_aux();
-                            cita.estado_cita_nombre = DataUtil.DbValueToDefault<string>(reader["estado_cita_nombre"]);
-                            l_citas1.Add(cita);
-                        }
-
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-                Console.Write(e + " ");
-                return new List<T_Citas_aux>();
-            }
-            
-            return l_citas1;
-
-        }*/
-
         public List<T_Citas_aux> sp_Consultar_Lista_Citas()
         {
             var l_citas = new List<T_Citas_aux>();
@@ -60,12 +29,14 @@ namespace SWMGEGCSS_DA
                             cita.cita_id = DataUtil.DbValueToDefault<Int32>(reader["cita_id"]);
                             cita.estado_cita_nombre = DataUtil.DbValueToDefault<string>(reader["estado_cita_nombre"]);
                             cita.usu_citado = DataUtil.DbValueToDefault<Int32>(reader["usu_citado"]);
+                            cita.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
                             cita.cita_comentario = DataUtil.DbValueToDefault<string>(reader["cita_comentario"]);
                             cita.estado_cita_id = DataUtil.DbValueToDefault<Int32>(reader["estado_cita_id"]);
                             cita.cita_fecha = DataUtil.DbValueToDefault<DateTime>(reader["cita_fecha"]);
                             cita.cita_empresa = DataUtil.DbValueToDefault<string>(reader["cita_empresa"]);
                             cita.cita_representante = DataUtil.DbValueToDefault<string>(reader["cita_representante"]);
                             cita.cita_correo = DataUtil.DbValueToDefault<string>(reader["citas_correo"]);
+                            cita.cita_fecha_atendido = DataUtil.DbValueToDefault<DateTime>(reader["cita_fecha_atendido"]);
                             cita.cita_telefono = DataUtil.DbValueToDefault<string>(reader["cita_telefono"]);
                             cita.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
                             l_citas.Add(cita);
@@ -81,7 +52,7 @@ namespace SWMGEGCSS_DA
             }
             return l_citas;
         }
-
+        //Busca todos los estados
         public List<T_estado_cita> sp_Consultar_Lista_Estado_Cita()
         {
             var l_estado_cita = new List<T_estado_cita>();
@@ -111,6 +82,47 @@ namespace SWMGEGCSS_DA
             
         }
 
+        //Busca por estados
+        public List<T_Citas_aux> sp_Consultar_Lista_Cita_Estado(string estado)
+        {
+            var l_cita_estado = new List<T_Citas_aux>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Citas_Estado"))
+                {
+                    Database.AddInParameter(command, "@estado_cita_id", DbType.Int32, Convert.ToInt32(estado));
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var cita = new T_Citas_aux();
+                            cita.cita_id = DataUtil.DbValueToDefault<Int32>(reader["cita_id"]);
+                            cita.estado_cita_nombre = DataUtil.DbValueToDefault<string>(reader["estado_cita_nombre"]);
+                            cita.usu_citado = DataUtil.DbValueToDefault<Int32>(reader["usu_citado"]);
+                            cita.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
+                            cita.cita_comentario = DataUtil.DbValueToDefault<string>(reader["cita_comentario"]);
+                            cita.estado_cita_id = DataUtil.DbValueToDefault<Int32>(reader["estado_cita_id"]);
+                            cita.cita_fecha = DataUtil.DbValueToDefault<DateTime>(reader["cita_fecha"]);
+                            cita.cita_empresa = DataUtil.DbValueToDefault<string>(reader["cita_empresa"]);
+                            cita.cita_representante = DataUtil.DbValueToDefault<string>(reader["cita_representante"]);
+                            cita.cita_correo = DataUtil.DbValueToDefault<string>(reader["citas_correo"]);
+                            cita.cita_telefono = DataUtil.DbValueToDefault<string>(reader["cita_telefono"]);
+                            cita.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
+                            l_cita_estado.Add(cita);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.Write(e + " ");
+                return new List<T_Citas_aux>();
+            }
+            return l_cita_estado;
+        }
+
+
         public OperationResult sp_Insertar_Cita(T_Citas citas, string cita_empresa, string usu_citado, string cita_hora)
         {
 
@@ -127,7 +139,6 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@cita_empresa", DbType.String, cita_empresa);
                     Database.AddInParameter(command, "@cita_correo", DbType.String, citas.cita_correo);
                     Database.AddInParameter(command, "@cita_telefono", DbType.String, citas.cita_telefono);
-                    
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
@@ -158,7 +169,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@usu_citado", DbType.Int32, usu_citado);
                     Database.AddInParameter(command, "@cita_empresa", DbType.String, citas.cita_empresa);
                     Database.AddInParameter(command, "@citas_correo", DbType.String, citas.cita_correo);
-                    Database.AddInParameter(command, "@cita_fecha_atendido", DbType.DateTime, fecha);
+                    Database.AddInParameter(command, "@cita_fecha_atendido", DbType.DateTime, fecha_atendido);
                     Database.AddInParameter(command, "@cita_telefono", DbType.String, citas.cita_telefono);
                     Database.AddInParameter(command, "@estado_cita_id", DbType.Int32, citas.estado_cita_id);
                     Database.ExecuteScalar(command);
@@ -185,6 +196,7 @@ namespace SWMGEGCSS_DA
                 {
                     Database.AddInParameter(command, "@cita_id", DbType.Int32, citas.cita_id);
                     Database.AddInParameter(command, "@estado_cita_id", DbType.Int32, citas.estado_cita_id);
+                    Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
                 return operation;

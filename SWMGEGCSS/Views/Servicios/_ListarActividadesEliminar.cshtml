@@ -4,7 +4,7 @@
     var list_actividades = Model.PList_tipo_servicio_actividades;
     var count = 0;
 }
-<div id="tableAct">
+<div id="tableActC">
     <div class="row mt-4">
         <div class="col-12 col-sm-12 col-md-12">
             <div class="table-responsive">
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="row mt-4 pl-2">
-        <div class="col-sm-4 col-md-4 col-12 pagedList" data-serv-target="#tableServ">
+        <div class="col-sm-4 col-md-4 col-12 pgCA" data-serv-target="#tableActC">
             @Html.PagedListPager(list_actividades, page => Url.Action("Registrar_Servicio", "Servicios", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>

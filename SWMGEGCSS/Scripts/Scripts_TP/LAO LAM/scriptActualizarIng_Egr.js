@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(function() {
 
     validacion = function () {
 
@@ -28,7 +28,7 @@
             }).done(function (data) {
                 Swal.fire({
                     type: 'success',
-                    title: 'Se registró exitosamente',
+                    title: 'Se actualizó exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
@@ -37,7 +37,7 @@
                 });
             });
 
-        }
+        }   
         return false;
 
 
@@ -139,6 +139,15 @@
         return true;
     }
     function validar_fecha(fechaa) {
+        var fechaIngresada = new Date(fechaa);
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+
+        var dateActual = new Date();
+        var fechaActual = dateActual;
+
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
+
         if (fechaa === "") {
             adderror("ing-egr-fecha");
             negativeattributes("error-ing-egr-fecha", "La fecha no debe estar vacía");
@@ -146,9 +155,18 @@
             $("#ing-egr-fecha").keyup(KeyFecha);
             return false;
         }
-        addgood("ing-egr-fecha");
-        attributes("error-ing-egr-fecha");
-        return true;
+        else if (fechaIngresada.getMonth() !== fechaActual.getMonth()) {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "La fecha debe ser dentro del mismo mes");
+            $("#ing-egr-fecha").focus();
+            $("#ing-egr-fecha").keyup(KeyFecha);
+            return false;
+        }
+        else {
+            addgood("ing-egr-fecha");
+            attributes("error-ing-egr-fecha");
+            return true;
+        }
 
     }
     function validar_descripcion(descripcion) {
@@ -285,8 +303,20 @@
     }
     var KeyFecha = function () {
         var $valor = $("#ing-egr-fecha");
+        var fechaIngresada = new Date(fechaa);
+        fechaIngresada.setDate(fechaIngresada.getDate() + 1);
+
+        var dateActual = new Date();
+        var fechaActual = dateActual;
+
+        dateActual.setHours(0, 0, 0, 0);
+        fechaIngresada.setHours(0, 0, 0, 0);
         if ($valor.val() === "") {
             negativeattributes("error-ing-egr-fecha", "La fecha no debe estar vacía");
+            adderror("ing-egr-fecha");
+        }
+        else if (fechaIngresada.getMonth() !== fechaActual.getMonth()) {
+            negativeattributes("error-ing-egr-fecha", "La fecha debe ser del mismo mes");
             adderror("ing-egr-fecha");
         }
         else {

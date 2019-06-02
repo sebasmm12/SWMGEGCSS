@@ -21,9 +21,11 @@
 
     };
     var getPage = function () {
+        var select = document.getElementById("estado");
         var $a = $(this);
         $.ajax({
             url: $a.attr("href"),
+            data: { estado: select.value },
             type: "GET"
         }).done(function (data) {
             var target = $a.parents("div.pagedList").attr("data-exp-target");
@@ -50,7 +52,7 @@
                 //alert("GG CON TP");
                     Swal.fire({
                         type: 'success',
-                        title: 'Se elimino el servicio exitosamente',
+                        title: 'Se canceló la cita exitosamente',
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.value) {
@@ -62,22 +64,27 @@
             return false;
         });  
     };
-    //var eliminaCita = function () {
-    //    $.ajax({
-    //        url: "/Secretario/Gestionar_Citas",
-    //        type: "POST"
-    //    }).done(function (data) {
-    //        var $newhtml = $(data);
-    //        var target = $("div.pagedList").attr("data-exp-target");
-    //        $(target).replaceWith($newhtml);
-    //    });
-    //    return true;
-    //}
+
+
+    var BuscarCita= function () {
+        var select = document.getElementById("estado");
+        $.ajax({
+            url: "/Secretario/Gestionar_Citas",
+            data: { estado: select.value },
+            type: "GET"
+        }).done(function (data) {
+            var $newhtml = $(data);
+            var target = $("div.pagedList").attr("data-exp-target");
+            $(target).replaceWith($newhtml);
+        });
+        return true;
+    };
+
 
     $(".btnModal").each(envioajaxModal);
     $(".btnModal1").each(envioajaxModal);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     $(".btnEliminaCita").each(eliminaCita);
-    //$("#btnEliminarCita").click(eliminaCita);
+    $("#Buscar").click(BuscarCita);
 
 });

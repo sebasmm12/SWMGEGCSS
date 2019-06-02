@@ -1,0 +1,63 @@
+﻿@model SWMGEGCSS.Models.Gestionar_I_EViewModel
+@{
+    var list_ing_egr = Model.list_ingresos_egresos;
+    var tipo = "";
+    Layout = null;
+}
+
+    <div id="tableExp">
+        <div class="container form mt-5">
+            <div class="table-responsive mt-4">
+                <table class="table">
+                    <thead class="bg-success">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in list_ing_egr)
+                        {
+                            <tr>
+
+                                <td>
+                                    @item.ing_egr_id
+
+                                </td>
+                                <td>@item.ing_egr_nombre</td>
+                                <td>@item.ing_egr_descripcion</td>
+                                <td>@item.ing_egr_fecha.ToShortDateString()</td>
+                                @if (item.ing_egr_ingrso ==true ) { tipo = "Ingreso"; } else if (item.ing_egr_ingrso == false) { tipo = "Egreso"; }
+
+                                <td>@tipo</td>
+
+
+                                <td>@item.ing_egr_monto</td>
+
+                                <td>
+                                    <button type="button" class="btn btn-warning">
+                                        @Html.ActionLink("Actualizar Ing Egr", "Actualizar_Ing_Egr", "Ing_Egr", new { ing_egr_id = item.ing_egr_id }, new { @style = "color: white !important" })
+                                    </button>
+
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row ml-2">
+            <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+                @Html.PagedListPager(list_ing_egr, page => Url.Action("Gestionar_I_E", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
+        </div>
+    </div>
+
+

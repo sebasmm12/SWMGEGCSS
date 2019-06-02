@@ -1,0 +1,53 @@
+﻿@model SWMGEGCSS.Models.EvaluarFormularioViewModel
+@{
+    var lista_revisar = Model.Lista_Paginada_actividades_desarrollar;
+    var count = 0;
+    Layout = null;
+}
+<div id="tableExp">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre de la Tarea</th>
+                            <th scope="col">Fecha Inicio</th>
+                            <th scope="col">Fecha Finalizada</th>
+                            <th scope="col">Termino de Plazo</th>
+                            <th scope="col">Acciones del Proyecto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in lista_revisar)
+                        {
+                            count = count + 1;
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+                                <td>@item.act_desa_nombre</td>
+                                <td>@item.act_desa_fecha_inicio.ToShortDateString()</td>
+                                <td>@item.act_desa_fecha_finalizada.ToShortDateString()</td>
+                                <td>@item.act_desa_fecha_fin.ToShortDateString()</td>
+                                <td>
+                                    <div class="col-12 col-sm-4 col-md-4">
+                                        <button type="button" class="btn btn-warning">
+                                            @Html.ActionLink("Revisar", "RevisarFormulario", "EvaluarFormulario", new { id = item.act_desa_id }, new { @style = "color: white !important" })
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+            @Html.PagedListPager(lista_revisar, page => Url.Action("Index", "EvaluarFormulario", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>
+

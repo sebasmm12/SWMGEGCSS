@@ -67,11 +67,13 @@
                     act_plan: act_plan
                 }
             }).done(function (data) {
+                //ver si ya alcanzo el numero maximo de actividades
+
                 $('#RegistrarActividad').modal('hide');
                 //cambiar de color al boton
                 $(SelectorBoton).css('background-color', 'red');
                 $(SelectorBoton).css('border-color', 'red');
-                $(SelectorBoton).text('Actividad Registrada');
+                $(SelectorBoton).text('Cantidad Maxima alcanzada');
                 $(SelectorBoton).attr('disabled', 'disabled');
             });
         }

@@ -127,7 +127,9 @@
     <Compile Include="Controllers\ActividadesDesarrollarController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EvaluarFormularioController.cs" />
     <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -142,9 +144,11 @@
     <Compile Include="Models\ActividadViewModel.cs" />
     <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\EvaluarFormularioViewModel.cs" />
     <Compile Include="Models\ExpedienteViewModel.cs" />
     <Compile Include="Models\GestionarAsignacionActividadesDesarrollar.cs" />
     <Compile Include="Models\GestionarCitasViewModel.cs" />
+    <Compile Include="Models\GestionarCuentasViewModel.cs" />
     <Compile Include="Models\GestionarEmpresaViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\Gestionar_I_EViewModel.cs" />
@@ -156,7 +160,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1234538912\1\PROYECTOIOGGLINGO.txt" />
     <Content Include="Content\animate\animate.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -184,6 +187,7 @@
     <Content Include="Content\style-autocomplete\jquery-ui.min.css" />
     <Content Include="Content\StyleSesión\Style.css" />
     <Content Include="Content\StyleTP\ClientStyle.css" />
+    <Content Include="Content\StyleTP\EGG\scripteEvaluarFormulario.js" />
     <Content Include="Content\StyleTP\SEBASTIAN\RegistrarProyecto.css" />
     <Content Include="Content\StyleTP\styleClient.css" />
     <Content Include="Content\svg-with-js.css" />
@@ -311,8 +315,11 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\ValidacionesActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarActividadesDesarrollar.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scripteEvaluarFormulario.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptConsultarIng.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
@@ -340,12 +347,8 @@
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
     <Content Include="webfonts\feather.woff" />
-    <Content Include="1234538912\1\Casos propuestos Metodo Grafico.docx" />
-    <Content Include="1234538912\1\Casos propuestos Simplex 2 fases.docx" />
-    <Content Include="1234538912\1\ProyectoIoObjGen-Esp.docx" />
-    <Content Include="1234538912\1\Requerimientos Funcionales V4.docx" />
-    <Content Include="1234538912\1\SWMGEGCSS_Requerimientos_No_Funcionales.docx" />
-    <Content Include="1234538912\1\UD_BD_Relacionales.pdf" />
+    <Content Include="1070976447\12\TP_2 ITERACION %281%29.docx" />
+    <Content Include="1070976447\12\TP_2 ITERACION.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -509,6 +512,13 @@
     <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
     <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
     <Content Include="Views\Trabajador\ModificarArchivo.cshtml" />
+    <Content Include="Views\EvaluarFormulario\Index.cshtml" />
+    <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
+    <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
+    <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
+    <Content Include="Views\Cuentas\Registrar_Cuenta.cshtml" />
+    <Content Include="Views\Gerente\_ListaCuentaUsuario.cshtml" />
+    <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
@@ -516,11 +526,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\StyleTP\ANGELLO\" />
     <Folder Include="Content\StyleTP\COLOMBO\" />
-    <Folder Include="Content\StyleTP\EGG\" />
     <Folder Include="Content\StyleTP\LAO LAM\" />
     <Folder Include="Content\StyleTP\MAURICIO\" />
+    <Folder Include="Repositorio\01245678912\" />
+    <Folder Include="Repositorio\10709764471\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
-    <Folder Include="Scripts\Scripts_TP\EGG\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

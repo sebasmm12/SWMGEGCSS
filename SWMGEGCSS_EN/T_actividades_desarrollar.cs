@@ -60,5 +60,21 @@ namespace SWMGEGCSS_EN
         public HttpPostedFileBase archivo { get; set; }
         public string act_desa_revisor_obs { get; set; }
     }
-    
+
+
+    public class T_actividades_desarrollar_gerente
+    {
+        public string emp_razon_social { get; set; }
+        public string act_desa_nombre { get; set; }
+        public int act_desa_id { get; set; }
+        public string act_desa_descripcion { get; set; }
+        public int est_act_id { get; set; }
+        public string act_desa_archivo_nombre { get; set; }
+        public string act_desa_comentario { get; set; }
+        public string act_desa_revisor_obs { get; set; }
+        public DateTime act_desa_fecha_inicio { get; set; }
+        public DateTime act_desa_fecha_fin { get; set; }
+        public DateTime act_desa_fecha_finalizada { get; set; }
+    }
+
 }

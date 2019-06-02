@@ -30,6 +30,7 @@ namespace SWMGEGCSS_EN
         public string estado_cita_nombre { get; set; }
         public string cita_comentario { get; set; }
         public int usu_generado { get; set; }
+        public string det_usu_nombre { get; set; }
         public int usu_citado { get; set; }
         public string usu_usuario { get; set; }
         public string cita_empresa { get; set; }
