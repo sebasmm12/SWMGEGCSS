@@ -28,6 +28,9 @@ namespace SWMGEGCSS.Controllers
             Session["actividadesDesarrollar"] = model.actividadesDesarrollar;
             Session["act_desa_id"] = act_desa_id;
 
+           
+          
+
             if ((T_detalle_usuario)Session["detUsuTrabajador"] != null)
             {
                 model.usuarioEncargado = (T_detalle_usuario)Session["detUsuTrabajador"];
