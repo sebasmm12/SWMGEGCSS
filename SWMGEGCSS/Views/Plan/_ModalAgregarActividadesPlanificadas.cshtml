@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "ACTIVIDAD PLANIFICADA AUX";
+    //var tipoServicioCostoSugerido = Model.tipo_servicio_act.costo;
     //var costototal = Model.ActividadesModel.Actividades.act_plazo;
     //Layout = null;
 }
@@ -48,29 +49,35 @@
                 <div class="row">
                     <div class="col-sm-12 col-12 col-md-12">
                         <div class="row mt-2 pl-2">
+                            &nbsp;
                             <div>
                                 <label class="font-weight-bolder">
                                     Costo
                                 </label>
                             </div>
-                                    &nbsp;&nbsp;
-                                <div>
-                                    <label style="border: 1px solid #C00">
-                                        <Font size="1" color="red">
-                                            Precio Sugerido: S/.
+                            &nbsp;&nbsp;
+                            <div>
+                                <label style="border: 1px solid #C00">
+                                    <Font size="1" color="red">
+                                        Precio Sugerido: S/.
+                                        <label id = "precioSugerido">
                                             @Html.DisplayFor(model => model.tipo_servicio_act.costo, new
-                                            {
-                                                htmlAttributes = new
-                                                {
-                                                    @class = "text-center",
-                                                    @type = "label",
-                                                    @color = "red"
-                                                }
-                                            })
-                                        </Font>
-                                    </label>
-                                </div>
-                                </div>
+                                    {
+
+                                   htmlAttributes = new
+                                   {
+                                            //@id = "precioSugerido",
+                                            @class = "text-center",
+                                            @type = "label",
+                                            @color = "red"
+                                        }
+                                    })
+                                        </label>
+                                       
+                                    </Font>
+                                </label>
+                            </div>&nbsp;
+                        </div>
                                 <div>
                                     @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_costo, new
                                {
@@ -85,7 +92,7 @@
                         <div class=" row mt-2 pl-2">
                             <div>
                                 <label class="font-weight-bolder">
-                                    Duracion de la Actividad
+                                    Duracion de la Actividad (En Dias)
                                 </label>
                             </div>
                             &nbsp;&nbsp;
@@ -94,7 +101,7 @@
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
                         {
-                            htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanTiempo1" }
+                            htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanTiempo1", @min = "1" }
                         })
                         </div>
                         <div id="error_act_plan_tiempo1" class="errordiv"></div>

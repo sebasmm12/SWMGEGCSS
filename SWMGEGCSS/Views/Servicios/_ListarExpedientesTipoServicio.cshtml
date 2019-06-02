@@ -1,5 +1,6 @@
 ﻿@model SWMGEGCSS.Models.TipoServicioViewModel
 @{
+    var tipo_servicio_id = Model.tipoServicio.tipo_servicio_id;
     var list_expedientes = Model.PList_Expedientes_Servicio;
     var count = 0;
     Layout = null;
@@ -43,8 +44,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
-            @Html.PagedListPager(list_expedientes, page => Url.Action("Gestionar_Proyectos", "Gerente", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        <div class="col-sm-4 col-md-4 col-12 pgCE" data-exp-target=".modal-body #tableExp">
+            @Html.PagedListPager(list_expedientes, page => Url.Action("ListarExpediente", "Servicios", new { tipo_servicio_id, page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>
 </div>

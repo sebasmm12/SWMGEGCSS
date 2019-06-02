@@ -105,6 +105,10 @@ namespace SWMGEGCSS.Controllers
                 list_act = (List<T_actividades>)Session["lista_actividades"];
             }
             model.Plist_actividades = list_act.ToPagedList(page, 3);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaActividades", model);
+            }
             return View(model);
         }
         public ActionResult Añadir_Actividad(int actividad)
@@ -183,10 +187,22 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult RegistrarServicioActividad(T_tipo_servicio servicio)
         {
+            int cont = 1;
             List<T_actividades> list_actividades = new List<T_actividades>();
             if (Session["lista_actividades"] != null)
             {
                 list_actividades = (List<T_actividades>)Session["lista_actividades"];
+            }
+            foreach (var item in list_actividades)
+            {
+                if (item.costo == 0)
+                {
+                    cont--;
+                }
+            }
+            if (cont != 1)
+            {
+                return Json(cont, JsonRequestBehavior.AllowGet);
             }
             var operationResult1 = new TipoServicioDataAccess().sp_Insertar_Tipo_Servicio(servicio);
             servicio = new TipoServicioDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(r => r.tipo_servicio_nombre == servicio.tipo_servicio_nombre);
@@ -199,7 +215,7 @@ namespace SWMGEGCSS.Controllers
                 t_actividades.tipo_servicio_id = servicio.tipo_servicio_id;
                 var operationResult = new TipoServicioDataAccess().sp_Insertar_Tipo_Servicio_Actividades(t_actividades);
             }
-            return Json(1, JsonRequestBehavior.AllowGet);
+            return Json(cont, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult _EliminarServicio()
@@ -324,6 +340,21 @@ namespace SWMGEGCSS.Controllers
             }
            
             return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ListarActividadesConsultar(int tipo_servicio_id,int page = 1)
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().Find(r => r.tipo_servicio_id == tipo_servicio_id);
+            model.PList_tipo_servicio_actividades = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades().FindAll(r => r.tipo_servicio_id == tipo_servicio_id).ToPagedList(page, 3);
+            return PartialView("_ListarActividadesEliminar", model);
+            
+        }
+        public ActionResult ListarExpediente(int tipo_servicio_id, int page = 1)
+        {
+            var model = new TipoServicioViewModel();
+            model.tipoServicio = new TipoServicioDataAccess().sp_Consultar_Tipo_Servicio().Find(r => r.tipo_servicio_id == tipo_servicio_id);
+            model.PList_Expedientes_Servicio = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().FindAll(r => r.tipo_servicio_nombre == model.tipoServicio.tipo_servicio_nombre).ToPagedList(page, 3);
+            return PartialView("_ListarExpedientesTipoServicio", model);
         }
 
     }

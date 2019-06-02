@@ -51,7 +51,28 @@
             });
         return false;
     };
-
+    var getPagConsultasA = function () {
+        var $a = $(this);
+        $.ajax({
+            url: $a.attr("href"),
+            type: "GET"
+        }).done(function (data) {
+            var target = $a.parents("div.pgCA").attr("data-serv-target");
+            $(target).replaceWith(data);
+        });
+        return false;
+    };
+    var getPagConsultasE = function () {
+        var $a = $(this);
+        $.ajax({
+            url: $a.attr("href"),
+            type: "GET"
+        }).done(function (data) {
+            var target = $a.parents("div.pgCE").attr("data-exp-target");
+            $(target).replaceWith(data);      
+        });
+        return false;
+    };
     var cargarModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -69,6 +90,8 @@
                 $(modal).on('shown.bs.modal', function () {
                     $(document).off('focusin.modal');
                 });
+                $(".pcoded-content").on("click", ".pgCA a", getPagConsultasA);
+                $(".pcoded-content").on("click", ".pgCE a", getPagConsultasE);
                 $(".btnEliminarServicio").each(alerta);
                 $(".btnActualizarServicio").each(actualizarDatosServicio);
                 $(".btnActivarServicio").each(activarservicio);
