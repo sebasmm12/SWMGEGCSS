@@ -181,13 +181,12 @@ namespace SWMGEGCSS.Controllers
             if (estado != null)
             {
                 model.tipo_estado = estado;
-                Session["est_razon_social"] = model.tipo_estado;
+                Session["estado"] = model.tipo_estado;
             }
-
             else
             {
                 model.tipo_estado = "Todos";
-                Session["est_razon_social"] = model.tipo_estado;
+                Session["estado"] = model.tipo_estado;
             }
 
            
@@ -242,9 +241,20 @@ namespace SWMGEGCSS.Controllers
         public ActionResult AutoCompleteEmpresa(string term)
         {
             var model = new GestionarEmpresaViewModel();
-            string estado = (string)Session["est_razon_social"];
+            string estado = (string)Session["estado"];
+            if (estado.Equals("Todos"))
+            {
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
+            }
+             else if(estado.Equals("1"))
+            {
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == estado.Equals(1)));
+            }
+            else
+            {
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == estado.Equals(0)));
+            }
             
-            model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
 
             var nameExpedientes = model.listempresas.Select(r => new
             {
