@@ -44,18 +44,18 @@ namespace SWMGEGCSS.Controllers
         {
             ExpedienteViewModel model = new ExpedienteViewModel();
             if (searchTerm == null&&estado==null)
-                model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page, 2);
+                model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().ToPagedList(page, 3);
             if (estado != null)
             {
                 if (searchTerm != null)
                 {
                     if (estado.Equals("Todos"))
                     {
-                        model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).ToPagedList(page, 2);
+                        model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).ToPagedList(page, 3);
                     }
                     else
                     {
-                        model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).FindAll(r => (r.est_exp_nombre == estado)).ToPagedList(page, 2);
+                        model.PList_Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Tipo_Proyectos_Nombre(searchTerm).FindAll(r => (r.est_exp_nombre == estado)).ToPagedList(page, 3);
                     }
                    
                 }
@@ -206,18 +206,18 @@ namespace SWMGEGCSS.Controllers
             Session["ListaActPlanTemp"] = null;
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             if (searchTerm == null && estado == null) {
-                model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 2); }
+                model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Plan().ToPagedList(page, 3); }
             if (estado != null)
             {
                 if (searchTerm != null)
                 {
                     if (estado.Equals("Todos"))
                     {
-                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).ToPagedList(page, 2);
+                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).ToPagedList(page, 3);
                     }
                     else
                     {
-                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).FindAll(r => (r.plan_estado_nobre == estado)).ToPagedList(page, 2);
+                        model.listPplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(searchTerm).FindAll(r => (r.plan_estado_nobre == estado)).ToPagedList(page, 3);
                     }
                 }
             }

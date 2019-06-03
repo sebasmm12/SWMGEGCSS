@@ -215,9 +215,18 @@
     function validar_costo(id) {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#ActPlanCosto");
-        if (id === "" || id <= 0) {
+        if (id <= 0) {
             adderror("ActPlanCosto");
             negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
+        }
+        if (id === "" || document.getElementById("ActPlanCosto").value === "") {
+            var valorSugerido = $("#precioSugerido").text().trim();
+            $("#ActPlanCosto").val(valorSugerido.toString().trim());
+            document.getElementById("ActPlanCosto").value = valorSugerido.trim();
+
+            //("#ActPlanCosto1").val()
+            addgood("ActPlanCosto");
+            attributes("error_act_plan_costo", 'Si no ingresa un valor se tomara el precio sugerido');
             $("#ActPlanCosto").keyup(keyC);
             return false;
         }
@@ -225,7 +234,8 @@
             if ($valor.val().match(RegularExpression)) {
                 attributes("error_act_plan_costo");
                 addgood("ActPlanCosto");
-            } else {
+            }
+            else {
                 negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
                 adderror("plan-costoActPlanCosto");
                 $("#ActPlanCosto").keyup(keyC);
@@ -237,10 +247,16 @@
     function keyC() {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#ActPlanCosto");
-        if ($valor.val() === "" || $valor.val() <= 0) {
-            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
+        if ($valor.val() <= 0) {
+            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo diferente de 0');
             adderror("ActPlanCosto");
-        } else {
+        }
+        /*$valor.val() === "" || $valor.val() <= 0*/
+        else if (document.getElementById("ActPlanCosto").value === "") {
+            attributes("error_act_plan_costo");
+            addgood("ActPlanCosto");
+        }
+        else {
             if ($valor.val().match(RegularExpression)) {
                 attributes("error_act_plan_costo");
                 addgood("ActPlanCosto");

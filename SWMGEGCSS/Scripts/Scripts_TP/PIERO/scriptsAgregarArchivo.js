@@ -21,10 +21,10 @@
                             contentType: false, //importante enviar este parametro en false
                             processData: false, //importante enviar este parametro en false
                             success: function (r) {
-                                alert("Archivo enviado");
+                                //alert("Archivo enviado");
                             },
                             error: function (r) {
-                                alert("Error del servidor");
+                                //alert("Error del servidor");
                             }
                         }).done(function (data) {
                             if (data !== 0) {
