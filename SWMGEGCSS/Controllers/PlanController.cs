@@ -145,6 +145,7 @@ namespace SWMGEGCSS.Controllers
             return Json(operationResult3.NewId, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
+            //po
         }
         [HttpGet]
         public ActionResult Actualizar_Plan_de_Proyectos(int id)
