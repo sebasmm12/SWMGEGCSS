@@ -246,6 +246,7 @@
     };
     //Validacion email
     function validar_email(email) {
+        var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 
         if (email === "") {
@@ -254,6 +255,14 @@
             $("#emp-email").focus();
            $("#emp-email").keyup(keyEmail);
         //    alert("email vacio");
+            return false;
+        }
+        if (regular.test(email) == false) {
+            adderror("emp-email");
+            negativeattributes("error-emp-email", 'Ingrese email válido');
+            $("#emp-email").focus();
+            $("#emp-email").keyup(keyEmail);
+            //    alert("email vacio");
             return false;
         }
         if (email === " ") {
@@ -319,13 +328,21 @@
 
         //Validacion Representante
     function validar_representante(representante) {
-        
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var vnombre = 0;
         if (representante === "") {
             adderror("emp-representante");
             negativeattributes("error-emp-representante", 'Debe ingresar un representante');
             $("#emp-representante").focus();
       //      alert("representante vacio");
+            $("#emp-representante").keyup(keyRepresentante);
+            return false;
+        }
+        if (representante.match(RegularExpression)) {
+            adderror("emp-representante");
+            negativeattributes("error-emp-representante", 'Debe ingresar un representante válido');
+            $("#emp-representante").focus();
+            //      alert("representante vacio");
             $("#emp-representante").keyup(keyRepresentante);
             return false;
         }
@@ -369,8 +386,13 @@
     //--------------------------------------------------------------------------------------------
     var keyRepresentante = function () {
         var $valor = $("#emp-representante");
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-emp-representante", 'Debe ingresar un representante');
+            adderror("emp-representante");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-representante", 'Debe ingresar un representante válido');
             adderror("emp-representante");
         }
         else if ($valor.val() === " ") {
@@ -482,10 +504,15 @@
 
     var keyEmail = function () {
         var $valor = $("#emp-email");
+        var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
         if ($valor.val() === "") {
 
             negativeattributes("error-emp-email", 'Debe ingresar un email');
+            adderror("emp-email");
+        }
+        else if (regular.test($valor.val) == false) {
+            negativeattributes("error-emp-email", 'Ingrese valor válido');
             adderror("emp-email");
         }
         else if ($valor.val() === " ") {
