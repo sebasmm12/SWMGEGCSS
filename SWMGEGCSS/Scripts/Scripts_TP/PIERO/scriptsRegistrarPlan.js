@@ -100,7 +100,14 @@
 
     //Validacion Nombre PLan
     function validar_nombre_plan(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var vnombre = 0;
+        if ($("#plan-nombre").val().match(RegularExpression)) {
+            adderror("plan-nombre");
+            negativeattributes("error-plan-nombre", 'Debe ingresar un nombre valido (no esp. blanco)');
+            $("#plan-nombre").keyup(key);
+            return false;
+        }
         if (id === "") {
             adderror("plan-nombre");
             negativeattributes("error-plan-nombre", 'Debe ingresar un nombre');
@@ -160,8 +167,13 @@
         return true;
     }
     var key = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var $valor = $("#plan-nombre");
-        if ($valor.val() === "") {
+        if ($valor.val().match(RegularExpression)) {
+            adderror("plan-nombre");
+            negativeattributes("error-plan-nombre", 'Debe ingresar un nombre valido (no esp. blanco)');
+        }
+        else if ($valor.val() === "") {
             negativeattributes("error-plan-nombre", 'Debe ingresar un nombre');
             adderror("plan-nombre");
         }
