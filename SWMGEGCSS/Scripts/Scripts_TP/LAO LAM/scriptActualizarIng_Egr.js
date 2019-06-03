@@ -155,18 +155,38 @@
             $("#ing-egr-fecha").keyup(KeyFecha);
             return false;
         }
-        else if (fechaIngresada.getMonth() !== fechaActual.getMonth()) {
-            adderror("ing-egr-fecha");
-            negativeattributes("error-ing-egr-fecha", "La fecha debe ser dentro del mismo mes");
-            $("#ing-egr-fecha").focus();
-            $("#ing-egr-fecha").keyup(KeyFecha);
-            return false;
+
+        else if (fechaIngresada.getMonth() === fechaActual.getMonth()) {
+            if (fechaActual.getDate() < 29) {
+                //true
+                addgood("ing-egr-fecha");
+                attributes("error-ing-egr-fecha");
+                return true;
+            }
+            else {
+                adderror("ing-egr-fecha");
+                negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
+                $("#ing-egr-fecha").focus();
+                $("#ing-egr-fecha").keyup(KeyFecha);
+                return false;
+            }
         }
-        else {
-            addgood("ing-egr-fecha");
-            attributes("error-ing-egr-fecha");
-            return true;
+        else if (fechaIngresada.getMonth() === fechaActual.getMonth()-1) {
+            if (fechaIngresada.getDate() > 28) {
+                //true
+                addgood("ing-egr-fecha");
+                attributes("error-ing-egr-fecha");
+                return true;
+            }
+            else {
+                adderror("ing-egr-fecha");
+                negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
+                $("#ing-egr-fecha").focus();
+                $("#ing-egr-fecha").keyup(KeyFecha);
+                return false;
+            }
         }
+        
 
     }
     function validar_descripcion(descripcion) {
@@ -315,13 +335,31 @@
             negativeattributes("error-ing-egr-fecha", "La fecha no debe estar vacía");
             adderror("ing-egr-fecha");
         }
-        else if (fechaIngresada.getMonth() !== fechaActual.getMonth()) {
-            negativeattributes("error-ing-egr-fecha", "La fecha debe ser del mismo mes");
-            adderror("ing-egr-fecha");
+        else if (fechaIngresada.getMonth() === fechaActual.getMonth()) {
+            if (fechaActual.getDate() < 29) {
+                //true
+                addgood("ing-egr-fecha");
+                attributes("error-ing-egr-fecha");
+
+            }
+            else {
+                adderror("ing-egr-fecha");
+                negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
+
+            }
         }
-        else {
-            attributes("error-ing-egr-fecha");
-            addgood("ing-egr-fecha");
+        else if (fechaIngresada.getMonth() === fechaActual.getMonth() - 1) {
+            if (fechaIngresada.getDate() > 28) {
+                //true
+                addgood("ing-egr-fecha");
+                attributes("error-ing-egr-fecha");
+
+            }
+            else {
+                adderror("ing-egr-fecha");
+                negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
+
+            }
         }
     }
     var KeyMonto = function () {
