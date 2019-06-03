@@ -1,5 +1,19 @@
 ﻿$(function () {
     var modal;
+    var getPage = function () {
+        var $a = $(this);
+        $.ajax({
+            url: $a.attr("href"),
+            type: "GET"
+        }).done(function (data) {
+            var target = $a.parents("div.pagedList").attr("data-serv-target");
+            $(target).replaceWith(data);
+            $(".btnModal").each(envioajaxModal);
+            $(".btnEliminar").each(eliminarActividad);
+            $(".btnRegistrar").each(registrarActividadParcial);
+        });
+        return false;
+    };
     var añadir = function () {
 
         var $button = $(this);
@@ -180,16 +194,26 @@
                 type: "POST"
 
             }).done(function (data) {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Se registro el servicio exitosamente',
-                    confirmButtonText: 'OK'
+                if (data === 1) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se registro el servicio exitosamente',
+                        confirmButtonText: 'OK'
 
-                }).then((result) => {
-                    if (result.value) {
-                        window.location.href = "/Servicios/VisualizarServicios";
-                    }
-                });
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Servicios/VisualizarServicios";
+                        }
+                    });
+                }
+                else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Registro Incompleto de costos',
+                        text:  'No registro todos los costos de las actividades'
+                    });
+                }
+
             });
         }
        
@@ -354,4 +378,5 @@
     $(".btnEliminar").each(eliminarActividad);
     $(".btnRegistrar").each(registrarActividadParcial);
     $("#btnRegistrarServicio").click(registrarServicioCompleto);
+    $(".pcoded-content").on("click", ".pagedList a", getPage);
 });

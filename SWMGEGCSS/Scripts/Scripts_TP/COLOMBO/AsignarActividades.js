@@ -11,8 +11,11 @@
         var vActDesaFechaInicio = validar_fecha_act_desa_inicio($actDesaFechaInicio.val());
         var vActDesaFechaFin = validar_fecha_act_desa_fin($actDesaFechaFin.val());
         var vUsuarioSeleccionado = validar_usuario_seleccionado();
+
+        var vActDesaFechasCoherencia = validar_coherencia_fechas($actDesaFechaInicio.val(), $actDesaFechaFin.val());
+
         //var vActDesaFechaInicio = validar_fecha_inicio($actDesaFechaFin.val());
-        if (vActDesaFechaInicio === false || vActDesaFechaFin === false /*|| vUsuarioSeleccionado === false*/) {
+        if (vActDesaFechaInicio === false || vActDesaFechaFin === false || vUsuarioSeleccionado === false || vActDesaFechasCoherencia === false) {
             return false;
         } else {
             $(".btnModalActividadesDesarrollar1").click(envioajaxModal);
@@ -113,8 +116,60 @@
         attributes("error-usuario-asignado");
         return true;
     }
+    var usuarioTR = function () {
+        var vnombre = 0;
+        $.ajax({
+            url: "/ActividadesDesarrollar/Evaluar_UsuarioAsignado",
+            method: "GET",
+            async: false,
+            /*data: {
+                plan_nombre: $("#plan-nombre").val()
+            },*/
+            dataType: "json"
+        }).done(function (data) {
+            if (data !== 0) {
+                vnombre = 1;
+            }
+        });
+        if (vnombre === 0) {
+            //adderror("plan-nombre");
+            negativeattributes("error-usuario-asignado", 'Debe seleccionar un usario Asignado');
+            //$("#plan-nombre").keyup(key);
+        } else {
+            attributes("error-usuario-asignado");
+        }
+        
+    };
     //Validacion Fecha logica
-   /* function validar_fecha_act_desa() {
+    function validar_coherencia_fechas() {
+        var fechaIngresadaFin = new Date($("#actDesaFechaFin").val());
+        fechaIngresadaFin.setDate(fechaIngresadaFin.getDate() + 1);
+        fechaIngresadaFin.setHours(0, 0, 0, 0);
+
+        var fechaIngresadaInicio = new Date($("#actDesaFechaInicio").val());
+        fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
+        fechaIngresadaInicio.setHours(0, 0, 0, 0);
+        if (validar_fecha_act_desa_fin(fechaIngresadaFin) === false || validar_fecha_act_desa_inicio(fechaIngresadaInicio) === false) {         
+            return false;
+        }
+
+        else if (fechaIngresadaFin < fechaIngresadaInicio) {
+            adderror("actDesaFechaFin");
+            negativeattributes("error-act-desa-fecha-fin", 'La fecha de finalizacion debe ser mayor a la de inicio');
+            $("#actDesaFechaFin").focus();
+            $("#actDesaFechaFin").change(keyfechaCo);
+            return false;
+        }
+        else{
+            attributes("error-act-desa-fecha-fin");
+            addgood("actDesaFechaFin");
+            attributes("error-act-desa-fecha-inicio");
+            addgood("actDesaFechaInicio");
+            return true;
+        }
+    }
+
+    var keyfechaCo = function () {
         var fechaIngresadaFin = new Date($("#actDesaFechaFin").val());
         fechaIngresadaFin.setDate(fechaIngresadaFin.getDate() + 1);
         fechaIngresadaFin.setHours(0, 0, 0, 0);
@@ -123,14 +178,38 @@
         fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
         fechaIngresadaInicio.setHours(0, 0, 0, 0);
 
-        if (fechaIngresadaFin < fechaIngresadaInicio) {
-            adderror("actDesaFechaFin");
-            negativeattributes("error-act-desa-fecha-fin", 'La fecha debe ser mayor al inicio del proyecto');
+        if (validar_fecha_act_desa_fin(fechaIngresadaFin) === false || validar_fecha_act_desa_inicio(fechaIngresadaInicio) === false) {
             $("#actDesaFechaFin").focus();
-            $("#actDesaFechaFin").change(keyfechaJ);
+            $("#actDesaFechaInicio").focus();
         }
-    }
-    */
+        else if (fechaIngresadaFin < fechaIngresadaInicio) {
+                adderror("actDesaFechaFin");
+                negativeattributes("error-act-desa-fecha-fin", 'La fecha de finalizacion debe ser mayor a la de inicio');
+                $("#actDesaFechaFin").focus();
+        }
+        else {
+            attributes("error-act-desa-fecha-fin");
+            addgood("actDesaFechaFin");
+            attributes("error-act-desa-fecha-inicio");
+            addgood("actDesaFechaInicio");
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     //Validacion Fecha Actividades Desarrollar
     function validar_fecha_act_desa_fin(id) {
         var fechaIngresada = new Date($("#actDesaFechaFin").val());
@@ -170,10 +249,12 @@
             if (fechaIngresada > dateActual) {
                 attributes("error-act-desa-fecha-fin");
                 addgood("actDesaFechaFin");
+                $("#actDesaFechaFin").change(keyfechaJ);
                 return true;
             } else {
                 negativeattributes("error-act-desa-fecha-fin", 'la fecha debe ser mayor a la actual');
                 adderror("actDesaFechaFin");
+                $("#actDesaFechaFin").change(keyfechaJ);
                 return false;
             }
         }
@@ -199,14 +280,14 @@
             adderror("actDesaFechaFin");
             negativeattributes("error-act-desa-fecha-fin", 'La fecha debe ser mayor al inicio del proyecto');
             $("#actDesaFechaFin").focus();
-            $("#actDesaFechaFin").change(keyfechaJ);
+            //$("#actDesaFechaFin").change(keyfechaJ);
 
         }
         else if (fechaIngresada > fechaFinExp) {
             adderror("actDesaFechaFin");
             negativeattributes("error-act-desa-fecha-fin", 'La fecha debe ser menor al fin del proyecto');
             $("#actDesaFechaFin").focus();
-            $("#actDesaFechaFin").change(keyfechaJ);
+            //$("#actDesaFechaFin").change(keyfechaJ);
         }
         else {
             if (fechaIngresada > dateActual) {

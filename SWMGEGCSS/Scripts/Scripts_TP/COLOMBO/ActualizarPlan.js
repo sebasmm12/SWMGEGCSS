@@ -49,6 +49,7 @@
     //Validacion Tiempo
     function validar_tiempo_plan(id) {
         //var RegularExpression = /^\d+[.]*\d*$/;
+
         var $valor = $("#plan-tiempo");
         if (id === "") {
             adderror("plan-tiempo");
@@ -436,6 +437,7 @@
 
     //Validacion Nombre PLan
     function validar_nombre_plan(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var vnombre = 0;
         if (id === "") {
             adderror("plan-nombre");
@@ -444,9 +446,9 @@
             $("#plan-nombre").keyup(key);
             return false;
         }
-        if (id === " ") {
+        if ($("#plan-nombre").val().match(RegularExpression)) {
             adderror("plan-nombre");
-            negativeattributes("error-plan-nombre", 'El nombre no debe empezar con un espacio en blanco');
+            negativeattributes("error-plan-nombre", 'El nombre no debe empezar ni terminar con un espacio en blanco');
             $("#plan-nombre").focus();
             $("#plan-nombre").keyup(key);
             return false;
@@ -496,13 +498,14 @@
         return true;
     }
     var key = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var $valor = $("#plan-nombre");
         if ($valor.val() === "") {
             negativeattributes("error-plan-nombre", 'Debe ingresar un nombre');
             adderror("plan-nombre");
         }
-        else if ($valor.val() === " ") {
-            negativeattributes("error-plan-nombre", 'El nombre no debe empezar con un espacio en blanco');
+        else if ($("#plan-nombre").val().match(RegularExpression)) {
+            negativeattributes("error-plan-nombre", 'El nombre no debe empezar ni terminar con un espacio en blanco');
             adderror("plan-nombre");
         }
         else if (esNum($valor.val()) === true) {
