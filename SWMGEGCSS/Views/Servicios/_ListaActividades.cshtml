@@ -64,7 +64,7 @@
         <div class="col-sm-1 col-md-1">
 
         </div>
-        <div class="col-sm-4 col-md-4 col-12 pagedList" data-serv-target="#tableServ">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-serv-target="#tableAct">
             @Html.PagedListPager(list_actividades, page => Url.Action("Registrar_Servicio", "Servicios", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>

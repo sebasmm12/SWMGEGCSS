@@ -45,6 +45,40 @@ namespace SWMGEGCSS_DA
             return l_ing_egr;
         }
 
+        public List<T_ingresos_egresos> sp_Consultar_Lista_Ing_Egr_Estado(string estado)
+        {
+            var l_ing_egr = new List<T_ingresos_egresos>();
+            try
+            {
+
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Ing_Egr_Estado"))
+                {
+                    Database.AddInParameter(command, "@estado", DbType.String, estado);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var ing_egr = new T_ingresos_egresos();
+                            ing_egr.ing_egr_nombre = DataUtil.DbValueToDefault<string>(reader["ing_egr_nombre"]);
+                            ing_egr.ing_egr_descripcion = DataUtil.DbValueToDefault<string>(reader["ing_egr_descripcion"]);
+                            ing_egr.ing_egr_fecha = DataUtil.DbValueToDefault<DateTime>(reader["ing_egr_fecha"]);
+                            ing_egr.ing_egr_ingrso = DataUtil.DbValueToDefault<bool>(reader["ing_egr_ingreso"]);
+                            ing_egr.ing_egr_monto = DataUtil.DbValueToDefault<double>(reader["ing_egr_monto"]);
+                            ing_egr.ing_egr_id = DataUtil.DbValueToDefault<int>(reader["ing_egr_id"]);
+                            l_ing_egr.Add(ing_egr);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return new List<T_ingresos_egresos>();
+            }
+            return l_ing_egr;
+        }
+
 
 
         public OperationResult sp_Insertar_Ing_Egr(T_ingresos_egresos Ingresos_Egresos)
@@ -104,6 +138,41 @@ namespace SWMGEGCSS_DA
                 {
 
                     Database.AddInParameter(command, "@ing_egr_nombre", DbType.String, ing_egr_nombre);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_ingresos_egresos ing_egr = new T_ingresos_egresos();
+
+
+                            ing_egr.ing_egr_nombre = DataUtil.DbValueToDefault<string>(reader["ing_egr_nombre"]);
+                            ing_egr.ing_egr_descripcion = DataUtil.DbValueToDefault<string>(reader["ing_egr_descripcion"]);
+                            ing_egr.ing_egr_fecha = DataUtil.DbValueToDefault<DateTime>(reader["ing_egr_fecha"]);
+                            ing_egr.ing_egr_ingrso = DataUtil.DbValueToDefault<bool>(reader["ing_egr_ingreso"]);
+                            ing_egr.ing_egr_monto = DataUtil.DbValueToDefault<double>(reader["ing_egr_monto"]);
+                            ing_egr.ing_egr_id = DataUtil.DbValueToDefault<int>(reader["ing_egr_id"]);
+                            T_ingresos_egresos.Add(ing_egr);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_ingresos_egresos>();
+            }
+            return T_ingresos_egresos;
+        }
+
+        public List<T_ingresos_egresos> sp_Consultar_Lista_Ing_Egr_Nombre_Estado(string ing_egr_nombre, string estado)
+        {
+            List<T_ingresos_egresos> T_ingresos_egresos = new List<T_ingresos_egresos>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Ing_Egr_Nombre_Estado"))
+                {
+
+                    Database.AddInParameter(command, "@ing_egr_nombre", DbType.String, ing_egr_nombre);
+                    Database.AddInParameter(command, "@estado", DbType.String, estado);
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
                         while (reader.Read())

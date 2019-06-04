@@ -8,9 +8,9 @@
             usu_cod = $(this).attr("data-id-usu");
             act_desa_id = $(this).attr("data-act-desa-id");
             $.ajax({
-                url: $(this).attr("data-url"),
+                url: "/ActividadesDesarrollar/_ModalAsignarTrabajadorResponsable",
                 method: "POST",
-                data: { usu_codigo: $(this).attr("data-id-usu") }
+                data: { usu_codigo: usu_cod }
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
@@ -26,13 +26,18 @@
         //creando objeto
         
         $.ajax({
-            url: "/ActividadesDesarrollar/AsignarTrabajadorResponsableFinal",
+            url: "/ActividadesDesarrollar/_ListaDetalleUsuario",
             method: "POST",
             data: {
                 usu_codigo: usu_cod
             }
         }).done(function (data) {
-            window.location.href = "/ActividadesDesarrollar/RegistrarAsignacionActividades_Desarrollar?act_desa_id=" + act_desa_id;
+            //window.location.href = "/ActividadesDesarrollar/_ListaDetalleUsuario";
+            //$("#AsignarTrabajadorActividad").modal('hide');
+            var $newhtml = $(data);
+            var target = document.getElementById("tableDetUsu");
+            $(target).replaceWith($newhtml);
+            $("#AsignarTrabajadorActividad").modal("hide");
         });
     };
 

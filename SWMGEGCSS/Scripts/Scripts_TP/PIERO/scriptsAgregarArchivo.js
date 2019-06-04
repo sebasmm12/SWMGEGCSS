@@ -21,10 +21,10 @@
                             contentType: false, //importante enviar este parametro en false
                             processData: false, //importante enviar este parametro en false
                             success: function (r) {
-                                alert("Archivo enviado");
+                                //alert("Archivo enviado");
                             },
                             error: function (r) {
-                                alert("Error del servidor");
+                                //alert("Error del servidor");
                             }
                         }).done(function (data) {
                             if (data !== 0) {
@@ -80,6 +80,13 @@
     };
     //Validacion Comentario
     function validar_Comentario(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        if ($("#actividad_comentario").val().match(RegularExpression)) {
+            adderror("actividad_comentario");
+            negativeattributes("error_actividad_comentario", 'Debe ingresar un comentario valido(no esp. blanco)');
+            $("#actividad_comentario").keyup(key);
+            return false;
+        }
         if (id === "") {
             adderror("actividad_comentario");
             negativeattributes("error_actividad_comentario", 'Debe ingresar un nombre');
@@ -118,8 +125,13 @@
         return true;
     }
     var key = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var $valor = $("#actividad_comentario");
-        if ($valor.val() === "") {
+        if ($valor.val().match(RegularExpression)) {
+            adderror("actividad_comentario");
+            negativeattributes("error_actividad_comentario", 'Debe ingresar un comentario valido(no esp. blanco)');
+        }
+        else if ($valor.val() === "") {
             negativeattributes("error_actividad_comentario", 'Debe ingresar un nombre');
             adderror("actividad_comentario");
         }
@@ -149,7 +161,7 @@
             var archivo = id;
             if (archivo === '') {
                 adderror("newfile");
-                negativeattributes("error_actividad_archivo", 'Debe escribir algo!');
+                negativeattributes("error_actividad_archivo", 'Debe subir un archivo');
                 $("#newfile").focus();
                 $("#newfile").change(keyF);
                 return false;
@@ -160,7 +172,7 @@
         var $archivo = $("#newfile");
 
         if ($archivo.val() === "") {
-            negativeattributes("error_actividad_archivo", 'Debe escribir algo!');
+            negativeattributes("error_actividad_archivo", 'Debe subir un archivo');
             adderror("newfile");
         }
         else {

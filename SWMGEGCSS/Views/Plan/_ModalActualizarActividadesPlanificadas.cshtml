@@ -55,15 +55,17 @@
                                 <label style="border: 1px solid #C00">
                                     <Font size="1" color="red">
                                         Precio Sugerido: S/.
-                                        @Html.DisplayFor(model => model.tipo_servicio_act.costo, new
-                                        {
-                                            htmlAttributes = new
+                                        <label id="precioSugerido1">
+                                            @Html.DisplayFor(model => model.tipo_servicio_act.costo, new
                                             {
-                                                @class = "text-center",
-                                                @type = "label",
-                                                @color = "red"
-                                            }
-                                        })
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "text-center",
+                                                    @type = "label",
+                                                    @color = "red"
+                                                }
+                                            })
+                                            </label>
                                     </Font>
                                 </label>
                             </div>
@@ -82,14 +84,14 @@
                         <div class="row mt-2 pl-2">
                             <div>
                                 <label class="font-weight-bolder">
-                                    Duracion de la Actividad
+                                    Duracion de la Actividad( En Dias)
                                 </label>
                             </div>
                         </div>
                         <div>
                             @Html.EditorFor(model => model.Actividad_planeada.act_plan_tiempo, new
                        {
-                           htmlAttributes = new { @class = "text-center form-control bg-white" , @id = "ActPlanTiempo" }
+                           htmlAttributes = new { @class = "text-center form-control bg-white" , @id = "ActPlanTiempo", @min = "1"}
                        })
                             <div id="error_act_plan_tiempo" class="errordiv"></div>
                         </div>

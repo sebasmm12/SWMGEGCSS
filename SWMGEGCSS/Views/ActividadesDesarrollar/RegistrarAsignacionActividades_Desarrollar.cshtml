@@ -10,7 +10,7 @@
     var usuariAsignado = Model.usuarioEncargado;
     //var usuarioRevisor = Model.usuarioRevisor;
     var detalleUsuTrabajador = Session["detUsuTrabajador"];
-    
+
 }
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container-fluid">
@@ -28,9 +28,10 @@
                 </h2>
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-6">
+        
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
                 <div>
                     <label class="font-weight-bolder">
                         Nombre del Proyecto:
@@ -46,9 +47,9 @@
                    })
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-6">
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
                 <div>
                     <label class="font-weight-bolder text-center">
                         Nombre de la Actividad:
@@ -66,9 +67,9 @@
                })
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-6">
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
                 <div>
                     <label class="font-weight-bolder">
                         Descripcion de la Actividad:
@@ -85,9 +86,10 @@
                     })
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+        <div style="width:30px"></div>
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha de Inicio del Proyecto:
@@ -107,7 +109,7 @@
                     })
             </div>
             <div style="width:13px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha finalizacion del proyecto :
@@ -127,9 +129,10 @@
                     })
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+        <div style="width:30px"></div>
+        <div class="row mt-2 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha de inicio de la Actividad:
@@ -150,7 +153,7 @@
                 <div id="error-act-desa-fecha-inicio" class="errordiv"></div>
             </div>
             <div style="width:13px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha de finalizacion de la Actividad:
@@ -171,106 +174,44 @@
                 <div id="error-act-desa-fecha-fin" class="errordiv"></div>
             </div>
         </div>
+        
         <br><br>
-        <div id="error-usuario-asignado" class="errordiv"></div>
-        @{
-            if (Model.usuarioEncargado != null)
-            {
-                <div style="width: 800px">
-                    <div style="border: 6px solid #C00">
-                        <div class="col-md-12">
-                            <label class="font-weight-bolder text-center">
-                                Trabajador Encargado de la Actividad
-                            </label>
-                            <div class="row mt-4 pl-2">
-                                <div style="width:30px"></div>
-                                <div class="col-12 col-sm-4 col-md-6">
-
-                                    <div>
-                                        <label class="font-weight-bolder">
-                                            Nombre Completo
-                                        </label>
-                                    </div>
-                                    @Html.EditorFor(model => model.usuarioEncargado.det_usu_nombre,
-                                    new
-                                    {
-                                        htmlAttributes = new
-                                        {
-                                            @class = "text-center form-control",
-                                            @readonly = "readonly"
-
-                                        }
-                                    })
-                                </div>
+            <div class="row mt-2 pl-2">
+                <div style="width:90px"></div>
+                <div class="col-12 col-sm-12 col-md-12">
+                    <div class="container-fluid">
+                        <div class="row mt-12">
+                            <div class="col-12 col-sm-4 col-md-4">
                             </div>
-                            <div class="row mt-4 pl-2">
-                                <div style="width:30px"></div>
-                                <div class="col-12 col-sm-4 col-md-6">
-
-                                    <div>
-                                        <label class="font-weight-bolder">
-                                            Especialidad
-                                        </label>
-                                    </div>
-                                    @Html.EditorFor(model => model.usuarioEncargado.det_usu_especialidad,
-                                    new
-                                    {
-                                        htmlAttributes = new
-                                        {
-                                            @class = "text-center form-control",
-                                            @readonly = "readonly"
-                                        }
-                                    })
-                                </div>
+                            <h2>Lista de Trabajadores</h2>
+                            <div class="col-12 col-sm-4 col-md-4">
                             </div>
-                            <div class="row mt-4 pl-2">
-                                <div style="width:30px"></div>
-                                <div class="col-12 col-sm-4 col-md-6">
-
-                                    <div>
-                                        <label class="font-weight-bolder">
-                                            Correo Electronico
-                                        </label>
-                                    </div>
-                                    @Html.EditorFor(model => model.usuarioEncargado.det_usu_correo,
-                                    new
-                                    {
-                                        htmlAttributes = new
-                                        {
-                                            @class = "text-center form-control",
-                                            @readonly = "readonly"
-                                        }
-                                    })
-                                </div>
+                            <div id="error-usuario-asignado" class="errordiv"></div>
+                        </div>
+                        <div class="row mt-12">
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div style="width:100px"></div>
                             </div>
-                            <br><br>
+                            <div class="col-10 col-sm-10 col-md-10">
+                                @Html.Partial("_ListaDetalleUsuario", Model)
+                            </div>
                         </div>
-                    </div>
-                </div>
-            }
-        }
-        <div>
-            <div class="mt-2 ml-4">
-                <div class="container-fluid">
-                    <div class="row mt-4">
-                        <div class="col-12 col-sm-4 col-md-4">
-                        </div>
-                        <h2>Lista de Trabajadores</h2>
-                        <div class="col-12 col-sm-4 col-md-4">
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        @Html.Partial("_ListaDetalleUsuario", Model)
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-2 pl-2">
+        <div class="row mt-12 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
                 <button type="button" class="btn btn-success btnModalActividadesDesarrollar1" data-url="@Url.Action("RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar")" data-id-target="#registrarAuditoriaActDesa">
                     <i class="fa fa-check-circle"></i>
                     Registrar Asignacion
                 </button>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <a href="@Url.Action("Asignacion_Tareas","Administrador",null)" class="btn btn-secondary">
+                    <i class="fa fa-backward">
+                        Regresar
+                    </i>
+                </a>
             </div>
         </div>
 
@@ -284,7 +225,7 @@
 @section Scripts{
     <!--<script src="~/Scripts/Scripts_TP/PIERO/scriptsActualizarPlan.js"></script>-->
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
-    <script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividad.js"></script>
+    <!--<script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividad.js"></script> -->
     <script src="~/Scripts/Scripts_TP/COLOMBO/AsignarActividades.js"></script>
     <script src="~/Scripts/Scripts_TP/COLOMBO/visualizarDetalleUsuario.js"></script>
 }

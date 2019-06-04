@@ -61,7 +61,7 @@
             //$(modal).modal("hide");
         });*/
             $.ajax({
-                url: "/Plan/_ModalRegistrarActividadesPlanificadas",
+                url: "/Plan/_ModalRegistrarActividadesPlanificadas2",
                 method: "POST",
                 data: {
                     act_plan: act_plan
@@ -103,6 +103,13 @@
         
     //validacion nombre actividad
     function validar_nombre(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        if ($("#ActPlanNombre").val().match(RegularExpression)) {
+            adderror("ActPlanNombre");
+            negativeattributes("error_act_plan_nombre", 'Debe ingresar un nombre valido (no esp. blanco)');
+            $("#ActPlanNombre").keyup(keyN);
+            return false;
+        }
         if (id === "") {
             adderror("ActPlanNombre");
             negativeattributes("error_act_plan_nombre", 'Debe ingresar un nombre');
@@ -134,8 +141,13 @@
         return true;
     }
     var keyN = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var $valor = $("#ActPlanNombre");
-        if ($valor.val() === "") {
+        if ($valor.val().match(RegularExpression)) {
+            adderror("ActPlanNombre");
+            negativeattributes("error_act_plan_nombre", 'Debe ingresar un nombre valido (no esp. blanco)');
+        }
+        else if ($valor.val() === "") {
             negativeattributes("error_act_plan_nombre", 'Debe ingresar un nombre');
             adderror("ActPlanNombre");
         }
@@ -158,6 +170,13 @@
     };
     //validacion descripcion actividad
     function validar_descripcion(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        if ($("#ActPlanDescripcion").val().match(RegularExpression)) {
+            adderror("ActPlanDescripcion");
+            negativeattributes("error_act_plan_descripcion", 'Debe ingresar una descripcion valida(no esp. blanco)');
+            $("#ActPlanDescripcion").keyup(keyD);
+            return false;
+        }
         if (id === "") {
             adderror("ActPlanDescripcion");
             negativeattributes("error_act_plan_descripcion", 'Debe ingresar un nombre en la descripcion');
@@ -189,8 +208,13 @@
         return true;
     }
     var keyD = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var $valor = $("#ActPlanDescripcion");
-        if ($valor.val() === "") {
+        if ($valor.val().match(RegularExpression)) {
+            adderror("ActPlanDescripcion");
+            negativeattributes("error_act_plan_descripcion", 'Debe ingresar una descripcion valida(no esp. blanco)');
+        }
+        else if ($valor.val() === "") {
             negativeattributes("error_act_plan_descripcion", 'Debe ingresar un nombre en la descripcion');
             adderror("ActPlanDescripcion");
         }
@@ -215,9 +239,17 @@
     function validar_costo(id) {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#ActPlanCosto");
-        if (id === "" || id <= 0) {
+        if (id <= 0) {
             adderror("ActPlanCosto");
             negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
+        }
+        if (id === "" || document.getElementById("ActPlanCosto").value === "") {
+            var valorSugerido = $("#precioSugerido").text().trim();
+            $("#ActPlanCosto").val(valorSugerido.toString().trim());
+            document.getElementById("ActPlanCosto").value = valorSugerido.trim();
+            //("#ActPlanCosto1").val()
+            addgood("ActPlanCosto");
+            attributes("error_act_plan_costo", 'Si no ingresa un valor se tomara el precio sugerido');
             $("#ActPlanCosto").keyup(keyC);
             return false;
         }
@@ -225,7 +257,8 @@
             if ($valor.val().match(RegularExpression)) {
                 attributes("error_act_plan_costo");
                 addgood("ActPlanCosto");
-            } else {
+            }
+            else {
                 negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
                 adderror("plan-costoActPlanCosto");
                 $("#ActPlanCosto").keyup(keyC);
@@ -237,10 +270,16 @@
     function keyC() {
         var RegularExpression = /^\d+[.]*\d*$/;
         var $valor = $("#ActPlanCosto");
-        if ($valor.val() === "" || $valor.val() <= 0) {
-            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
+        if ($valor.val() <= 0) {
+            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo diferente de 0');
             adderror("ActPlanCosto");
-        } else {
+        }
+        /*$valor.val() === "" || $valor.val() <= 0*/
+        else if (document.getElementById("ActPlanCosto").value === "") {
+            attributes("error_act_plan_costo");
+            addgood("ActPlanCosto");
+        }
+        else {
             if ($valor.val().match(RegularExpression)) {
                 attributes("error_act_plan_costo");
                 addgood("ActPlanCosto");
@@ -289,11 +328,13 @@
         $(this).click(function () {
             var $button = $(this);
             var modal = $button.attr("data-id-target");
-            id_act = $button.attr("data-id-act");
+            id_act = $(this).attr("data-id-act");
             SelectorBoton = $(this);
             $.ajax({
-                url: $(this).attr("data-url"),
-                method: "GET"
+                //url: $(this).attr("data-url"),
+                url: "/Plan/_ModalRegistrarActividadesPlanificadas",
+                method: "POST",
+                data: { id_act: $(this).attr("data-id-act") }
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);

@@ -145,6 +145,7 @@ namespace SWMGEGCSS.Controllers
             return Json(operationResult3.NewId, JsonRequestBehavior.AllowGet);
             //redireccion al Agregar_plan_1
             //return Json(new { data = 1}, JsonRequestBehavior.AllowGet);
+            //po
         }
         [HttpGet]
         public ActionResult Actualizar_Plan_de_Proyectos(int id)
@@ -247,8 +248,7 @@ namespace SWMGEGCSS.Controllers
             Session["tipoServicioNombre"] = null;
             var operationResult = new PlanDataAccess().sp_Actualizar_Plan(modelPlan);
             //return View( "Gestionar_Plan_Proyecto");
-            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
-        
+            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);   
         }
         public ActionResult CompletarNombrePlanes(string term)
         {
@@ -369,7 +369,7 @@ namespace SWMGEGCSS.Controllers
             var plan = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(X => X.plan_id == plan_id);
             var tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(X => X.tipo_servicio_nombre == plan.tipo_servicio_nombre);
 
-            //model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
+            model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
 
 
             //ViewBag.plazo1 = ActPlazo.act_plazo;
@@ -473,7 +473,7 @@ namespace SWMGEGCSS.Controllers
             var tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(X => X.tipo_servicio_nombre == plan.tipo_servicio_nombre);
 
             model.tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id) && (X.tipo_servicio_id == tipo_servicio.tipo_servicio_id));
-
+            //Session["servicioActCosto"] = model.tipo_servicio_act.costo;
             return PartialView("_ModalAgregarActividadesPlanificadas", model);
         }
         [HttpPost]
@@ -482,7 +482,7 @@ namespace SWMGEGCSS.Controllers
             var model   = new GestionarPlanProyectoViewModel();
             //List<T_actividades_planeadas> ListaActividadesPlaneadasAux = new List<T_actividades_planeadas>();
             //ListaActividadesPlaneadasAux = (List<T_actividades_planeadas>)ViewBag.ListaActPlaneadasAux;
-
+            //Session["servicioActCosto"] = null;
             List<T_actividades_planeadas> ListaActividadesPlaneadasTemp = new List<T_actividades_planeadas>();  
             ListaActividadesPlaneadasTemp = (List<T_actividades_planeadas>)Session["ListaActPlanTemp"];        
             //ListaActividadesPlaneadasTempCreado = (List<T_actividades_planeadas>)Session["ListaActPlanTempCreado"];
@@ -526,16 +526,22 @@ namespace SWMGEGCSS.Controllers
             return Json(cont, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public ActionResult _ModalRegistrarActividadesPlanificadas(/*int id_act*/)
+        public ActionResult _ModalRegistrarActividadesPlanificadas()
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas = new T_actividades_desarrollar();
-            //var modeloevaluar = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(r => r.act_id == id_act);
-            //model.tipo_servicio_act = modeloevaluar;
             return PartialView(model);
         }
         [HttpPost]
-        public ActionResult _ModalRegistrarActividadesPlanificadas(T_actividades_planeadas act_plan)
+        public ActionResult _ModalRegistrarActividadesPlanificadas(int id_act)
+        {
+            var model = new GestionarPlanProyectoViewModel();
+            model.Actividades_planeadas = new T_actividades_desarrollar();
+            var modeloevaluar = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(r => r.act_id == id_act);
+            model.tipo_servicio_act = modeloevaluar;
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ModalRegistrarActividadesPlanificadas2(T_actividades_planeadas act_plan)
         {
             //Session["ListaCantidadPermitida"]
             T_actividades_planeadas actividadesPlaneadas = new T_actividades_planeadas();

@@ -1,10 +1,11 @@
 ﻿@model SWMGEGCSS.Models.TipoServicioViewModel
 @{
     Layout = null;
+    var tipo_servicio_id = Model.tipoServicio.tipo_servicio_id;
     var list_actividades = Model.PList_tipo_servicio_actividades;
     var count = 0;
 }
-<div id="tableAct">
+<div id="tableActC">
     <div class="row mt-4">
         <div class="col-12 col-sm-12 col-md-12">
             <div class="table-responsive">
@@ -42,8 +43,8 @@
         </div>
     </div>
     <div class="row mt-4 pl-2">
-        <div class="col-sm-4 col-md-4 col-12 pagedList" data-serv-target="#tableServ">
-            @Html.PagedListPager(list_actividades, page => Url.Action("Registrar_Servicio", "Servicios", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        <div class="col-sm-4 col-md-4 col-12 pgCA" data-serv-target=".modal-body #tableActC">
+            @Html.PagedListPager(list_actividades, page => Url.Action("ListarActividadesConsultar", "Servicios", new { tipo_servicio_id, page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>
 </div>

@@ -146,9 +146,18 @@
     //Validacion Razon Social
     function validar_razon_social(razon_social) {
         vrazon = 0;
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if (razon_social === "") {
             adderror("emp-razon-social");
             negativeattributes("error-emp-razon-social", 'Debe ingresar una Razon Social');
+            $("#emp-razon-social").focus();
+
+            $("#emp-razon-social").keyup(keyRazon);
+            return false;
+        }
+        if (razon_social.match(RegularExpression)) {
+            adderror("emp-razon-social");
+            negativeattributes("error-emp-razon-social", 'Debe ingresar una Razon Social válida');
             $("#emp-razon-social").focus();
 
             $("#emp-razon-social").keyup(keyRazon);
@@ -216,6 +225,7 @@
     //Validacion Sigla
     function validar_sigla(sigla) {
         var vsig = 0;
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if (sigla === "") {
             adderror("emp-sigla");
             negativeattributes("error-emp-sigla", 'Debe ingresar una Sigla');
@@ -223,6 +233,15 @@
 
             $("#emp-sigla").keyup(keysigla);
             return false;
+        }
+        if (sigla.match(RegularExpression)) {
+            adderror("emp-sigla");
+            negativeattributes("error-emp-sigla", 'Debe ingresar una Sigla válida');
+            $("#emp-sigla").focus();
+
+            $("#emp-sigla").keyup(keysigla);
+            return false;
+
         }
         if (sigla === " ") {
             adderror("emp-sigla");
@@ -473,11 +492,19 @@
     };
     //Validacion email
     function validar_email(email) {
-        var regular = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i
+        var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
         if (email === "") {
             adderror("emp-email");
             negativeattributes("error-emp-email", 'Debe ingresar un email');
+            $("#emp-email").focus();
+            $("#emp-email").keyup(keyEmail);
+            //    alert("email vacio");
+            return false;
+        }
+        if (regular.test(email) == false) {
+            adderror("emp-email");
+            negativeattributes("error-emp-email", 'Ingrese email válido');
             $("#emp-email").focus();
             $("#emp-email").keyup(keyEmail);
             //    alert("email vacio");
@@ -549,7 +576,7 @@
 
     //Validacion Representante
     function validar_representante(representante) {
-
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var vnombre = 0;
         if (representante === "") {
             adderror("emp-representante");
@@ -558,6 +585,15 @@
             //      alert("representante vacio");
             $("#emp-representante").keyup(keyRepresentante);
             return false;
+        }
+        if (representante.match(RegularExpression)) {
+            adderror("emp-representante");
+            negativeattributes("error-emp-representante", 'Debe ingresar un representante válido');
+            $("#emp-representante").focus();
+            //      alert("representante vacio");
+            $("#emp-representante").keyup(keyRepresentante);
+            return false;
+
         }
         if (representante === " ") {
             adderror("emp-representante");
@@ -601,8 +637,13 @@
     
     var keyRazon = function () {
         var $valor = $("#emp-razon-social");
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-emp-razon-social", 'Debe ingresar una Razon Social');
+            adderror("emp-razon-social");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-razon-social", 'Debe ingresar una Razon Social válida');
             adderror("emp-razon-social");
         }
         else if ($valor.val() === " ") {
@@ -647,8 +688,13 @@
 
     var keysigla = function () {
         var $valor = $("#emp-sigla");
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-emp-sigla", 'Debe ingresar una Sigla');
+            adderror("emp-sigla");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-sigla", 'Debe ingresar una Sigla válida');
             adderror("emp-sigla");
         }
         else if ($valor.val() === " ") {
@@ -736,9 +782,15 @@
     };
     var keyRepresentante = function () {
         var $valor = $("#emp-representante");
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-emp-representante", 'Debe ingresar un representante');
             adderror("emp-representante");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-representante", 'Debe ingresar un representante válido');
+            adderror("emp-representante");
+
         }
         else if ($valor.val() === " ") {
             negativeattributes("error-emp-representante", 'El representante no debe empezar con un espacio en blanco');
@@ -845,10 +897,15 @@
 
     var keyEmail = function () {
         var $valor = $("#emp-email");
+        var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
         if ($valor.val() === "") {
 
             negativeattributes("error-emp-email", 'Debe ingresar un email');
+            adderror("emp-email");
+        }
+        else if (regular.test($valor.val)==false) {
+            negativeattributes("error-emp-email", 'Ingrese valor válido');
             adderror("emp-email");
         }
         else if ($valor.val() === " ") {
