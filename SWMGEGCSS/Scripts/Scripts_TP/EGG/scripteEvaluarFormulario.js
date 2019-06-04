@@ -1,4 +1,8 @@
 ﻿$(function () {
+
+    var RegularExpression = /(^\s.)|(.\s{2,}.)|.\s$|(.[+-\.\@0-9-_\|/?ŋ?ī`š!Š\\Ļ{\][}į\^<>Ž%&()·].*)/;
+
+
     var obj = {
         act_desa_nombre: $("#act_desa_nombre"),
         act_desa_id: $("#act_desa_id"),
@@ -8,11 +12,9 @@
         act_desa_revisor_obs: $("#act_desa_revisor_obs"),
         est_act_id: $("est_act_id")
     };
-
-
     var validacion = function () {
         $(this).click(function () {
-            if (vacio()) {
+            if (vacio() && fecha()) {
 
                 $.ajax({
                     url: "/EvaluarFormulario/RevisarFormulario",
@@ -36,6 +38,22 @@
     };
     var vacio = function esNumero() {
         if ($("#act_desa_revisor_obs").val().trim() !== "") {
+
+            var valor = $("#act_desa_revisor_obs");
+            if (valor.val().match(RegularExpression)) {
+                $.ajax({
+
+                }).done(function (data) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'La observacion no debe tener caracteres especiales, ni espacios al inicio o final, ni dobles',
+                        confirmButtonText: 'OK'
+                    });
+                });
+
+
+                return false;
+            }
             return true;
         } else {
             $.ajax({
@@ -50,11 +68,27 @@
 
             return false;
         }
+
+
+
+
+
     };
+
+
+
+
     var fecha = function fechaval() {
         var today = new Date();
+        var today2 = new Date();
+        var today2letras = $("#act_desa_fecha_fin").val().toString();
+        var arrayDeCadenas = today2letras.split("-");
         today.setHours(0, 0, 0, 0);
-        if ($("#act_desa_fecha_fin").val().toString() >= today.toString()) {
+        today2.setHours(0, 0, 0, 0);
+        today2.setFullYear(arrayDeCadenas[0], parseInt(arrayDeCadenas[1]) - 1, arrayDeCadenas[2]);
+        alert("ajax: " + today.toString() + " ; real: " + today2.toString());
+
+        if (today < today2) {
             return true;
         } else {
             $.ajax({
@@ -62,7 +96,7 @@
             }).done(function (data) {
                 Swal.fire({
                     type: 'error',
-                    title: 'El campo de observacion no debe estar vacio',
+                    title: 'La fecha debe ser mayor o igual a la actual',
                     confirmButtonText: 'OK'
                 });
             });
@@ -70,8 +104,6 @@
             return false;
         }
     };
-
-
     var validacion2 = function () {
         $(this).click(function () {
             if (vacio()) {
@@ -105,12 +137,10 @@
         });
         return false;
     };
-
-
     $("#auxfin").val($("#act_desa_fecha_fin").val());
     $("#auxfin").attr("readonly", "readonly");
     $("#guardar").each(validacion);
     $("#corregir").each(validacion2);
-
     $(".pcoded-content").on("click", ".pagedList a", getPage);
+
 });

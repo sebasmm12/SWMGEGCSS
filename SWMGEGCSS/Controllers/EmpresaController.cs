@@ -43,6 +43,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _EliminarEmpresa()
         {
             var model = new GestionarEmpresaViewModel();
+            model.empresas = new T_empresa();
             return PartialView(model);
         }
         [HttpPost]
@@ -54,13 +55,22 @@ namespace SWMGEGCSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult RecibeEmpresa(T_empresa empresas)
+        public ActionResult RecibeEmpresa(T_empresa empresas, bool emp_estado)
         {
+            var estado = emp_estado;
             var model = new GestionarEmpresaViewModel();
             model.empresas = empresas;
             model.empresas.usu_codigo = (int)Session["login"];
-            var operationResult = new OperationResult();
-            operationResult = new EmpresaDataAccess().sp_Eliminar_Empresa(model.empresas);
+            if(estado == true){
+                var operationResult = new OperationResult();
+                operationResult = new EmpresaDataAccess().sp_Eliminar_Empresa(model.empresas);
+            }
+            else
+            {
+                var operationResult = new OperationResult();
+                operationResult = new EmpresaDataAccess().sp_Activar_Empresa(model.empresas);
+            }
+            
             return RedirectToAction("Gestionar_Empresas", "Gerente");
         }
 
