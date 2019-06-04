@@ -2,14 +2,14 @@
 @{
     /**/
 
-    ViewBag.Title = "Asignacion_Tareas";
+   // ViewBag.Title = "Asignacion_Tareas";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     
     //var listaActividadesDesarrollarAux = Model.listActividadesDesarrollarAux;
     //var count = 0;
 }
 
-<h2>Asignacion_Tareas</h2>
+
 
 <div class="mt-2 ml-4">
     <div class="container-fluid">
@@ -18,13 +18,16 @@
                 <div style="width:60px"></div>
             </div>             
         <div class="col-12 col-sm-4 col-md-4">
-            <h2>Actividades a desarrollar</h2>
+            <h2>Gestion de asignacion de actividades a desarrollar</h2>
         </div>
         </div>
-        <div class="row mt-4">
-            @Html.Partial("_ListaActividadesDesarrollar", Model);
+        <div class="row mt-12">
+            <div style="width:100px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
+                @Html.Partial("_ListaActividadesDesarrollar", Model)
+            </div>
         </div>
-    </div>
+        </div>
     </div>
     <link href="~/Content/PagedList.css" rel="stylesheet" />
     @section Scripts{

@@ -304,10 +304,20 @@
     }
     //Validacion Ruc
     function validar_ruc(ruc) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var vru = 0;
         if (ruc === "") {
             adderror("emp-ruc");
             negativeattributes("error-emp-ruc", 'Debe ingresar un Ruc');
+            $("#emp-ruc").focus();
+
+            $("#emp-ruc").keyup(keyRuc);
+
+            return false;
+        }
+        if (ruc.match(RegularExpression)) {
+            adderror("emp-ruc");
+            negativeattributes("error-emp-ruc", 'Ingrese Ruc válido');
             $("#emp-ruc").focus();
 
             $("#emp-ruc").keyup(keyRuc);
@@ -369,11 +379,19 @@
     }
     //Validacion Telefono
     function validar_telefono(telefono) {
-
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
 
         if (telefono === "") {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'Debe ingresar un Número de Contacto');
+            $("#emp-telefono").focus();
+            //  alert("telefono vacio");
+            $("#emp-telefono").keyup(keyTelefono);
+            return false;
+        }
+        if (telefono.match(RegularExpression)) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'Ingrese telefono válido');
             $("#emp-telefono").focus();
             //  alert("telefono vacio");
             $("#emp-telefono").keyup(keyTelefono);
@@ -738,9 +756,13 @@
     };
     var keyRuc = function () {
         var $valor = $("#emp-ruc");
-
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-emp-ruc", 'Debe ingresar un Ruc');
+            adderror("emp-ruc");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-ruc", 'Igrese Ruc válido');
             adderror("emp-ruc");
         }
         else if ($valor.val() === " ") {
@@ -848,13 +870,17 @@
 
     var keyTelefono = function () {
         var $valor = $("#emp-telefono");
-        var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-emp-telefono", 'Debe ingresar un Número de Contacto');
             adderror("emp-telefono");
         }
         else if ($valor.val() === " ") {
             negativeattributes("error-emp-telefono", 'El Número de Contacto no debe empezar con un espacio en blanco');
+            adderror("emp-telefono");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-telefono", 'Ingrese número de contacto válido');
             adderror("emp-telefono");
         }
         else if (esNum($valor.val()) === false) {

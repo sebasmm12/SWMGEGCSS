@@ -245,15 +245,15 @@ namespace SWMGEGCSS.Controllers
             {
                 model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
             }
-             else if(estado.Equals("1"))
+            else if (estado.Equals("1"))
             {
-                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == estado.Equals(1)));
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == true));
             }
             else
             {
-                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == estado.Equals(0)));
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == false));
             }
-            
+
 
             var nameExpedientes = model.listempresas.Select(r => new
             {

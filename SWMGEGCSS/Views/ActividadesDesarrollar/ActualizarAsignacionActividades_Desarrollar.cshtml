@@ -27,9 +27,9 @@
                 </h2>
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-6">
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
                 <div>
                     <label class="font-weight-bolder">
                         Nombre del Proyecto:
@@ -45,9 +45,9 @@
                    })
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-6">
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
                 <div>
                     <label class="font-weight-bolder text-center">
                         Nombre de la Actividad:
@@ -65,9 +65,9 @@
                })
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-6">
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
                 <div>
                     <label class="font-weight-bolder">
                         Descripcion de la Actividad:
@@ -84,9 +84,9 @@
                     })
             </div>
         </div>
-        <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+        <div class="row mt-12 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha de Inicio del Proyecto:
@@ -106,7 +106,7 @@
                })
             </div>
             <div style="width:13px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha finalizacion del proyecto :
@@ -127,8 +127,8 @@
             </div>
         </div>
         <div class="row mt-4 pl-2">
-            <div style="width:60px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+            <div style="width:90px"></div>
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha de inicio de la Actividad:
@@ -149,7 +149,7 @@
                 <div id="error-act-desa-fecha-inicio2" class="errordiv"></div>
             </div>
             <div style="width:13px"></div>
-            <div class="col-12 col-sm-4 col-md-3">
+            <div class="col-5 col-sm-5 col-md-5">
                 <div>
                     <label class="font-weight-bolder">
                         Fecha de finalizacion de la Actividad:
@@ -170,143 +170,163 @@
                 <div id="error-act-desa-fecha-fin2" class="errordiv"></div>
             </div>
         </div>
+
+
         <br><br>
         <div id="error-usuario-asignado2" class="errordiv"></div>
-        @{
-            <div style="width: 800px">
-                <div style="border: 6px solid #C00">
-                    <div class="col-md-12">
-                        <label class="font-weight-bolder text-center">
-                            Trabajador Encargado de la Actividad
-                        </label>
-                        <div class="row mt-4 pl-2">
-                            <div style="width:30px"></div>
-                            <div class="col-12 col-sm-4 col-md-6">
+        <div class="row mt-12 pl-2">
+            <div style="width:100px"></div>
+            <div class="col-10 col-sm-10 col-md-10">
+                @{
+                    <div style="width: 1125px">
+                        <div style="border: 6px solid #C00">
+                            <div class="col-md-10">
+                                <h3 class="text-center">Trabajador Encargado de la Actividad</h3>
+                                <div class="row mt-2 pl-2">
+                                    <div style="width:30px"></div>
+                                    <div class="col-10 col-sm-10 col-md-10">
 
-                                <div>
-                                    <label class="font-weight-bolder">
-                                        Nombre Completo
-                                    </label>
-                                </div>
-                                @Html.EditorFor(model => model.usuarioEncargado.det_usu_nombre,
-                                new
-                                {
-                                    htmlAttributes = new
-                                    {
-                                        @class = "text-center form-control",
-                                        @readonly = "readonly"
-
-                                    }
-                                })
-                            </div>
-                        </div>
-                        <div class="row mt-4 pl-2">
-                            <div style="width:30px"></div>
-                            <div class="col-12 col-sm-4 col-md-6">
-
-                                <div>
-                                    <label class="font-weight-bolder">
-                                        Especialidad
-                                    </label>
-                                </div>
-                                @Html.EditorFor(model => model.usuarioEncargado.det_usu_especialidad,
-                                new
-                                {
-                                    htmlAttributes = new
-                                    {
-                                        @class = "text-center form-control",
-                                        @readonly = "readonly"
-                                    }
-                                })
-                            </div>
-                        </div>
-                        <div class="row mt-4 pl-2">
-                            <div style="width:30px"></div>
-                            <div class="col-12 col-sm-4 col-md-6">
-
-                                <div>
-                                    <label class="font-weight-bolder">
-                                        Correo Electronico
-                                    </label>
-                                </div>
-                                @Html.EditorFor(model => model.usuarioEncargado.det_usu_correo,
-                                new
-                                {
-                                    htmlAttributes = new
-                                    {
-                                        @class = "text-center form-control",
-                                        @readonly = "readonly"
-                                    }
-                                })
-                            </div>
-                        </div>
-                        <br><br>
-                    </div>
-                </div>
-            </div>
-
-        }
-        <div>
-            <div class="mt-2 ml-4">
-                <div class="container-fluid">
-                    <div class="row mt-4 pl-2">
-                        <div class="col-12 col-sm-12 col-md-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead class="bg-success">
-                                        <tr class="text-center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nombre </th>
-                                            <th scope="col">N° Documento</th>
-                                            <th scope="col">Especialidad</th>
-                                            <th scope="col">Correo</th>
-                                            <th scope="col">Seleccionar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in listaDetalleUsuario)
+                                        <div>
+                                            <label class="font-weight-bolder">
+                                                Nombre Completo
+                                            </label>
+                                        </div>
+                                        @Html.EditorFor(model => model.usuarioEncargado.det_usu_nombre,
+                                        new
                                         {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "text-center form-control",
+                                                @readonly = "readonly"
 
-                                            count = count + 1;
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                                <div class="row mt-2 pl-2">
+                                    <div style="width:30px"></div>
+                                    <div class="col-10 col-sm-10 col-md-10">
+
+                                        <div>
+                                            <label class="font-weight-bolder">
+                                                Especialidad
+                                            </label>
+                                        </div>
+                                        @Html.EditorFor(model => model.usuarioEncargado.det_usu_especialidad,
+                                        new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "text-center form-control",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                                <div class="row mt-2 pl-2">
+                                    <div style="width:30px"></div>
+                                    <div class="col-10 col-sm-10 col-md-10">
+
+                                        <div>
+                                            <label class="font-weight-bolder">
+                                                Correo Electronico
+                                            </label>
+                                        </div>
+                                        @Html.EditorFor(model => model.usuarioEncargado.det_usu_correo,
+                                        new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "text-center form-control",
+                                                @readonly = "readonly"
+                                            }
+                                        })
+                                    </div>
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+            <br><br>
+            <h2 class="text-center"> Lista de Trabajadores</h2>
+            <div>
+                <div class="mt-2 ml-4">
+                    <div class="container-fluid">
+                        <div class="row mt-4 pl-2">
+                            <div class="col-12 col-sm-12 col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="bg-success">
                                             <tr class="text-center">
-                                                <th scope="row">@count</th>
-
-
-                                                <td>@item.det_usu_nombre</td>
-                                                <td>@item.det_usu_tip_doc_numero </td>
-                                                <td>@item.det_usu_especialidad</td>
-                                                <td>@item.det_usu_correo</td>
-                                                <td>
-                                                    @{
-
-                                                        <button class="btn btn-success btnModalTrabajadorMod" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsableMod", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividadMod">
-                                                            <i class="fa fa-check-circle"></i>
-                                                            Como Encargado
-                                                        </button>
-
-                                                    }
-                                                </td>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nombre </th>
+                                                <th scope="col">N° Documento</th>
+                                                <th scope="col">Especialidad</th>
+                                                <th scope="col">Correo</th>
+                                                <th scope="col">Seleccionar</th>
                                             </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in listaDetalleUsuario)
+                                            {
+
+                                                count = count + 1;
+                                                <tr class="text-center">
+                                                    <th scope="row">@count</th>
+
+
+                                                    <td>@item.det_usu_nombre</td>
+                                                    <td>@item.det_usu_tip_doc_numero </td>
+                                                    <td>@item.det_usu_especialidad</td>
+                                                    <td>@item.det_usu_correo</td>
+                                                    <td>
+                                                        @{
+
+                                                            <button class="btn btn-success btnModalTrabajadorMod" data-id-usu="@item.usu_codigo" data-act-desa-id="@act_desa_id" data-url="@Url.Action("_ModalAsignarTrabajadorResponsableMod", "ActividadesDesarrollar")" data-id-target="#AsignarTrabajadorActividadMod">
+                                                                <i class="fa fa-check-circle"></i>
+                                                                Como Encargado
+                                                            </button>
+
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <div class="row mt-2 pl-2">
-            <div class="col-12 col-sm-3 col-md-3">
-                <button type="button" class="btn btn-success btnModalActividadesDesarrollar2" data-url="@Url.Action("ActualizarAsignacionActividades_Desarrollar", "ActividadesDesarrollar")" data-id-target="#actualizarAuditoriaActDesa">
-                    <i class="fa fa-check-circle"></i>
-                    Realizar Reasignacion
-                </button>
             </div>
-        </div>
+            <div class="row mt-12 pl-4">
+                <div style="width:60px"></div>
+                <div class="col-2 col-sm-2 col-md-2">
+                    <button type="button" class="btn btn-success btnModalActividadesDesarrollar2" data-url="@Url.Action("ActualizarAsignacionActividades_Desarrollar", "ActividadesDesarrollar")" data-id-target="#actualizarAuditoriaActDesa">
+                        <i class="fa fa-check-circle"></i>
+                        Realizar Reasignacion
+                    </button>
+                   
+                </div>
+                <div style="width:90px"></div>
+                <div class="col-2 col-sm-2 col-md-2">
+                    <div class="centrado">
+                        <a href="@Url.Action("Asignacion_Tareas","Administrador",null)" class="btn btn-secondary centrado">
+                            <i class="fa fa-backward">
+                                Regresar
+                            </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <br><br>
 
-    </form>
+</form>
     @Html.Action("_ModalAsignarTrabajadorResponsableMod", "ActividadesDesarrollar")
     @Html.Action("_ModalActualizarAuditoriaActividadDesarrollar", "ActividadesDesarrollar")
 </div>
