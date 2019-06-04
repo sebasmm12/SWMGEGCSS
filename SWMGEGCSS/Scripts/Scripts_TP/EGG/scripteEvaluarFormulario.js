@@ -86,8 +86,7 @@
         today.setHours(0, 0, 0, 0);
         today2.setHours(0, 0, 0, 0);
         today2.setFullYear(arrayDeCadenas[0], parseInt(arrayDeCadenas[1]) - 1, arrayDeCadenas[2]);
-        alert("ajax: " + today.toString() + " ; real: " + today2.toString());
-
+       
         if (today < today2) {
             return true;
         } else {
