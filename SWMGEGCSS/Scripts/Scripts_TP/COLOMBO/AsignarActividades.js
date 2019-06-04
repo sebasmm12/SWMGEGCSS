@@ -1,57 +1,52 @@
 ﻿$(function () {
 
-    var validacionAsignarActDesa = function () {
-        var $actDesaFechaInicio = $("#actDesaFechaInicio");
-        var $expFechaInicio = $("#expFechaInicio");
-        var $expFechaFin = $("#expFechaFin");
 
-        var $actDesaFechaFin = $("#actDesaFechaFin");
+        var validacionAsignarActDesa = function () {
+            $(this).click(function () {
+            $(".btnModalActividadesDesarrollar1").attr("disabled", true);                
+            var $actDesaFechaInicio = $("#actDesaFechaInicio");
+            var $expFechaInicio = $("#expFechaInicio");
+            var $expFechaFin = $("#expFechaFin");
+            var $actDesaFechaFin = $("#actDesaFechaFin");
 
+            var vActDesaFechaInicio = validar_fecha_act_desa_inicio($actDesaFechaInicio.val());
+            var vActDesaFechaFin = validar_fecha_act_desa_fin($actDesaFechaFin.val());
+            var vUsuarioSeleccionado = validar_usuario_seleccionado();
+            var vActDesaFechasCoherencia = validar_coherencia_fechas($actDesaFechaInicio.val(), $actDesaFechaFin.val());
 
-        var vActDesaFechaInicio = validar_fecha_act_desa_inicio($actDesaFechaInicio.val());
-        var vActDesaFechaFin = validar_fecha_act_desa_fin($actDesaFechaFin.val());
-        var vUsuarioSeleccionado = validar_usuario_seleccionado();
-
-        var vActDesaFechasCoherencia = validar_coherencia_fechas($actDesaFechaInicio.val(), $actDesaFechaFin.val());
-
-        //var vActDesaFechaInicio = validar_fecha_inicio($actDesaFechaFin.val());
-        if (vActDesaFechaInicio === false || vActDesaFechaFin === false || vUsuarioSeleccionado === false || vActDesaFechasCoherencia === false) {
-            return false;
-        } else {
-            $(".btnModalActividadesDesarrollar1").click(envioajaxModal);
-        }
-        return false;
-    };
-
-    var envioajaxModal = function () {
-        $(this).click(function () {
-            var $button = $(this);
-            var modal = $button.attr("data-id-target");
-            var act_desa_aux = {
-                act_desa_fecha_inicio: $("#actDesaFechaInicio").val(),
-                act_desa_fecha_fin: $("#actDesaFechaFin").val()
-            };
-            $.ajax({
-                url: $(this).attr("data-url"),
-                method: "POST",
-                data: {
-                    actividadesDesarrollarAux: act_desa_aux
-                }
-            }).
-                done(function (data) {
-                    var target = $button.attr("data-id-target");
-                    var $newhtml = $(data);
-                    $(target).replaceWith($newhtml);
-                    $(modal).modal();
-                    $(modal).on('shown.bs.modal', function () {
-                        $(document).off('focusin.modal');
+            //var vActDesaFechaInicio = validar_fecha_inicio($actDesaFechaFin.val());
+                if (vActDesaFechaInicio === false || vActDesaFechaFin === false || vUsuarioSeleccionado === false || vActDesaFechasCoherencia === false) {
+                    $(".btnModalActividadesDesarrollar1").removeAttr("disabled"); 
+                return false;
+            } else {
+                var $button = $(this);
+                var modal = $button.attr("data-id-target");
+                var act_desa_aux = {
+                    act_desa_fecha_inicio: $("#actDesaFechaInicio").val(),
+                    act_desa_fecha_fin: $("#actDesaFechaFin").val()
+                };
+                $.ajax({
+                    url: $(this).attr("data-url"),
+                    method: "POST",
+                    async:false,
+                    data: {
+                        actividadesDesarrollarAux: act_desa_aux
+                    }
+                }).done(function (data) {
+                        var target = $button.attr("data-id-target");
+                        var $newhtml = $(data);
+                        $(target).replaceWith($newhtml);
+                        $(modal).modal('show');
+                        $(modal).on('shown.bs.modal', function () {
+                            $(document).off('focusin.modal');
+                        });
+                        $(".btnRegistrarActDesa").each(Alerta);
                     });
-                    $(".btnRegistrarActDesa").each(Alerta);
-                });
-            return false;
-        });
-    };
+                 }
+            });
+         };
 
+ 
     var Alerta = function () {
         $(this).click(function () {
 
@@ -72,8 +67,13 @@
                     EnvioComentario(comentario);
                 }
             })();
-
+            $(".btnModalActividadesDesarrollar1").removeAttr("disabled");
         });
+
+    };
+
+    var extra = function () {
+        $(".btnModalActividadesDesarrollar1").removeAttr("disabled");
     };
 
     var EnvioComentario = function (comentario) {
@@ -194,21 +194,6 @@
             addgood("actDesaFechaInicio");
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     //Validacion Fecha Actividades Desarrollar
     function validar_fecha_act_desa_fin(id) {
@@ -384,7 +369,6 @@
             }
         }
     };
-
     //Atributos de Tipo
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
@@ -407,6 +391,64 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label> ");
     }
+    var getPage = function () {
+        var $a = $(this);
+        $.ajax({
+            url: $a.attr("href"),
+            type: "GET"
+        }).done(function (data) {
+            var target = $a.parents("div.pagedList").attr("data-exp-target");
+            $(target).replaceWith(data);
+            $(".btnModalTrabajador").each(envioajaxModal);
+            //$(".btnRegistrarResponsable").click(envioajaxAgregar);
+        });
+        return false;
+    };
+    var usu_cod = 0;
+    var act_desa_id = 0;
+    var envioajaxModal = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            var modal = $button.attr("data-id-target");
+            usu_cod = $(this).attr("data-id-usu");
+            act_desa_id = $(this).attr("data-act-desa-id");
+            $.ajax({
+                url: "/ActividadesDesarrollar/_ModalAsignarTrabajadorResponsable",
+                method: "POST",
+                data: { usu_codigo: usu_cod }
+            }).done(function (data) {
+                var $target = $($button.attr("data-id-target"));
+                var $newhtml = $(data);
+                $target.replaceWith($newhtml);
+                $(modal).modal();
+                $(".btnRegistrarResponsable").click(envioajaxAgregar);
+            });
+            return false;
+        });
+    };
+    var envioajaxAgregar = function () {
+        //mismo nombre del parametro de actualizacion del metodo
+        //creando objeto
+        $.ajax({
+            url: "/ActividadesDesarrollar/_ListaDetalleUsuario",
+            method: "POST",
+            data: {
+                usu_codigo: usu_cod
+            }
+        }).done(function (data) {
+            //window.location.href = "/ActividadesDesarrollar/_ListaDetalleUsuario";
+            //$("#AsignarTrabajadorActividad").modal('hide');
+            var $newhtml = $(data);
+            var target = document.getElementById("tableDetUsu");
+            $(target).replaceWith($newhtml);
+            $("#AsignarTrabajadorActividad").modal("hide");
+        });
+    };
+
+    $(".btnModalTrabajador").each(envioajaxModal);
+    $(".btnRegistrarResponsable").click(envioajaxAgregar);
+    $(".pcoded-content").on("click", ".pagedList a", getPage);
+    $("#botondismiss").click(extra);
     $(".btnModalActividadesDesarrollar1").click(validacionAsignarActDesa);
     //$("#btnAsignarTarea").click(registroAsignacion);
 });

@@ -28,7 +28,7 @@
                 </h2>
             </div>
         </div>
-        
+
         <div class="row mt-12 pl-2">
             <div style="width:90px"></div>
             <div class="col-10 col-sm-10 col-md-10">
@@ -174,31 +174,31 @@
                 <div id="error-act-desa-fecha-fin" class="errordiv"></div>
             </div>
         </div>
-        
+
         <br><br>
-            <div class="row mt-2 pl-2">
-                <div style="width:90px"></div>
-                <div class="col-12 col-sm-12 col-md-12">
-                    <div class="container-fluid">
-                        <div class="row mt-12">
-                            <div class="col-12 col-sm-4 col-md-4">
-                            </div>
-                            <h2>Lista de Trabajadores</h2>
-                            <div class="col-12 col-sm-4 col-md-4">
-                            </div>
-                            <div id="error-usuario-asignado" class="errordiv"></div>
+        <div class="row mt-2 pl-2">
+            <div style="width:90px"></div>
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="container-fluid">
+                    <div class="row mt-12">
+                        <div class="col-12 col-sm-4 col-md-4">
                         </div>
-                        <div class="row mt-12">
-                            <div class="col-12 col-sm-12 col-md-12">
-                                <div style="width:100px"></div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-10">
-                                @Html.Partial("_ListaDetalleUsuario", Model)
-                            </div>
+                        <h2>Lista de Trabajadores</h2>
+                        <div class="col-12 col-sm-4 col-md-4">
+                        </div>
+                        <div id="error-usuario-asignado" class="errordiv"></div>
+                    </div>
+                    <div class="row mt-12">
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div style="width:100px"></div>
+                        </div>
+                        <div class="col-10 col-sm-10 col-md-10">
+                            @Html.Partial("_ListaDetalleUsuario", Model)
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         <div class="row mt-12 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
                 <button type="button" class="btn btn-success btnModalActividadesDesarrollar1" data-url="@Url.Action("RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar")" data-id-target="#registrarAuditoriaActDesa">
@@ -227,5 +227,5 @@
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
     <!--<script src="~/Scripts/Scripts_TP/COLOMBO/asignarResponsableActividad.js"></script> -->
     <script src="~/Scripts/Scripts_TP/COLOMBO/AsignarActividades.js"></script>
-    <script src="~/Scripts/Scripts_TP/COLOMBO/visualizarDetalleUsuario.js"></script>
+    <!--<script src="~/Scripts/Scripts_TP/COLOMBO/visualizarDetalleUsuario.js"></script>-->
 }
