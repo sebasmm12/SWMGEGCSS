@@ -1,6 +1,7 @@
 ﻿$(function () {
 
     var validacionReasignarActDesa = function () {
+        var count = 0;
         var $actDesaFechaInicio = $("#actDesaFechaInicio2");
         var $expFechaInicio = $("#expFechaInicio2");
         var $expFechaFin = $("#expFechaFin2");
@@ -14,9 +15,37 @@
         if (vActDesaFechaInicio === false || vActDesaFechaFin === false /*|| vUsuarioSeleccionado === false*/) {
             return false;
         } else {
-            $(".btnModalActividadesDesarrollar2").click(envioajaxModal);
+            var $button = $(this);
+            var modal = $button.attr("data-id-target");
+            var act_desa_aux = {
+                act_desa_fecha_inicio: $("#actDesaFechaInicio2").val(),
+                act_desa_fecha_fin: $("#actDesaFechaFin2").val()
+            };
+            $.ajax({
+                url: $(this).attr("data-url"),
+                method: "POST",
+                async:false,
+                data: {
+                    actividadesDesarrollarAux: act_desa_aux
+                }
+            }).
+                done(function (data) {
+                    count++;
+                    var target = $button.attr("data-id-target");
+                    var $newhtml = $(data);
+                    $(target).replaceWith($newhtml);
+                    $(modal).modal();
+                    $(modal).on('shown.bs.modal', function () {
+                        $(document).off('focusin.modal');
+                    });
+                    $(".btnActualizarActDesa").each(Alerta);
+                });
         }
-        return false;
+        if (count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     };
     var Alerta = function () {
         $(this).click(function () {

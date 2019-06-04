@@ -33,6 +33,9 @@
             }
         }).done(function (data) {
             window.location.href = "/ActividadesDesarrollar/ActualizarAsignacionActividades_Desarrollar?act_desa_id=" + act_desa_id;
+            $("#AsignarTrabajadorActividadMod").modal("hide");
+            $(".btnModalTrabajadorMod").each(envioajaxModal);
+            $(".btnRegistrarResponsableMod").click(envioajaxAgregar);
         });
     };
 
