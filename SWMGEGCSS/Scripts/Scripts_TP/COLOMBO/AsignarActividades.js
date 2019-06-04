@@ -57,9 +57,9 @@
 
             (async function getEmail() {
                 const { value: comentario } = await Swal.fire({
-                    title: 'Ingrese el porque quiere eliminarlo',
+                    title: 'Descripcion de la asignacion',
                     input: 'textarea',
-                    inputPlaceholder: 'Ingrese comentario',
+                    inputPlaceholder: 'Ingrese una descripcion',
                     showCancelButton: true,
                     inputValidator: (value) => {
                         if (!value) {
@@ -367,14 +367,12 @@
             adderror("actDesaFechaInicio");
             negativeattributes("error-act-desa-fecha-inicio", 'La fecha debe ser mayor al inicio del proyecto');
             $("#actDesaFechaInicio").focus();
-            $("#actDesaFechaInicio").change(keyfechaI);
             
         }
         else if (fechaIngresada > fechaFinExp) {
             adderror("actDesaFechaInicio");
             negativeattributes("error-act-desa-fecha-inicio", 'La fecha debe ser menor al fin del proyecto');
             $("#actDesaFechaInicio").focus();
-            $("#actDesaFechaInicio").change(keyfechaI);
         }
         else {
             if (fechaIngresada > dateActual) {
