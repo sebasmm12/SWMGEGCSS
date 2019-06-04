@@ -123,10 +123,18 @@
     //Validacion Telefono
     function validar_telefono(telefono) {
         var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
-
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if (telefono === "") {
             adderror("emp-telefono");
             negativeattributes("error-emp-telefono", 'Debe ingresar un Número de Contacto');
+            $("#emp-telefono").focus();
+            //  alert("telefono vacio");
+            $("#emp-telefono").keyup(keyTelefono);
+            return false;
+        }
+        if (telefono.match(RegularExpression)) {
+            adderror("emp-telefono");
+            negativeattributes("error-emp-telefono", 'Ingrese telefono válido');
             $("#emp-telefono").focus();
             //  alert("telefono vacio");
             $("#emp-telefono").keyup(keyTelefono);
@@ -452,8 +460,13 @@
     var keyTelefono = function () {
         var $valor = $("#emp-telefono");
         var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-emp-telefono", 'Debe ingresar un Número de Contacto');
+            adderror("emp-telefono");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-telefono", 'Igrese telefono válido');
             adderror("emp-telefono");
         }
         else if ($valor.val() === " ") {
