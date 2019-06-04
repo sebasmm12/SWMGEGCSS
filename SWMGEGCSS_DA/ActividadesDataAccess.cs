@@ -202,6 +202,7 @@ namespace SWMGEGCSS_DA
                             actividades_desarrollar.est_act_id = DataUtil.DbValueToDefault<int>(reader["est_act_id"]);
                             actividades_desarrollar.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
                             actividades_desarrollar.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            actividades_desarrollar.est_act_nombre = DataUtil.DbValueToDefault<string>(reader["est_act_nombre"]);
                             list_actividades_desarrollar.Add(actividades_desarrollar);
                         }
                     }
@@ -282,6 +283,45 @@ namespace SWMGEGCSS_DA
                 return new List<T_tipo_servicio_actividades>();
             }
         }
+        public List<T_actividades_desarrollar> sp_Consultar_Actividades_Desarrollar_Expediente_Completa()
+        {
+            try
+            {
+                List<T_actividades_desarrollar> list_actividades_desarrollar = new List<T_actividades_desarrollar>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Actividades_Desarrollar_Expediente_Completa"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades_desarrollar actividades_desarrollar = new T_actividades_desarrollar();
+                            actividades_desarrollar.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            actividades_desarrollar.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
+                            actividades_desarrollar.usu_creador = DataUtil.DbValueToDefault<int>(reader["usu_creador"]);
+                            actividades_desarrollar.act_desa_fecha_inicio = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_inicio"]);
+                            actividades_desarrollar.act_desa_fecha_fin = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_fin"]);
+                            actividades_desarrollar.act_desa_fecha_finalizada = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_finalizada"]);
+                            actividades_desarrollar.est_act_id = DataUtil.DbValueToDefault<int>(reader["est_act_id"]);
+                            actividades_desarrollar.usu_revisor = DataUtil.DbValueToDefault<int>(reader["usu_revisor"]);
+                            actividades_desarrollar.usu_asignado = DataUtil.DbValueToDefault<int>(reader["usu_asignado"]);
+                            actividades_desarrollar.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
+                            actividades_desarrollar.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            actividades_desarrollar.act_desa_archivo_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_archivo_nombre"]);
+                            actividades_desarrollar.act_desa_fecha_revision = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_revision"]);
+                            actividades_desarrollar.usu_revisor_nombre = DataUtil.DbValueToDefault<string>(reader["nombre_revisor"]);
+                            actividades_desarrollar.usu_asignado_nombre = DataUtil.DbValueToDefault<string>(reader["nombre_asignado"]);
+                            actividades_desarrollar.est_act_nombre = DataUtil.DbValueToDefault<string>(reader["est_act_nombre"]);
+                            list_actividades_desarrollar.Add(actividades_desarrollar);
+                        }
+                    }
+                }
+                return list_actividades_desarrollar;
+            }
+            catch (Exception)
+            {
 
+                return new List<T_actividades_desarrollar>();
+            }
+        }
     }
 }
