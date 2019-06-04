@@ -89,7 +89,7 @@
         return false;
     };
     var esnegativo = function esNegativo(X) {
-        if (X < 0) {
+        if (X <= 0) {
             return true;
         }
         else {
@@ -263,7 +263,7 @@
         }
         else if (esnegativo(monto) === true) {
             adderror("ing-egr-monto");
-            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo");
+            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo y diferente de cero");
             $("#ing-egr-monto").focus();
             $("#ing-egr-monto").keyup(KeyMonto);
             return false;
@@ -390,7 +390,7 @@
             adderror("ing-egr-monto");
         }
         else if (esnegativo($valor.val()) === true) {
-            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo");
+            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo y diferente de cero");
             adderror("ing-egr-monto");
         }
         else {

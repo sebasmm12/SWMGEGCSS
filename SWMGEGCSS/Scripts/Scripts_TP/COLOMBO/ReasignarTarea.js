@@ -23,9 +23,9 @@
 
             (async function getEmail() {
                 const { value: comentario } = await Swal.fire({
-                    title: 'Descripcion de la Asignacion',
+                    title: 'Descripciion de la Reasignacion',
                     input: 'textarea',
-                    inputPlaceholder: 'Ingrese un comentario',
+                    inputPlaceholder: 'Ingrese una descripcion',
                     showCancelButton: true,
                     inputValidator: (value) => {
                         if (!value) {
@@ -163,10 +163,12 @@
             if (fechaIngresada > dateActual) {
                 attributes("error-act-desa-fecha-fin2");
                 addgood("actDesaFechaFin2");
+                $("#actDesaFechaFin2").change(keyfechaJ);
                 return true;
             } else {
                 negativeattributes("error-act-desa-fecha-fin2", 'la fecha debe ser mayor a la actual');
                 adderror("actDesaFechaFin2");
+                $("#actDesaFechaFin2").change(keyfechaJ);
                 return false;
             }
         }
@@ -192,14 +194,12 @@
             adderror("actDesaFechaFin2");
             negativeattributes("error-act-desa-fecha-fin2", 'La fecha debe ser mayor al inicio del proyecto');
             $("#actDesaFechaFin2").focus();
-            $("#actDesaFechaFin2").change(keyfechaJ);
 
         }
         else if (fechaIngresada > fechaFinExp) {
             adderror("actDesaFechaFin2");
             negativeattributes("error-act-desa-fecha-fin2", 'La fecha debe ser menor al fin del proyecto');
             $("#actDesaFechaFin2").focus();
-            $("#actDesaFechaFin2").change(keyfechaJ);
         }
         else {
             if (fechaIngresada > dateActual) {
@@ -249,10 +249,12 @@
             if (fechaIngresada > dateActual) {
                 attributes("error-act-desa-fecha-inicio2");
                 addgood("actDesaFechaInicio2");
+                $("#actDesaFechaInicio2").change(keyfechaI);
                 return true;
             } else {
                 negativeattributes("error-act-desa-fecha-inicio2", 'la fecha debe ser mayor a la actual');
                 adderror("actDesaFechaInicio2");
+                $("#actDesaFechaInicio2").change(keyfechaI);
                 return false;
             }
         }
@@ -279,14 +281,12 @@
             adderror("actDesaFechaInicio2");
             negativeattributes("error-act-desa-fecha-inicio2", 'La fecha debe ser mayor al inicio del proyecto');
             $("#actDesaFechaInicio2").focus();
-            $("#actDesaFechaInicio2").change(keyfechaI);
 
         }
         else if (fechaIngresada > fechaFinExp) {
             adderror("actDesaFechaInicio2");
             negativeattributes("error-act-desa-fecha-inicio2", 'La fecha debe ser menor al fin del proyecto');
             $("#actDesaFechaInicio2").focus();
-            $("#actDesaFechaInicio2").change(keyfechaI);
         }
         else {
             if (fechaIngresada > dateActual) {
