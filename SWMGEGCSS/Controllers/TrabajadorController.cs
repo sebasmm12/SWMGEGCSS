@@ -8,6 +8,7 @@ using PagedList;
 using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
+using System.Text.RegularExpressions;
 namespace SWMGEGCSS.Controllers
 {
     public class TrabajadorController : Controller
@@ -72,7 +73,57 @@ namespace SWMGEGCSS.Controllers
                     System.IO.Directory.CreateDirectory(ruta2);
                 }
                 String nombreArchivo = Actividad_aux3.archivo.FileName;
+                String ruta3 = ruta;
                 ruta += nombreArchivo;
+                String rutaevaluar = ruta;
+                if (System.IO.File.Exists(rutaevaluar))
+                {
+                    String[] listadelnombre= nombreArchivo.Split('.');
+                    String evaluar= listadelnombre[listadelnombre.Length - 2]  ;
+                    string validar = "_V[\\d]{1,}$";
+                    Regex r1 = new Regex(validar);
+                    MatchCollection m1 = r1.Matches(evaluar);
+                    List<String> lista = new List<string>();
+                    foreach (var item in m1)
+                    {
+                       lista.Add(item.ToString());
+                    }
+                    if (lista.Count > 0){
+                        String version = "";
+                        String aux = "";
+                        int versionado = 0;
+                        for (int x= evaluar.Length-1;x>0;x--)
+                        {
+                            aux = evaluar.Substring(x, 1);
+                            if (aux.Equals("V")) {
+                                versionado = Int32.Parse(version);
+                                versionado++;
+                                evaluar = evaluar.Substring(0, x+1) +versionado;
+                               
+
+                                break;
+                            }
+                            else {
+                                version = aux + version;
+                                }
+
+                        }
+
+                    }
+                    else{
+                        evaluar += "_V2";
+
+                    }
+                    listadelnombre[listadelnombre.Length - 2] = evaluar;
+                    nombreArchivo = "";
+                    String delimitador = "";
+                    foreach (String abc in listadelnombre)
+                    {
+                        nombreArchivo += delimitador + abc;
+                        delimitador = ".";
+                    }
+                    ruta = ruta3 + nombreArchivo;
+                }
                 subirArchivo(Actividad_aux3.archivo, ruta);
                 
                 var modelAct = new T_actividades_desarrollar();
@@ -165,7 +216,62 @@ namespace SWMGEGCSS.Controllers
             {
                 String ruta = Server.MapPath("~/Repositorio/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
                 String nombreArchivo = Actividad_aux3.archivo.FileName;
-                ruta += nombreArchivo;
+                String ruta3 = ruta;
+                ruta += nombreArchivo;                
+                String rutaevaluar = ruta;
+                if (System.IO.File.Exists(rutaevaluar))
+                {
+                    String[] listadelnombre = nombreArchivo.Split('.');
+                    String evaluar = listadelnombre[listadelnombre.Length - 2];
+                    string validar = "_V[\\d]{1,}$";
+                    Regex r1 = new Regex(validar);
+                    MatchCollection m1 = r1.Matches(evaluar);
+                    List<String> lista = new List<string>();
+                    foreach (var item in m1)
+                    {
+                        lista.Add(item.ToString());
+                    }
+                    if (lista.Count > 0)
+                    {
+                        String version = "";
+                        String aux = "";
+                        int versionado = 0;
+                        for (int x = evaluar.Length - 1; x > 0; x--)
+                        {
+                            aux = evaluar.Substring(x , 1);
+                            if (aux.Equals("V"))
+                            {
+                                versionado = Int32.Parse(version);
+                                versionado++;
+                                evaluar = evaluar.Substring(0, x+1) + versionado;
+
+
+                                break;
+                            }
+                            else
+                            {
+                                version = aux + version;
+                            }
+
+                        }
+
+                    }
+                    else
+                    {
+                        evaluar += "_V2";
+
+                    }
+                    listadelnombre[listadelnombre.Length - 2] = evaluar;
+                    nombreArchivo = "";
+                    String delimitador = "";
+                    foreach (String abc in listadelnombre)
+                    {
+                        nombreArchivo += delimitador + abc;
+                        delimitador = ".";
+                    }
+                    ruta = ruta3 + nombreArchivo;
+                }
+
                 subirArchivo(Actividad_aux3.archivo, ruta);
 
                 var modelAct = new T_actividades_desarrollar();
