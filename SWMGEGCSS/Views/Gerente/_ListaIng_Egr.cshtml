@@ -3,9 +3,10 @@
 
     var list_ing_egr = Model.list_ingresos_egresos;
     var tipo = "";
+    var count = 1;
 
 
-    
+
     Layout = null;
 }
 
@@ -15,7 +16,7 @@
                 <table class="table">
                     <thead class="bg-success">
                         <tr>
-                            <th scope="col">Id</th>
+                            <th scope="col">#</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Fecha</th>
@@ -29,7 +30,7 @@
                         {                           
                         <tr>
                             <td>
-                                @item.ing_egr_id
+                                @(count++)
                             </td>
                             <td>@item.ing_egr_nombre</td>
                             <td>@item.ing_egr_descripcion</td>

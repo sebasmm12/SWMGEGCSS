@@ -98,13 +98,10 @@ namespace SWMGEGCSS.Controllers
                     {
                         model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().ToPagedList(page, 4);
                     }
-                    else if(estado.Equals("1"))
+                    else
                     {
                         model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().FindAll(r => r.ing_egr_ingrso = (estado.Equals("1"))).ToPagedList(page, 4);
-                    } else 
-                    {
-                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().FindAll(r => r.ing_egr_ingrso = (estado.Equals("0"))).ToPagedList(page, 4);
-                    }
+                    } 
                 }
                 else
                 {
@@ -112,14 +109,11 @@ namespace SWMGEGCSS.Controllers
                     {
                         model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_Nombre(searchTerm).ToPagedList(page, 4);
                     }
-                    else if (estado.Equals("1"))
+                    else 
                     {
-                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_Nombre(searchTerm).FindAll(r => r.ing_egr_ingrso = (estado.Equals("1"))).ToPagedList(page, 4);
+                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_Nombre(searchTerm).FindAll(r => r.ing_egr_ingrso = (estado.Equals("2"))).ToPagedList(page, 4);
                     }
-                    else
-                    {
-                        model.list_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_Nombre(searchTerm).FindAll(r => r.ing_egr_ingrso = (estado.Equals("0"))).ToPagedList(page, 4);
-                    }
+                  
 
 
                 }
