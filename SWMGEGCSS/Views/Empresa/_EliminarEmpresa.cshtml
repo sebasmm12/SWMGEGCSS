@@ -2,7 +2,11 @@
 @{
     ViewBag.Title = "_Eliminar_Empresa";
     Layout = null;
-
+    if(Model.empresas != null)
+    {
+        var estado = Model.empresas.emp_estado;
+    }
+    
 }
 
 
@@ -12,6 +16,7 @@
             <div class="container-fluid">
                 @using (Html.BeginForm("RecibeEmpresa", "Empresa"))
                 {
+                    
                     <div>
                         @Html.HiddenFor(model => model.empresas.emp_ruc)
                     </div>
@@ -25,7 +30,7 @@
 
                             @Html.EditorFor(model => model.empresas.emp_razon_social, new
                             {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-fecha", @class = "text-center form-control", @type = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-fecha", @class = "text-center form-control bg-white", @type = "text-center form-control" }
                             })
                             <div id="error-plan-fecha" class="errordiv"></div>
                         </div>
@@ -37,7 +42,7 @@
                             </div>
                             @Html.EditorFor(model => model.empresas.emp_direccion, new
                             {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-tipo-servicio", @class = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-tipo-servicio", @class = "text-center form-control bg-white" }
                             })
                             <div id="error-plan-tipo-servicio" class="errordiv"></div>
                         </div>
@@ -51,7 +56,7 @@
                             </div>
                             @Html.EditorFor(model => model.empresas.emp_sigla, new
                            {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control bg-white" }
                            })
                             <div id="error-plan-emp" class="errordiv"></div>
                         </div>
@@ -63,7 +68,7 @@
                             </div>
                             @Html.EditorFor(model => model.empresas.emp_telefono, new
                             {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-tipo-servicio", @class = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-tipo-servicio", @class = "text-center form-control bg-white" }
                             })
                             <div id="error-plan-tipo-servicio" class="errordiv"></div>
                         </div>
@@ -77,7 +82,7 @@
                             </div>
                             @Html.EditorFor(model => model.empresas.emp_ruc, new
                            {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control bg-white" }
                            })
                             <div id="error-plan-emp" class="errordiv"></div>
                         </div>
@@ -89,7 +94,7 @@
                             </div>
                             @Html.EditorFor(model => model.empresas.emp_fax, new
                            {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control bg-white" }
                            })
                             <div id="error-plan-emp" class="errordiv"></div>
                         </div>
@@ -103,7 +108,7 @@
                             </div>
                             @Html.EditorFor(model => model.empresas.emp_representante, new
                            {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-costo", @class = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-costo", @class = "text-center form-control bg-white" }
                            })
                             <div id="error-plan-costo" class="errordiv"></div>
                         </div>
@@ -115,21 +120,41 @@
                             </div>
                             @Html.EditorFor(model => model.empresas.emp_email, new
                            {
-                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control" }
+                               htmlAttributes = new { @readonly = "readonly", @id = "plan-emp", @class = "text-center form-control bg-white" }
                            })
                             <div id="error-plan-emp" class="errordiv"></div>
                         </div>
                     </div>
 
-                    
-                    <div class="row mt-4 pl-2 mb-3">
-                        <div class="col-12 col-sm-3 col-md-3">
-                            <button type="submit" class="btn btn-success" id="boton-Eliminar">
 
-                                <i class="fa fa-check-circle"></i>
-                                Eliminar Empresa
-                            </button>
-                        </div>
+                    <div class="row mt-4 pl-2 mb-3">
+                        @if (Model.empresas.emp_estado == true)
+                        {
+                            <div>
+                                <input type="hidden" name="emp_estado" value="true" />
+                            </div>
+                            <div class="col-12 col-sm-3 col-md-3">
+                                <button type="submit" class="btn btn-danger" id="boton-Eliminar">
+
+                                    <i class="fa fa-check-circle"></i>
+                                    Eliminar Empresa
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <input type="hidden" name="emp_estado" value="false" />
+                            </div>
+                            <div class="col-12 col-sm-3 col-md-3">
+                                <button type="submit" class="btn btn-success" id="boton-Activar">
+
+                                    <i class="fa fa-check-circle"></i>
+                                    Activar Empresa
+                                </button>
+                            </div>
+                        }
+
                         <div class="col-12 col-sm-3 col-md-3">
                             <a href="@Url.Action("Gestionar_Empresas","Gerente")" class="btn btn-secondary">
                                 <i class="fa fa-backward">

@@ -29,5 +29,7 @@ namespace SWMGEGCSS_EN
         public string tipo_servicio_nombre { get; set; }
         public double exp_ganancia { get; set; }
         public string exp_nombre { get; set; }
+        public int cantidad_actividades_desarrollar { get; set; }
+        public int cantidad_actividades_terminar { get; set; }
     }
 }

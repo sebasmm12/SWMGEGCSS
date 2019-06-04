@@ -58,7 +58,14 @@
                                         {
                                             <button type="button" class="btn btn-info btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_ConsultarProyecto","Expediente")" data-id-target="#ModalConsultarProyecto">
                                                 <i class="fa fa-eye"></i>
-                                               Consultar Proyecto
+                                                Consultar Proyecto
+                                            </button>
+                                        }
+                                        @if (item.est_exp_nombre.Equals("En ejecucion") && item.cantidad_actividades_desarrollar == item.cantidad_actividades_terminar)
+                                        {
+                                            <button type="button" class="btn btn-outline-success btnModal" data-id-proyecto="@item.exp_id">
+                                                <i class="fa fa-award"></i>
+                                               Certificado de la MINAM
                                             </button>
                                         }
 
