@@ -128,7 +128,7 @@
             adderror("actividad_comentario");
             negativeattributes("error_actividad_comentario", 'Debe ingresar un comentario valido(no esp. blanco)');
         }
-        if ($valor.val() === "") {
+        else if ($valor.val() === "") {
             negativeattributes("error_actividad_comentario", 'Debe ingresar un nombre');
             adderror("actividad_comentario");
         }

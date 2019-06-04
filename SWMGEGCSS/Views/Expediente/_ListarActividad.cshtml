@@ -14,6 +14,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre de la Actividad</th>
                 <th scope="col">Descripción</th>
+                <th scope="col">Estado de la Actividad</th>
                 <th scope="col">Acciones del Proyecto</th>
             </tr>
         </thead>
@@ -23,23 +24,50 @@
                 count = count + 1;
                 var exp_id = Actividades_Desarrollar.ElementAt(0).exp_id;
                 var evaluar = Actividades_Desarrollar.Find(r => r.act_desa_nombre == item.act_nombre);
-                <tr class="text-center">
+            <tr class="text-center">
                 <th scope="row">@count</th>
                 @if (evaluar != null)
                 {
-                        <td>@evaluar.act_desa_nombre</td>
-                        <td>@evaluar.act_desa_descripcion</td>
+                    <td>@evaluar.act_desa_nombre</td>
+                    <td>@evaluar.act_desa_descripcion</td>
+                    <td>@evaluar.est_act_nombre</td>
+                    if (evaluar.est_act_id == 1)
+                    {
                         <td>
                             <button class="btn btn-danger btnSubModal" data-id-target="@evaluar.act_desa_nombre" data-exp-target="@exp_id" data-url="@Url.Action("EliminarActividad","Expediente")">
                                 <i class="fa fa-times-circle"></i>
                                 Eliminar Actividad
                             </button>
                         </td>
+                    }
+                    else
+                    {
+                        if (evaluar.est_act_id == 6)
+                        {
+                            <td>
+                                <button class="btn btn-light border border-success">
+                                    <i class="fa fa-check-circle" style="color:green;"></i>
+                                    Actividad Terminada
+                                </button>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <button class="btn btn-light border border-success">
+                                    <i class="fa fa-check-circle" style="color:green;"></i>
+                                    Actividad en Proceso
+                                </button>
+                            </td>
+                        }
+
+                    }
                 }
                 else
                 {
                     <td>@item.act_nombre</td>
                     <td>@item.act_descripcion</td>
+                    <td>No asignado al expediente</td>
                     <td>
                         <button class="btn btn-success btnSubModal" data-id-target="@item.act_nombre" data-exp-target="@exp_id" data-url="@Url.Action("AñadirActividad","Expediente")">
                             <i class="fa fa-check-circle"></i>

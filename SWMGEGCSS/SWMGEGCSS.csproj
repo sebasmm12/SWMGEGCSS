@@ -623,6 +623,8 @@
     <Content Include="Views\Cuentas\Registrar_Cuenta.cshtml" />
     <Content Include="Views\Gerente\_ListaCuentaUsuario.cshtml" />
     <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
+    <Content Include="Views\Expediente\_ConsultarProyecto.cshtml" />
+    <Content Include="Views\Expediente\_ListarActividadConsultar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />

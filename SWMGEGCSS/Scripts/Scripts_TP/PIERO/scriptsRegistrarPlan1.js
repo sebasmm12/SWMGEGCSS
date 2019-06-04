@@ -237,7 +237,7 @@
     };
     //validacion costo actividad
     function validar_costo(id) {
-        var RegularExpression = /^\d+[.]*\d*$/;
+        var RegularExpression = /^\d+[,]*\d*$/;
         var $valor = $("#ActPlanCosto");
         if (id <= 0) {
             adderror("ActPlanCosto");
@@ -268,7 +268,7 @@
         return true;
     }
     function keyC() {
-        var RegularExpression = /^\d+[.]*\d*$/;
+        var RegularExpression = /^\d+[,]*\d*$/;
         var $valor = $("#ActPlanCosto");
         if ($valor.val() <= 0) {
             negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo diferente de 0');
