@@ -89,7 +89,7 @@
         return false;
     };
     var esnegativo = function esNegativo(X) {
-        if (X < 0) {
+        if (X <= 0) {
             return true;
         }
         else {
@@ -99,9 +99,17 @@
     //-------------------------------------------------------------------------------------------------------------------------------
 
     function validar_nombre(nombre) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if (nombre === "") {
             adderror("ing-egr-nombre");
             negativeattributes("error-ing-egr-nombre", "El nombre no debe estar vacío");
+            $("#ing-egr-nombre").focus();
+            $("#ing-egr-nombre").keyup(KeyNombre);
+            return false;
+        }
+        else if (nombre.match(RegularExpression)) {
+            adderror("ing-egr-nombre");
+            negativeattributes("error-ing-egr-nombre", "Ingrese nombre válido");
             $("#ing-egr-nombre").focus();
             $("#ing-egr-nombre").keyup(KeyNombre);
             return false;
@@ -255,7 +263,7 @@
         }
         else if (esnegativo(monto) === true) {
             adderror("ing-egr-monto");
-            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo");
+            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo y diferente de cero");
             $("#ing-egr-monto").focus();
             $("#ing-egr-monto").keyup(KeyMonto);
             return false;
@@ -269,8 +277,13 @@
     
     var KeyNombre = function () {
         var $valor = $("#ing-egr-nombre");
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         if ($valor.val() === "") {
             negativeattributes("error-ing-egr-nombre", "El nombre no debe estar vacío");
+            adderror("ing-egr-nombre");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-ing-egr-nombre", "Ingrese nombre válido");
             adderror("ing-egr-nombre");
         }
         else if ($valor.val().charAt(0) === ' ') {
@@ -377,7 +390,7 @@
             adderror("ing-egr-monto");
         }
         else if (esnegativo($valor.val()) === true) {
-            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo");
+            negativeattributes("error-ing-egr-monto", "El monto debe ser positivo y diferente de cero");
             adderror("ing-egr-monto");
         }
         else {

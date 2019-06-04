@@ -237,7 +237,7 @@
             $("#ActPlanCosto1").keyup(keyC);
             return false;
         }
-        else  if (id === "" || document.getElementById("ActPlanCosto1").value === "") {
+        else if (id === "" || document.getElementById("ActPlanCosto1").value === "") {
                 var valorSugerido = $("#precioSugerido").text().trim();
                 $("#ActPlanCosto1").val(valorSugerido.toString().trim());
                 document.getElementById("ActPlanCosto1").value = valorSugerido.trim();

@@ -55,16 +55,18 @@
                                 <label style="border: 1px solid #C00">
                                     <Font size="1" color="red">
                                         Precio Sugerido: S/.
-                                        @Html.DisplayFor(model => model.tipo_servicio_act.costo, new
-                                        {
-                                            htmlAttributes = new
+                                        <label id="precioSugerido">
+                                            @Html.DisplayFor(model => model.tipo_servicio_act.costo, new
                                             {
-                                                @id = "precioSugerido",
-                                                @class = "text-center",
-                                                @type = "label",
-                                                @color = "red"
-                                            }
-                                        })
+                                                htmlAttributes = new
+                                                {
+                                                    //@id = "precioSugerido",
+                                                    @class = "text-center",
+                                                    @type = "label",
+                                                    @color = "red"
+                                                }
+                                            })
+                                        </label>
                                     </Font>
                                 </label>
                             </div>
