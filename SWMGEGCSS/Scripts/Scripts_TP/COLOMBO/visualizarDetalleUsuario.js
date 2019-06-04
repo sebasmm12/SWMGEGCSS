@@ -14,6 +14,7 @@
     };
     var usu_cod = 0;
     var act_desa_id = 0;
+    var cont = 0;
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -23,16 +24,22 @@
             $.ajax({
                 url: "/ActividadesDesarrollar/_ModalAsignarTrabajadorResponsable",
                 method: "POST",
+                async: false,
                 data: { usu_codigo: usu_cod }
             }).done(function (data) {
+                cont++;
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
                 $(modal).modal();
                 $(".btnRegistrarResponsable").click(envioajaxAgregar);
             });
-            return false;
         });
+        if (cont > 0) {
+            return true;
+        } else {
+            return false;
+        }
     };
     var envioajaxAgregar = function () {
         //mismo nombre del parametro de actualizacion del metodo
@@ -51,6 +58,8 @@
             var target = document.getElementById("tableDetUsu");
             $(target).replaceWith($newhtml);
             $("#AsignarTrabajadorActividad").modal("hide");
+            $(".btnModalTrabajador").each(envioajaxModal);
+            $(".btnRegistrarResponsable").click(envioajaxAgregar);
         });
     };
 

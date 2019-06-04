@@ -123,6 +123,12 @@ namespace SWMGEGCSS.Controllers
             AuditoriaExpediente.auditoria_expediente.aud_exp_comentario = comentario;
             AuditoriaExpediente.auditoria_expediente.tipo_servicio_id = Expedientes.Expedientes.tipo_servicio_id;
             var operationResultAuditorio = new ExpedienteDataAccess().sp_Insertar_Auditoria_Expediente(AuditoriaExpediente.auditoria_expediente);
+            var actividades_desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==id);
+            foreach (var item in actividades_desarrollar)
+            {
+                var operationResult2 = new ExpedienteDataAccess().sp_Eliminar_Actividades_Desarrollar_Expediente(item.act_desa_id);
+            }
+            var operationresult3 = new PlanDataAccess().sp_Cancelar_Plan(Expedientes.Expedientes.plan_id, comentario);
             var operationResult = new ExpedienteDataAccess().sp_Eliminar_Proyecto(id,comentario);
             return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
@@ -297,6 +303,34 @@ namespace SWMGEGCSS.Controllers
                 }
             }
             return Json(cont, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Calcular_Costo_Actividades(string plan_nombre)
+        {
+            double costo = 0;
+            var planesmodel = new ExpedienteDataAccess().sp_Obtener_Planes();
+            var plan_expediente = planesmodel.Find(modelo => (modelo.plan_nombre == plan_nombre));
+            costo = new ExpedienteDataAccess().sp_Calcular_Suma_Cantidad_Actividades_Planeadas(plan_expediente.plan_id);
+            return Json(costo, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult _ConsultarProyecto()
+        {
+            var model = new ExpedienteViewModel();
+            model.ActividadModel = new ActividadViewModel();
+            model.ActividadModel.list_Actividades = new List<T_actividades>();
+            model.ActividadModel.list_Actividades_Desarrollar = new List<T_actividades_desarrollar>();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ConsultarProyecto(int id)
+        {
+            var model = new ExpedienteViewModel();
+            model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => (r.exp_id == id));
+            model.Expedientes = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(r => (r.exp_id == id));
+            model.ActividadModel = new ActividadViewModel();
+            model.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente_Completa();
+            model.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente_Completa().FindAll(r=>(r.exp_id==id));
+            return PartialView(model);
         }
 
 

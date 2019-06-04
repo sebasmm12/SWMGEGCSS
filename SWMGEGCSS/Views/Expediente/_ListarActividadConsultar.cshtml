@@ -1,0 +1,128 @@
+﻿@model SWMGEGCSS.Models.ExpedienteViewModel
+@{
+    Layout = null;
+    var count = 0;
+    var Actividades_Desarrollar = Model.ActividadModel.list_Actividades_Desarrollar;
+}
+<table class="table table-bordered">
+    <thead class="bg-success">
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">Nombre de la Actividad</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Estado de la Actividad</th>
+            <th scope="col">Fecha Inicio de la Actividad</th>
+            <th scope="col">Fecha Fin de la Actividad</th>
+            <th scope="col">Fecha Finalizada de la  Actividad</th>
+            <th scope="col">Nombre del Archivo</th>
+            <th scope="col">Fecha Revisión</th>
+            <th scope="col">Nombre del Revisor</th>
+            <th scope="col">Nombre del Asignado</th>
+            <th scope="col">Acciones de la Actividad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Actividades_Desarrollar)
+        {
+            count = count + 1;
+        <tr class="text-center">
+            <th scope="row">@count</th>
+            <td>@item.act_desa_nombre</td>
+            <td>@item.act_desa_descripcion</td>
+            <td>@item.est_act_nombre</td>
+            @if (item.act_desa_fecha_inicio.ToShortDateString().Equals("01/01/0001"))
+            {
+                <td>No se establece la fecha de inicio</td>
+            }
+            else
+            {
+                <td>@item.act_desa_fecha_inicio.ToShortDateString()</td>
+            }
+            @if (item.act_desa_fecha_fin.ToShortDateString().Equals("01/01/0001"))
+            {
+                <td>No se establece la fecha fin</td>
+            }
+            else
+            {
+                <td>@item.act_desa_fecha_fin.ToShortDateString()</td>
+            }
+            @if (item.act_desa_fecha_finalizada.ToShortDateString().Equals("01/01/0001"))
+            {
+                <td>No se estable la fecha del archivo finalizado</td>
+            }
+            else
+            {
+                <td>@item.act_desa_fecha_finalizada</td>
+            }
+            @if (item.act_desa_archivo_nombre == null)
+            {
+                <td>No se inserta el archivo del nombre</td>
+            }
+            else
+            {
+                <td>@item.act_desa_archivo_nombre</td>
+            }
+            @if (item.act_desa_fecha_revision.ToShortDateString().Equals("01/01/0001"))
+            {
+                <td>No hay una fecha de revision</td>
+            }
+            else
+            {
+                <td>@item.act_desa_fecha_revision</td>
+            }
+            @if (item.usu_revisor_nombre == null || item.usu_revisor_nombre == "")
+            {
+                <td>No hay un usuario revisor que lo revisa</td>
+            }
+            else
+            {
+                <td>@item.usu_revisor_nombre</td>
+            }
+            @if (item.usu_asignado_nombre == null || item.usu_asignado_nombre == "")
+            {
+                <td>No hay un usuario asignado que lo revisa</td>
+            }
+            else
+            {
+                <td>@item.usu_asignado_nombre</td>
+            }
+
+
+            @if (item.est_act_id == 1)
+            {
+                <td>
+                    <button class="btn btn-light border border-success">
+                        <i class="fa fa-check-circle" style="color:green;"></i>
+                        Actividad Creada
+                    </button>
+                </td>
+            }
+            else
+            {
+                if (item.est_act_id == 6)
+                {
+                    <td>
+                        <button class="btn btn-light border border-success">
+                            <i class="fa fa-check-circle" style="color:green;"></i>
+                            Actividad Terminada
+                        </button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button class="btn btn-light border border-success">
+                            <i class="fa fa-check-circle" style="color:green;"></i>
+                            Actividad en Proceso
+                        </button>
+                    </td>
+                }
+
+            }
+
+
+        </tr>
+
+        }
+    </tbody>
+</table>

@@ -18,19 +18,17 @@
 
 <div id="tableDetUsu">
     <div class="row mt-12">
-       
+            <div style="width:100px"></div>
             <div class="col-12 col-sm-12 col-md-12">
                 <div class="table-responsive">
 
                     @{
                         if (Model.usuarioEncargado != null)
                         {
-                            <div style="width: 800px">
+                            <div style="width: 1125px">
                                 <div style="border: 6px solid #C00">
-                                    <div class="col-md-10">
-                                        <label class="font-weight-bolder text-center">
-                                            Trabajador Encargado de la Actividad
-                                        </label>
+                                    <div class="col-md-10">                             
+                                            <h3 class = "text-center">Trabajador Encargado de la Actividad</h3>                                     
                                         <div class="row mt-2 pl-2">
                                             <div style="width:30px"></div>
                                             <div class="col-10 col-sm-10 col-md-10">
@@ -98,7 +96,8 @@
                             </div>
                         }
                     }
-
+                    <br><br>
+                    <h2 class = "text-center"> Lista de Trabajadores</h2>
                     <table class="table table-bordered">
                         <thead class="bg-success">
                             <tr class="text-center">

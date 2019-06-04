@@ -88,12 +88,12 @@
                 <div class="col-12 col-sm-5 col-md-5">
                     <div>
                         <label class="font-weight-bolder label-registrar">
-                            Ganancia del Proyecto
+                            Ganancia del Proyecto (S/.)
                         </label>
                     </div>
                     @Html.EditorFor(model => model.Expediente.exp_ganancia, new
                     {
-                        htmlAttributes = new { @class = "text-center form-control" }
+                        htmlAttributes = new { @class = "text-center form-control bg-white",@readonly="readonly" }
                     })
                     <span id="validateGanancia"></span>
                 </div>
