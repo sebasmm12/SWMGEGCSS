@@ -450,7 +450,6 @@ namespace SWMGEGCSS.Controllers
             var operationResult = new ActividadesDataAccess().sp_eliminar_actividades_planeadas(act_plan_id);*/
             return Json(actPlanTemp.plan_id, JsonRequestBehavior.AllowGet);
         }
-
         [HttpGet]
         public ActionResult _ModalAgregarActividadesPlanificadas()
         {
