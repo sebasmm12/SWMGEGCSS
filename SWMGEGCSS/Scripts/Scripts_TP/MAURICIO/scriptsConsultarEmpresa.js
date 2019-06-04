@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    var id_proyecto = 0;
 
     var getPage = function () {
         var select = document.getElementById("estado");
@@ -12,7 +12,7 @@
         }).done(function (data) {
             var target = $a.parents("div.pagedList").attr("data-exp-target");
             $(target).replaceWith(data);
-            
+            $(".btnModal").each(envioajaxModal); 
         });
         return false;
     };
@@ -45,16 +45,17 @@
     };
 
     var BuscarProyecto = function () {
-        var select = document.getElementById("estado");
-        var searchTerm = document.getElementById("searchTerm");
+        var $searchTerm = $('#searchTerm').val();
+        var $select = $('#estado').val();
         $.ajax({
             url: "/Gerente/Gestionar_Empresas",
-            data: { searchTerm: searchTerm.value, estado: select.value },
+            data: { searchTerm: $searchTerm, estado: $select },
             type: "GET"
         }).done(function (data) {
             var $newhtml = $(data);
             var target = $("div.pagedList").attr("data-exp-target");
             $(target).replaceWith($newhtml);
+            $(".btnModal").each(envioajaxModal); 
         });
         return true;
     }
