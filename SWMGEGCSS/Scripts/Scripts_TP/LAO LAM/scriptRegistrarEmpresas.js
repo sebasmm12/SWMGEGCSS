@@ -930,7 +930,7 @@
             negativeattributes("error-emp-email", 'Debe ingresar un email');
             adderror("emp-email");
         }
-        else if (regular.test($valor.val)==false) {
+        else if (regular.test($valor.val())==false) {
             negativeattributes("error-emp-email", 'Ingrese valor válido');
             adderror("emp-email");
         }
