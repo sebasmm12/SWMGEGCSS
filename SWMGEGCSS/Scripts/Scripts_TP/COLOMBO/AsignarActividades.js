@@ -178,6 +178,8 @@
         fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
         fechaIngresadaInicio.setHours(0, 0, 0, 0);
         if (validar_fecha_act_desa_fin(fechaIngresadaFin) === false || validar_fecha_act_desa_inicio(fechaIngresadaInicio) === false) {         
+            $("#actDesaFechaFin").change(keyfechaCo);
+            $("#actDesaFechaInicio").change(keyfechaCo);
             return false;
         }
 

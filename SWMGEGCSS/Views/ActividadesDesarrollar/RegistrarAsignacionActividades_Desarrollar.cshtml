@@ -177,44 +177,51 @@
 
         <br><br>
         <div class="row mt-2 pl-2">
-            <div style="width:90px"></div>
+            <div style="width:150px"></div>
             <div class="col-12 col-sm-12 col-md-12">
                 <div class="container-fluid">
                     <div class="row mt-12">
+
+                        <div style="width:150px"></div>
                         <div class="col-12 col-sm-4 col-md-4">
                         </div>
-                        <h2>Lista de Trabajadores</h2>
                         <div class="col-12 col-sm-4 col-md-4">
+
                         </div>
-                        <div id="error-usuario-asignado" class="errordiv"></div>
+
                     </div>
                     <div class="row mt-12">
-                        <div class="col-12 col-sm-12 col-md-12">
-                            <div style="width:100px"></div>
-                        </div>
+
+                        <div style="width:100px"></div>
+
                         <div class="col-10 col-sm-10 col-md-10">
+                            <div id="error-usuario-asignado" class="errordiv"></div>
                             @Html.Partial("_ListaDetalleUsuario", Model)
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-12 pl-2">
-            <div class="col-12 col-sm-3 col-md-3">
+        <div class="row mt-10 pl-2">
+            <div style="width:60px"></div>
+            <div class="col-2 col-sm-2 col-md-2">
+
                 <button type="button" class="btn btn-success btnModalActividadesDesarrollar1" data-url="@Url.Action("RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar")" data-id-target="#registrarAuditoriaActDesa">
                     <i class="fa fa-check-circle"></i>
                     Registrar Asignacion
                 </button>
             </div>
-            <div class="col-12 col-sm-3 col-md-3">
-                <a href="@Url.Action("Asignacion_Tareas","Administrador",null)" class="btn btn-secondary">
-                    <i class="fa fa-backward">
-                        Regresar
-                    </i>
-                </a>
+            <div class="col-2 col-sm-2 col-md-2">
+                <div class="centrado">
+                    <a href="@Url.Action("Asignacion_Tareas","Administrador",null)" class="btn btn-secondary centrado">
+                        <i class="fa fa-backward">
+                            Regresar
+                        </i>
+                    </a>
+                </div>
             </div>
         </div>
-
+        <br><br>
     </form>
     @Html.Action("_ModalAsignarTrabajadorResponsable", "ActividadesDesarrollar")
     @Html.Action("_ModalRegistrarAuditoriaActividadDesarrollar", "ActividadesDesarrollar")
