@@ -72,7 +72,7 @@ namespace SWMGEGCSS.Controllers
             }
             foreach (var item in model.PList_Expedientes)
             {
-                item.cantidad_actividades_desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==item.exp_id).Count;
+                item.cantidad_actividades_desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==item.exp_id&&r.est_act_id!=3).Count;
                 item.cantidad_actividades_terminar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r => r.exp_id == item.exp_id&&r.est_act_id==6).Count;
             }
             if (Request.IsAjaxRequest())

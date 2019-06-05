@@ -47,7 +47,7 @@
                 dataType: "json"
             }).done(function (data) {
                 Swal.fire({
-                    type: 'sucess',
+                    type: 'success',
                     title: 'Se registró la empresa exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
