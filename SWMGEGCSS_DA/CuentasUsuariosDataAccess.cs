@@ -70,5 +70,49 @@ namespace SWMGEGCSS_DA
             }
         }
 
+        public OperationResult sp_Insertar_Cuenta_Usuario(T_usuario_cuentas_aux usuario, int rol_codigo)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Cuenta_Usuario_Detalle"))
+                {
+                    Database.AddInParameter(command, "@usu_usuario", DbType.String, usuario.usu_usuario);
+                    Database.AddInParameter(command, "@usu_contraseña", DbType.String, usuario.usu_contraseña);
+                    Database.AddInParameter(command, "@usu_estado", DbType.Int32, 1);
+                    Database.AddInParameter(command, "@usu_trabajador", DbType.Int32, 1);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e + "");
+                return new OperationResult();
+            }
+        }
+
+        public OperationResult sp_Insertar_Cuenta_Usuario_Rol(T_usuario_cuentas_aux usuario, int rol_codigo)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Cuenta_Usuario_Rol"))
+                {
+                    Database.AddInParameter(command, "@usu_codigo", DbType.String, usuario.usu_usuario);
+                    Database.AddInParameter(command, "@rol_codigo", DbType.String, usuario.usu_usuario);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e + "");
+                return new OperationResult();
+            }
+        }
+
     }
 }
