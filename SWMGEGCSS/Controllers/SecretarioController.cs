@@ -69,6 +69,7 @@ namespace SWMGEGCSS.Controllers
         {
             var model = new GestionarCitasViewModel();
             model.citas = citas;
+            
             var operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas,cita_empresa, usu_citado, cita_hora);
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }

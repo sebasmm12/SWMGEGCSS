@@ -25,13 +25,26 @@
                         @foreach (var item in list_planes)
                         {
                             count = count + 1;
-                            <tr class="text-center">
-                                <th scope="row">@count</th>
-                                <td>@item.plan_nombre</td>
-                                <td>@item.plan_fecha.ToShortDateString()</td>
-                                <td>@item.plan_estado_nobre</td>
-                                <td>@item.plan_costo</td>
-                                <td>@item.plan_tiempo</td>
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            <td>@item.plan_nombre</td>
+                            <td>@item.plan_fecha.ToShortDateString()</td>
+                            <td>@item.plan_estado_nobre</td>
+                            <td>@item.plan_costo</td>
+                            <td>@item.plan_tiempo</td>
+                            @if (item.plan_estado_nobre == "Cancelado")
+                            {    
+                        <td>
+                            <label style="border: 1px solid #C00" class="text-center form-control">
+                                <Font size="3" color="red">
+                                   Plan Cancelado
+                                </Font>
+                            </label>
+                        </td>
+                 
+                            }
+                            else
+                            {
                                 <td>
                                     <button type="button" class="btn btn-warning">
                                         <i class="fa fa-edit" style="color:white !important"></i>
@@ -43,7 +56,8 @@
                                         Eliminar
                                     </button>
                                 </td>
-                            </tr>
+                            }
+                        </tr>
                         }
                     </tbody>
                 </table>

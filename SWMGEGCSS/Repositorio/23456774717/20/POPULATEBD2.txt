@@ -1,0 +1,92 @@
+POPULATE SQL
+TABLA USUARIO
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) values
+('rosita287','201611285',SEQ_USUARIO.nextval)
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) values
+('facil1234','201611286',SEQ_USUARIO.nextval)
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) values
+('lorena345','201611287',SEQ_USUARIO.nextval)
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) values
+('fede3012','201610391',SEQ_USUARIO.nextval)
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) values
+('bryant11','201611299',SEQ_USUARIO.nextval)
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('201611295', 'maincho', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201611294', 'menecoca', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201611940', 'potis', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201611936', 'hansperu', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201511288', 'milixd', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201610398', 'crazybingu',  SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201611289', 'btsfio',  SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201611296', 'wuinton',  SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201611939', 'crash',  SEQ_USUARIO.nextval);
+INSERT INTO USUARIO (usu_contraseña,usu_usuario,usu_id) VALUES ('201610392', 'farfan', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('08847045', 'silvia1',SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('08059636', 'juana1', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('06147737', 'hugo3',SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('07191971', 'gipsy141', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('07879771', 'vega14', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('08386156', 'maz851', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('06755744', 'picon29', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('06103634', 'valverde212', SEQ_USUARIO.nextval);
+
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('000321322','albe03',SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('000432423','quique42',SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('000123423', 'rosal231',SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('07191971', 'arrunat567',SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('10542223', 'armas56', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('10611573', 'villanue62',SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('09800056', 'solis123', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('07879771', 'vega14', SEQ_USUARIO.nextval);
+INSERT INTO USUARIO  (usu_contraseña,usu_usuario,usu_id) VALUES ('10554888', 'linarez', SEQ_USUARIO.nextval);
+
+TABLA ROLES
+INSERT INTO ROL (rol_id,rol_nombre,rol_descripcion) VALUES (seq_rol.nextval, 'Alumno','Representa a los alumnos');
+INSERT INTO ROL (rol_id,rol_nombre,rol_descripcion)  VALUES (seq_rol.nextval, 'Profesor','Representa a los profesores');
+INSERT INTO ROL (rol_id,rol_nombre,rol_descripcion)  VALUES (seq_rol.nextval, 'Admin','Representa a los admin');
+TABLA ROLES_USUARIO
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,2);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,3);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,4);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,5);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,6);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,7);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,8);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,9);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,10);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,11);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,12);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,13);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,14);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,15);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (34,16);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,17);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,18);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,19);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,20);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,21);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,22);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,23);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,24);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,28);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,29);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,30);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,31);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,32);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (35,33);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (36,24);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (36,25);
+INSERT INTO USUARIO_ROL (rol_id,usu_id) VALUES (36,26);
+TABLA CONFERENCIA
+INSERT INTO CONFERENCIA (conferencia_id,conferencia_nombre,conferencia_peso,
+conferencia_fecha_inicio,conferencia_fecha_fin) VALUES
+(seq_conferencia.nextval,'Drones y el desarrollo de tecnología del Perú',2,TO_DATE('23/05/2019','DD/MM/YYYY'),
+TO_DATE('23/05/2019','DD/MM/YYYY'))
+INSERT INTO CONFERENCIA (conferencia_id,conferencia_nombre,conferencia_peso,
+conferencia_fecha_inicio,conferencia_fecha_fin) VALUES
+(seq_conferencia.nextval,'Gobierno Digital',2,TO_DATE('20/05/2019','DD/MM/YYYY'),
+TO_DATE('20/05/2019','DD/MM/YYYY'))
+TABLA ALUMNO_CONFERENCIA
+INSERT INTO ALUMNO_CONFERENCIA (usu_id,conferencia_id) VALUES
+(3,1);
+INSERT INTO ALUMNO_CONFERENCIA (usu_id,conferencia_id) VALUES
+(3,2);
