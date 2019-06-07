@@ -33,7 +33,7 @@
                 dataType: "json"
             }).done(function (data) {
                 Swal.fire({
-                    type: 'sucess',
+                    type: 'success',
                     title: 'Se registró la empresa exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
@@ -126,6 +126,16 @@
     function validar_representante(representante) {
 
         var vnombre = 0;
+        var regular = '([0-9]{1,3}\\d{7}$)|(9[0-9]{8}$)';
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        if (representante.match(RegularExpression)) {
+            adderror("cita_representante");
+            negativeattributes("error-cita-representante", 'Debe ingresar correctamente representante');
+            $("#cita_representante").focus();
+            //      alert("representante vacio");
+            $("#cita_representante").keyup(keyRepresentante);
+            return false;
+        }
         if (representante === "") {
             adderror("cita_representante");
             negativeattributes("error-cita-representante", 'Debe ingresar un representante');
