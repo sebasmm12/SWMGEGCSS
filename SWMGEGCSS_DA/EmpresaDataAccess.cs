@@ -158,6 +158,28 @@ namespace SWMGEGCSS_DA
             }
         }
 
+        public OperationResult sp_Activar_Empresa(T_empresa Empresa)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Activar_Empresa"))
+                {
+
+                    Database.AddInParameter(command, "@emp_ruc", DbType.String, Empresa.emp_ruc);
+
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
+
     }
 
 

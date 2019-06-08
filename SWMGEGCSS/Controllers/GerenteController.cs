@@ -70,6 +70,11 @@ namespace SWMGEGCSS.Controllers
                 model.tipo_estado = "Todos";
                 Session["est_nombre"] = model.tipo_estado;
             }
+            foreach (var item in model.PList_Expedientes)
+            {
+                item.cantidad_actividades_desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r=>r.exp_id==item.exp_id&&r.est_act_id!=3).Count;
+                item.cantidad_actividades_terminar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente().FindAll(r => r.exp_id == item.exp_id&&r.est_act_id==6).Count;
+            }
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListaProyecto", model);
@@ -240,15 +245,15 @@ namespace SWMGEGCSS.Controllers
             {
                 model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term);
             }
-             else if(estado.Equals("1"))
+            else if (estado.Equals("1"))
             {
-                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == estado.Equals(1)));
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == true));
             }
             else
             {
-                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == estado.Equals(0)));
+                model.listempresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(term).FindAll(r => (r.emp_estado == false));
             }
-            
+
 
             var nameExpedientes = model.listempresas.Select(r => new
             {

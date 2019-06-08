@@ -18,7 +18,7 @@
                 $(modal).modal();
                 $(".btnRegistrarResponsable").click(envioajaxAgregar);
             });
-            return false;
+            
         });
     };
     var envioajaxAgregar = function () {

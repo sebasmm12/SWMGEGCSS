@@ -38,7 +38,7 @@ namespace SWMGEGCSS.Controllers
             Session["actividadesDesarrollar"] = null;
             GestionarAsignacionActividadesDesarrollar model = new GestionarAsignacionActividadesDesarrollar();
             //model.listActividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux();
-           
+            
             model.listPagedActividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux().ToPagedList(page, 4);
             if (Request.IsAjaxRequest())
             {

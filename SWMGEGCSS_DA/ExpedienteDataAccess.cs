@@ -304,6 +304,30 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+        public double sp_Calcular_Suma_Cantidad_Actividades_Planeadas(int plan_id)
+        {
+            try
+            {
+                double costo = 0;
+                using (DbCommand command=Database.GetStoredProcCommand("sp_Calcular_Suma_Cantidad_Actividades_Planeadas"))
+                {
+                    Database.AddInParameter(command, "@plan_id", DbType.Double, plan_id);
+                    using (IDataReader reader=Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            costo = DataUtil.DbValueToDefault<double>(reader["SUMA"]);
+                        }
+                    }
+                }
+                return costo;
+            }
+            catch (Exception)
+            {
+
+                return new double();
+            }
+        }
 
     }
 }

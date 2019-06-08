@@ -18,7 +18,7 @@
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
-                $target.replaceWith($newhtml);
+                $target.replaceWith($newhtml); 
                 $(modal).modal();
                 $(".btnRegistrarPlanAct").click(envioajaxRegistrar);
             });

@@ -16,10 +16,10 @@
         var $fecha_fin = $("#Expediente_exp_fin");
         var vnombre = validar_nombre($nombre_proyecto.val());
         var vplan = validar_plan($plan.val());
-        var vganancia = validar_ganancia($ganancia.val());
+        //var vganancia = validar_ganancia($ganancia.val());
         var vfechai = validar_finicio($fecha_inicio.val());
         var vfechaf = validar_ffin($fecha_fin.val());
-        if (vnombre === false || vplan === false || vganancia === false || vfechai === false || vfechaf === false) {
+        if (vnombre === false || vplan === false || /*vganancia === false*/ vfechai === false || vfechaf === false) {
           
             return false;
         }
@@ -209,7 +209,7 @@
     }
 
     function validar_nombre(id) {
-        var RegularExpression = /^[^\W\d]*[A-Za-z ]*[^ \d\W]{1}$/;
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var vnombre = 0;
         if (id === "") {
             adderror("Expediente_exp_nombre");
@@ -217,7 +217,7 @@
             $("#Expediente_exp_nombre").keyup(key);
             return false;
         } else {
-            if ($("#Expediente_exp_nombre").val().match(RegularExpression)) {
+            if (!$("#Expediente_exp_nombre").val().match(RegularExpression)) {
                 attributes("validatenameProyecto");
                 addgood("Expediente_exp_nombre");
                 $.ajax({
@@ -254,13 +254,13 @@
         return true;
     }
     var key = function () {
-        var RegularExpression = /^[^\W\d]*[A-Za-z ]*[^ \d\W]{1}$/;
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
         var $valor = $("#Expediente_exp_nombre");
         if ($valor.val() === "") {
             negativeattributes("validatenameProyecto", 'Debe ingresar un nombre');
             adderror("Expediente_exp_nombre");
         } else {
-            if ($valor.val().match(RegularExpression)) {
+            if (!$valor.val().match(RegularExpression)) {
                 attributes("validatenameProyecto");
                 addgood("Expediente_exp_nombre");
                 $.ajax({
@@ -305,11 +305,12 @@
             }).done(function (data) {
                 if (data === 0) {
                     vplan = 0;
-                    negativeattributes("validatePlanProyecto", 'El pla no existe');
+                    negativeattributes("validatePlanProyecto", 'El plan no existe');
                     adderror("Expediente_plan_nombre");
                 } else {
                     attributes("validatePlanProyecto");
                     addgood("Expediente_plan_nombre");
+                    enviarcosto();
                 }
             });
         }
@@ -338,6 +339,22 @@
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo+"</label > ");
     }
 
-    $("#btnRegistrar").click(validacion);
+    var enviarcosto = function () {
+        $.ajax({
+            url: "/Expediente/Calcular_Costo_Actividades",
+            type: "GET",
+            data: {
+                plan_nombre: $("#Expediente_plan_nombre").val()
+            }
+        }).done(function (data) {
+            $("#Expediente_exp_ganancia").val(data);
 
+        });
+       
+    };
+
+    $("#btnRegistrar").click(validacion);
+    $("#Expediente_plan_nombre").keyup(function () {
+        enviarcosto();
+    });
 });

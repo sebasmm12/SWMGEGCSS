@@ -23,6 +23,7 @@
             $.ajax({
                 url: "/ActividadesDesarrollar/_ModalAsignarTrabajadorResponsable",
                 method: "POST",
+                async: false,
                 data: { usu_codigo: usu_cod }
             }).done(function (data) {
                 var $target = $($button.attr("data-id-target"));
@@ -31,7 +32,6 @@
                 $(modal).modal();
                 $(".btnRegistrarResponsable").click(envioajaxAgregar);
             });
-            return false;
         });
     };
     var envioajaxAgregar = function () {
@@ -51,6 +51,8 @@
             var target = document.getElementById("tableDetUsu");
             $(target).replaceWith($newhtml);
             $("#AsignarTrabajadorActividad").modal("hide");
+            $(".btnModalTrabajador").each(envioajaxModal);
+            $(".btnRegistrarResponsable").click(envioajaxAgregar);
         });
     };
 

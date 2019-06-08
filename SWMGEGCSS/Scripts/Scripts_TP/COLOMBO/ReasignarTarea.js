@@ -1,6 +1,7 @@
 ﻿$(function () {
 
     var validacionReasignarActDesa = function () {
+        var count = 0;
         var $actDesaFechaInicio = $("#actDesaFechaInicio2");
         var $expFechaInicio = $("#expFechaInicio2");
         var $expFechaFin = $("#expFechaFin2");
@@ -10,13 +11,43 @@
         var vActDesaFechaInicio = validar_fecha_act_desa_inicio($actDesaFechaInicio.val());
         var vActDesaFechaFin = validar_fecha_act_desa_fin($actDesaFechaFin.val());
         var vUsuarioSeleccionado = validar_usuario_seleccionado();
+
+        var vActDesaFechasCoherencia = validar_coherencia_fechas();
         //var vActDesaFechaInicio = validar_fecha_inicio($actDesaFechaFin.val());
-        if (vActDesaFechaInicio === false || vActDesaFechaFin === false /*|| vUsuarioSeleccionado === false*/) {
+        if (vActDesaFechaInicio === false || vActDesaFechaFin === false || vActDesaFechasCoherencia === false /*|| vUsuarioSeleccionado === false*/) {
             return false;
         } else {
-            $(".btnModalActividadesDesarrollar2").click(envioajaxModal);
+            var $button = $(this);
+            var modal = $button.attr("data-id-target");
+            var act_desa_aux = {
+                act_desa_fecha_inicio: $("#actDesaFechaInicio2").val(),
+                act_desa_fecha_fin: $("#actDesaFechaFin2").val()
+            };
+            $.ajax({
+                url: $(this).attr("data-url"),
+                method: "POST",
+                async:false,
+                data: {
+                    actividadesDesarrollarAux: act_desa_aux
+                }
+            }).
+                done(function (data) {
+                    count++;
+                    var target = $button.attr("data-id-target");
+                    var $newhtml = $(data);
+                    $(target).replaceWith($newhtml);
+                    $(modal).modal();
+                    $(modal).on('shown.bs.modal', function () {
+                        $(document).off('focusin.modal');
+                    });
+                    $(".btnActualizarActDesa").each(Alerta);
+                });
         }
-        return false;
+        if (count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     };
     var Alerta = function () {
         $(this).click(function () {
@@ -124,6 +155,64 @@
         attributes("error-usuario-asignado2");
         return true;
     }
+
+    //Validacion Fecha logica
+    function validar_coherencia_fechas() {
+        var fechaIngresadaFin = new Date($("#actDesaFechaFin2").val());
+        fechaIngresadaFin.setDate(fechaIngresadaFin.getDate() + 1);
+        fechaIngresadaFin.setHours(0, 0, 0, 0);
+
+        var fechaIngresadaInicio = new Date($("#actDesaFechaInicio2").val());
+        fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
+        fechaIngresadaInicio.setHours(0, 0, 0, 0);
+        if (validar_fecha_act_desa_fin(fechaIngresadaFin) === false || validar_fecha_act_desa_inicio(fechaIngresadaInicio) === false) {
+            $("#actDesaFechaFin2").change(keyfechaCo);
+            $("#actDesaFechaInicio2").change(keyfechaCo);
+            return false;
+        }
+
+        else if (fechaIngresadaFin < fechaIngresadaInicio) {
+            adderror("actDesaFechaFin2");
+            negativeattributes("error-act-desa-fecha-fin2", 'La fecha de finalizacion debe ser mayor a la de inicio');
+            $("#actDesaFechaFin2").focus();
+            $("#actDesaFechaFin2").change(keyfechaCo);
+            return false;
+        }
+        else {
+            attributes("error-act-desa-fecha-fin2");
+            addgood("actDesaFechaFin2");
+            attributes("error-act-desa-fecha-inicio2");
+            addgood("actDesaFechaInicio2");
+            return true;
+        }
+    }
+
+    var keyfechaCo = function () {
+        var fechaIngresadaFin = new Date($("#actDesaFechaFin2").val());
+        fechaIngresadaFin.setDate(fechaIngresadaFin.getDate() + 1);
+        fechaIngresadaFin.setHours(0, 0, 0, 0);
+
+        var fechaIngresadaInicio = new Date($("#actDesaFechaInicio2").val());
+        fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
+        fechaIngresadaInicio.setHours(0, 0, 0, 0);
+
+        if (validar_fecha_act_desa_fin(fechaIngresadaFin) === false || validar_fecha_act_desa_inicio(fechaIngresadaInicio) === false) {
+            $("#actDesaFechaFin2").focus();
+            $("#actDesaFechaInicio2").focus();
+        }
+        else if (fechaIngresadaFin < fechaIngresadaInicio) {
+            adderror("actDesaFechaFin2");
+            negativeattributes("error-act-desa-fecha-fin2", 'La fecha de finalizacion debe ser mayor a la de inicio');
+            $("#actDesaFechaFin2").focus();
+        }
+        else {
+            attributes("error-act-desa-fecha-fin2");
+            addgood("actDesaFechaFin2");
+            attributes("error-act-desa-fecha-inicio2");
+            addgood("actDesaFechaInicio2");
+        }
+    };
+
 
     function validar_fecha_act_desa_fin(id) {
         var fechaIngresada = new Date($("#actDesaFechaFin2").val());

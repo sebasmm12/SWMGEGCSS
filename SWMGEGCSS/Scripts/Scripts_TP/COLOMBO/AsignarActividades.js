@@ -1,10 +1,10 @@
 ﻿$(function () {
 
     var validacionAsignarActDesa = function () {
+        var cont = 0;
         var $actDesaFechaInicio = $("#actDesaFechaInicio");
         var $expFechaInicio = $("#expFechaInicio");
         var $expFechaFin = $("#expFechaFin");
-
         var $actDesaFechaFin = $("#actDesaFechaFin");
 
 
@@ -18,9 +18,37 @@
         if (vActDesaFechaInicio === false || vActDesaFechaFin === false || vUsuarioSeleccionado === false || vActDesaFechasCoherencia === false) {
             return false;
         } else {
-            $(".btnModalActividadesDesarrollar1").click(envioajaxModal);
+            var $button = $(this);
+            var modal = $button.attr("data-id-target");
+            var act_desa_aux = {
+                act_desa_fecha_inicio: $("#actDesaFechaInicio").val(),
+                act_desa_fecha_fin: $("#actDesaFechaFin").val()
+            };
+            $.ajax({
+                url: $(this).attr("data-url"),
+                method: "POST",
+                async:false,
+                data: {
+                    actividadesDesarrollarAux: act_desa_aux
+                }
+            }).
+                done(function (data) {
+                    cont++;
+                    var target = $button.attr("data-id-target");
+                    var $newhtml = $(data);
+                    $(target).replaceWith($newhtml);
+                    $(modal).modal();
+                    $(modal).on('shown.bs.modal', function () {
+                        $(document).off('focusin.modal');
+                    });
+                    $(".btnRegistrarActDesa").each(Alerta);
+                });
         }
-        return false;
+        if (cont > 0) {
+            return true;
+        } else {
+            return false;
+        }
     };
 
     var envioajaxModal = function () {
@@ -150,6 +178,8 @@
         fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
         fechaIngresadaInicio.setHours(0, 0, 0, 0);
         if (validar_fecha_act_desa_fin(fechaIngresadaFin) === false || validar_fecha_act_desa_inicio(fechaIngresadaInicio) === false) {         
+            $("#actDesaFechaFin").change(keyfechaCo);
+            $("#actDesaFechaInicio").change(keyfechaCo);
             return false;
         }
 
