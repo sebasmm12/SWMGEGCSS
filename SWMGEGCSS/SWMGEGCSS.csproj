@@ -126,6 +126,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadesDesarrollarController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\Auditoria_ProyectoController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
@@ -430,6 +431,7 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsModificarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaProyecto.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
@@ -623,6 +625,8 @@
     <Content Include="Views\Cuentas\Registrar_Cuenta.cshtml" />
     <Content Include="Views\Gerente\_ListaCuentaUsuario.cshtml" />
     <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />

@@ -20,6 +20,7 @@
                                 <th scope="col">Estado del Proyecto</th>
                                 <th scope="col">Costo del Proyecto</th>
                                 <th scope="col">Acciones del Proyecto</th>
+                                <th scope="col">Auditoria del Proyecto</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,6 +64,12 @@
                                         }
 
 
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info">
+                                            <i class="fab fa-searchengin" style="color:white !important"></i>
+                                            @Html.ActionLink("Ver Auditorias","Visualizar_Auditoria", "Auditoria_Proyecto", new { exp_id = item.exp_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                        </button>
                                     </td>
                                 </tr>
 
