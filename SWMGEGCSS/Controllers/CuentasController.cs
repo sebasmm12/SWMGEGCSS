@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
-using PagedList;
-using SWMGEGCSS.Models;
+using System.IO;
+using System.Web;
+using System.Web.Mvc;
 
 namespace SWMGEGCSS.Controllers
 {
@@ -26,13 +23,80 @@ namespace SWMGEGCSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar_Cuenta(T_usuario_cuentas_aux cuentas, string det_usu_tip_doc, string det_usu_sexo, string tipo_det_usu_tipo)
+        public ActionResult Registrar_Cuenta(T_usuario_cuentas_aux cuentas, string det_usu_tip_doc, string det_usu_sexo, string tipo_det_usu_tipo, int rol_codigo, string usu_contraseña, HttpPostedFileBase imagen)
         {
             var model = new GestionarCuentasViewModel();
             model.cuentas = cuentas;
             var operationResult = new OperationResult();
-            operationResult = new CuentasUsuariosDataAccess().sp_Insertar_Cuenta_Usuario_Detalle(model.cuentas, det_usu_tip_doc, det_usu_sexo, tipo_det_usu_tipo);
+            var operationResult1 = new OperationResult();
+            var operationResult2 = new OperationResult();
+            var modelCuentas = new UsuarioViewModel();
+            operationResult = new CuentasUsuariosDataAccess().sp_Insertar_Cuenta_Usuario(model.cuentas, rol_codigo, usu_contraseña);
+            modelCuentas.Usuario = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Todos_Usuarios().Find(r => r.usu_usuario == model.cuentas.usu_usuario);
+            operationResult1 = new CuentasUsuariosDataAccess().sp_Insertar_Cuenta_Usuario_Detalle(model.cuentas, det_usu_tip_doc, det_usu_sexo, tipo_det_usu_tipo, modelCuentas.Usuario);
+            operationResult2 = new CuentasUsuariosDataAccess().sp_Insertar_Cuenta_Usuario_Rol(model.cuentas, rol_codigo, modelCuentas.Usuario);
+            ///////////Insertar imagen
+            if(imagen != null && imagen.ContentLength > 0)
+            {
+                byte[] imagenData = null;
+                using (var binaryImagen = new BinaryReader(imagen.InputStream))
+                {
+                    imagenData = binaryImagen.ReadBytes(imagen.ContentLength);
+                }
+                Imagen imagenes = new Imagen();
+                imagenes.Imagenes = imagenData;
+                model.cuentas.det_usu_imagem = imagenData;
+                var operationReuslt3 = new OperationResult();
+                operationReuslt3 = new CuentasUsuariosDataAccess().sp_Insertar_Imagen_Usuario(model.cuentas,modelCuentas.Usuario);
+            }
             return RedirectToAction("Gestionar_Cuenta", "Gerente");
+        }
+
+        [HttpGet]
+        public ActionResult Actualizar_Datos(int usu_codigo)
+        {
+            var model = new GestionarCuentasViewModel();
+            model.cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().Find(r => r.usu_codigo == usu_codigo);
+            
+            return View(model);
+        }
+
+        public ActionResult convertirImagen(int usu_codigo)
+        {
+            var imagenMunicipio = new CuentasUsuariosDataAccess().sp_Consultar_Imagen_Usuario(usu_codigo);
+            return File(imagenMunicipio, "image/jpeg");
+        }
+
+        [HttpGet]
+        public ActionResult _verDetalles()
+        {
+            var model = new GestionarCuentasViewModel();
+            model.cuentas = new T_usuario_cuentas_aux();
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult _verDetalles(int usu_codigo)
+        {
+            var model = new GestionarCuentasViewModel();
+            model.cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().Find(r => r.usu_codigo == usu_codigo);
+            return PartialView(model);
+        }
+
+        [HttpGet]
+        public ActionResult _EliminarCuenta()
+        {
+            var model = new GestionarCuentasViewModel();
+            model.cuentas = new T_usuario_cuentas_aux();
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult _EliminarCuenta(int usu_codigo)
+        {
+            var model = new GestionarCuentasViewModel();
+            model.cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().Find(r => r.usu_codigo == usu_codigo);
+            return PartialView(model);
         }
     }
 }

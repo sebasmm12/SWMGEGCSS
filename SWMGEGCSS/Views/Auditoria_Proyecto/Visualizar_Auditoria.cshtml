@@ -1,0 +1,28 @@
+﻿@model SWMGEGCSS.Models.AuditoriaViewModel
+@{
+    var lista_expediente_auditoria = Model.Plist_aux_auditoria_expediente;
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<div class="mt-2 ml-4">
+    <div class="container-fluid">
+        <h2>Datos de Auditoría</h2>
+
+        @Html.Partial("Lista_Auditoria_Proyecto", Model)
+    </div>
+    <div class="row mt-4 pl-2">
+        <div class="col-sm-2 col-md-2">
+
+        </div>
+        <div class="col-12 col-sm-3 col-md-3">
+            <a href="@Url.Action("Gestionar_Proyectos","Gerente")" class="btn btn-secondary">
+                <i class="fa fa-backward"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsVisualizarAuditoriaProyecto.js"></script>
+}

@@ -33,10 +33,48 @@ namespace SWMGEGCSS.Controllers
         {
             return RedirectToAction("VisualizarServicios", "Servicios");
         }
-        public ActionResult Gestionar_Cuenta(int page = 1)
+        public ActionResult Gestionar_Cuenta(string searchTerm, string estado, int page = 1)
         {
             var model = new GestionarCuentasViewModel();
-            model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().ToPagedList(page, 4);
+
+            if (searchTerm == null && estado == null)
+            {
+                model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().ToPagedList(page, 4);
+            }
+            if (estado != null)
+            {
+                if (searchTerm != null && searchTerm == "")
+                {
+                    if (estado.Equals("Todos"))
+                    {
+                        model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().ToPagedList(page, 4);
+                    }
+                    else
+                    {
+                        //model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Empresas().FindAll(r => r.emp_estado == (estado.Equals("1"))).ToPagedList(page, 4);
+                        model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().FindAll(r => r.rol_nombre == estado).ToPagedList(page, 4);
+                    }
+                }
+                else
+                {
+                    if (estado.Equals("Todos"))
+                    {
+                        model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Nombre_Usuario_Cuenta(searchTerm).ToPagedList(page, 4);
+                        //model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).ToPagedList(page, 4);
+                    }
+                    else
+                    {
+                        model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Nombre_Usuario_Cuenta(searchTerm).FindAll(r => r.rol_nombre == estado).ToPagedList(page, 4);
+                        //model.listEmpresas = new EmpresaDataAccess().sp_Consultar_Lista_Nombre_Empresa(searchTerm).FindAll(r => r.emp_estado == (estado.Equals("1"))).ToPagedList(page, 4);
+                    }
+
+
+                }
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListaCuentaUsuario", model);
+            }
             return View(model);
         }
 
@@ -311,6 +349,20 @@ namespace SWMGEGCSS.Controllers
                 label = r.plan_nombre
             });
             return Json(namePlan, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AutocompleteCuenta(string term)
+        {
+            var model = new GestionarCuentasViewModel();
+            //string estado = (string)Session["estado"];
+            model.list_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Nombre_Usuario_Cuenta(term);
+
+
+            var nameExpedientes = model.list_cuentas.Select(r => new
+            {
+                label = r.usu_usuario
+            });
+            return Json(nameExpedientes, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ObtenerNotificaciones(int usu_codigo)
         {
