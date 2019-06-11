@@ -312,5 +312,11 @@ namespace SWMGEGCSS.Controllers
             });
             return Json(namePlan, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult ObtenerNotificaciones(int usu_codigo)
+        {
+            NotificacionesViewModel notificaciones = new NotificacionesViewModel();
+            notificaciones.list_notificaciones = new NotificacionesDataAccess().sp_Consultar_Notificaciones(usu_codigo);
+            return PartialView(notificaciones);
+        }
     }
 }
