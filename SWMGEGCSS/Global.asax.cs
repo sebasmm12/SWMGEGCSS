@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,12 +12,14 @@ namespace SWMGEGCSS
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        string connectionstring = ConfigurationManager.ConnectionStrings["cndatabase"].ConnectionString;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            SqlDependency.Start(connectionstring);
         }
         //para que al cerrar sesion y darr clci el boton de atras, me mande al iniciar sesion
         protected void Application_BeginRequest()
@@ -23,6 +27,10 @@ namespace SWMGEGCSS
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
+        }
+        protected void Application_End()
+        {
+            SqlDependency.Stop(connectionstring);
         }
     }
 }

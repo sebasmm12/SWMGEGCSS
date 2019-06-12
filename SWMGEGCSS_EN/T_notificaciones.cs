@@ -13,5 +13,6 @@ namespace SWMGEGCSS_EN
         public string not_descripcion { get; set; }
         public int usu_codigo { get; set; }
         public DateTime noti_fecha{ get; set; }
+        public int usu_envio { get; set; }
     }
 }

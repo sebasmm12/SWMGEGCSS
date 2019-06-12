@@ -1,0 +1,29 @@
+﻿@model SWMGEGCSS.Models.NotificacionesViewModel
+@{ 
+    var list_notificacion = Model.list_notificaciones;
+    Layout = null;
+}
+<div>
+    @foreach (var item in list_notificacion)
+    {
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading font-weight-bolder">@item.not_nombre</h4>
+        <p>@item.not_descripcion</p>
+        <hr>
+
+        <p class="mb-0 text-right">
+            @if (item.usu_envio == 0)
+            {
+                <img src="~/images/empresa.png" class="img-radius" alt="User-Profile-Image" height="50" width="50" />
+            }
+            else
+            {
+                <img src="@Url.Action("convertirImagen","Account",new {codigo=item.usu_envio})" class="img-radius" alt="User-Profile-Image" height="50" width="50">
+            }
+        </p>
+    </div>
+    }
+</div>

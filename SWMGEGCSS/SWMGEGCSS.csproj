@@ -48,6 +48,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.5\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
     </Reference>
@@ -55,8 +61,21 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -142,6 +161,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\MessagesHub.cs" />
     <Compile Include="Models\ActividadViewModel.cs" />
     <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EjemploViewModel.cs" />
@@ -153,12 +173,15 @@
     <Compile Include="Models\GestionarEmpresaViewModel.cs" />
     <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
     <Compile Include="Models\Gestionar_I_EViewModel.cs" />
+    <Compile Include="Models\NotificacionesDataAccess.cs" />
+    <Compile Include="Models\NotificacionesViewModel.cs" />
     <Compile Include="Models\PermisoViewModel.cs" />
     <Compile Include="Models\SolicitudViewModel.cs" />
     <Compile Include="Models\TareasAsignadasViewModel.cs" />
     <Compile Include="Models\TipoServicioViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate\animate.css" />
@@ -302,6 +325,8 @@
     <Content Include="Scripts\fontawesome\solid.min.js" />
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
     <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
     <Content Include="Scripts\Layout_Empresa\popper.min.js" />
@@ -324,16 +349,20 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\ConsultarCuenta.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\GestionarUsuarios.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarSecretario.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCitas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCita.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCuenta.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarSolicitud.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsAgregarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
@@ -451,7 +480,6 @@
     <Content Include="Views\Administrador\Gestionar_Historial.cshtml" />
     <Content Include="Views\Secretario\Visualizar_I_E.cshtml" />
     <Content Include="Views\Secretario\Visualizar_Cuenta.cshtml" />
-    <Content Include="Views\Secretario\Registrar_Cuenta.cshtml" />
     <Content Include="Views\Gerente\Generar_Reportes.cshtml" />
     <Content Include="Views\Administrador\Generar_Reportes_Desempeño.cshtml" />
     <Content Include="Views\Administrador\Visualizar_Trabajadores.cshtml" />
@@ -525,6 +553,8 @@
     <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
     <Content Include="Views\Expediente\_ConsultarProyecto.cshtml" />
     <Content Include="Views\Expediente\_ListarActividadConsultar.cshtml" />
+    <Content Include="Views\Gerente\ObtenerNotificaciones.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Actividades.cshtml" />

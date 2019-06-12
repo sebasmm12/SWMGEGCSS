@@ -45,5 +45,18 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult InsertarSolicitud(T_Solicitud Solicitud)
+        {
+            var operationResult = new OperationResult() ;
+            T_notificaciones notificacion = new T_notificaciones();
+            notificacion.usu_envio = 0;
+            notificacion.usu_codigo = 1;
+            notificacion.not_nombre = Solicitud.asunto;
+            notificacion.not_descripcion = Solicitud.mensaje+"Mi nombre de contacto es: "+Solicitud.names+
+                " y mi correo electrónico "+Solicitud.correoE;
+            operationResult = new NotificacionesDataAccess().sp_Insertar_Notificaciones(notificacion);
+            return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
+        }
     }
 }
