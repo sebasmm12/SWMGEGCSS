@@ -46,6 +46,28 @@ namespace SWMGEGCSS.Models
             }
             return messages;
         }
+        public OperationResult sp_Insertar_Notificaciones(T_notificaciones notificacion)
+        {
+            try
+            {
+                var operationResult = new OperationResult();
+                using (DbCommand command=Database.GetStoredProcCommand("sp_Insertar_Notificaciones"))
+                {
+                    Database.AddInParameter(command, "@not_descripcion", DbType.String, notificacion.not_descripcion);
+                    Database.AddInParameter(command, "@not_nombre", DbType.String, notificacion.not_nombre);
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, notificacion.usu_codigo);
+                    Database.AddInParameter(command, "@usu_envio", DbType.Int32, notificacion.usu_envio);
+                    operationResult.NewId = 1;
+                    Database.ExecuteScalar(command);
+                }
+                return operationResult;
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult();
+            }
+        }
 
         private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
         {

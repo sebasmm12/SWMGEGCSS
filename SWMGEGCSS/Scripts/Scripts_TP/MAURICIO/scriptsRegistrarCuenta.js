@@ -32,7 +32,7 @@
         var vcontraseña = validar_contraseña($contraseña, $contraseña1);
         var vrol = validar_rol($rol);
 
-        if (vnombre == false || vcorreo == false || vdireccion == false || vtelefono == false || vtipo_doc == false || vtip_doc_num == false || vtipo_usu == false || vsex == false || vcolegio == false || vespecialidad == false || vusuario == false || vcontraseña == false || vrol == false) {
+        if (vnombre === false || vcorreo === false || vdireccion === false || vtelefono === false || vtipo_doc === false || vtip_doc_num === false || vtipo_usu === false || vsex === false || vcolegio === false || vespecialidad === false || vusuario === false || vcontraseña === false || vrol === false) {
             return false;
         } else {
             $.ajax({

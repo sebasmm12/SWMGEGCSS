@@ -145,6 +145,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadesDesarrollarController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\Auditoria_ProyectoController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
@@ -348,16 +349,20 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\ConsultarCuenta.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\GestionarUsuarios.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarSecretario.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCitas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCita.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCuenta.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarSolicitud.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsAgregarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
@@ -365,6 +370,7 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsModificarArchivo.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaProyecto.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
     <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
@@ -473,7 +479,6 @@
     <Content Include="Views\Administrador\Gestionar_Historial.cshtml" />
     <Content Include="Views\Secretario\Visualizar_I_E.cshtml" />
     <Content Include="Views\Secretario\Visualizar_Cuenta.cshtml" />
-    <Content Include="Views\Secretario\Registrar_Cuenta.cshtml" />
     <Content Include="Views\Gerente\Generar_Reportes.cshtml" />
     <Content Include="Views\Administrador\Generar_Reportes_Desempeño.cshtml" />
     <Content Include="Views\Administrador\Visualizar_Trabajadores.cshtml" />
@@ -548,6 +553,11 @@
     <Content Include="Views\Expediente\_ConsultarProyecto.cshtml" />
     <Content Include="Views\Expediente\_ListarActividadConsultar.cshtml" />
     <Content Include="Views\Gerente\ObtenerNotificaciones.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria.cshtml" />
+    <Content Include="Views\Cuentas\Actualizar_Datos.cshtml" />
+    <Content Include="Views\Cuentas\_EliminarCuenta.cshtml" />
+    <Content Include="Views\Cuentas\_verDetalles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
