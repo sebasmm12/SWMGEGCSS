@@ -10,6 +10,8 @@
         }).done(function (data) {
             var target = $a.parents("div.pagedList").attr("data-exp-target");
             $(target).replaceWith(data);
+            $(".btnModal").each(envioajaxModal);
+            $(".btnModal1").each(envioajaxModal);
         });
         return false;
     };
@@ -18,7 +20,6 @@
         $(this).click(function () {
             var $button = $(this);
             var modal = $button.attr("data-id-target");
-            id_proyecto = $(this).attr("data-id-proyecto");
             $.ajax({
                 url: $(this).attr("data-url"),
                 method: "POST",
@@ -52,13 +53,15 @@
             var $newhtml = $(data);
             var target = $("div.pagedList").attr("data-exp-target");
             $(target).replaceWith($newhtml);
+            $(".btnModal").each(envioajaxModal);
+            $(".btnModal1").each(envioajaxModal);
         });
         return true;
     }
 
     
-
-    $(".btnModal1").click(envioajaxModal);
+    $(".btnModal").each(envioajaxModal);
+    $(".btnModal1").each(envioajaxModal);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     $("input[data-exp-autocomplete]").each(autocompletado);
     $("#Buscar").click(BuscarProyecto);

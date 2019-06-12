@@ -20,7 +20,7 @@
     {
 
         <div>
-            <img src="@Url.Action("convertirImagen","Cuentas",new {codigo=codigo })" class="img-radius" alt="User-Profile-Image">
+            <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })" class="img-radius" alt="User-Profile-Image">
 
         </div>
         <div class="row mt-3 pl-3">
@@ -62,7 +62,7 @@
                 </label>
                 @Html.EditorFor(model => model.cuentas.usu_contraseña, new
                 {
-                   htmlAttributes = new { @id = "usu_contraseña", @class = "text-center form-control" }
+                   htmlAttributes = new { @type ="password",  @id = "usu_contraseña", @class = "text-center form-control" }
                 })
             </div>
         </div>

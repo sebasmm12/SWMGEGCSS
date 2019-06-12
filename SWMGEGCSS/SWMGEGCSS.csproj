@@ -348,12 +348,15 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\ConsultarCuenta.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\GestionarUsuarios.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarSecretario.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCitas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCita.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCuenta.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
@@ -548,6 +551,11 @@
     <Content Include="Views\Expediente\_ConsultarProyecto.cshtml" />
     <Content Include="Views\Expediente\_ListarActividadConsultar.cshtml" />
     <Content Include="Views\Gerente\ObtenerNotificaciones.cshtml" />
+    <Content Include="Views\Cuentas\Actualizar_Datos.cshtml" />
+    <Content Include="Views\Cuentas\_EliminarCuenta.cshtml" />
+    <Content Include="Views\Cuentas\_verDetalles.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
