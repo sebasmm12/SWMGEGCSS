@@ -349,7 +349,6 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\ConsultarCuenta.js" />
-    <Content Include="Scripts\Scripts_TP\MAURICIO\GestionarUsuarios.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarSecretario.js" />

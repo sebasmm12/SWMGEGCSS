@@ -23,4 +23,10 @@ namespace SWMGEGCSS.Models
         public List<T_detalle_usuario> list_usuario { get; set; }
 
     }
+
+    public class RolesViewModel
+    {
+        public T_Roles roles { get; set; }
+        public List<T_Roles> list_roles { get; set; }
+    }
 }
