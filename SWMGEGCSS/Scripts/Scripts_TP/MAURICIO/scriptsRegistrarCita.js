@@ -48,7 +48,7 @@
             }).done(function (data) {
                 Swal.fire({
                     type: 'success',
-                    title: 'Se registró la empresa exitosamente',
+                    title: 'Se registró la cita exitosamente',
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
