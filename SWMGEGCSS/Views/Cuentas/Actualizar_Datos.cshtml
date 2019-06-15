@@ -8,7 +8,7 @@
     var nom_rol = Model.cuentas.rol_nombre;
     var id_rol = Model.cuentas.rol_codigo;
     var list_rol = Model.RolesViewModel.list_roles;
-    
+    var rol_name = (string)Session["rol_name"];
     if(Model.RolesViewModel.list_roles != null)
     {
         list_rol = Model.RolesViewModel.list_roles;
@@ -54,10 +54,28 @@
                     <option class="font-weight-bolder" value="@id_rol">@nom_rol</option>
                     @foreach (var item in list_rol)
                     {
-                        if (nom_rol != item.rol_nombre)
+                        if (rol_name == "GERENTE")
                         {
-                            <option value="@item.rol_codigo">@item.rol_nombre</option>
+                            if (nom_rol != item.rol_nombre && item.rol_codigo != 3)
+                            {
+                                <option value="@item.rol_codigo">@item.rol_nombre</option>
+                            }
                         }
+                        else if (rol_name == "ADMINISTRADOR")
+                        {
+                            if (nom_rol != item.rol_nombre && item.rol_codigo != 3 && item.rol_codigo != 4)
+                            {
+                                <option value="@item.rol_codigo">@item.rol_nombre</option>
+                            }
+                        }
+                        else if (rol_name == "SECRETARIO")
+                        {
+                            if (nom_rol != item.rol_nombre && item.rol_codigo != 3 && item.rol_codigo != 4 && item.rol_codigo != 2)
+                            {
+                                <option value="@item.rol_codigo">@item.rol_nombre</option>
+                            }
+                        }
+
                     }
                 </select>
             </div>
@@ -86,7 +104,7 @@
 
         <div class="row mt-3 ml-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <a href="@Url.Action("Gestionar_Cuenta", "Gerente")" class="btn btn-secondary">
+                <a href="@Url.Action( "Gestionar_Cuenta", "Gerente")" class="btn btn-secondary">
                     <i class="fa fa-backward">
 
                     </i>
