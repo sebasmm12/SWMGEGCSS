@@ -12,7 +12,7 @@
 <h2 class="pl-3 ml-3 mt-3 mb-3">Registrar Cuenta</h2>
 
 <div class="container-fluid">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Registrar_Cuenta", "Cuentas", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="row mt-3 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
@@ -23,6 +23,7 @@
                {
                    htmlAttributes = new { @id = "det_usu_nombre", @class = "text-center form-control" }
                })
+                <div id="error_det_usu_nombre" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -139,11 +140,31 @@
                 <label class="font-weight-bolder">
                     Contraseña
                 </label>
-                @Html.EditorFor(model => model.cuentas.usu_contraseña, new
-                {
-                   htmlAttributes = new { @id = "usu_contraseña", @class = "text-center form-control" }
-                })
+                <input class="text-center form-control" type="password" name="usu_contraseña" id="usu_contraseña" />
             </div>
+        </div>
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Tipo de Usuario
+                </label>
+                <select class="custom-select" id="rol_codigo" name="rol_codigo">
+                    <option class="font-weight-bolder" value="Elige una opcion">Elija una opción</option>
+                    <option class="font-weight-bolder" value="4">Administrador</option>
+                    <option class="font-weight-bolder" value="2">Secretario</option>
+                    <option class="font-weight-bolder" value="1">Trabajador</option>
+                </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Repetir Contraseña
+                </label>
+                <input class="text-center form-control" type="password" name="usu_contraseña_nuv" id="usu_contraseña_nuv" />
+            </div>
+        </div>
+        <div class="row mt-3 pl-3">
+            <label>Imagen Agregada</label>
+            <input type="file" class="form-control-file col-12 col-sm-12 col-md-6"  id="imagen" name="imagen" />
         </div>
 
         <div class="row mt-3 ml-2">

@@ -16,4 +16,15 @@ namespace SWMGEGCSS_EN
         public double aud_exp_ganancia { get; set; }
         public string aud_exp_comentario { get; set; }
     }
+    public class T_aux_auditar_expedientes
+    {
+        public int exp_id { get; set; }
+        public int aud_exp_id { get; set; }
+        public DateTime aud_exp_inicio { get; set; }
+        public DateTime aud_exp_fin { get; set; }
+        public DateTime aud_exp_fecha_auditoria { get; set; }
+        public String tipo_servicio_nombre { get; set; }
+        public double aud_exp_ganancia { get; set; }
+        public string aud_exp_comentario { get; set; }
+    }
 }

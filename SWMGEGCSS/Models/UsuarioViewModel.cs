@@ -25,4 +25,10 @@ namespace SWMGEGCSS.Models
         public IPagedList<T_detalle_usuario> Lista_Usuario { get; set; }
 
     }
+
+    public class RolesViewModel
+    {
+        public T_Roles roles { get; set; }
+        public List<T_Roles> list_roles { get; set; }
+    }
 }

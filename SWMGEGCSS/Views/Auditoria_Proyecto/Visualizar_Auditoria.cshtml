@@ -1,0 +1,65 @@
+﻿@model SWMGEGCSS.Models.AuditoriaViewModel
+@{
+    var lista_expediente_auditoria = Model.Plist_aux_auditoria_expediente;
+    var listaActividades = Model.list_actividades_desarrollar;
+    int count = 0;
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<div class="mt-2 ml-4">
+    <div class="container-fluid">
+        <h2>Datos de Auditoría</h2>
+        @Html.Partial("Lista_Auditoria_Proyecto", Model)
+    </div>
+    <h2>Actividades del Proyecto</h2>
+    <h3 class="text-center">Actividades por Planificar</h3>
+    <div class="row mt-4 pl-2">
+            <div class="col-12 col-sm-11 col-md-11">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-success">
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">Actividad</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Funciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in listaActividades)
+                            {
+                                count = count + 1;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    <td>@item.act_desa_nombre</td>
+                                    <td>@item.act_desa_nombre </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info">
+                                            <i class="fab fa-searchengin" style="color:white !important"></i>
+                                            @Html.ActionLink("Ver auditoria actividades", "Visualizar_Auditoria_Actividades", "Auditoria_Proyecto", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+     </div>
+    <div class="row mt-4 pl-2">
+        <div class="col-sm-2 col-md-2">
+
+        </div>
+        <div class="col-12 col-sm-3 col-md-3">
+            <a href="@Url.Action("Gestionar_Proyectos","Gerente")" class="btn btn-secondary">
+                <i class="fa fa-backward"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsVisualizarAuditoriaProyecto.js"></script>
+}

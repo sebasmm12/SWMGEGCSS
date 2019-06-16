@@ -9,7 +9,7 @@ namespace SWMGEGCSS_DA.Base
     public class BaseConexion
     {
         private Database _Database;
-        internal Database Database
+        public  Database Database
         {
             get { return _Database; }
             private set { _Database = value; }

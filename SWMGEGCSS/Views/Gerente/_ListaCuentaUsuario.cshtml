@@ -5,6 +5,7 @@
 }
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+
     <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 }
 
@@ -26,20 +27,30 @@
 
                     @foreach (var item in lista_cuentas)
                     {
-                        <tr>
-                            <td>@item.det_usu_nombre</td>
-                            <td>@item.usu_usuario</td>
-                            <td>@item.usu_contraseña</td>
-                            <td>@item.rol_nombre</td>
-                            <td>
+                        if (item.usu_estado == 1)
+                        {
+                            <tr>
+                                <td>@item.det_usu_nombre</td>
+                                <td>@item.usu_usuario</td>
+                                <td>@item.usu_contraseña</td>
+                                <td>@item.rol_nombre</td>
+                                <td>
 
+                                    <button type="button" class="btn btn-info btnModal" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
+                                        <i class="fa fa-tomes"></i>
+                                        Ver Detalles
+                                    </button>
+                                    <button type="button" class="btn btn-warning">
+                                        @Html.ActionLink("Actualizar Datos", "Actualizar_Datos", "Cuentas", new { usu_codigo = item.usu_codigo }, new { @style = "color:white !important" })
+                                    </button>
+                                    <button type="button" class="btn btn-danger btnModal1" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
+                                        <i class="fa fa-check-circle"></i>
+                                        Eliminar Cuenta
+                                    </button>
+                                </td>
+                            </tr>
+                        }
 
-                                <button type="button" class="btn btn-info btnModal">
-                                    Ver Detalles
-                                </button>
-
-                            </td>
-                        </tr>
                     }
 
 
