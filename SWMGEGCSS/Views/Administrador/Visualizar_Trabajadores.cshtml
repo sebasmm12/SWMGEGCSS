@@ -1,8 +1,23 @@
-﻿
+﻿@model SWMGEGCSS.Models.VisualizarTrabajadoresViewModel
 @{
     ViewBag.Title = "Visualizar_Trabajadores";
-    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var list_citas = Model.IPlist_actividades_usuario;
 }
 
-<h2>Visualizar_Trabajadores</h2>
 
+<h2 class="pl-3 ml-3 mt-3 mb-3">Visualizar Trabajadores</h2>
+
+@Html.Partial("_Lista_Actividades_Usuario", Model)
+@Html.Action("_verDetalles","Administrador")
+
+
+
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+    <script src="~/Scripts/Scripts_TP/MAURICIO/VisualizarTrabajadores.js"></script>
+    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
+}

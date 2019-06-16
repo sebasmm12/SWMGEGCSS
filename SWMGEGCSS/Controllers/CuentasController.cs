@@ -23,7 +23,7 @@ namespace SWMGEGCSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar_Cuenta(T_usuario_cuentas_aux cuentas, string det_usu_tip_doc, string det_usu_sexo, string tipo_det_usu_tipo, int rol_codigo, string usu_contraseña, HttpPostedFileBase imagen)
+        public ActionResult Registrar_Cuenta(T_usuario_cuentas_aux cuentas, string det_usu_tip_doc, string det_usu_sexo, string tipo_det_usu_tipo, string rol_codigo, string usu_contraseña, HttpPostedFileBase imagen)
         {
             var model = new GestionarCuentasViewModel();
             model.cuentas = cuentas;
