@@ -3,9 +3,16 @@
     ViewBag.Title = "Actualizar_Datos";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var codigo = 0;
-    
+
     codigo = Model.cuentas.usu_codigo;
+    var nom_rol = Model.cuentas.rol_nombre;
+    var id_rol = Model.cuentas.rol_codigo;
+    var list_rol = Model.RolesViewModel.list_roles;
     
+    if(Model.RolesViewModel.list_roles != null)
+    {
+        list_rol = Model.RolesViewModel.list_roles;
+    }
 }
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
@@ -18,30 +25,40 @@
 <div class="container-fluid">
     @using (Html.BeginForm("Actualizar_Datos", "Cuentas", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-
-        <div>
-            <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })" class="img-radius" alt="User-Profile-Image">
-
+        <div class="justify-content-center">
+            <input type="text" name="usu_codigo" value="@Model.cuentas.usu_codigo" hidden="hidden" />
         </div>
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-4 col-md-4">
+
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })" class="img-radius align-self-lg-center align-self-sm-center" alt="User-Profile-Image">
+
+            </div>
+        </div>
+       
         <div class="row mt-3 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Nombre y Apellido
                 </label>
-                @Html.EditorFor(model => model.cuentas.det_usu_nombre, new
-               {
-                   htmlAttributes = new { @id = "det_usu_nombre", @class = "text-center form-control", @readonly = "readonly" }
-               })
+
+                <input type="text" class="text-center form-control" name="det_usu_nombre" value="@Model.cuentas.det_usu_nombre" />
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Tipo de Usuario
                 </label>
                 <select class="custom-select" id="rol_codigo" name="rol_codigo">
-                    <option class="font-weight-bolder" value="Elige una opcion">Elija una opción</option>
-                    <option class="font-weight-bolder" value="4">Administrador</option>
-                    <option class="font-weight-bolder" value="2">Secretario</option>
-                    <option class="font-weight-bolder" value="1">Trabajador</option>
+                    <option class="font-weight-bolder" value="@id_rol">@nom_rol</option>
+                    @foreach (var item in list_rol)
+                    {
+                        if (nom_rol != item.rol_nombre)
+                        {
+                            <option value="@item.rol_codigo">@item.rol_nombre</option>
+                        }
+                    }
                 </select>
             </div>
         </div>
@@ -51,19 +68,13 @@
                 <label class="font-weight-bolder">
                     Nombre de Usuario
                 </label>
-                @Html.EditorFor(model => model.cuentas.usu_usuario, new
-                {
-                   htmlAttributes = new { @id = "usu_usuario", @class = "text-center form-control" }
-                })
+                <input type="text" class="text-center form-control" name="usu_usuario" value="@Model.cuentas.usu_usuario" />
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Contraseña
                 </label>
-                @Html.EditorFor(model => model.cuentas.usu_contraseña, new
-                {
-                   htmlAttributes = new { @type ="password",  @id = "usu_contraseña", @class = "text-center form-control" }
-                })
+                <input type="password" class="text-center form-control" name="usu_contraseña" value="@Model.cuentas.usu_contraseña" />
             </div>
         </div>
         <div class="mt-5 pl-3">

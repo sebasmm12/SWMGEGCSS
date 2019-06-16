@@ -17,6 +17,10 @@ namespace SWMGEGCSS.Models
         public List<T_usuario_cuentas_aux> list_cuentas { get; set; }
         public IPagedList<T_usuario_cuentas_aux> Plist_cuentas { get; set; }
 
+        public RolesViewModel RolesViewModel { get; set; }
+
+        public UsuarioViewModel UsuarioViewModel { get; set; }
+
         //LISTA PARA EL REGISTRAR
 
 

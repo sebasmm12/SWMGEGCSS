@@ -36,10 +36,9 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Gestionar_Cuenta(string searchTerm, string estado, int page = 1)
         {
             var model = new GestionarCuentasViewModel();
-
             if (searchTerm == null && estado == null)
             {
-                model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().ToPagedList(page, 4);
+                model.Plist_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas().ToPagedList(page, 5);
             }
             if (estado != null)
             {
@@ -70,6 +69,16 @@ namespace SWMGEGCSS.Controllers
 
 
                 }
+            }
+            if (estado != null)
+            {
+
+                Session["estado"] = estado;
+            }
+            else
+            {
+
+                Session["estado"] = estado;
             }
             if (Request.IsAjaxRequest())
             {
@@ -354,9 +363,16 @@ namespace SWMGEGCSS.Controllers
         public ActionResult AutocompleteCuenta(string term)
         {
             var model = new GestionarCuentasViewModel();
-            //string estado = (string)Session["estado"];
-            model.list_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Nombre_Usuario_Cuenta(term);
-
+            string estado = (string)Session["estado"];
+            
+            if(estado.Equals("Todos"))
+            {
+                model.list_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Nombre_Usuario_Cuenta(term);
+            }
+            else
+            {
+                model.list_cuentas = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Nombre_Usuario_Cuenta(term).FindAll(r => r.rol_nombre == estado);
+            }
 
             var nameExpedientes = model.list_cuentas.Select(r => new
             {

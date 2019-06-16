@@ -27,6 +27,7 @@ namespace SWMGEGCSS_DA
                             cuenta.usu_codigo = DataUtil.DbValueToDefault<Int32>(reader["usu_codigo"]);
                             cuenta.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
                             cuenta.usu_contraseña = DataUtil.DbValueToDefault<string>(reader["usu_contraseña"]);
+                            cuenta.usu_estado = DataUtil.DbValueToDefault<Int32>(reader["usu_estado"]);
                             cuenta.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
                             cuenta.det_usu_correo = DataUtil.DbValueToDefault<string>(reader["det_usu_correo"]);
                             cuenta.det_usu_direccion = DataUtil.DbValueToDefault<string>(reader["det_usu_direccion"]);
@@ -36,6 +37,9 @@ namespace SWMGEGCSS_DA
                             cuenta.det_usu_codigoColegio = DataUtil.DbValueToDefault<string>(reader["det_usu_codigoColegio"]);
                             cuenta.det_usu_especialidad = DataUtil.DbValueToDefault<string>(reader["det_usu_especialidad"]);
                             cuenta.rol_nombre = DataUtil.DbValueToDefault<string>(reader["rol_nombre"]);
+                            cuenta.rol_codigo = DataUtil.DbValueToDefault<int>(reader["rol_codigo"]);
+                            cuenta.det_usu_tip_doc = DataUtil.DbValueToDefault<int>(reader["det_usu_tip_doc"]);
+                            cuenta.tipo_det_usu_tipo = DataUtil.DbValueToDefault<int>(reader["tipo_det_usu_tipo"]);
                             l_cuentas.Add(cuenta);
                         }
                     }
@@ -227,6 +231,99 @@ namespace SWMGEGCSS_DA
                 return new List<T_usuario_cuentas_aux>();
             }
             return T_Empresa;
+        }
+
+        public List<T_Roles> sp_Consultar_Lista_Roles()
+        {
+            var l_cuentas = new List<T_Roles>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Roles"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var cuenta = new T_Roles();
+                            cuenta.rol_codigo = DataUtil.DbValueToDefault<Int32>(reader["rol_codigo"]);
+                            cuenta.rol_nombre = DataUtil.DbValueToDefault<string>(reader["rol_nombre"]);
+
+                            l_cuentas.Add(cuenta);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e + " ");
+                return new List<T_Roles>();
+            }
+            return l_cuentas;
+        }
+
+        public OperationResult sp_Actualizar_Usuario(T_usuario_cuentas_aux usuarios)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Usuario"))
+                {
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, usuarios.usu_codigo);
+                    Database.AddInParameter(command, "@usu_usuario", DbType.String, usuarios.usu_usuario);
+                    Database.AddInParameter(command, "@usu_contraseña", DbType.String, usuarios.usu_contraseña);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                Console.Write(" " + e);
+                return new OperationResult();
+            }
+            
+        }
+
+        public OperationResult sp_Actualizar_Usuario_Rol(T_usuario_cuentas_aux usuarios)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Usuario_Rol"))
+                {
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, usuarios.usu_codigo);
+                    Database.AddInParameter(command, "@rol_codigo", DbType.Int32, usuarios.rol_codigo);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                Console.Write(" " + e);
+                return new OperationResult();
+            }
+
+        }
+
+        public OperationResult sp_Eliminar_Usuario(int usu_codigo)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using(DbCommand command = Database.GetStoredProcCommand("sp_Eliminar_Usuario"))
+                {
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, usu_codigo);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                Console.Write(" " + e);
+                return new OperationResult();
+            }
         }
 
     }

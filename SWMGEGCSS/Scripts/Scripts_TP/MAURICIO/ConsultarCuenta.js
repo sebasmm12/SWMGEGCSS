@@ -12,6 +12,7 @@
             $(target).replaceWith(data);
             $(".btnModal").each(envioajaxModal);
             $(".btnModal1").each(envioajaxModal);
+            $(".btnEliminarUsuario").each(eliminaUsuario);
         });
         return false;
     };
@@ -29,6 +30,7 @@
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
                 $(modal).modal();
+                $(".btnEliminarUsuario").each(eliminaUsuario);
             });
             return false;
         });
@@ -59,9 +61,58 @@
         return true;
     }
 
+    var eliminaUsuario = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            var usu_codigo = $(this).attr("data-id-usuario");
+            //$.ajax({
+            //    url: $(this).attr("data-url"),
+            //    type ="POST",
+            //    data: { usu_codigo: usu_codigo }
+            //}).done(function (data) {
+            //    Swal.fire({
+            //        type: 'success',
+            //        title: 'Se eliminó el usuario exitosamente',
+            //        confirmButtonText: 'OK'
+            //    }).then((result) => {
+            //        if (result.value) {
+            //            window.location.href = "/Gerente/Gestionar_Cuenta";
+            //        }
+            //    });
+            //});
+
+            $.ajax({
+                url: $(this).attr("data-url"),
+                type: "POST",
+                data: {
+                    usu_codigo: usu_codigo
+                    
+                }
+            }).done(function (data) {
+                //alert("GG CON TP");
+                Swal.fire({
+                    type: 'success',
+                    title: 'Se eliminó el usuario exitosamente',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/Gerente/Gestionar_Cuenta";
+                    }
+                });
+
+            });
+            return false;
+        });
+    }
+
+
+
+    
+
     
     $(".btnModal").each(envioajaxModal);
     $(".btnModal1").each(envioajaxModal);
+    $(".btnEliminarUsuario").each(eliminaUsuario);
     $(".pcoded-content").on("click", ".pagedList a", getPage);
     $("input[data-exp-autocomplete]").each(autocompletado);
     $("#Buscar").click(BuscarProyecto);

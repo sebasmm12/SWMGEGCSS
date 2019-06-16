@@ -34,6 +34,7 @@ namespace SWMGEGCSS_EN
         public string det_usu_especialidad {get;set;}
         public byte[] det_usu_imagem { get; set; }
         public string rol_nombre { get; set; }
+        public int rol_codigo { get; set; }
     }
 
     
