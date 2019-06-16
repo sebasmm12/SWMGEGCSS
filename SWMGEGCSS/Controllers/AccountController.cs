@@ -20,6 +20,7 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+       
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -76,6 +77,30 @@ namespace SWMGEGCSS.Controllers
             HttpContext.Session.RemoveAll();
             return RedirectToAction("Login", "Account");
         }
+        [HttpGet]
+        public ActionResult Gestionar_Datos_Personales()
+        {
+            int codigo = (int)Session["login"];
+            var model = new DetalleUsuarioViewModel();
+
+            model.Detalle_Usuario = new UsuarioDataAccess().sp_Consultar_Lista_Detalle_Usuarios().Find(r=>r.usu_codigo==codigo);
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult Gestionar_Datos_Personales(T_detalle_usuario usuario)
+        {
+     
+            var model = new DetalleUsuarioViewModel();
+
+            model.Detalle_Usuario = usuario;
+            model.Detalle_Usuario.usu_codigo = (int)Session["login"];
+            var operationResult = new UsuarioDataAccess().sp_Actualizar_Datos_Personales(model.Detalle_Usuario);
+          //  return RedirectToAction("Index","Gerente");
+             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
+        }
+        
         public ActionResult GENERAR_FORMULARIOS()
         {
             return RedirectToAction("G_Formulario", "Trabajador");
