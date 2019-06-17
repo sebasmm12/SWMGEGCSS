@@ -39,6 +39,43 @@ namespace SWMGEGCSS_DA
             }
             return l_usu;
         }
+        public List<T_detalle_usuario> sp_Consultar_Lista_Detalle_Usuarios()
+        {
+            var l_detalle = new List<T_detalle_usuario>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Detalle_Usuarios"))
+                {
+
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var detalle = new T_detalle_usuario();
+                            detalle.usu_codigo= DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            detalle.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
+                            detalle.det_usu_correo = DataUtil.DbValueToDefault<string>(reader["det_usu_correo"]);
+                            detalle.det_usu_direccion = DataUtil.DbValueToDefault<string>(reader["det_usu_direccion"]);
+                            detalle.det_usu_telefono = DataUtil.DbValueToDefault<string>(reader["det_usu_telefono"]);
+                            detalle.det_usu_sexo = DataUtil.DbValueToDefault<string>(reader["det_usu_sexo"]);
+                            detalle.det_usu_tip_doc= DataUtil.DbValueToDefault<int>(reader["det_usu_tip_doc"]);
+                            detalle.det_usu_tip_doc_numero = DataUtil.DbValueToDefault<string>(reader["det_usu_tip_doc_numero"]);
+                            detalle.tipo_det_usu_tipo = DataUtil.DbValueToDefault<int>(reader["tipo_det_usu_tipo"]);
+                            detalle.det_usu_codigoColegio = DataUtil.DbValueToDefault<string>(reader["det_usu_codigoColegio"]);
+                            detalle.det_usu_especialidad = DataUtil.DbValueToDefault<string>(reader["det_usu_especialidad"]);
+                            l_detalle.Add(detalle);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(" " + e);
+                return new List<T_detalle_usuario>();
+            }
+            return l_detalle;
+        }
         public int sp_Encontrar_Usuario(T_usuario usuario,T_detalle_usuario t_d_usuario)
         {
             int count = 0;
@@ -91,6 +128,33 @@ namespace SWMGEGCSS_DA
                 return count;
             }
             return count;
+        }
+
+        public OperationResult sp_Actualizar_Datos_Personales(T_detalle_usuario Usuario)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Datos_Personales"))
+                {
+                    Database.AddInParameter(command, "@det_usu_nombre", DbType.String, Usuario.det_usu_nombre);
+                    Database.AddInParameter(command, "@det_usu_direccion", DbType.String, Usuario.det_usu_direccion);
+                    Database.AddInParameter(command, "@det_usu_telefono", DbType.String, Usuario.det_usu_telefono);
+                    Database.AddInParameter(command, "@det_usu_correo", DbType.String, Usuario.det_usu_correo);
+                    Database.AddInParameter(command, "@det_usu_codigoColegio", DbType.String, Usuario.det_usu_codigoColegio);
+                    Database.AddInParameter(command, "@usu_codigo", DbType.Int32, Usuario.usu_codigo);
+                    Database.AddInParameter(command, "@det_usu_especialidad", DbType.String, Usuario.det_usu_especialidad);
+               //     Database.AddInParameter(command, "@det_usu_imagem", DbType.Byte, Usuario.det_usu_imagem);
+
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception)
+            {
+                return new OperationResult();
+            }
         }
     }
 }

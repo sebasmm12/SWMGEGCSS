@@ -105,7 +105,7 @@
         }
     };
     var minimoNumeroCaracteres7 = function maxCharacters(X) {
-        if (X.length < 6) {
+        if (X.length < 7) {
             return true;
         } else {
             return false;

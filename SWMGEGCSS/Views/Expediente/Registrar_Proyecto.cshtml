@@ -97,6 +97,19 @@
                     })
                     <span id="validateGanancia"></span>
                 </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <div>
+                        <label class="font-weight-bolder label-registrar">
+                            Subir Archivo de Contrato
+                        </label>
+                    </div>
+                        @Html.TextBoxFor(model => model.Expediente.archivo_ulr_inicio, new { type = "file", id = "newfile", @class = "form-control-file bg-red" })
+                    <span id="validateArchivo"></span>
+                </div> 
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+
             </div>
             <div class="row mt-4 pl-2">
                 <div class="col-sm-1 col-md-1">

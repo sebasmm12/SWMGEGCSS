@@ -1,0 +1,145 @@
+﻿@model SWMGEGCSS.Models.DetalleUsuarioViewModel
+
+@{
+    ViewBag.Title = "Gestionar_Datos_Personales";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    int codigo = (int)Session["login"];
+}
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<h2>Gestionar_Datos_Personales</h2>
+
+
+
+
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.HiddenFor(model => model.Detalle_Usuario.usu_codigo)
+        </div>
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Foto de Perfil
+                </label>
+                  <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })">
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+
+
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Nombre y Apellido
+                </label>
+                @Html.EditorFor(model => model.Detalle_Usuario.det_usu_nombre, new
+           {
+               htmlAttributes = new { @id = "det_usu_nombre", @class = "text-center form-control" }
+           })
+               <div id="error-det-usu-nombre" class="errordiv"></div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-6">
+
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Direccion
+                </label>
+                @Html.EditorFor(model => model.Detalle_Usuario.det_usu_direccion, new
+           {
+               htmlAttributes = new { @id = "det_usu_direccion", @class = "text-center form-control" }
+           })
+                <div id="error-det-usu-direccion" class="errordiv"></div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Telefono
+                </label>
+                @Html.EditorFor(model => model.Detalle_Usuario.det_usu_telefono, new
+           {
+               htmlAttributes = new { @id = "det_usu_telefono", @class = "text-center form-control" }
+           })
+                <div id="error-det-usu-telefono" class="errordiv"></div>
+             </div>
+        </div>
+
+
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Número del Documento
+                </label>
+                @Html.EditorFor(model => model.Detalle_Usuario.det_usu_tip_doc_numero, new
+                {
+                   htmlAttributes = new { @id = "det_usu_tip_doc_numero", @class = "text-center form-control", @readonly = "readonly" }
+                })
+                <div id="error-det-usu-numero" class="errordiv"></div>
+             </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Correo
+                </label>
+                @Html.EditorFor(model => model.Detalle_Usuario.det_usu_correo, new
+           {
+               htmlAttributes = new { @id = "det_usu_correo", @class = "text-center form-control" }
+           })
+                <div id="error-det-usu-correo" class="errordiv"></div>
+            </div>
+        </div>
+
+        <div class="row mt-3 pl-3">
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Universidad o Instituto
+                </label>
+                @Html.EditorFor(model => model.Detalle_Usuario.det_usu_codigoColegio, new
+                {
+                   htmlAttributes = new { @id = "det_usu_codigoColegio", @class = "text-center form-control" }
+                })
+                <div id="error-det-usu-colegio" class="errordiv"></div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <label class="font-weight-bolder">
+                    Especialidad
+                </label>
+                @Html.EditorFor(model => model.Detalle_Usuario.det_usu_especialidad, new
+                {
+                   htmlAttributes = new { @id = "det_usu_especialidad", @class = "text-center form-control" }
+                })
+                <div id="error-det-usu-especialidad" class="errordiv"></div>
+            </div>
+        </div>
+
+
+
+        <div class="row mt-3 ml-2">
+            <div class="col-12 col-sm-3 col-md-3">
+                <a href="@Url.Action("Index", "Gerente")" class="btn btn-secondary">
+                    <i class="fa fa-backward">
+
+                    </i>
+                    Regresar
+                </a>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success" id="boton-modificar">
+                    <i class="fa fa-check-circle"></i>
+                    Modificar Datos
+                </button>
+            </div>
+
+        </div>
+
+    }
+</div>
+@section scripts{
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptActualizar_Detalle_Usuario.js"></script>
+}

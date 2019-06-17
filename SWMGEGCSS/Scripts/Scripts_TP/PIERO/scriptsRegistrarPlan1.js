@@ -37,6 +37,7 @@
         }
         else {
             var act_plan = {
+
                 act_id: id_act,
                 act_plan_nombre: $("#ActPlanNombre").val(),
                 act_plan_descripcion: $("#ActPlanDescripcion").val(),
