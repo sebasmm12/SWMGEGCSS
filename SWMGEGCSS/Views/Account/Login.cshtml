@@ -16,9 +16,12 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/Scripts_TP/scriptsS.js"></script>
+    @section scripts{
+        <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRecuper_Cuenta.js"></script>
+    }
 </head>
 <body>
-    @using (Html.BeginForm("Login","Account",FormMethod.Post,htmlAttributes:new { @id ="form"}))
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, htmlAttributes: new { @id = "form" }))
     {
         <!--<div class="text-center imgemrpresa position-relative">
             <img class="img-fluid rounded" src="~/images/empresa.png" />
@@ -28,58 +31,60 @@
                 <img class="img-fluid rounded" src="~/images/empresa.png" />
             </div>
         </div>-->
-    <div class="session">
-        <div class="font-negro">
-        </div>
-    <div class="container position">
-        <div class="text-center">
-            <div class="row justify-content-center">
-                <div class="col-sm-5 col-12 col-md-5">
-                    <div class="bordersesion paddignlr">
-                        <div class="row justify-content-center mt-3">
-                            <div class="col-sm-12 col-12 col-md-12">
-                                <img src="~/images/empresa.png" class="img-fluid rounded" alt="Imagen de Empresa" width="50%" />
-                            </div>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <div class="col-sm-12 col-12 col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="user">
-                                            <i class="fa fa-user"></i>
-                                        </span>
+        <div class="session">
+            <div class="font-negro">
+            </div>
+            <div class="container position">
+                <div class="text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-5 col-12 col-md-5">
+                            <div class="bordersesion paddignlr">
+                                <div class="row justify-content-center mt-3">
+                                    <div class="col-sm-12 col-12 col-md-12">
+                                        <img src="~/images/empresa.png" class="img-fluid rounded" alt="Imagen de Empresa" width="50%" />
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Ingrese nombre de usuario" name="username" id="username" aria-describedby="user" />
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <div class="col-sm-12 col-12 col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="pass">
-                                            <i class="fa fa-lock"></i>
-                                        </span>
+                                <div class="row justify-content-center mt-3">
+                                    <div class="col-sm-12 col-12 col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="user">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Ingrese nombre de usuario" name="username" id="username" aria-describedby="user" />
+                                        </div>
                                     </div>
-                                    <input type="password" class="form-control" placeholder="Ingrese Contraseña" name="password" id="password" aria-describedby="pass" />
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center mt-3 mb-3">
-                            <div class="col-sm-12 col-12 col-md-12 text-left">
-                                <button type="submit" class="btn btn-success buttonsesion" id="btnlogin">
-                                    <i class="fa fa-share-square"></i>
-                                    Iniciar Sesión
-                                </button>
+                                <div class="row justify-content-center mt-3">
+                                    <div class="col-sm-12 col-12 col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="pass">
+                                                    <i class="fa fa-lock"></i>
+                                                </span>
+                                            </div>
+                                            <input type="password" class="form-control" placeholder="Ingrese Contraseña" name="password" id="password" aria-describedby="pass" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mt-3 mb-3">
+                                    <div class="col-sm-12 col-12 col-md-12 text-left">
+                                        <button type="submit" class="btn btn-success buttonsesion" id="btnlogin">
+                                            <i class="fa fa-share-square"></i>
+                                            Iniciar Sesión
+                                        </button>
+                                    </div>
+                                    <a href="#" onclick="enviarCorreo()">¿Olvidaste tu contraseña?</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-
-    </div>
-    </div>
     }
 </body>
 </html>
+
