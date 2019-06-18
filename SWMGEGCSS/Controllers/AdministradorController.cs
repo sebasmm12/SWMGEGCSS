@@ -32,7 +32,7 @@ namespace SWMGEGCSS.Controllers
             model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario_Paged().ToPagedList(page, 4);
             return View(model);
         }
-
+        //Aquí prueba
         [HttpGet]
         public ActionResult Visualizar_Actividades(int page = 1)
         {
