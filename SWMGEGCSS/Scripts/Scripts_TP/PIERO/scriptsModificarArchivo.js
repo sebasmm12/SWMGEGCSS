@@ -1,4 +1,7 @@
 ﻿$(function () {
+    var obs_act_id = 0;
+    var SelectorBoton;
+
     var valido1 = function () {
         var $actdesacomentario = $("#actividad_comentario");
         var $archivo = $("#newfile");
@@ -39,6 +42,59 @@
         }
         return false;
     };
+
+    var envioajaxModal = function () {
+        $(this).click(function () {
+            var $button = $(this);
+            var modal = $button.attr("data-id-target");
+            obs_act_id = $(this).attr("data-id-observacion");
+            SelectorBoton = $(this);
+            $.ajax({
+                url: "/Trabajador/_ResponderObservacion",
+                method: "GET"
+            }).done(function (data) {
+                var $target = $($button.attr("data-id-target"));
+                var $newhtml = $(data);
+                $target.replaceWith($newhtml);
+                $(modal).modal();
+                $(".btnActualizarObservacion").click(envioAxajRegistrarObs);
+                });
+            return false;
+        });
+    };
+    $(".btnModal").each(envioajaxModal);
+
+    var envioAxajRegistrarObs = function () {
+        var $observacion_usuario = $("#observacion_usuario");
+
+        var vobs = validar_obs($observacion_usuario.val());
+
+        if (vobs === false) {
+            return false;
+        }
+        else {
+            var t_obs = {
+                obs_act_id: obs_act_id,
+                obs_act_usuario: $("#observacion_usuario").val()
+            };
+            $.ajax({
+                url: "/Trabajador/_ResponderObservacion",
+                method: "POST",
+                data: {
+                    t_obs: t_obs
+                }
+            }).done(function (data) {
+                $('#ModificarObservacion').modal('hide');
+                //cambiar de color al boton
+                $(SelectorBoton).css('background-color', 'green');
+                $(SelectorBoton).css('border-color', 'green');
+                $(SelectorBoton).text('Observacion respondida');
+                $(SelectorBoton).attr('disabled', 'disabled');
+            });
+        }
+        return false;
+    };
+
     var esNum = function esNumero(txt) {
         if (isNaN(txt)) {
             return false;
@@ -46,8 +102,8 @@
             return true;
         }
     };
-    var maximoNumeroCaracteres50 = function maxCharacters(X) {
-        if (X.length > 50) {
+    var maximoNumeroCaracteres = function maxCharacters(X,limite) {
+        if (X.length > limite) {
             return true;
         } else {
             return false;
@@ -112,7 +168,7 @@
             $("#actividad_comentario").keyup(key);
             return false;
         }
-        if (maximoNumeroCaracteres50(id) === true) {
+        if (maximoNumeroCaracteres(id,50) === true) {
             adderror("actividad_comentario");
             negativeattributes("error_actividad_comentario", 'El nombre debe ser de menos de 50 caracteres');
             $("#actividad_comentario").focus();
@@ -144,7 +200,7 @@
             negativeattributes("error_actividad_comentario", 'El nombre debe empezar con una letra, no debe contener caracteres especiales o numeros');
             adderror("actividad_comentario");
         }
-        else if (maximoNumeroCaracteres50($valor.val()) === true) {
+        else if (maximoNumeroCaracteres($valor.val(),50) === true) {
             negativeattributes("error_actividad_comentario", 'El nombre debe ser de menos de 50 caracteres');
             adderror("actividad_comentario");
         }
@@ -178,6 +234,83 @@
         }
     };
     //
+    function validar_obs(id) {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        if ($("#observacion_usuario").val().match(RegularExpression)) {
+            adderror("observacion_usuario");
+            negativeattributes("error_observacion_usuario", 'Debe ingresar una observacion valido(no esp. blanco)');
+            $("#observacion_usuario").keyup(keyObs);
+            return false;
+        }
+        if (id === "") {
+            adderror("observacion_usuario");
+            negativeattributes("error_observacion_usuario", 'Debe ingresar una observacion');
+            $("#observacion_usuario").focus();
+            $("#observacion_usuario").keyup(keyObs);
+            return false;
+        }
+        if (id === " ") {
+            adderror("observacion_usuario");
+            negativeattributes("error_observacion_usuario", 'La observacion no debe empezar con un espacio en blanco');
+            $("#observacion_usuario").focus();
+            $("#observacion_usuario").keyup(keyObs);
+            return false;
+        }
+        if (esNum(id) === true) {
+            adderror("observacion_usuario");
+            negativeattributes("error_observacion_usuario", 'La observacion no puede ser un número');
+            $("#observacion_usuario").focus();
+            $("#observacion_usuario").keyup(keyObs);
+            return false;
+        }
+        if (tieneCaracEsp(id) === true) {
+            adderror("observacion_usuario");
+            negativeattributes("error_observacion_usuario", 'La observacion debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            $("#observacion_usuario").focus();
+            $("#observacion_usuario").keyup(keyObs);
+            return false;
+        }
+        if (maximoNumeroCaracteres(id,500) === true) {
+            adderror("observacion_usuario");
+            negativeattributes("error_observacion_usuario", 'La observacion debe ser de menos de 50 caracteres');
+            $("#observacion_usuario").focus();
+            $("#observacion_usuario").keyup(keyObs);
+            return false;
+        }
+        return true;
+    }
+    var keyObs = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var $valor = $("#observacion_usuario");
+        if ($valor.val().match(RegularExpression)) {
+            adderror("observacion_usuario");
+            negativeattributes("error_observacion_usuario", 'Debe ingresar una observacion valida(no esp. blanco)');
+        }
+        else if ($valor.val() === "") {
+            negativeattributes("error_observacion_usuario", 'Debe ingresar un observacion');
+            adderror("observacion_usuario");
+        }
+        else if ($valor.val() === " ") {
+            negativeattributes("error_observacion_usuario", 'La observacion no debe empezar con un espacio en blanco');
+            adderror("observacion_usuario");
+        }
+        else if (esNum($valor.val()) === true) {
+            negativeattributes("error_observacion_usuario", 'La observacion no puede ser un número');
+            adderror("observacion_usuario");
+        }
+        else if (tieneCaracEsp($valor.val()) === true) {
+            negativeattributes("error_observacion_usuario", 'La observacion debe empezar con una letra, no debe contener caracteres especiales o numeros');
+            adderror("observacion_usuario");
+        }
+        else if (maximoNumeroCaracteres($valor.val(),500) === true) {
+            negativeattributes("error_observacion_usuario", 'La observacion debe ser de menos de 50 caracteres');
+            adderror("observacion_usuario");
+        }
+        else {
+            attributes("error_observacion_usuario");
+            addgood("observacion_usuario");
+        }
+    };
     function attributes(id) {
         $("#" + id).removeClass("text-danger");
         $("#" + id).addClass("textsuccess");
@@ -199,5 +332,7 @@
         $("#" + id).html("");
         $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
     }
+
+    $(".btnActualizarObservacion").click(envioAxajRegistrarObs);
     $("#btnModificarArchivo").click(valido1);
 });

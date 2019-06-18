@@ -90,7 +90,7 @@
         }
     };
     var minimoNumeroCaracteres7 = function maxCharacters(X) {
-        if (X.length <6) {
+        if (X.length <7) {
             return true;
         } else {
             return false;
@@ -298,7 +298,8 @@
 
     function validar_direccion(direccion) {
 
-        
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+
       /*  var regular = "!@\$%\^\*\(\)\+=\[]\\\'\/{}\|<>\?";
         if (direccion.match(regular)) {
             return false;
@@ -310,6 +311,15 @@
       //      alert("direccion vacio");
             $("#emp-direccion").keyup(keyDireccion);
             return false;
+        }
+        if (direccion.match(RegularExpression)) {
+             
+                adderror("emp-direccion");
+                negativeattributes("error-emp-direccion", 'Ingrese direccion válida');
+                $("#emp-direccion").focus();
+                //      alert("direccion vacio");
+                $("#emp-direccion").keyup(keyDireccion);
+                return false;
         }
         if (direccion === " ") {
             adderror("emp-direccion");
@@ -431,11 +441,16 @@
 
 
     var keyDireccion = function () {
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
 
         var $valor = $("#emp-direccion");
         if ($valor.val() === "") {
 
             negativeattributes("error-emp-direccion", 'Debe ingresar una dirección');
+            adderror("emp-direccion");
+        }
+        else if ($valor.val().match(RegularExpression)) {
+            negativeattributes("error-emp-direccion", 'Ingrese direccion válida');
             adderror("emp-direccion");
         }
         else if ($valor.val() === " ") {

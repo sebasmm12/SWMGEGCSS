@@ -1,5 +1,7 @@
 ﻿@using SWMGEGCSS_EN;
+
 @{
+
     var p = new List<T_permiso>();
     if (Session["l_permiso_usuario"] != null)
     {
@@ -7,6 +9,7 @@
     }
     int codigo = (int) Session["login"];
     string name = (string)Session["name"];
+    
 }
 <!DOCTYPE html>
 
@@ -29,6 +32,7 @@
     <link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <div class="loader-bg">
@@ -140,7 +144,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="@Url.Action("Gestionar_Datos_Personales","Account",new {codigo=codigo })">
                                                 <i class="feather icon-user"></i> Profile
                                             </a>
                                         </li>
@@ -329,7 +333,6 @@
             </div>
         </div>
     </div>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

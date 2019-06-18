@@ -23,11 +23,13 @@
           
             return false;
         }
+        var Expediente = new FormData($("#form")[0]);
         $.ajax({
             url: "/Expediente/Registrar_Proyecto",
             method: "POST",
-            data: $("form").serialize(),
-            dataType: "json"
+            data: Expediente,
+            contentType: false, //importante enviar este parametro en false
+            processData: false //importante enviar este parametro en false
         }).done(function (data) {
             Swal.fire({
                 type: 'success',

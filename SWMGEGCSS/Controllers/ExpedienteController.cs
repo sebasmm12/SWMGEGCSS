@@ -39,6 +39,15 @@ namespace SWMGEGCSS.Controllers
             modelExpediente.tipo_servicio_id = plan_expediente.tipo_servicio_id;
             modelExpediente.exp_ganancia = model.Expediente.exp_ganancia;
             modelExpediente.exp_nombre = model.Expediente.exp_nombre;
+            String ruta = Server.MapPath("~/Repositorio/" + plan_expediente.emp_ruc + "/" + plan_expediente.plan_id.ToString() + "/");
+            if (!System.IO.File.Exists(ruta))
+            {
+                String ruta2 = Server.MapPath("~/Repositorio/" + plan_expediente.emp_ruc + "/" + plan_expediente.plan_id.ToString());
+                System.IO.Directory.CreateDirectory(ruta2);
+            }
+        
+            subirArchivo(model.Expediente.archivo_ulr_inicio, ruta);
+            modelExpediente.archivo_ulr_inicio = ruta;
             var operationResult = new ExpedienteDataAccess().sp_Insertar_Proyecto(modelExpediente);
             modelExpediente = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(r => r.exp_nombre == modelExpediente.exp_nombre);
             foreach (var item in modeloActividades.list_Actividades_Planeadas)
@@ -51,7 +60,15 @@ namespace SWMGEGCSS.Controllers
                 act_desarrollar.act_desa_descripcion = item.act_plan_descripcion;
                 var operationResult1 = new ActividadesDataAccess().sp_Insertar_Actividades_Desarrollar(act_desarrollar);
             }
-
+            var operationResult2 = new OperationResult();
+            NotificacionesViewModel notificacion = new NotificacionesViewModel();
+            notificacion.notificacion = new T_notificaciones();
+            notificacion.notificacion.not_nombre = "Creación del expediente " + model.Expediente.exp_nombre;
+            notificacion.notificacion.not_descripcion = "El expediente ha sido creado exitosamente y esta listo para la ejecución no olvidar que cuando empieze la fecha de ejecución se comenzará con la asignación de actividades. " +
+            "Fecha de ejecución : " + modelExpediente.exp_inicio.ToShortDateString();
+            notificacion.notificacion.usu_codigo = 8;
+            notificacion.notificacion.usu_envio = 9;
+            operationResult2 = new NotificacionesDataAccess().sp_Insertar_Notificaciones(notificacion.notificacion);
             return Json(new { data=operationResult.NewId},JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
@@ -309,7 +326,15 @@ namespace SWMGEGCSS.Controllers
             double costo = 0;
             var planesmodel = new ExpedienteDataAccess().sp_Obtener_Planes();
             var plan_expediente = planesmodel.Find(modelo => (modelo.plan_nombre == plan_nombre));
-            costo = new ExpedienteDataAccess().sp_Calcular_Suma_Cantidad_Actividades_Planeadas(plan_expediente.plan_id);
+            if (plan_nombre == "" || plan_nombre == null||plan_expediente==null)
+            {
+                costo = 0;
+            }
+            else
+            {
+                costo = new ExpedienteDataAccess().sp_Calcular_Suma_Cantidad_Actividades_Planeadas(plan_expediente.plan_id);
+            }
+           
             return Json(costo, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
@@ -332,7 +357,17 @@ namespace SWMGEGCSS.Controllers
             model.ActividadModel.list_Actividades_Desarrollar = new ActividadesDataAccess().sp_Consultar_Actividades_Desarrollar_Expediente_Completa().FindAll(r=>(r.exp_id==id));
             return PartialView(model);
         }
+        public void subirArchivo(HttpPostedFileBase archivo, String ruta)
+        {
+            try
+            {
+                archivo.SaveAs(ruta);
+            }
+            catch (Exception ez)
+            {
 
+            }
+        }
 
     }
 }

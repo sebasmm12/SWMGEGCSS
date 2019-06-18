@@ -205,6 +205,9 @@ namespace SWMGEGCSS.Controllers
             Session["ArchivoId"] = id;
 
             var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            //nuevo procedure
+            model.Lista_Observaciones = new TrabajadorDataAccess().sp_Listar_Observacion_por_Actividad((int)Session["ArchivoId"]);
+
             Session["comentarius"] = valores.act_desa_revisor_obs;
             return View(model);
         }
@@ -294,6 +297,23 @@ namespace SWMGEGCSS.Controllers
                 return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult _ResponderObservacion()
+        {
+            TareasAsignadasViewModel model = new TareasAsignadasViewModel();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _ResponderObservacion(T_observacion_actividades t_obs)
+        {
+            var model = new T_observacion_actividades();
+            model.obs_act_id = t_obs.obs_act_id;
+            model.obs_act_usuario = t_obs.obs_act_usuario;
+            var operationResult = new TrabajadorDataAccess().sp_Actualizar_observaciones(model);
+            var operationResult1 = new TrabajadorDataAccess().sp_Insertar_observaciones_auditoria(model);
+
+            return Json(new { data = operationResult1.NewId }, JsonRequestBehavior.AllowGet);
         }
     }
 }
