@@ -577,7 +577,6 @@
     <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
     <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
     <Content Include="Views\Account\_Recupera_Cuenta.cshtml" />
-    <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
     <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
