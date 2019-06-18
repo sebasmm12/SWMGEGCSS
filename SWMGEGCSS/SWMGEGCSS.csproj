@@ -575,6 +575,8 @@
     <Content Include="Views\Administrador\_verDetalles.cshtml" />
     <Content Include="Views\Administrador\Visualizar_Actividades.cshtml" />
     <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
+    <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
+    <Content Include="Views\Account\_Recupera_Cuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />

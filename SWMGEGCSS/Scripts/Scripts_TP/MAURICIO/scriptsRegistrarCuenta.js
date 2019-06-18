@@ -29,10 +29,11 @@
         var vcolegio = validar_colegio($colegio);
         var vespecialidad = validar_especialidad($especialidad);
         var vusuario = validar_usuario($usuario);
-        var vcontraseña = validar_contraseña($contraseña, $contraseña1);
+        var vcontraseña = validar_contraseña($contraseña);
+        var vcontraseña1 = validar_contraseña1($contraseña1, $contraseña);
         var vrol = validar_rol($rol);
 
-        if (vnombre === false || vcorreo === false || vdireccion === false || vtelefono === false || vtipo_doc === false || vtip_doc_num === false || vtipo_usu === false || vsex === false || vcolegio === false || vespecialidad === false || vusuario === false || vcontraseña === false || vrol === false) {
+        if (vnombre === false || vcorreo === false || vdireccion === false || vtelefono === false || vtipo_doc === false || vtip_doc_num === false || vtipo_usu === false || vsex === false || vcolegio === false || vespecialidad === false || vusuario === false || vcontraseña === false || vrol === false || vcontraseña1 === false) {
             return false;
         } else {
             $.ajax({
@@ -47,7 +48,7 @@
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        window.location.href = "/Gerente/Gestionar_Cuentas";
+                        window.location.href = "/Gerente/Gestionar_Cuenta";
                     }
                 });
             });
@@ -99,7 +100,7 @@
         }
     };
     var minimoNumeroCaracteres7 = function maxCharacters(X) {
-        if (X.length < 6) {
+        if (X.length < 7) {
             return true;
         } else {
             return false;
@@ -223,15 +224,15 @@
     };
     //Validar correo
     function validar_correo(email) {
-        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var RegularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (email === "") {
             adderror("det_usu_correo");
             negativeattributes("error_det_usu_correo", 'Debe ingresar un email');
             $("#det_usu_correo").focus();
             $("#det_usu_correo").keyup(keyEmail);
             return false;
-        }
-        if (email.match(RegularExpression)) {
+        } 
+        if (RegularExpression.test(email) == false) {
             adderror("det_usu_correo");
             negativeattributes("error_det_usu_correo", 'Ingrese un email valido');
             $("#det_usu_correo").focus();
@@ -260,12 +261,12 @@
     }
 
     var keyEmail = function () {
-        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@0-9-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var RegularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         var email = $("#det_usu_correo").val();
         if (email === "") {
             adderror("det_usu_correo");
             negativeattributes("error_det_usu_correo", 'Debe ingresar un email');
-        } else if (email.match(RegularExpression)) {
+        } else if (RegularExpression.test(email)==false) {
             adderror("det_usu_correo");
             negativeattributes("error_det_usu_correo", 'Ingrese un email valido');
         } else if (email === " ") {
@@ -749,6 +750,7 @@
     //Validar Usuario
 
     function validar_usuario(usuario) {
+        var vru = 0;
         if (usuario === "") {
             adderror("usu_usuario");
             negativeattributes("error_usu_usuario", 'Debe ingresar un usuario');
@@ -781,7 +783,7 @@
                 url: "/Cuentas/Evaluar_Usuario",
                 method: "GET",
                 async: false,
-                data: { usu_usuario: $("#usu_usuario").val() },
+                data: { usu_usuario: usuario },
                 dataType: "json"
             }).done(function (data) {
                 if (data !== 0) {
@@ -832,7 +834,7 @@
                 url: "/Cuentas/Evaluar_Usuario",
                 method: "GET",
                 async: false,
-                data: { usu_usuario: $("#usu_usuario").val() },
+                data: { usu_usuario: usuario },
                 dataType: "json"
             }).done(function (data) {
                 if (data !== 0) {
@@ -849,7 +851,7 @@
 
     //Validar Contraseña
 
-    function validar_contraseña(contra1, contra2) {
+    function validar_contraseña(contra1) {
         if (contra1 === "") {
             adderror("usu_contraseña");
             negativeattributes("error_usu_contraseña", 'Debe ingresar una contraseña');
@@ -883,6 +885,57 @@
         }
     };
 
+
+    //Validar Repetición de Contraseña
+
+    function validar_contraseña1(contra1, contra) {
+
+        if (contra1 === "") {
+            adderror("usu_contraseña");
+            negativeattributes("error_usu_contraseña1", 'Debe ingresar una contraseña');
+            $("#usu_contraseña1").focus();
+            $("#usu_contraseña1").keyup(keyContraseña1);
+            return false;
+        }
+        if (contra1 === " ") {
+            adderror("usu_contraseña");
+            negativeattributes("error_usu_contraseña1", 'No puede estar el vacío el campo');
+            $("#usu_contraseña1").focus();
+            $("#usu_contraseña1").keyup(keyContraseña1);
+            return false;
+        }
+        if (contra1 !== contra) {
+            adderror("usu_contraseña");
+            negativeattributes("error_usu_contraseña", 'Las contraseñas no son iguales');
+            adderror("usu_contraseña1");
+            negativeattributes("error_usu_contraseña1", 'Las contraseñas no son iguales');
+            $("#usu_contraseña").focus();
+            $("#usu_contraseña").keyup(keyContraseña2);
+            return false;
+        }
+        addgood("usu_contraseña");
+        attributes("error_usu_contraseña");
+        addgood("usu_contraseña1");
+        attributes("error_usu_contraseña1");
+        return true;
+    }
+
+    var keyContraseña2 = function () {
+        var contraseña = $("#usu_contraseña").val();
+        var contraseña1 = $("#usu_contraseña_nuv").val();
+        if (contraseña1 !== contraseña) {
+            adderror("usu_contraseña1");
+            negativeattributes("error_usu_contraseña1", 'Las contrseñas no son iguales');
+        } else if (contraseña1 === " ") {
+            adderror("usu_contraseña1");
+            negativeattributes("error_usu_contraseña1", 'No puede estar el vacío el campo');
+        } else {
+            addgood("usu_contraseña");
+            attributes("error_usu_contraseña");
+            addgood("usu_contraseña1");
+            attributes("error_usu_contraseña1");
+        }
+    };
 
     //Validar Roles
 
