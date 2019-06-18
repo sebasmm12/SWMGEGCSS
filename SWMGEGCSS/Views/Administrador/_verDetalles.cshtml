@@ -1,0 +1,22 @@
+﻿@model SWMGEGCSS.Models.VisualizarTrabajadoresViewModel
+@{ 
+    ViewBag.Title = "_verDetalles";
+    Layout = null;
+    var list_actividades = Model.IPlist_actividades_usuario;
+}
+
+
+@section Scripts{
+    
+}
+
+
+
+    <div class="modal fade" id="ModalVerDetallesActividadesCuentas" tabindex="-1" role="dialog" aria-labelledby="#ModalVerDetallesActividadesCuentas" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <h2 class="text-center">Detalles de Actividades</h2>
+                @Html.Partial("Visualizar_Actividades", Model);
+            </div>
+        </div>
+    </div>

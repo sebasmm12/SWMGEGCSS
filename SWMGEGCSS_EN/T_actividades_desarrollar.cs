@@ -80,4 +80,18 @@ namespace SWMGEGCSS_EN
         public DateTime act_desa_fecha_finalizada { get; set; }
     }
 
+    public class T_actividades_desarrollar_usuarios
+    {
+        public int usu_codigo { get; set; }
+        public string det_usu_nombre { get; set; }
+        public int cant_actividades { get; set; }
+        public string usu_usuario { get; set; }
+        public int act_desa_id { get; set; }
+        public DateTime act_desa_fecha_inicio { get; set; }
+        public DateTime act_desa_fecha_fin { get; set; }
+        public string act_desa_nombre { get; set; }
+        public string plan_nombre { get; set; }
+        public int count { get; set; }
+    }
+
 }

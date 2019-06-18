@@ -186,6 +186,7 @@
     <Compile Include="Models\TareasAsignadasViewModel.cs" />
     <Compile Include="Models\TipoServicioViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
+    <Compile Include="Models\VisualizarTrabajadoresViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -365,6 +366,7 @@
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCitas.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCuenta.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\VisualizarTrabajadores.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
@@ -566,7 +568,15 @@
     <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\_Lista_Auditoria_Actividades.cshtml" />
+    <Content Include="Views\Cuentas\Actualizar_Datos.cshtml" />
+    <Content Include="Views\Cuentas\_EliminarCuenta.cshtml" />
+    <Content Include="Views\Cuentas\_verDetalles.cshtml" />
+    <Content Include="Views\Administrador\_Lista_Actividades_Usuario.cshtml" />
+    <Content Include="Views\Administrador\_verDetalles.cshtml" />
+    <Content Include="Views\Administrador\Visualizar_Actividades.cshtml" />
     <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
+    <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
+    <Content Include="Views\Account\_Recupera_Cuenta.cshtml" />
     <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
     <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
   </ItemGroup>

@@ -25,9 +25,20 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-        public ActionResult Visualizar_Trabajadores()
+        [HttpGet]
+        public ActionResult Visualizar_Trabajadores(int page = 1)
         {
-            return View();
+            var model = new VisualizarTrabajadoresViewModel();
+            model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario_Paged().ToPagedList(page, 4);
+            return View(model);
+        }
+        //Aquí prueba
+        [HttpGet]
+        public ActionResult Visualizar_Actividades(int page = 1)
+        {
+            var model = new VisualizarTrabajadoresViewModel();
+            model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().ToPagedList(page, 4);
+            return View(model);
         }
         public ActionResult Asignacion_Tareas(int page = 1)
         {
@@ -38,7 +49,7 @@ namespace SWMGEGCSS.Controllers
             Session["actividadesDesarrollar"] = null;
             GestionarAsignacionActividadesDesarrollar model = new GestionarAsignacionActividadesDesarrollar();
             //model.listActividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux();
-            
+
             model.listPagedActividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux().ToPagedList(page, 4);
             if (Request.IsAjaxRequest())
             {
@@ -46,6 +57,7 @@ namespace SWMGEGCSS.Controllers
             }
             return View(model);
         }
+
         public ActionResult Modificar_I_E()
         {
             return View();
@@ -53,6 +65,26 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Modificar_Cuenta()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult _verDetalles()
+        {
+            int page = 1;
+            var model = new VisualizarTrabajadoresViewModel();
+            model.actividades_usuario = new T_actividades_desarrollar_usuarios();
+            model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().ToPagedList(page, 4);
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult _verDetalles(int usu_codigo)
+        {
+            int page = 1;
+            var model = new VisualizarTrabajadoresViewModel();
+            model.actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().Find(r => r.usu_codigo == usu_codigo);
+            model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().ToPagedList(page, 4);
+            return PartialView(model);
         }
     }
 }
