@@ -16,6 +16,6 @@ namespace SWMGEGCSS_EN
         public DateTime obs_act_fecha_usuario { get; set; }
         public DateTime obs_act_creacion { get; set; }
         public int act_desa_id { get; set; }
-        public int obs_act_desa_id { get; set; }
+        public int obs_act_est_id { get; set; }
     }
 }

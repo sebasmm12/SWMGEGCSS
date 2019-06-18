@@ -566,11 +566,7 @@
     <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\_Lista_Auditoria_Actividades.cshtml" />
-    <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
-    <Content Include="Views\Cuentas\_EliminarCuenta.cshtml" />
-    <Content Include="Views\Cuentas\_verDetalles.cshtml" />
-    <Content Include="Views\Cuentas\Actualizar_Datos.cshtml" />
-    <Content Include="Views\Account\_Recupera_Cuenta.cshtml" />
+    <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />

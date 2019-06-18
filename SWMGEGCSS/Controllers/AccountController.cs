@@ -37,6 +37,7 @@ namespace SWMGEGCSS.Controllers
             {
                 if (contador == 1)
                 {
+                    Session["rol_name"] = rol_name;
                     HttpContext.Session["login"] = model.Usuario.usu_codigo;
                     HttpContext.Session["name"] = t_d_usuario.det_usu_nombre;
                     HttpContext.Session["rol_name"] = rol_name;

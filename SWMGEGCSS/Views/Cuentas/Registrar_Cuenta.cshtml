@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 @section Scripts{
-    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRegistrarEmpresas.js"></script>
+    <script src="~/Scripts/Scripts_TP/MAURICIO/scriptsRegistrarCuenta.js"></script>
 }
 
 <h2 class="pl-3 ml-3 mt-3 mb-3">Registrar Cuenta</h2>
@@ -33,7 +33,7 @@
                 {
                    htmlAttributes = new { @id = "det_usu_correo", @class = "text-center form-control" }
                 })
-                <div id="error-cita-correo" class="errordiv"></div>
+                <div id="error_det_usu_correo" class="errordiv"></div>
             </div>
         </div>
 
@@ -46,6 +46,7 @@
                {
                    htmlAttributes = new { @id = "det_usu_direccion", @class = "text-center form-control" }
                })
+                <div id="error_det_usu_direccion" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -55,6 +56,7 @@
                 {
                    htmlAttributes = new { @id = "det_usu_telefono", @class = "text-center form-control" }
                 })
+                <div id="error_det_usu_telefono" class="errordiv"></div>
             </div>
         </div>
 
@@ -69,6 +71,7 @@
                     <option class="font-weight-bolder" value="2">RUC</option>
                     <option class="font-weight-bolder" value="3">Pasaporte</option>
                 </select>
+                <div id="error_det_usu_tip_doc" class="errordiv"></div>
             </div>
 
             <div class="col-12 col-sm-6 col-md-6">
@@ -80,6 +83,7 @@
                     <option class="font-weight-bolder" value="1">Persona</option>
                     <option class="font-weight-bolder" value="2">Empresa</option>
                 </select>
+                <div id="error_tipo_det_usu_tipo" class="errordiv"></div>
             </div>
         </div>
 
@@ -92,6 +96,7 @@
                 {
                    htmlAttributes = new { @id = "det_usu_tip_doc_numero", @class = "text-center form-control" }
                 })
+                <div id="error_det_usu_tip_doc_numero" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -102,6 +107,7 @@
                     <option class="font-weight-bolder" value="M">Masculino</option>
                     <option class="font-weight-bolder" value="F">Femenino</option>
                 </select>
+                <div id="error_det_usu_sexo" class="errordiv"></div>
             </div>
         </div>
 
@@ -114,6 +120,7 @@
                 {
                    htmlAttributes = new { @id = "det_usu_codigoColegio", @class = "text-center form-control" }
                 })
+                <div id="error_det_usu_codigoColegio" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -123,6 +130,7 @@
                 {
                    htmlAttributes = new { @id = "det_usu_especialidad", @class = "text-center form-control" }
                 })
+                <div id="error_det_usu_especialidad" class="errordiv"></div>
             </div>
         </div>
 
@@ -135,12 +143,14 @@
                 {
                    htmlAttributes = new { @id = "usu_usuario", @class = "text-center form-control" }
                 })
+                <div id="error_usu_usuario" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Contraseña
                 </label>
                 <input class="text-center form-control" type="password" name="usu_contraseña" id="usu_contraseña" />
+                <div id="error_usu_contraseña" class="errordiv"></div>
             </div>
         </div>
         <div class="row mt-3 pl-3">
@@ -154,6 +164,7 @@
                     <option class="font-weight-bolder" value="2">Secretario</option>
                     <option class="font-weight-bolder" value="1">Trabajador</option>
                 </select>
+                <div id="error_rol_codigo" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
