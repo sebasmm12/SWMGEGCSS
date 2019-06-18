@@ -114,6 +114,7 @@ namespace SWMGEGCSS.Controllers
             System.Net.Mail.MailMessage mensaje = new System.Net.Mail.MailMessage();
             mensaje.To.Add("magincho1000@gmail.com");
 
+            http://oscarsotorrio.com/post/2011/01/22/Envio-de-correo-en-NET-con-CSharp.aspx
             mensaje.Subject="Recupera contraseña";
             mensaje.SubjectEncoding=System.Text.Encoding.UTF8;
 
