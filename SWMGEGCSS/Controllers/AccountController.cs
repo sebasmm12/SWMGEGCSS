@@ -20,7 +20,7 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-       
+
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -29,7 +29,7 @@ namespace SWMGEGCSS.Controllers
             model.Usuario = new T_usuario();
             model.Usuario.usu_usuario = username;
             model.Usuario.usu_contraseña = password;
-            var contador = new UsuarioDataAccess().sp_Encontrar_Usuario(model.Usuario,t_d_usuario);
+            var contador = new UsuarioDataAccess().sp_Encontrar_Usuario(model.Usuario, t_d_usuario);
             var contador_empresa = new UsuarioDataAccess().sp_Consultar_Sesion_Empresa(model.Usuario);
             var rol_name = new RolDataAccess().sp_Obtener_Rol_Nombre_Usuario(model.Usuario.usu_codigo);
             var l_permiso_usuario = new PermisoDataAccess().sp_Listar_Permisos_Usuario(rol_name);
@@ -68,7 +68,7 @@ namespace SWMGEGCSS.Controllers
                 HttpContext.Session["rol_name"] = rol_name;
                 HttpContext.Session["l_permiso_usuario"] = l_permiso_usuario;
                 return RedirectToAction("Index", "Trabajador");
-            }      
+            }
         }
         public ActionResult Exit()
         {
@@ -83,7 +83,7 @@ namespace SWMGEGCSS.Controllers
             int codigo = (int)Session["login"];
             var model = new DetalleUsuarioViewModel();
 
-            model.Detalle_Usuario = new UsuarioDataAccess().sp_Consultar_Lista_Detalle_Usuarios().Find(r=>r.usu_codigo==codigo);
+            model.Detalle_Usuario = new UsuarioDataAccess().sp_Consultar_Lista_Detalle_Usuarios().Find(r => r.usu_codigo == codigo);
             return View(model);
         }
 
@@ -91,14 +91,21 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult Gestionar_Datos_Personales(T_detalle_usuario usuario)
         {
-     
+
             var model = new DetalleUsuarioViewModel();
 
             model.Detalle_Usuario = usuario;
             model.Detalle_Usuario.usu_codigo = (int)Session["login"];
             var operationResult = new UsuarioDataAccess().sp_Actualizar_Datos_Personales(model.Detalle_Usuario);
-          //  return RedirectToAction("Index","Gerente");
-             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
+            //  return RedirectToAction("Index","Gerente");
+            return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult _Recupera_Cuenta()
+        {
+                
+            return View();
         }
         
         public ActionResult GENERAR_FORMULARIOS()
