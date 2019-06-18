@@ -567,6 +567,8 @@
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\_Lista_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
+    <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
+    <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />

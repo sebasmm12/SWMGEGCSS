@@ -102,13 +102,50 @@ namespace SWMGEGCSS.Controllers
             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult _Recupera_Cuenta()
+        [HttpGet]
+        public ActionResult Recuperar_Cuenta()
         {
-                
+            var model = new DetalleUsuarioViewModel();
             return View();
         }
-        
+        [HttpPost]
+        public ActionResult Recuperar_Cuenta(T_detalle_usuario usuario)
+        {
+            System.Net.Mail.MailMessage mensaje = new System.Net.Mail.MailMessage();
+            mensaje.To.Add("magincho1000@gmail.com");
+
+            mensaje.Subject="Recupera contraseña";
+            mensaje.SubjectEncoding=System.Text.Encoding.UTF8;
+
+            mensaje.Body = "";
+            mensaje.BodyEncoding = System.Text.Encoding.UTF8;
+            mensaje.IsBodyHtml = false;
+
+            mensaje.From = new System.Net.Mail.MailAddress("carloslau2709@gmail.com");//desde donde
+
+
+            System.Net.Mail.SmtpClient trabajador = new System.Net.Mail.SmtpClient();
+
+            trabajador.Credentials = new System.Net.NetworkCredential("carloslau2709@gmail.com", "HOLA2750398");
+
+
+            trabajador.Port = 587;
+            trabajador.EnableSsl = true;
+
+
+            trabajador.Host = "smtp.gmail.com";
+
+            try
+            {
+                trabajador.Send(mensaje);
+            }
+            catch(System.Net.Mail.SmtpException ex)
+            {
+
+            }
+            return RedirectToAction("Login","Account");
+        }
+
         public ActionResult GENERAR_FORMULARIOS()
         {
             return RedirectToAction("G_Formulario", "Trabajador");

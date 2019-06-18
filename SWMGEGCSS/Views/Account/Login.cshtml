@@ -19,6 +19,7 @@
     @section scripts{
         <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRecuper_Cuenta.js"></script>
     }
+ 
 </head>
 <body>
     @using (Html.BeginForm("Login", "Account", FormMethod.Post, htmlAttributes: new { @id = "form" }))
@@ -75,7 +76,7 @@
                                             Iniciar Sesión
                                         </button>
                                     </div>
-                                    <a href=@Url.Action("_Recupera_Cuenta","Account")>¿Olvidaste tu contraseña?</a>
+                                    <a href="@Url.Action("Recuperar_Cuenta","Account")">¿Olvidaste tu contraseña?</a>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +86,10 @@
             </div>
         </div>
     }
+
+
+
+
 </body>
 </html>
 
