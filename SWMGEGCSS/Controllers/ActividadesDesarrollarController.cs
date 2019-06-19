@@ -123,6 +123,7 @@ namespace SWMGEGCSS.Controllers
 
             model.usuarioEncargado = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().Find(X => X.usu_codigo == model.auditoriaActividadesDesarrollar.usu_asignado);
             var operationResult = new ActividadesDesarrollarDataAccess().sp_actualizar_actividades_Desarrollar_asignacion(model.actividadesDesarrollar);
+            
             var operationResult2 = new ActividadesDesarrollarDataAccess().sp_registrar_actividades_desarrollar_auditoria(model.auditoriaActividadesDesarrollar);
             return Json(new { data = operationResult2.NewId }, JsonRequestBehavior.AllowGet);
         }

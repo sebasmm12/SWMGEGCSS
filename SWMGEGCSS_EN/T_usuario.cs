@@ -32,7 +32,9 @@ namespace SWMGEGCSS_EN
         public int tipo_det_usu_tipo { get; set; }
         public string det_usu_codigoColegio { get; set; }
         public string det_usu_especialidad {get;set;}
+        public byte[] det_usu_imagem { get; set; }
         public string rol_nombre { get; set; }
+        public int rol_codigo { get; set; }
     }
 
     

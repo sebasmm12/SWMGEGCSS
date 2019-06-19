@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SWMGEGCSS_EN
 {
@@ -17,6 +18,8 @@ namespace SWMGEGCSS_EN
         public int tipo_servicio_id { get; set; }
         public double exp_ganancia { get; set; }
         public string exp_nombre { get; set; }
+        public string archivo_ulr_inicio { get; set; }
+        public string archivo_url_final { get; set; }
     }
     public class T_expediente_aux
     {
@@ -31,6 +34,7 @@ namespace SWMGEGCSS_EN
         public string exp_nombre { get; set; }
         public int cantidad_actividades_desarrollar { get; set; }
         public int cantidad_actividades_terminar { get; set; }
-        public DateTime fecha_actual { get; set; }
+        public HttpPostedFileBase archivo_ulr_inicio { get; set; }
+        public HttpPostedFileBase archivo_url_final { get; set; }
     }
 }

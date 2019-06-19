@@ -56,7 +56,6 @@
         });
         return false;
     };
-    var cont = 0;
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -67,7 +66,6 @@
                 method: "POST",
                 data: { id: $(this).attr("data-id-plan") }
             }).done(function (data) {
-                cont++;
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
@@ -78,28 +76,7 @@
                 $(".btnEliminar").each(Alerta);
             });
         });
-        if (cont > 0) {
-            return true;
-        } else {
-            return false;
-        }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var BuscarProyecto = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");

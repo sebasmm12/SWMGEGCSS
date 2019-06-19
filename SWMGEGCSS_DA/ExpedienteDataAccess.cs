@@ -155,6 +155,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, Expediente.tipo_servicio_id);
                     Database.AddInParameter(command, "@exp_ganancia", DbType.Double, Expediente.exp_ganancia);
                     Database.AddInParameter(command, "@exp_nombre", DbType.String, Expediente.exp_nombre);
+                    Database.AddInParameter(command, "@archivo_url_inicio", DbType.String, Expediente.archivo_ulr_inicio);
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }

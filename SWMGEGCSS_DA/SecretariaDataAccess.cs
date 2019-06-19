@@ -20,10 +20,10 @@ namespace SWMGEGCSS_DA
             {
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Citas"))
                 {
-                    
+
                     using (IDataReader reader = Database.ExecuteReader(command))
                     {
-                        while(reader.Read())
+                        while (reader.Read())
                         {
                             var cita = new T_Citas_aux();
                             cita.cita_id = DataUtil.DbValueToDefault<Int32>(reader["cita_id"]);
@@ -41,11 +41,11 @@ namespace SWMGEGCSS_DA
                             cita.usu_usuario = DataUtil.DbValueToDefault<string>(reader["usu_usuario"]);
                             l_citas.Add(cita);
                         }
-                        
+
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.Write(e + " ");
                 return new List<T_Citas_aux>();
@@ -79,7 +79,7 @@ namespace SWMGEGCSS_DA
                 return new List<T_estado_cita>();
             }
             return l_estado_cita;
-            
+
         }
 
         //Busca por estados

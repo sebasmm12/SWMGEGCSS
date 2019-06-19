@@ -71,6 +71,7 @@
     <Compile Include="T_actividades_planeadas.cs" />
     <Compile Include="T_auditar_expedientes.cs" />
     <Compile Include="T_auditoria_actividades_desarrollo.cs" />
+    <Compile Include="T_auditoria_observacion_actividades.cs" />
     <Compile Include="T_Citas.cs" />
     <Compile Include="T_detalle_usuario.cs" />
     <Compile Include="T_empresa.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="T_expedientes.cs" />
     <Compile Include="T_ingresos_egresos.cs" />
     <Compile Include="T_notificaciones.cs" />
+    <Compile Include="T_observacion_actividades.cs" />
+    <Compile Include="T_observacion_actividades_estado.cs" />
     <Compile Include="T_permiso.cs" />
     <Compile Include="T_plan_estado.cs" />
     <Compile Include="T_reporte_rendimiento.cs" />

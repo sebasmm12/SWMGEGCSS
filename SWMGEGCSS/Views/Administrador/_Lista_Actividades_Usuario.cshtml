@@ -1,0 +1,51 @@
+﻿@model SWMGEGCSS.Models.VisualizarTrabajadoresViewModel
+@{ 
+    var list_actividades = Model.IPlist_actividades_usuario;
+    var count = 0;
+    Layout = null;
+}
+<div id="tableExp">
+    <div class="table-responsive form-bar mt-5">
+        <div class="row mt-4">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-success">
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Cantidad de Actividades</th>
+                                <th scope="col">Funcionalidades</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in list_actividades)
+                            {
+                                count = count + 1;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.det_usu_nombre</td>
+                                    <td>@item.cant_actividades</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning btnModal" data-id-actividad="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Administrador", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesActividadesCuentas" id="boton_Ver_Detalles">
+                                            <i class="fa fa-tomes"></i>
+                                            Ver Detalles
+                                        </button>
+                                    </td>
+                                </tr>
+
+
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="row ml-3">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+            @Html.PagedListPager(list_actividades, page => Url.Action("Visualizar_Trabajadores", "Administrador", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>

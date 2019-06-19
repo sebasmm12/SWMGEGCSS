@@ -1,0 +1,29 @@
+COLOMBO
+ - Se cae cuando acepta el 0
+ - Registra un estado en cancelado
+ - Validar los 3 clicks
+ - Debe permitir reasignar
+ - Validar si en caso el trabajador ya lo inicio no se puede reasignar
+PIERO
+ - Se cae cuando se conpagina el eliminar no se muestra
+ - Validar si en caso se eliminar ya no se muestra en la lista
+ - No valida la formación
+
+EGG
+- MEJORAR FRONT
+- VALIDACIONES EXTREMAS
+
+TP1:
+ -ERROR EN LA CONSULTA NO TE SALE EL AUTOCOMPLETE DEL HABILITADO
+- Validar el número de contacto(permite ingresar espacios)
+- Validar el número de ruc(permite ingresar espacios)
+- Error en el gmail(deben validarlo) (keyup)
+- Validar el número de contacto-Actualizar(permite ingresar espacios)
+- Error en el gmail(deben validarlo) (keyup)-Actualizar
+- Validar si en caso se eliminar debe permitir activa (Ya no actualizar ni eliminar)
+- No funciona el consultar de registrar ingresos egresos
+- Validar bien los keyups del gestionar cita
+- Esta mal validado el encargado no permite ingresar cuando falla
+
+MIRANDA
+ - Validaciones extremas y restricciones extremas al proyecto

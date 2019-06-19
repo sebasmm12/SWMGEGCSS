@@ -1,0 +1,47 @@
+PIERO
+- No sale el precio sugerido del registro del servicio
+- No valido que el primer espacio no debe ser blanco,al final y al medio del nombre del plan
+- No valido que el primer espacio no debe ser blanco,al final y al medio del nombre de la actividad planificada
+- No valido que el primer espacio no debe ser blanco,al final y al medio del nombre de la descripcion planificada
+- Se cae cuando se valida mucho el registrar plan servicio
+-No valido que el primer espacio no debe ser blanco,al final y al medio de la descripcion
+- Se cae cuando se valida el agregar archivo, averiguar porque se cayo de la nada
+COLOMBO
+- No sale el precio sugerido
+- Se cae cuando compagino para buscar un empleado en asignacion de tareas
+- No valido que el primer espacio no debe ser blanco,al final y al medio del nombre del plan actualizar el plan y las actividades  y las planificadas
+- No valido que el primer espacio no debe ser blanco,al final y al medio del nombre de la actividad planificada actualizar el plan y las actividades  y las planificadas
+- No valido que el primer espacio no debe ser blanco,al final y al medio del nombre de la descripcion planificada de actualizar el plan y las actividades y las planificadas
+- Validar la paginacion de la eliminiacion del modal del boton eliminar
+- Eliminar el punto y coma de la tabla de asignacion de tareas
+- Que al final salga un sweetalert de que se registra el empleado para la asignacion de tarea
+
+MAURICIO
+- Debe solo mostrar en base al estado
+- Validacion del eliminar cuando busco y retrocedo(paginación)
+
+LAO
+- Debe validar en la razon social que si o si no debe comenzar en espacios
+y que solo permita un espacio.
+-Validar en dirección los espacios entre medios solo debe permitir uno
+y el final no debe permitir espacios.
+-Validar en siglas los espacios entre medios solo debe permitir uno
+y el final no debe permitir espacios.
+-No debe permitir los espacios en blancos en número de contacto.
+-No debe permitir los espacios en blanco en ruc.
+-Validar gmail 
+- Validacion iguales en actualizar
+
+
+SEBASTIAN
+
+- La tabla de registrar un servicio en base a las actividades deben estar
+con el ajax de avanzar.
+- Validar la seleccion de opcion de Gestionar Servicios
+- La tabla del consultar del servicio debe estar paginado cada uno
+- Validar si no tiene actividades deben salir como vacio
+- Validar que solo se debe mostrar el eliminar a los que tiene el estado de en ejecucion
+- Validar que el costo debe salir por default
+
+EGG
+-Validaciones Extremas

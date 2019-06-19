@@ -1,0 +1,176 @@
+﻿@model SWMGEGCSS.Models.GestionarCuentasViewModel
+@{
+    ViewBag.Title = "_verDetalles";
+    Layout = null;
+    var tipo_doc = 0;
+    var tipo_usu = 0;
+    if(Model.cuentas != null)
+    {
+        tipo_doc = Model.cuentas.det_usu_tip_doc;
+        tipo_usu = Model.cuentas.tipo_det_usu_tipo;
+    }
+
+
+
+
+}
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/MAURICIO/ConsultarCuenta.js"></script>
+}
+<div class="modal fade" id="ModalVerDetallesCuenta" tabindex="-1" role="dialog" aria-labelledby="#ModalVerDetallesCuenta" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <h2 class="text-center">Detalles del Usuario</h2>
+            <div class="container-fluid" >
+                @using (Html.BeginForm("Registrar_Cuenta", "Cuentas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row mt-3 pl-3">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Nombre y Apellido
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_nombre, new
+                           {
+                               htmlAttributes = new { @id = "det_usu_nombre", @class = "text-center form-control bg-white", @readonly = "readonly"}
+                           })
+                            <div id="error_det_usu_nombre" class="errordiv"></div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Correo
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_correo, new
+                            {
+                               htmlAttributes = new { @id = "det_usu_correo", @class = "text-center form-control bg-white", @readonly = "readonly" }
+                            })
+                            <div id="error-cita-correo" class="errordiv"></div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 pl-3">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Direccion
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_direccion, new
+                           {
+                               htmlAttributes = new { @id = "det_usu_direccion", @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                           })
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Telefono
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_telefono, new
+                            {
+                               htmlAttributes = new { @id = "det_usu_telefono", @class = "text-center form-control bg-white", @readonly = "readonly" }
+                            })
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 pl-3">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Tipo de Documento
+                            </label>
+                            @if (tipo_doc == 1)
+                            {<input type="text" class="text-center form-control bg-white" value="DNI" readonly="readonly"/>}
+                            @if (tipo_doc == 2)
+                            {<input type="text" class="text-center form-control bg-white" value="RUC" readonly="readonly" />}
+                            @if (tipo_doc == 3)
+                            {<input type="text" class="text-center form-control bg-white" value="PASAPORTE" readonly="readonly"/>}
+
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-6" readonly="readonly">
+                            <label class="font-weight-bolder">
+                                Tipo de Usuario
+                            </label>
+                            @if (tipo_usu == 1)
+                            {<input type="text" class="text-center form-control bg-white" value="Personas" readonly="readonly" />}
+                            @if (tipo_usu == 2)
+                            {<input type="text" class="text-center form-control bg-white" value="Empresa" readonly="readonly"/>}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 pl-3">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Número del Documento
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_tip_doc_numero, new
+                            {
+                               htmlAttributes = new { @id = "det_usu_tip_doc_numero", @class = "text-center form-control bg-white", @readonly = "readonly" }
+                            })
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Sexo
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_sexo, new
+                            {
+                               htmlAttributes = new { @id = "det_usu_sexo", @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                            })
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 pl-3">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Universidad o Instituto
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_codigoColegio, new
+                            {
+                               htmlAttributes = new { @id = "det_usu_codigoColegio", @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                            })
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Especialidad
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.det_usu_especialidad, new
+                            {
+                               htmlAttributes = new { @id = "det_usu_especialidad", @class = "text-center form-control bg-white" , @readonly = "readonly"}
+                            })
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 pl-3">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Nombre de Usuario
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.usu_usuario, new
+                            {
+                               htmlAttributes = new { @id = "usu_usuario", @class = "text-center form-control bg-white", @readonly = "readonly" }
+                            })
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <label class="font-weight-bolder">
+                                Tipo de Usuario
+                            </label>
+                            @Html.EditorFor(model => model.cuentas.rol_nombre, new
+                            {
+                               htmlAttributes = new { @id = "usu_usuario", @class = "text-center form-control bg-white", @readonly = "readonly"  }
+                            })
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3 ml-2 mb-3">
+                        <div class="col-12 col-sm-3 col-md-3">
+                            <a href="@Url.Action("Gestionar_Cuenta", "Gerente")" class="btn btn-secondary">
+                                <i class="fa fa-backward">
+
+                                </i>
+                                Regresar
+                            </a>
+                        </div>
+                        
+
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,7 +14,6 @@
     };
     var usu_cod = 0;
     var act_desa_id = 0;
-    var cont = 0;
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -27,7 +26,6 @@
                 async: false,
                 data: { usu_codigo: usu_cod }
             }).done(function (data) {
-                cont++;
                 var $target = $($button.attr("data-id-target"));
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
@@ -35,11 +33,6 @@
                 $(".btnRegistrarResponsable").click(envioajaxAgregar);
             });
         });
-        if (cont > 0) {
-            return true;
-        } else {
-            return false;
-        }
     };
     var envioajaxAgregar = function () {
         //mismo nombre del parametro de actualizacion del metodo

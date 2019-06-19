@@ -6,7 +6,7 @@
     {
         var estado = Model.empresas.emp_estado;
     }
-    
+
 }
 
 
@@ -128,32 +128,36 @@
 
 
                     <div class="row mt-4 pl-2 mb-3">
-                        @if (Model.empresas.emp_estado == true)
+                        @if (Model.empresas != null)
                         {
-                            <div>
-                                <input type="hidden" name="emp_estado" value="true" />
-                            </div>
-                            <div class="col-12 col-sm-3 col-md-3">
-                                <button type="submit" class="btn btn-danger" id="boton-Eliminar">
+                            if (Model.empresas.emp_estado == true)
+                            {
+                                <div>
+                                    <input type="hidden" name="emp_estado" value="true" />
+                                </div>
+                                <div class="col-12 col-sm-3 col-md-3">
+                                    <button type="submit" class="btn btn-danger" id="boton-Eliminar">
 
-                                    <i class="fa fa-check-circle"></i>
-                                    Eliminar Empresa
-                                </button>
-                            </div>
-                        }
-                        else
-                        {
-                            <div>
-                                <input type="hidden" name="emp_estado" value="false" />
-                            </div>
-                            <div class="col-12 col-sm-3 col-md-3">
-                                <button type="submit" class="btn btn-success" id="boton-Activar">
+                                        <i class="fa fa-check-circle"></i>
+                                        Eliminar Empresa
+                                    </button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <input type="hidden" name="emp_estado" value="false" />
+                                </div>
+                                <div class="col-12 col-sm-3 col-md-3">
+                                    <button type="submit" class="btn btn-success" id="boton-Activar">
 
-                                    <i class="fa fa-check-circle"></i>
-                                    Activar Empresa
-                                </button>
-                            </div>
+                                        <i class="fa fa-check-circle"></i>
+                                        Activar Empresa
+                                    </button>
+                                </div>
+                            }
                         }
+
 
                         <div class="col-12 col-sm-3 col-md-3">
                             <a href="@Url.Action("Gestionar_Empresas","Gerente")" class="btn btn-secondary">

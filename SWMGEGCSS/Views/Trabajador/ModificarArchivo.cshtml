@@ -1,5 +1,7 @@
 ﻿@model SWMGEGCSS.Models.TareasAsignadasViewModel
 @{
+    var list_observaciones = Model.Lista_Observaciones;
+    var count = 0;
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
@@ -36,14 +38,14 @@
                                }
                            })
                         @*@Html.TextAreaFor(model => model.Actividad_aux3.act_desa_comentario, new
-        {
-            htmlAttributes = new
-            {
-                @readonly = "readonly",
-                @class = "text-center form-control",
-                @Value = Session["comentarius"]
-            }
-        })*@
+                            {
+                                htmlAttributes = new
+                                {
+                                    @readonly = "readonly",
+                                    @class = "text-center form-control",
+                                    @Value = Session["comentarius"]
+                                }
+                            })*@
                     </div>
                     <div class="col-sm-3 col-md-3">
 
@@ -57,7 +59,7 @@
                     <div class="col-12 col-sm-8 col-md-8">
                         <div>
                             <label class="font-weight-bolder">
-                                Archivo Corregido :
+                                Archivo por corregir :
                             </label>
                             &nbsp;
                             &nbsp;
@@ -71,7 +73,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div><!--.borderojo-->
             <div class="row mt-4 pl-2">
                 <div class="col-sm-1 col-md-1"></div>
             </div>
@@ -88,12 +90,46 @@
                     </div>
                     @Html.TextAreaFor(model => model.Actividad_aux3.act_desa_comentario,
 
-                htmlAttributes : new { @id = "actividad_comentario", @class = "text-center form-control bg-white" })
+                    htmlAttributes : new { @id = "actividad_comentario", @class = "text-center form-control bg-white" })
 
                     <div id="error_actividad_comentario" class="errordiv"></div>
                 </div>
                 <div class="col-sm-1 col-md-1">
 
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 col-sm-12 col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-success">
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Observación del revisor</th>
+                                    <th scope="col">Fecha de revision</th>
+                                    <th scope="col">Funciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in list_observaciones)
+                                {
+                                    count = count + 1;
+                                    <tr class="text-center">
+                                        <th scope="row">@count</th>
+                                        <td>@item.obs_act_revisor</td>
+                                        <td>@item.obs_act_fecha_revisor</td>
+                                        <td>
+                                            <button type="button" class="btn btn-success btnModal" data-id-observacion="@item.obs_act_id" data-url="@Url.Action("_ResponderObservacion","Trabajador")" data-id-target="#ModificarObservacion">
+                                                <i class="fa fa-check"></i>
+                                                Responder a la observación
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -104,7 +140,7 @@
                 <div class="col-12 col-sm-8 col-md-8">
                     <div>
                         <label class="font-weight-bolder">
-                            Subir Archivo :
+                            Archivo por subir:
                         </label>
                     </div>
                     @Html.TextBoxFor(model => model.Actividad_aux3.archivo, new { type = "file", id = "newfile" })
@@ -136,6 +172,7 @@
         </div>
     </form>
 </div>
+@Html.Action("_ResponderObservacion", "Trabajador")
 @section Scripts{
     <script src="~/Scripts/Scripts_TP/PIERO/scriptsModificarArchivo.js"></script>
 }

@@ -14,6 +14,7 @@ namespace SWMGEGCSS_EN
         public DateTime audi_act_fecha_fin { get; set; }
         public DateTime audi_act_fecha_revision { get; set; }
         public DateTime audi_act_fecha_finalizada { get; set; }
+        public DateTime audi_act_fecha_auditoria { get; set; }
         public int audi_act_revisor { get; set; }
         public string audi_act_revisor_obs { get; set; }
         public int usu_asignado { get; set; }
