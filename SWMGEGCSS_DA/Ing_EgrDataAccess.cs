@@ -45,6 +45,43 @@ namespace SWMGEGCSS_DA
             return l_ing_egr;
         }
 
+
+        public List<T_ingresos_egresos> sp_Consultar_Lista_Ing_Egr_X_fecha(DateTime fechaIni, DateTime fechafin)
+        {
+            var l_ing_egr = new List<T_ingresos_egresos>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_I_E_x_fecha_aux"))
+                {
+                    Database.AddInParameter(command, "@fechaini", DbType.Date, fechaIni);
+                    Database.AddInParameter(command, "@fechafin", DbType.Date, fechafin);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            var ing_egr = new T_ingresos_egresos();
+                            ing_egr.ing_egr_nombre = DataUtil.DbValueToDefault<string>(reader["ing_egr_nombre"]);
+                            ing_egr.ing_egr_descripcion = DataUtil.DbValueToDefault<string>(reader["ing_egr_descripcion"]);
+                            ing_egr.ing_egr_fecha = DataUtil.DbValueToDefault<DateTime>(reader["ing_egr_fecha"]);
+                            ing_egr.ing_egr_ingrso = DataUtil.DbValueToDefault<bool>(reader["ing_egr_ingreso"]);
+                            ing_egr.ing_egr_monto = DataUtil.DbValueToDefault<double>(reader["ing_egr_monto"]);
+                            ing_egr.ing_egr_id = DataUtil.DbValueToDefault<int>(reader["ing_egr_id"]);
+                            l_ing_egr.Add(ing_egr);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return new List<T_ingresos_egresos>();
+            }
+            return l_ing_egr;
+        }
+
+
+
         public List<T_ingresos_egresos> sp_Consultar_Lista_Ing_Egr_Estado(string estado)
         {
             var l_ing_egr = new List<T_ingresos_egresos>();

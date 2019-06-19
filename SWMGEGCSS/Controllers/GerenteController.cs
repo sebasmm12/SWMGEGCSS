@@ -8,6 +8,10 @@ using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
 using System.Globalization;
 using PagedList;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using System.Data;
+
 namespace SWMGEGCSS.Controllers
 {
     public class GerenteController : Controller
@@ -22,6 +26,79 @@ namespace SWMGEGCSS.Controllers
             return View();
         }
         public ActionResult Generar_Reportes()
+        {
+            var model = new ExpedienteViewModel();
+            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos();
+
+            /*List<T_expediente_aux> listExp = new List<T_expediente_aux>();
+            listExp = model.List_Expediente;
+            foreach (var item in listExp)
+            {
+
+            }*/
+            return View(model);
+        }
+        public ActionResult ExportarReporte()
+        {
+            var model = new ExpedienteViewModel();
+
+            model.Estado_Expediente = new EstadoExpedienteDataAccess().sp_Consultar_Lista_Estado_Expediente().Find(X => (X.est_exp_id == 2));
+            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().FindAll(X => (X.est_exp_nombre == model.Estado_Expediente.est_exp_nombre));
+            ReportDocument rp = new ReportDocument();
+            //rp.Load(Path.Combine(Server.MapPath("~/Reporte"), "reporteProyecto.rpt"));
+            rp.Load(@"C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte\reporteProyecto.rpt");
+            rp.SetDataSource(model.List_Expediente);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            Stream stream = rp.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return File(stream, "application/pdf", "ReporteProyectos.pdf");
+
+
+        }
+        public ActionResult ExportarReporteFinanciero(DateTime fechaIni, DateTime fechaFin)
+        {
+            var model = new Gestionar_I_EViewModel();
+            //model.reporteFechas.fechaInicio = fechaIni;
+            //model.reporteFechas.fechaFin = fechaFin;
+            List<T_ingresos_egresos> list_Ing_Eg = new List<T_ingresos_egresos>();
+            List<T_ingresos_egresos_aux> list_Ing_Eg_Aux = new List<T_ingresos_egresos_aux>();
+            list_Ing_Eg = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_X_fecha(fechaIni, fechaFin);
+            // model.lista_ingresos_egresos = new Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr().FindAll(X => X.ing_egr_fecha > Convert.ToDateTime(fechaIni) &&  X.ing_egr_fecha < Convert.ToDateTime(fechaFin));
+            
+            foreach (T_ingresos_egresos tie in list_Ing_Eg)
+            {
+                T_ingresos_egresos_aux tiea = new T_ingresos_egresos_aux();
+                tiea.ing_egr_nombre = tie.ing_egr_nombre;
+                if(tie.ing_egr_ingrso == true)
+                {
+                    tiea.ing_egr_ingrso = "Ingreso";
+                    tiea.ing_egr_monto = tie.ing_egr_monto;
+                }
+                else
+                {
+                    tiea.ing_egr_ingrso = "Egreso";
+                    tiea.ing_egr_monto = -tie.ing_egr_monto;
+                }
+                tiea.ing_egr_descripcion = tie.ing_egr_descripcion;
+                tiea.ing_egr_fecha = tie.ing_egr_fecha;
+                list_Ing_Eg_Aux.Add(tiea);
+            }
+            model.lista_ingresos_egresos_aux = list_Ing_Eg_Aux;
+            ReportDocument rp = new ReportDocument();
+            //C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte
+            rp.Load(@"C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte\reporteIE.rpt");
+            rp.SetDataSource(model.lista_ingresos_egresos_aux);      
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Stream stream = rp.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return File(stream, "application/pdf", "ReporteFinanciero.pdf");
+        }
+        public ActionResult Gestionar_Reporte_I_E()
         {
             return View();
         }
@@ -142,6 +219,7 @@ namespace SWMGEGCSS.Controllers
             }
             return View(model);
         }
+        
         public ActionResult Gestionar_Empresas(string searchTerm, string estado, int page = 1)
         {
             GestionarEmpresaViewModel model = new GestionarEmpresaViewModel();

@@ -31,5 +31,6 @@ namespace SWMGEGCSS_EN
         public string exp_nombre { get; set; }
         public int cantidad_actividades_desarrollar { get; set; }
         public int cantidad_actividades_terminar { get; set; }
+        public DateTime fecha_actual { get; set; }
     }
 }

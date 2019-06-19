@@ -172,6 +172,40 @@ namespace SWMGEGCSS_DA
                 return new List<T_detalle_usuario>();
             }
         }
+        public List<T_detalle_usuario> sp_listar_detalle_usuario_trabajador_asignacion()
+        {
+            List<T_detalle_usuario> listaDetalleUsuario = new List<T_detalle_usuario>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_detalle_trabajador_Asignacion"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_detalle_usuario det_usu = new T_detalle_usuario();
+                            det_usu.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            det_usu.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
+                            det_usu.det_usu_correo = DataUtil.DbValueToDefault<string>(reader["det_usu_correo"]);
+                            det_usu.det_usu_direccion = DataUtil.DbValueToDefault<string>(reader["det_usu_direccion"]);
+                            det_usu.det_usu_telefono = DataUtil.DbValueToDefault<string>(reader["det_usu_telefono"]);
+                            det_usu.det_usu_sexo = DataUtil.DbValueToDefault<string>(reader["det_usu_sexo"]);
+                            det_usu.det_usu_tip_doc = DataUtil.DbValueToDefault<int>(reader["det_usu_tip_doc"]);
+                            det_usu.det_usu_tip_doc_numero = DataUtil.DbValueToDefault<string>(reader["det_usu_tip_doc_numero"]);
+                            //det_usu.det_usu_imagem = DataUtil.DbValueToDefault<byte[]>(reader["det_usu_imagen"]);
+                            det_usu.tipo_det_usu_tipo = DataUtil.DbValueToDefault<int>(reader["tipo_det_usu_tipo"]);
+                            det_usu.det_usu_especialidad = DataUtil.DbValueToDefault<string>(reader["det_usu_especialidad"]);
+                            listaDetalleUsuario.Add(det_usu);
+                        }
+                        return listaDetalleUsuario;
+                    }
+                }
+            }
+            catch
+            {
+                return new List<T_detalle_usuario>();
+            }
+        }
         public List<T_rol_usuario_Aux> sp_listar_roles_usuario()
         {
             List<T_rol_usuario_Aux> listaRolUsuario = new List<T_rol_usuario_Aux>();
