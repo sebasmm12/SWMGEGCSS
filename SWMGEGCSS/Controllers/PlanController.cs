@@ -465,8 +465,12 @@ namespace SWMGEGCSS.Controllers
             model.Actividad_planeada = new T_actividades_planeadas();
             model.Actividad_planeada.plan_id = plan_id;
             model.Actividad_planeada.act_id = act_id;
+
             model.ActividadesModel = new ActividadViewModel();
             var ActPlazo= new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == model.Actividad_planeada.act_id));
+            T_actividades tac = new T_actividades();
+            tac = new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == act_id));
+            Session["nombreActividad"] = tac.act_nombre;
 
             var plan = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(X => X.plan_id == plan_id);
             var tipo_servicio = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(X => X.tipo_servicio_nombre == plan.tipo_servicio_nombre);

@@ -21,7 +21,7 @@
                         <div>
                             @Html.EditorFor(model => model.Actividad_planeada.act_plan_nombre, new
                        {
-                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanNombre" }
+                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanNombre" , @readonly = "readonly" }
                        })
                             <div id="error_act_plan_nombre" class="errordiv"></div>
                         </div>
