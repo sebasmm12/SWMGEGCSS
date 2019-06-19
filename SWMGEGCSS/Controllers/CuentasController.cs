@@ -4,7 +4,6 @@ using SWMGEGCSS_EN;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
-
 namespace SWMGEGCSS.Controllers
 {
     public class CuentasController : Controller
@@ -84,8 +83,7 @@ namespace SWMGEGCSS.Controllers
                 var operationReuslt3 = new OperationResult();
                 operationReuslt3 = new CuentasUsuariosDataAccess().sp_Insertar_Imagen_Usuario(model.cuentas, modelCuentas.Usuario);
             }
-            //return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
-            return RedirectToAction("Gestionar_Cuenta", "Gerente");
+            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult convertirImagen(int usu_codigo)
