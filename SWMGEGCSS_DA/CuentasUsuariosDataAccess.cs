@@ -110,7 +110,7 @@ namespace SWMGEGCSS_DA
             }
         }
 
-        public OperationResult sp_Insertar_Cuenta_Usuario(T_usuario_cuentas_aux usuario, int rol_codigo, string usu_contraseña)
+        public OperationResult sp_Insertar_Cuenta_Usuario(T_usuario_cuentas_aux usuario, string rol_codigo, string usu_contraseña)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace SWMGEGCSS_DA
             }
         }
 
-        public OperationResult sp_Insertar_Cuenta_Usuario_Rol(T_usuario_cuentas_aux usuario, int rol_codigo, T_usuario usuarios_cuentas)
+        public OperationResult sp_Insertar_Cuenta_Usuario_Rol(T_usuario_cuentas_aux usuario, string rol_codigo, T_usuario usuarios_cuentas)
         {
             try
             {

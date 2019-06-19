@@ -2,6 +2,7 @@
 @{
     Layout = null;
     var lista_cuentas = Model.Plist_cuentas;
+    var rol_name = (string)Session["rol_name"];
 }
 @section Scripts{
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
@@ -18,7 +19,6 @@
                     <tr>
                         <th scope="col">Nombres</th>
                         <th scope="col">Usuario</th>
-                        <th scope="col">Contraseña</th>
                         <th scope="col">Rol</th>
                         <th scope="col"></th>
                     </tr>
@@ -27,29 +27,84 @@
 
                     @foreach (var item in lista_cuentas)
                     {
-                        if (item.usu_estado == 1)
+                        if (rol_name == "GERENTE")
                         {
-                            <tr>
-                                <td>@item.det_usu_nombre</td>
-                                <td>@item.usu_usuario</td>
-                                <td>@item.usu_contraseña</td>
-                                <td>@item.rol_nombre</td>
-                                <td>
+                            if (item.usu_estado == 1 && item.rol_codigo != 3)
+                            {
+                                <tr>
+                                    <td>@item.det_usu_nombre</td>
+                                    <td>@item.usu_usuario</td>
+                                    <td>@item.rol_nombre</td>
+                                    <td>
 
-                                    <button type="button" class="btn btn-info btnModal" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
-                                        <i class="fa fa-tomes"></i>
-                                        Ver Detalles
-                                    </button>
-                                    <button type="button" class="btn btn-warning">
-                                        @Html.ActionLink("Actualizar Datos", "Actualizar_Datos", "Cuentas", new { usu_codigo = item.usu_codigo }, new { @style = "color:white !important" })
-                                    </button>
-                                    <button type="button" class="btn btn-danger btnModal1" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
-                                        <i class="fa fa-check-circle"></i>
-                                        Eliminar Cuenta
-                                    </button>
-                                </td>
-                            </tr>
+                                        <button type="button" class="btn btn-info btnModal" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
+                                            <i class="fa fa-tomes"></i>
+                                            Ver Detalles
+                                        </button>
+                                        <button type="button" class="btn btn-warning">
+                                            @Html.ActionLink("Actualizar Datos", "Actualizar_Datos", "Cuentas", new { usu_codigo = item.usu_codigo }, new { @style = "color:white !important" })
+                                        </button>
+                                        <button type="button" class="btn btn-danger btnModal1" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
+                                            <i class="fa fa-check-circle"></i>
+                                            Eliminar Cuenta
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
                         }
+                        else if (rol_name == "ADMINISTRADOR")
+                        {
+                            if (item.usu_estado == 1 && item.rol_codigo != 3 && item.rol_codigo != 4)
+                            {
+                                <tr>
+                                    <td>@item.det_usu_nombre</td>
+                                    <td>@item.usu_usuario</td>
+                                    <td>@item.usu_contraseña</td>
+                                    <td>@item.rol_nombre</td>
+                                    <td>
+
+                                        <button type="button" class="btn btn-info btnModal" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
+                                            <i class="fa fa-tomes"></i>
+                                            Ver Detalles
+                                        </button>
+                                        <button type="button" class="btn btn-warning">
+                                            @Html.ActionLink("Actualizar Datos", "Actualizar_Datos", "Cuentas", new { usu_codigo = item.usu_codigo }, new { @style = "color:white !important" })
+                                        </button>
+                                        <button type="button" class="btn btn-danger btnModal1" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
+                                            <i class="fa fa-check-circle"></i>
+                                            Eliminar Cuenta
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else if (rol_name == "SECRETARIO")
+                        {
+                            if (item.usu_estado == 1 && item.rol_codigo != 3 && item.rol_codigo != 4 && item.rol_codigo != 2)
+                            {
+                                <tr>
+                                    <td>@item.det_usu_nombre</td>
+                                    <td>@item.usu_usuario</td>
+                                    <td>@item.usu_contraseña</td>
+                                    <td>@item.rol_nombre</td>
+                                    <td>
+
+                                        <button type="button" class="btn btn-info btnModal" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
+                                            <i class="fa fa-tomes"></i>
+                                            Ver Detalles
+                                        </button>
+                                        <button type="button" class="btn btn-warning">
+                                            @Html.ActionLink("Actualizar Datos", "Actualizar_Datos", "Cuentas", new { usu_codigo = item.usu_codigo }, new { @style = "color:white !important" })
+                                        </button>
+                                        <button type="button" class="btn btn-danger btnModal1" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
+                                            <i class="fa fa-check-circle"></i>
+                                            Eliminar Cuenta
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
 
                     }
 

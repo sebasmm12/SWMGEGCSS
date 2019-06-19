@@ -14,6 +14,8 @@ namespace SWMGEGCSS.Models
         public List<T_actividades_desarrollar> Lista_Actividades_a_Desarrollar { get; set; }
 
         public IPagedList<T_actividades_desarrollar> PLista_Actividades_a_Desarrollar { get; set; }
+        public T_observacion_actividades observacion_por_actividad { get; set; }
+        public List<T_observacion_actividades> Lista_Observaciones { get; set; }
 
         public HttpPostedFile archivo { get; set; }
 

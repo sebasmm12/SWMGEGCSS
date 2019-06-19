@@ -1,8 +1,73 @@
-﻿
+﻿@model SWMGEGCSS.Models.ExpedienteViewModel
 @{
     ViewBag.Title = "Generar_Reportes";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var lista_proyecto = Model.List_Expediente;
 }
 
-<h2>Generar_Reportes</h2>
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<div class="container-fluid">
+    <form id="form">
 
+        <div class="row">
+            <div style="width:50px"></div>
+            <div class="col-12 col-sm-5 col-md-5">
+                <h2 class="font-weight-bolder text-center">
+                    Informes y Reporteria
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div style="width:50px"></div>
+            <div class="col-12 col-sm-5 col-md-5">
+                <p>
+                    <div style="width:50px"></div>
+                    <a href="@Url.Action("ExportarReporte")" class="btn btn-success rounded-pill"> Generar Reporte de Proyectos</a>
+                </p>
+            </div>
+            <div class="col-12 col-sm-5 col-md-5">
+                <p>
+                    <div style="width:50px"></div>
+                    <a href="@Url.Action("")" class="btn btn-success rounded-pill"> Generar Reporte de Finanzas</a>
+                </p>
+            </div>
+        </div>
+
+                <div class="row mt-12">
+                    <div style="width:50px"></div>
+                    <div class="col-11 col-sm-11 col-md-11">
+                        <div class="table-responsive mt-4">
+                            <table class="table">
+                                <thead class="bg-success">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Ganacia Total</th>
+                                        <th scope="col">Fecha Ejecucion</th>
+                                        <th scope="col">Fecha Finalizacion Aprox.</th>
+                                        <th scope="col">Total Actividades</th>
+                                        <th scope="col">Actividades Finalizadas</th>
+                                        <th scope="col">Servicio Realizado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in lista_proyecto)
+                                    {
+
+                                        <tr>
+                                            <td>@item.exp_nombre</td>
+                                            <td>@item.exp_ganancia</td>
+                                            <td>@item.exp_inicio.ToString("yyyy - MM - dd")</td>
+                                            <td>@item.exp_fin.ToString("yyyy - MM - dd")</td>
+                                            <td>@item.cantidad_actividades_desarrollar</td>
+                                            <td>@item.cantidad_actividades_terminar</td>
+                                            <td>@item.tipo_servicio_nombre</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    </form>
+    </div>

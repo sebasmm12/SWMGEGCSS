@@ -20,7 +20,7 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
-       
+
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -29,7 +29,7 @@ namespace SWMGEGCSS.Controllers
             model.Usuario = new T_usuario();
             model.Usuario.usu_usuario = username;
             model.Usuario.usu_contraseña = password;
-            var contador = new UsuarioDataAccess().sp_Encontrar_Usuario(model.Usuario,t_d_usuario);
+            var contador = new UsuarioDataAccess().sp_Encontrar_Usuario(model.Usuario, t_d_usuario);
             var contador_empresa = new UsuarioDataAccess().sp_Consultar_Sesion_Empresa(model.Usuario);
             var rol_name = new RolDataAccess().sp_Obtener_Rol_Nombre_Usuario(model.Usuario.usu_codigo);
             var l_permiso_usuario = new PermisoDataAccess().sp_Listar_Permisos_Usuario(rol_name);
@@ -37,6 +37,7 @@ namespace SWMGEGCSS.Controllers
             {
                 if (contador == 1)
                 {
+                    Session["rol_name"] = rol_name;
                     HttpContext.Session["login"] = model.Usuario.usu_codigo;
                     HttpContext.Session["name"] = t_d_usuario.det_usu_nombre;
                     HttpContext.Session["rol_name"] = rol_name;
@@ -68,7 +69,7 @@ namespace SWMGEGCSS.Controllers
                 HttpContext.Session["rol_name"] = rol_name;
                 HttpContext.Session["l_permiso_usuario"] = l_permiso_usuario;
                 return RedirectToAction("Index", "Trabajador");
-            }      
+            }
         }
         public ActionResult Exit()
         {
@@ -83,7 +84,7 @@ namespace SWMGEGCSS.Controllers
             int codigo = (int)Session["login"];
             var model = new DetalleUsuarioViewModel();
 
-            model.Detalle_Usuario = new UsuarioDataAccess().sp_Consultar_Lista_Detalle_Usuarios().Find(r=>r.usu_codigo==codigo);
+            model.Detalle_Usuario = new UsuarioDataAccess().sp_Consultar_Lista_Detalle_Usuarios().Find(r => r.usu_codigo == codigo);
             return View(model);
         }
 
@@ -91,16 +92,61 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult Gestionar_Datos_Personales(T_detalle_usuario usuario)
         {
-     
+
             var model = new DetalleUsuarioViewModel();
 
             model.Detalle_Usuario = usuario;
             model.Detalle_Usuario.usu_codigo = (int)Session["login"];
             var operationResult = new UsuarioDataAccess().sp_Actualizar_Datos_Personales(model.Detalle_Usuario);
-          //  return RedirectToAction("Index","Gerente");
-             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
+            //  return RedirectToAction("Index","Gerente");
+            return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
         }
-        
+
+        [HttpGet]
+        public ActionResult Recuperar_Cuenta()
+        {
+            var model = new DetalleUsuarioViewModel();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Recuperar_Cuenta(T_detalle_usuario usuario)
+        {
+            System.Net.Mail.MailMessage mensaje = new System.Net.Mail.MailMessage();
+            mensaje.To.Add("magincho1000@gmail.com");
+
+            http://oscarsotorrio.com/post/2011/01/22/Envio-de-correo-en-NET-con-CSharp.aspx
+            mensaje.Subject="Recupera contraseña";
+            mensaje.SubjectEncoding=System.Text.Encoding.UTF8;
+
+            mensaje.Body = "";
+            mensaje.BodyEncoding = System.Text.Encoding.UTF8;
+            mensaje.IsBodyHtml = false;
+
+            mensaje.From = new System.Net.Mail.MailAddress("carloslau2709@gmail.com");//desde donde
+
+
+            System.Net.Mail.SmtpClient trabajador = new System.Net.Mail.SmtpClient();
+
+            trabajador.Credentials = new System.Net.NetworkCredential("carloslau2709@gmail.com", "HOLA2750398");
+
+
+            trabajador.Port = 587;
+            trabajador.EnableSsl = true;
+
+
+            trabajador.Host = "smtp.gmail.com";
+
+            try
+            {
+                trabajador.Send(mensaje);
+            }
+            catch(System.Net.Mail.SmtpException ex)
+            {
+
+            }
+            return RedirectToAction("Login","Account");
+        }
+
         public ActionResult GENERAR_FORMULARIOS()
         {
             return RedirectToAction("G_Formulario", "Trabajador");

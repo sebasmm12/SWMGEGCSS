@@ -19,11 +19,11 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Registrar_Cuenta()
         {
             var model = new GestionarCuentasViewModel();
-            return View(model);
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Registrar_Cuenta(T_usuario_cuentas_aux cuentas, string det_usu_tip_doc, string det_usu_sexo, string tipo_det_usu_tipo, int rol_codigo, string usu_contraseña, HttpPostedFileBase imagen)
+        public ActionResult Registrar_Cuenta(T_usuario_cuentas_aux cuentas, string det_usu_tip_doc, string det_usu_sexo, string tipo_det_usu_tipo, string rol_codigo, string usu_contraseña, HttpPostedFileBase imagen)
         {
             var model = new GestionarCuentasViewModel();
             model.cuentas = cuentas;
@@ -49,7 +49,7 @@ namespace SWMGEGCSS.Controllers
                 var operationReuslt3 = new OperationResult();
                 operationReuslt3 = new CuentasUsuariosDataAccess().sp_Insertar_Imagen_Usuario(model.cuentas,modelCuentas.Usuario);
             }
-            return RedirectToAction("Gestionar_Cuenta", "Gerente");
+            return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -137,6 +137,22 @@ namespace SWMGEGCSS.Controllers
             return Json(new { id = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult Evaluar_Usuario(string usu_usuario)
+        {
+            var model = new CuentasUsuariosDataAccess().sp_Consultar_Lista_Cuentas();
+            var modelEvaluado = model.Find(r => r.usu_usuario == usu_usuario);
+            int cont = 0;
+            if (modelEvaluado != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
+            
+        }
+
 
     }
+
+
 }

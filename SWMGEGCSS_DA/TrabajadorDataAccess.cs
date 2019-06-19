@@ -11,7 +11,6 @@ namespace SWMGEGCSS_DA
 {
     public class TrabajadorDataAccess : BaseConexion
     {
-        
         public OperationResult sp_Insertar_Imagen_Usuario(T_detalle_usuario usuario)
         {
             try
@@ -56,6 +55,44 @@ namespace SWMGEGCSS_DA
                 return new byte[6000];
             }
             return count;
+        }
+        public OperationResult sp_Actualizar_observaciones(T_observacion_actividades t_obs)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_observaciones"))
+                {
+                    Database.AddInParameter(command, "@obs_act_id", DbType.Int32, t_obs.obs_act_id);
+                    Database.AddInParameter(command, "@obs_act_usuario", DbType.String, t_obs.obs_act_usuario);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                return new OperationResult();
+            }
+        }
+        public OperationResult sp_Insertar_observaciones_auditoria (T_observacion_actividades t_obs)
+        {
+            try
+            {
+                var operation = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_observaciones_auditoria"))
+                {
+                    Database.AddInParameter(command, "@obs_act_id", DbType.Int32, t_obs.obs_act_id);
+                    Database.AddInParameter(command, "@audi_obs_act_usuario", DbType.String, t_obs.obs_act_usuario);
+                    Database.ExecuteScalar(command);
+                    operation.NewId = 1;
+                }
+                return operation;
+            }
+            catch (Exception e)
+            {
+                return new OperationResult();
+            }
         }
         public List<T_actividades_desarrollar> sp_listar_plan_por_usuario_asignado(int usu_asignado)
         {
@@ -128,6 +165,70 @@ namespace SWMGEGCSS_DA
             {
                 return new OperationResult();
             }
+        }
+        public T_observacion_actividades sp_Consultar_Observacion(int id)
+        {
+            try
+            {
+                T_observacion_actividades t_obs = new T_observacion_actividades();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Observacion"))
+                {
+                    Database.AddInParameter(command, "@obs_act_id", DbType.String, id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            t_obs.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            t_obs.obs_act_creacion = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_creacion"]);
+                            t_obs.obs_act_est_id = DataUtil.DbValueToDefault<int>(reader["obs_act_est_id"]);
+                            t_obs.obs_act_fecha_revisor = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_fecha_revisor"]);
+                            t_obs.obs_act_fecha_usuario = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_fecha_usuario"]);
+                            t_obs.obs_act_id = DataUtil.DbValueToDefault<int>(reader["obs_act_id"]);
+                            t_obs.obs_act_nombre = DataUtil.DbValueToDefault<String>(reader["obs_act_nombre"]);
+                            t_obs.obs_act_revisor = DataUtil.DbValueToDefault<String>(reader["obs_act_revisor"]);
+                            t_obs.obs_act_usuario = DataUtil.DbValueToDefault<String>(reader["obs_act_usuario"]);
+                        }
+                    }
+                }
+                return t_obs;
+            }
+            catch (Exception)
+            {
+                return new T_observacion_actividades();
+            }
+        }
+        public List<T_observacion_actividades> sp_Listar_Observacion_por_Actividad(int act_desa_id)
+        {
+            List<T_observacion_actividades> lista_obs_act = new List<T_observacion_actividades>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Listar_Observacion_por_Actividad"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, act_desa_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_observacion_actividades t_Act_des = new T_observacion_actividades();
+                            t_Act_des.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            t_Act_des.obs_act_nombre = DataUtil.DbValueToDefault<string>(reader["obs_act_nombre"]);
+                            t_Act_des.obs_act_revisor = DataUtil.DbValueToDefault<string>(reader["obs_act_revisor"]);
+                            t_Act_des.obs_act_usuario = DataUtil.DbValueToDefault<string>(reader["obs_act_usuario"]);
+                            t_Act_des.obs_act_fecha_revisor = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_fecha_revisor"]);
+                            t_Act_des.obs_act_fecha_usuario = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_fecha_usuario"]);
+                            t_Act_des.obs_act_creacion = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_creacion"]);
+                            t_Act_des.obs_act_est_id = DataUtil.DbValueToDefault<int>(reader["obs_act_est_id"]);
+                            t_Act_des.obs_act_id = DataUtil.DbValueToDefault<int>(reader["obs_act_id"]);
+                            lista_obs_act.Add(t_Act_des);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new List<T_observacion_actividades>();
+            }
+            return lista_obs_act;
         }
         public T_actividades_desarrollar_aux2 sp_Consultar_Ruc_Plan_por_Act_Desa(int act_desa_id)
         {
