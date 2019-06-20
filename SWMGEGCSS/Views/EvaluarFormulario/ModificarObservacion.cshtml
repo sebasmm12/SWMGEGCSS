@@ -1,0 +1,132 @@
+﻿@model SWMGEGCSS.Models.EvaluarFormularioViewModel
+@{
+    var item = Model.observacion_actividad;
+    ViewBag.Title = "ModificarObservacion";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+
+<h2>Modificar Observacion</h2>
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<div class="container">
+    <form id="form">
+        @Html.HiddenFor(model => model.observacion_actividad.act_desa_id,
+             htmlAttributes: new { @id = "act_desa_id" })
+        @Html.HiddenFor(model => model.observacion_actividad.obs_act_id,
+             htmlAttributes: new { @id = "obs_act_id" })
+
+        <br />
+        <div class="row text-center">
+            <div class="col-4 col-sm-4 col-md-4 text-center">
+                <div class="row text-center">
+                    <label class="font-weight-bolder text-center">
+                        Fecha Inicio:
+                    </label>
+                </div>
+                <div class="row text-center">
+                    @Html.TextBoxFor(model => model.observacion_actividad.obs_act_fecha_usuario, "{0:yyyy-MM-dd}",
+              new { type = "date", @class = "datepicker bg-white col-6 col-sm-6 col-md-6   text-center form-control", @id = "obs_act_fecha_usuario", @readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-4 text-center">
+                <div class="row text-center">
+                    <label class="font-weight-bolder text-center">
+                        Fecha Revisado:
+                    </label>
+                </div>
+                <div class="row text-center">
+                    @Html.TextBoxFor(model => model.observacion_actividad.obs_act_fecha_revisor, "{0:yyyy-MM-dd}",
+                  new { type = "date", @class = "datepicker bg-white  text-center form-control col-6 col-sm-6 col-md-6 ", @id = "obs_act_fecha_revisor", @readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-4 text-center">
+                <div class="row text-center">
+                    <label class="font-weight-bolder text-center">
+                        Fecha Creacion:
+                    </label>
+                </div>
+                <div class="row text-center">
+                    @Html.TextBoxFor(model => model.observacion_actividad.obs_act_creacion, "{0:yyyy-MM-dd}",
+                  new { type = "date", @class = "datepicker bg-white  text-center form-control col-6 col-sm-6 col-md-6 ", @id = "obs_act_creacion", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+
+            <div class="col-6 col-sm-6 col-md-6 text-center">
+                <div>
+                    <label class="font-weight-bolder text-center">
+                        Nombre Observacion:
+                    </label>
+                </div>
+                @Html.TextAreaFor(model => model.observacion_actividad.obs_act_nombre,
+                 htmlAttributes: new { @id = "obs_act_nombre", @class = "text-center form-control bg-white"})
+            </div>
+        </div>
+        <div class="col-12 col-sm-10 col-md-10">
+            <div>
+                <label class="font-weight-bolder">
+                    Comentario Trabajador:
+                </label>
+            </div>
+            @Html.TextAreaFor(model => model.observacion_actividad.obs_act_usuario,
+             htmlAttributes: new { @id = "obs_act_usuario", @class = "text-center form-control bg-white", @readonly = "readonly" })
+        </div>
+
+        <div class="col-12 col-sm-10 col-md-10">
+            <div>
+                <label class="font-weight-bolder">
+                    Oservacion:
+                </label>
+            </div>
+            @Html.TextAreaFor(model => model.observacion_actividad.obs_act_revisor,
+             htmlAttributes: new { @id = "obs_act_revisor", @class = "text-center form-control bg-white" })
+            <div id="error_act_desa_revisor_obs" class="errordiv"></div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-4 col-sm-4 col-md-4">
+                <button type="submit" class="btn btn-success" id="corregir">
+                    <i class="fa fa-check-circle"></i>
+                    Guardar
+                </button>
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-4">
+                @if (item.obs_act_usuario != null)
+                {
+                    <button type="submit" class="btn btn-success" id="levantar">
+                        <i class="fa fa-check-circle"></i>
+                        Observación Levantada
+                    </button>
+                }
+                else
+                {
+
+                }
+
+
+            </div>
+
+
+
+
+            <div class="col-4 col-sm-4 col-md-4">
+                <a href="@Url.Action("RevisarFormulario", "EvaluarFormulario",new { id= Session["ArchivoId"] })" class="btn btn-secondary">
+                    <i class="fa fa-backward"></i>
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/EGG/scripteModificarObservacion.js"></script>
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+}

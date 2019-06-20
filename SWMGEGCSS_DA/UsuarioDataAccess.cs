@@ -156,5 +156,26 @@ namespace SWMGEGCSS_DA
                 return new OperationResult();
             }
         }
+
+        public OperationResult sp_Actualizar_Imagen_Usuario(T_detalle_usuario usuario, T_usuario usuarios_cuentas)
+        {
+            try
+            {
+                var operationresult = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Imagen_Usuario"))
+                {
+                    Database.AddInParameter(command, "@imagen", DbType.Binary, usuario.det_usu_imagem);
+                    Database.AddInParameter(command, "@codigo", DbType.Int32, usuarios_cuentas.usu_codigo);
+                    Database.ExecuteScalar(command);
+                    operationresult.NewId = 1;
+                }
+                return operationresult;
+            }
+            catch (Exception ex)
+            {
+
+                return new OperationResult();
+            }
+        }
     }
 }

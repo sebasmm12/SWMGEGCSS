@@ -24,13 +24,13 @@ namespace SWMGEGCSS.Controllers
         [HttpPost]
         public ActionResult Registrar_Proyecto(T_expediente_aux Expediente)
         {
-          
+
             var planesmodel = new ExpedienteDataAccess().sp_Obtener_Planes();
             var model = new ExpedienteViewModel();
             model.Expediente = Expediente;
             var plan_expediente = planesmodel.Find(modelo => (modelo.plan_nombre == model.Expediente.plan_nombre));
             var modeloActividades = new ActividadViewModel();
-            modeloActividades.list_Actividades_Planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r=>r.plan_id==plan_expediente.plan_id);
+            modeloActividades.list_Actividades_Planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => r.plan_id == plan_expediente.plan_id);
             var modelExpediente = new T_expedientes();
             modelExpediente.plan_id = plan_expediente.plan_id;
             modelExpediente.usu_creador = (int)Session["login"];
@@ -45,7 +45,7 @@ namespace SWMGEGCSS.Controllers
                 String ruta2 = Server.MapPath("~/Repositorio/" + plan_expediente.emp_ruc + "/" + plan_expediente.plan_id.ToString());
                 System.IO.Directory.CreateDirectory(ruta2);
             }
-        
+
             subirArchivo(model.Expediente.archivo_ulr_inicio, ruta);
             modelExpediente.archivo_ulr_inicio = Expediente.archivo_ulr_inicio.FileName;
             modelExpediente.archivo_url = ruta;
@@ -69,6 +69,7 @@ namespace SWMGEGCSS.Controllers
             "Fecha de ejecución : " + modelExpediente.exp_inicio.ToShortDateString();
             notificacion.notificacion.usu_codigo = 8;
             notificacion.notificacion.usu_envio = 9;
+            notificacion.notificacion.not_url = "Asignacion_Tareas";
             operationResult2 = new NotificacionesDataAccess().sp_Insertar_Notificaciones(notificacion.notificacion);
             return Json(new { data=operationResult.NewId},JsonRequestBehavior.AllowGet);
         }

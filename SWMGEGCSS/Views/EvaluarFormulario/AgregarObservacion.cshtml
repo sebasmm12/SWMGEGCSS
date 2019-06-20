@@ -1,11 +1,10 @@
 ﻿@model SWMGEGCSS.Models.EvaluarFormularioViewModel
 @{
-
-    ViewBag.Title = "Revisar_Formulario";
+    ViewBag.Title = "AgregarObservacion";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
 
-
+<h2>Agregar Observacion</h2>
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="container">
@@ -76,71 +75,39 @@
             </div>
         </div>
 
-
-
-        @Html.Partial("_ListaObservaciones", Model)
-
-
-
-        <div class="col-4 col-sm-4 col-md-4">
-            <a href="@Url.Action("AgregarObservacion", "EvaluarFormulario")" class="btn btn-secondary">
-                <i class="fa fa-backward"></i>
-                Agregar Observación
-            </a>
+        <div class="col-12 col-sm-10 col-md-10">
+            <div>
+                <label class="font-weight-bolder">
+                    Oservacion Nombre:
+                </label>
+            </div>
+            @Html.TextAreaFor(model => model.observacion_actividad.obs_act_nombre,
+             htmlAttributes: new { @id = "obs_act_nombre", @class = "text-center form-control bg-white" })
+            <div id="error_obs_act_nombre" class="errordiv"></div>
         </div>
-
-        <br />
-        <div class="row">
-            <div class="col-6 col-sm-6 col-md-6">
-                <div>
-                    @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_archivo_nombre,
-                 htmlAttributes: new { @id = "act_desa_archivo_nombre" })
-                    <label class="font-weight-bolder">
-                        Archivo :
-                    </label>
-                    &nbsp;
-                    &nbsp;
-                    @Html.DisplayFor(model => model.actividades_desarrollarGerente.act_desa_archivo_nombre)
-                    <div class="row">
-                        <a href="@Url.Action("DescargarArchivo","EvaluarFormulario")" target="_blank" class="btn btn-secondary">
-                            <i class="fa fa-file-download"></i>
-                            Descargar
-                        </a>
-                    </div>
-                </div>
+        <div class="col-12 col-sm-10 col-md-10">
+            <div>
+                <label class="font-weight-bolder">
+                    Oservacion:
+                </label>
             </div>
-
-            <div class="col-6 col-sm-6 col-md-6">
-                <div class="row">
-                    <label class="font-weight-bolder">
-                        Nueva Fecha Fin:
-                    </label>
-                </div>
-                <div class="row">
-                    @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_fin, "{0:yyyy-MM-dd}",
-                   new { type = "date", @class = "datepicker bg-white text-center form-control", @id = "act_desa_fecha_fin" })
-                </div>
-            </div>
+            @Html.TextAreaFor(model => model.observacion_actividad.obs_act_revisor,
+             htmlAttributes: new { @id = "obs_act_revisor", @class = "text-center form-control bg-white" })
+            <div id="error_obs_obs_act_revisor" class="errordiv"></div>
         </div>
 
 
-        <br />
-        <br />
-        <div class="row">
-            <div class="col-4 col-sm-4 col-md-4">
-                <button type="button" class="btn btn-success" id="corregir">
-                    <i class="fa fa-check-circle"></i>
-                    Corregir
-                </button>
-            </div>
+
+        <div>
             <div class="col-4 col-sm-4 col-md-4">
                 <button type="button" class="btn btn-success" id="guardar">
                     <i class="fa fa-check-circle"></i>
-                    Terminar
+                    Guardar
                 </button>
             </div>
+
             <div class="col-4 col-sm-4 col-md-4">
-                <a href="@Url.Action("Index", "EvaluarFormulario")" class="btn btn-secondary">
+                <a href="@Url.Action("RevisarFormulario", "EvaluarFormulario",new { id= Session["ArchivoId"] })" class="btn btn-secondary">
                     <i class="fa fa-backward"></i>
                     Regresar
                 </a>
@@ -151,6 +118,6 @@
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 @section Scripts{
-    <script src="~/Scripts/Scripts_TP/EGG/scripteEvaluarFormulario.js"></script>
+    <script src="~/Scripts/Scripts_TP/EGG/scriptAgregarObservaciones.js"></script>
     <script src="~/Scripts/sweetalert/sweetalert.js"></script>
 }

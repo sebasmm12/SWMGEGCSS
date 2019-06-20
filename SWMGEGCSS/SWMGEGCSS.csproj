@@ -354,7 +354,9 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\ValidacionesActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarActividadesDesarrollar.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scriptAgregarObservaciones.js" />
     <Content Include="Scripts\Scripts_TP\EGG\scripteEvaluarFormulario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scripteModificarObservacion.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizar_Detalle_Usuario.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptConsultarIng.js" />
@@ -375,6 +377,7 @@
     <Content Include="Scripts\Scripts_TP\MAURICIO\VisualizarTrabajadores.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsNotificaciones.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarSolicitud.js" />
@@ -582,6 +585,12 @@
     <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
     <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
     <Content Include="Views\Account\_Recupera_Cuenta.cshtml" />
+    <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
+    <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
+    <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\EvaluarFormulario\_listaObservaciones.cshtml" />
+    <Content Include="Views\EvaluarFormulario\ModificarObservacion.cshtml" />
+    <Content Include="Views\EvaluarFormulario\AgregarObservacion.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Observacion.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\_Listar_Auditoria_Observacion.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
@@ -599,6 +608,7 @@
     <Folder Include="Repositorio\01245678912\" />
     <Folder Include="Repositorio\10709764471\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
+    <Folder Include="Temporal\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

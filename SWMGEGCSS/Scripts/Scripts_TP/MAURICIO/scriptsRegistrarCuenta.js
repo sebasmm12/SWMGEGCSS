@@ -284,7 +284,7 @@
 
     //Validar Telefono
     function validar_telefono(telefono) {
-        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/
 
         if (telefono === "") {
             adderror("det_usu_telefono");
@@ -342,29 +342,29 @@
     }
 
     var keyTelefono = function () {
-        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/;
+        var RegularExpression = /(^\s.*)|(.*\s{2,}.*)|.*\s$|(.*[+-\.\*@-_\|/?¿?´`º!ª\\¨{\][}ç\^<>¬%&()·].*)/
         var telefono = $("#det_usu_telefono").val();
         if (telefono === "") {
             adderror("det_usu_telefono");
-            negativeattributes("det_usu_telefono", 'Debe ingresar un número');
+            negativeattributes("error_det_usu_telefono", 'Debe ingresar un número');
         } else if (telefono.match(RegularExpression)) {
             adderror("det_usu_telefono");
-            negativeattributes("det_usu_telefono", 'Ingrese un telefono válido');
+            negativeattributes("error_det_usu_telefono", 'Ingrese un telefono válido');
         } else if (telefono === " ") {
             adderror("det_usu_telefono");
-            negativeattributes("det_usu_telefono", 'El número de contacto no debe empezar con un espacio en blanco');
+            negativeattributes("error_det_usu_telefono", 'El número de contacto no debe empezar con un espacio en blanco');
         } else if (esNum(telefono) === false) {
             adderror("det_usu_telefono");
-            negativeattributes("det_usu_telefono", 'El número de contacto debe ser un número');
+            negativeattributes("error_det_usu_telefono", 'El número de contacto debe ser un número');
         } else if (maximoNumeroCaracteres9(telefono) === true) {
             adderror("det_usu_telefono");
-            negativeattributes("det_usu_telefono", 'El numero de telefono debe de tener menos de 10 caracteres');
+            negativeattributes("error_det_usu_telefono", 'El numero de telefono debe de tener menos de 10 caracteres');
         } else if (minimoNumeroCaracteres7(telefono) === true) {
             adderror("det_usu_telefono");
-            negativeattributes("det_usu_telefono", 'El numero de telefono debe de ser mayor a 6 caracteres');
+            negativeattributes("error_det_usu_telefono", 'El numero de telefono debe de ser mayor a 6 caracteres');
         } else if (telefono < 0) {
             adderror("det_usu_telefono");
-            negativeattributes("det_usu_telefono", 'El número debe de ser positivo');
+            negativeattributes("error_det_usu_telefono", 'El número debe de ser positivo');
         } else {
             addgood("det_usu_telefono");
             attributes("error_det_usu_telefono");
