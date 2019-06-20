@@ -38,7 +38,7 @@
     </div>
     <div class="row">
         <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
-            @Html.PagedListPager(lista_actividades_auditoria, page => Url.Action("Visualizar_Auditoria_Actividades", "Auditoria_Proyecto", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            @Html.PagedListPager(lista_actividades_auditoria, page => Url.Action("Visualizar_Auditoria_Actividades", "Auditoria_Proyecto", new { act_desa_id = (int)Session["actividadid"], page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>
 </div>

@@ -388,6 +388,7 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaActividades.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaObservacion.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaProyecto.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
@@ -571,9 +572,7 @@
     <Content Include="Views\Expediente\_ConsultarProyecto.cshtml" />
     <Content Include="Views\Expediente\_ListarActividadConsultar.cshtml" />
     <Content Include="Views\Gerente\ObtenerNotificaciones.cshtml" />
-    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria.cshtml" />
-    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\_Lista_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Cuentas\Actualizar_Datos.cshtml" />
@@ -591,6 +590,9 @@
     <Content Include="Views\EvaluarFormulario\_listaObservaciones.cshtml" />
     <Content Include="Views\EvaluarFormulario\ModificarObservacion.cshtml" />
     <Content Include="Views\EvaluarFormulario\AgregarObservacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Observacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\_Listar_Auditoria_Observacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
