@@ -110,6 +110,17 @@
         }
         return false;
     };
+    var tieneCaracEspDireccion = function empiezaConCaracteresEspeciales(X) {
+        var iChars = "!@_$%^*()+=[]\\\';,/{}|\"<>?";
+
+        for (var i = 0; i < X.length; i++) {
+            if (iChars.indexOf(X.charAt(i)) !== -1) {//numero es un CE o un numero
+                return true;
+            }
+
+        }
+        return false;
+    };
     var tieneCaracEspOnly = function empiezaConCaracteresEspecialesOnly(X) {
         var iChars = "/^[0-9]+$/";
         for (var i = 0; i < X.length; i++) {
@@ -338,6 +349,14 @@
         //    alert("direccion largo");
             return false;
         }       
+        if (tieneCaracEspDireccion(direccion) === true) {
+            adderror("emp-direccion");
+            negativeattributes("error-emp-direccion", 'Ingrese dirección válida');
+            $("#emp-direccion").focus();
+            $("#emp-direccion").keyup(keyDireccion);
+        
+            return false;
+        }
         addgood("emp-direccion");
         attributes("error-emp-direccion");
         return true;
@@ -464,6 +483,10 @@
             negativeattributes("error-emp-direccion", 'La dirección debe ser de menos de 200 caracteres');
             adderror("emp-direccion");
 
+        }
+        else if (tieneCaracEspDireccion($valor.val())===true) {
+            negativeattributes("error-emp-direccion", 'ingrese dirección válida');
+            adderror("emp-direccion");
         }
         else {
             attributes("error-emp-direccion");

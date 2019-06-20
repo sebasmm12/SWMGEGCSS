@@ -35,10 +35,7 @@ namespace SWMGEGCSS.Controllers
 
             var operationResult = new Ing_EgrDataAccess().sp_Actualizar_Ing_Egr(model.ingresos_egresos);
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
-
         }
-
-
         [HttpGet]
         public ActionResult Registrar_Ing_Egr()
         {
