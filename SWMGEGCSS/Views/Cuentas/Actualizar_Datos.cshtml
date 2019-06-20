@@ -1,7 +1,6 @@
 ﻿@model SWMGEGCSS.Models.GestionarCuentasViewModel
 @{
     ViewBag.Title = "Actualizar_Datos";
-    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
     var codigo = 0;
 
     codigo = Model.cuentas.usu_codigo;
@@ -15,9 +14,10 @@
     }
 }
 
-<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+    <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+    <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/Actualizar_Cuenta.css" />
 @section Scripts{
-
+    <script src="~/Scripts/Scripts_TP/MAURICIO/Actualizar_Datos.js"></script>
 }
 
 <h2 class="pl-3 ml-3 mt-3 mb-3">Actualizar Empresa</h2>
@@ -25,15 +25,16 @@
 <div class="container-fluid">
     @using (Html.BeginForm("Actualizar_Datos", "Cuentas", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <div class="justify-content-center">
+        <div class="justify-content-center" >
             <input type="text" name="usu_codigo" value="@Model.cuentas.usu_codigo" hidden="hidden" />
+            <input type="text" id="usu_usuario_temp" value="@Model.cuentas.usu_usuario" hidden="hidden" />
         </div>
         <div class="row mt-3 pl-3">
             <div class="col-12 col-sm-4 col-md-4">
 
             </div>
-            <div class="col-12 col-sm-6 col-md-6" >
-                <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })" class="img-radius align-self-lg-center align-self-sm-center" alt="User-Profile-Image" style="width:200px;max-height:300px" >
+            <div class="col-12 col-sm-6 col-md-6" id="imagePreview">
+                <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })" class="img-radius align-self-lg-center align-self-sm-center img1" alt="User-Profile-Image"  width="200" height="100">
 
             </div>
         </div>
@@ -44,7 +45,7 @@
                     Nombre y Apellido
                 </label>
 
-                <input type="text" class="text-center form-control" name="det_usu_nombre" value="@Model.cuentas.det_usu_nombre" />
+                <input type="text" class="text-center form-control bg-white"  name="det_usu_nombre" value="@Model.cuentas.det_usu_nombre" readonly="readonly"/>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
@@ -60,6 +61,7 @@
                             {
                                 <option value="@item.rol_codigo">@item.rol_nombre</option>
                             }
+
                         }
                         else if (rol_name == "ADMINISTRADOR")
                         {
@@ -78,6 +80,7 @@
 
                     }
                 </select>
+                <div id="error_rol_codigo" class="errordiv"></div>
             </div>
         </div>
 
@@ -86,13 +89,15 @@
                 <label class="font-weight-bolder">
                     Nombre de Usuario
                 </label>
-                <input type="text" class="text-center form-control" name="usu_usuario" value="@Model.cuentas.usu_usuario" />
+                <input type="text" class="text-center form-control" name="usu_usuario" id="usu_usuario" value="@Model.cuentas.usu_usuario" />
+                <div id="error_usu_usuario" class="errordiv"></div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
                 <label class="font-weight-bolder">
                     Contraseña
                 </label>
-                <input type="password" class="text-center form-control" name="usu_contraseña" value="@Model.cuentas.usu_contraseña" />
+                <input type="password" class="text-center form-control" name="usu_contraseña" id="usu_contraseña" value="@Model.cuentas.usu_contraseña" />
+                <div id="error_rol_codigo" class="errordiv"></div>
             </div>
         </div>
         <div class="mt-5 pl-3">
@@ -112,7 +117,7 @@
                 </a>
             </div>
             <div class="col-12 col-sm-3 col-md-3 mb-3">
-                <button type="submit" class="btn btn-success" id="boton-Registrar">
+                <button type="submit" class="btn btn-success" id="boton-Actualizar">
                     <i class="fa fa-check-circle"></i>
                     Actualizar Datos
                 </button>
