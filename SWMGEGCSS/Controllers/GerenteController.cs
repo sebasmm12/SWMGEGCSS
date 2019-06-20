@@ -43,7 +43,7 @@ namespace SWMGEGCSS.Controllers
             var model = new ExpedienteViewModel();
 
             model.Estado_Expediente = new EstadoExpedienteDataAccess().sp_Consultar_Lista_Estado_Expediente().Find(X => (X.est_exp_id == 2));
-            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().FindAll(X => (X.est_exp_nombre == model.Estado_Expediente.est_exp_nombre));
+            model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos_Reporte().FindAll(X => (X.est_exp_nombre == model.Estado_Expediente.est_exp_nombre));
             ReportDocument rp = new ReportDocument();
             //rp.Load(Path.Combine(Server.MapPath("~/Reporte"), "reporteProyecto.rpt"));
             rp.Load(@"C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte\reporteProyecto.rpt");

@@ -44,6 +44,39 @@ namespace SWMGEGCSS_DA
             }
             return T_expediente;
         }
+        public List<T_expediente_aux> sp_Consultar_Lista_Proyectos_Reporte()
+        {
+            List<T_expediente_aux> T_expediente = new List<T_expediente_aux>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Proyectos_Reporte"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_expediente_aux t_aux = new T_expediente_aux();
+                            t_aux.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
+                            t_aux.est_exp_nombre = DataUtil.DbValueToDefault<string>(reader["est_exp_nombre"]);
+                            t_aux.plan_nombre = DataUtil.DbValueToDefault<string>(reader["plan_nombre"]);
+                            t_aux.exp_inicio = DataUtil.DbValueToDefault<DateTime>(reader["exp_inicio"]);
+                            t_aux.exp_fin = DataUtil.DbValueToDefault<DateTime>(reader["exp_fin"]);
+                            t_aux.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
+                            t_aux.exp_ganancia = DataUtil.DbValueToDefault<double>(reader["exp_ganancia"]);
+                            t_aux.exp_nombre = DataUtil.DbValueToDefault<string>(reader["exp_nombre"]);
+                            t_aux.fecha_actual = DateTime.Today;
+                            T_expediente.Add(t_aux);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return new List<T_expediente_aux>();
+            }
+            return T_expediente;
+        }
         public List<T_expediente_aux> sp_Consultar_Lista_Tipo_Proyectos(int est_exp_id)
         {
             List<T_expediente_aux> T_expediente = new List<T_expediente_aux>();
