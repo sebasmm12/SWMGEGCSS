@@ -1,1 +1,48 @@
-﻿
+﻿@model SWMGEGCSS.Models.ExpedienteViewModel
+@{
+    Layout = null;
+}
+<div class="modal fade" id="ModalAgregarArchivoMinam" tabindex="-1" role="dialog" aria-labelledby="#ModalAgregarArchivoMinam" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="text-center font-weight-bolder">
+                Agregar Archivo de la Minam
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    @Html.HiddenFor(model => model.Expediente.exp_id)
+                    <div class="row">
+                        <div class="col-sm-12 col-12 col-md-12">
+                            <div class="mt-2">
+                                <label class="font-weight-bolder">
+                                    Archivo Final del Proyecto
+                                </label>
+                            </div>
+                            <div>
+                                @Html.TextBoxFor(model => model.Expediente.archivo_ulr_inicio, new { type = "file", id = "newfile", @class = "form-control-file" })
+                                <span id="validateArchivo"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 mb-4">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-6">
+                                <button type="button" class="btn btn-success rounded-pill btnArchivo" style="color:white !important">
+                                    <i class="fa fa-check-circle" style="color:white !important"></i>
+                                    Registrar Archivo
+                                </button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-6">
+                                <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -64,7 +64,7 @@
                                         }
                                         @if (item.est_exp_nombre.Equals("En Ejecucion") && item.cantidad_actividades_desarrollar == item.cantidad_actividades_terminar)
                                         {
-                                            <button type="button" class="btn btn-outline-success btnModal" data-id-proyecto="@item.exp_id">
+                                            <button type="button" class="btn btn-outline-success btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_AgregarArchivoMinam","Expediente")" data-id-target="#ModalAgregarArchivoMinam">
                                                 <i class="fa fa-award"></i>
                                                Certificado de la MINAM
                                             </button>

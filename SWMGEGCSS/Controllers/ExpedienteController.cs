@@ -47,7 +47,8 @@ namespace SWMGEGCSS.Controllers
             }
         
             subirArchivo(model.Expediente.archivo_ulr_inicio, ruta);
-            modelExpediente.archivo_ulr_inicio = ruta;
+            modelExpediente.archivo_ulr_inicio = Expediente.archivo_ulr_inicio.FileName;
+            modelExpediente.archivo_url = ruta;
             var operationResult = new ExpedienteDataAccess().sp_Insertar_Proyecto(modelExpediente);
             modelExpediente = new ExpedienteDataAccess().sp_Consultar_Lista_Expedientes().Find(r => r.exp_nombre == modelExpediente.exp_nombre);
             foreach (var item in modeloActividades.list_Actividades_Planeadas)
@@ -174,7 +175,7 @@ namespace SWMGEGCSS.Controllers
         public ActionResult Autocomplete([Bind(Prefix ="term")]string term)
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes(term);
+            model.listplans = new PlanDataAccess().sp_Consultar_Lista_Tipo_Nombre_Planes_Expediente(term);
             var namePlanes = model.listplans.Select(r => new
             {
                 label = r.plan_nombre
@@ -368,10 +369,42 @@ namespace SWMGEGCSS.Controllers
 
             }
         }
-        [HttpPost]
-        public ActionResult _AgregarArchivoMinam(int exp_id)
+        [HttpGet]
+        public ActionResult _AgregarArchivoMinam()
         {
-            return PartialView();
+            var model = new ExpedienteViewModel();
+            model.Expediente = new T_expediente_aux();
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _AgregarArchivoMinam(int id)
+        {
+            var model = new ExpedienteViewModel();
+            model.Expediente = new T_expediente_aux();
+            model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => r.exp_id == id);
+            return PartialView(model);
+        }
+        [HttpPost]
+        public ActionResult _AgregarArchivo(T_expediente_aux Expediente)
+        {
+            var model = new ExpedienteViewModel();
+            model.Expediente = new T_expediente_aux();
+            model.Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos().Find(r => r.exp_id == Expediente.exp_id);
+            
+            var planesmodel = new ExpedienteDataAccess().sp_Obtener_Planes();
+            var plan_expediente = planesmodel.Find(modelo => (modelo.plan_nombre == model.Expediente.plan_nombre));
+            String ruta = Server.MapPath("~/Repositorio/" + plan_expediente.emp_ruc + "/" + plan_expediente.plan_id.ToString() + "/");
+            if (!System.IO.File.Exists(ruta))
+            {
+                String ruta2 = Server.MapPath("~/Repositorio/" + plan_expediente.emp_ruc + "/" + plan_expediente.plan_id.ToString());
+                System.IO.Directory.CreateDirectory(ruta2);
+            }
+            var modelExpediente = new T_expedientes();
+            subirArchivo(model.Expediente.archivo_ulr_inicio, ruta);
+            modelExpediente.exp_id = Expediente.exp_id;
+            modelExpediente.archivo_url_final = Expediente.archivo_url_final.FileName;
+            var operationResult = new ExpedienteDataAccess().sp_Registrar_Archivo_Final(modelExpediente);
+            return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
         }
     }
 }
