@@ -1,6 +1,6 @@
-﻿$('#myModal').on('shown.bs.modal', function () {
+﻿/*$('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
-})
+})*/
 $(function () {
 
     validacion = function () {
@@ -11,8 +11,30 @@ $(function () {
             return false;
         }
         else {
-            return true;
+            var usuario = {
+
+                det_usu_correo: $("#det_usu_correo").val(),
+
+
+            };
+            $.ajax({
+                url: "/Account/Recuperar_Cuenta",
+                method: "POST",
+                data: { usuario: usuario }
+            }).done(function (data) {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Se envió exitosamente',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/Account/Recuperar_Cuenta";
+                    }
+                });
+            });
         }
+            return false;
+        };
 
         function validar_det_usu_correo(correo) {
             var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -45,28 +67,28 @@ $(function () {
 
         }
 
-        var KeyCorreo = function () {
-            var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            var $valor = $("#det_usu_correo");
-            if (regular.test($valor.val()) === false) {
-                adderror("det_usu_correo");
-                negativeattributes("error-det-usu-correo", 'Ingrese Email válido');
-            }
-            else if ($valor.val() === "") {
-                adderror("det_usu_correo");
-                negativeattributes("error-det-usu-correo", 'Ingrese Email');
-            }
-            else if (maximoNumeroCaracteres50($valor.val()) === true) {
-                adderror("det_usu_correo");
-                negativeattributes("error-det-usu-correo", 'Ingrese un Email menor a 50 caracteres');
-            }
-            else {
-                addgood("det_usu_correo");
-                attributes("error-det-usu-correo");
-            }
-
+    var KeyCorreo = function () {
+        var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        var $valor = $("#det_usu_correo");
+        if (regular.test($valor.val()) === false) {
+            adderror("det_usu_correo");
+            negativeattributes("error-det-usu-correo", 'Ingrese Email válido');
         }
+        else if ($valor.val() === "") {
+            adderror("det_usu_correo");
+            negativeattributes("error-det-usu-correo", 'Ingrese Email');
+        }
+        else if (maximoNumeroCaracteres50($valor.val()) === true) {
+            adderror("det_usu_correo");
+            negativeattributes("error-det-usu-correo", 'Ingrese un Email menor a 50 caracteres');
+        }
+        else {
+            addgood("det_usu_correo");
+            attributes("error-det-usu-correo");
+        }
+
     };
+   
 
 
 

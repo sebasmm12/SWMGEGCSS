@@ -23,7 +23,7 @@ namespace SWMGEGCSS.Models
             {
                 connectionString.Open();
                 SqlCommand command = new SqlCommand(@"SELECT [not_id],[not_nombre],[not_descripcion],[usu_codigo],[noti_fecha],[estado],[usu_envio] FROM [dbo].[T_notificaciones] where 
-                T_notificaciones.usu_codigo="+usu_codigo+"", connectionString);
+                T_notificaciones.usu_codigo="+usu_codigo+" ORDER BY not_id  DESC", connectionString);
                 command.Notification = null;
                 var dependency = new SqlDependency(command);
                 dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
@@ -67,6 +67,37 @@ namespace SWMGEGCSS.Models
 
                 return new OperationResult();
             }
+        }
+        public List<T_notificaciones> sp_Consultar_Notificaciones_Top(int usu_codigo)
+        {
+            var messages = new List<T_notificaciones>();
+            using (var connectionString = new SqlConnection(_connectionString))
+            {
+                connectionString.Open();
+                SqlCommand command = new SqlCommand(@"SELECT TOP 3 [not_id],[not_nombre],[not_descripcion],[usu_codigo],[noti_fecha],[estado],[usu_envio] FROM [dbo].[T_notificaciones] where 
+                T_notificaciones.usu_codigo=" + usu_codigo + " ORDER BY not_id  DESC", connectionString);
+                command.Notification = null;
+                var dependency = new SqlDependency(command);
+                dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
+                if (connectionString.State == System.Data.ConnectionState.Closed)
+                {
+                    connectionString.Open();
+                }
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    messages.Add(item: new T_notificaciones
+                    {
+                        not_id = (int)reader["not_id"],
+                        not_nombre = (string)reader["not_nombre"],
+                        not_descripcion = (string)reader["not_descripcion"],
+                        usu_codigo = (int)reader["usu_codigo"],
+                        usu_envio = (int)reader["usu_envio"],
+                        noti_fecha=(DateTime)reader["noti_fecha"]
+                    });
+                }
+            }
+            return messages;
         }
 
         private void dependency_OnChange(object sender, SqlNotificationEventArgs e)

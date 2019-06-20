@@ -134,6 +134,7 @@
                 $(".btnEliminar").each(Alerta);
                 $(".btnSubModal").each(envioAjaxActividad);
                 $("#btnActualizarTotal").click(enviarActualizarTotal);
+                $(".btnArchivo").each(envioarchivoMinam);
                 });
             return false;
         });
@@ -152,6 +153,7 @@
             $(".btnModal").each(envioajaxModal);
             $(".btnSubModal").each(envioAjaxActividad);
             $("#btnActualizarTotal").click(enviarActualizarTotal);
+            $(".btnArchivo").each(envioarchivoMinam);
             });
 
         return true;
@@ -215,6 +217,84 @@
             }
         });
     };
+    var envioarchivoMinam = function () {
+        $(this).click(function () {
+            var Expediente = new FormData($("#form")[0]);
+            var $archivo = $("#newfile");
+            var vArchivo = validar_Archivo($archivo.val());
+            if (vArchivo === false) {
+                return false;
+            } else {
+                $.ajax({
+                    url: "/Expediente/_AgregarArchivo",
+                    type: "POST",
+                    data: Expediente,
+                    contentType: false, //importante enviar este parametro en false
+                    processData: false //importante enviar este parametro en false
+                }).done(function (data) {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Se finalizo el proyecto exitosamente',
+                        confirmButtonText: 'OK'
+
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "/Gerente/Gestionar_Proyectos";
+                        }
+                    });
+                });
+            }
+          
+        });
+    };
+    //Validacion File
+    function validar_Archivo(id) {
+        var archivo = id;
+        if (archivo === '') {
+            adderror("newfile");
+            negativeattributes("validateArchivo", 'Debe subir un archivo');
+            $("#newfile").focus();
+            $("#newfile").change(keyF);
+            return false;
+        }
+        return true;
+    }
+    var keyF = function () {
+        var $archivo = $("#newfile");
+
+        if ($archivo.val() === "") {
+            negativeattributes("validateArchivo", 'Debe subir un archivo');
+            adderror("newfile");
+        }
+        else {
+            attributes("validateArchivo");
+            addgood("newfile");
+        }
+    };
+    function attributes(id) {
+        $("#" + id).removeClass("text-danger");
+        $("#" + id).addClass("textsuccess");
+        $("#" + id).html("");
+        $("#" + id).html("<i class='fa fa-check'></i><label class='pl-2'>Correcto</label>");
+
+
+    }
+    function addgood(id) {
+        $("#" + id).removeClass("inputerror");
+        $("#" + id).addClass("inputtrue");
+    }
+    function adderror(id) {
+        $("#" + id).removeClass("inputtrue");
+        $("#" + id).addClass("inputerror");
+        $("#" + id).focus();
+    }
+    function negativeattributes(id, tipo) {
+        $("#" + id).removeClass("textsuccess");
+        $("#" + id).addClass("text-danger");
+        $("#" + id).html("");
+        $("#" + id).html("<i class='fa fa-times'></i><label class='pl-2'>" + tipo + "</label > ");
+    }
+
     $(".btnModal").each(envioajaxModal);        
     $("input[data-exp-autocomplete]").each(autcompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);

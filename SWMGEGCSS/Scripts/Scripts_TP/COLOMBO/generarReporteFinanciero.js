@@ -6,7 +6,8 @@
 
         var vFechaIni = validar_fecha_inicio($fechaIni.val());
         var vFechaFin = validar_fecha_fin($fechaFin.val());
-        if (vFechaIni === false || vFechaFin === false) {
+        var vCoherenciaFecha = validar_coherencia_fechas();
+        if (vFechaIni === false || vFechaFin === false /*|| validar_coherencia_fechas === false*/) {
             return false;
         } else {
             var fechainicio = document.getElementById("fechaInicio");
@@ -94,6 +95,62 @@
         }
     };
 
+    //Validar de coherencia
+    function validar_coherencia_fechas() {
+        var fechaIngresadaFin = new Date($("#fechaFin").val());
+        fechaIngresadaFin.setDate(fechaIngresadaFin.getDate() + 1);
+        fechaIngresadaFin.setHours(0, 0, 0, 0);
+
+        var fechaIngresadaInicio = new Date($("#fechaInicio").val());
+        fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
+        fechaIngresadaInicio.setHours(0, 0, 0, 0);
+        if (validar_fecha_fin(fechaIngresadaFin) === false || validar_fecha_inicio(fechaIngresadaInicio) === false) {
+            $("#fechaFin").change(keyfechaCo);
+            $("#fechaInicio").change(keyfechaCo);
+            return false;
+        }
+
+        else if (fechaIngresadaFin < fechaIngresadaInicio) {
+            adderror("fechaFin");
+            negativeattributes("error-fechafin-repo", 'La fecha de finalizacion debe ser mayor a la de inicio');
+            $("#fechaFin").focus();
+            $("#fechaFin").change(keyfechaCo);
+            return false;
+        }
+        else {
+            attributes("error-fechaini-repo");
+            addgood("fechaFin");
+            attributes("error-fechafin-repo");
+            addgood("fechaInicio");
+            return true;
+        }
+    }
+
+    var keyfechaCo = function () {
+        var fechaIngresadaFin = new Date($("#fechaFin").val());
+        fechaIngresadaFin.setDate(fechaIngresadaFin.getDate() + 1);
+        fechaIngresadaFin.setHours(0, 0, 0, 0);
+
+        var fechaIngresadaInicio = new Date($("#fechaInicio").val());
+        fechaIngresadaInicio.setDate(fechaIngresadaInicio.getDate() + 1);
+        fechaIngresadaInicio.setHours(0, 0, 0, 0);
+
+        if (validar_fecha_fin(fechaIngresadaFin) === false || validar_fecha_inicio(fechaIngresadaInicio) === false) {
+            $("#fechaFin").focus();
+            $("#fechaInicio").focus();
+        }
+        else if (fechaIngresadaFin < fechaIngresadaInicio) {
+            adderror("fechaFin");
+            negativeattributes("error-fechafin-repo", 'La fecha de finalizacion debe ser mayor a la de inicio');
+            $("#fechaFin").focus();
+        }
+        else {
+            attributes("error-fechafin-repo");
+            addgood("fechaFin");
+            attributes("error-fechaini-repo");
+            addgood("fechaInicio");
+        }
+    };
 
     function attributes(id) {
         $("#" + id).removeClass("text-danger");

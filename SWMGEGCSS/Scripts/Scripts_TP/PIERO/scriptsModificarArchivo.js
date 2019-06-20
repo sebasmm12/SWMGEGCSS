@@ -27,16 +27,29 @@
                     alert("Error del servidor");
                 }
             }).done(function (data) {
-                if (data !== 0) {
+                if (data === 100) {
                     Swal.fire({
-                        type: 'success',
-                        title: 'Se subio el archivo exitosamente',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.value) {
-                            window.location.href = "/Trabajador/V_Tareas";
-                        }
+                        type: 'error',
+                        title: 'Debe contestar todas las observaciones'
                     });
+                }
+                else if (data === 0) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Debe subir un archivo',
+                        showCancelButton: true
+                    });
+                }
+                else {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Se subio el archivo exitosamente',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "/Trabajador/V_Tareas";
+                            }
+                        });
                 }
             });
         }
