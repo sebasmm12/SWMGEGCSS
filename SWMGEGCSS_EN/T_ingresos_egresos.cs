@@ -16,4 +16,19 @@ namespace SWMGEGCSS_EN
         public bool ing_egr_ingrso { get; set; }
         public double ing_egr_monto { get; set; }
     }
+    public class T_ingresos_egresos_aux
+    {
+        public int ing_egr_id { get; set; }
+        public string ing_egr_nombre { get; set; }
+        public string ing_egr_descripcion { get; set; }
+        public int usu_codigo { get; set; }
+        public DateTime ing_egr_fecha { get; set; }
+        public string ing_egr_ingrso { get; set; }
+        public double ing_egr_monto { get; set; }
+    }
+    public class T_reporte_fechas
+    {
+        public DateTime fechaInicio { get; set; }
+        public DateTime fechaFin { get; set; }
+    }
 }

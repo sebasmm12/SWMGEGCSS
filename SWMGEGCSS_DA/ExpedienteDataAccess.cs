@@ -31,6 +31,7 @@ namespace SWMGEGCSS_DA
                             t_aux.tipo_servicio_nombre = DataUtil.DbValueToDefault<string>(reader["tipo_servicio_nombre"]);
                             t_aux.exp_ganancia = DataUtil.DbValueToDefault<double>(reader["exp_ganancia"]);
                             t_aux.exp_nombre = DataUtil.DbValueToDefault<string>(reader["exp_nombre"]);
+                            t_aux.fecha_actual =  DateTime.Today;
                             T_expediente.Add(t_aux);
                         }
                     }
