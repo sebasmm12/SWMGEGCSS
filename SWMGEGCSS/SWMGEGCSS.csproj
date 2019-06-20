@@ -584,6 +584,7 @@
     <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
     <Content Include="Views\Account\_Recupera_Cuenta.cshtml" />
     <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
+    <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
