@@ -76,6 +76,7 @@ namespace SWMGEGCSS.Controllers
                 citas.cita_fecha.ToShortDateString() + " a la hora " + cita_hora;
             modelT.notificacion.usu_codigo = Convert.ToInt32(usu_citado);
             modelT.notificacion.usu_envio = 1;
+            modelT.notificacion.not_url = "Gestionar_Proyectos";
             var operationResulr = new NotificacionesDataAccess().sp_Insertar_Notificaciones(modelT.notificacion);
             var operationResult = new SecretariaDataAccess().sp_Insertar_Cita(model.citas,cita_empresa, usu_citado, cita_hora);
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);

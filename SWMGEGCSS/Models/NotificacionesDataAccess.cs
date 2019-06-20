@@ -57,6 +57,7 @@ namespace SWMGEGCSS.Models
                     Database.AddInParameter(command, "@not_nombre", DbType.String, notificacion.not_nombre);
                     Database.AddInParameter(command, "@usu_codigo", DbType.Int32, notificacion.usu_codigo);
                     Database.AddInParameter(command, "@usu_envio", DbType.Int32, notificacion.usu_envio);
+                    Database.AddInParameter(command, "@not_url", DbType.String, notificacion.not_url);
                     operationResult.NewId = 1;
                     Database.ExecuteScalar(command);
                 }

@@ -14,5 +14,6 @@ namespace SWMGEGCSS_EN
         public int usu_codigo { get; set; }
         public DateTime noti_fecha{ get; set; }
         public int usu_envio { get; set; }
+        public string not_url { get; set; }
     }
 }

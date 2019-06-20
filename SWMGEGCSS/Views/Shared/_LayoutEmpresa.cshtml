@@ -83,9 +83,8 @@
                                         <i class="feather icon-bell"></i>
                                         <span class="badge bg-c-red">3</span>
                                     </div>
-                                    
-                                        <ul class="show-notification notification-view dropdown-menu" id="notificationTop" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                        </ul>
+
+                                    <ul class="show-notification notification-view dropdown-menu" id="notificationTop" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut"></ul>
                                 </div>
                             </li>
                             <li class="header-notification">
@@ -329,7 +328,7 @@
             notifications.client.updateMessages= function () {
                 sp_Consultar_Notificaciones()
                 sp_Consultar_Notificaciones_Top()
-               
+
             }
             $.connection.hub.start().done(function () {
                 sp_Consultar_Notificaciones();
@@ -374,6 +373,7 @@
             }
     });
     </script>
+    <script src="~/Scripts/Scripts_TP/MIRANDA/scriptsNotificaciones.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
