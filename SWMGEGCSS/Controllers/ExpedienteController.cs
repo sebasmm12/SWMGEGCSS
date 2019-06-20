@@ -368,6 +368,10 @@ namespace SWMGEGCSS.Controllers
 
             }
         }
-
+        [HttpPost]
+        public ActionResult _AgregarArchivoMinam(int exp_id,HttpPostedFile)
+        {
+            return PartialView();
+        }
     }
 }

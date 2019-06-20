@@ -36,5 +36,7 @@ namespace SWMGEGCSS_EN
         public int cantidad_actividades_terminar { get; set; }
         public HttpPostedFileBase archivo_ulr_inicio { get; set; }
         public HttpPostedFileBase archivo_url_final { get; set; }
+        public DateTime fecha_actual { get; set; }
+
     }
 }
