@@ -76,5 +76,64 @@ namespace SWMGEGCSS_DA
             }
             return listAuditoriaAux;
         }
+        public List<T_observacion_actividades> sp_Listar_Observacion_por_Actividad_sin_estado(int act_desa_id)
+        {
+            List<T_observacion_actividades> listaObservacionporActividad = new List<T_observacion_actividades>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Listar_Observacion_por_Actividad_sin_estado"))
+                {
+                    Database.AddInParameter(command, "@act_desa_id", DbType.Int32, act_desa_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_observacion_actividades t_obs = new T_observacion_actividades();
+                            t_obs.obs_act_id = DataUtil.DbValueToDefault<int>(reader["obs_act_id"]);
+                            t_obs.obs_act_nombre = DataUtil.DbValueToDefault<String>(reader["obs_act_nombre"]);
+                            t_obs.obs_act_creacion = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_creacion"]);
+                            t_obs.obs_act_fecha_revisor = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_fecha_revisor"]);
+                            t_obs.obs_act_fecha_usuario = DataUtil.DbValueToDefault<DateTime>(reader["obs_act_fecha_usuario"]);
+                            listaObservacionporActividad.Add(t_obs);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return new List<T_observacion_actividades>();
+            }
+            return listaObservacionporActividad;
+        }
+        public List<T_auditoria_observacion_actividades> sp_Listar_Auditoria_Observaciones_por_ActividadesId (int obs_act_id)
+        {
+            List<T_auditoria_observacion_actividades> listAuditoriaObs = new List<T_auditoria_observacion_actividades>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Listar_Auditoria_Observaciones_por_ActividadesId"))
+                {
+                    Database.AddInParameter(command, "@obs_act_id", DbType.Int32, obs_act_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_auditoria_observacion_actividades t_audit = new T_auditoria_observacion_actividades();
+                            t_audit.audi_obs_act_nombre = DataUtil.DbValueToDefault<String>(reader["audi_obs_act_nombre"]);
+                            t_audit.audi_obs_act_revisor = DataUtil.DbValueToDefault<String>(reader["audi_obs_act_revisor"]);
+                            t_audit.audi_obs_act_usuario = DataUtil.DbValueToDefault<String>(reader["audi_obs_act_usuario"]);
+                            t_audit.audi_obs_act_creacion = DataUtil.DbValueToDefault<DateTime>(reader["audi_obs_act_creacion"]);
+                            t_audit.audi_obs_act_fecha_usuario = DataUtil.DbValueToDefault<DateTime>(reader["audi_obs_act_fecha_usuario"]);
+                            t_audit.audi_obs_act_fecha_revisor = DataUtil.DbValueToDefault<DateTime>(reader["audi_obs_act_fecha_revisor"]);
+                            listAuditoriaObs.Add(t_audit);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return new List<T_auditoria_observacion_actividades>();
+            }
+            return listAuditoriaObs;
+        }
     }
 }
