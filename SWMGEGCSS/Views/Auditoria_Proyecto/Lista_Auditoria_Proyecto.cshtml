@@ -25,15 +25,36 @@
                         @foreach (var item in lista_expediente_auditoria)
                         {
                             count = count + 1;
-                            <tr class="text-center">
-                                <th scope="row">@count</th>
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            @if (item.aud_exp_fecha_auditoria.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
                                 <td>@item.aud_exp_fecha_auditoria</td>
-                                <td>@item.aud_exp_inicio</td>
-                                <td>@item.aud_exp_fin</td>
-                                <td>@item.tipo_servicio_nombre</td>
-                                <td>@item.aud_exp_ganancia</td>
-                                <td>@item.aud_exp_comentario</td>
-                            </tr>
+                            }
+                            @if (item.aud_exp_inicio.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
+                                <td>@item.aud_exp_inicio.ToShortDateString()</td>
+                            }
+                            @if (item.aud_exp_fin.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
+                                <td>@item.aud_exp_fin.ToShortDateString()</td>
+                            }
+                            <td>@item.tipo_servicio_nombre</td>
+                            <td>@item.aud_exp_ganancia</td>
+                            <td>@item.aud_exp_comentario</td>
+                        </tr>
                         }
                     </tbody>
                 </table>

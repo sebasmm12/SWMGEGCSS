@@ -23,13 +23,20 @@
                         @foreach (var item in lista_auditoria_observaciones)
                         {
                             count = count + 1;
-                            <tr class="text-center">
-                                <th scope="row">@count</th>
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            @if (item.audi_obs_act_creacion.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
                                 <td>@item.audi_obs_act_creacion</td>
-                                <td>@item.audi_obs_act_nombre</td>
-                                <td>@item.audi_obs_act_revisor</td>
-                                <td>@item.audi_obs_act_usuario</td>
-                            </tr>
+                            }
+                            <td>@item.audi_obs_act_nombre</td>
+                            <td>@item.audi_obs_act_revisor</td>
+                            <td>@item.audi_obs_act_usuario</td>
+                        </tr>
                         }
                     </tbody>
                 </table>

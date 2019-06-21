@@ -22,17 +22,17 @@
         return true;
      };*/
     var envioajaxRegistrar = function () {
-        var $actplannombre = $("#ActPlanNombre");
+        //var $actplannombre = $("#ActPlanNombre");
         var $actplandescripcion = $("#ActPlanDescripcion");
         var $actplancosto = $("#ActPlanCosto");
         var $actplantiempo = $("#ActPlanTiempo");
 
-        var vnombre = validar_nombre($actplannombre.val());
+        //var vnombre = validar_nombre($actplannombre.val());
         var vdescripcion = validar_descripcion($actplandescripcion.val());
         var vcosto = validar_costo($actplancosto.val());
         var vtiempo = validar_tiempo($actplantiempo.val());
 
-        if (vnombre === false || vdescripcion === false || vcosto === false || vtiempo === false) {
+        if (/*vnombre === false ||*/ vdescripcion === false || vcosto === false || vtiempo === false) {
             return false;
         }
         else {

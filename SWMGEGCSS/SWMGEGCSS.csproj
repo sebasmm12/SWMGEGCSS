@@ -594,6 +594,8 @@
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Observacion.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\_Listar_Auditoria_Observacion.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
+    <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
+    <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
