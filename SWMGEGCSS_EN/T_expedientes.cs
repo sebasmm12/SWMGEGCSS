@@ -20,6 +20,7 @@ namespace SWMGEGCSS_EN
         public string exp_nombre { get; set; }
         public string archivo_ulr_inicio { get; set; }
         public string archivo_url_final { get; set; }
+        public string archivo_url { get; set; }
     }
     public class T_expediente_aux
     {
@@ -37,5 +38,6 @@ namespace SWMGEGCSS_EN
         public HttpPostedFileBase archivo_ulr_inicio { get; set; }
         public HttpPostedFileBase archivo_url_final { get; set; }
         public DateTime fecha_actual { get; set; }
+        public string archivo_url { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model SWMGEGCSS.Models.AuditoriaViewModel
+@{
+    var lista_auditoria_observaciones = Model.Plist_auditoria_observacion;
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<div class="mt-2 ml-4">
+    <div class="container-fluid">
+        <h2>Datos de Auditoría de la Observación</h2>
+        @Html.Partial("_Listar_Auditoria_Observacion", Model)
+    </div>
+    <div class="row mt-4 pl-2">
+        <div class="col-sm-2 col-md-2">
+
+        </div>
+        <div class="col-12 col-sm-3 col-md-3">
+            <a href="@Url.Action("Visualizar_Auditoria_Actividades","Auditoria_Proyecto",new { act_desa_id = Session["actividadid"] })" class="btn btn-secondary">
+                <i class="fa fa-backward"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/PIERO/scriptsVisualizarAuditoriaObservacion.js"></script>
+}

@@ -55,6 +55,7 @@ namespace SWMGEGCSS.Controllers
             notificacion.not_nombre = Solicitud.asunto;
             notificacion.not_descripcion = Solicitud.mensaje+"Mi nombre de contacto es: "+Solicitud.names+
                 " y mi correo electrónico "+Solicitud.correoE;
+            notificacion.not_url = "Gestionar_Citas";
             operationResult = new NotificacionesDataAccess().sp_Insertar_Notificaciones(notificacion);
             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
         }

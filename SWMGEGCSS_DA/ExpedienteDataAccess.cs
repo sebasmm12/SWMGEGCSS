@@ -189,6 +189,7 @@ namespace SWMGEGCSS_DA
                     Database.AddInParameter(command, "@exp_ganancia", DbType.Double, Expediente.exp_ganancia);
                     Database.AddInParameter(command, "@exp_nombre", DbType.String, Expediente.exp_nombre);
                     Database.AddInParameter(command, "@archivo_url_inicio", DbType.String, Expediente.archivo_ulr_inicio);
+                    Database.AddInParameter(command, "@archivo_url", DbType.String, Expediente.archivo_url);
                     Database.ExecuteScalar(command);
                     operation.NewId = 1;
                 }
@@ -363,6 +364,26 @@ namespace SWMGEGCSS_DA
                 return new double();
             }
         }
+        public OperationResult sp_Registrar_Archivo_Final(T_expedientes expediente)
+        {
+            try
+            {
+                var operationResult = new OperationResult();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Registrar_Archivo_Final"))
+                {
+                    Database.AddInParameter(command, "@archivo_url_fin", DbType.String, expediente.archivo_url_final);
+                    Database.AddInParameter(command, "@exp_id", DbType.Int32, expediente.exp_id);
+                    Database.ExecuteScalar(command);
+                    operationResult.NewId = 1;
+                }
+                return operationResult;
+            }
+            catch (Exception)
+            {
 
+                return new OperationResult();
+            }
+            
+        }
     }
 }
