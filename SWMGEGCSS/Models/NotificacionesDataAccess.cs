@@ -22,7 +22,7 @@ namespace SWMGEGCSS.Models
           using (var connectionString = new SqlConnection(_connectionString))
             {
                 connectionString.Open();
-                SqlCommand command = new SqlCommand(@"SELECT [not_id],[not_nombre],[not_descripcion],[usu_codigo],[noti_fecha],[estado],[usu_envio] FROM [dbo].[T_notificaciones] where 
+                SqlCommand command = new SqlCommand(@"SELECT [not_id],[not_nombre],[not_descripcion],[usu_codigo],[noti_fecha],[estado],[usu_envio],[not_url] FROM [dbo].[T_notificaciones] where 
                 T_notificaciones.usu_codigo="+usu_codigo+" ORDER BY not_id  DESC", connectionString);
                 command.Notification = null;
                 var dependency = new SqlDependency(command);
@@ -40,7 +40,8 @@ namespace SWMGEGCSS.Models
                         not_nombre = (string)reader["not_nombre"],
                         not_descripcion = (string)reader["not_descripcion"],
                         usu_codigo = (int)reader["usu_codigo"],
-                        usu_envio = (int)reader["usu_envio"]
+                        usu_envio = (int)reader["usu_envio"],
+                        not_url=(string)reader["not_url"]
                     });
                 }
             }
