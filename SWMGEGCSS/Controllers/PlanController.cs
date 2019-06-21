@@ -538,9 +538,11 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _ModalRegistrarActividadesPlanificadas(int id_act)
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas = new T_actividades_desarrollar();
+            model.Actividad_planeada = new T_actividades_planeadas();
             var modeloevaluar = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(r => r.act_id == id_act);
+            var tac = new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == id_act));
             model.tipo_servicio_act = modeloevaluar;
+            model.Actividad_planeada.act_plan_nombre = tac.act_nombre;
             return PartialView(model);
         }
         [HttpPost]
@@ -553,7 +555,6 @@ namespace SWMGEGCSS.Controllers
             if (Session["ListaActividades"] == null)
             {
                 listaActividadesPlaneadasTemp.Add(act_plan);
-
             }
             else
             {
@@ -562,7 +563,6 @@ namespace SWMGEGCSS.Controllers
 
             }
             Session["ListaActividades"] = listaActividadesPlaneadasTemp;
-
             return Json(1, JsonRequestBehavior.AllowGet);
         }
         //
