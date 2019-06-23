@@ -61,7 +61,7 @@ namespace SWMGEGCSS.Controllers
             //insertar cuando entra
             T_auditoria_actividades_desarrollo modelAudi = new T_auditoria_actividades_desarrollo();
             modelAudi.act_desa_id = id;
-            modelAudi.audi_act_comentario = "El usuario ingresó a realizar la tarea asiganda, hora: "+ DateTime.Now.ToShortDateString();
+            modelAudi.audi_act_comentario = "El usuario ingresó a realizar la tarea asiganda, hora: "+ DateTime.Now.ToShortDateString() + DateTime.Now.Hour.ToString();
             modelAudi.audi_act_archivo_url = null;
             modelAudi.audi_act_archivo_nombre = null;
             modelAudi.usu_asignado = (int)Session["login"];
@@ -216,6 +216,14 @@ namespace SWMGEGCSS.Controllers
             model.Lista_Observaciones = new TrabajadorDataAccess().sp_Listar_Observacion_por_Actividad((int)Session["ArchivoId"]);
             Session["obs_respondidas"] = model.Lista_Observaciones.Count;
             Session["comentarius"] = valores.act_desa_revisor_obs;
+
+            T_auditoria_actividades_desarrollo modelAudi = new T_auditoria_actividades_desarrollo();
+            modelAudi.act_desa_id = id;
+            modelAudi.audi_act_comentario = "El usuario ingresó a modificar la tarea asiganda, Fecha: " + DateTime.Now.ToShortDateString() + DateTime.Now.Hour.ToString();
+            modelAudi.audi_act_archivo_url = null;
+            modelAudi.audi_act_archivo_nombre = null;
+            modelAudi.usu_asignado = (int)Session["login"];
+            var operationResult1 = new TrabajadorDataAccess().sp_Insertar_Tarea_Asignada_Auditoria(modelAudi);
             return View(model);
         }
         [HttpPost]
