@@ -58,6 +58,14 @@ namespace SWMGEGCSS.Controllers
         {
             TareasAsignadasViewModel model = new TareasAsignadasViewModel();
             Session["ArchivoId"] = id;
+            //insertar cuando entra
+            T_auditoria_actividades_desarrollo modelAudi = new T_auditoria_actividades_desarrollo();
+            modelAudi.act_desa_id = id;
+            modelAudi.audi_act_comentario = "El usuario ingresó a realizar la tarea asiganda, hora: "+ DateTime.Now.ToShortDateString();
+            modelAudi.audi_act_archivo_url = null;
+            modelAudi.audi_act_archivo_nombre = null;
+            modelAudi.usu_asignado = (int)Session["login"];
+            var operationResult1 = new TrabajadorDataAccess().sp_Insertar_Tarea_Asignada_Auditoria(modelAudi);
             return View(model);
         }
         [HttpPost]
@@ -99,20 +107,17 @@ namespace SWMGEGCSS.Controllers
                                 versionado = Int32.Parse(version);
                                 versionado++;
                                 evaluar = evaluar.Substring(0, x+1) +versionado;
-                               
-
                                 break;
                             }
-                            else {
+                            else
+                            {
                                 version = aux + version;
-                                }
-
+                            }
                         }
-
                     }
-                    else{
+                    else
+                    {
                         evaluar += "_V2";
-
                     }
                     listadelnombre[listadelnombre.Length - 2] = evaluar;
                     nombreArchivo = "";
@@ -145,7 +150,9 @@ namespace SWMGEGCSS.Controllers
 
                 return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
+            var operationResulta = new OperationResult();
+            operationResulta.NewId = 0;
+            return Json(new { data = operationResulta.NewId }, JsonRequestBehavior.AllowGet);
         }
         public void subirArchivo(HttpPostedFileBase archivo,String ruta)
         {

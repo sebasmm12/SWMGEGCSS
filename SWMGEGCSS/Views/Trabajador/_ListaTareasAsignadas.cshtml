@@ -37,6 +37,14 @@
                                             @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
                                         </button>
                                     }
+                                    else if (item.act_desa_fecha_inicio > DateTime.Now)
+                                    {
+                                        <label style="border: 1px solid #C00" class="text-center form-control">
+                                            <Font size="3" color="red">
+                                                Todavía no puedes iniciar esta tarea
+                                            </Font>
+                                        </label>
+                                    }
                                     else
                                     {
                                         <button type="button" class="btn btn-warning">
