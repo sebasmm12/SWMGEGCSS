@@ -167,6 +167,33 @@ namespace SWMGEGCSS_DA
                 return new List<T_tipo_servicio_actividades_aux>();
             }
         }
+        public List<T_tipo_servicio_actividades> sp_Consultar_tipos_servicios_actividades_por_tipo_servicio(int id)
+        {
+            try
+            {
+                List<T_tipo_servicio_actividades> list_tipo_act = new List<T_tipo_servicio_actividades>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_tipos_servicios_actividades_por_tipo_servicio"))
+                {
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_tipo_servicio_actividades tipo_serv_act = new T_tipo_servicio_actividades();
+                            tipo_serv_act.tipo_servicio_id = DataUtil.DbValueToDefault<Int32>(reader["tipo_servicio_id"]);
+                            tipo_serv_act.act_id = DataUtil.DbValueToDefault<Int32>(reader["act_id"]);
+                            tipo_serv_act.act_obligatorio = DataUtil.DbValueToDefault<bool>(reader["tipo_servicio_obligatorio"]);
+                            list_tipo_act.Add(tipo_serv_act);
+                        }
+                    }
+                }
+                return list_tipo_act;
+            }
+            catch (Exception)
+            {
+                return new List<T_tipo_servicio_actividades>();
+            }
+        }
         public OperationResult sp_Cambiar_Estado_Tipo_Servicio(int tipo_servicio_id)
         {
             try
