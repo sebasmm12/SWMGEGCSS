@@ -1,5 +1,4 @@
 ﻿@model SWMGEGCSS.Models.GestionarPlanProyectoViewModel
-
 @{
     ViewBag.Title = "ACTIVIDAD PLANIFICADA";
 }
@@ -35,7 +34,7 @@
                             </label>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_descripcion, new
+                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_descripcion, new
                        {
                            htmlAttributes = new { @class = "text-center form-control bg-white" , @id = "ActPlanDescripcion" }
                        })
@@ -72,7 +71,7 @@
                             </div>
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_costo, new
+                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_costo, new
                        {
                            htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanCosto" }
                        })
@@ -90,7 +89,7 @@
                             </div>     
                         </div>
                         <div>
-                            @Html.EditorFor(model => model.Actividad_planeada.act_plan_tiempo, new
+                            @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_tiempo, new
                        {
                            htmlAttributes = new {
                                @class = "text-center form-control bg-white",
