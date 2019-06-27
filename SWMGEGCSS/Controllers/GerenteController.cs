@@ -326,6 +326,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Plan_Proyecto(string searchTerm, string estado, int page = 1)
         {
+            Session["tipoServicioId"] = null;
             Session["ListaActPlanTemp"] = null;
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             if (searchTerm == null && estado == null) {
@@ -463,6 +464,12 @@ namespace SWMGEGCSS.Controllers
             NotificacionesViewModel notificaciones = new NotificacionesViewModel();
             notificaciones.list_notificaciones = new NotificacionesDataAccess().sp_Consultar_Notificaciones(usu_codigo);
             return PartialView(notificaciones);
+        }
+        public ActionResult ObtenerNotificacionesTop(int usu_codigo)
+        {
+            NotificacionesViewModel notificaciones = new NotificacionesViewModel();
+            notificaciones.list_notificaciones = new NotificacionesDataAccess().sp_Consultar_Notificaciones_Top(usu_codigo);
+            return PartialView("_Notifications",notificaciones);
         }
         public ActionResult Evaluar_IE_Cantidad(DateTime fechaIni, DateTime fechaFin)
         {

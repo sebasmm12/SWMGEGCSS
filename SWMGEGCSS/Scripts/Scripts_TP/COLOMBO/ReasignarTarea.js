@@ -335,7 +335,7 @@
             return false;
         }
         else {
-            if (fechaIngresada > dateActual) {
+            if (fechaIngresada => dateActual) {
                 attributes("error-act-desa-fecha-inicio2");
                 addgood("actDesaFechaInicio2");
                 $("#actDesaFechaInicio2").change(keyfechaI);
@@ -378,7 +378,7 @@
             $("#actDesaFechaInicio2").focus();
         }
         else {
-            if (fechaIngresada > dateActual) {
+            if (fechaIngresada => dateActual) {
                 attributes("error-act-desa-fecha-inicio2");
                 addgood("actDesaFechaInicio2");
             } else {
