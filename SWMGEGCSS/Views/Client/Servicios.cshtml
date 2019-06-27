@@ -6,32 +6,54 @@
 }
 
 
-@foreach (var item in list_sevicios)
+@for (int i = 0; i < list_sevicios.Count; i += 3)
 {
-
-<div class="container-fluid" style="background-color: azure">
-    <div class="row">
-        <ul>
-
-
-            <div class="row ">
-                <div class="col-sm mr-4">
-                    <img src="~/images/folder-150113_960_720.png" width="50">
-                    <b><li>@item.tipo_servicio_nombre</li></b>
+    <div class="container-fluid" style="background-color: azure">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-12">
+                @if (i <list_sevicios.Count)
+                {
                     <ul>
-                        <li>@item.tipo_servicio_descripcion</li>
+                        <div class="border-circulo">
+                            <img src="~/images/folder-150113_960_720.png" class="ml-3 mt-3" width="70" >
+                        </div>
+                        
+                        <b><li>@list_sevicios.ElementAt(i).tipo_servicio_nombre</li></b>
+                        <ul>
+                            <li>@list_sevicios.ElementAt(i).tipo_servicio_descripcion</li>
+                        </ul>
                     </ul>
-                </div>
+                }
+            </div>
+            <div class="col-sm-4 col-md-4 col-12">
+                @if (i+1 <list_sevicios.Count)
+                {
+                    <ul>
+                        <div class="border-circulo">
+                            <img src="~/images/folder-150113_960_720.png" class="ml-3 mt-3" width="70">
+                        </div>
+                        <b><li>@list_sevicios.ElementAt(i + 1).tipo_servicio_nombre</li></b>
+                        <ul>
+                            <li>@list_sevicios.ElementAt(i + 1).tipo_servicio_descripcion</li>
+                        </ul>
+                    </ul>
+                }
+            </div>
+            <div class="col-sm-4 col-md-4 col-12">
+                @if (i+2 < list_sevicios.Count)
+                {
+                    <ul>
+                        <div class="border-circulo">
+                            <img src="~/images/folder-150113_960_720.png" class="ml-3 mt-3" width="70">
+                        </div>
+                        <b><li>@list_sevicios.ElementAt(i + 2).tipo_servicio_nombre</li></b>
+                        <ul>
+                            <li>@list_sevicios.ElementAt(i + 2).tipo_servicio_descripcion</li>
+                        </ul>
+                    </ul>
+                }
             </div>
 
-
-
-
-
-
-
-        </ul>
+        </div>
     </div>
-</div>
-    
 }
