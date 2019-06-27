@@ -364,7 +364,7 @@
             return false;
         }
        else {
-            if (fechaIngresada > dateActual) {
+            if (fechaIngresada >= dateActual) {
                 attributes("error-act-desa-fecha-inicio");
                 addgood("actDesaFechaInicio");
                 return true;
@@ -405,7 +405,7 @@
             $("#actDesaFechaInicio").focus();
         }
         else {
-            if (fechaIngresada > dateActual) {
+            if (fechaIngresada >= dateActual) {
                 attributes("error-act-desa-fecha-inicio");
                 addgood("actDesaFechaInicio");
             } else {
