@@ -35,22 +35,30 @@
 
                             <td>
 
-                             
                                 <button type="button" class="btn btn-warning">
                                     <i class="fa fa-edit" style="color:white !important"></i>
                                     @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_ruc = item.emp_ruc }, new { @style = "color: white !important" })
                                 </button>
+                                @if (item.emp_estado == true)
+                                {
                                     <button type="button" class="btn btn-danger btnModal" data-ruc-empresa="@item.emp_ruc" data-url="@Url.Action("_EliminarEmpresa","Empresa", new { emp_ruc = item.emp_ruc })" data-id-target="#ModalEliminarEmpresa">
                                         <i class="fa fa-times-circle" style="color:white !important"></i>
                                         Eliminar
                                     </button>
-                                
+                                }
+                                else
+                                {
                                     <button type="button" class="btn btn-success btnModal" data-ruc-empresa="@item.emp_ruc" data-url="@Url.Action("_EliminarEmpresa","Empresa", new { emp_ruc = item.emp_ruc })" data-id-target="#ModalEliminarEmpresa">
 
                                         <i class="fa fa-check-circle" style="color:white !important"></i>
                                         Activar Empresa
                                     </button>
-                                
+                                }
+
+
+
+
+
 
                             </td>
                         </tr>

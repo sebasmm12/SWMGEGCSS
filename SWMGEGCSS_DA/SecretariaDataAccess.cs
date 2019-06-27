@@ -160,6 +160,10 @@ namespace SWMGEGCSS_DA
                 var operation = new OperationResult();
                 var fecha = citas.cita_fecha.ToString("yyyy-MM-dd") + " " + cita_hora;
                 var fecha_atendido = citas.cita_fecha_atendido.ToString("yyyy-MM-dd") + " " + cita_hora_atendido + ":00";
+                if(fecha_atendido == "0001-01-01 00:00:00")
+                {
+                    fecha_atendido = null;
+                }
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Cita"))
                 {
                     Database.AddInParameter(command, "@cita_id", DbType.Int32, citas.cita_id);

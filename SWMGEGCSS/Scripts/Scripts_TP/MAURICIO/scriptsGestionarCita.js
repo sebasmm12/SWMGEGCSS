@@ -1,5 +1,56 @@
 ﻿$(function () {
     var cita_id;
+
+    $.fn.extend({
+        animateCss: function (animationName, callback) {
+            var animationEnd = (function (el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebKitAnimation: 'webkitAnimationEnd'
+                };
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
+
+                    }
+                }
+            })(document.createElement('div'));
+            this.addClass('animated ' + animationName).one(animationEnd, function () {
+                $(this).removeClass('animated ' + animationName);
+                if (typeof callback === 'function') callback();
+            });
+            return this;
+        }
+    });
+
+    $("#registrar").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $("#buscar").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $(".btnModal").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+    $(".modificar_cita").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+    $(".btnModal1").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+
     var envioajaxModal = function () {
         $(this).click(function () {
             var $button = $(this);
@@ -33,6 +84,21 @@
             $(".btnModal").each(envioajaxModal);
             $(".btnModal1").each(envioajaxModal);
             $(".btnEliminaCita").each(eliminaCita);
+            $(".btnModal").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
+            $(".modificar_cita").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
+            $(".btnModal1").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
         });
         return false;
     };

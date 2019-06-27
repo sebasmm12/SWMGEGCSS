@@ -41,16 +41,18 @@
 
 
                                 <button type="button" class="btn btn-info btnModal" data-id-cita="@item.cita_id" data-url="@Url.Action("_verDetalles","Secretario" , new { cita_id = item.cita_id })" data-id-target="#ModalVerDetallesCita">
+                                    <i class="fa fa-eye" style="color:white !important"></i>
                                     Ver Detalles
                                 </button>
 
-                                <button type="button" class="btn btn-warning">
+                                <button type="button" class="btn btn-warning modificar_cita">
+                                    <i class="fa fa-edit" style="color:white !important"></i>
                                     @Html.ActionLink("Modificar Cita", "Modificar_Cita", "Secretario", new { cita_id = item.cita_id }, new { @style = "color: white !important" })
                                 </button>
 
 
                                 <button type="button" class="btn btn-danger btnModal1" data-id-cit="@item.cita_id" data-url="@Url.Action("_Eliminar_Cita","Secretario", new { cita_id = item.cita_id })" data-id-target="#ModalEliminarCita" id="boton-Eliminar">
-                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa fa-times-circle" style="color:white !important"></i>
                                     Eliminar Cita
                                 </button>
 
