@@ -13,7 +13,7 @@ namespace SWMGEGCSS.Models
         public List<T_usuario> list_usuario { get; set; }
 
         public IPagedList<T_usuario> IPlist_Usuario { get; set; }
-
+        public T_usuario_cuentas_aux list_datos_usuarios { get; set; }
     }
 
     public class DetalleUsuarioViewModel
@@ -31,4 +31,7 @@ namespace SWMGEGCSS.Models
         public T_Roles roles { get; set; }
         public List<T_Roles> list_roles { get; set; }
     }
+    //aqui va t_aux
+
+   
 }

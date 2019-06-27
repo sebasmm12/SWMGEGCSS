@@ -8,145 +8,141 @@
 
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
-<div class="container">
+<div class="container-fluid">
     <form id="form">
-        @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_id,
-             htmlAttributes: new { @id = "act_desa_id" })
-        @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_descripcion,
-             htmlAttributes: new { @id = "act_desa_descripcion" })
-        @Html.HiddenFor(model => model.actividades_desarrollarGerente.est_act_id, new
-   {
-       htmlAttributes = new { @id = "est_act_id" }
-   })
-        <br />
-        <div class="row text-center">
-            <div class="col-4 col-sm-4 col-md-4 text-center">
-                <div class="row text-center">
+        <div class="border-registrar">
+            @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_id,
+                 htmlAttributes: new { @id = "act_desa_id" })
+            @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_descripcion,
+                 htmlAttributes: new { @id = "act_desa_descripcion" })
+            @Html.HiddenFor(model => model.actividades_desarrollarGerente.est_act_id, new
+       {
+           htmlAttributes = new { @id = "est_act_id" }
+       })
+            <br />
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
+
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <label class="font-weight-bolder titulo-registrar">
+                        Revisar Formulario
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1"></div>
+                <div class="col-12 col-sm-3 col-md-3 text-center">
                     <label class="font-weight-bolder text-center">
                         Fecha Inicio:
                     </label>
-                </div>
-                <div class="row text-center">
                     @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_inicio, "{0:yyyy-MM-dd}",
-              new { type = "date", @class = "datepicker bg-white col-6 col-sm-6 col-md-6   text-center form-control", @id = "act_desa_fecha_inicio", @readonly = "readonly" })
+              new { type = "date", @class = "datepicker text-center form-control", @id = "act_desa_fecha_inicio", @readonly = "readonly" })
                 </div>
-            </div>
-            <div class="col-4 col-sm-4 col-md-4 text-center">
-                <div class="row text-center">
+                <div class="col-12 col-sm-3 col-md-3 text-center">
                     <label class="font-weight-bolder text-center">
                         Fecha Fin:
                     </label>
+                    <input type="date" id="auxfin" class="datepicker text-center form-control" />
                 </div>
-                <div class="row text-center">
-                    <input type="date" id="auxfin" class="datepicker bg-white text-center form-control col-6 col-sm-6 col-md-6 " />
-                </div>
-            </div>
-            <div class="col-4 col-sm-4 col-md-4 text-center">
-                <div class="row text-center">
+                <div class="col-12 col-sm-3 col-md-3 text-center">
                     <label class="font-weight-bolder text-center">
                         Fecha Entregado:
                     </label>
-                </div>
-                <div class="row text-center">
                     @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_finalizada, "{0:yyyy-MM-dd}",
-                  new { type = "date", @class = "datepicker bg-white  text-center form-control col-6 col-sm-6 col-md-6 ", @id = "act_desa_fecha_finalizada", @readonly = "readonly" })
+                  new { type = "date", @class = "datepicker text-center form-control", @id = "act_desa_fecha_finalizada", @readonly = "readonly" })
                 </div>
+                <div class="col-sm-1 col-md-1"></div>
             </div>
+            <br />
+            <div class="row mt-4 pl-2">
+                <div class="col-sm-1 col-md-1">
 
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-6 col-sm-6 col-md-6 text-center">
-                <div>
+                </div>
+                <div class="col-12 col-sm-5 col-md-5 text-center">
                     <label class="font-weight-bolder text-center">
                         Empresa:
                     </label>
+                    @Html.TextAreaFor(model => model.actividades_desarrollarGerente.emp_razon_social,
+                     htmlAttributes: new { @id = "emp_razon_social", @class = "text-center form-control", @readonly = "readonly" })
                 </div>
-                @Html.TextAreaFor(model => model.actividades_desarrollarGerente.emp_razon_social,
-                 htmlAttributes: new { @id = "emp_razon_social", @class = "text-center form-control bg-white", @readonly = "readonly" })
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 text-center">
-                <div>
+                <div class="col-12 col-sm-5 col-md-5 text-center">
                     <label class="font-weight-bolder text-center">
                         Nombre actividad:
                     </label>
+                    @Html.TextAreaFor(model => model.actividades_desarrollarGerente.act_desa_nombre,
+                     htmlAttributes: new { @id = "act_desa_nombre", @class = "text-center form-control", @readonly = "readonly" })
                 </div>
-                @Html.TextAreaFor(model => model.actividades_desarrollarGerente.act_desa_nombre,
-                 htmlAttributes: new { @id = "act_desa_nombre", @class = "text-center form-control bg-white", @readonly = "readonly" })
             </div>
-        </div>
+            @Html.Partial("_ListaObservaciones", Model)
+            <div class="row mt-4 pl-2">
+                <div class="col-12 col-sm-4 col-md-4">
+                </div>
+                <div class="col-12 col-sm-5 col-md-5">
+                    <a href="@Url.Action("AgregarObservacion", "EvaluarFormulario")" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i>
+                        Agregar Observación
+                    </a>
+                </div>
+            </div>
+                <br />
+                <div class="row mt-4 pl-2">
+                    <div class="col-12 col-sm-1 col-md-1"></div>
+                    <div class="col-12 col-sm-5 col-md-5">
+                        <div>
+                            @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_archivo_nombre,
+                            htmlAttributes: new { @id = "act_desa_archivo_nombre" })
+                            <label class="font-weight-bolder">
+                                Archivo :
+                            </label>
+                            &nbsp;
+                            &nbsp;
+                            @Html.DisplayFor(model => model.actividades_desarrollarGerente.act_desa_archivo_nombre)
+                            <div class="row">
+                                <a href="@Url.Action("DescargarArchivo","EvaluarFormulario")" target="_blank" class="btn btn-secondary">
+                                    <i class="fa fa-file-download"></i>
+                                    Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-
-
-        @Html.Partial("_ListaObservaciones", Model)
-
-
-
-        <div class="col-4 col-sm-4 col-md-4">
-            <a href="@Url.Action("AgregarObservacion", "EvaluarFormulario")" class="btn btn-secondary">
-                <i class="fa fa-backward"></i>
-                Agregar Observación
-            </a>
-        </div>
-
-        <br />
-        <div class="row">
-            <div class="col-6 col-sm-6 col-md-6">
-                <div>
-                    @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_archivo_nombre,
-                 htmlAttributes: new { @id = "act_desa_archivo_nombre" })
-                    <label class="font-weight-bolder">
-                        Archivo :
-                    </label>
-                    &nbsp;
-                    &nbsp;
-                    @Html.DisplayFor(model => model.actividades_desarrollarGerente.act_desa_archivo_nombre)
-                    <div class="row">
-                        <a href="@Url.Action("DescargarArchivo","EvaluarFormulario")" target="_blank" class="btn btn-secondary">
-                            <i class="fa fa-file-download"></i>
-                            Descargar
+                    <div class="col-12 col-sm-5 col-md-5">
+                        <div class="row">
+                            <label class="font-weight-bolder">
+                                Nueva Fecha Fin:
+                            </label>
+                        </div>
+                        <div class="row">
+                            @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_fin, "{0:yyyy-MM-dd}",
+                           new { type = "date", @class = "datepicker text-center form-control", @id = "act_desa_fecha_fin" })
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-1 col-md-1"></div>
+                </div>
+                <div class="row mt-4 pl-2">
+                    <div class="col-12 col-sm-4 col-md-4">
+                        <a href="@Url.Action("Index", "EvaluarFormulario")" class="btn btn-secondary">
+                            <i class="fa fa-backward"></i>
+                            Regresar
                         </a>
                     </div>
-                </div>
-            </div>
+                    <div class="col-12 col-sm-4 col-md-4">
+                        <button type="button" class="btn btn-success" id="corregir">
+                            <i class="fa fa-check-circle"></i>
+                            Corregir
+                        </button>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-4">
+                        <button type="button" class="btn btn-success" id="guardar">
+                            <i class="fa fa-check-circle"></i>
+                            Terminar
+                        </button>
+                    </div>
 
-            <div class="col-6 col-sm-6 col-md-6">
-                <div class="row">
-                    <label class="font-weight-bolder">
-                        Nueva Fecha Fin:
-                    </label>
                 </div>
-                <div class="row">
-                    @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_fin, "{0:yyyy-MM-dd}",
-                   new { type = "date", @class = "datepicker bg-white text-center form-control", @id = "act_desa_fecha_fin" })
-                </div>
-            </div>
         </div>
-
-
-        <br />
-        <br />
-        <div class="row">
-            <div class="col-4 col-sm-4 col-md-4">
-                <button type="button" class="btn btn-success" id="corregir">
-                    <i class="fa fa-check-circle"></i>
-                    Corregir
-                </button>
-            </div>
-            <div class="col-4 col-sm-4 col-md-4">
-                <button type="button" class="btn btn-success" id="guardar">
-                    <i class="fa fa-check-circle"></i>
-                    Terminar
-                </button>
-            </div>
-            <div class="col-4 col-sm-4 col-md-4">
-                <a href="@Url.Action("Index", "EvaluarFormulario")" class="btn btn-secondary">
-                    <i class="fa fa-backward"></i>
-                    Regresar
-                </a>
-            </div>
-        </div>
-    </form>
+</form>
 </div>
 
 <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
