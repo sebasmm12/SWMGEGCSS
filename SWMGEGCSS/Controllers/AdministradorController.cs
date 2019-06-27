@@ -72,7 +72,6 @@ namespace SWMGEGCSS.Controllers
         {
             int page = 1;
             var model = new VisualizarTrabajadoresViewModel();
-            model.actividades_usuario = new T_actividades_desarrollar_usuarios();
             model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().ToPagedList(page, 4);
             return PartialView(model);
         }
@@ -82,8 +81,7 @@ namespace SWMGEGCSS.Controllers
         {
             int page = 1;
             var model = new VisualizarTrabajadoresViewModel();
-            model.actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().Find(r => r.usu_codigo == usu_codigo);
-            model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().ToPagedList(page, 4);
+            model.IPlist_actividades_usuario = new ActividadesUsuarioDataAccess().sp_Consultar_Lista_Actividades_Usuario().FindAll(r => r.usu_codigo == usu_codigo).ToPagedList(page, 4); 
             return PartialView(model);
         }
     }
