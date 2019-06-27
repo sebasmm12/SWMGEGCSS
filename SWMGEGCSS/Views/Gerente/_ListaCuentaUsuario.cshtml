@@ -37,11 +37,11 @@
                                     <td>@item.rol_nombre</td>
                                     <td>
 
-                                        <button type="button" class="btn btn-info btnModal" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
+                                        <button type="button" class="btn btn-info btnModal ver_detalles"  data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
                                             <i class="fa fa-tomes"></i>
                                             Ver Detalles
                                         </button>
-                                        <button type="button" class="btn btn-warning">
+                                        <button type="button" class="btn btn-warning actualizar_datos" >
                                             @Html.ActionLink("Actualizar Datos", "Actualizar_Datos", "Cuentas", new { usu_codigo = item.usu_codigo }, new { @style = "color:white !important" })
                                         </button>
                                         <button type="button" class="btn btn-danger btnModal1" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
@@ -63,14 +63,14 @@
                                     <td>@item.rol_nombre</td>
                                     <td>
 
-                                        <button type="button" class="btn btn-info btnModal" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
+                                        <button type="button" class="btn btn-info btnModal ver_detalles"  data-id-cita="@item.usu_codigo" data-url="@Url.Action("_verDetalles","Cuentas",new { usu_codigo = item.usu_codigo })" data-id-target="#ModalVerDetallesCuenta">
                                             <i class="fa fa-tomes"></i>
                                             Ver Detalles
                                         </button>
-                                        <button type="button" class="btn btn-warning">
+                                        <button type="button" class="btn btn-warning actualizar_datos" >
                                             @Html.ActionLink("Actualizar Datos", "Actualizar_Datos", "Cuentas", new { usu_codigo = item.usu_codigo }, new { @style = "color:white !important" })
                                         </button>
-                                        <button type="button" class="btn btn-danger btnModal1" data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
+                                        <button type="button" class="btn btn-danger btnModal1"  data-id-cita="@item.usu_codigo" data-url="@Url.Action("_EliminarCuenta","Cuentas", new { usu_codigo = item.usu_codigo })" data-id-target="#ModalEliminarCuenta" id="boton-Eliminar">
                                             <i class="fa fa-check-circle"></i>
                                             Eliminar Cuenta
                                         </button>
@@ -79,7 +79,7 @@
                             }
                         }
                         else if (rol_name == "SECRETARIO")
-                        {
+                        {   
                             if (item.usu_estado == 1 && item.rol_codigo != 3 && item.rol_codigo != 4 && item.rol_codigo != 2)
                             {
                                 <tr>
