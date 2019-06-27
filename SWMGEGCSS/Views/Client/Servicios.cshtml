@@ -1,8 +1,37 @@
-﻿
+﻿@model SWMGEGCSS.Models.Visualizar_Servicios
 @{
     ViewBag.Title = "Servicios";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+    var list_sevicios = Model.list_tipo_servicio;
 }
 
-<h2>Servicios</h2>
 
+@foreach (var item in list_sevicios)
+{
+
+<div class="container-fluid" style="background-color: azure">
+    <div class="row">
+        <ul>
+
+
+            <div class="row ">
+                <div class="col-sm mr-4">
+                    <img src="~/images/folder-150113_960_720.png" width="50">
+                    <b><li>@item.tipo_servicio_nombre</li></b>
+                    <ul>
+                        <li>@item.tipo_servicio_descripcion</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </ul>
+    </div>
+</div>
+    
+}
