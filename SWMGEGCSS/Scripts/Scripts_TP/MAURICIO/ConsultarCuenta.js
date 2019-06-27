@@ -1,4 +1,52 @@
 ﻿$(function () {
+    $.fn.extend({
+        animateCss: function (animationName, callback) {
+            var animationEnd = (function (el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebKitAnimation: 'webkitAnimationEnd'
+                };
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
+
+                    }
+                }
+            })(document.createElement('div'));
+            this.addClass('animated ' + animationName).one(animationEnd, function () {
+                $(this).removeClass('animated ' + animationName);
+                if (typeof callback === 'function') callback();
+            });
+            return this;
+        }
+    });
+    $("#Buscar").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $("#Registrar_Empleado").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $(".ver_detalles").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+    $(".actualizar_datos").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+    $(".btnModal1").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
     var getPage = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
@@ -13,6 +61,21 @@
             $(".btnModal").each(envioajaxModal);
             $(".btnModal1").each(envioajaxModal);
             $(".btnEliminarUsuario").each(eliminaUsuario);
+            $(".ver_detalles").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
+            $(".actualizar_datos").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
+            $(".btnModal1").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
         });
         return false;
     };

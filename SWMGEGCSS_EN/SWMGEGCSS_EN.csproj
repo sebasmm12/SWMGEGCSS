@@ -59,6 +59,12 @@
       <DependentUpon>reporteIE.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\reporteIE1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reporteIE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reporte\reporteProyecto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -108,7 +114,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Reporte\reporteIE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>reporteIE.cs</LastGenOutput>
+      <LastGenOutput>reporteIE1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\reporteProyecto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
