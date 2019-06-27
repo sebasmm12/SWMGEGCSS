@@ -15,6 +15,18 @@ namespace SWMGEGCSS_EN
         public int rep_ren_act_completadas { get; set; }
         public int rep_ren_act_obs_x_error { get; set; }
         public int rep_ren_atraso { get; set; }
-
     }
+
+    public class T_reporte_rendimientoAUX
+    {
+        public int rep_ren_id { get; set; }
+        public String det_usu_nombre { get; set; }
+        public int usu_codigo { get; set; }
+        public DateTime rep_ren_fecha_inicio { get; set; }
+        public DateTime rep_ren_fecha_fin { get; set; }
+        public int rep_ren_act_completadas { get; set; }
+        public int rep_ren_act_obs_x_error { get; set; }
+        public int rep_ren_atraso { get; set; }
+    }
+
 }
