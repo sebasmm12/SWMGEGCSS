@@ -407,6 +407,7 @@
     <Content Include="webfonts\feather.woff" />
     <Content Include="1070976447\12\TP_2 ITERACION %281%29.docx" />
     <Content Include="1070976447\12\TP_2 ITERACION.docx" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -527,13 +528,11 @@
     <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
     <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
     <Content Include="Views\Gerente\_ListaPlan.cshtml" />
-    <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
     <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
     <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Expediente\_ListarActividad.cshtml" />
     <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
-    <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
     <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
     <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
@@ -602,6 +601,9 @@
     <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
     <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
+    <None Include="Web.CustomProfile.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />

@@ -321,9 +321,11 @@
     </script>
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="c326a13879583a964fd0aec1-|49" defer=""></script>
     <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
-    <script src="/signalr/hubs"></script>
+    <script src="~/signalr/hubs"></script>
     <script type="text/javascript">
         $(function () {
+            localStorage.setItem(1, "/GeoConsult");
+            var p = localStorage.getItem(1);
             var notifications = $.connection.messagesHub;
             notifications.client.updateMessages= function () {
                 sp_Consultar_Notificaciones()
@@ -339,7 +341,7 @@
             function sp_Consultar_Notificaciones_Top() {
                 var tbt = $("#notificationTop");
                 $.ajax({
-                    url: "/Gerente/ObtenerNotificacionesTop",
+                    url: localStorage.getItem(1) + "/Gerente/ObtenerNotificacionesTop",
                     contentType: "application/html;charset: utf-8",
                     type: "GET",
                     data: {
@@ -357,7 +359,7 @@
             function sp_Consultar_Notificaciones() {
                 var tb = $("#notificacion");
                 $.ajax({
-                    url: "/Gerente/ObtenerNotificaciones",
+                    url: localStorage.getItem(1)+"/Gerente/ObtenerNotificaciones",
                     contentType: "application/html;charset: utf-8",
                     type: "GET",
                     data: {

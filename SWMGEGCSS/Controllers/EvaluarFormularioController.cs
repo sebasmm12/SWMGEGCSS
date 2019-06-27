@@ -147,13 +147,13 @@ namespace SWMGEGCSS.Controllers
         }
             
         [HttpGet]
-        public ActionResult ReporteRenddimiento()
+        public ActionResult ReporteRendimiento()
         {
             EvaluarFormularioViewModel model = new EvaluarFormularioViewModel();
             model.Lista_reportes = new ReporteRendimientoDataAccess().sp_Consultar_Lista_Reporte_Rendimiento();
             ReportDocument rp = new ReportDocument();
             //rp.Load(Path.Combine(Server.MapPath("~/Reporte"), "reporteProyecto.rpt"));
-            rp.Load(@"C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte\ReporteDeRendimientoGeneral.rpt");
+            rp.Load(@"C:\Users\USUARIO\Desktop\PROYECTO TP3\SWMGEGCSS_EN\Reporte\ReporteDeRendimientoGeneral.rpt");
             rp.SetDataSource(model.Lista_reportes);
             Response.Buffer = false;
             Response.ClearContent();
