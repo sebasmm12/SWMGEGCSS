@@ -22,8 +22,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Actividad</th>
                                     <th scope="col">Descripcion</th>
-                                    @*<th scope="col">Cantidad Max</th>
-                                    <th scope="col">Cantidad Disp</th>*@
+                                    <th scope="col">Obligatorio</th>
+                                    @*<th scope="col">Cantidad Disp</th>*@
                                     <th scope="col">Funciones</th>
                                 </tr>
                             </thead>
@@ -34,32 +34,38 @@
                                     count = count + 1;
                                     //var plan_id = listaPlanes.plan_id;
                                     //data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan"
-                                    <tr class="text-center">
-                                        <th scope="row">@count</th>
-                                        <td>@item.act_nombre</td>
-                                        <td>@item.act_descripcion </td>
-                                        @*<td>@item.act_cantidad_maxima</td>
-                                        <td>@cd</td>*@
-                                        <td>
-                                            @*@{
-                                            if (cd != 0)
-                                            {*@
-                                            <button class="btn btn-success btnModal" type="button" data-id-act="@item.act_id" data-url="@Url.Action("_ModalRegistrarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActividad">
-                                                <i class="fa fa-plus-circle"></i>
-                                                Agregar a la Planificacion
-                                            </button>
-                                            @*}
-                                                else
-                                                {
-                                                    <label style="border: 1px solid #C00" class="text-center form-control">
-                                                        <Font size="3" color="red">
-                                                            Cantidad Max. Alcanzada
-                                                        </Font>
-                                                    </label>
-                                                }
-                                            }*@
-                                        </td>
-                                    </tr>
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    <td>@item.act_nombre</td>
+                                    <td>@item.act_descripcion </td>
+                                    @if (item.act_obligatorio == true)
+                                        {
+                                            <td>Si</td>
+                                        }
+                                        else
+                                        {
+                                            <td>No</td>
+                                        }
+                                    <td>
+                                        @*@{
+                                        if (cd != 0)
+                                        {*@
+                                        <button class="btn btn-success btnModal mov_button1" type="button" data-id-act="@item.act_id" data-url="@Url.Action("_ModalRegistrarActividadesPlanificadas","Plan")" data-id-target="#RegistrarActividad">
+                                            <i class="fa fa-plus-circle"></i>
+                                            Agregar a la Planificacion
+                                        </button>
+                                        @*}
+                                            else
+                                            {
+                                                <label style="border: 1px solid #C00" class="text-center form-control">
+                                                    <Font size="3" color="red">
+                                                        Cantidad Max. Alcanzada
+                                                    </Font>
+                                                </label>
+                                            }
+                                        }*@
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

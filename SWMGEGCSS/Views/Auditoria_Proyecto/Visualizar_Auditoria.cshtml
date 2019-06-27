@@ -12,7 +12,6 @@
         @Html.Partial("Lista_Auditoria_Proyecto", Model)
     </div>
     <h2>Actividades del Proyecto</h2>
-    <h3 class="text-center">Actividades por Planificar</h3>
     <div class="row mt-4 pl-2">
             <div class="col-12 col-sm-11 col-md-11">
                 <div class="table-responsive">
@@ -29,18 +28,17 @@
                             @foreach (var item in listaActividades)
                             {
                                 count = count + 1;
-                                <tr class="text-center">
-                                    <th scope="row">@count</th>
-                                    <td>@item.act_desa_nombre</td>
-                                    <td>@item.act_desa_nombre </td>
-                                    <td>
-                                        <button type="button" class="btn btn-info">
-                                            <i class="fab fa-searchengin" style="color:white !important"></i>
-                                            @Html.ActionLink("Ver auditoria actividades", "Visualizar_Auditoria_Actividades", "Auditoria_Proyecto", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
-                                        </button>
-
-                                    </td>
-                                </tr>
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+                                <td>@item.act_desa_nombre</td>
+                                <td>@item.act_desa_nombre </td>
+                                <td>
+                                    <button type="button" class="btn btn-info animacion_boton">
+                                        <i class="fab fa-searchengin" style="color:white !important"></i>
+                                        @Html.ActionLink("Ver auditoria actividades", "Visualizar_Auditoria_Actividades", "Auditoria_Proyecto", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important; font-size: 16px" })
+                                    </button>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

@@ -23,8 +23,8 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarAsignacionActividadesDesarrollar();
             model.actividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux().Find(X => (X.act_desa_id == act_desa_id));
             model.actividadesDesarrollar = new  ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar().Find(X => (X.act_desa_id == act_desa_id));
-            model.listDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador();
-            model.listPagedDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().ToPagedList(page, 4);
+            model.listDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador_asignacion();
+            model.listPagedDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador_asignacion().ToPagedList(page, 4);
             Session["actividadesDesarrollar"] = model.actividadesDesarrollar;
             Session["act_desa_id"] = act_desa_id;
 
@@ -71,7 +71,7 @@ namespace SWMGEGCSS.Controllers
             model.auditoriaActividadesDesarrollar.audi_act_fecha_fin = actividadesDesarrollarAux.act_desa_fecha_fin;
             model.auditoriaActividadesDesarrollar.usu_asignado = model.usuarioEncargado.usu_codigo;
             // model.auditoriaActividadesDesarrollar.audi_act_comentario = null;
-            model.detalle_Usuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().Find(X => (X.usu_codigo == model.usuarioEncargado.usu_codigo));
+            model.detalle_Usuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador_asignacion().Find(X => (X.usu_codigo == model.usuarioEncargado.usu_codigo));
             model.rol_usuario_aux = new ActividadesDesarrollarDataAccess().sp_listar_roles_usuario().Find(X => (X.usu_codigo == model.usuarioEncargado.usu_codigo));
 
             model.auditoriaActividadesDesarrollar.audi_act_nombre = nombreActividadDesarrollar;
@@ -176,8 +176,8 @@ namespace SWMGEGCSS.Controllers
             var model = new GestionarAsignacionActividadesDesarrollar();
             model.actividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux().Find(X => (X.act_desa_id == act_desa_id));
             model.actividadesDesarrollar = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar().Find(X => (X.act_desa_id == act_desa_id));
-            model.listDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador();
-            model.usuarioEncargado = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador().Find(X => X.usu_codigo == model.actividadesDesarrollar.usu_asignado);
+            model.listDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador_asignacion();
+            model.usuarioEncargado = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajadorU().Find(X => X.usu_codigo == model.actividadesDesarrollar.usu_asignado);
             Session["actividadesDesarrollar"] = model.actividadesDesarrollar;
             Session["act_desa_id"] = act_desa_id;
 

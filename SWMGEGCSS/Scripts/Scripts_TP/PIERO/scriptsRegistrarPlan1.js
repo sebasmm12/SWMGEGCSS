@@ -22,45 +22,27 @@
         return true;
      };*/
     var envioajaxRegistrar = function () {
-        var $actplannombre = $("#ActPlanNombre");
+        //var $actplannombre = $("#ActPlanNombre");
         var $actplandescripcion = $("#ActPlanDescripcion");
         var $actplancosto = $("#ActPlanCosto");
         var $actplantiempo = $("#ActPlanTiempo");
 
-        var vnombre = validar_nombre($actplannombre.val());
+        //var vnombre = validar_nombre($actplannombre.val());
         var vdescripcion = validar_descripcion($actplandescripcion.val());
         var vcosto = validar_costo($actplancosto.val());
         var vtiempo = validar_tiempo($actplantiempo.val());
 
-        if (vnombre === false || vdescripcion === false || vcosto === false || vtiempo === false) {
+        if (/*vnombre === false ||*/ vdescripcion === false || vcosto === false || vtiempo === false) {
             return false;
         }
         else {
             var act_plan = {
-
                 act_id: id_act,
                 act_plan_nombre: $("#ActPlanNombre").val(),
                 act_plan_descripcion: $("#ActPlanDescripcion").val(),
                 act_plan_costo: $("#ActPlanCosto").val(),
                 act_plan_tiempo: $("#ActPlanTiempo").val()
             };
-            /*var act_plan = {
-            plan_id: id_plan,
-            act_id: id_act,
-            act_plan_nombre: $("#ActPlanNombre").val(),
-            act_plan_descripcion: $("#ActPlanDescripcion").val(),
-            act_plan_costo: $("#ActPlanCosto").val(),
-            act_plan_tiempo: $("#ActPlanTiempo").val()
-        };
-        $.ajax({
-            url: "/Plan/_ModalRegistrarActividadesPlanificadasFinal",
-            method: "POST",
-            data: {
-                act_plan: act_plan
-            }
-        }).done(function (data) {
-            //$(modal).modal("hide");
-        });*/
             $.ajax({
                 url: "/Plan/_ModalRegistrarActividadesPlanificadas2",
                 method: "POST",
@@ -240,54 +222,62 @@
     function validar_costo(id) {
         var RegularExpression = /^\d+[,]*\d*$/;
         var $valor = $("#ActPlanCosto");
-        if (id <= 0) {
+        /*if (tieneLetraCaracterEsp(id) === true) {
+            negativeattributes("error_act_plan_costo", 'No se aceptan numeros ni CE');
             adderror("ActPlanCosto");
-            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
-        }
+            $("#ActPlanCosto").keyup(keyC);
+            return false;
+        }*/
         if (id === "" || document.getElementById("ActPlanCosto").value === "") {
             var valorSugerido = $("#precioSugerido").text().trim();
             $("#ActPlanCosto").val(valorSugerido.toString().trim());
             document.getElementById("ActPlanCosto").value = valorSugerido.trim();
-            //("#ActPlanCosto1").val()
             addgood("ActPlanCosto");
             attributes("error_act_plan_costo", 'Si no ingresa un valor se tomara el precio sugerido');
+            $("#ActPlanCosto").keyup(keyC);
+            return true;
+        }
+        if (id.match(RegularExpression) === false) {
+            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero valido');
+            adderror("ActPlanCosto");
+            $("#ActPlanCosto").keyup(keyC);
+            return false;
+        }
+        else if (id <= 0) {
+            adderror("ActPlanCosto");
+            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
             $("#ActPlanCosto").keyup(keyC);
             return false;
         }
         else {
-            if ($valor.val().match(RegularExpression)) {
                 attributes("error_act_plan_costo");
                 addgood("ActPlanCosto");
-            }
-            else {
-                negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
-                adderror("plan-costoActPlanCosto");
                 $("#ActPlanCosto").keyup(keyC);
-                return false;
+                return true;
             }
-        }
-        return true;
     }
     function keyC() {
         var RegularExpression = /^\d+[,]*\d*$/;
         var $valor = $("#ActPlanCosto");
-        if ($valor.val() <= 0) {
+        /*if (tieneLetraCaracterEsp($valor.val()) === true) {
+            negativeattributes("error_act_plan_costo", 'No se aceptan numeros ni CE');
+            adderror("ActPlanCosto");
+        }*/
+        if ($valor.val().match(RegularExpression) === false) {
+            negativeattributes("error_act_plan_costo", 'Debe ingresar un numero valido');
+            adderror("ActPlanCosto");
+        }
+        else if ($valor.val() === "") {
+            attributes("error_act_plan_costo", 'Si no ingresa un valor se tomara el precio sugerido');
+            addgood("ActPlanCosto");
+        }
+        else if ($valor.val() <= 0) {
             negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo diferente de 0');
             adderror("ActPlanCosto");
         }
-        /*$valor.val() === "" || $valor.val() <= 0*/
-        else if (document.getElementById("ActPlanCosto").value === "") {
-            attributes("error_act_plan_costo");
-            addgood("ActPlanCosto");
-        }
         else {
-            if ($valor.val().match(RegularExpression)) {
-                attributes("error_act_plan_costo");
-                addgood("ActPlanCosto");
-            } else {
-                negativeattributes("error_act_plan_costo", 'Debe ingresar un numero positivo');
-                adderror("ActPlanCosto");
-            }
+             attributes("error_act_plan_costo");
+             addgood("ActPlanCosto");
         }
     }
 

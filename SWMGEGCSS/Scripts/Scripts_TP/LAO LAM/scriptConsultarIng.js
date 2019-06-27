@@ -58,10 +58,7 @@
         });
         return true;
     }
-
-
-
-
+    
     $(".btnModal").each(envioajaxModal);
     $("input[data-exp-autocomplete]").each(autocompletado);
     $(".pcoded-content").on("click", ".pagedList a", getPage);

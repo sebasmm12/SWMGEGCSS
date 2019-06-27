@@ -16,8 +16,6 @@
         return false;
     };
 
-
-
     var Alerta = function () {
         $(this).click(function () {
 

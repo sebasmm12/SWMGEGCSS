@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Iniciar Sesion SWMGEGCSS</title>
+    <title>Iniciar Sesion SWGEGCSS</title>
     <link rel="stylesheet" href="~/Content/StyleSesión/Style.css" />
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
@@ -16,9 +16,8 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/Scripts_TP/scriptsS.js"></script>
-    @section scripts{
-        <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRecuper_Cuenta.js"></script>
-    }
+
+ 
 </head>
 <body>
     @using (Html.BeginForm("Login", "Account", FormMethod.Post, htmlAttributes: new { @id = "form" }))
@@ -75,7 +74,7 @@
                                             Iniciar Sesión
                                         </button>
                                     </div>
-                                    <a href=@Url.Action("_Recupera_Cuenta","Account")>¿Olvidaste tu contraseña?</a>
+                                    <a href="@Url.Action("Recuperar_Cuenta","Account")">¿Olvidaste tu contraseña?</a>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +84,10 @@
             </div>
         </div>
     }
+
+
+
+
 </body>
 </html>
 

@@ -48,6 +48,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>..\..\..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource">
+      <HintPath>..\..\..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>..\..\..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -221,6 +230,7 @@
     <Content Include="Content\StyleSesión\Style.css" />
     <Content Include="Content\StyleTP\ClientStyle.css" />
     <Content Include="Content\StyleTP\EGG\scripteEvaluarFormulario.js" />
+    <Content Include="Content\StyleTP\SEBASTIAN\Actualizar_Cuenta.css" />
     <Content Include="Content\StyleTP\SEBASTIAN\RegistrarProyecto.css" />
     <Content Include="Content\StyleTP\styleClient.css" />
     <Content Include="Content\svg-with-js.css" />
@@ -346,13 +356,16 @@
     <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividad.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividadMod.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\generarReporteFinanciero.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\ReasignarTarea.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\ValidacionesActualizarPlan.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarActividadesDesarrollar.js" />
     <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scriptAgregarObservaciones.js" />
     <Content Include="Scripts\Scripts_TP\EGG\scripteEvaluarFormulario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scripteModificarObservacion.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizar_Detalle_Usuario.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptConsultarIng.js" />
@@ -361,6 +374,7 @@
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
     <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\Actualizar_Datos.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\ConsultarCuenta.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
     <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
@@ -372,6 +386,7 @@
     <Content Include="Scripts\Scripts_TP\MAURICIO\VisualizarTrabajadores.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsNotificaciones.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
     <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarSolicitud.js" />
@@ -383,6 +398,7 @@
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaActividades.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaObservacion.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaProyecto.js" />
     <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />
     <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
@@ -566,9 +582,7 @@
     <Content Include="Views\Expediente\_ConsultarProyecto.cshtml" />
     <Content Include="Views\Expediente\_ListarActividadConsultar.cshtml" />
     <Content Include="Views\Gerente\ObtenerNotificaciones.cshtml" />
-    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria.cshtml" />
-    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Auditoria_Proyecto\_Lista_Auditoria_Actividades.cshtml" />
     <Content Include="Views\Cuentas\Actualizar_Datos.cshtml" />
@@ -578,6 +592,19 @@
     <Content Include="Views\Administrador\_verDetalles.cshtml" />
     <Content Include="Views\Administrador\Visualizar_Actividades.cshtml" />
     <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
+    <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
+    <Content Include="Views\Account\Recupera_Cuenta.cshtml" />
+    <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
+    <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
+    <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\EvaluarFormulario\_listaObservaciones.cshtml" />
+    <Content Include="Views\EvaluarFormulario\ModificarObservacion.cshtml" />
+    <Content Include="Views\EvaluarFormulario\AgregarObservacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Observacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\_Listar_Auditoria_Observacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
+    <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
+    <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="12345678912\2\" />
@@ -590,6 +617,7 @@
     <Folder Include="Repositorio\01245678912\" />
     <Folder Include="Repositorio\10709764471\" />
     <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
+    <Folder Include="Temporal\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -598,6 +626,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{461E2A7B-D836-44A9-9CB1-97687DE33955}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SWMGEGCSS</RootNamespace>
+    <AssemblyName>SWMGEGCSS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.5\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Practices.ObjectBuilder.dll.3.1.0\lib\2.0\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadesDesarrollarController.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\Auditoria_ProyectoController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CuentasController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EvaluarFormularioController.cs" />
+    <Compile Include="Controllers\ExpedienteController.cs" />
+    <Compile Include="Controllers\GerenteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Ing_EgrController.cs" />
+    <Compile Include="Controllers\PlanController.cs" />
+    <Compile Include="Controllers\SecretarioController.cs" />
+    <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="Controllers\TrabajadorController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\MessagesHub.cs" />
+    <Compile Include="Models\ActividadViewModel.cs" />
+    <Compile Include="Models\AuditoriaViewModel.cs" />
+    <Compile Include="Models\EjemploViewModel.cs" />
+    <Compile Include="Models\EvaluarFormularioViewModel.cs" />
+    <Compile Include="Models\ExpedienteViewModel.cs" />
+    <Compile Include="Models\GestionarAsignacionActividadesDesarrollar.cs" />
+    <Compile Include="Models\GestionarCitasViewModel.cs" />
+    <Compile Include="Models\GestionarCuentasViewModel.cs" />
+    <Compile Include="Models\GestionarEmpresaViewModel.cs" />
+    <Compile Include="Models\GestionarPlanProyectoViewModel.cs" />
+    <Compile Include="Models\Gestionar_I_EViewModel.cs" />
+    <Compile Include="Models\NotificacionesDataAccess.cs" />
+    <Compile Include="Models\NotificacionesViewModel.cs" />
+    <Compile Include="Models\PermisoViewModel.cs" />
+    <Compile Include="Models\SolicitudViewModel.cs" />
+    <Compile Include="Models\TareasAsignadasViewModel.cs" />
+    <Compile Include="Models\TipoServicioViewModel.cs" />
+    <Compile Include="Models\UsuarioViewModel.cs" />
+    <Compile Include="Models\VisualizarTrabajadoresViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\animate\animate.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\brands.css" />
+    <Content Include="Content\brands.min.css" />
+    <Content Include="Content\feather.css" />
+    <Content Include="Content\fontawesome-all.css" />
+    <Content Include="Content\fontawesome-all.min.css" />
+    <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\Layout_Empresa\alertaservicio.css" />
+    <Content Include="Content\Layout_Empresa\chartist.css" />
+    <Content Include="Content\Layout_Empresa\style.css" />
+    <Content Include="Content\Layout_Empresa\waves.min.css" />
+    <Content Include="Content\Layout_Empresa\widget.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\regular.css" />
+    <Content Include="Content\regular.min.css" />
+    <Content Include="Content\solid.css" />
+    <Content Include="Content\solid.min.css" />
+    <Content Include="Content\style-autocomplete\jquery-ui.min.css" />
+    <Content Include="Content\StyleSesión\Style.css" />
+    <Content Include="Content\StyleTP\ClientStyle.css" />
+    <Content Include="Content\StyleTP\EGG\scripteEvaluarFormulario.js" />
+    <Content Include="Content\StyleTP\SEBASTIAN\Actualizar_Cuenta.css" />
+    <Content Include="Content\StyleTP\SEBASTIAN\RegistrarProyecto.css" />
+    <Content Include="Content\StyleTP\styleClient.css" />
+    <Content Include="Content\svg-with-js.css" />
+    <Content Include="Content\svg-with-js.min.css" />
+    <Content Include="Content\v4-shims.css" />
+    <Content Include="Content\v4-shims.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\AGRICULTURA.jpg" />
+    <Content Include="images\asesora_contable.jpg" />
+    <Content Include="images\Asesora_Legal.jpg" />
+    <Content Include="images\Asesor_Tecnico_1.jpeg" />
+    <Content Include="images\Asesor_Tecnico_2.jpg" />
+    <Content Include="images\Asesor_Tecnico_3.jpeg" />
+    <Content Include="images\Asesor_Tecnico_4_1.jpg" />
+    <Content Include="images\Asesor_Tecnico_4_2.jpg" />
+    <Content Include="images\Asistente_5.jpg" />
+    <Content Include="images\asistente_administrativa.jpeg" />
+    <Content Include="images\avatar-2.jpg" />
+    <Content Include="images\avatar-3.jpg" />
+    <Content Include="images\avatar-4.jpg" />
+    <Content Include="images\banners-INGEMMET.jpg" />
+    <Content Include="images\carousel_1.png" />
+    <Content Include="images\carousel_2.jpg" />
+    <Content Include="images\carousel_3.jpg" />
+    <Content Include="images\CEPIS.jpg" />
+    <Content Include="images\coordinador_de_administracion_finanzas.jpeg" />
+    <Content Include="images\DIGESA.jpg" />
+    <Content Include="images\empresa.jpg" />
+    <Content Include="images\empresa.png" />
+    <Content Include="images\GEO-LOGO-FINAL-IDCG.png" />
+    <Content Include="images\Gerente_General.jpg" />
+    <Content Include="images\Gerente_Proyectos.jpeg" />
+    <Content Include="images\imagen_empresa\802298-ackor-peru-logo.png" />
+    <Content Include="images\imagen_empresa\acuapesca-197x165.jpg" />
+    <Content Include="images\imagen_empresa\alcolores.png" />
+    <Content Include="images\imagen_empresa\A_V.jpg" />
+    <Content Include="images\imagen_empresa\coipsa.jpg" />
+    <Content Include="images\imagen_empresa\descarga.jpg" />
+    <Content Include="images\imagen_empresa\ecoma.png" />
+    <Content Include="images\imagen_empresa\ecomin.jpg" />
+    <Content Include="images\imagen_empresa\eco_sam.jpg" />
+    <Content Include="images\imagen_empresa\fernandez-y-chicoma-220x165.png" />
+    <Content Include="images\imagen_empresa\fzg metales.jpg" />
+    <Content Include="images\imagen_empresa\huracan.png" />
+    <Content Include="images\imagen_empresa\industrias-nettalco.jpg" />
+    <Content Include="images\imagen_empresa\IPS.png" />
+    <Content Include="images\imagen_empresa\joscana-220x111.jpg" />
+    <Content Include="images\imagen_empresa\kimberly-clark-220x30.jpg" />
+    <Content Include="images\imagen_empresa\logo-areyaku.png" />
+    <Content Include="images\imagen_empresa\metales_pamisa.php" />
+    <Content Include="images\imagen_empresa\metalimpex-220x140.png" />
+    <Content Include="images\imagen_empresa\papelsa.png" />
+    <Content Include="images\imagen_empresa\transler.jpeg" />
+    <Content Include="images\imagen_empresa\viamerica-sac-220x25.jpg" />
+    <Content Include="images\INDECI.png" />
+    <Content Include="images\index.jpg" />
+    <Content Include="images\Kimberly-cark-2.png" />
+    <Content Include="images\Logo GOBIERNO.jpg" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo_SPDA_.png" />
+    <Content Include="images\MEM.png" />
+    <Content Include="images\MINERIA.jpg" />
+    <Content Include="images\mision-y-vision-definen-a-las-empresas-desarrollo-organizacional-1236x865.jpg" />
+    <Content Include="images\PRODUCCION.jpg" />
+    <Content Include="images\Responsable_2.jpg" />
+    <Content Include="images\Responsable_Marketing_Publicidad.jpg" />
+    <Content Include="images\Responsable_Tecnico_de_asuntos_ambientales.jpeg" />
+    <Content Include="images\REVISTA-5-MINAM-242-pix %281%29.jpg" />
+    <Content Include="images\ViaAmerica.jpg" />
+    <Content Include="Repositorio\34567812012\14\scriptBD2CretaTables.txt" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\Carousel_Imagenes\carousel_cycle2.js" />
+    <Content Include="Scripts\Carousel_Imagenes\cycle2.flip.js" />
+    <Content Include="Scripts\Carousel_Imagenes\cycle2.js" />
+    <Content Include="Scripts\Carousel_Imagenes\cycle2.scrollvert.js" />
+    <Content Include="Scripts\Carousel_Imagenes\cycle2.shuffle.js" />
+    <Content Include="Scripts\Carousel_Imagenes\cycle2.tile.js" />
+    <Content Include="Scripts\Carousel_Imagenes\easing.1.3.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\fontawesome\all.js" />
+    <Content Include="Scripts\fontawesome\all.min.js" />
+    <Content Include="Scripts\fontawesome\brands.js" />
+    <Content Include="Scripts\fontawesome\brands.min.js" />
+    <Content Include="Scripts\fontawesome\fontawesome.js" />
+    <Content Include="Scripts\fontawesome\fontawesome.min.js" />
+    <Content Include="Scripts\fontawesome\regular.js" />
+    <Content Include="Scripts\fontawesome\regular.min.js" />
+    <Content Include="Scripts\fontawesome\solid.js" />
+    <Content Include="Scripts\fontawesome\solid.min.js" />
+    <Content Include="Scripts\fontawesome\v4-shims.js" />
+    <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\Layout_Empresa\bootstrap.min.js" />
+    <Content Include="Scripts\Layout_Empresa\jquery.min.js" />
+    <Content Include="Scripts\Layout_Empresa\popper.min.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\ActualizarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\AsignarActividades.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividad.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\asignarResponsableActividadMod.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\EliminarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\generarReporteFinanciero.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\ReasignarTarea.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\RegistrarActividadesPlaneadas.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\scriptGestionarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\ValidacionesActualizarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarActividadesDesarrollar.js" />
+    <Content Include="Scripts\Scripts_TP\COLOMBO\visualizarDetalleUsuario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scriptAgregarObservaciones.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scripteEvaluarFormulario.js" />
+    <Content Include="Scripts\Scripts_TP\EGG\scripteModificarObservacion.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizarIng_Egr.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptActualizar_Detalle_Usuario.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptConsultarIng.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRecuper_Cuenta.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIngreso_Egreso.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptRegistrarIng_Egr.js" />
+    <Content Include="Scripts\Scripts_TP\LAO LAM\scriptsGestionarEmpresas.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\Actualizar_Datos.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\ConsultarCuenta.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsGestionarCita.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarEmpresa.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsConsultarSecretario.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCita.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsModificarCitas.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCita.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\scriptsRegistrarCuenta.js" />
+    <Content Include="Scripts\Scripts_TP\MAURICIO\VisualizarTrabajadores.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarPlanProyecto.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsGestionarServicio.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsNotificaciones.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarProyecto.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarServicio.js" />
+    <Content Include="Scripts\Scripts_TP\MIRANDA\scriptsRegistrarSolicitud.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsActualizarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsAgregarArchivo.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsGestionarPlan.js" />
+    <Content Include="Content\StyleTP\PIERO\stylesPiero.css" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsModificarArchivo.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsRegistrarPlan1.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaActividades.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaObservacion.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarAuditoriaProyecto.js" />
+    <Content Include="Scripts\Scripts_TP\PIERO\scriptsVisualizarTareas.js" />
+    <Content Include="Scripts\Scripts_TP\scriptsCliente.js" />
+    <Content Include="Scripts\Scripts_TP\scriptsLayout.js" />
+    <Content Include="Scripts\Scripts_TP\scriptsS.js" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="webfonts\feather.woff" />
+    <Content Include="1070976447\12\TP_2 ITERACION %281%29.docx" />
+    <Content Include="1070976447\12\TP_2 ITERACION.docx" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Layout_Empresa\email-decode.min.js" />
+    <Content Include="Scripts\Layout_Empresa\jquery.slimscroll.js" />
+    <Content Include="Scripts\Layout_Empresa\pcoded.min.js" />
+    <Content Include="Scripts\Layout_Empresa\script.min.js" />
+    <Content Include="Scripts\Layout_Empresa\vertical-layout.js" />
+    <Content Include="Scripts\Layout_Empresa\waves.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\script-autocomplete\jquery-ui-min.js" />
+    <Content Include="Scripts\script-autocomplete\jquery-ui.js" />
+    <Content Include="Scripts\scrollmagic\scrollmagic.js" />
+    <Content Include="Scripts\sweetalert\sweetalert.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Shared\_LayoutEmpresa.cshtml" />
+    <Content Include="Views\Home\Ejemplo.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Trabajador\Index.cshtml" />
+    <Content Include="Views\Trabajador\G_Formulario.cshtml" />
+    <Content Include="Views\Trabajador\V_Tareas.cshtml" />
+    <Content Include="Views\Shared\_LayoutCliente.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\Client\Quienes_Somos.cshtml" />
+    <Content Include="Views\Client\_Todos.cshtml" />
+    <Content Include="Views\Client\_Gerentes.cshtml" />
+    <Content Include="Views\Client\_Responsables.cshtml" />
+    <Content Include="Views\Client\_Administrativos.cshtml" />
+    <Content Include="Views\Client\_AsesoresTecnicos.cshtml" />
+    <Content Include="Views\Client\Clientes.cshtml" />
+    <Content Include="Views\Client\Servicios.cshtml" />
+    <Content Include="Views\Client\Contactenos.cshtml" />
+    <Content Include="Views\Client\Enlace_Interes.cshtml" />
+    <Content Include="Views\Client\Normatividad.cshtml" />
+    <Content Include="Views\Secretario\Index.cshtml" />
+    <Content Include="Views\Gerente\Index.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\Secretario\Gestionar_Citas.cshtml" />
+    <Content Include="Views\Secretario\Registrar_Ingresos_Egresos.cshtml" />
+    <Content Include="Views\Gerente\Consultar_Capital.cshtml" />
+    <Content Include="Views\Administrador\Gestionar_Historial.cshtml" />
+    <Content Include="Views\Secretario\Visualizar_I_E.cshtml" />
+    <Content Include="Views\Secretario\Visualizar_Cuenta.cshtml" />
+    <Content Include="Views\Gerente\Generar_Reportes.cshtml" />
+    <Content Include="Views\Administrador\Generar_Reportes_Desempeño.cshtml" />
+    <Content Include="Views\Administrador\Visualizar_Trabajadores.cshtml" />
+    <Content Include="Views\Administrador\Modificar_I_E.cshtml" />
+    <Content Include="Views\Administrador\Modificar_Cuenta.cshtml" />
+    <Content Include="Views\Administrador\Asignacion_Tareas.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Formularios.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Servicios.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Cuenta.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Proyectos.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_I_E.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Empresas.cshtml" />
+    <Content Include="Views\Gerente\Visualizar_Personal_Proyecto.cshtml" />
+    <Content Include="Views\Gerente\Gestionar_Plan_Proyecto.cshtml" />
+    <Content Include="Views\Expediente\Registrar_Proyecto.cshtml" />
+    <Content Include="Views\Plan\Agregar_Plan_de_Proyectos.cshtml" />
+    <Content Include="Views\Plan\Actualizar_Plan_de_Proyectos.cshtml" />
+    <Content Include="Views\Expediente\_ModalProyecto.cshtml" />
+    <Content Include="Views\Expediente\_EliminarProyecto.cshtml" />
+    <Content Include="Views\Gerente\_ListaProyecto.cshtml" />
+    <Content Include="Views\Plan\_Eliminar_Plan_De_Proyecto.cshtml" />
+    <Content Include="Views\Gerente\_ListaPlan.cshtml" />
+    <Content Include="Views\Empresa\_Eliminar_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Actualizar_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Registrar_Empresa.cshtml" />
+    <Content Include="Views\Plan\_ModalActualizarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\Expediente\_ListarActividad.cshtml" />
+    <Content Include="Views\Gerente\_ListaEmpresa.cshtml" />
+    <Content Include="Views\Gerente\_ActualizarEmpresa.cshtml" />
+    <Content Include="Views\Plan\_ModalEliminarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\Plan\_ModalAgregarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\Plan\_ListarActividadesPlan.cshtml" />
+    <Content Include="Views\Secretario\_ListaCitas.cshtml" />
+    <Content Include="Views\Secretario\Registrar_Cita.cshtml" />
+    <Content Include="Views\Plan\_ModalRegistrarActividadesPlanificadas.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\RegistrarAsignacionActividades_Desarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalAsignarTrabajadorResponsable.cshtml" />
+    <Content Include="Views\Servicios\Index.cshtml" />
+    <Content Include="Views\Servicios\VisualizarServicios.cshtml" />
+    <Content Include="Views\Servicios\_ListaServicios.cshtml" />
+    <Content Include="Views\Servicios\Registrar_Servicio.cshtml" />
+    <Content Include="Views\Ing_Egr\Actualizar_Ing_Egr.cshtml" />
+    <Content Include="Views\Ing_Egr\Eliminar_Ing_Egr.cshtml" />
+    <Content Include="Views\Ing_Egr\Registrar_Ing_Egr.cshtml" />
+    <Content Include="Views\Secretario\_verDetalles.cshtml" />
+    <Content Include="Views\Secretario\Modificar_Cita.cshtml" />
+    <Content Include="Views\Servicios\_ListaActividades.cshtml" />
+    <Content Include="Views\Servicios\_ModalActividad.cshtml" />
+    <Content Include="Views\Trabajador\_ListaTareasAsignadas.cshtml" />
+    <Content Include="Views\Servicios\_EliminarServicio.cshtml" />
+    <Content Include="Views\Servicios\_ListarActividadesEliminar.cshtml" />
+    <Content Include="Views\Empresa\_EliminarEmpresa.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalRegistrarAuditoriaActividadDesarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\ActualizarAsignacionActividades_Desarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalActualizarAuditoriaActividadDesarrollar.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ModalAsignarTrabajadorResponsableMod.cshtml" />
+    <Content Include="Views\ActividadesDesarrollar\_ListaDetalleUsuario.cshtml" />
+    <Content Include="Views\Administrador\_ListaActividadesDesarrollar.cshtml" />
+    <Content Include="Views\Secretario\_Eliminar_Cita.cshtml" />
+    <Content Include="Views\Servicios\_ActualizarDatosServicio.cshtml" />
+    <Content Include="Views\Servicios\_ConsultarDatosServicios.cshtml" />
+    <Content Include="Views\Servicios\_ListarExpedientesTipoServicio.cshtml" />
+    <Content Include="Views\Trabajador\AgregarArchivo.cshtml" />
+    <Content Include="Views\Trabajador\ModificarArchivo.cshtml" />
+    <Content Include="Views\EvaluarFormulario\Index.cshtml" />
+    <Content Include="Views\EvaluarFormulario\RevisarFormulario.cshtml" />
+    <Content Include="Views\EvaluarFormulario\_ListaParcialTareas.cshtml" />
+    <Content Include="Views\Gerente\_ListaIng_Egr.cshtml" />
+    <Content Include="Views\Cuentas\Registrar_Cuenta.cshtml" />
+    <Content Include="Views\Gerente\_ListaCuentaUsuario.cshtml" />
+    <Content Include="Views\Plan\_ListarActividadesPorPlanear.cshtml" />
+    <Content Include="Views\Expediente\_ConsultarProyecto.cshtml" />
+    <Content Include="Views\Expediente\_ListarActividadConsultar.cshtml" />
+    <Content Include="Views\Gerente\ObtenerNotificaciones.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Actividades.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\_Lista_Auditoria_Actividades.cshtml" />
+    <Content Include="Views\Cuentas\Actualizar_Datos.cshtml" />
+    <Content Include="Views\Cuentas\_EliminarCuenta.cshtml" />
+    <Content Include="Views\Cuentas\_verDetalles.cshtml" />
+    <Content Include="Views\Administrador\_Lista_Actividades_Usuario.cshtml" />
+    <Content Include="Views\Administrador\_verDetalles.cshtml" />
+    <Content Include="Views\Administrador\Visualizar_Actividades.cshtml" />
+    <Content Include="Views\Trabajador\_ResponderObservacion.cshtml" />
+    <Content Include="Views\Account\Gestionar_Datos_Personales.cshtml" />
+    <Content Include="Views\Account\Recupera_Cuenta.cshtml" />
+    <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
+    <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
+    <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\EvaluarFormulario\_listaObservaciones.cshtml" />
+    <Content Include="Views\EvaluarFormulario\ModificarObservacion.cshtml" />
+    <Content Include="Views\EvaluarFormulario\AgregarObservacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Visualizar_Auditoria_Observacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\_Listar_Auditoria_Observacion.cshtml" />
+    <Content Include="Views\Auditoria_Proyecto\Lista_Auditoria_Proyecto.cshtml" />
+    <Content Include="Views\Expediente\_AgregarArchivoMinam.cshtml" />
+    <Content Include="Views\Account\Recuperar_Cuenta.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="12345678912\2\" />
+    <Folder Include="45231546484\3\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\StyleTP\ANGELLO\" />
+    <Folder Include="Content\StyleTP\COLOMBO\" />
+    <Folder Include="Content\StyleTP\LAO LAM\" />
+    <Folder Include="Content\StyleTP\MAURICIO\" />
+    <Folder Include="Repositorio\01245678912\" />
+    <Folder Include="Repositorio\10709764471\" />
+    <Folder Include="Scripts\Scripts_TP\ANGELLO\" />
+    <Folder Include="Temporal\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SWMGEGCSS_DA\SWMGEGCSS_DA.csproj">
+      <Project>{f870bc15-b7c9-4279-9260-6306bde0683f}</Project>
+      <Name>SWMGEGCSS_DA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SWMGEGCSS_EN\SWMGEGCSS_EN.csproj">
+      <Project>{976c4b2f-5140-4c7b-8800-3eef115bdb51}</Project>
+      <Name>SWMGEGCSS_EN</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62693</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62693/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -6,7 +6,7 @@
 <div>
     @foreach (var item in list_notificacion)
     {
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success alertclick" role="alert" onclick="location.href = '@Url.Action(item.not_url,"Account")';" style="cursor:pointer">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -27,3 +27,4 @@
     </div>
     }
 </div>
+

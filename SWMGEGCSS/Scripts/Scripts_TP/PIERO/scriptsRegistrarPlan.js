@@ -1,4 +1,49 @@
 ﻿$(function () {
+    $.fn.extend({
+        animateCss: function (animationName, callback) {
+            var animationEnd = (function (el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebKitAnimation: 'webkitAnimationEnd'
+                };
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
+
+                    }
+                }
+            })(document.createElement('div'));
+            this.addClass('animated ' + animationName).one(animationEnd, function () {
+                $(this).removeClass('animated ' + animationName);
+                if (typeof callback === 'function') callback();
+            });
+            return this;
+        }
+    });
+    
+    $(".mov_button1").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+
+
+
+
+
+
+
+
+
+    var esNum = function esNumero(txt) {
+        if (isNaN(txt)) {
+            return false;
+        } else {
+            return true;
+        }
+    };
     var autocompletado = function () {
         var $input = $(this);
         var options = {
@@ -33,14 +78,7 @@
                 data: $("form").serialize(),
                 dataType: "json"
             }).done(function (data) {
-                if (data === 5) {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Debe ingresar al menos 1 actividad',
-                        confirmButtonText: 'OK'
-                    });
-                }
-                else {
+                if (data === 1) {
                     Swal.fire({
                         type: 'success',
                         title: 'Se registro el plan exitosamente',
@@ -49,6 +87,20 @@
                         if (result.value) {
                             window.location.href = "/Gerente/Gestionar_Plan_Proyecto";
                         }
+                    });
+                }
+                else if (data === 5) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Debe ingresar al menos 1 actividad',
+                        confirmButtonText: 'OK'
+                    });
+                }
+                else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Verifique que se hayan registrado todas las actividades obligatorias',
+                        confirmButtonText: 'OK'
                     });
                 }
             });
@@ -61,13 +113,7 @@
         document.getElementById(id).value = obj;
     }
 
-    var esNum = function esNumero(txt) {
-        if (isNaN(txt)) {
-            return false;
-        } else {
-            return true;
-        }
-    };
+    
     var maximoNumeroCaracteres50 = function maxCharacters(X) {
         if (X.length > 50) {
             return true;

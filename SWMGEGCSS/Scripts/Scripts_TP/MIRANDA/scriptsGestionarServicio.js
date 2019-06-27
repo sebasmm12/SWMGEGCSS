@@ -6,7 +6,50 @@
         $input.val(ui.item.label);
         $("#Buscar").click();
     };
+    $.fn.extend({
+        animateCss: function (animationName, callback) {
+            var animationEnd = (function (el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebKitAnimation: 'webkitAnimationEnd'
+                };
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
 
+                    }
+                }
+            })(document.createElement('div'));
+            this.addClass('animated ' + animationName).one(animationEnd, function () {
+                $(this).removeClass('animated ' + animationName);
+                if (typeof callback === 'function') callback();
+            });
+            return this;
+        }
+    });
+    $(".btnMov").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+    $(".retroceder").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $(".aceptar").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('shake');
+        });
+    });
+    $("#RegistrarNuevo").mouseenter(function () {
+        $(this).animateCss('pulse');
+    });
+    $("#Buscar").mouseenter(function () {
+        $(this).animateCss('pulse');
+    });
 
     var autocompletado = function () {
         var $input = $(this);
@@ -48,6 +91,21 @@
             $(target).replaceWith(data);
             $(".btnModal").each(cargarModal);
             $(".btnActivarServicio").each(activarservicio);
+            $(".btnMov").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
+            $(".retroceder").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('pulse');
+                });
+            });
+            $(".aceptar").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('shake');
+                });
+            });
             });
         return false;
     };
@@ -95,6 +153,21 @@
                 $(".btnEliminarServicio").each(alerta);
                 $(".btnActualizarServicio").each(actualizarDatosServicio);
                 $(".btnActivarServicio").each(activarservicio);
+                $(".btnMov").each(function () {
+                    $(this).mouseenter(function () {
+                        $(this).animateCss('tada');
+                    });
+                });
+                $(".retroceder").each(function () {
+                    $(this).mouseenter(function () {
+                        $(this).animateCss('pulse');
+                    });
+                });
+                $(".aceptar").each(function () {
+                    $(this).mouseenter(function () {
+                        $(this).animateCss('shake');
+                    });
+                });
             });
 
         });

@@ -8,76 +8,109 @@
 <h2>Gestionar Ingresos y Egresos</h2>
 
 <div class="row mt-2 ml-2">
-
-    <div class="col-12 col-sm-6 col-md-5">
+    <div class="col-4 col-sm-4 col-md-4">
         <div>
             <label class="font-weight-bolder">
-                Nombre del Ingreso-Egreso:
+                Fecha Inicial:
             </label>
         </div>
-
-        <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("AutoCompleteING")" />
-
-
+        <input type="date" id="fechaInicio" class="form-control" />
+        <div id="error-fechaini-repo" class="errordiv"></div>
     </div>
-    <div class="col-12 col-sm-6 col-md-6">
+    <div class="col-4 col-sm-4 col-md-4">
         <div>
-            <label class="font-weight-bolder">Seleccione una opción</label>
+            <label class="font-weight-bolder">
+                Fecha Final:
+            </label>
         </div>
-        <select class="custom-select" id="estado" name="estado">
-            <option value="Todos">Todos</option>
-
-            <option value="1">Ingreso</option>
-            <option value="0">Egreso</option>
-
-        </select>
+        <input type="date" id="fechaFin" class="form-control" />
+        <div id="error-fechafin-repo" class="errordiv"></div>
     </div>
 
-
-</div>
-
-<div class="row mt-3 ml-2">
-
-    <div class="col-12 col-sm-6 col-md-6">
-
-        <!--<a href="@Url.Action("Gestionar_I_E", "Gerente")" class="btn btn-primary mx-md-auto">
+    <div class="col-4 col-sm-4 col-md-4">
+        <br>
+        <button class="btn btn-primary rounded-pill" id="generar">
             <i class="fa fa-search"></i>
-            Buscar Proyecto
-        </a>-->
-        <button class="btn btn-primary rounded-pill" id="Buscar">
-            <i class="fa fa-search"></i>
-            Buscar Ingreso o Egreso
+            Generar Reporte Financiero
         </button>
-
     </div>
-    <div class="col-12 col-sm-6 col-md-6">
-        <a href="@Url.Action("Registrar_Ing_Egr","Ing_Egr")" class="btn btn-success mx-md-auto">
-            <i class="fa fa-plus-circle"></i>
-
-            Registrar Ingreso o Egreso
-        </a>
-
-    </div>
-
-
-
-
-
 </div>
 
-@Html.Partial("_ListaIng_Egr", Model);
+
+<div class="row mt-2 ml-2">
+    <div style="width:400px"></div>
+    <div class="col-4 col-sm-4 col-md-4">
+        <div id="cant-reg" class="errordiv"></div>
+    </div>
+</div>
+
+
+    <div class="row mt-2 ml-2">
+
+        <div class="col-12 col-sm-6 col-md-5">
+            <div>
+                <label class="font-weight-bolder">
+                    Nombre del Ingreso-Egreso:
+                </label>
+            </div>
+
+            <input type="text" class="form-control" id="searchTerm" name="searchTerm" data-exp-autocomplete="@Url.Action("AutoCompleteING")" />
+
+
+        </div>
+        <div class="col-12 col-sm-6 col-md-6">
+            <div>
+                <label class="font-weight-bolder">Seleccione una opción</label>
+            </div>
+            <select class="custom-select" id="estado" name="estado">
+                <option value="Todos">Todos</option>
+
+                <option value="1">Ingreso</option>
+                <option value="0">Egreso</option>
+
+            </select>
+        </div>
+
+
+    </div>
+
+    <div class="row mt-3 ml-2">
+
+        <div class="col-12 col-sm-6 col-md-6">
+
+            <!--<a href="@Url.Action("Gestionar_I_E", "Gerente")" class="btn btn-primary mx-md-auto">
+                <i class="fa fa-search"></i>
+                Buscar Proyecto
+            </a>-->
+            <button class="btn btn-primary rounded-pill" id="Buscar">
+                <i class="fa fa-search"></i>
+                Buscar Ingreso o Egreso
+            </button>
+
+        </div>
+        <div class="col-12 col-sm-6 col-md-6">
+            <a href="@Url.Action("Registrar_Ing_Egr","Ing_Egr")" class="btn btn-success mx-md-auto">
+                <i class="fa fa-plus-circle"></i>
+
+                Registrar Ingreso o Egreso
+            </a>
+
+        </div>
 
 
 
 
 
+    </div>
 
+    @Html.Partial("_ListaIng_Egr", Model);
+    <link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+    <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    @section Scripts{
+        <script src="~/Scripts/Scripts_TP/COLOMBO/generarReporteFinanciero.js"></script>
+        <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+        <script src="~/Scripts/Scripts_TP/LAO LAM/scriptConsultarIng.js"></script>
+        <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
 
-<link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
-<link href="~/Content/PagedList.css" rel="stylesheet" />
-@section Scripts{
-    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
-    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptConsultarIng.js"></script>
-    <script src="~/Scripts/script-autocomplete/jquery-ui-min.js"></script>
-
-}
+    }

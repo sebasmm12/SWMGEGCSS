@@ -5,6 +5,8 @@
     //var tipoServicioCostoSugerido = Model.tipo_servicio_act.costo;
     //var costototal = Model.ActividadesModel.Actividades.act_plazo;
     //Layout = null;
+
+    var nombre = (string)Session["nombreActividad"];
 }
 
 <div class="modal fade" id="RegistrarActPlan" tabindex="-1" role="dialog" aria-labelledby="#RegistrarActPlan" aria-hidden="true">
@@ -24,7 +26,9 @@
                         <div>
                             @Html.EditorFor(model => model.Actividades_planeadas_aux.act_plan_nombre, new
                        {
-                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanNombre1" }
+                           htmlAttributes = new { @class = "text-center form-control bg-white", @id = "ActPlanNombre1",
+                               @Value = nombre, @readonly = "readonly"
+                           }
                        })
                         </div>
                         <div id="error_act_plan_nombre1" class="errordiv"></div>

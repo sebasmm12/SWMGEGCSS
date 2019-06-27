@@ -1,14 +1,61 @@
 ﻿@model SWMGEGCSS.Models.AuditoriaViewModel
 @{
     var lista_actividades_auditoria = Model.Plist_auditoria_actividades_desarrollar;
+    var lista_observaciones = Model.list_actividades_observaciones;
     //var exp_ID = (int)Session["expedienteid"];
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+    var count = 0;
 }
 
 <div class="mt-2 ml-4">
     <div class="container-fluid">
         <h2>Datos de Auditoría</h2>
         @Html.Partial("_Lista_Auditoria_Actividades", Model)
+    </div>
+    <h2>Observaciones del Proyecto</h2>
+    <div class="row mt-4 pl-2">
+        <div class="col-12 col-sm-11 col-md-11">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre de observacion</th>
+                            <th scope="col">Fecha de creacion</th>
+                            <th scope="col">Funciones</th>
+                        </tr>
+                    </thead>
+                    @if (lista_observaciones.Count == 0)
+                    {
+                        <tbody>
+                            <tr class="text-center">
+                                <td colspan="4">No se han registrado observaciones para esta actividad</td>
+                            </tr>
+                        </tbody>
+                    }
+                    else
+                    {
+                        <tbody>
+                            @foreach (var item in lista_observaciones)
+                            {
+                                count = count + 1;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    <td>@item.obs_act_nombre</td>
+                                    <td>@item.obs_act_creacion</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info animacion_boton">
+                                            <i class="fab fa-searchengin" style="color:white !important"></i>
+                                            @Html.ActionLink("Ver auditoria observaciones", "Visualizar_Auditoria_Observacion", "Auditoria_Proyecto", new { obs_act_id = item.obs_act_id }, new { @style = "color: white !important;text-decoration :none !important; font-size: 16px" })
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+            </div>
+        </div>
     </div>
     <div class="row mt-4 pl-2">
         <div class="col-sm-2 col-md-2">

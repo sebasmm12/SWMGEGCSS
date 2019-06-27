@@ -56,7 +56,7 @@
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        window.lohcation.href = "/Gerente/Gestionar_Empresas";
+                        window.location.href = "/Gerente/Gestionar_Empresas";
                     }
                 });
             });
@@ -130,6 +130,17 @@
             if (iNum.indexOf(X.charAt(i)) !== -1) {
                 return true;
             }
+        }
+        return false;
+    };
+    var tieneCaracEspDireccion = function empiezaConCaracteresEspeciales(X) {
+        var iChars = "!@_$%^*()+=[]\\\';,/{}|\"<>?";
+
+        for (var i = 0; i < X.length; i++) {
+            if (iChars.indexOf(X.charAt(i)) !== -1) {//numero es un CE o un numero
+                return true;
+            }
+           
         }
         return false;
     };
@@ -586,6 +597,14 @@
             //    alert("direccion largo");
             return false;
         }
+        if (tieneCaracEspDireccion(direccion)===true) {
+            adderror("emp-direccion");
+            negativeattributes("error-emp-direccion", 'ingrese dirección válida');
+            $("#emp-direccion").focus();
+            $("#emp-direccion").keyup(keyDireccion);
+       
+            return false;
+        }
         addgood("emp-direccion");
         attributes("error-emp-direccion");
         return true;
@@ -841,7 +860,7 @@
     };
 
 
-   var keyDireccion=function() {
+    var keyDireccion = function () {
 
         var $valor = $("#emp-direccion");
         if ($valor.val() === "") {
@@ -849,7 +868,7 @@
             negativeattributes("error-emp-direccion", 'Debe ingresar una dirección');
             adderror("emp-direccion");
         }
-        else if ($valor.val().charAt(0)===' ') {
+        else if ($valor.val().charAt(0) === ' ') {
 
             negativeattributes("error-emp-direccion", 'La dirección no debe empezar con un espacio en blanco');
             adderror("emp-direccion");
@@ -860,6 +879,11 @@
             negativeattributes("error-emp-direccion", 'La dirección debe ser de menos de 200 caracteres');
             adderror("emp-direccion");
 
+        }
+        else if (tieneCaracEspDireccion($valor.val()) === true) {
+
+            negativeattributes("error-emp-direccion", 'Ingrese dirección válida');
+            adderror("emp-direccion");
         }
         else {
             attributes("error-emp-direccion");

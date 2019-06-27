@@ -58,6 +58,14 @@ namespace SWMGEGCSS.Controllers
         {
             TareasAsignadasViewModel model = new TareasAsignadasViewModel();
             Session["ArchivoId"] = id;
+            //insertar cuando entra
+            T_auditoria_actividades_desarrollo modelAudi = new T_auditoria_actividades_desarrollo();
+            modelAudi.act_desa_id = id;
+            modelAudi.audi_act_comentario = "El usuario ingresó a realizar la tarea asiganda, hora: "+ DateTime.Now.ToShortDateString() + DateTime.Now.Hour.ToString();
+            modelAudi.audi_act_archivo_url = null;
+            modelAudi.audi_act_archivo_nombre = null;
+            modelAudi.usu_asignado = (int)Session["login"];
+            var operationResult1 = new TrabajadorDataAccess().sp_Insertar_Tarea_Asignada_Auditoria(modelAudi);
             return View(model);
         }
         [HttpPost]
@@ -99,20 +107,17 @@ namespace SWMGEGCSS.Controllers
                                 versionado = Int32.Parse(version);
                                 versionado++;
                                 evaluar = evaluar.Substring(0, x+1) +versionado;
-                               
-
                                 break;
                             }
-                            else {
+                            else
+                            {
                                 version = aux + version;
-                                }
-
+                            }
                         }
-
                     }
-                    else{
+                    else
+                    {
                         evaluar += "_V2";
-
                     }
                     listadelnombre[listadelnombre.Length - 2] = evaluar;
                     nombreArchivo = "";
@@ -145,7 +150,9 @@ namespace SWMGEGCSS.Controllers
 
                 return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
+            var operationResulta = new OperationResult();
+            operationResulta.NewId = 0;
+            return Json(new { data = operationResulta.NewId }, JsonRequestBehavior.AllowGet);
         }
         public void subirArchivo(HttpPostedFileBase archivo,String ruta)
         {
@@ -207,14 +214,28 @@ namespace SWMGEGCSS.Controllers
             var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
             //nuevo procedure
             model.Lista_Observaciones = new TrabajadorDataAccess().sp_Listar_Observacion_por_Actividad((int)Session["ArchivoId"]);
-
+            Session["obs_respondidas"] = model.Lista_Observaciones.Count;
             Session["comentarius"] = valores.act_desa_revisor_obs;
+
+            T_auditoria_actividades_desarrollo modelAudi = new T_auditoria_actividades_desarrollo();
+            modelAudi.act_desa_id = id;
+            modelAudi.audi_act_comentario = "El usuario ingresó a modificar la tarea asiganda, Fecha: " + DateTime.Now.ToShortDateString() + DateTime.Now.Hour.ToString();
+            modelAudi.audi_act_archivo_url = null;
+            modelAudi.audi_act_archivo_nombre = null;
+            modelAudi.usu_asignado = (int)Session["login"];
+            var operationResult1 = new TrabajadorDataAccess().sp_Insertar_Tarea_Asignada_Auditoria(modelAudi);
             return View(model);
         }
         [HttpPost]
         public ActionResult ModificarArchivo(T_actividades_desarrollar_aux3 Actividad_aux3)
         {
-            var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
+            var operationResultp = new OperationResult();
+            if ((int)Session["obs_respondidas"] != 0)
+            {
+                operationResultp.NewId = 100;
+                return Json(operationResultp.NewId, JsonRequestBehavior.AllowGet);
+            }
+             var valores = new TrabajadorDataAccess().sp_Consultar_Ruc_Plan_por_Act_Desa((int)Session["ArchivoId"]);
             if (Actividad_aux3.archivo != null)
             {
                 String ruta = Server.MapPath("~/Repositorio/" + valores.emp_ruc + "/" + valores.plan_id.ToString() + "/");
@@ -296,7 +317,8 @@ namespace SWMGEGCSS.Controllers
 
                 return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { data = 0 }, JsonRequestBehavior.AllowGet);
+            operationResultp.NewId = 0;
+            return Json(operationResultp.NewId, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult _ResponderObservacion()
@@ -310,6 +332,8 @@ namespace SWMGEGCSS.Controllers
             var model = new T_observacion_actividades();
             model.obs_act_id = t_obs.obs_act_id;
             model.obs_act_usuario = t_obs.obs_act_usuario;
+            Session["obs_respondidas"] = (int)Session["obs_respondidas"] - 1;
+            //Ver si retrocedo sin guardar cambios
             var operationResult = new TrabajadorDataAccess().sp_Actualizar_observaciones(model);
             var operationResult1 = new TrabajadorDataAccess().sp_Insertar_observaciones_auditoria(model);
 

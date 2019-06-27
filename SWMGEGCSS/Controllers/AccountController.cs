@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
+using System.IO;
+using System.Net.Mail;
 using System.Globalization;
 namespace SWMGEGCSS.Controllers
 {
@@ -90,25 +92,73 @@ namespace SWMGEGCSS.Controllers
 
 
         [HttpPost]
-        public ActionResult Gestionar_Datos_Personales(T_detalle_usuario usuario)
+        public ActionResult Gestionar_Datos_Personales(T_detalle_usuario usuario, HttpPostedFileBase imagen)
         {
 
             var model = new DetalleUsuarioViewModel();
 
             model.Detalle_Usuario = usuario;
             model.Detalle_Usuario.usu_codigo = (int)Session["login"];
+            var modelCuentas = new UsuarioViewModel();
             var operationResult = new UsuarioDataAccess().sp_Actualizar_Datos_Personales(model.Detalle_Usuario);
             //  return RedirectToAction("Index","Gerente");
+
+            if (imagen != null && imagen.ContentLength > 0)
+            {
+                byte[] imagenData = null;
+                using (var binaryImagen = new BinaryReader(imagen.InputStream))
+                {
+                    imagenData = binaryImagen.ReadBytes(imagen.ContentLength);
+                }
+                Imagen imagenes = new Imagen();
+                imagenes.Imagenes = imagenData;
+                model.Detalle_Usuario.det_usu_imagem = imagenData;
+                var operationReuslt3 = new OperationResult();
+                operationReuslt3 = new UsuarioDataAccess().sp_Actualizar_Imagen_Usuario(model.Detalle_Usuario, modelCuentas.Usuario);
+            }
             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult _Recupera_Cuenta()
+        [HttpGet]
+        public ActionResult Recuperar_Cuenta()
         {
-                
+            var model = new DetalleUsuarioViewModel();
             return View();
         }
-        
+        [HttpPost]
+        public ActionResult Recuperar_Cuenta(T_detalle_usuario usuario, string correo)
+        {
+            usuario.det_usu_correo = correo;
+            MailMessage mensaje = new MailMessage();
+            mensaje.From = new MailAddress("gerhard.egg@gmail.com");//desde donde
+            //mensaje.To.Add(correo);
+            mensaje.To.Add("gerhard.egg@gmail.com");
+            mensaje.Subject = "Recupera contraseña";
+            mensaje.SubjectEncoding = System.Text.Encoding.UTF8;
+            mensaje.Body = "Tu contraseña";
+            mensaje.BodyEncoding= System.Text.Encoding.UTF8;
+            mensaje.IsBodyHtml = true;
+            mensaje.Priority = MailPriority.Normal;
+
+            String ruta = Server.MapPath("../Temporal");
+
+
+            SmtpClient trabajador = new SmtpClient();
+            string sCuentacorreo = "gerhard.egg@gmail.com";
+
+            string sContrasena = "kpfjkbfeppjgrzcn";
+            trabajador.Credentials = new System.Net.NetworkCredential(sCuentacorreo, sContrasena);
+                  
+            trabajador.Port = 587;
+            trabajador.EnableSsl = true;
+            trabajador.Host = "smtp.gmail.com";
+            trabajador.UseDefaultCredentials = true;
+            trabajador.Send(mensaje);
+             
+
+            return RedirectToAction("Login","Account");
+        }
+
         public ActionResult GENERAR_FORMULARIOS()
         {
             return RedirectToAction("G_Formulario", "Trabajador");

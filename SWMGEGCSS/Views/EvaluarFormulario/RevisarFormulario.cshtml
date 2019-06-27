@@ -1,5 +1,6 @@
 ﻿@model SWMGEGCSS.Models.EvaluarFormularioViewModel
 @{
+
     ViewBag.Title = "Revisar_Formulario";
     Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
 }
@@ -28,7 +29,6 @@
                 <div class="row text-center">
                     @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_inicio, "{0:yyyy-MM-dd}",
               new { type = "date", @class = "datepicker bg-white col-6 col-sm-6 col-md-6   text-center form-control", @id = "act_desa_fecha_inicio", @readonly = "readonly" })
-
                 </div>
             </div>
             <div class="col-4 col-sm-4 col-md-4 text-center">
@@ -53,7 +53,6 @@
                 </div>
             </div>
 
-
         </div>
         <br />
         <div class="row">
@@ -76,33 +75,21 @@
                  htmlAttributes: new { @id = "act_desa_nombre", @class = "text-center form-control bg-white", @readonly = "readonly" })
             </div>
         </div>
-        <div class="col-12 col-sm-10 col-md-10">
-            <div>
-                <label class="font-weight-bolder">
-                    Comentario:
-                </label>
-            </div>
-            @Html.TextAreaFor(model => model.actividades_desarrollarGerente.act_desa_comentario,
-             htmlAttributes: new { @id = "actividad_comentario", @class = "text-center form-control bg-white", @readonly = "readonly" })
-
-        </div>
 
 
-        <div class="col-12 col-sm-10 col-md-10">
-            <div>
-                <label class="font-weight-bolder">
-                    Oservacion:
-                </label>
-            </div>
 
-            @Html.TextAreaFor(model => model.actividades_desarrollarGerente.act_desa_revisor_obs,
-             htmlAttributes: new { @id = "act_desa_revisor_obs", @class = "text-center form-control bg-white" })
+        @Html.Partial("_ListaObservaciones", Model)
 
-            <div id="error_act_desa_revisor_obs" class="errordiv"></div>
+
+
+        <div class="col-4 col-sm-4 col-md-4">
+            <a href="@Url.Action("AgregarObservacion", "EvaluarFormulario")" class="btn btn-secondary">
+                <i class="fa fa-backward"></i>
+                Agregar Observación
+            </a>
         </div>
 
         <br />
-
         <div class="row">
             <div class="col-6 col-sm-6 col-md-6">
                 <div>
@@ -122,13 +109,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-6 col-sm-6 col-md-6">
                 <div class="row">
                     <label class="font-weight-bolder">
                         Nueva Fecha Fin:
                     </label>
                 </div>
-
                 <div class="row">
                     @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_fin, "{0:yyyy-MM-dd}",
                    new { type = "date", @class = "datepicker bg-white text-center form-control", @id = "act_desa_fecha_fin" })
@@ -137,26 +124,21 @@
         </div>
 
 
-
-
         <br />
         <br />
         <div class="row">
             <div class="col-4 col-sm-4 col-md-4">
-
-                <button type="submit" class="btn btn-success" id="guardar">
+                <button type="button" class="btn btn-success" id="corregir">
                     <i class="fa fa-check-circle"></i>
                     Corregir
                 </button>
             </div>
-
             <div class="col-4 col-sm-4 col-md-4">
-                <button type="submit" class="btn btn-success" id="corregir">
+                <button type="button" class="btn btn-success" id="guardar">
                     <i class="fa fa-check-circle"></i>
                     Terminar
                 </button>
             </div>
-
             <div class="col-4 col-sm-4 col-md-4">
                 <a href="@Url.Action("Index", "EvaluarFormulario")" class="btn btn-secondary">
                     <i class="fa fa-backward"></i>
@@ -164,7 +146,6 @@
                 </a>
             </div>
         </div>
-
     </form>
 </div>
 

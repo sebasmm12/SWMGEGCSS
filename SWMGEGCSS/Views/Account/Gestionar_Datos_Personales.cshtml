@@ -19,13 +19,14 @@
         </div>
         <div class="row mt-3 pl-3">
             <div class="col-12 col-sm-6 col-md-6">
-                <label class="font-weight-bolder">
-                    Foto de Perfil
-                </label>
-                  <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })">
+                <img src="@Url.Action("convertirImagen","Account",new {codigo=codigo })">
+                <div class="row mt-3 pl-3">
+
+                    <input type="file" class="form-control-file col-12 col-sm-12 col-md-6" id="imagen" name="imagen" />
+                </div>
+
             </div>
             <div class="col-12 col-sm-6 col-md-6">
-
 
             </div>
         </div>

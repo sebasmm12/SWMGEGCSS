@@ -13,6 +13,7 @@
     //retorna todos los tipod de servicio vigenetes
     var listaTotalTipoServicio = Model.tipoServicioModel.ListtipoServicio;
     var listaTotalEstadoPlan = Model.lista_plan_estado;
+    int tipoServicioId = (int)Session["tipoServicioId"];
     //var costoTotalPlan = 0;
 
     //
@@ -217,7 +218,7 @@
                                         @{ 
                                             if(cd != 0)
                                             {
-                                                <button class="btn btn-success btnModal3" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan">
+                                                <button class="btn btn-success btnModal3 mov_button" data-id-act="@item.act_id" data-id-plan="@plan_id" data-url="@Url.Action("_ModalAgregarActividadesPlanificadas", "Plan")" data-id-target="#RegistrarActPlan">
                                                     <i class="fa fa-plus-circle"></i>
                                                     Agregar a la Planificacion
                                                 </button>
@@ -272,14 +273,20 @@
                                 <td>@item.act_plan_costo </td>
                                 <td>@item.act_plan_tiempo</td>
                                 <td>
-                                    <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
-                                        <i class="fa fa-times-circle"></i>
-                                        Eliminar
-                                    </button>
-                                    <button class="btn btn-warning btnModal" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
-                                        <i class="fa fa-edit" style="color:white !important"></i>
-                                        Actualizar
-                                    </button>
+                                    @{
+                                        
+                                        if (Model.List_tipo_servicio_act.Find(X => X.act_id == item.act_id && X.tipo_servicio_id == tipoServicioId).act_obligatorio == false)
+                                        {
+                                            <button class="btn btn-danger btnModal2"  data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
+                                                <i class="fa fa-times-circle"></i>
+                                                Eliminar
+                                            </button>
+                                        }
+                                            <button class="btn btn-warning btnModal mov_button" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
+                                                <i class="fa fa-edit" style="color:white !important"></i>
+                                                Actualizar
+                                            </button>
+                                    }
                                 </td>
                             </tr>
                             }
@@ -291,14 +298,14 @@
         <!---------------------------------->
         <div class="row mt-2 pl-2">
             <div class="col-12 col-sm-3 col-md-3">
-                <button type="button" id="btnActualizarPlan" class="btn btn-warning rounded-pill">
+                <button type="button" id="btnActualizarPlan" class="btn btn-warning rounded-pill mov_button">
                     <i class="fa fa-edit" style="color:white !important"></i>
                     Actualizar
 
                 </button>
             </div>
             <div class="col-12 col-sm-3 col-md-3">
-                <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente",null)" class="btn btn-secondary">
+                <a href="@Url.Action("Gestionar_Plan_Proyecto","Gerente",null)" class="btn btn-secondary mov_button">
                     <i class="fa fa-backward">
 
                     </i>

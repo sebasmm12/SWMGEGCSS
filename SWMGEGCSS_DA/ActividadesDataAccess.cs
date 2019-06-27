@@ -26,13 +26,11 @@ namespace SWMGEGCSS_DA
                             T_actividades t_actividad = new T_actividades();
                             t_actividad.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
                             t_actividad.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
-                            //t_actividad.act_plazo= DataUtil.DbValueToDefault<int>(reader["act_plazo"]);
+                            t_actividad.act_obligatorio = DataUtil.DbValueToDefault<bool>(reader["tipo_servicio_obligatorio"]);
                             t_actividad.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
                             t_actividad.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);                        
                             list_actividades.Add(t_actividad);
-                            
                         }
-
                     }
                 }
                 return list_actividades;
@@ -43,6 +41,39 @@ namespace SWMGEGCSS_DA
                 return new List<T_actividades>();
             }
         }
+
+        public List<T_actividades> sp_Consultar_Actividades_X_Tipo_Servicio(int tipo_servicio_id)
+        {
+            try
+            {
+                List<T_actividades> list_actividades = new List<T_actividades>();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Actividades_Tipo_Servicio"))
+                {
+                    Database.AddInParameter(command, "@tipo_servicio_id", DbType.Int32, tipo_servicio_id);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades t_actividad = new T_actividades();
+                            t_actividad.act_id = DataUtil.DbValueToDefault<int>(reader["act_id"]);
+                            t_actividad.act_nombre = DataUtil.DbValueToDefault<string>(reader["act_nombre"]);
+                            t_actividad.act_cantidad_maxima = DataUtil.DbValueToDefault<int>(reader["act_cantidad_maxima"]);
+                            t_actividad.act_descripcion = DataUtil.DbValueToDefault<string>(reader["act_descripcion"]);
+                            list_actividades.Add(t_actividad);
+                        }
+                    }
+                }
+                return list_actividades;
+            }
+            catch (Exception)
+            {
+
+                return new List<T_actividades>();
+            }
+        }
+
+
+
         public OperationResult sp_Insertar_Actividades_Desarrollar(T_actividades_desarrollar act_desarrollar)
         {
             try
