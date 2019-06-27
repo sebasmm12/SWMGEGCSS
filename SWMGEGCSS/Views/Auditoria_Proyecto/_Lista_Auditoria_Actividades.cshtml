@@ -19,40 +19,51 @@
                             <th scope="col">Nombre del documento subido por el Trabajador</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var item in lista_actividades_auditoria)
-                        {
-                            count = count + 1;
-                        <tr class="text-center">
-                            <th scope="row">@count</th>
-                            @if (item.audi_act_fecha_auditoria.ToShortDateString().Equals("01/01/0001"))
+                    @if (lista_actividades_auditoria.Count == 0)
+                    {
+                        <tbody>
+                            <tr class="text-center">
+                                <td colspan="5">No hay registros de auditoría en esta actividad</td>
+                            </tr>
+                        </tbody>
+                    }
+                    else
+                    {
+                        <tbody>
+                            @foreach (var item in lista_actividades_auditoria)
                             {
-                                <td>No se establece la fecha de inicio</td>
+                                count = count + 1;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    @if (item.audi_act_fecha_auditoria.ToShortDateString().Equals("01/01/0001"))
+                                    {
+                                        <td>No se establece la fecha de inicio</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.audi_act_fecha_auditoria</td>
+                                    }
+                                    @if (item.audi_act_fecha_inicio.ToShortDateString().Equals("01/01/0001"))
+                                    {
+                                        <td>No se establece la fecha de inicio</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.audi_act_fecha_inicio.ToShortDateString()</td>
+                                    }
+                                    @if (item.audi_act_fecha_fin.ToShortDateString().Equals("01/01/0001"))
+                                    {
+                                        <td>No se establece la fecha de inicio</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.audi_act_fecha_fin.ToShortDateString()</td>
+                                    }
+                                    <td>@item.audi_act_archivo_nombre</td>
+                                </tr>
                             }
-                            else
-                            {
-                                <td>@item.audi_act_fecha_auditoria</td>
-                            }
-                            @if (item.audi_act_fecha_inicio.ToShortDateString().Equals("01/01/0001"))
-                            {
-                                <td>No se establece la fecha de inicio</td>
-                            }
-                            else
-                            {
-                                <td>@item.audi_act_fecha_inicio.ToShortDateString()</td>
-                            }
-                            @if (item.audi_act_fecha_fin.ToShortDateString().Equals("01/01/0001"))
-                            {
-                                <td>No se establece la fecha de inicio</td>
-                            }
-                            else
-                            {
-                                <td>@item.audi_act_fecha_fin.ToShortDateString()</td>
-                            }
-                            <td>@item.audi_act_archivo_nombre</td>
-                        </tr>
-                        }
-                    </tbody>
+                        </tbody>
+                    }
                 </table>
             </div>
         </div>
