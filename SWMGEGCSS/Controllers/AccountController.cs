@@ -127,7 +127,7 @@ namespace SWMGEGCSS.Controllers
         }
         [HttpPost]
         public ActionResult Recuperar_Cuenta(T_detalle_usuario usuario, string correo)
-        {
+        {/*
             usuario.det_usu_correo = correo;
             MailMessage mensaje = new MailMessage();
             mensaje.From = new MailAddress("gerhard.egg@gmail.com");//desde donde
@@ -156,7 +156,43 @@ namespace SWMGEGCSS.Controllers
             trabajador.Send(mensaje);
              
 
-            return RedirectToAction("Login","Account");
+            return RedirectToAction("Login","Account");*/
+            UsuarioViewModel model = new UsuarioViewModel();
+            model.list_datos_usuarios = new UsuarioDataAccess().sp_Consultar_Contraseña_Correo(correo);
+            //Ejemplo para lo del envio de correos
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.To.Add(correo);//Destinatario
+            msg.From = new MailAddress("a.no.n.im.o@hotmail.com", "Anonimo Anonimo anonimo", System.Text.Encoding.UTF8);//Emisor y nombre de usuario
+            msg.Subject = "Olvidó de Contraseña";//Asunto del mensaje
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = "Contraseña: " +  model.list_datos_usuarios.usu_contraseña;//Mensaje a ser enviado
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = true;
+            /*  if (sw == true)
+              {
+                  String sFile = archivo;//conine la ruta del archivo Adjunto
+                  Attachment oAttch = new Attachment(sFile);
+                  msg.Attachments.Add(oAttch);//adjuntamos el archivo al mensaje
+              }*/
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("a.no.n.im.o@hotmail.com", "qwepoi10");
+            //hotmail
+            client.Port = 587; // ùerto de envio tanto de Hotmail como para Gmail
+            client.Host = "smtp.live.com";// Protocolo Simple de Transferencia de Correo de (Hotmail)
+                                          //
+            client.EnableSsl = true;
+            client.Send(msg);
+            try
+            {
+                //Enviamos el mensaje
+                // MessageBox.Show("Mensaje Enviado Correctamente", "Correo C#", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //   sw = false;
+            }
+            catch (System.Net.Mail.SmtpException)
+            {
+                //   MessageBox.Show("Error");
+            }
+            return Json(new { data = 1 }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GENERAR_FORMULARIOS()
