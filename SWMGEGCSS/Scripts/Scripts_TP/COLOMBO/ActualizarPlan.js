@@ -28,9 +28,11 @@
             $(this).animateCss('tada');
         });
     });
-
-
-
+    $(".mov_button").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
     var autocompletado = function () {
         var $input = $(this);
         var options = {
