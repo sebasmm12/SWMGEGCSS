@@ -296,6 +296,22 @@ namespace SWMGEGCSS_DA
             }
         }
 
+
+
+        public OperationResult sp_Actualizar_Actividades_Desarrollar_Gerente(T_actividades_desarrollar_gerente actividades_desarrollar)
+        {
+            var operation = new OperationResult();
+            using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Actividades_Desarrollar_Gerente"))
+            {
+                Database.AddInParameter(command, "@act_desa_id", DbType.Int32, actividades_desarrollar.act_desa_id);
+                Database.AddInParameter(command, "@est_act_id", DbType.Int32, actividades_desarrollar.est_act_id);
+                Database.AddInParameter(command, "@fechafin", DbType.Date, actividades_desarrollar.act_desa_fecha_fin);
+                Database.ExecuteScalar(command);
+                operation.NewId = 1;
+            }
+            return operation;
+        }    
+
         public List<T_actividades_desarrollar> sp_Consultar_Lista_Actividades_Desarrollar_Revisar_Gerente(int usucod)
         {
             try
@@ -373,20 +389,9 @@ namespace SWMGEGCSS_DA
                 return new T_actividades_desarrollar_gerente();
             }
         }
-        public OperationResult sp_Actualizar_Actividades_Desarrollar_Gerente(T_actividades_desarrollar_gerente actividades_desarrollar)
-        {
-            var operation = new OperationResult();
-            using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Actividades_Desarrollar_Gerente"))
-            {
-                Database.AddInParameter(command, "@act_desa_id", DbType.Int32, actividades_desarrollar.act_desa_id);
-                Database.AddInParameter(command, "@act_desa_revisor_obs", DbType.String, actividades_desarrollar.act_desa_revisor_obs);
-                Database.AddInParameter(command, "@est_act_id", DbType.Int32, actividades_desarrollar.est_act_id);
-                Database.AddInParameter(command, "@fechafin", DbType.Date, actividades_desarrollar.act_desa_fecha_fin);
-                Database.ExecuteScalar(command);
-                operation.NewId = 1;
-            }
-            return operation;
-        }
+       
+
+
 
 
 

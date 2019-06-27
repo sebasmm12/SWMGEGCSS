@@ -6,8 +6,9 @@ using System.Web.Mvc;
 using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
-using System.Globalization;
 using System.IO;
+using System.Net.Mail;
+using System.Globalization;
 namespace SWMGEGCSS.Controllers
 {
     public class AccountController : Controller
@@ -100,6 +101,7 @@ namespace SWMGEGCSS.Controllers
             model.Detalle_Usuario.usu_codigo = (int)Session["login"];
             var modelCuentas = new UsuarioViewModel();
             var operationResult = new UsuarioDataAccess().sp_Actualizar_Datos_Personales(model.Detalle_Usuario);
+            //  return RedirectToAction("Index","Gerente");
 
             if (imagen != null && imagen.ContentLength > 0)
             {
@@ -114,58 +116,48 @@ namespace SWMGEGCSS.Controllers
                 var operationReuslt3 = new OperationResult();
                 operationReuslt3 = new UsuarioDataAccess().sp_Actualizar_Imagen_Usuario(model.Detalle_Usuario, modelCuentas.Usuario);
             }
-            //  return RedirectToAction("Index","Gerente");
             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult Recuperar_Cuenta()
         {
-            
+            var model = new DetalleUsuarioViewModel();
             return View();
         }
         [HttpPost]
-        public ActionResult Recuperar_Cuenta(T_detalle_usuario usuario)
+        public ActionResult Recuperar_Cuenta(T_detalle_usuario usuario, string correo)
         {
-
-            System.Net.Mail.MailMessage mensaje = new System.Net.Mail.MailMessage();
-            //   mensaje.To.Add(usuario.det_usu_correo);
-            mensaje.To.Add("carloslau2709@gmail.com");
+            usuario.det_usu_correo = correo;
+            MailMessage mensaje = new MailMessage();
+            mensaje.From = new MailAddress("gerhard.egg@gmail.com");//desde donde
+            //mensaje.To.Add(correo);
+            mensaje.To.Add("gerhard.egg@gmail.com");
             mensaje.Subject = "Recupera contraseña";
             mensaje.SubjectEncoding = System.Text.Encoding.UTF8;
-
-            mensaje.Body = "Contraseña";
-           
-           // mensaje.From = new System.Net.Mail.MailAddress("carloslau2709@gmail.com");//desde donde
-            mensaje.From = new System.Net.Mail.MailAddress("a.no.n.im.o@hotmail.com", "Anonimo Anonimo anonimo", System.Text.Encoding.UTF8);
-            mensaje.BodyEncoding = System.Text.Encoding.UTF8;
+            mensaje.Body = "Tu contraseña";
+            mensaje.BodyEncoding= System.Text.Encoding.UTF8;
             mensaje.IsBodyHtml = true;
+            mensaje.Priority = MailPriority.Normal;
+
+            String ruta = Server.MapPath("../Temporal");
 
 
-            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
-            client.Credentials = new System.Net.NetworkCredential("a.no.n.im.o@hotmail.com", "qwepoi10");
-            //hotmail
-            client.Port = 587; // ùerto de envio tanto de Hotmail como para Gmail
-            client.Host = "smtp.live.com";// Protocolo Simple de Transferencia de Correo de (Hotmail)
-                                          //
-            client.EnableSsl = true;
-            client.Send(mensaje);
-            try
-            {
-               
-                //Enviamos el mensaje
-                // MessageBox.Show("Mensaje Enviado Correctamente", "Correo C#", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //   sw = false;
-            }
-            catch (System.Net.Mail.SmtpException)
-            {
-                //   MessageBox.Show("Error");
-            }
+            SmtpClient trabajador = new SmtpClient();
+            string sCuentacorreo = "gerhard.egg@gmail.com";
 
-           
-            return RedirectToAction("Login", "Account");
+            string sContrasena = "kpfjkbfeppjgrzcn";
+            trabajador.Credentials = new System.Net.NetworkCredential(sCuentacorreo, sContrasena);
+                  
+            trabajador.Port = 587;
+            trabajador.EnableSsl = true;
+            trabajador.Host = "smtp.gmail.com";
+            trabajador.UseDefaultCredentials = true;
+            trabajador.Send(mensaje);
+             
+
+            return RedirectToAction("Login","Account");
         }
-       
 
         public ActionResult GENERAR_FORMULARIOS()
         {

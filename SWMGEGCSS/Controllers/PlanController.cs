@@ -25,13 +25,14 @@ namespace SWMGEGCSS.Controllers
             }
             if (tipo_servicio_nombre != null && tipo_servicio_nombre == "")
             {
-                 //
+                //
             }
             else
             {
                 var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == tipo_servicio_nombre));
                 if (tipoServicioModel != null) {
                     model.List_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(tipoServicioModel.tipo_servicio_id);
+                    Session["tiposervicioplan"] = tipoServicioModel;
                     /*List<int> cantidadesActividadesPermitidas = new List<int>();
                     foreach (var item in model.List_Actividades)
                     {
@@ -50,6 +51,15 @@ namespace SWMGEGCSS.Controllers
                 model.List_Actividades_planeadas = new List<T_actividades_planeadas>();
                 Session["ListaActividades"] = null;
                 //Session["ListaCantidadPermitida"] = null;
+                Session["totalActividadesObligatorias"] = 0;
+                Session["actividadesregistradasobligatorias"] = 0;
+                foreach (var item in model.List_Actividades)
+                {
+                    if (item.act_obligatorio == true)
+                    {
+                        Session["totalActividadesObligatorias"] = (int)Session["totalActividadesObligatorias"] + 1;
+                    }
+                }
                 return PartialView("_ListarActividadesPlan", model);
             }
             return View(model);
@@ -97,12 +107,20 @@ namespace SWMGEGCSS.Controllers
                 operationResultp.NewId = 5;
                 return Json( operationResultp.NewId, JsonRequestBehavior.AllowGet);
             }
-            /*var planesmodel = new PlanDataAccess().sp_Consultar_Lista_Plan();*/
             var model = new GestionarPlanProyectoViewModel();
             model.plans_aux = plans_aux;
 
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
             var empresaModel = new PlanDataAccess().sp_Consultar_Lista_Empresa().Find(y => (y.emp_razon_social == model.plans_aux.emp_razon_social));
+            //var actividadxtipoServicioModel = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades_por_tipo_servicio(tipoServicioModel.tipo_servicio_id);
+            var listaActividad = (List<T_actividades_planeadas>)Session["ListaActividades"];
+            //operationResultp.Extras = "La actividad " + found + " es obligatoria, registrela";
+            //return Json(new { data = operationResultp.Extras }, JsonRequestBehavior.AllowGet);
+            if ((int)Session["actividadesregistradasobligatorias"] != (int)Session["totalActividadesObligatorias"])
+            {
+                operationResultp.NewId = 10;
+                return Json(operationResultp.NewId, JsonRequestBehavior.AllowGet);
+            }
 
             var modelPlan = new T_plan();
             modelPlan.usu_codigo = (int)Session["login"];
@@ -112,10 +130,11 @@ namespace SWMGEGCSS.Controllers
             //modelPlan.plan_costo = model.plans_aux.plan_costo;
             modelPlan.tipo_servicio_id = tipoServicioModel.tipo_servicio_id;
             //modelPlan.plan_tiempo = model.plans_aux.plan_tiempo;
+            
             var operationResult1 = new PlanDataAccess().sp_Agregar_Plan(modelPlan);
             //Session["Plan_datos"] = modelPlan;
             var planId = new PlanDataAccess().sp_Consultar_Lista_Plan().Find(z => (z.plan_nombre == modelPlan.plan_nombre));
-            var listaActividad = (List<T_actividades_planeadas>)Session["ListaActividades"];
+            
             var costototal = 0.0;
             var tiempototal = 0;
             foreach (var item in listaActividad)
@@ -538,9 +557,11 @@ namespace SWMGEGCSS.Controllers
         public ActionResult _ModalRegistrarActividadesPlanificadas(int id_act)
         {
             var model = new GestionarPlanProyectoViewModel();
-            model.Actividades_planeadas = new T_actividades_desarrollar();
+            model.Actividad_planeada = new T_actividades_planeadas();
             var modeloevaluar = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades().Find(r => r.act_id == id_act);
+            var tac = new ActividadesDataAccess().sp_Consultar_Actividades().Find(X => (X.act_id == id_act));
             model.tipo_servicio_act = modeloevaluar;
+            model.Actividad_planeada.act_plan_nombre = tac.act_nombre;
             return PartialView(model);
         }
         [HttpPost]
@@ -549,11 +570,28 @@ namespace SWMGEGCSS.Controllers
             //Session["ListaCantidadPermitida"]
             T_actividades_planeadas actividadesPlaneadas = new T_actividades_planeadas();
             /*var actplan = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().Find(x => x.act_plan_id == act_plan.act_plan_id);*/
+            var modeloprueba = (T_tipo_servicio)Session["tiposervicioplan"];
+            var pruebaobl = new TipoServicioDataAccess().sp_Consultar_tipos_servicios_actividades_por_tipo_servicio(modeloprueba.tipo_servicio_id);
+            var pruebaoblfinal = new List<T_tipo_servicio_actividades>();
+            foreach (var item in pruebaobl)
+            {
+                if (item.act_obligatorio == true)
+                {
+                    pruebaoblfinal.Add(item);
+                }
+            }
+            foreach (var item in pruebaoblfinal)
+            {
+                if (item.act_id == act_plan.act_id)
+                {
+                    Session["actividadesregistradasobligatorias"] = (int)Session["actividadesregistradasobligatorias"] + 1;
+                    break;
+                }
+            }
             List<T_actividades_planeadas> listaActividadesPlaneadasTemp = new List<T_actividades_planeadas>();
             if (Session["ListaActividades"] == null)
             {
                 listaActividadesPlaneadasTemp.Add(act_plan);
-
             }
             else
             {
@@ -562,7 +600,6 @@ namespace SWMGEGCSS.Controllers
 
             }
             Session["ListaActividades"] = listaActividadesPlaneadasTemp;
-
             return Json(1, JsonRequestBehavior.AllowGet);
         }
         //

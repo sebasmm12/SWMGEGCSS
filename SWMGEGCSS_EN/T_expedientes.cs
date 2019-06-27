@@ -20,11 +20,10 @@ namespace SWMGEGCSS_EN
         public string exp_nombre { get; set; }
         public string archivo_ulr_inicio { get; set; }
         public string archivo_url_final { get; set; }
+        public string archivo_url { get; set; }
     }
     public class T_expediente_aux
     {
-        public DateTime fecha_actual;
-
         public int exp_id { get; set; }
         public string est_exp_nombre { get; set; }
         public string plan_nombre { get; set; }
@@ -38,6 +37,7 @@ namespace SWMGEGCSS_EN
         public int cantidad_actividades_terminar { get; set; }
         public HttpPostedFileBase archivo_ulr_inicio { get; set; }
         public HttpPostedFileBase archivo_url_final { get; set; }
-
+        public DateTime fecha_actual { get; set; }
+        public string archivo_url { get; set; }
     }
 }

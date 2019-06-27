@@ -3,38 +3,35 @@
     var RegularExpression = /(^\s.)|(.\s{2,}.)|.\s$|(.[+-\.\@0-9-_\|/?ŋ?ī`š!Š\\Ļ{\][}į\^<>Ž%&()·].*)/;
 
 
-    var obj = {
-        act_desa_nombre: $("#act_desa_nombre"),
-        act_desa_id: $("#act_desa_id"),
-        act_desa_descripcion: $("#act_desa_descripcion"),
-        act_desa_archivo_nombre: $("#act_desa_archivo_nombre"),
-        act_desa_comentario: $("#act_desa_comentario"),
-        act_desa_revisor_obs: $("#act_desa_revisor_obs"),
-        est_act_id: $("est_act_id")
-    };
+
     var validacion = function () {
-        $(this).click(function () {
-            if (vacio() && fecha()) {
 
-                $.ajax({
-                    url: "/EvaluarFormulario/RevisarFormulario",
-                    method: "POST",
-                    data: $("#form").serialize()
-                }).done(function (data) {
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Se actualizó  exitosamente',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.value) {
-                            window.location.href = "/EvaluarFormulario/Index";
-                        }
-                    });
+        var actividades_desarrollarGerente = {
+            act_desa_id: $("#act_desa_id").val(),
+            act_desa_fecha_fin: $("#act_desa_fecha_fin").val()
+        };
+        if (fecha()) {
+
+            $.ajax({
+                url: "/EvaluarFormulario/RevisarFormulario",
+                method: "POST",
+                data: {
+                    actividades_desarrollarGerente: actividades_desarrollarGerente
+                }
+
+            }).done(function (data) {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Se actualizó  exitosamente',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/EvaluarFormulario/Index";
+                    }
                 });
-            }
-            return false;
-        });
-
+            });
+        }
+        return false;
     };
     var vacio = function esNumero() {
         if ($("#act_desa_revisor_obs").val().trim() !== "") {
@@ -86,7 +83,7 @@
         today.setHours(0, 0, 0, 0);
         today2.setHours(0, 0, 0, 0);
         today2.setFullYear(arrayDeCadenas[0], parseInt(arrayDeCadenas[1]) - 1, arrayDeCadenas[2]);
-       
+
         if (today < today2) {
             return true;
         } else {
@@ -104,42 +101,36 @@
         }
     };
     var validacion2 = function () {
-        $(this).click(function () {
-            if (vacio()) {
-                $.ajax({
-                    url: "/EvaluarFormulario/RevisarFormulario2",
-                    method: "POST",
-                    data: $("#form").serialize()
-                }).done(function (data) {
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Se actualizó  exitosamente',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.value) {
-                            window.location.href = "/EvaluarFormulario/Index";
-                        }
-                    });
-                });
-            }
-            return false;
-        });
-    };
-    var getPage = function () {
-        var $a = $(this);
+
+        var actividades_desarrollarGerente = {
+            act_desa_id: $("#act_desa_id").val(),
+            act_desa_fecha_fin: $("#act_desa_fecha_fin").val()
+        };
         $.ajax({
-            url: $a.attr("href"),
-            type: "GET"
+            url: "/EvaluarFormulario/RevisarFormulario2",
+            method: "POST",
+            data: {
+                actividades_desarrollarGerente: actividades_desarrollarGerente
+            }
         }).done(function (data) {
-            var target = $a.parents("div.pagedList").attr("data-exp-target");
-            $(target).replaceWith(data);
+            Swal.fire({
+                type: 'success',
+                title: 'Se actualizó  exitosamente',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = "/EvaluarFormulario/Index";
+                }
+            });
         });
+
         return false;
+
     };
+
     $("#auxfin").val($("#act_desa_fecha_fin").val());
     $("#auxfin").attr("readonly", "readonly");
-    $("#guardar").each(validacion);
-    $("#corregir").each(validacion2);
-    $(".pcoded-content").on("click", ".pagedList a", getPage);
+    $("#guardar").click(validacion2);
+    $("#corregir").click(validacion);
 
 });

@@ -23,13 +23,34 @@
                         @foreach (var item in lista_actividades_auditoria)
                         {
                             count = count + 1;
-                            <tr class="text-center">
-                                <th scope="row">@count</th>
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            @if (item.audi_act_fecha_auditoria.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
                                 <td>@item.audi_act_fecha_auditoria</td>
-                                <td>@item.audi_act_fecha_inicio</td>
-                                <td>@item.audi_act_fecha_fin</td>
-                                <td>@item.audi_act_archivo_nombre</td>
-                            </tr>
+                            }
+                            @if (item.audi_act_fecha_inicio.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
+                                <td>@item.audi_act_fecha_inicio.ToShortDateString()</td>
+                            }
+                            @if (item.audi_act_fecha_fin.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
+                                <td>@item.audi_act_fecha_fin.ToShortDateString()</td>
+                            }
+                            <td>@item.audi_act_archivo_nombre</td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -38,7 +59,7 @@
     </div>
     <div class="row">
         <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
-            @Html.PagedListPager(lista_actividades_auditoria, page => Url.Action("Visualizar_Auditoria_Actividades", "Auditoria_Proyecto", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            @Html.PagedListPager(lista_actividades_auditoria, page => Url.Action("Visualizar_Auditoria_Actividades", "Auditoria_Proyecto", new { act_desa_id = (int)Session["actividadid"], page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>
 </div>

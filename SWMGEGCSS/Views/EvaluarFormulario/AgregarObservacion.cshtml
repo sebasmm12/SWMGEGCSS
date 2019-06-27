@@ -1,0 +1,123 @@
+﻿@model SWMGEGCSS.Models.EvaluarFormularioViewModel
+@{
+    ViewBag.Title = "AgregarObservacion";
+    Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";
+}
+
+<h2>Agregar Observacion</h2>
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+<div class="container">
+    <form id="form">
+        @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_id,
+             htmlAttributes: new { @id = "act_desa_id" })
+        @Html.HiddenFor(model => model.actividades_desarrollarGerente.act_desa_descripcion,
+             htmlAttributes: new { @id = "act_desa_descripcion" })
+        @Html.HiddenFor(model => model.actividades_desarrollarGerente.est_act_id, new
+   {
+       htmlAttributes = new { @id = "est_act_id" }
+   })
+        <br />
+        <div class="row text-center">
+            <div class="col-4 col-sm-4 col-md-4 text-center">
+                <div class="row text-center">
+                    <label class="font-weight-bolder text-center">
+                        Fecha Inicio:
+                    </label>
+                </div>
+                <div class="row text-center">
+                    @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_inicio, "{0:yyyy-MM-dd}",
+              new { type = "date", @class = "datepicker bg-white col-6 col-sm-6 col-md-6   text-center form-control", @id = "act_desa_fecha_inicio", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="col-4 col-sm-4 col-md-4 text-center">
+                <div class="row text-center">
+                    <label class="font-weight-bolder text-center">
+                        Fecha Fin:
+                    </label>
+                </div>
+                <div class="row text-center">
+                    <input type="date" id="auxfin" class="datepicker bg-white text-center form-control col-6 col-sm-6 col-md-6 " />
+                </div>
+            </div>
+            <div class="col-4 col-sm-4 col-md-4 text-center">
+                <div class="row text-center">
+                    <label class="font-weight-bolder text-center">
+                        Fecha Entregado:
+                    </label>
+                </div>
+                <div class="row text-center">
+                    @Html.TextBoxFor(model => model.actividades_desarrollarGerente.act_desa_fecha_finalizada, "{0:yyyy-MM-dd}",
+                  new { type = "date", @class = "datepicker bg-white  text-center form-control col-6 col-sm-6 col-md-6 ", @id = "act_desa_fecha_finalizada", @readonly = "readonly" })
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-6 text-center">
+                <div>
+                    <label class="font-weight-bolder text-center">
+                        Empresa:
+                    </label>
+                </div>
+                @Html.TextAreaFor(model => model.actividades_desarrollarGerente.emp_razon_social,
+                 htmlAttributes: new { @id = "emp_razon_social", @class = "text-center form-control bg-white", @readonly = "readonly" })
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 text-center">
+                <div>
+                    <label class="font-weight-bolder text-center">
+                        Nombre actividad:
+                    </label>
+                </div>
+                @Html.TextAreaFor(model => model.actividades_desarrollarGerente.act_desa_nombre,
+                 htmlAttributes: new { @id = "act_desa_nombre", @class = "text-center form-control bg-white", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-10 col-md-10">
+            <div>
+                <label class="font-weight-bolder">
+                    Oservacion Nombre:
+                </label>
+            </div>
+            @Html.TextAreaFor(model => model.observacion_actividad.obs_act_nombre,
+             htmlAttributes: new { @id = "obs_act_nombre", @class = "text-center form-control bg-white" })
+            <div id="error_obs_act_nombre" class="errordiv"></div>
+        </div>
+        <div class="col-12 col-sm-10 col-md-10">
+            <div>
+                <label class="font-weight-bolder">
+                    Oservacion:
+                </label>
+            </div>
+            @Html.TextAreaFor(model => model.observacion_actividad.obs_act_revisor,
+             htmlAttributes: new { @id = "obs_act_revisor", @class = "text-center form-control bg-white" })
+            <div id="error_obs_obs_act_revisor" class="errordiv"></div>
+        </div>
+
+
+
+        <div>
+            <div class="col-4 col-sm-4 col-md-4">
+                <button type="button" class="btn btn-success" id="guardar">
+                    <i class="fa fa-check-circle"></i>
+                    Guardar
+                </button>
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-4">
+                <a href="@Url.Action("RevisarFormulario", "EvaluarFormulario",new { id= Session["ArchivoId"] })" class="btn btn-secondary">
+                    <i class="fa fa-backward"></i>
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+@section Scripts{
+    <script src="~/Scripts/Scripts_TP/EGG/scriptAgregarObservaciones.js"></script>
+    <script src="~/Scripts/sweetalert/sweetalert.js"></script>
+}

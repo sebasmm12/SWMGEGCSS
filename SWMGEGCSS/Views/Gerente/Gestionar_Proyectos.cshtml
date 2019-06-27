@@ -5,7 +5,7 @@
     var list_expedientes = Model.PList_Expedientes;
     var list_estado_expediente = Model.List_Estado_Expediente;
 }
-
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
 <div class="mt-2 ml-4">
     <div class="container-fluid">
         <div class="row mt-2">
@@ -50,6 +50,7 @@
 @Html.Action("_ModalProyecto","Expediente")
 @Html.Action("_EliminarProyecto","Expediente")
 @Html.Action("_ConsultarProyecto","Expediente")
+@Html.Action("_AgregarArchivoMinam","Expediente")
 <link href="~/Content/style-autocomplete/jquery-ui.min.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @section Scripts{

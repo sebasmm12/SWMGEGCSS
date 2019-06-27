@@ -15,5 +15,7 @@ namespace SWMGEGCSS.Models
         public List<T_aux_auditar_expedientes> list_aux_auditoria_expediente { get; set; }
         public IPagedList<T_auditar_expedientes> Plist_auditoria_expediente { get; set; }
         public IPagedList<T_aux_auditar_expedientes> Plist_aux_auditoria_expediente { get; set; }
+        public List<T_observacion_actividades> list_actividades_observaciones { get; set; }
+        public IPagedList<T_auditoria_observacion_actividades> Plist_auditoria_observacion { get; set; }
     }
 }

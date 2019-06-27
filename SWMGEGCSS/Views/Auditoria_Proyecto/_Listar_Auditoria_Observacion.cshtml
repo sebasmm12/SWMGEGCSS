@@ -1,0 +1,53 @@
+﻿@model SWMGEGCSS.Models.AuditoriaViewModel
+@{
+    var lista_auditoria_observaciones = Model.Plist_auditoria_observacion;
+    var count = 0;
+    Layout = null;
+}
+
+<div id="tableExp">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Fecha de la creacion de la auditoria</th>
+                            <th scope="col">Nombre de la observacion</th>
+                            <th scope="col">Mensaje del revisor</th>
+                            <th scope="col">Mensaje del usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in lista_auditoria_observaciones)
+                        {
+                            count = count + 1;
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            @if (item.audi_obs_act_creacion.ToShortDateString().Equals("01/01/0001"))
+                            {
+                                <td>No se establece la fecha de inicio</td>
+                            }
+                            else
+                            {
+                                <td>@item.audi_obs_act_creacion</td>
+                            }
+                            <td>@item.audi_obs_act_nombre</td>
+                            <td>@item.audi_obs_act_revisor</td>
+                            <td>@item.audi_obs_act_usuario</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+            @Html.PagedListPager(lista_auditoria_observaciones, page => Url.Action("Visualizar_Auditoria_Observacion", "Auditoria_Proyecto", new { obs_act_id = (int)Session["obsid"], page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,55 @@
+﻿@model SWMGEGCSS.Models.EvaluarFormularioViewModel
+@{
+    var lista_obs = Model.Lista_observaciones_actividades;
+    var count = 0;
+    Layout = null;
+}
+<div id="tableExp">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-success">
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre de la Observacion</th>
+                            <th scope="col">Fecha Actualización</th>
+                            <th scope="col">Comentario del Trabajador</th>
+                            <th scope="col">Acciones del Proyecto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in lista_obs)
+                        {
+                            count = count + 1;
+                            <tr class="text-center">
+                                <th scope="row">@count</th>
+                                <td>@item.obs_act_nombre</td>
+                                @if (!item.obs_act_fecha_usuario.ToShortDateString().Equals("01/01/0001"))
+                                {
+                                    <td>@item.obs_act_fecha_usuario.ToShortDateString()  </td>
+                                }
+                                else
+                                {
+                                    <td>  </td>
+                                }
+                                <td>@item.obs_act_usuario</td>
+                                <td>
+                                    <div class="col-12 col-sm-4 col-md-4">
+                                        <button type="button" class="btn btn-warning">
+                                            @Html.ActionLink("Editar", "ModificarObservacion", "EvaluarFormulario", new { id = item.obs_act_id }, new { @style = "color: white !important" })
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
