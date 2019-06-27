@@ -1,0 +1,65 @@
+﻿@model SWMGEGCSS.Models.DetalleUsuarioViewModel
+@{
+    ViewBag.Title = "Recupera_Cuenta";
+    Layout = null;
+}
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="~/Content/animate/animate.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
+<link rel="stylesheet" href="~/Content/Layout_Empresa/waves.min.css" type="text/css" media="all">
+<link rel="stylesheet" href="~/Content/feather.css" />
+<link rel="stylesheet" href="~/Content/Layout_Empresa/chartist.css" type="text/css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/Layout_Empresa/style.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Layout_Empresa/widget.css">
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/Layout_Empresa/alertaservicio.css" />
+<link rel="stylesheet" href="~/Content/animate/animate.css" />
+
+
+
+<link rel="stylesheet" href="~/Content/StyleTP/SEBASTIAN/RegistrarProyecto.css" />
+@section scripts{
+    <script src="~/Scripts/Scripts_TP/LAO LAM/scriptRecuper_Cuenta.js"></script>
+}
+<h2>Recuperar Cuenta</h2>
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        <div class="col-12 col-sm-6 col-md-6">
+            <label class="font-weight-bolder">
+                Correo
+            </label>
+            @Html.EditorFor(model => model.Detalle_Usuario.det_usu_correo, new
+       {
+           htmlAttributes = new { @id = "det_usu_correo", @class = "text-center form-control" }
+       })
+            <div id="error-det-usu-correo" class="errordiv"></div>
+        </div>
+
+
+        <div class="row mt-3 ml-2">
+            <div class="col-12 col-sm-3 col-md-3">
+                <a href="@Url.Action("Login", "Account")" class="btn btn-secondary">
+                    <i class="fa fa-backward">
+
+                    </i>
+                    Regresar
+                </a>
+            </div>
+            <div class="col-12 col-sm-3 col-md-3">
+                <button type="submit" class="btn btn-success" id="boton-enviar-correo">
+                    <i class="fa fa-check-circle"></i>
+                    Enviar Correo
+                </button>
+            </div>
+
+        </div>
+
+    }
+
+</div>

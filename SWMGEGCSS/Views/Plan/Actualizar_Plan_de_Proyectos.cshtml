@@ -13,6 +13,7 @@
     //retorna todos los tipod de servicio vigenetes
     var listaTotalTipoServicio = Model.tipoServicioModel.ListtipoServicio;
     var listaTotalEstadoPlan = Model.lista_plan_estado;
+    int tipoServicioId = (int)Session["tipoServicioId"];
     //var costoTotalPlan = 0;
 
     //
@@ -272,14 +273,20 @@
                                 <td>@item.act_plan_costo </td>
                                 <td>@item.act_plan_tiempo</td>
                                 <td>
-                                    <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
-                                        <i class="fa fa-times-circle"></i>
-                                        Eliminar
-                                    </button>
-                                    <button class="btn btn-warning btnModal" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
-                                        <i class="fa fa-edit" style="color:white !important"></i>
-                                        Actualizar
-                                    </button>
+                                    @{
+                                        
+                                        if (Model.List_tipo_servicio_act.Find(X => X.act_id == item.act_id && X.tipo_servicio_id == tipoServicioId).act_obligatorio == false)
+                                        {
+                                            <button class="btn btn-danger btnModal2" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalEliminarActividadesPlanificadas","Plan")" data-id-target="#EliminarActPlan">
+                                                <i class="fa fa-times-circle"></i>
+                                                Eliminar
+                                            </button>
+                                        }
+                                            <button class="btn btn-warning btnModal" data-id-plan="@listaActividades.act_plan_id" data-url="@Url.Action("_ModalActualizarActividadesPlanificadas","Plan")" data-id-target="#ActualizarActPlan">
+                                                <i class="fa fa-edit" style="color:white !important"></i>
+                                                Actualizar
+                                            </button>
+                                    }
                                 </td>
                             </tr>
                             }

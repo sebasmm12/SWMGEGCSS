@@ -3,6 +3,7 @@
     var listaActividadesDesarrollarAux = Model.listPagedActividadesDesarrollarAux;
     var count = 0;
     Layout = null;
+    DateTime hoy = DateTime.Today;
 }
 
 <div id="tableExp">
@@ -17,6 +18,7 @@
                             <th scope="col">Proyecto</th>
                             <th scope="col">Estado de Activididad</th>
                             <th scope="col">Asignacion</th>
+                            <th scope="col">Fecha fin Exp</th>
                             <th scope="col">Funciones</th>
                         </tr>
                     </thead>
@@ -40,21 +42,33 @@
                                 <td>@item.exp_nombre </td>
                                 <td>@item.est_act_nombre</td>
                                 <td>@estadoAsignacion</td>
+                                <td>@item.exp_fin</td>
                                 <td>
                                     @{
-                                        if (item.usu_asignado == 0 && item.usu_revisor == 0)
+                                        if (item.exp_fin < hoy)
                                         {
-                                            <button class="btn btn-success">
-                                                <i class="fa fa-plus-circle"></i>
-                                                @Html.ActionLink("Asignar Tarea", "RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
-                                            </button>
+                                            <label style="border: 1px solid #C00" class="text-center form-control">
+                                                <Font size="3" color="red">
+                                                    Act. de Proyecto Atrazado
+                                                </Font>
+                                            </label>
                                         }
                                         else
                                         {
-                                            <button class="btn btn-warning">
-                                                <i class="fa fa-edit" style="color:white !important"></i>
-                                                @Html.ActionLink("RE-Asignar Tarea", "ActualizarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
-                                            </button>
+                                            if (item.usu_asignado == 0 && item.usu_revisor == 0)
+                                            {
+                                                <button class="btn btn-success">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    @Html.ActionLink("Asignar Tarea", "RegistrarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-warning">
+                                                    <i class="fa fa-edit" style="color:white !important"></i>
+                                                    @Html.ActionLink("RE-Asignar Tarea", "ActualizarAsignacionActividades_Desarrollar", "ActividadesDesarrollar", new { act_desa_id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                                </button>
+                                            }
                                         }
                                     }
                                 </td>
