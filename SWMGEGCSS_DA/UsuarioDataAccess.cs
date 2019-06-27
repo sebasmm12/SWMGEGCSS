@@ -162,7 +162,7 @@ namespace SWMGEGCSS_DA
             try
             {
                 var operationresult = new OperationResult();
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Imagen_Usuario"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Imagen_Usuario"))
                 {
                     Database.AddInParameter(command, "@imagen", DbType.Binary, usuario.det_usu_imagem);
                     Database.AddInParameter(command, "@codigo", DbType.Int32, usuarios_cuentas.usu_codigo);

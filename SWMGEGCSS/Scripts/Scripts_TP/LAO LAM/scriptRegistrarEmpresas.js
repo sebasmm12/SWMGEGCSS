@@ -56,7 +56,7 @@
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        window.lohcation.href = "/Gerente/Gestionar_Empresas";
+                        window.location.href = "/Gerente/Gestionar_Empresas";
                     }
                 });
             });

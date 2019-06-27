@@ -4,57 +4,76 @@
     var count = 0;
     Layout = null;
 }
-
-<div id="tableExp">
-    <div class="row mt-4">
-        <div class="col-12 col-sm-12 col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead class="bg-success">
-                        <tr class="text-center">
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre de la Actividad</th>
-                            <th scope="col">Fecha Inicio</th>
-                            <th scope="col">Fecha Fin</th>
-                            <th scope="col">Archivo Subido</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in lista_act_des)
-                        {
-                            count = count + 1;
+@if (lista_act_des == null)
+{
+    <label style="border: 1px solid #C00" class="text-center form-control">
+        <Font size="4" color="red">
+            No tiene tareas asignadas :)
+        </Font>
+    </label>    
+}
+else
+{
+    <div id="tableExp">
+        <div class="row mt-4">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-success">
                             <tr class="text-center">
-                                <th scope="row">@count</th>
-                                <td>@item.act_desa_nombre</td>
-                                <td>@item.act_desa_fecha_inicio.ToShortDateString()</td>
-                                <td>@item.act_desa_fecha_fin.ToShortDateString()</td>
-                                <td>@item.act_desa_archivo_nombre</td>
-                                <td>
-                                    @if (item.act_desa_archivo_nombre == null)
-                                    {
-                                        <button type="button" class="btn btn-success">
-                                            <i class="fa fa-edit" style="color:white !important"></i>
-                                            @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button type="button" class="btn btn-warning">
-                                            <i class="fa fa-edit" style="color:white !important"></i>
-                                            @Html.ActionLink("Modificar Archivo", "ModificarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
-                                        </button>
-                                    }
-                                </td>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre de la Actividad</th>
+                                <th scope="col">Fecha Inicio</th>
+                                <th scope="col">Fecha Fin</th>
+                                <th scope="col">Archivo Subido</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in lista_act_des)
+                            {
+                                count = count + 1;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    <td>@item.act_desa_nombre</td>
+                                    <td>@item.act_desa_fecha_inicio.ToShortDateString()</td>
+                                    <td>@item.act_desa_fecha_fin.ToShortDateString()</td>
+                                    <td>@item.act_desa_archivo_nombre</td>
+                                    <td>
+                                        @if (item.act_desa_archivo_nombre == null)
+                                        {
+                                            <button type="button" class="btn btn-success">
+                                                <i class="fa fa-edit" style="color:white !important"></i>
+                                                @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                            </button>
+                                        }
+                                        else if (item.act_desa_fecha_inicio > DateTime.Now)
+                                        {
+                                            <label style="border: 1px solid #C00" class="text-center form-control">
+                                                <Font size="3" color="red">
+                                                    Todavía no puedes iniciar esta tarea
+                                                </Font>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-warning">
+                                                <i class="fa fa-edit" style="color:white !important"></i>
+                                                @Html.ActionLink("Modificar Archivo", "ModificarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
                         }
-                    </tbody>
-                </table>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
+                @Html.PagedListPager(lista_act_des, page => Url.Action("V_Tareas", "Trabajador", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4 col-md-4 col-12 pagedList" data-exp-target="#tableExp">
-            @Html.PagedListPager(lista_act_des, page => Url.Action("V_Tareas", "Trabajador", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
-        </div>
-    </div>
-</div>
+}
