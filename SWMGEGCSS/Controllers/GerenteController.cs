@@ -326,6 +326,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Plan_Proyecto(string searchTerm, string estado, int page = 1)
         {
+            Session["tipoServicioId"] = null;
             Session["ListaActPlanTemp"] = null;
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             if (searchTerm == null && estado == null) {

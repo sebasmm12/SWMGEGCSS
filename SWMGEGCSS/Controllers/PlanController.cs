@@ -181,7 +181,7 @@ namespace SWMGEGCSS.Controllers
             model.List_tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades();
             Session["tipoServicioId"] = tipoServicioModel.tipo_servicio_id;
             //se obtiene la lista de actividades segun el tipo de servicio del plan seleccionado
-            model.List_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(tipoServicioModel.tipo_servicio_id);
+            model.List_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_X_Tipo_Servicio(tipoServicioModel.tipo_servicio_id);
             
             //se obtiene las actividades planificadas previamente
             model.List_Actividades_planeadas_aux = new  ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().FindAll(r => (r.plan_nombre == model.plans_aux.plan_nombre));

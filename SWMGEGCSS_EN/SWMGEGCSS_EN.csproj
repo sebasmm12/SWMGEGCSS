@@ -59,12 +59,6 @@
       <DependentUpon>reporteIE.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reporte\reporteIE1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>reporteIE.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reporte\reporteProyecto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
