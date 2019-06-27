@@ -4,7 +4,7 @@
     var count = 0;
     Layout = null;
 }
-@if (lista_act_des == null)
+@if (lista_act_des.Count == 0)
 {
     <label style="border: 1px solid #C00" class="text-center form-control">
         <Font size="4" color="red">
@@ -26,6 +26,7 @@ else
                                 <th scope="col">Fecha Inicio</th>
                                 <th scope="col">Fecha Fin</th>
                                 <th scope="col">Archivo Subido</th>
+                                <th scope="col">Funciones</th>
                             </tr>
                         </thead>
                         <tbody>
