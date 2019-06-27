@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SWMGEGCSS.Models;
+using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
 namespace SWMGEGCSS.Controllers
 {
@@ -22,9 +23,12 @@ namespace SWMGEGCSS.Controllers
         {
             return View();
         }
+        [HttpGet]
         public ActionResult Servicios()
         {
-            return View();
+            var model = new Visualizar_Servicios();
+            model.list_tipo_servicio = new ServicioEmpresaDataAccess().sp_Consultar_Servicios();
+            return View(model);
         }
         public ActionResult Contactenos()
         {
