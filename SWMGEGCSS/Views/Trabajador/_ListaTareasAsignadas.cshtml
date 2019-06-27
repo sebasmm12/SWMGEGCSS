@@ -4,7 +4,7 @@
     var count = 0;
     Layout = null;
 }
-@if (lista_act_des == null)
+@if (lista_act_des.Count == 0)
 {
     <label style="border: 1px solid #C00" class="text-center form-control">
         <Font size="4" color="red">
@@ -26,6 +26,7 @@ else
                                 <th scope="col">Fecha Inicio</th>
                                 <th scope="col">Fecha Fin</th>
                                 <th scope="col">Archivo Subido</th>
+                                <th scope="col">Funciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,20 +40,20 @@ else
                                     <td>@item.act_desa_fecha_fin.ToShortDateString()</td>
                                     <td>@item.act_desa_archivo_nombre</td>
                                     <td>
-                                        @if (item.act_desa_archivo_nombre == null)
-                                        {
-                                            <button type="button" class="btn btn-success">
-                                                <i class="fa fa-edit" style="color:white !important"></i>
-                                                @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
-                                            </button>
-                                        }
-                                        else if (item.act_desa_fecha_inicio > DateTime.Now)
+                                        @if (item.act_desa_fecha_inicio > DateTime.Now)
                                         {
                                             <label style="border: 1px solid #C00" class="text-center form-control">
                                                 <Font size="3" color="red">
                                                     Todavía no puedes iniciar esta tarea
                                                 </Font>
                                             </label>
+                                        }
+                                        else if (item.act_desa_archivo_nombre == null)
+                                        {
+                                            <button type="button" class="btn btn-success">
+                                                <i class="fa fa-edit" style="color:white !important"></i>
+                                                @Html.ActionLink("Subir Archivo", "AgregarArchivo", "Trabajador", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
+                                            </button>
                                         }
                                         else
                                         {

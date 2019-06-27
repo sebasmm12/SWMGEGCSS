@@ -145,16 +145,15 @@ namespace SWMGEGCSS.Controllers
             operationResult = new ObservacionesDataAccess().sp_actualizar_observacion(observaciones_actividades);
             return Json(new { data = operationResult.NewId }, JsonRequestBehavior.AllowGet);
         }
-
+            
         [HttpGet]
-        public ActionResult CristalReport()
+        public ActionResult ReporteRendimiento()
         {
             EvaluarFormularioViewModel model = new EvaluarFormularioViewModel();
             model.Lista_reportes = new ReporteRendimientoDataAccess().sp_Consultar_Lista_Reporte_Rendimiento();
             ReportDocument rp = new ReportDocument();
             //rp.Load(Path.Combine(Server.MapPath("~/Reporte"), "reporteProyecto.rpt"));
-            //Configurar Despues la ruta
-            rp.Load(@"C:\Users\Gerhard\Desktop\SWMGEGCSS\SWMGEGCSS_EN\Reportes\CrystalReport1.rpt");
+            rp.Load(@"C:\Users\USUARIO\Desktop\PROYECTO TP3\SWMGEGCSS_EN\Reporte\ReporteDeRendimientoGeneral.rpt");
             rp.SetDataSource(model.Lista_reportes);
             Response.Buffer = false;
             Response.ClearContent();
@@ -163,8 +162,6 @@ namespace SWMGEGCSS.Controllers
             stream.Seek(0, SeekOrigin.Begin);
             return File(stream, "application/pdf", "ReporteRendimiento.pdf");
         }
-
-
 
 
         [HttpGet]

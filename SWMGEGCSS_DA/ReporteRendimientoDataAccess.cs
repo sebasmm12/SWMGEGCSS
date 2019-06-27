@@ -12,9 +12,9 @@ namespace SWMGEGCSS_DA
 {
     public class ReporteRendimientoDataAccess : BaseConexion
     {
-        public List<T_reporte_rendimiento> sp_Consultar_Lista_Reporte_Rendimiento()
+        public List<T_reporte_rendimientoAUX> sp_Consultar_Lista_Reporte_Rendimiento()
         {
-            var l_reporte = new List<T_reporte_rendimiento>();
+            var l_reporte = new List<T_reporte_rendimientoAUX>();
             try
             {
                 using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Lista_Reporte_Rendimiento"))
@@ -24,8 +24,9 @@ namespace SWMGEGCSS_DA
                     {
                         while (reader.Read())
                         {
-                            var reporte = new T_reporte_rendimiento();
+                            var reporte = new T_reporte_rendimientoAUX();
                             reporte.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            reporte.det_usu_nombre = DataUtil.DbValueToDefault<String>(reader["det_usu_nombre"]);
                             reporte.rep_ren_act_completadas = DataUtil.DbValueToDefault<int>(reader["rep_ren_act_completadas"]);
                             reporte.rep_ren_act_obs_x_error = DataUtil.DbValueToDefault<int>(reader["rep_ren_act_obs_x_error"]);
                             reporte.rep_ren_atraso = DataUtil.DbValueToDefault<int>(reader["rep_ren_atraso"]);
@@ -41,7 +42,7 @@ namespace SWMGEGCSS_DA
             catch (Exception)
             {
 
-                return new List<T_reporte_rendimiento>();
+                return new List<T_reporte_rendimientoAUX>();
             }
             return l_reporte;
         }

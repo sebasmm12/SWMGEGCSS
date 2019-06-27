@@ -130,6 +130,44 @@ namespace SWMGEGCSS_DA
             return count;
         }
 
+        public T_usuario_cuentas_aux sp_Consultar_Contraseña_Correo(string correo)
+        {
+          
+            try
+            {
+
+                T_usuario_cuentas_aux carpio = new T_usuario_cuentas_aux();
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Consultar_Contraseña_Correo"))
+                {
+
+                    Database.AddInParameter(command, "@det_usu_correo", DbType.String, correo);
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            carpio.det_usu_correo = DataUtil.DbValueToDefault<String>(reader["det_usu_correo"]);
+                            carpio.usu_codigo = DataUtil.DbValueToDefault<Int32>(reader["usu_codigo"]);
+
+                            carpio.usu_usuario = DataUtil.DbValueToDefault<String>(reader["usu_usuario"]);
+                            carpio.usu_contraseña = DataUtil.DbValueToDefault<String>(reader["usu_contraseña"]);
+
+
+                        }
+                    }
+                }
+                return carpio;
+            }
+            catch (Exception)
+            {
+
+                return new T_usuario_cuentas_aux();
+            }
+        }
+
+
+
         public OperationResult sp_Actualizar_Datos_Personales(T_detalle_usuario Usuario)
         {
             try
@@ -157,12 +195,14 @@ namespace SWMGEGCSS_DA
             }
         }
 
+       
+
         public OperationResult sp_Actualizar_Imagen_Usuario(T_detalle_usuario usuario, T_usuario usuarios_cuentas)
         {
             try
             {
                 var operationresult = new OperationResult();
-                using (DbCommand command = Database.GetStoredProcCommand("sp_Insertar_Imagen_Usuario"))
+                using (DbCommand command = Database.GetStoredProcCommand("sp_Actualizar_Imagen_Usuario"))
                 {
                     Database.AddInParameter(command, "@imagen", DbType.Binary, usuario.det_usu_imagem);
                     Database.AddInParameter(command, "@codigo", DbType.Int32, usuarios_cuentas.usu_codigo);

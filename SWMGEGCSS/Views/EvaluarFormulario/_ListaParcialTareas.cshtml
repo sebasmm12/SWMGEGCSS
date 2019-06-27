@@ -30,11 +30,10 @@
                                 <td>@item.act_desa_fecha_finalizada.ToShortDateString()</td>
                                 <td>@item.act_desa_fecha_fin.ToShortDateString()</td>
                                 <td>
-                                    <div class="col-12 col-sm-4 col-md-4">
                                         <button type="button" class="btn btn-warning">
-                                            @Html.ActionLink("Revisar", "RevisarFormulario", "EvaluarFormulario", new { id = item.act_desa_id }, new { @style = "color: white !important" })
+                                            <i class="fa fa-edit" style="color:white !important"></i>
+                                            @Html.ActionLink("Revisar", "RevisarFormulario", "EvaluarFormulario", new { id = item.act_desa_id }, new { @style = "color: white !important;text-decoration :none !important" })
                                         </button>
-                                    </div>
                                 </td>
                             </tr>
 

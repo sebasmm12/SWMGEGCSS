@@ -163,11 +163,24 @@
             $("#ing-egr-fecha").keyup(KeyFecha);
             return false;
         }
-
+        if (fechaIngresada.getFullYear()!==fechaActual.getFullYear()) {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese fecha válida");
+            $("#ing-egr-fecha").focus();
+            $("#ing-egr-fecha").keyup(KeyFecha);
+            return false;
+        }
+        if (fechaIngresada.getDate()>fechaActual.getDate()) {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese fecha válida");
+            $("#ing-egr-fecha").focus();
+            $("#ing-egr-fecha").keyup(KeyFecha);
+            return false;
+        }
         if (fechaIngresada.getMonth() === fechaActual.getMonth()) {
             if (fechaActual.getDate() < 29) {
                 //true
-                alert("aqui1");
+           
                 addgood("ing-egr-fecha");
                 attributes("error-ing-egr-fecha");
                 return true;
@@ -186,7 +199,7 @@
                 addgood("ing-egr-fecha");
                 attributes("error-ing-egr-fecha");
                 return true;
-                alert("aqui1¿2");
+
             }
             else {
                 adderror("ing-egr-fecha");
@@ -195,6 +208,13 @@
                 $("#ing-egr-fecha").keyup(KeyFecha);
                 return false;
             }
+        }
+        else {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
+            $("#ing-egr-fecha").focus();
+            $("#ing-egr-fecha").keyup(KeyFecha);
+            return false;
         }
 
 
@@ -339,7 +359,7 @@
     }
     var KeyFecha = function () {
         var $valor = $("#ing-egr-fecha");
-        var fechaIngresada = new Date($valor);
+        var fechaIngresada = new Date($valor.val());
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
 
         var dateActual = new Date();
@@ -352,18 +372,27 @@
             adderror("ing-egr-fecha");
             alert("aa4");
         }
+        else if (fechaIngresada.getFullYear() !== fechaActual.getFullYear()) {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese fecha válida");
+        }
+        if (fechaIngresada.getDate() > fechaActual.getDate()) {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese fecha válida");
+
+        }
         else if (fechaIngresada.getMonth() === fechaActual.getMonth()) {
             if (fechaActual.getDate() < 29) {
                 //true
                 addgood("ing-egr-fecha");
                 attributes("error-ing-egr-fecha");
-                alert("aa");
+         
 
             }
             else {
                 adderror("ing-egr-fecha");
                 negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
-                alert("aa1");
+            
             }
         }
         else if (fechaIngresada.getMonth() === fechaActual.getMonth() - 1) {
@@ -371,13 +400,17 @@
                 //true
                 addgood("ing-egr-fecha");
                 attributes("error-ing-egr-fecha");
-                alert("aa2");
+             
             }
             else {
                 adderror("ing-egr-fecha");
                 negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
-                alert("aa3");
+             
             }
+        }
+        else {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
         }
     }
     var KeyMonto = function () {

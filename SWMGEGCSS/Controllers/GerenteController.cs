@@ -46,7 +46,7 @@ namespace SWMGEGCSS.Controllers
             model.List_Expediente = new ExpedienteDataAccess().sp_Consultar_Lista_Proyectos_Reporte().FindAll(X => (X.est_exp_nombre == model.Estado_Expediente.est_exp_nombre));
             ReportDocument rp = new ReportDocument();
             //rp.Load(Path.Combine(Server.MapPath("~/Reporte"), "reporteProyecto.rpt"));
-            rp.Load(@"C:\Users\USUARIO\Desktop\PROYECTO TP3\SWMGEGCSS_EN\Reporte\reporteProyecto.rpt");
+            rp.Load(@"C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte\reporteProyecto.rpt");
             rp.SetDataSource(model.List_Expediente);
             Response.Buffer = false;
             Response.ClearContent();
@@ -89,7 +89,7 @@ namespace SWMGEGCSS.Controllers
             model.lista_ingresos_egresos_aux = list_Ing_Eg_Aux;
             ReportDocument rp = new ReportDocument();
             //C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte
-            rp.Load(@"C:\Users\USUARIO\Desktop\PROYECTO TP3\SWMGEGCSS_EN\Reporte\reporteIE.rpt");
+            rp.Load(@"C:\Users\hp\Desktop\Ing. Informatica Ciclo 2019 - I\Taller de Proyectos II\TP-2\SWMGEGCSS_EN\Reporte\reporteIE.rpt");
             rp.SetDataSource(model.lista_ingresos_egresos_aux);      
             Response.Buffer = false;
             Response.ClearContent();
@@ -326,6 +326,7 @@ namespace SWMGEGCSS.Controllers
         }
         public ActionResult Gestionar_Plan_Proyecto(string searchTerm, string estado, int page = 1)
         {
+            Session["tipoServicioId"] = null;
             Session["ListaActPlanTemp"] = null;
             GestionarPlanProyectoViewModel model = new GestionarPlanProyectoViewModel();
             if (searchTerm == null && estado == null) {
@@ -469,6 +470,17 @@ namespace SWMGEGCSS.Controllers
             NotificacionesViewModel notificaciones = new NotificacionesViewModel();
             notificaciones.list_notificaciones = new NotificacionesDataAccess().sp_Consultar_Notificaciones_Top(usu_codigo);
             return PartialView("_Notifications",notificaciones);
+        }
+        public ActionResult Evaluar_IE_Cantidad(DateTime fechaIni, DateTime fechaFin)
+        {
+            var model = new Gestionar_I_EViewModel();
+            model.lista_ingresos_egresos = new   Ing_EgrDataAccess().sp_Consultar_Lista_Ing_Egr_X_fecha(fechaIni, fechaFin);
+            var cont = 0;
+            if(model.lista_ingresos_egresos != null)
+            {
+                cont = 1;
+            }
+            return Json(cont, JsonRequestBehavior.AllowGet);
         }
     }
 }

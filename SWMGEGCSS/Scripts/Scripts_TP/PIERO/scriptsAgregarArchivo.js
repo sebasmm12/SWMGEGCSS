@@ -16,7 +16,7 @@
                         //realizamos la petición ajax con la función de jquery
                         $.ajax({
                             type: "POST",
-                            url: "/Trabajador/AgregarArchivo",
+                            url: localStorage.getItem(1) + "/Trabajador/AgregarArchivo",
                             data: Actividad_aux3,
                             contentType: false, //importante enviar este parametro en false
                             processData: false, //importante enviar este parametro en false
@@ -34,7 +34,7 @@
                                     confirmButtonText: 'OK'
                                 }).then((result) => {
                                     if (result.value) {
-                                        window.location.href = "/Trabajador/V_Tareas";
+                                        window.location.href = localStorage.getItem(1) +"/Trabajador/V_Tareas";
                                     }
                                 });
                             }

@@ -18,33 +18,44 @@
                             <th scope="col">Acciones del Proyecto</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var item in lista_obs)
-                        {
-                            count = count + 1;
+                    @if (lista_obs.Count == 0)
+                    {
+                        <tbody>
                             <tr class="text-center">
-                                <th scope="row">@count</th>
-                                <td>@item.obs_act_nombre</td>
-                                @if (!item.obs_act_fecha_usuario.ToShortDateString().Equals("01/01/0001"))
-                                {
-                                    <td>@item.obs_act_fecha_usuario.ToShortDateString()  </td>
-                                }
-                                else
-                                {
-                                    <td>  </td>
-                                }
-                                <td>@item.obs_act_usuario</td>
-                                <td>
-                                    <div class="col-12 col-sm-4 col-md-4">
-                                        <button type="button" class="btn btn-warning">
-                                            @Html.ActionLink("Editar", "ModificarObservacion", "EvaluarFormulario", new { id = item.obs_act_id }, new { @style = "color: white !important" })
-                                        </button>
-                                    </div>
-                                </td>
+                                <td colspan="5">No hay observaciones en este proyecto</td>
                             </tr>
+                        </tbody>
+                    }
+                    else
+                    {
+                        <tbody>
+                            @foreach (var item in lista_obs)
+                            {
+                                count = count + 1;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    <td>@item.obs_act_nombre</td>
+                                    @if (!item.obs_act_fecha_usuario.ToShortDateString().Equals("01/01/0001"))
+                                    {
+                                        <td>@item.obs_act_fecha_usuario.ToShortDateString()  </td>
+                                    }
+                                    else
+                                    {
+                                        <td>  </td>
+                                    }
+                                    <td>@item.obs_act_usuario</td>
+                                    <td>
+                                        <div class="col-12 col-sm-4 col-md-4">
+                                            <button type="button" class="btn btn-warning">
+                                                @Html.ActionLink("Editar", "ModificarObservacion", "EvaluarFormulario", new { id = item.obs_act_id }, new { @style = "color: white !important" })
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
 
-                        }
-                    </tbody>
+                            }
+                        </tbody>
+                    }
                 </table>
             </div>
         </div>
