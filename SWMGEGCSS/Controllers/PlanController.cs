@@ -159,13 +159,15 @@ namespace SWMGEGCSS.Controllers
 
             //se obtiene los valores del tipo servicio del plan seleccionado
             var tipoServicioModel = new PlanDataAccess().sp_Consultar_Lista_Tipo_Servicio().Find(x => (x.tipo_servicio_nombre == model.plans_aux.tipo_servicio_nombre));
+            model.List_tipo_servicio_act = new ActividadesDataAccess().sp_consultar_lista_tipo_servicio_actividades();
+            Session["tipoServicioId"] = tipoServicioModel.tipo_servicio_id;
             //se obtiene la lista de actividades segun el tipo de servicio del plan seleccionado
             model.List_Actividades = new ActividadesDataAccess().sp_Consultar_Actividades_Diferentes_Plan(tipoServicioModel.tipo_servicio_id);
             
             //se obtiene las actividades planificadas previamente
             model.List_Actividades_planeadas_aux = new  ActividadesDataAccess().sp_Consultar_Lista_Actividades_Planeadas_aux().FindAll(r => (r.plan_nombre == model.plans_aux.plan_nombre));
             model.List_Actividades_planeadas = new ActividadesDataAccess().sp_Consultar_Listar_Actividades_Planeadas().FindAll(r => (r.plan_id == id));
-
+            
             /*restar valores*/
 
             var costoTotalPlan = 0.0;

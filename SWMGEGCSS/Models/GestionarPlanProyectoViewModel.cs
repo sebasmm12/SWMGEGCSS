@@ -31,5 +31,6 @@ namespace SWMGEGCSS.Models
         public string tipo_estado { get; set; }
 
         public T_tipo_servicio_actividades tipo_servicio_act { get; set; }
+        public List<T_tipo_servicio_actividades> List_tipo_servicio_act { get; set; }
     }
 }
