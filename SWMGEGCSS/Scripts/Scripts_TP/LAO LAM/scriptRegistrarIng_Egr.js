@@ -161,6 +161,7 @@
         attributes("error-ing-egr-nombre");
         return true;    
     }
+
     function validar_fecha(fechaa) {
         var fechaingresada = new date($("#ing-egr-fecha").val());
         var fechaactual = new date();

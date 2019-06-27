@@ -6,8 +6,8 @@
 
         var vFechaIni = validar_fecha_inicio($fechaIni.val());
         var vFechaFin = validar_fecha_fin($fechaFin.val());
-        var vCoherenciaFecha = validar_coherencia_fechas();
-        if (vFechaIni === false || vFechaFin === false /*|| validar_coherencia_fechas === false*/) {
+        //var vCoherenciaFecha = validar_coherencia_fechas();
+        if (vFechaIni === false || vFechaFin === false || validar_coherencia_fechas() === false || Validar_IE_Registros() === false) {
             return false;
         } else {
             var fechainicio = document.getElementById("fechaInicio");
@@ -24,6 +24,26 @@
         }
     };
 
+
+
+    function Validar_IE_Registros() {
+        var fechainicio = document.getElementById("fechaInicio");
+        var fechafin = document.getElementById("fechaFin");
+        $.ajax({
+            url: "/Gerente/Evaluar_IE_Cantidad",
+            method: "GET",
+            async: false,
+            data: { fechaIni: fechainicio.value, fechaFin: fechafin.value },
+            dataType: "json"
+        }).done(function (data) {
+            if (data === 0) {
+                adderror("cant-reg");
+                negativeattributes("cant-reg", 'No existe flujo Financiero para esa Fecha');
+                return false;
+            }
+            });
+        return true;
+    }
     function validar_fecha_inicio(id) {
         var fechaIngresada = new Date($("#fechaInicio").val());
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
@@ -33,12 +53,12 @@
 
         if (fechaIngresada < dateActual) {
             attributes("error-fechaini-repo");
-            addgood("error-fechaini-repo");
+            addgood("fechaInicio");
             $("#fechaInicio").change(keyfechax);
             return true;
         } else {
             negativeattributes("error-fechaini-repo", 'la fecha debe ser menor a la actual');
-            adderror("error-fechaini-repo");
+            adderror("fechaInicio");
             $("#fechaInicio").change(keyfechax);
             return false;
         }
@@ -52,10 +72,10 @@
 
         if (fechaIngresada < dateActual) {
             attributes("error-fechaini-repo");
-            addgood("error-fechaini-repo");
+            addgood("fechaInicio");
         } else {
             negativeattributes("error-fechaini-repo", 'la fecha debe ser menor a la actual');
-            adderror("error-fechaini-repo");
+            adderror("fechaInicio");
         }
     };
 
@@ -69,12 +89,12 @@
     
         if (fechaIngresada < dateActual) {
             attributes("error-fechafin-repo");
-            addgood("error-fechafin-repo");
+            addgood("fechaFin");
             $("#fechaFin").change(keyfechaJ);
             return true;
         } else {
             negativeattributes("error-fechafin-repo", 'la fecha debe ser menor a la actual');
-            adderror("error-fechafin-repo");
+            adderror("fechaFin");
             $("#fechaFin").change(keyfechaJ);
             return false;
         }
@@ -88,10 +108,10 @@
 
         if (fechaIngresada < dateActual) {
             attributes("error-fechafin-repo");
-            addgood("error-fechafin-repo");
+            addgood("fechaFin");
         } else {
             negativeattributes("error-fechafin-repo", 'la fecha debe ser menor a la actual');
-            adderror("error-fechafin-repo");
+            adderror("fechaFin");
         }
     };
 

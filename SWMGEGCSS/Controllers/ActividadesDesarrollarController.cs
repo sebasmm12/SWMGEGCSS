@@ -177,7 +177,7 @@ namespace SWMGEGCSS.Controllers
             model.actividadesDesarrollarAux = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar_Aux().Find(X => (X.act_desa_id == act_desa_id));
             model.actividadesDesarrollar = new ActividadesDesarrollarDataAccess().sp_Listar_Actividades_Desarrollar().Find(X => (X.act_desa_id == act_desa_id));
             model.listDetalleUsuario = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador_asignacion();
-            model.usuarioEncargado = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajador_asignacion().Find(X => X.usu_codigo == model.actividadesDesarrollar.usu_asignado);
+            model.usuarioEncargado = new ActividadesDesarrollarDataAccess().sp_listar_detalle_usuario_trabajadorU().Find(X => X.usu_codigo == model.actividadesDesarrollar.usu_asignado);
             Session["actividadesDesarrollar"] = model.actividadesDesarrollar;
             Session["act_desa_id"] = act_desa_id;
 

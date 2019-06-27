@@ -50,6 +50,52 @@ namespace SWMGEGCSS_DA
             }
             return listaActividadesDesarrollar;
         }
+
+
+        public List<T_actividades_desarrollar> sp_Listar_Actividades_DesarrollarU()
+        {
+            List<T_actividades_desarrollar> listaActividadesDesarrollar = new List<T_actividades_desarrollar>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_actividades_desarrollarU"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_actividades_desarrollar tad = new T_actividades_desarrollar();
+                            tad.act_desa_id = DataUtil.DbValueToDefault<int>(reader["act_desa_id"]);
+                            tad.exp_id = DataUtil.DbValueToDefault<int>(reader["exp_id"]);
+                            tad.usu_creador = DataUtil.DbValueToDefault<int>(reader["usu_creador"]);
+                            tad.act_desa_fecha_inicio = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_inicio"]);
+                            tad.act_desa_fecha_fin = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_fin"]);
+                            tad.act_desa_fecha_finalizada = DataUtil.DbValueToDefault<DateTime>(reader["act_desa_fecha_finalizada"]);
+                            tad.est_act_id = DataUtil.DbValueToDefault<int>(reader["est_act_id"]);
+                            tad.usu_revisor = DataUtil.DbValueToDefault<int>(reader["usu_revisor"]);
+                            tad.usu_asignado = DataUtil.DbValueToDefault<int>(reader["usu_asignado"]);
+                            tad.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
+                            tad.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            tad.act_desa_archivourl = DataUtil.DbValueToDefault<string>(reader["act_desa_archivourl"]);
+                            tad.act_desa_revisor_obs = DataUtil.DbValueToDefault<string>(reader["act_desa_revisor_obs"]);
+                            tad.act_desa_comentario = DataUtil.DbValueToDefault<string>(reader["act_desa_comentario"]);
+                            tad.act_desa_archivo_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_archivo_nombre"]);
+              
+
+                            listaActividadesDesarrollar.Add(tad);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return new List<T_actividades_desarrollar>();
+            }
+            return listaActividadesDesarrollar;
+        }
+
+
+
+
         public List<T_actividades_desarrollar> sp_Listar_Actividades_Desarrollar_por_ExpedienteId(int exp_id)
         {
             List<T_actividades_desarrollar> listaActividadesDesarrollar = new List<T_actividades_desarrollar>();
@@ -114,6 +160,7 @@ namespace SWMGEGCSS_DA
                             tad.usu_asignado = DataUtil.DbValueToDefault<int>(reader["usu_asignado"]);
                             tad.act_desa_nombre = DataUtil.DbValueToDefault<string>(reader["act_desa_nombre"]);
                             tad.act_desa_descripcion = DataUtil.DbValueToDefault<string>(reader["act_desa_descripcion"]);
+                            tad.exp_fin = DataUtil.DbValueToDefault<DateTime>(reader["exp_fin"]);
                             listaActividadesDesarrollarAux.Add(tad);
                         }
                     }
@@ -211,6 +258,46 @@ namespace SWMGEGCSS_DA
                 return new List<T_detalle_usuario>();
             }
         }
+
+
+
+        public List<T_detalle_usuario> sp_listar_detalle_usuario_trabajadorU()
+        {
+            List<T_detalle_usuario> listaDetalleUsuario = new List<T_detalle_usuario>();
+            try
+            {
+                using (DbCommand command = Database.GetStoredProcCommand("sp_listar_detalle_trabajadorU"))
+                {
+                    using (IDataReader reader = Database.ExecuteReader(command))
+                    {
+                        while (reader.Read())
+                        {
+                            T_detalle_usuario det_usu = new T_detalle_usuario();
+                            det_usu.usu_codigo = DataUtil.DbValueToDefault<int>(reader["usu_codigo"]);
+                            det_usu.det_usu_nombre = DataUtil.DbValueToDefault<string>(reader["det_usu_nombre"]);
+                            det_usu.det_usu_correo = DataUtil.DbValueToDefault<string>(reader["det_usu_correo"]);
+                            det_usu.det_usu_direccion = DataUtil.DbValueToDefault<string>(reader["det_usu_direccion"]);
+                            det_usu.det_usu_telefono = DataUtil.DbValueToDefault<string>(reader["det_usu_telefono"]);
+                            det_usu.det_usu_sexo = DataUtil.DbValueToDefault<string>(reader["det_usu_sexo"]);
+                            det_usu.det_usu_tip_doc = DataUtil.DbValueToDefault<int>(reader["det_usu_tip_doc"]);
+                            det_usu.det_usu_tip_doc_numero = DataUtil.DbValueToDefault<string>(reader["det_usu_tip_doc_numero"]);
+                            //det_usu.det_usu_imagem = DataUtil.DbValueToDefault<byte[]>(reader["det_usu_imagen"]);
+                            det_usu.tipo_det_usu_tipo = DataUtil.DbValueToDefault<int>(reader["tipo_det_usu_tipo"]);
+                            det_usu.det_usu_especialidad = DataUtil.DbValueToDefault<string>(reader["det_usu_especialidad"]);
+                            listaDetalleUsuario.Add(det_usu);
+                        }
+                        return listaDetalleUsuario;
+                    }
+                }
+            }
+            catch
+            {
+                return new List<T_detalle_usuario>();
+            }
+        }
+
+
+
         public List<T_detalle_usuario> sp_listar_detalle_usuario_trabajador_asignacion()
         {
             List<T_detalle_usuario> listaDetalleUsuario = new List<T_detalle_usuario>();
