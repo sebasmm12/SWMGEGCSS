@@ -199,7 +199,7 @@
                 addgood("ing-egr-fecha");
                 attributes("error-ing-egr-fecha");
                 return true;
-               
+
             }
             else {
                 adderror("ing-egr-fecha");
@@ -208,6 +208,13 @@
                 $("#ing-egr-fecha").keyup(KeyFecha);
                 return false;
             }
+        }
+        else {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
+            $("#ing-egr-fecha").focus();
+            $("#ing-egr-fecha").keyup(KeyFecha);
+            return false;
         }
 
 
@@ -352,7 +359,7 @@
     }
     var KeyFecha = function () {
         var $valor = $("#ing-egr-fecha");
-        var fechaIngresada = new Date($valor);
+        var fechaIngresada = new Date($valor.val());
         fechaIngresada.setDate(fechaIngresada.getDate() + 1);
 
         var dateActual = new Date();
@@ -400,6 +407,10 @@
                 negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
              
             }
+        }
+        else {
+            adderror("ing-egr-fecha");
+            negativeattributes("error-ing-egr-fecha", "Ingrese Fecha válida");
         }
     }
     var KeyMonto = function () {
