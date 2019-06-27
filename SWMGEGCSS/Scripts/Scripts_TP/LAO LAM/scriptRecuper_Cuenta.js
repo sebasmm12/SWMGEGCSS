@@ -1,6 +1,6 @@
-﻿$('#myModal').on('shown.bs.modal', function () {
+﻿/*$('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
-})
+})*/
 $(function () {
 
     validacion = function () {
@@ -11,9 +11,33 @@ $(function () {
             return false;
         }
         else {
-            return true;
+            $.ajax({
+                url: "/Account/Recuperar_Cuenta",
+                method: "POST",
+                data: $("form").serialize(),
+                dataType: "json"
+            }).done(function (data) {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Se envió exitosamente',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = "/Account/Login";
+                    }
+                });
+            });
         }
+        return false;
+    };
 
+    var maximoNumeroCaracteres50 = function maxCharacters(X) {
+        if (X.length > 50) {
+            return true;
+        } else {
+            return false;
+        }
+    };
         function validar_det_usu_correo(correo) {
             var regular = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             if (regular.test(correo) === false) {
@@ -65,8 +89,7 @@ $(function () {
                 attributes("error-det-usu-correo");
             }
 
-        }
-    };
+        };
 
 
 

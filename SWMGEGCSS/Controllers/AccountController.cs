@@ -7,6 +7,7 @@ using SWMGEGCSS.Models;
 using SWMGEGCSS_DA;
 using SWMGEGCSS_EN;
 using System.Globalization;
+using System.IO;
 namespace SWMGEGCSS.Controllers
 {
     public class AccountController : Controller
@@ -90,14 +91,29 @@ namespace SWMGEGCSS.Controllers
 
 
         [HttpPost]
-        public ActionResult Gestionar_Datos_Personales(T_detalle_usuario usuario)
+        public ActionResult Gestionar_Datos_Personales(T_detalle_usuario usuario, HttpPostedFileBase imagen)
         {
 
             var model = new DetalleUsuarioViewModel();
 
             model.Detalle_Usuario = usuario;
             model.Detalle_Usuario.usu_codigo = (int)Session["login"];
+            var modelCuentas = new UsuarioViewModel();
             var operationResult = new UsuarioDataAccess().sp_Actualizar_Datos_Personales(model.Detalle_Usuario);
+
+            if (imagen != null && imagen.ContentLength > 0)
+            {
+                byte[] imagenData = null;
+                using (var binaryImagen = new BinaryReader(imagen.InputStream))
+                {
+                    imagenData = binaryImagen.ReadBytes(imagen.ContentLength);
+                }
+                Imagen imagenes = new Imagen();
+                imagenes.Imagenes = imagenData;
+                model.Detalle_Usuario.det_usu_imagem = imagenData;
+                var operationReuslt3 = new OperationResult();
+                operationReuslt3 = new UsuarioDataAccess().sp_Actualizar_Imagen_Usuario(model.Detalle_Usuario, modelCuentas.Usuario);
+            }
             //  return RedirectToAction("Index","Gerente");
             return Json(operationResult.NewId, JsonRequestBehavior.AllowGet);
         }
@@ -105,47 +121,51 @@ namespace SWMGEGCSS.Controllers
         [HttpGet]
         public ActionResult Recuperar_Cuenta()
         {
-            var model = new DetalleUsuarioViewModel();
+            
             return View();
         }
         [HttpPost]
         public ActionResult Recuperar_Cuenta(T_detalle_usuario usuario)
         {
+
             System.Net.Mail.MailMessage mensaje = new System.Net.Mail.MailMessage();
-            mensaje.To.Add("magincho1000@gmail.com");
+            //   mensaje.To.Add(usuario.det_usu_correo);
+            mensaje.To.Add("carloslau2709@gmail.com");
+            mensaje.Subject = "Recupera contraseña";
+            mensaje.SubjectEncoding = System.Text.Encoding.UTF8;
 
+            mensaje.Body = "Contraseña";
            
-            mensaje.Subject="Recupera contraseña";
-            mensaje.SubjectEncoding=System.Text.Encoding.UTF8;
-
-            mensaje.Body = "";
+           // mensaje.From = new System.Net.Mail.MailAddress("carloslau2709@gmail.com");//desde donde
+            mensaje.From = new System.Net.Mail.MailAddress("a.no.n.im.o@hotmail.com", "Anonimo Anonimo anonimo", System.Text.Encoding.UTF8);
             mensaje.BodyEncoding = System.Text.Encoding.UTF8;
-            mensaje.IsBodyHtml = false;
-
-            mensaje.From = new System.Net.Mail.MailAddress("carloslau2709@gmail.com");//desde donde
+            mensaje.IsBodyHtml = true;
 
 
-            System.Net.Mail.SmtpClient trabajador = new System.Net.Mail.SmtpClient();
-
-            trabajador.Credentials = new System.Net.NetworkCredential("carloslau2709@gmail.com", "HOLA2750398");
-
-
-            trabajador.Port = 587;
-            trabajador.EnableSsl = true;
-
-
-            trabajador.Host = "smtp.gmail.com";
-
+            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("a.no.n.im.o@hotmail.com", "qwepoi10");
+            //hotmail
+            client.Port = 587; // ùerto de envio tanto de Hotmail como para Gmail
+            client.Host = "smtp.live.com";// Protocolo Simple de Transferencia de Correo de (Hotmail)
+                                          //
+            client.EnableSsl = true;
+            client.Send(mensaje);
             try
             {
-                trabajador.Send(mensaje);
+               
+                //Enviamos el mensaje
+                // MessageBox.Show("Mensaje Enviado Correctamente", "Correo C#", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //   sw = false;
             }
-            catch(System.Net.Mail.SmtpException ex)
+            catch (System.Net.Mail.SmtpException)
             {
-
+                //   MessageBox.Show("Error");
             }
-            return RedirectToAction("Login","Account");
+
+           
+            return RedirectToAction("Login", "Account");
         }
+       
 
         public ActionResult GENERAR_FORMULARIOS()
         {
