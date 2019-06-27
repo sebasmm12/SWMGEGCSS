@@ -39,43 +39,41 @@
                                     <td>
                                         @if (item.est_exp_nombre.Equals("Aprobado") || item.est_exp_nombre.Equals("En Ejecucion"))
                                         {
-                                            <button type="button" class="btn btn-warning btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_ModalProyecto","Expediente")" data-id-target="#ModalProyecto">
+                                            <button type="button" class="btn btn-warning btnModal btnMov" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_ModalProyecto","Expediente")" data-id-target="#ModalProyecto">
                                                 <i class="fa fa-edit" style="color:white !important"></i>
                                                 <span style="color:white">Modificar</span>
                                             </button>
-                                            <button type="button" class="btn btn-danger btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_EliminarProyecto","Expediente")" data-id-target="#ModalEliminarProyecto">
+                                            <button type="button" class="btn btn-danger btnModal btnMov" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_EliminarProyecto","Expediente")" data-id-target="#ModalEliminarProyecto">
                                                 <i class="fa fa-times"></i>
                                                 Eliminar
                                             </button>
                                         }
                                         @if (item.est_exp_nombre.Equals("Cancelado"))
                                         {
-                                            <button type="button" class="btn btn-success btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_EliminarProyecto","Expediente")">
+                                            <button type="button" class="btn btn-success btnModal btnMov" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_EliminarProyecto","Expediente")">
                                                 <i class="fa fa-check"></i>
                                                 Activar Proyecto
                                             </button>
                                         }
                                         else
                                         {
-                                            <button type="button" class="btn btn-info btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_ConsultarProyecto","Expediente")" data-id-target="#ModalConsultarProyecto">
+                                            <button type="button" class="btn btn-info btnModal btnMov" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_ConsultarProyecto","Expediente")" data-id-target="#ModalConsultarProyecto">
                                                 <i class="fa fa-eye"></i>
                                                 Consultar Proyecto
                                             </button>
                                         }
                                         @if (item.est_exp_nombre.Equals("En Ejecucion") && item.cantidad_actividades_desarrollar == item.cantidad_actividades_terminar)
                                         {
-                                            <button type="button" class="btn btn-outline-success btnModal" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_AgregarArchivoMinam","Expediente")" data-id-target="#ModalAgregarArchivoMinam">
+                                            <button type="button" class="btn btn-outline-success btnModal btnMov" data-id-proyecto="@item.exp_id" data-url="@Url.Action("_AgregarArchivoMinam","Expediente")" data-id-target="#ModalAgregarArchivoMinam">
                                                 <i class="fa fa-award"></i>
                                                Certificado de la MINAM
                                             </button>
                                         }
-
-
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-info">
+                                        <button type="button" class="btn btn-info btnMov">
                                             <i class="fab fa-searchengin" style="color:white !important"></i>
-                                            @Html.ActionLink("Ver Auditorias","Visualizar_Auditoria", "Auditoria_Proyecto", new { exp_id = item.exp_id }, new { @style = "color: white" })
+                                            @Html.ActionLink("Ver Auditorias", "Visualizar_Auditoria", "Auditoria_Proyecto", new { exp_id = item.exp_id }, new { @style = "color: white !important;text-decoration :none !important; font-size: 16px" })
                                         </button>
                                     </td>
                                 </tr>

@@ -19,26 +19,37 @@
                             <th scope="col">Mensaje del usuario</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var item in lista_auditoria_observaciones)
-                        {
-                            count = count + 1;
-                        <tr class="text-center">
-                            <th scope="row">@count</th>
-                            @if (item.audi_obs_act_creacion.ToShortDateString().Equals("01/01/0001"))
+                    @if (lista_auditoria_observaciones.Count == 0)
+                    {
+                        <tbody>
+                            <tr class="text-center">
+                                <td colspan="5">No hay registros de auditorias de esta observación</td>
+                            </tr>
+                        </tbody>
+                    }
+                    else
+                    {
+                        <tbody>
+                            @foreach (var item in lista_auditoria_observaciones)
                             {
-                                <td>No se establece la fecha de inicio</td>
+                                count = count + 1;
+                                <tr class="text-center">
+                                    <th scope="row">@count</th>
+                                    @if (item.audi_obs_act_creacion.ToShortDateString().Equals("01/01/0001"))
+                                    {
+                                        <td>No se establece la fecha de inicio</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.audi_obs_act_creacion</td>
+                                    }
+                                    <td>@item.audi_obs_act_nombre</td>
+                                    <td>@item.audi_obs_act_revisor</td>
+                                    <td>@item.audi_obs_act_usuario</td>
+                                </tr>
                             }
-                            else
-                            {
-                                <td>@item.audi_obs_act_creacion</td>
-                            }
-                            <td>@item.audi_obs_act_nombre</td>
-                            <td>@item.audi_obs_act_revisor</td>
-                            <td>@item.audi_obs_act_usuario</td>
-                        </tr>
-                        }
-                    </tbody>
+                        </tbody>
+                    }
                 </table>
             </div>
         </div>

@@ -599,7 +599,6 @@ namespace SWMGEGCSS.Controllers
             {
                 listaActividadesPlaneadasTemp = (List<T_actividades_planeadas>)Session["ListaActividades"];
                 listaActividadesPlaneadasTemp.Add(act_plan);
-
             }
             Session["ListaActividades"] = listaActividadesPlaneadasTemp;
             return Json(1, JsonRequestBehavior.AllowGet);

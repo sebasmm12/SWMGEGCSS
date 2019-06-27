@@ -36,15 +36,15 @@
                             <td>
 
                              
-                                    <button type="button" class="btn btn-warning">
+                                    <button type="button" class="btn btn-warning actualizar_empresa" >
                                         @Html.ActionLink("Actualizar Empresa", "Actualizar_Empresa", "Empresa", new { emp_ruc = item.emp_ruc }, new { @style = "color: white !important" })
                                     </button>
-                                    <button type="button" class="btn btn-danger btnModal" data-ruc-empresa="@item.emp_ruc" data-url="@Url.Action("_EliminarEmpresa","Empresa", new { emp_ruc = item.emp_ruc })" data-id-target="#ModalEliminarEmpresa">
+                                    <button type="button" class="btn btn-danger btnModal"  data-ruc-empresa="@item.emp_ruc" data-url="@Url.Action("_EliminarEmpresa","Empresa", new { emp_ruc = item.emp_ruc })" data-id-target="#ModalEliminarEmpresa">
                                         <i class="fa fa-tomes"></i>
                                         Eliminar
                                     </button>
                                 
-                                    <button type="button" class="btn btn-success btnModal" data-ruc-empresa="@item.emp_ruc" data-url="@Url.Action("_EliminarEmpresa","Empresa", new { emp_ruc = item.emp_ruc })" data-id-target="#ModalEliminarEmpresa">
+                                    <button type="button" class="btn btn-success btnModal"  data-ruc-empresa="@item.emp_ruc" data-url="@Url.Action("_EliminarEmpresa","Empresa", new { emp_ruc = item.emp_ruc })" data-id-target="#ModalEliminarEmpresa">
                                         <i class="fa fa-tomes"></i>
                                         Activar Empresa
                                     </button>

@@ -13,7 +13,7 @@
                 var $newhtml = $(data);
                 $target.replaceWith($newhtml);
                 $(modal).modal();
-                 $(".btnEliminaCita").each(eliminaCita);
+                
             });
             return false;
         });
@@ -30,7 +30,9 @@
         }).done(function (data) {
             var target = $a.parents("div.pagedList").attr("data-exp-target");
             $(target).replaceWith(data);
-
+            $(".btnModal").each(envioajaxModal);
+            $(".btnModal1").each(envioajaxModal);
+            $(".btnEliminaCita").each(eliminaCita);
         });
         return false;
     };

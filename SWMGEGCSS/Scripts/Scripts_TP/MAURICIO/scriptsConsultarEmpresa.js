@@ -1,6 +1,48 @@
 ﻿$(function () {
     var id_proyecto = 0;
+    $.fn.extend({
+        animateCss: function (animationName, callback) {
+            var animationEnd = (function (el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebKitAnimation: 'webkitAnimationEnd'
+                };
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
 
+                    }
+                }
+            })(document.createElement('div'));
+            this.addClass('animated ' + animationName).one(animationEnd, function () {
+                $(this).removeClass('animated ' + animationName);
+                if (typeof callback === 'function') callback();
+            });
+            return this;
+        }
+    });
+    $("#Buscar").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $("#Registrar_Empresa").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('pulse');
+        });
+    });
+    $(".actualizar_empresa").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
+    $(".btnModal").each(function () {
+        $(this).mouseenter(function () {
+            $(this).animateCss('tada');
+        });
+    });
     var getPage = function () {
         var select = document.getElementById("estado");
         var searchTerm = document.getElementById("searchTerm");
@@ -13,6 +55,16 @@
             var target = $a.parents("div.pagedList").attr("data-exp-target");
             $(target).replaceWith(data);
             $(".btnModal").each(envioajaxModal); 
+            $(".actualizar_empresa").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
+            $(".btnModal").each(function () {
+                $(this).mouseenter(function () {
+                    $(this).animateCss('tada');
+                });
+            });
         });
         return false;
     };
@@ -55,10 +107,10 @@
             var $newhtml = $(data);
             var target = $("div.pagedList").attr("data-exp-target");
             $(target).replaceWith($newhtml);
-            $(".btnModal").each(envioajaxModal); 
+            $(".btnModal").each(envioajaxModal);
         });
         return true;
-    }
+    };
 
 
 
